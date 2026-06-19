@@ -1,0 +1,1012 @@
+[
+  {
+    "query": "CASE_EXACT_GENE",
+    "expected_hit_level": "EXACT",
+    "got_hit_level": "EXACT",
+    "found": true,
+    "ok": true,
+    "resolver_meta": {
+      "query_type": "forward",
+      "hit_level": "EXACT",
+      "pert_type": "xpr",
+      "selected_source": "xpr",
+      "pert_class": "genetic",
+      "evidence_policy": {
+        "max_forward_evidence": 15,
+        "budget_exact": 1,
+        "budget_proxy_pert": 4,
+        "budget_proxy_cell": 4,
+        "budget_proxy_both": 6
+      },
+      "cell_resolution_reason": "exact_cell_name",
+      "requested_cell": "A549",
+      "used_cell": "A549",
+      "requested_perturbation": "USP28",
+      "used_perturbation": "USP28",
+      "proxy_cells_checked": [
+        "H1299",
+        "HCC827",
+        "NCIH1437",
+        "NCIH1563",
+        "NCIH1573",
+        "NCIH1781",
+        "NCIH1975",
+        "NCIH2073",
+        "NCIH2110",
+        "NCIH2172",
+        "NCIH596",
+        "NCIH838",
+        "BEN",
+        "HCC15",
+        "HCC44",
+        "HCC1588",
+        "HCC95",
+        "CORL23",
+        "T3M10",
+        "H1975"
+      ],
+      "proxy_perts_checked": [
+        "USP2",
+        "USP1",
+        "USP14",
+        "USP7",
+        "USP47",
+        "USP20",
+        "USP19",
+        "USP18",
+        "USP4",
+        "USP12",
+        "USP22",
+        "USP15",
+        "USP16",
+        "USP9X",
+        "USP32",
+        "UBAP1",
+        "UBE2C",
+        "UBQLN4",
+        "UBD",
+        "GABBR1"
+      ],
+      "evidence_candidates": [
+        {
+          "hit_level": "EXACT",
+          "used_cell": "A549",
+          "used_perturbation": "USP28",
+          "query_name": "USP28"
+        },
+        {
+          "hit_level": "PROXY_PERT",
+          "used_cell": "A549",
+          "used_perturbation": "USP2",
+          "query_name": "USP2"
+        },
+        {
+          "hit_level": "PROXY_PERT",
+          "used_cell": "A549",
+          "used_perturbation": "USP1",
+          "query_name": "USP1"
+        },
+        {
+          "hit_level": "PROXY_PERT",
+          "used_cell": "A549",
+          "used_perturbation": "USP7",
+          "query_name": "USP7"
+        },
+        {
+          "hit_level": "PROXY_PERT",
+          "used_cell": "A549",
+          "used_perturbation": "USP19",
+          "query_name": "USP19"
+        }
+      ],
+      "composite_mode": "genetic_multi_source",
+      "evidence_bundle": [
+        {
+          "pert_type": "xpr",
+          "hit_level": "EXACT",
+          "used_cell": "A549",
+          "used_perturbation": "USP28",
+          "found": true,
+          "n_obs": 2,
+          "note": ""
+        },
+        {
+          "pert_type": "sh",
+          "hit_level": "PROXY_PERT",
+          "used_cell": "A549",
+          "used_perturbation": "USP1",
+          "found": true,
+          "n_obs": 4,
+          "note": ""
+        }
+      ],
+      "llm_call_stats": {
+        "query": {},
+        "total": {}
+      },
+      "query_id": "q20260410-140919-0001"
+    }
+  },
+  {
+    "query": "CASE_PROXY_PERT_GENE",
+    "expected_hit_level": "PROXY_PERT",
+    "got_hit_level": "PROXY_PERT",
+    "found": true,
+    "ok": true,
+    "resolver_meta": {
+      "query_type": "forward",
+      "hit_level": "PROXY_PERT",
+      "pert_type": "sh",
+      "selected_source": "sh",
+      "pert_class": "genetic",
+      "evidence_policy": {
+        "max_forward_evidence": 15,
+        "budget_exact": 1,
+        "budget_proxy_pert": 4,
+        "budget_proxy_cell": 4,
+        "budget_proxy_both": 6
+      },
+      "cell_resolution_reason": "exact_cell_name",
+      "requested_cell": "A549",
+      "used_cell": "A549",
+      "requested_perturbation": "7SK",
+      "used_perturbation": "BCR",
+      "proxy_cells_checked": [
+        "H1299",
+        "HCC827",
+        "NCIH1437",
+        "NCIH1563",
+        "NCIH1573",
+        "NCIH1781",
+        "NCIH1975",
+        "NCIH2073",
+        "NCIH2110",
+        "NCIH2172",
+        "NCIH596",
+        "NCIH838",
+        "BEN",
+        "HCC15",
+        "HCC44",
+        "HCC1588",
+        "HCC95",
+        "CORL23",
+        "T3M10",
+        "H1975"
+      ],
+      "proxy_perts_checked": [
+        "BCR",
+        "FZD5",
+        "PSMD1",
+        "HTR2B",
+        "RPN2",
+        "RNH1",
+        "ST7",
+        "TSSK1B",
+        "LILRA5",
+        "RAE1",
+        "MARK2P10",
+        "ZNF141",
+        "BDNF",
+        "SNRK",
+        "SMKR1",
+        "RNASET2",
+        "SDK1",
+        "SREK1",
+        "SMS",
+        "RAI1"
+      ],
+      "evidence_candidates": [
+        {
+          "hit_level": "PROXY_PERT",
+          "used_cell": "A549",
+          "used_perturbation": "BCR",
+          "query_name": "BCR"
+        },
+        {
+          "hit_level": "PROXY_PERT",
+          "used_cell": "A549",
+          "used_perturbation": "FZD5",
+          "query_name": "FZD5"
+        },
+        {
+          "hit_level": "PROXY_PERT",
+          "used_cell": "A549",
+          "used_perturbation": "PSMD1",
+          "query_name": "PSMD1"
+        },
+        {
+          "hit_level": "PROXY_PERT",
+          "used_cell": "A549",
+          "used_perturbation": "RPN2",
+          "query_name": "RPN2"
+        },
+        {
+          "hit_level": "PROXY_BOTH",
+          "used_cell": "HCC515",
+          "used_perturbation": "BCR",
+          "query_name": "BCR"
+        },
+        {
+          "hit_level": "PROXY_BOTH",
+          "used_cell": "HCC515",
+          "used_perturbation": "FZD5",
+          "query_name": "FZD5"
+        },
+        {
+          "hit_level": "PROXY_BOTH",
+          "used_cell": "HCC515",
+          "used_perturbation": "RPN2",
+          "query_name": "RPN2"
+        },
+        {
+          "hit_level": "PROXY_BOTH",
+          "used_cell": "HCC515",
+          "used_perturbation": "RNH1",
+          "query_name": "RNH1"
+        },
+        {
+          "hit_level": "PROXY_BOTH",
+          "used_cell": "HCC515",
+          "used_perturbation": "ST7",
+          "query_name": "ST7"
+        },
+        {
+          "hit_level": "PROXY_BOTH",
+          "used_cell": "HCC515",
+          "used_perturbation": "RAE1",
+          "query_name": "RAE1"
+        }
+      ],
+      "composite_mode": "genetic_multi_source",
+      "evidence_bundle": [
+        {
+          "pert_type": "xpr",
+          "hit_level": "PROXY_PERT",
+          "used_cell": "A549",
+          "used_perturbation": "PSMD1",
+          "found": true,
+          "n_obs": 2,
+          "note": ""
+        },
+        {
+          "pert_type": "sh",
+          "hit_level": "PROXY_PERT",
+          "used_cell": "A549",
+          "used_perturbation": "BCR",
+          "found": true,
+          "n_obs": 4,
+          "note": ""
+        }
+      ],
+      "llm_call_stats": {
+        "query": {},
+        "total": {}
+      },
+      "query_id": "q20260410-140919-0002"
+    }
+  },
+  {
+    "query": "CASE_PROXY_CELL_GENE_BY_DISEASE",
+    "expected_hit_level": "PROXY_CELL",
+    "got_hit_level": "PROXY_CELL",
+    "found": true,
+    "ok": true,
+    "resolver_meta": {
+      "query_type": "forward",
+      "hit_level": "PROXY_CELL",
+      "pert_type": "xpr",
+      "selected_source": "xpr",
+      "pert_class": "genetic",
+      "evidence_policy": {
+        "max_forward_evidence": 15,
+        "budget_exact": 1,
+        "budget_proxy_pert": 4,
+        "budget_proxy_cell": 4,
+        "budget_proxy_both": 6
+      },
+      "cell_resolution_reason": "bio_context_proxy",
+      "requested_cell": null,
+      "used_cell": "A549",
+      "requested_perturbation": "NHLH2",
+      "used_perturbation": "NHLH2",
+      "proxy_cells_checked": [
+        "H1299",
+        "A549",
+        "HCC827",
+        "NCIH1437",
+        "NCIH1563",
+        "NCIH1573",
+        "NCIH1781",
+        "NCIH1975",
+        "NCIH2073",
+        "NCIH2110",
+        "NCIH2172",
+        "NCIH596",
+        "NCIH838",
+        "BEN",
+        "HCC15",
+        "HCC44",
+        "HCC1588",
+        "HCC95",
+        "CORL23",
+        "T3M10"
+      ],
+      "proxy_perts_checked": [
+        "NR2F6",
+        "HLX",
+        "NR2C2",
+        "NFE2",
+        "NCOA2",
+        "BHLHE22",
+        "NR2F2",
+        "NR5A2",
+        "NFIL3",
+        "NR0B2",
+        "NR2C1",
+        "NR4A3",
+        "MYCL1",
+        "LHX2",
+        "HMGN3",
+        "NR1D2",
+        "NR4A1",
+        "LHX3",
+        "HSF5",
+        "NKX2-1"
+      ],
+      "evidence_candidates": [
+        {
+          "hit_level": "PROXY_CELL",
+          "used_cell": "A549",
+          "used_perturbation": "NHLH2",
+          "query_name": "NHLH2"
+        },
+        {
+          "hit_level": "PROXY_BOTH",
+          "used_cell": "A549",
+          "used_perturbation": "NR2F6",
+          "query_name": "NR2F6"
+        },
+        {
+          "hit_level": "PROXY_BOTH",
+          "used_cell": "A549",
+          "used_perturbation": "HLX",
+          "query_name": "HLX"
+        },
+        {
+          "hit_level": "PROXY_BOTH",
+          "used_cell": "A549",
+          "used_perturbation": "NR2C2",
+          "query_name": "NR2C2"
+        },
+        {
+          "hit_level": "PROXY_BOTH",
+          "used_cell": "A549",
+          "used_perturbation": "NFE2",
+          "query_name": "NFE2"
+        },
+        {
+          "hit_level": "PROXY_BOTH",
+          "used_cell": "A549",
+          "used_perturbation": "NCOA2",
+          "query_name": "NCOA2"
+        },
+        {
+          "hit_level": "PROXY_BOTH",
+          "used_cell": "A549",
+          "used_perturbation": "NR5A2",
+          "query_name": "NR5A2"
+        }
+      ],
+      "composite_mode": "genetic_multi_source",
+      "evidence_bundle": [
+        {
+          "pert_type": "xpr",
+          "hit_level": "PROXY_CELL",
+          "used_cell": "A549",
+          "used_perturbation": "NHLH2",
+          "found": true,
+          "n_obs": 2,
+          "note": ""
+        },
+        {
+          "pert_type": "sh",
+          "hit_level": "PROXY_BOTH",
+          "used_cell": "A549",
+          "used_perturbation": "NR2F6",
+          "found": true,
+          "n_obs": 4,
+          "note": ""
+        }
+      ],
+      "llm_call_stats": {
+        "query": {},
+        "total": {}
+      },
+      "query_id": "q20260410-140919-0003"
+    }
+  },
+  {
+    "query": "CASE_UNKNOWN_CELL_INPUT",
+    "expected_hit_level": "PROXY_CELL",
+    "got_hit_level": "PROXY_CELL",
+    "found": true,
+    "ok": true,
+    "resolver_meta": {
+      "query_type": "forward",
+      "hit_level": "PROXY_CELL",
+      "pert_type": "xpr",
+      "selected_source": "xpr",
+      "pert_class": "genetic",
+      "evidence_policy": {
+        "max_forward_evidence": 15,
+        "budget_exact": 1,
+        "budget_proxy_pert": 4,
+        "budget_proxy_cell": 4,
+        "budget_proxy_both": 6
+      },
+      "cell_resolution_reason": "bio_context_proxy",
+      "requested_cell": null,
+      "used_cell": "A549",
+      "requested_perturbation": "USP28",
+      "used_perturbation": "USP28",
+      "proxy_cells_checked": [
+        "H1299",
+        "A549",
+        "HCC827",
+        "NCIH1437",
+        "NCIH1563",
+        "NCIH1573",
+        "NCIH1781",
+        "NCIH1975",
+        "NCIH2073",
+        "NCIH2110",
+        "NCIH2172",
+        "NCIH596",
+        "NCIH838",
+        "BEN",
+        "HCC15",
+        "HCC44",
+        "HCC1588",
+        "HCC95",
+        "CORL23",
+        "T3M10"
+      ],
+      "proxy_perts_checked": [
+        "USP2",
+        "USP1",
+        "USP14",
+        "USP7",
+        "USP47",
+        "USP20",
+        "USP19",
+        "USP18",
+        "USP4",
+        "USP12",
+        "USP22",
+        "USP15",
+        "USP16",
+        "USP9X",
+        "USP32",
+        "UBAP1",
+        "UBE2C",
+        "UBQLN4",
+        "UBD",
+        "GABBR1"
+      ],
+      "evidence_candidates": [
+        {
+          "hit_level": "PROXY_CELL",
+          "used_cell": "A549",
+          "used_perturbation": "USP28",
+          "query_name": "USP28"
+        },
+        {
+          "hit_level": "PROXY_BOTH",
+          "used_cell": "A549",
+          "used_perturbation": "USP2",
+          "query_name": "USP2"
+        },
+        {
+          "hit_level": "PROXY_BOTH",
+          "used_cell": "A549",
+          "used_perturbation": "USP1",
+          "query_name": "USP1"
+        },
+        {
+          "hit_level": "PROXY_BOTH",
+          "used_cell": "A549",
+          "used_perturbation": "USP7",
+          "query_name": "USP7"
+        },
+        {
+          "hit_level": "PROXY_BOTH",
+          "used_cell": "A549",
+          "used_perturbation": "USP19",
+          "query_name": "USP19"
+        },
+        {
+          "hit_level": "PROXY_BOTH",
+          "used_cell": "A549",
+          "used_perturbation": "USP18",
+          "query_name": "USP18"
+        },
+        {
+          "hit_level": "PROXY_BOTH",
+          "used_cell": "A549",
+          "used_perturbation": "USP4",
+          "query_name": "USP4"
+        }
+      ],
+      "composite_mode": "genetic_multi_source",
+      "evidence_bundle": [
+        {
+          "pert_type": "xpr",
+          "hit_level": "PROXY_CELL",
+          "used_cell": "A549",
+          "used_perturbation": "USP28",
+          "found": true,
+          "n_obs": 2,
+          "note": ""
+        },
+        {
+          "pert_type": "sh",
+          "hit_level": "PROXY_BOTH",
+          "used_cell": "A549",
+          "used_perturbation": "USP1",
+          "found": true,
+          "n_obs": 4,
+          "note": ""
+        }
+      ],
+      "llm_call_stats": {
+        "query": {},
+        "total": {}
+      },
+      "query_id": "q20260410-140919-0004"
+    }
+  },
+  {
+    "query": "CASE_PROXY_BOTH_GENE",
+    "expected_hit_level": "PROXY_BOTH",
+    "got_hit_level": "PROXY_BOTH",
+    "found": true,
+    "ok": true,
+    "resolver_meta": {
+      "query_type": "forward",
+      "hit_level": "PROXY_BOTH",
+      "pert_type": "sh",
+      "selected_source": "sh",
+      "pert_class": "genetic",
+      "evidence_policy": {
+        "max_forward_evidence": 15,
+        "budget_exact": 1,
+        "budget_proxy_pert": 4,
+        "budget_proxy_cell": 4,
+        "budget_proxy_both": 6
+      },
+      "cell_resolution_reason": "exact_cell_name",
+      "requested_cell": "DLD1",
+      "used_cell": "HT29",
+      "requested_perturbation": "7SK",
+      "used_perturbation": "BCR",
+      "proxy_cells_checked": [
+        "HT29",
+        "LOVO",
+        "NCIH508",
+        "NCIH716",
+        "RKO",
+        "SW480",
+        "SW620",
+        "SW948",
+        "CL34",
+        "SNUC4",
+        "SNUC5",
+        "GP2D",
+        "HCT116",
+        "SNU1040",
+        "SNU407",
+        "HT115",
+        "MDST8",
+        "CW2"
+      ],
+      "proxy_perts_checked": [
+        "BCR",
+        "FZD5",
+        "PSMD1",
+        "HTR2B",
+        "RPN2",
+        "RNH1",
+        "ST7",
+        "TSSK1B",
+        "LILRA5",
+        "RAE1",
+        "MARK2P10",
+        "ZNF141",
+        "BDNF",
+        "SNRK",
+        "SMKR1",
+        "RNASET2",
+        "SDK1",
+        "SREK1",
+        "SMS",
+        "RAI1"
+      ],
+      "evidence_candidates": [
+        {
+          "hit_level": "PROXY_BOTH",
+          "used_cell": "HT29",
+          "used_perturbation": "BCR",
+          "query_name": "BCR"
+        },
+        {
+          "hit_level": "PROXY_BOTH",
+          "used_cell": "HT29",
+          "used_perturbation": "FZD5",
+          "query_name": "FZD5"
+        },
+        {
+          "hit_level": "PROXY_BOTH",
+          "used_cell": "HT29",
+          "used_perturbation": "PSMD1",
+          "query_name": "PSMD1"
+        },
+        {
+          "hit_level": "PROXY_BOTH",
+          "used_cell": "HT29",
+          "used_perturbation": "RPN2",
+          "query_name": "RPN2"
+        },
+        {
+          "hit_level": "PROXY_BOTH",
+          "used_cell": "HT29",
+          "used_perturbation": "RNH1",
+          "query_name": "RNH1"
+        },
+        {
+          "hit_level": "PROXY_BOTH",
+          "used_cell": "HT29",
+          "used_perturbation": "ST7",
+          "query_name": "ST7"
+        }
+      ],
+      "composite_mode": "genetic_multi_source",
+      "evidence_bundle": [
+        {
+          "pert_type": "xpr",
+          "hit_level": "PROXY_BOTH",
+          "used_cell": "HT29",
+          "used_perturbation": "PSMD1",
+          "found": true,
+          "n_obs": 2,
+          "note": ""
+        },
+        {
+          "pert_type": "sh",
+          "hit_level": "PROXY_BOTH",
+          "used_cell": "HT29",
+          "used_perturbation": "BCR",
+          "found": true,
+          "n_obs": 4,
+          "note": ""
+        }
+      ],
+      "llm_call_stats": {
+        "query": {},
+        "total": {}
+      },
+      "query_id": "q20260410-140919-0005"
+    }
+  },
+  {
+    "query": "CASE_EXACT_DRUG",
+    "expected_hit_level": "EXACT",
+    "got_hit_level": "EXACT",
+    "found": true,
+    "ok": true,
+    "resolver_meta": {
+      "query_type": "forward",
+      "hit_level": "EXACT",
+      "pert_type": "cp",
+      "selected_source": "cp",
+      "pert_class": "drug",
+      "evidence_policy": {
+        "max_forward_evidence": 15,
+        "budget_exact": 1,
+        "budget_proxy_pert": 4,
+        "budget_proxy_cell": 4,
+        "budget_proxy_both": 6
+      },
+      "cell_resolution_reason": "exact_cell_name",
+      "requested_cell": "A549",
+      "used_cell": "A549",
+      "requested_perturbation": "BRD-A12237696",
+      "used_perturbation": "BRD-A12237696",
+      "proxy_cells_checked": [
+        "H1299",
+        "HCC827",
+        "NCIH1437",
+        "NCIH1563",
+        "NCIH1573",
+        "NCIH1781",
+        "NCIH1975",
+        "NCIH2073",
+        "NCIH2110",
+        "NCIH2172",
+        "NCIH596",
+        "NCIH838",
+        "BEN",
+        "HCC15",
+        "HCC44",
+        "HCC1588",
+        "HCC95",
+        "CORL23",
+        "T3M10",
+        "H1975"
+      ],
+      "proxy_perts_checked": [
+        "BRD-K59506194",
+        "BRD-K22227508",
+        "BRD-K83896451",
+        "BRD-K62309135",
+        "BRD-A08715367",
+        "BRD-K36269323",
+        "BRD-A47706533",
+        "BRD-A04020513",
+        "BRD-K71822263",
+        "BRD-K16701932",
+        "BRD-K35723520",
+        "BRD-K94780074"
+      ],
+      "evidence_candidates": [
+        {
+          "hit_level": "EXACT",
+          "used_cell": "A549",
+          "used_perturbation": "BRD-A12237696",
+          "query_name": "L-citrulline"
+        },
+        {
+          "hit_level": "PROXY_PERT",
+          "used_cell": "A549",
+          "used_perturbation": "BRD-K59506194",
+          "query_name": "targinine"
+        },
+        {
+          "hit_level": "PROXY_PERT",
+          "used_cell": "A549",
+          "used_perturbation": "BRD-K22227508",
+          "query_name": "targinine"
+        },
+        {
+          "hit_level": "PROXY_PERT",
+          "used_cell": "A549",
+          "used_perturbation": "BRD-K83896451",
+          "query_name": "glutamine"
+        },
+        {
+          "hit_level": "PROXY_PERT",
+          "used_cell": "A549",
+          "used_perturbation": "BRD-K36269323",
+          "query_name": "asymmetrical-dimethylarginine"
+        },
+        {
+          "hit_level": "PROXY_CELL",
+          "used_cell": "NCIH1573",
+          "used_perturbation": "BRD-A12237696",
+          "query_name": "L-citrulline"
+        },
+        {
+          "hit_level": "PROXY_CELL",
+          "used_cell": "NCIH2110",
+          "used_perturbation": "BRD-A12237696",
+          "query_name": "L-citrulline"
+        },
+        {
+          "hit_level": "PROXY_CELL",
+          "used_cell": "NCIH838",
+          "used_perturbation": "BRD-A12237696",
+          "query_name": "L-citrulline"
+        },
+        {
+          "hit_level": "PROXY_CELL",
+          "used_cell": "BEN",
+          "used_perturbation": "BRD-A12237696",
+          "query_name": "L-citrulline"
+        },
+        {
+          "hit_level": "PROXY_BOTH",
+          "used_cell": "H1299",
+          "used_perturbation": "BRD-K16701932",
+          "query_name": "Gly-Gly-PALO"
+        },
+        {
+          "hit_level": "PROXY_BOTH",
+          "used_cell": "H1299",
+          "used_perturbation": "BRD-K35723520",
+          "query_name": "darinaparsin"
+        },
+        {
+          "hit_level": "PROXY_BOTH",
+          "used_cell": "NCIH1573",
+          "used_perturbation": "BRD-K62309135",
+          "query_name": "L-glutamic-acid"
+        },
+        {
+          "hit_level": "PROXY_BOTH",
+          "used_cell": "NCIH1573",
+          "used_perturbation": "BRD-A08715367",
+          "query_name": "L-theanine"
+        },
+        {
+          "hit_level": "PROXY_BOTH",
+          "used_cell": "NCIH1573",
+          "used_perturbation": "BRD-K94780074",
+          "query_name": "S-nitrosoglutathione"
+        },
+        {
+          "hit_level": "PROXY_BOTH",
+          "used_cell": "NCIH2073",
+          "used_perturbation": "BRD-K16701932",
+          "query_name": "Gly-Gly-PALO"
+        }
+      ],
+      "llm_call_stats": {
+        "query": {},
+        "total": {}
+      },
+      "query_id": "q20260410-140919-0006"
+    }
+  },
+  {
+    "query": "CASE_PROXY_PERT_DRUG",
+    "expected_hit_level": "PROXY_PERT",
+    "got_hit_level": "PROXY_PERT",
+    "found": true,
+    "ok": true,
+    "resolver_meta": {
+      "query_type": "forward",
+      "hit_level": "PROXY_PERT",
+      "pert_type": "cp",
+      "selected_source": "cp",
+      "pert_class": "drug",
+      "evidence_policy": {
+        "max_forward_evidence": 15,
+        "budget_exact": 1,
+        "budget_proxy_pert": 4,
+        "budget_proxy_cell": 4,
+        "budget_proxy_both": 6
+      },
+      "cell_resolution_reason": "exact_cell_name",
+      "requested_cell": "A549",
+      "used_cell": "A549",
+      "requested_perturbation": "BRD-A08715367",
+      "used_perturbation": "BRD-K83896451",
+      "proxy_cells_checked": [
+        "H1299",
+        "HCC827",
+        "NCIH1437",
+        "NCIH1563",
+        "NCIH1573",
+        "NCIH1781",
+        "NCIH1975",
+        "NCIH2073",
+        "NCIH2110",
+        "NCIH2172",
+        "NCIH596",
+        "NCIH838",
+        "BEN",
+        "HCC15",
+        "HCC44",
+        "HCC1588",
+        "HCC95",
+        "CORL23",
+        "T3M10",
+        "H1975"
+      ],
+      "proxy_perts_checked": [
+        "BRD-K62309135",
+        "BRD-K83896451",
+        "BRD-K35723520",
+        "BRD-A12237696",
+        "BRD-K22227508",
+        "BRD-K59506194",
+        "BRD-K94780074",
+        "BRD-A47706533",
+        "BRD-A04020513",
+        "BRD-K71822263",
+        "BRD-K36269323",
+        "BRD-K41260949"
+      ],
+      "evidence_candidates": [
+        {
+          "hit_level": "PROXY_PERT",
+          "used_cell": "A549",
+          "used_perturbation": "BRD-K83896451",
+          "query_name": "glutamine"
+        },
+        {
+          "hit_level": "PROXY_PERT",
+          "used_cell": "A549",
+          "used_perturbation": "BRD-K35723520",
+          "query_name": "darinaparsin"
+        },
+        {
+          "hit_level": "PROXY_PERT",
+          "used_cell": "A549",
+          "used_perturbation": "BRD-A12237696",
+          "query_name": "L-citrulline"
+        },
+        {
+          "hit_level": "PROXY_PERT",
+          "used_cell": "A549",
+          "used_perturbation": "BRD-K22227508",
+          "query_name": "targinine"
+        },
+        {
+          "hit_level": "PROXY_CELL",
+          "used_cell": "NCIH1573",
+          "used_perturbation": "BRD-A08715367",
+          "query_name": "L-theanine"
+        },
+        {
+          "hit_level": "PROXY_CELL",
+          "used_cell": "NCIH2110",
+          "used_perturbation": "BRD-A08715367",
+          "query_name": "L-theanine"
+        },
+        {
+          "hit_level": "PROXY_CELL",
+          "used_cell": "NCIH838",
+          "used_perturbation": "BRD-A08715367",
+          "query_name": "L-theanine"
+        },
+        {
+          "hit_level": "PROXY_CELL",
+          "used_cell": "BEN",
+          "used_perturbation": "BRD-A08715367",
+          "query_name": "L-theanine"
+        },
+        {
+          "hit_level": "PROXY_BOTH",
+          "used_cell": "H1299",
+          "used_perturbation": "BRD-K35723520",
+          "query_name": "darinaparsin"
+        },
+        {
+          "hit_level": "PROXY_BOTH",
+          "used_cell": "H1299",
+          "used_perturbation": "BRD-K41260949",
+          "query_name": "valproic-acid"
+        },
+        {
+          "hit_level": "PROXY_BOTH",
+          "used_cell": "NCIH1573",
+          "used_perturbation": "BRD-K62309135",
+          "query_name": "L-glutamic-acid"
+        },
+        {
+          "hit_level": "PROXY_BOTH",
+          "used_cell": "NCIH1573",
+          "used_perturbation": "BRD-A12237696",
+          "query_name": "L-citrulline"
+        },
+        {
+          "hit_level": "PROXY_BOTH",
+          "used_cell": "NCIH1573",
+          "used_perturbation": "BRD-K94780074",
+          "query_name": "S-nitrosoglutathione"
+        },
+        {
+          "hit_level": "PROXY_BOTH",
+          "used_cell": "NCIH1573",
+          "used_perturbation": "BRD-K41260949",
+          "query_name": "valproic-acid"
+        }
+      ],
+      "llm_call_stats": {
+        "query": {},
+        "total": {}
+      },
+      "query_id": "q20260410-140919-0007"
+    }
+  }
+]

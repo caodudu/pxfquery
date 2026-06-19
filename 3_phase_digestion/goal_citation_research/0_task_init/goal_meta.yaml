@@ -1,0 +1,10 @@
+goal_id: G-004
+name: "Citation research"
+phase: digestion
+project: P-012
+objective: "Build evidence about citation patterns relevant to journal ecology, including same-journal citation practices, citation-network context, and whether citation choices correlate with observable published-paper outcomes."
+status: active
+tasks:
+  - T-010
+created: "2026-06-18"
+notes: "G-004 is reserved for citation-focused research tasks. T-010 is configured as pending and should not be executed until explicitly started."

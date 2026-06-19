@@ -1,0 +1,36 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c ':*)",
+      "Bash(python \"d:/Projects/7_rush/3_functional_query/1_claude/workspace/script/inspect_data.py\")",
+      "Bash(py --version)",
+      "Bash(conda run:*)",
+      "Bash(cmd /c \"python --version\")",
+      "Bash(cmd /c \"where python\")",
+      "Read(//c/Users/plj/anaconda3/**)",
+      "Read(//c/Users/plj/miniconda3/**)",
+      "Read(//c/Users/plj/**)",
+      "Read(//c/ProgramData/anaconda3/**)",
+      "Read(//c/ProgramData/miniconda3/**)",
+      "Read(//c/ProgramData/**)",
+      "Bash(python3 -c \"import sys; lines=sys.stdin.read\\(\\).split\\('\\\\n'\\); print\\('row1 first field:', lines[0].split\\(','\\)[0]\\); print\\('row2 first field:', lines[1].split\\(','\\)[0] if len\\(lines\\)>1 else 'N/A'\\)\")",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); [print\\(k,':',v\\) for k,v in d.items\\(\\) if 'python' in k.lower\\(\\)]\")",
+      "Bash(xargs grep:*)",
+      "Bash(ls /c/Users/plj/AppData/Local/Microsoft/WindowsApps/python*.exe)",
+      "Bash(/c/Users/plj/AppData/Local/Microsoft/WindowsApps/python3.12.exe --version)",
+      "Bash(/c/Users/plj/AppData/Local/Microsoft/WindowsApps/python3.exe --version)",
+      "Bash(/d/Softwares/s4_code/anaconda/envs/pxfquery/python.exe --version)",
+      "Bash(/d/Softwares/s4_code/anaconda/envs/pxfquery/python.exe -c \"import anndata, numpy, pandas, plotly, openai; print\\('anndata:', anndata.__version__\\); print\\('numpy:', numpy.__version__\\); print\\('pandas:', pandas.__version__\\); print\\('openai:', openai.__version__\\)\")",
+      "Bash(/d/Softwares/s4_code/anaconda/envs/pxfquery/python.exe -c ':*)",
+      "Bash(/d/Softwares/s4_code/anaconda/envs/pxfquery/python.exe -c \"import rdkit; print\\('rdkit ok'\\); from rdkit.Chem import AllChem; print\\('AllChem ok'\\)\")",
+      "Bash(/d/Softwares/s4_code/anaconda/envs/pxfquery/python.exe -c \"import requests; print\\('requests ok'\\)\")",
+      "Bash(/d/Softwares/s4_code/anaconda/envs/pxfquery/python.exe -m pip install rdkit -i https://pypi.tuna.tsinghua.edu.cn/simple)",
+      "Bash(/d/Softwares/s4_code/anaconda/envs/pxfquery/python.exe -m pip install rdkit --index-url https://pypi.org/simple/)",
+      "Bash(/d/Softwares/s4_code/anaconda/envs/pxfquery/python.exe -c \"from rdkit.Chem import AllChem, DataStructs; from rdkit import Chem; print\\('rdkit ok'\\)\")",
+      "Bash(\"/d/Softwares/s4_code/anaconda/envs/pxfquery/python.exe\" -c \"from rdkit.Chem import AllChem, DataStructs; from rdkit import Chem; print\\('rdkit ok'\\)\")",
+      "Bash(\"/d/Softwares/s4_code/anaconda/envs/pxfquery/python.exe\" -c \"import sys; print\\(sys.path\\)\")",
+      "Read(//d/Softwares/s4_code/anaconda/envs/pxfquery/Lib/site-packages//**)",
+      "Bash(\"/d/Softwares/s4_code/anaconda/envs/pxfquery/python.exe\" -c \"import pkg_resources; pkgs = [p.project_name for p in pkg_resources.working_set]; print\\([p for p in pkgs if 'rdkit' in p.lower\\(\\) or 'RDKit' in p]\\)\")"
+    ]
+  }
+}

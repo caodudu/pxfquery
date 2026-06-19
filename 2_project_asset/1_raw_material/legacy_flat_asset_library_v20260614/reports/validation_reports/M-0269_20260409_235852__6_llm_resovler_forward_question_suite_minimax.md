@@ -1,0 +1,1900 @@
+# Forward Question Suite (MiniMax)
+
+- Time: 2026-04-09 23:58:52
+- Model: MiniMax-M2.7
+- Query Count: 12
+
+| ID | Found | HitLevel | Source | Query |
+|----|-------|----------|--------|-------|
+| `Q1_exact_gene_cell` | `True` | `EXACT` | `sh` | In A549, what pathways are affected by EGFR knockdown? |
+| `Q2_disease_not_cellname` | `False` | `NOT_FOUND` | `xpr` | In non-small cell lung carcinoma, what happens if EGFR is suppressed? |
+| `Q3_unknown_cell_label` | `True` | `PROXY_CELL` | `sh` | For NCI-H358-like NSCLC context, what pathways change after EGFR knockdown? |
+| `Q4_gene_alias_style` | `False` | `NOT_FOUND` | `xpr` | In A549, what functional changes follow ErbB1 knockdown? |
+| `Q5_generic_drug_desc` | `True` | `PROXY_PERT` | `None` | In A549, what pathways are affected by an EGFR inhibitor? |
+| `Q6_specific_drug_name` | `True` | `PROXY_PERT` | `None` | In A549, what pathways change after erlotinib treatment? |
+| `Q7_breast_context` | `True` | `PROXY_CELL` | `sh` | In triple-negative breast cancer context, what pathways are altered by KRAS perturbation? |
+| `Q8_noisy_text` | `True` | `EXACT` | `sh` | A549 + EGFR KD, tell me key activated/suppressed programs. |
+| `Q9_sh_vs_xpr_interpret` | `True` | `EXACT` | `sh` | In A549, summarize the pathway effect of EGFR perturbation with robust evidence. |
+| `Q10_hard_context` | `True` | `PROXY_CELL` | `sh` | In colorectal adenocarcinoma context, what happens when MYC is perturbed? |
+| `Q11_proxy_expected` | `True` | `PROXY_PERT` | `xpr` | In A549, report pathway impact for a rare gene 7SK perturbation. |
+| `Q12_drug_proxy_expected` | `False` | `NOT_FOUND` | `xpr` | In A549, estimate pathway response for l-theanine-like perturbation. |
+
+## Detailed Results
+
+### Q1_exact_gene_cell
+- Query: `In A549, what pathways are affected by EGFR knockdown?`
+- Found: `True`
+- Hit Level: `EXACT`
+- Selected Source: `sh`
+- Composite Mode: `genetic_multi_source`
+
+Resolver Meta:
+```json
+{
+  "query_type": "forward",
+  "hit_level": "EXACT",
+  "pert_type": "sh",
+  "pert_class": "genetic",
+  "cell_resolution_reason": "exact_cell_name",
+  "requested_cell": "A549",
+  "used_cell": "A549",
+  "requested_perturbation": "EGFR",
+  "used_perturbation": "EGFR",
+  "proxy_cells_checked": [
+    "H1299",
+    "HCC827",
+    "NCIH1437",
+    "NCIH1563",
+    "NCIH1573",
+    "NCIH1781",
+    "NCIH1975",
+    "NCIH2073",
+    "NCIH2110",
+    "NCIH2172",
+    "NCIH596",
+    "NCIH838",
+    "BEN",
+    "HCC15",
+    "HCC44",
+    "HCC1588",
+    "HCC95",
+    "CORL23",
+    "T3M10",
+    "H1975"
+  ],
+  "proxy_perts_checked": [
+    "EGF",
+    "EREG",
+    "AREG",
+    "AR",
+    "ERBB2",
+    "ERBB4",
+    "ERBB3",
+    "HBEGF",
+    "NRG1",
+    "EPHA1",
+    "GRB7",
+    "AXL",
+    "EGR1",
+    "TLR4",
+    "TGFA",
+    "PDGFRA",
+    "ADGRE5",
+    "EPHB2",
+    "FGFR2",
+    "ERRFI1"
+  ],
+  "evidence_candidates": [
+    {
+      "hit_level": "EXACT",
+      "used_cell": "A549",
+      "used_perturbation": "EGFR",
+      "query_name": "EGFR"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "EGF",
+      "query_name": "EGF"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "AR",
+      "query_name": "AR"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "ERBB2",
+      "query_name": "ERBB2"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "ERBB4",
+      "query_name": "ERBB4"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "ERBB3",
+      "query_name": "ERBB3"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "NRG1",
+      "query_name": "NRG1"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "GRB7",
+      "query_name": "GRB7"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "AXL",
+      "query_name": "AXL"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "EGR1",
+      "query_name": "EGR1"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "TLR4",
+      "query_name": "TLR4"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "TGFA",
+      "query_name": "TGFA"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "PDGFRA",
+      "query_name": "PDGFRA"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "ADGRE5",
+      "query_name": "ADGRE5"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "EPHB2",
+      "query_name": "EPHB2"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "FGFR2",
+      "query_name": "FGFR2"
+    },
+    {
+      "hit_level": "PROXY_CELL",
+      "used_cell": "HCC515",
+      "used_perturbation": "EGFR",
+      "query_name": "EGFR"
+    },
+    {
+      "hit_level": "PROXY_BOTH",
+      "used_cell": "HCC515",
+      "used_perturbation": "EGF",
+      "query_name": "EGF"
+    },
+    {
+      "hit_level": "PROXY_BOTH",
+      "used_cell": "HCC515",
+      "used_perturbation": "AR",
+      "query_name": "AR"
+    },
+    {
+      "hit_level": "PROXY_BOTH",
+      "used_cell": "HCC515",
+      "used_perturbation": "ERBB2",
+      "query_name": "ERBB2"
+    },
+    {
+      "hit_level": "PROXY_BOTH",
+      "used_cell": "HCC515",
+      "used_perturbation": "ERBB4",
+      "query_name": "ERBB4"
+    },
+    {
+      "hit_level": "PROXY_BOTH",
+      "used_cell": "HCC515",
+      "used_perturbation": "ERBB3",
+      "query_name": "ERBB3"
+    },
+    {
+      "hit_level": "PROXY_BOTH",
+      "used_cell": "HCC515",
+      "used_perturbation": "NRG1",
+      "query_name": "NRG1"
+    },
+    {
+      "hit_level": "PROXY_BOTH",
+      "used_cell": "HCC515",
+      "used_perturbation": "GRB7",
+      "query_name": "GRB7"
+    }
+  ],
+  "composite_mode": "genetic_multi_source",
+  "evidence_bundle": [
+    {
+      "pert_type": "xpr",
+      "hit_level": "EXACT",
+      "used_cell": "A549",
+      "used_perturbation": "EGFR",
+      "found": true,
+      "n_obs": 5,
+      "note": ""
+    },
+    {
+      "pert_type": "sh",
+      "hit_level": "EXACT",
+      "used_cell": "A549",
+      "used_perturbation": "EGFR",
+      "found": true,
+      "n_obs": 18,
+      "note": ""
+    }
+  ],
+  "selected_source": "sh"
+}
+```
+
+Summary:
+
+**Evidence type:** Exact – EGFR was knocked‑down (shRNA) directly in A549 cells.
+
+**Interpretation:**  
+Silencing EGFR in A549 cells triggers a distinct transcriptional program. Pathway‑level analysis shows strong activation of the p53 cascade, G1/S cell‑cycle regulators, mitotic‑spindle and myogenic genes, indicating a shift toward cell‑cycle arrest and partial differentiation. Simultaneously, hallmark oxidative‑phosphorylation, MYC‑target, mTORC1 and hypoxia programs are suppressed, reflecting a broad metabolic rewiring away from glycolysis‑driven growth and reduced biosynthetic capacity. The down‑regulation of EMT‑III and proteasomal‑degradation pathways further suggests decreased invasive potential. Notably, KRAS‑signaling (down‑regulated) and alveolar‑type signatures are enriched, hinting at EGFR‑mediated cross‑talk with KRAS and promotion of a more differentiated alveolar epithelial phenotype. Together, these results demonstrate that EGFR loss drives A549 cells toward a quiescent, metabolically constrained, and less‑malignant state.
+
+### Q2_disease_not_cellname
+- Query: `In non-small cell lung carcinoma, what happens if EGFR is suppressed?`
+- Found: `False`
+- Hit Level: `NOT_FOUND`
+- Selected Source: `xpr`
+- Composite Mode: `genetic_multi_source`
+
+Resolver Meta:
+```json
+{
+  "query_type": "forward",
+  "hit_level": "NOT_FOUND",
+  "pert_type": "xpr",
+  "pert_class": "genetic",
+  "cell_resolution_reason": "bio_context_proxy",
+  "requested_cell": null,
+  "used_cell": null,
+  "requested_perturbation": "EGFR",
+  "used_perturbation": null,
+  "proxy_cells_checked": [
+    "SKLU1",
+    "DV90"
+  ],
+  "proxy_perts_checked": [
+    "EGF",
+    "EREG",
+    "AREG",
+    "AR",
+    "ERBB2",
+    "ERBB4",
+    "ERBB3",
+    "HBEGF",
+    "NRG1",
+    "EPHA1",
+    "GRB7",
+    "AXL",
+    "EGR1",
+    "TLR4",
+    "TGFA",
+    "PDGFRA",
+    "ADGRE5",
+    "EPHB2",
+    "FGFR2",
+    "ERRFI1"
+  ],
+  "evidence_candidates": [],
+  "composite_mode": "genetic_multi_source",
+  "evidence_bundle": [
+    {
+      "pert_type": "xpr",
+      "hit_level": "NOT_FOUND",
+      "used_cell": null,
+      "used_perturbation": null,
+      "found": false,
+      "n_obs": 0,
+      "note": "No exact/proxy evidence found in current matrix for this (B, P) query."
+    },
+    {
+      "pert_type": "sh",
+      "hit_level": "NOT_FOUND",
+      "used_cell": null,
+      "used_perturbation": null,
+      "found": false,
+      "n_obs": 0,
+      "note": "No exact/proxy evidence found in current matrix for this (B, P) query."
+    }
+  ],
+  "selected_source": "xpr"
+}
+```
+
+Summary:
+
+No result found. No exact/proxy evidence found in current matrix for this (B, P) query.
+
+### Q3_unknown_cell_label
+- Query: `For NCI-H358-like NSCLC context, what pathways change after EGFR knockdown?`
+- Found: `True`
+- Hit Level: `PROXY_CELL`
+- Selected Source: `sh`
+- Composite Mode: `genetic_multi_source`
+
+Resolver Meta:
+```json
+{
+  "query_type": "forward",
+  "hit_level": "PROXY_CELL",
+  "pert_type": "sh",
+  "pert_class": "genetic",
+  "cell_resolution_reason": "bio_context_proxy",
+  "requested_cell": null,
+  "used_cell": "A549",
+  "requested_perturbation": "EGFR knockdown",
+  "used_perturbation": "EGFR knockdown",
+  "proxy_cells_checked": [
+    "H1299",
+    "A549",
+    "HCC827",
+    "NCIH1437",
+    "NCIH1563",
+    "NCIH1573",
+    "NCIH1781",
+    "NCIH1975",
+    "NCIH2073",
+    "NCIH2110",
+    "NCIH2172",
+    "NCIH596",
+    "NCIH838",
+    "BEN",
+    "HCC15",
+    "HCC44",
+    "HCC1588",
+    "HCC95",
+    "CORL23",
+    "T3M10"
+  ],
+  "proxy_perts_checked": [],
+  "evidence_candidates": [
+    {
+      "hit_level": "PROXY_CELL",
+      "used_cell": "A549",
+      "used_perturbation": "EGFR knockdown",
+      "query_name": "EGFR knockdown"
+    }
+  ],
+  "composite_mode": "genetic_multi_source",
+  "evidence_bundle": [
+    {
+      "pert_type": "xpr",
+      "hit_level": "NOT_FOUND",
+      "used_cell": null,
+      "used_perturbation": null,
+      "found": false,
+      "n_obs": 0,
+      "note": "No exact/proxy evidence found in current matrix for this (B, P) query."
+    },
+    {
+      "pert_type": "sh",
+      "hit_level": "PROXY_CELL",
+      "used_cell": "A549",
+      "used_perturbation": "EGFR knockdown",
+      "found": true,
+      "n_obs": 18,
+      "note": ""
+    }
+  ],
+  "selected_source": "sh"
+}
+```
+
+Summary:
+
+EGFR knockdown in A549 cells was assessed using short‑hairpin (shRNA) data, which is classified as **proxy‑based evidence** (the query matched a proxy‑cell entry, not a direct expression profile).  
+
+Pathway enrichment upon
+
+### Q4_gene_alias_style
+- Query: `In A549, what functional changes follow ErbB1 knockdown?`
+- Found: `False`
+- Hit Level: `NOT_FOUND`
+- Selected Source: `xpr`
+- Composite Mode: `genetic_multi_source`
+
+Resolver Meta:
+```json
+{
+  "query_type": "forward",
+  "hit_level": "NOT_FOUND",
+  "pert_type": "xpr",
+  "pert_class": "genetic",
+  "cell_resolution_reason": "exact_cell_name",
+  "requested_cell": "A549",
+  "used_cell": null,
+  "requested_perturbation": "ErbB1 knockdown",
+  "used_perturbation": null,
+  "proxy_cells_checked": [
+    "H1299",
+    "HCC827",
+    "NCIH1437",
+    "NCIH1563",
+    "NCIH1573",
+    "NCIH1781",
+    "NCIH1975",
+    "NCIH2073",
+    "NCIH2110",
+    "NCIH2172",
+    "NCIH596",
+    "NCIH838",
+    "BEN",
+    "HCC15",
+    "HCC44",
+    "HCC1588",
+    "HCC95",
+    "CORL23",
+    "T3M10",
+    "H1975"
+  ],
+  "proxy_perts_checked": [],
+  "evidence_candidates": [],
+  "composite_mode": "genetic_multi_source",
+  "evidence_bundle": [
+    {
+      "pert_type": "xpr",
+      "hit_level": "NOT_FOUND",
+      "used_cell": null,
+      "used_perturbation": null,
+      "found": false,
+      "n_obs": 0,
+      "note": "No exact/proxy evidence found in current matrix for this (B, P) query."
+    },
+    {
+      "pert_type": "sh",
+      "hit_level": "NOT_FOUND",
+      "used_cell": null,
+      "used_perturbation": null,
+      "found": false,
+      "n_obs": 0,
+      "note": "No exact/proxy evidence found in current matrix for this (B, P) query."
+    }
+  ],
+  "selected_source": "xpr"
+}
+```
+
+Summary:
+
+No result found. No exact/proxy evidence found in current matrix for this (B, P) query.
+
+### Q5_generic_drug_desc
+- Query: `In A549, what pathways are affected by an EGFR inhibitor?`
+- Found: `True`
+- Hit Level: `PROXY_PERT`
+- Selected Source: `None`
+- Composite Mode: `None`
+
+Resolver Meta:
+```json
+{
+  "query_type": "forward",
+  "hit_level": "PROXY_PERT",
+  "pert_type": "cp",
+  "pert_class": "drug",
+  "cell_resolution_reason": "exact_cell_name",
+  "requested_cell": "A549",
+  "used_cell": "A549",
+  "requested_perturbation": "BRD-K70401845",
+  "used_perturbation": "BRD-K26603252",
+  "proxy_cells_checked": [
+    "H1299",
+    "HCC827",
+    "NCIH1437",
+    "NCIH1563",
+    "NCIH1573",
+    "NCIH1781",
+    "NCIH1975",
+    "NCIH2073",
+    "NCIH2110",
+    "NCIH2172",
+    "NCIH596",
+    "NCIH838",
+    "BEN",
+    "HCC15",
+    "HCC44",
+    "HCC1588",
+    "HCC95",
+    "CORL23",
+    "T3M10",
+    "H1975"
+  ],
+  "proxy_perts_checked": [
+    "BRD-K26603252",
+    "BRD-K68336408",
+    "BRD-K50495309",
+    "BRD-K52850071",
+    "BRD-K64052750",
+    "BRD-K72703948",
+    "BRD-K48735772",
+    "BRD-K41337261",
+    "BRD-K87696786",
+    "BRD-K77625799",
+    "BRD-K17702546",
+    "BRD-K98572433",
+    "BRD-K87782578",
+    "BRD-K57169635",
+    "BRD-K26838195",
+    "BRD-K50168500",
+    "BRD-K76908866"
+  ],
+  "evidence_candidates": [
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "BRD-K26603252",
+      "query_name": "PD-153035"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "BRD-K68336408",
+      "query_name": "BRD-K68336408"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "BRD-K50495309",
+      "query_name": "BRD-K50495309"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "BRD-K52850071",
+      "query_name": "WHI-P154"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "BRD-K64052750",
+      "query_name": "gefitinib"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "BRD-K72703948",
+      "query_name": "ZM-447439"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "BRD-K48735772",
+      "query_name": "PD-158780"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "BRD-K41337261",
+      "query_name": "ZM-306416"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "BRD-K87696786",
+      "query_name": "LY-456236"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "BRD-K77625799",
+      "query_name": "vandetanib"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "BRD-K17702546",
+      "query_name": "PD-168393"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "BRD-K98572433",
+      "query_name": "AZD-8931"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "BRD-K87782578",
+      "query_name": "AVL-292"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "BRD-K57169635",
+      "query_name": "dacomitinib"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "BRD-K26838195",
+      "query_name": "AST-1306"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "BRD-K50168500",
+      "query_name": "canertinib"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "BRD-K76908866",
+      "query_name": "CP-724714"
+    },
+    {
+      "hit_level": "PROXY_CELL",
+      "used_cell": "NCIH1437",
+      "used_perturbation": "BRD-K70401845",
+      "query_name": "erlotinib"
+    },
+    {
+      "hit_level": "PROXY_CELL",
+      "used_cell": "NCIH1573",
+      "used_perturbation": "BRD-K70401845",
+      "query_name": "erlotinib"
+    },
+    {
+      "hit_level": "PROXY_CELL",
+      "used_cell": "NCIH1975",
+      "used_perturbation": "BRD-K70401845",
+      "query_name": "erlotinib"
+    },
+    {
+      "hit_level": "PROXY_CELL",
+      "used_cell": "NCIH2073",
+      "used_perturbation": "BRD-K70401845",
+      "query_name": "erlotinib"
+    },
+    {
+      "hit_level": "PROXY_CELL",
+      "used_cell": "NCIH2110",
+      "used_perturbation": "BRD-K70401845",
+      "query_name": "erlotinib"
+    },
+    {
+      "hit_level": "PROXY_CELL",
+      "used_cell": "NCIH2172",
+      "used_perturbation": "BRD-K70401845",
+      "query_name": "erlotinib"
+    },
+    {
+      "hit_level": "PROXY_CELL",
+      "used_cell": "NCIH596",
+      "used_perturbation": "BRD-K70401845",
+      "query_name": "erlotinib"
+    }
+  ]
+}
+```
+
+Summary:
+
+Forward inference in A549 indicates PROXY_PERT evidence. Dominant activated programs include HALLMARK_ADIPOGENESIS, HALLMARK_PROTEIN_SECRETION, HALLMARK_MTORC1_SIGNALING, HALLMARK_UNFOLDED_PROTEIN_RESPONSE, MP17 Interferon/MHC-II (I). Dominant suppressed programs include MP30 PDAC-classical, HALLMARK_KRAS_SIGNALING_DN, MP22 Secreted I, HALLMARK_PANCREAS_BETA_CELLS, HALLMARK_HEME_METABOLISM. Interpretation should consider proxy usage and source evidence in resolver_meta.
+
+### Q6_specific_drug_name
+- Query: `In A549, what pathways change after erlotinib treatment?`
+- Found: `True`
+- Hit Level: `PROXY_PERT`
+- Selected Source: `None`
+- Composite Mode: `None`
+
+Resolver Meta:
+```json
+{
+  "query_type": "forward",
+  "hit_level": "PROXY_PERT",
+  "pert_type": "cp",
+  "pert_class": "drug",
+  "cell_resolution_reason": "exact_cell_name",
+  "requested_cell": "A549",
+  "used_cell": "A549",
+  "requested_perturbation": "BRD-K70401845",
+  "used_perturbation": "BRD-K26603252",
+  "proxy_cells_checked": [
+    "H1299",
+    "HCC827",
+    "NCIH1437",
+    "NCIH1563",
+    "NCIH1573",
+    "NCIH1781",
+    "NCIH1975",
+    "NCIH2073",
+    "NCIH2110",
+    "NCIH2172",
+    "NCIH596",
+    "NCIH838",
+    "BEN",
+    "HCC15",
+    "HCC44",
+    "HCC1588",
+    "HCC95",
+    "CORL23",
+    "T3M10",
+    "H1975"
+  ],
+  "proxy_perts_checked": [
+    "BRD-K26603252",
+    "BRD-K68336408",
+    "BRD-K50495309",
+    "BRD-K52850071",
+    "BRD-K64052750",
+    "BRD-K72703948",
+    "BRD-K48735772",
+    "BRD-K41337261",
+    "BRD-K87696786",
+    "BRD-K77625799",
+    "BRD-K17702546",
+    "BRD-K98572433",
+    "BRD-K87782578",
+    "BRD-K57169635",
+    "BRD-K26838195",
+    "BRD-K50168500",
+    "BRD-K76908866"
+  ],
+  "evidence_candidates": [
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "BRD-K26603252",
+      "query_name": "PD-153035"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "BRD-K68336408",
+      "query_name": "BRD-K68336408"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "BRD-K50495309",
+      "query_name": "BRD-K50495309"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "BRD-K52850071",
+      "query_name": "WHI-P154"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "BRD-K64052750",
+      "query_name": "gefitinib"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "BRD-K72703948",
+      "query_name": "ZM-447439"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "BRD-K48735772",
+      "query_name": "PD-158780"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "BRD-K41337261",
+      "query_name": "ZM-306416"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "BRD-K87696786",
+      "query_name": "LY-456236"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "BRD-K77625799",
+      "query_name": "vandetanib"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "BRD-K17702546",
+      "query_name": "PD-168393"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "BRD-K98572433",
+      "query_name": "AZD-8931"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "BRD-K87782578",
+      "query_name": "AVL-292"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "BRD-K57169635",
+      "query_name": "dacomitinib"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "BRD-K26838195",
+      "query_name": "AST-1306"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "BRD-K50168500",
+      "query_name": "canertinib"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "BRD-K76908866",
+      "query_name": "CP-724714"
+    },
+    {
+      "hit_level": "PROXY_CELL",
+      "used_cell": "NCIH1437",
+      "used_perturbation": "BRD-K70401845",
+      "query_name": "erlotinib"
+    },
+    {
+      "hit_level": "PROXY_CELL",
+      "used_cell": "NCIH1573",
+      "used_perturbation": "BRD-K70401845",
+      "query_name": "erlotinib"
+    },
+    {
+      "hit_level": "PROXY_CELL",
+      "used_cell": "NCIH1975",
+      "used_perturbation": "BRD-K70401845",
+      "query_name": "erlotinib"
+    },
+    {
+      "hit_level": "PROXY_CELL",
+      "used_cell": "NCIH2073",
+      "used_perturbation": "BRD-K70401845",
+      "query_name": "erlotinib"
+    },
+    {
+      "hit_level": "PROXY_CELL",
+      "used_cell": "NCIH2110",
+      "used_perturbation": "BRD-K70401845",
+      "query_name": "erlotinib"
+    },
+    {
+      "hit_level": "PROXY_CELL",
+      "used_cell": "NCIH2172",
+      "used_perturbation": "BRD-K70401845",
+      "query_name": "erlotinib"
+    },
+    {
+      "hit_level": "PROXY_CELL",
+      "used_cell": "NCIH596",
+      "used_perturbation": "BRD-K70401845",
+      "query_name": "erlotinib"
+    }
+  ]
+}
+```
+
+Summary:
+
+Forward inference in A549 indicates PROXY_PERT evidence. Dominant activated programs include HALLMARK_ADIPOGENESIS, HALLMARK_PROTEIN_SECRETION, HALLMARK_MTORC1_SIGNALING, HALLMARK_UNFOLDED_PROTEIN_RESPONSE, MP17 Interferon/MHC-II (I). Dominant suppressed programs include MP30 PDAC-classical, HALLMARK_KRAS_SIGNALING_DN, MP22 Secreted I, HALLMARK_PANCREAS_BETA_CELLS, HALLMARK_HEME_METABOLISM. Interpretation should consider proxy usage and source evidence in resolver_meta.
+
+### Q7_breast_context
+- Query: `In triple-negative breast cancer context, what pathways are altered by KRAS perturbation?`
+- Found: `True`
+- Hit Level: `PROXY_CELL`
+- Selected Source: `sh`
+- Composite Mode: `genetic_multi_source`
+
+Resolver Meta:
+```json
+{
+  "query_type": "forward",
+  "hit_level": "PROXY_CELL",
+  "pert_type": "sh",
+  "pert_class": "genetic",
+  "cell_resolution_reason": "bio_context_proxy",
+  "requested_cell": null,
+  "used_cell": "MCF7",
+  "requested_perturbation": "KRAS perturbation",
+  "used_perturbation": "KRAS perturbation",
+  "proxy_cells_checked": [
+    "MCF7",
+    "MDAMB231",
+    "MDAMB468",
+    "SKBR3"
+  ],
+  "proxy_perts_checked": [],
+  "evidence_candidates": [
+    {
+      "hit_level": "PROXY_CELL",
+      "used_cell": "MCF7",
+      "used_perturbation": "KRAS perturbation",
+      "query_name": "KRAS perturbation"
+    }
+  ],
+  "composite_mode": "genetic_multi_source",
+  "evidence_bundle": [
+    {
+      "pert_type": "xpr",
+      "hit_level": "NOT_FOUND",
+      "used_cell": null,
+      "used_perturbation": null,
+      "found": false,
+      "n_obs": 0,
+      "note": "No exact/proxy evidence found in current matrix for this (B, P) query."
+    },
+    {
+      "pert_type": "sh",
+      "hit_level": "PROXY_CELL",
+      "used_cell": "MCF7",
+      "used_perturbation": "KRAS perturbation",
+      "found": true,
+      "n_obs": 15,
+      "note": ""
+    }
+  ],
+  "selected_source": "sh"
+}
+```
+
+Summary:
+
+KRAS sh‑RNA–mediated knock‑down in MCF7 cells triggers a clear stress‑response signature. The most up‑regulated programs include epithelial senescence (MP19), in‑vitro stress (MP7), the unfolded‑protein response (MP9) and glutathione metabolism (MP38), together with apical‑junction and heme‑metabolism pathways. These changes suggest that loss of KRAS forces the cells toward growth arrest and heightened proteostatic/oxidative stress.  
+
+Conversely, the knockdown suppresses MYC‑driven transcription (MYC targets V1, MP20), core cell‑cycle phases (G1/S, G2/M), translation initiation, and EMT‑III, as well as early estrogen response and TNF‑α/NF‑κB signaling. The coordinated down‑regulation of proliferative and survival pathways aligns with a cytostatic/anti‑tumor effect of KRAS loss.  
+
+The evidence originates from a **proxy‑based** approach: KRAS perturbation was queried across a multi‑source genetic matrix and matched to MCF7 as a proxy cell line, yielding 15 observations for the shRNA condition. Therefore, this interpretation reflects indirect, cell‑proxy evidence rather than direct measurement in the exact experimental context.
+
+### Q8_noisy_text
+- Query: `A549 + EGFR KD, tell me key activated/suppressed programs.`
+- Found: `True`
+- Hit Level: `EXACT`
+- Selected Source: `sh`
+- Composite Mode: `genetic_multi_source`
+
+Resolver Meta:
+```json
+{
+  "query_type": "forward",
+  "hit_level": "EXACT",
+  "pert_type": "sh",
+  "pert_class": "genetic",
+  "cell_resolution_reason": "exact_cell_name",
+  "requested_cell": "A549",
+  "used_cell": "A549",
+  "requested_perturbation": "EGFR",
+  "used_perturbation": "EGFR",
+  "proxy_cells_checked": [
+    "H1299",
+    "HCC827",
+    "NCIH1437",
+    "NCIH1563",
+    "NCIH1573",
+    "NCIH1781",
+    "NCIH1975",
+    "NCIH2073",
+    "NCIH2110",
+    "NCIH2172",
+    "NCIH596",
+    "NCIH838",
+    "BEN",
+    "HCC15",
+    "HCC44",
+    "HCC1588",
+    "HCC95",
+    "CORL23",
+    "T3M10",
+    "H1975"
+  ],
+  "proxy_perts_checked": [
+    "EGF",
+    "EREG",
+    "AREG",
+    "AR",
+    "ERBB2",
+    "ERBB4",
+    "ERBB3",
+    "HBEGF",
+    "NRG1",
+    "EPHA1",
+    "GRB7",
+    "AXL",
+    "EGR1",
+    "TLR4",
+    "TGFA",
+    "PDGFRA",
+    "ADGRE5",
+    "EPHB2",
+    "FGFR2",
+    "ERRFI1"
+  ],
+  "evidence_candidates": [
+    {
+      "hit_level": "EXACT",
+      "used_cell": "A549",
+      "used_perturbation": "EGFR",
+      "query_name": "EGFR"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "EGF",
+      "query_name": "EGF"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "AR",
+      "query_name": "AR"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "ERBB2",
+      "query_name": "ERBB2"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "ERBB4",
+      "query_name": "ERBB4"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "ERBB3",
+      "query_name": "ERBB3"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "NRG1",
+      "query_name": "NRG1"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "GRB7",
+      "query_name": "GRB7"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "AXL",
+      "query_name": "AXL"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "EGR1",
+      "query_name": "EGR1"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "TLR4",
+      "query_name": "TLR4"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "TGFA",
+      "query_name": "TGFA"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "PDGFRA",
+      "query_name": "PDGFRA"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "ADGRE5",
+      "query_name": "ADGRE5"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "EPHB2",
+      "query_name": "EPHB2"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "FGFR2",
+      "query_name": "FGFR2"
+    },
+    {
+      "hit_level": "PROXY_CELL",
+      "used_cell": "HCC515",
+      "used_perturbation": "EGFR",
+      "query_name": "EGFR"
+    },
+    {
+      "hit_level": "PROXY_BOTH",
+      "used_cell": "HCC515",
+      "used_perturbation": "EGF",
+      "query_name": "EGF"
+    },
+    {
+      "hit_level": "PROXY_BOTH",
+      "used_cell": "HCC515",
+      "used_perturbation": "AR",
+      "query_name": "AR"
+    },
+    {
+      "hit_level": "PROXY_BOTH",
+      "used_cell": "HCC515",
+      "used_perturbation": "ERBB2",
+      "query_name": "ERBB2"
+    },
+    {
+      "hit_level": "PROXY_BOTH",
+      "used_cell": "HCC515",
+      "used_perturbation": "ERBB4",
+      "query_name": "ERBB4"
+    },
+    {
+      "hit_level": "PROXY_BOTH",
+      "used_cell": "HCC515",
+      "used_perturbation": "ERBB3",
+      "query_name": "ERBB3"
+    },
+    {
+      "hit_level": "PROXY_BOTH",
+      "used_cell": "HCC515",
+      "used_perturbation": "NRG1",
+      "query_name": "NRG1"
+    },
+    {
+      "hit_level": "PROXY_BOTH",
+      "used_cell": "HCC515",
+      "used_perturbation": "GRB7",
+      "query_name": "GRB7"
+    }
+  ],
+  "composite_mode": "genetic_multi_source",
+  "evidence_bundle": [
+    {
+      "pert_type": "xpr",
+      "hit_level": "EXACT",
+      "used_cell": "A549",
+      "used_perturbation": "EGFR knockdown",
+      "found": true,
+      "n_obs": 5,
+      "note": ""
+    },
+    {
+      "pert_type": "sh",
+      "hit_level": "EXACT",
+      "used_cell": "A549",
+      "used_perturbation": "EGFR",
+      "found": true,
+      "n_obs": 18,
+      "note": ""
+    }
+  ],
+  "selected_source": "sh"
+}
+```
+
+Summary:
+
+Forward inference in A549 indicates EXACT evidence. Dominant activated programs include HALLMARK_MYOGENESIS, HALLMARK_KRAS_SIGNALING_DN, MP31 Alveolar, HALLMARK_APICAL_SURFACE, MP28 Oligo normal. Dominant suppressed programs include HALLMARK_OXIDATIVE_PHOSPHORYLATION, MP14 EMT-III , MP20 MYC, HALLMARK_MTORC1_SIGNALING, MP8 Proteasomal degradation. Interpretation should consider proxy usage and source evidence in resolver_meta.
+
+### Q9_sh_vs_xpr_interpret
+- Query: `In A549, summarize the pathway effect of EGFR perturbation with robust evidence.`
+- Found: `True`
+- Hit Level: `EXACT`
+- Selected Source: `sh`
+- Composite Mode: `genetic_multi_source`
+
+Resolver Meta:
+```json
+{
+  "query_type": "forward",
+  "hit_level": "EXACT",
+  "pert_type": "sh",
+  "pert_class": "genetic",
+  "cell_resolution_reason": "exact_cell_name",
+  "requested_cell": "A549",
+  "used_cell": "A549",
+  "requested_perturbation": "EGFR",
+  "used_perturbation": "EGFR",
+  "proxy_cells_checked": [
+    "H1299",
+    "HCC827",
+    "NCIH1437",
+    "NCIH1563",
+    "NCIH1573",
+    "NCIH1781",
+    "NCIH1975",
+    "NCIH2073",
+    "NCIH2110",
+    "NCIH2172",
+    "NCIH596",
+    "NCIH838",
+    "BEN",
+    "HCC15",
+    "HCC44",
+    "HCC1588",
+    "HCC95",
+    "CORL23",
+    "T3M10",
+    "H1975"
+  ],
+  "proxy_perts_checked": [
+    "EGF",
+    "EREG",
+    "AREG",
+    "AR",
+    "ERBB2",
+    "ERBB4",
+    "ERBB3",
+    "HBEGF",
+    "NRG1",
+    "EPHA1",
+    "GRB7",
+    "AXL",
+    "EGR1",
+    "TLR4",
+    "TGFA",
+    "PDGFRA",
+    "ADGRE5",
+    "EPHB2",
+    "FGFR2",
+    "ERRFI1"
+  ],
+  "evidence_candidates": [
+    {
+      "hit_level": "EXACT",
+      "used_cell": "A549",
+      "used_perturbation": "EGFR",
+      "query_name": "EGFR"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "EGF",
+      "query_name": "EGF"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "AR",
+      "query_name": "AR"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "ERBB2",
+      "query_name": "ERBB2"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "ERBB4",
+      "query_name": "ERBB4"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "ERBB3",
+      "query_name": "ERBB3"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "NRG1",
+      "query_name": "NRG1"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "GRB7",
+      "query_name": "GRB7"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "AXL",
+      "query_name": "AXL"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "EGR1",
+      "query_name": "EGR1"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "TLR4",
+      "query_name": "TLR4"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "TGFA",
+      "query_name": "TGFA"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "PDGFRA",
+      "query_name": "PDGFRA"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "ADGRE5",
+      "query_name": "ADGRE5"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "EPHB2",
+      "query_name": "EPHB2"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "FGFR2",
+      "query_name": "FGFR2"
+    },
+    {
+      "hit_level": "PROXY_CELL",
+      "used_cell": "HCC515",
+      "used_perturbation": "EGFR",
+      "query_name": "EGFR"
+    },
+    {
+      "hit_level": "PROXY_BOTH",
+      "used_cell": "HCC515",
+      "used_perturbation": "EGF",
+      "query_name": "EGF"
+    },
+    {
+      "hit_level": "PROXY_BOTH",
+      "used_cell": "HCC515",
+      "used_perturbation": "AR",
+      "query_name": "AR"
+    },
+    {
+      "hit_level": "PROXY_BOTH",
+      "used_cell": "HCC515",
+      "used_perturbation": "ERBB2",
+      "query_name": "ERBB2"
+    },
+    {
+      "hit_level": "PROXY_BOTH",
+      "used_cell": "HCC515",
+      "used_perturbation": "ERBB4",
+      "query_name": "ERBB4"
+    },
+    {
+      "hit_level": "PROXY_BOTH",
+      "used_cell": "HCC515",
+      "used_perturbation": "ERBB3",
+      "query_name": "ERBB3"
+    },
+    {
+      "hit_level": "PROXY_BOTH",
+      "used_cell": "HCC515",
+      "used_perturbation": "NRG1",
+      "query_name": "NRG1"
+    },
+    {
+      "hit_level": "PROXY_BOTH",
+      "used_cell": "HCC515",
+      "used_perturbation": "GRB7",
+      "query_name": "GRB7"
+    }
+  ],
+  "composite_mode": "genetic_multi_source",
+  "evidence_bundle": [
+    {
+      "pert_type": "xpr",
+      "hit_level": "EXACT",
+      "used_cell": "A549",
+      "used_perturbation": "EGFR",
+      "found": true,
+      "n_obs": 5,
+      "note": ""
+    },
+    {
+      "pert_type": "sh",
+      "hit_level": "EXACT",
+      "used_cell": "A549",
+      "used_perturbation": "EGFR",
+      "found": true,
+      "n_obs": 18,
+      "note": ""
+    }
+  ],
+  "selected_source": "sh"
+}
+```
+
+Summary:
+
+EGFR knock‑down (shRNA) in the lung adenocarcinoma line A549 produces a clear, exact‑match transcriptional response. 18 independent observations show strong activation of pathways associated with differentiation (myogenesis, apical‑surface, oligo‑normal), cell‑cycle checkpoint (G1/S, mitotic spindle, p53) and hem‑metabolism, while metabolism
+
+### Q10_hard_context
+- Query: `In colorectal adenocarcinoma context, what happens when MYC is perturbed?`
+- Found: `True`
+- Hit Level: `PROXY_CELL`
+- Selected Source: `sh`
+- Composite Mode: `genetic_multi_source`
+
+Resolver Meta:
+```json
+{
+  "query_type": "forward",
+  "hit_level": "PROXY_CELL",
+  "pert_type": "sh",
+  "pert_class": "genetic",
+  "cell_resolution_reason": "bio_context_proxy",
+  "requested_cell": null,
+  "used_cell": "DLD1",
+  "requested_perturbation": "MYC",
+  "used_perturbation": "MYC",
+  "proxy_cells_checked": [
+    "DLD1",
+    "HT29",
+    "LOVO",
+    "NCIH508",
+    "NCIH716",
+    "RKO",
+    "SW480",
+    "SW620",
+    "SW948",
+    "CL34",
+    "SNUC4",
+    "SNUC5",
+    "GP2D"
+  ],
+  "proxy_perts_checked": [
+    "MYCN",
+    "MAX",
+    "MYB",
+    "MYCBP",
+    "MYCL1",
+    "MYBL2",
+    "MXI1",
+    "MECOM",
+    "CDCA7",
+    "MXD3",
+    "MXD1",
+    "MPP2",
+    "DLG2",
+    "FOXM1",
+    "MAF",
+    "YAF2",
+    "MNT",
+    "CDCA7L",
+    "YAP1",
+    "DMTF1"
+  ],
+  "evidence_candidates": [
+    {
+      "hit_level": "PROXY_CELL",
+      "used_cell": "DLD1",
+      "used_perturbation": "MYC",
+      "query_name": "MYC"
+    },
+    {
+      "hit_level": "PROXY_CELL",
+      "used_cell": "HT29",
+      "used_perturbation": "MYC",
+      "query_name": "MYC"
+    },
+    {
+      "hit_level": "PROXY_CELL",
+      "used_cell": "SW480",
+      "used_perturbation": "MYC",
+      "query_name": "MYC"
+    },
+    {
+      "hit_level": "PROXY_BOTH",
+      "used_cell": "DLD1",
+      "used_perturbation": "YAF2",
+      "query_name": "YAF2"
+    },
+    {
+      "hit_level": "PROXY_BOTH",
+      "used_cell": "DLD1",
+      "used_perturbation": "YAP1",
+      "query_name": "YAP1"
+    },
+    {
+      "hit_level": "PROXY_BOTH",
+      "used_cell": "HT29",
+      "used_perturbation": "MYCN",
+      "query_name": "MYCN"
+    },
+    {
+      "hit_level": "PROXY_BOTH",
+      "used_cell": "HT29",
+      "used_perturbation": "MAX",
+      "query_name": "MAX"
+    },
+    {
+      "hit_level": "PROXY_BOTH",
+      "used_cell": "HT29",
+      "used_perturbation": "MYB",
+      "query_name": "MYB"
+    },
+    {
+      "hit_level": "PROXY_BOTH",
+      "used_cell": "HT29",
+      "used_perturbation": "MYCBP",
+      "query_name": "MYCBP"
+    },
+    {
+      "hit_level": "PROXY_BOTH",
+      "used_cell": "HT29",
+      "used_perturbation": "MYCL1",
+      "query_name": "MYCL1"
+    },
+    {
+      "hit_level": "PROXY_BOTH",
+      "used_cell": "HT29",
+      "used_perturbation": "MYBL2",
+      "query_name": "MYBL2"
+    },
+    {
+      "hit_level": "PROXY_BOTH",
+      "used_cell": "HT29",
+      "used_perturbation": "MXI1",
+      "query_name": "MXI1"
+    },
+    {
+      "hit_level": "PROXY_BOTH",
+      "used_cell": "HT29",
+      "used_perturbation": "MECOM",
+      "query_name": "MECOM"
+    },
+    {
+      "hit_level": "PROXY_BOTH",
+      "used_cell": "HT29",
+      "used_perturbation": "CDCA7",
+      "query_name": "CDCA7"
+    },
+    {
+      "hit_level": "PROXY_BOTH",
+      "used_cell": "HT29",
+      "used_perturbation": "MXD3",
+      "query_name": "MXD3"
+    },
+    {
+      "hit_level": "PROXY_BOTH",
+      "used_cell": "HT29",
+      "used_perturbation": "MAF",
+      "query_name": "MAF"
+    },
+    {
+      "hit_level": "PROXY_BOTH",
+      "used_cell": "HT29",
+      "used_perturbation": "YAF2",
+      "query_name": "YAF2"
+    },
+    {
+      "hit_level": "PROXY_BOTH",
+      "used_cell": "HT29",
+      "used_perturbation": "CDCA7L",
+      "query_name": "CDCA7L"
+    },
+    {
+      "hit_level": "PROXY_BOTH",
+      "used_cell": "HT29",
+      "used_perturbation": "YAP1",
+      "query_name": "YAP1"
+    },
+    {
+      "hit_level": "PROXY_BOTH",
+      "used_cell": "HT29",
+      "used_perturbation": "DMTF1",
+      "query_name": "DMTF1"
+    },
+    {
+      "hit_level": "PROXY_BOTH",
+      "used_cell": "SW480",
+      "used_perturbation": "YAP1",
+      "query_name": "YAP1"
+    }
+  ],
+  "composite_mode": "genetic_multi_source",
+  "evidence_bundle": [
+    {
+      "pert_type": "xpr",
+      "hit_level": "PROXY_CELL",
+      "used_cell": "HT29",
+      "used_perturbation": "MYC",
+      "found": true,
+      "n_obs": 2,
+      "note": ""
+    },
+    {
+      "pert_type": "sh",
+      "hit_level": "PROXY_CELL",
+      "used_cell": "DLD1",
+      "used_perturbation": "MYC",
+      "found": true,
+      "n_obs": 7,
+      "note": ""
+    }
+  ],
+  "selected_source": "sh"
+}
+```
+
+Summary:
+
+Forward inference in DLD1 indicates PROXY_CELL evidence. Dominant activated programs include MP2  Cell Cycle - G1/S, MP40 PDAC-related, MP14 EMT-III , MP24 Cilia, MP30 PDAC-classical. Dominant suppressed programs include MP20 MYC, HALLMARK_MYC_TARGETS_V1, HALLMARK_MYC_TARGETS_V2, HALLMARK_UNFOLDED_PROTEIN_RESPONSE, HALLMARK_MTORC1_SIGNALING. Interpretation should consider proxy usage and source evidence in resolver_meta.
+
+### Q11_proxy_expected
+- Query: `In A549, report pathway impact for a rare gene 7SK perturbation.`
+- Found: `True`
+- Hit Level: `PROXY_PERT`
+- Selected Source: `xpr`
+- Composite Mode: `genetic_multi_source`
+
+Resolver Meta:
+```json
+{
+  "query_type": "forward",
+  "hit_level": "PROXY_PERT",
+  "pert_type": "xpr",
+  "pert_class": "genetic",
+  "cell_resolution_reason": "exact_cell_name",
+  "requested_cell": "A549",
+  "used_cell": "A549",
+  "requested_perturbation": "RN7SK",
+  "used_perturbation": "PSMD1",
+  "proxy_cells_checked": [
+    "H1299",
+    "HCC827",
+    "NCIH1437",
+    "NCIH1563",
+    "NCIH1573",
+    "NCIH1781",
+    "NCIH1975",
+    "NCIH2073",
+    "NCIH2110",
+    "NCIH2172",
+    "NCIH596",
+    "NCIH838",
+    "BEN",
+    "HCC15",
+    "HCC44",
+    "HCC1588",
+    "HCC95",
+    "CORL23",
+    "T3M10",
+    "H1975"
+  ],
+  "proxy_perts_checked": [
+    "BCR",
+    "FZD5",
+    "PSMD1",
+    "HTR2B",
+    "RPN2",
+    "RNH1",
+    "ST7",
+    "TSSK1B",
+    "LILRA5",
+    "RAE1",
+    "MARK2P10",
+    "ZNF141",
+    "BDNF",
+    "SNRK",
+    "SMKR1",
+    "RNASET2",
+    "SDK1",
+    "SREK1",
+    "SMS",
+    "RAI1"
+  ],
+  "evidence_candidates": [
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "PSMD1",
+      "query_name": "PSMD1"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "HTR2B",
+      "query_name": "HTR2B"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "ST7",
+      "query_name": "ST7"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "TSSK1B",
+      "query_name": "TSSK1B"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "LILRA5",
+      "query_name": "LILRA5"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "ZNF141",
+      "query_name": "ZNF141"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "SNRK",
+      "query_name": "SNRK"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "SMKR1",
+      "query_name": "SMKR1"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "RNASET2",
+      "query_name": "RNASET2"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "SDK1",
+      "query_name": "SDK1"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "SREK1",
+      "query_name": "SREK1"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "SMS",
+      "query_name": "SMS"
+    },
+    {
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "RAI1",
+      "query_name": "RAI1"
+    }
+  ],
+  "composite_mode": "genetic_multi_source",
+  "evidence_bundle": [
+    {
+      "pert_type": "xpr",
+      "hit_level": "PROXY_PERT",
+      "used_cell": "A549",
+      "used_perturbation": "PSMD1",
+      "found": true,
+      "n_obs": 2,
+      "note": ""
+    },
+    {
+      "pert_type": "sh",
+      "hit_level": "NOT_FOUND",
+      "used_cell": null,
+      "used_perturbation": null,
+      "found": false,
+      "n_obs": 0,
+      "note": "No exact/proxy evidence found in current matrix for this (B, P) query."
+    }
+  ],
+  "selected_source": "xpr"
+}
+```
+
+Summary:
+
+The PSMD1 perturbation in A549 cells is **proxy‑based evidence**: the original query (RN7SK) lacked a direct match, so PSMD1 was used as a surrogate genetic perturbation (xpr) across the same cell line.  
+
+Knocking down (or overexpressing) PSMD1—a 19S proteasome subunit—activates pathways involved in protein maturation/secretion, glutathione metabolism, reactive‑oxygen‑species (ROS) response, heme metabolism, adipogenesis, and astrocyte‑related programs. Simultaneously, it strongly suppresses MYC‑driven transcription, the G1/S and G2/M cell‑cycle checkpoints, E2F targets, translation initiation, and EMT‑related modules.  
+
+The pattern indicates that compromising proteasome‑mediated protein turnover triggers a compensatory stress‑response network while globally dampening proliferative and translational machinery. This suggests
+
+### Q12_drug_proxy_expected
+- Query: `In A549, estimate pathway response for l-theanine-like perturbation.`
+- Found: `False`
+- Hit Level: `NOT_FOUND`
+- Selected Source: `xpr`
+- Composite Mode: `genetic_multi_source`
+
+Resolver Meta:
+```json
+{
+  "query_type": "forward",
+  "hit_level": "NOT_FOUND",
+  "pert_type": "xpr",
+  "pert_class": "genetic",
+  "cell_resolution_reason": "no_bio_context",
+  "requested_cell": null,
+  "used_cell": null,
+  "requested_perturbation": "In A549, estimate pathway response for l-theanine-like perturbation.",
+  "used_perturbation": null,
+  "proxy_cells_checked": [],
+  "proxy_perts_checked": [],
+  "evidence_candidates": [],
+  "composite_mode": "genetic_multi_source",
+  "evidence_bundle": [
+    {
+      "pert_type": "xpr",
+      "hit_level": "NOT_FOUND",
+      "used_cell": null,
+      "used_perturbation": null,
+      "found": false,
+      "n_obs": 0,
+      "note": "No exact/proxy evidence found in current matrix for this (B, P) query."
+    },
+    {
+      "pert_type": "sh",
+      "hit_level": "NOT_FOUND",
+      "used_cell": null,
+      "used_perturbation": null,
+      "found": false,
+      "n_obs": 0,
+      "note": "No exact/proxy evidence found in current matrix for this (B, P) query."
+    }
+  ],
+  "selected_source": "xpr"
+}
+```
+
+Summary:
+
+No result found. No exact/proxy evidence found in current matrix for this (B, P) query.

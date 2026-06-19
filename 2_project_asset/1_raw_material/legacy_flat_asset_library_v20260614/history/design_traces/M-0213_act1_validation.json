@@ -1,0 +1,7 @@
+{
+  "provider": "minimax",
+  "model": "MiniMax-M2.7",
+  "ok": false,
+  "error": "AuthenticationError: Error code: 401 - {'type': 'error', 'error': {'type': 'authorized_error', 'message': 'invalid api key (2049)', 'http_code': '401'}, 'request_id': '0626f2bea1a4957f8eecb03ba26321d6'}",
+  "cases": []
+}

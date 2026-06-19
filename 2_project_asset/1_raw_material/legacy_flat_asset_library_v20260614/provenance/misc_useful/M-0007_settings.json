@@ -1,0 +1,16 @@
+{
+  "files.encoding": "utf8",
+  "files.autoGuessEncoding": true,
+  "python.defaultInterpreterPath": "D:\\Softwares\\s4_code\\anaconda\\envs\\pxfquery\\python.exe",
+  "jupyter.notebookFileRoot": "${workspaceFolder}",
+  "search.exclude": {
+    "90_archive/**": true,
+    "99_tmp/**": true,
+    "**/__pycache__/**": true
+  },
+  "files.watcherExclude": {
+    "90_archive/**": true,
+    "99_tmp/**": true,
+    "**/__pycache__/**": true
+  }
+}

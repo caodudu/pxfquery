@@ -1,0 +1,392 @@
+{
+  "count": 27,
+  "groups": [
+    {
+      "topic": "临床/遗传病/疾病关联",
+      "n": 9,
+      "median": 15,
+      "titles": [
+        "10d | Clinical and Molecular Characterization of Pakistani Mucopolysaccharidosis Families with SGSH and GALNS Deficiencies",
+        "10d | Association of Vitamin D Receptor (VDR) Gene Polymorphisms with Osteoporotic Vertebral Fracture Risk: A Case�CControl Study",
+        "12d | Neuronal Ceroid Lipofuscinosis-like Disorder in a Dachshund with Sequence Variants in Lysosome-Related Genes",
+        "13d | An Integrative Network Analysis Framework for Identifying Altered Glycosylation Pathways Associated with Autism Spectrum Disorder",
+        "15d | Infantile-Onset Glutaric Acidemia Type I with Mild Hepatopathy: Clinical, Biochemical, and Molecular Characterization of an Iranian Pediatric Cohort",
+        "15d | Genetic Associations of Parkinson��s Disease Clinical, Pathological, and Data-Driven Subtypes",
+        "15d | Fatal Infantile Cardiomyopathy Associated with a Homozygous MYL2 c.413T&gt;A (p.Met138Lys) Variant: A Case Expanding the Recessive MYL2 Phenotypic Spectrum",
+        "17d | A 350 kb NEXMIF Microdeletion Identified by Chromosomal Microarray in an Adult Patient with Jeavons Syndrome",
+        "20d | Similarities and Differences of Multiple Epiphyseal Dysplasias: Genetic Features and Natural Course in 22 Patients"
+      ]
+    },
+    {
+      "topic": "植物/农业遗传与功能基因",
+      "n": 7,
+      "median": 16,
+      "titles": [
+        "9d | Characterization of Chlorophyll Degradation Genes Reveals Gene Cluster HuSGR2 and HuSGR3 Promoting Chlorophyll Degradation in Pitaya Peel",
+        "11d | Dissection of the Genetic Basis of Maize Plant Architecture and Candidate Gene Mining Based on the MAGIC Population",
+        "13d | Integrated Transcriptomic, Proteomic, and Metabolomic Analysis of a Chromosome Segment Substitution Line Reveals the Regulatory Mechanism Governing Fatty Acids and Storage Proteins in Soybean Seeds",
+        "16d | Multi-Omics Reveals Light-Quality-Dependent Phytohormone and Transcription Factor Networks Regulating Flavonoid Biosynthesis in Ludisia discolor",
+        "17d | Genome-Wide Identification and Tissue-Specific Expression Analysis of the FtAQP Gene Family in Tartary Buckwheat (Fagopyrum tataricum)",
+        "18d | Identification of a High-Yield and Low-Cadmium-Accumulating Rice Cultivar by LAMP-Based Gn1a-i Screening and Physiological Evaluation",
+        "19d | The Genome-Wide Identification and Expression Profiling of the HSF Gene Family in Ganoderma lucidum Under Temperature Stress"
+      ]
+    },
+    {
+      "topic": "其他",
+      "n": 4,
+      "median": 17,
+      "titles": [
+        "17d | Mesenchymal Stem Cell-Derived Exosomal miRNAs in Skin Repair and Rejuvenation",
+        "17d | Novel ITGB6 Mutations Causing Amelogenesis Imperfecta",
+        "18d | Buffy Coat Enrichment Improves the Success Rate of Conventional Cytogenetics in Hypocellular Specimens: A Prospective Quality Improvement Study",
+        "20d | Differential Gene Expression in Human Upper Respiratory Tract Samples Identifies Antiviral Responses in Omicron SARS-CoV-2 Infection"
+      ]
+    },
+    {
+      "topic": "群体遗传/进化遗传",
+      "n": 2,
+      "median": 8,
+      "titles": [
+        "8d | Genetic Ancestry and Population Structure Across Ecuador",
+        "17d | Characterization of the Complete Mitochondrial Genome of Castanopsis tibetana Hance: A Precious Timber Species"
+      ]
+    },
+    {
+      "topic": "组学/计算分析",
+      "n": 2,
+      "median": 16,
+      "titles": [
+        "16d | Myodes rufocanus Cataract Identification and Transcriptome Analysis",
+        "18d | Non-Coding RNAs in Cancer: Decoding Regulatory Networks for Liquid Biopsy Applications"
+      ]
+    },
+    {
+      "topic": "动物遗传/兽医遗传",
+      "n": 1,
+      "median": 11,
+      "titles": [
+        "11d | The Bitter Taste Receptor (T2R) Gene Repertoire in the Porcine Circumvallate Papillae Consists of Fourteen Genes, Including Two Newly Validated T2R61 and T2R62"
+      ]
+    },
+    {
+      "topic": "微生物/抗性基因",
+      "n": 1,
+      "median": 12,
+      "titles": [
+        "12d | The copB Is a Key Copper Resistance Gene in Xanthomonas citri pv. mangiferaeindicae GXBS06"
+      ]
+    },
+    {
+      "topic": "法医/方法学",
+      "n": 1,
+      "median": 19,
+      "titles": [
+        "19d | DNA Mixture Deconvolution: A Four-Strategy Framework from Physical Separation to Database Searching"
+      ]
+    }
+  ],
+  "types": [
+    {
+      "type": "病例/队列/临床表型",
+      "n": 9,
+      "days": [
+        10,
+        10,
+        15,
+        15,
+        15,
+        17,
+        17,
+        19,
+        20
+      ]
+    },
+    {
+      "type": "基因鉴定/功能候选",
+      "n": 8,
+      "days": [
+        9,
+        11,
+        11,
+        13,
+        16,
+        16,
+        17,
+        18
+      ]
+    },
+    {
+      "type": "机制/其他实证研究",
+      "n": 7,
+      "days": [
+        12,
+        12,
+        17,
+        17,
+        18,
+        19,
+        20
+      ]
+    },
+    {
+      "type": "组学整合分析",
+      "n": 2,
+      "days": [
+        13,
+        18
+      ]
+    },
+    {
+      "type": "群体结构/多样性",
+      "n": 1,
+      "days": [
+        8
+      ]
+    }
+  ],
+  "rowsOut": [
+    {
+      "rank": "63",
+      "days": 8,
+      "pubDays": 11,
+      "topic": "群体遗传/进化遗传",
+      "type": "群体结构/多样性",
+      "title": "Genetic Ancestry and Population Structure Across Ecuador",
+      "doi": "10.3390/genes17040437"
+    },
+    {
+      "rank": "73",
+      "days": 9,
+      "pubDays": 12,
+      "topic": "植物/农业遗传与功能基因",
+      "type": "基因鉴定/功能候选",
+      "title": "Characterization of Chlorophyll Degradation Genes Reveals Gene Cluster HuSGR2 and HuSGR3 Promoting Chlorophyll Degradation in Pitaya Peel",
+      "doi": "10.3390/genes17040427"
+    },
+    {
+      "rank": "90",
+      "days": 10,
+      "pubDays": 15,
+      "topic": "临床/遗传病/疾病关联",
+      "type": "病例/队列/临床表型",
+      "title": "Clinical and Molecular Characterization of Pakistani Mucopolysaccharidosis Families with SGSH and GALNS Deficiencies",
+      "doi": "10.3390/genes17040401"
+    },
+    {
+      "rank": "91",
+      "days": 10,
+      "pubDays": 14,
+      "topic": "临床/遗传病/疾病关联",
+      "type": "病例/队列/临床表型",
+      "title": "Association of Vitamin D Receptor (VDR) Gene Polymorphisms with Osteoporotic Vertebral Fracture Risk: A Case�CControl Study",
+      "doi": "10.3390/genes17040410"
+    },
+    {
+      "rank": "84",
+      "days": 11,
+      "pubDays": 15,
+      "topic": "植物/农业遗传与功能基因",
+      "type": "基因鉴定/功能候选",
+      "title": "Dissection of the Genetic Basis of Maize Plant Architecture and Candidate Gene Mining Based on the MAGIC Population",
+      "doi": "10.3390/genes17040399"
+    },
+    {
+      "rank": "95",
+      "days": 11,
+      "pubDays": 16,
+      "topic": "动物遗传/兽医遗传",
+      "type": "基因鉴定/功能候选",
+      "title": "The Bitter Taste Receptor (T2R) Gene Repertoire in the Porcine Circumvallate Papillae Consists of Fourteen Genes, Including Two Newly Validated T2R61 and T2R62",
+      "doi": "10.3390/genes17040400"
+    },
+    {
+      "rank": "39",
+      "days": 12,
+      "pubDays": 16,
+      "topic": "临床/遗传病/疾病关联",
+      "type": "机制/其他实证研究",
+      "title": "Neuronal Ceroid Lipofuscinosis-like Disorder in a Dachshund with Sequence Variants in Lysosome-Related Genes",
+      "doi": "10.3390/genes17040465"
+    },
+    {
+      "rank": "94",
+      "days": 12,
+      "pubDays": 14,
+      "topic": "微生物/抗性基因",
+      "type": "机制/其他实证研究",
+      "title": "The copB Is a Key Copper Resistance Gene in Xanthomonas citri pv. mangiferaeindicae GXBS06",
+      "doi": "10.3390/genes17040408"
+    },
+    {
+      "rank": "13",
+      "days": 13,
+      "pubDays": 19,
+      "topic": "临床/遗传病/疾病关联",
+      "type": "组学整合分析",
+      "title": "An Integrative Network Analysis Framework for Identifying Altered Glycosylation Pathways Associated with Autism Spectrum Disorder",
+      "doi": "10.3390/genes17040486"
+    },
+    {
+      "rank": "69",
+      "days": 13,
+      "pubDays": 15,
+      "topic": "植物/农业遗传与功能基因",
+      "type": "基因鉴定/功能候选",
+      "title": "Integrated Transcriptomic, Proteomic, and Metabolomic Analysis of a Chromosome Segment Substitution Line Reveals the Regulatory Mechanism Governing Fatty Acids and Storage Proteins in Soybean Seeds",
+      "doi": "10.3390/genes17040432"
+    },
+    {
+      "rank": "16",
+      "days": 15,
+      "pubDays": 19,
+      "topic": "临床/遗传病/疾病关联",
+      "type": "病例/队列/临床表型",
+      "title": "Infantile-Onset Glutaric Acidemia Type I with Mild Hepatopathy: Clinical, Biochemical, and Molecular Characterization of an Iranian Pediatric Cohort",
+      "doi": "10.3390/genes17040481"
+    },
+    {
+      "rank": "52",
+      "days": 15,
+      "pubDays": 35,
+      "topic": "临床/遗传病/疾病关联",
+      "type": "病例/队列/临床表型",
+      "title": "Genetic Associations of Parkinson��s Disease Clinical, Pathological, and Data-Driven Subtypes",
+      "doi": "10.3390/genes17040449"
+    },
+    {
+      "rank": "60",
+      "days": 15,
+      "pubDays": 18,
+      "topic": "临床/遗传病/疾病关联",
+      "type": "病例/队列/临床表型",
+      "title": "Fatal Infantile Cardiomyopathy Associated with a Homozygous MYL2 c.413T&gt;A (p.Met138Lys) Variant: A Case Expanding the Recessive MYL2 Phenotypic Spectrum",
+      "doi": "10.3390/genes17040441"
+    },
+    {
+      "rank": "5",
+      "days": 16,
+      "pubDays": 22,
+      "topic": "组学/计算分析",
+      "type": "基因鉴定/功能候选",
+      "title": "Myodes rufocanus Cataract Identification and Transcriptome Analysis",
+      "doi": "10.3390/genes17050495"
+    },
+    {
+      "rank": "49",
+      "days": 16,
+      "pubDays": 20,
+      "topic": "植物/农业遗传与功能基因",
+      "type": "基因鉴定/功能候选",
+      "title": "Multi-Omics Reveals Light-Quality-Dependent Phytohormone and Transcription Factor Networks Regulating Flavonoid Biosynthesis in Ludisia discolor",
+      "doi": "10.3390/genes17040445"
+    },
+    {
+      "rank": "27",
+      "days": 17,
+      "pubDays": 25,
+      "topic": "植物/农业遗传与功能基因",
+      "type": "病例/队列/临床表型",
+      "title": "Genome-Wide Identification and Tissue-Specific Expression Analysis of the FtAQP Gene Family in Tartary Buckwheat (Fagopyrum tataricum)",
+      "doi": "10.3390/genes17040479"
+    },
+    {
+      "rank": "50",
+      "days": 17,
+      "pubDays": 27,
+      "topic": "其他",
+      "type": "机制/其他实证研究",
+      "title": "Mesenchymal Stem Cell-Derived Exosomal miRNAs in Skin Repair and Rejuvenation",
+      "doi": "10.3390/genes17040450"
+    },
+    {
+      "rank": "54",
+      "days": 17,
+      "pubDays": 21,
+      "topic": "临床/遗传病/疾病关联",
+      "type": "病例/队列/临床表型",
+      "title": "A 350 kb NEXMIF Microdeletion Identified by Chromosomal Microarray in an Adult Patient with Jeavons Syndrome",
+      "doi": "10.3390/genes17040448"
+    },
+    {
+      "rank": "68",
+      "days": 17,
+      "pubDays": 20,
+      "topic": "其他",
+      "type": "机制/其他实证研究",
+      "title": "Novel ITGB6 Mutations Causing Amelogenesis Imperfecta",
+      "doi": "10.3390/genes17040431"
+    },
+    {
+      "rank": "70",
+      "days": 17,
+      "pubDays": 22,
+      "topic": "群体遗传/进化遗传",
+      "type": "基因鉴定/功能候选",
+      "title": "Characterization of the Complete Mitochondrial Genome of Castanopsis tibetana Hance: A Precious Timber Species",
+      "doi": "10.3390/genes17040430"
+    },
+    {
+      "rank": "18",
+      "days": 18,
+      "pubDays": 19,
+      "topic": "植物/农业遗传与功能基因",
+      "type": "基因鉴定/功能候选",
+      "title": "Identification of a High-Yield and Low-Cadmium-Accumulating Rice Cultivar by LAMP-Based Gn1a-i Screening and Physiological Evaluation",
+      "doi": "10.3390/genes17040482"
+    },
+    {
+      "rank": "56",
+      "days": 18,
+      "pubDays": 27,
+      "topic": "组学/计算分析",
+      "type": "组学整合分析",
+      "title": "Non-Coding RNAs in Cancer: Decoding Regulatory Networks for Liquid Biopsy Applications",
+      "doi": "10.3390/genes17040446"
+    },
+    {
+      "rank": "82",
+      "days": 18,
+      "pubDays": 22,
+      "topic": "其他",
+      "type": "机制/其他实证研究",
+      "title": "Buffy Coat Enrichment Improves the Success Rate of Conventional Cytogenetics in Hypocellular Specimens: A Prospective Quality Improvement Study",
+      "doi": "10.3390/genes17040417"
+    },
+    {
+      "rank": "23",
+      "days": 19,
+      "pubDays": 21,
+      "topic": "植物/农业遗传与功能基因",
+      "type": "病例/队列/临床表型",
+      "title": "The Genome-Wide Identification and Expression Profiling of the HSF Gene Family in Ganoderma lucidum Under Temperature Stress",
+      "doi": "10.3390/genes17040473"
+    },
+    {
+      "rank": "64",
+      "days": 19,
+      "pubDays": 21,
+      "topic": "法医/方法学",
+      "type": "机制/其他实证研究",
+      "title": "DNA Mixture Deconvolution: A Four-Strategy Framework from Physical Separation to Database Searching",
+      "doi": "10.3390/genes17040434"
+    },
+    {
+      "rank": "3",
+      "days": 20,
+      "pubDays": 22,
+      "topic": "其他",
+      "type": "机制/其他实证研究",
+      "title": "Differential Gene Expression in Human Upper Respiratory Tract Samples Identifies Antiviral Responses in Omicron SARS-CoV-2 Infection",
+      "doi": "10.3390/genes17050497"
+    },
+    {
+      "rank": "36",
+      "days": 20,
+      "pubDays": 24,
+      "topic": "临床/遗传病/疾病关联",
+      "type": "病例/队列/临床表型",
+      "title": "Similarities and Differences of Multiple Epiphyseal Dysplasias: Genetic Features and Natural Course in 22 Patients",
+      "doi": "10.3390/genes17040463"
+    }
+  ]
+}

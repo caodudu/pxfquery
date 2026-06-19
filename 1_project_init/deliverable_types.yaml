@@ -1,0 +1,19 @@
+phases:
+  digestion:
+    - structured_notes
+    - bibliography
+    - migration_map
+    - asset_inventory
+  development:
+    - code
+    - benchmark
+    - app
+    - workflow
+    - figure_source
+  translation:
+    - manuscript
+    - figure
+    - table
+    - supplementary
+    - ppt
+    - submission_package

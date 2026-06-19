@@ -1,0 +1,11 @@
+goal_id: G-006
+name: Algorithm version development
+phase: development
+project: P-012
+objective: Develop, repair, and version the PxFquery algorithm after G005 review evidence
+  identifies specific missing or failing capabilities.
+status: pending
+tasks: []
+created: '2026-06-18'
+notes: G-006. Reserved for code-changing algorithm repair, implementation, and version
+  packaging tasks.

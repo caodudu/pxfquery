@@ -1,0 +1,265 @@
+{
+  "time": "2026-04-10T11:08:05",
+  "model": "MiniMax-M2.7",
+  "demos": [
+    {
+      "bio_context": "triple-negative breast cancer",
+      "trace": [
+        {
+          "level": "lineage",
+          "options": [
+            "bone",
+            "breast",
+            "central_nervous_system",
+            "cervix",
+            "endometrium",
+            "haematopoietic_and_lymphoid_tissue",
+            "kidney",
+            "large_intestine",
+            "liver",
+            "lung",
+            "normal_other",
+            "ovary",
+            "pancreas",
+            "prostate",
+            "skin",
+            "soft_tissue",
+            "stomach",
+            "upper_aerodigestive_tract",
+            "urinary_tract"
+          ],
+          "selected": "breast",
+          "source": "fast_rule"
+        },
+        {
+          "level": "disease",
+          "options": [
+            "breast cancer",
+            "normal breast sample",
+            "unknown"
+          ],
+          "selected": "breast cancer",
+          "source": "fast_rule"
+        },
+        {
+          "level": "subtype",
+          "options": [
+            "carcinoma",
+            "adenocarcinoma"
+          ],
+          "selected": "carcinoma",
+          "source": "llm"
+        }
+      ],
+      "resolved_cells": [
+        "BT20",
+        "BT474",
+        "HS578T",
+        "MCF10A",
+        "T47D",
+        "ZR751"
+      ]
+    },
+    {
+      "bio_context": "non-small cell lung carcinoma",
+      "trace": [
+        {
+          "level": "lineage",
+          "options": [
+            "bone",
+            "breast",
+            "central_nervous_system",
+            "cervix",
+            "endometrium",
+            "haematopoietic_and_lymphoid_tissue",
+            "kidney",
+            "large_intestine",
+            "liver",
+            "lung",
+            "normal_other",
+            "ovary",
+            "pancreas",
+            "prostate",
+            "skin",
+            "soft_tissue",
+            "stomach",
+            "upper_aerodigestive_tract",
+            "urinary_tract"
+          ],
+          "selected": "lung",
+          "source": "fast_rule"
+        },
+        {
+          "level": "disease",
+          "options": [
+            "lung cancer",
+            "normal lung sample"
+          ],
+          "selected": "lung cancer",
+          "source": "fast_rule"
+        },
+        {
+          "level": "subtype",
+          "options": [
+            "non-small cell lung carcinoma",
+            "carcinoma",
+            "small cell lung carcinoma",
+            "adenocarcinoma"
+          ],
+          "selected": "non-small cell lung carcinoma",
+          "source": "fast_rule"
+        }
+      ],
+      "resolved_cells": [
+        "H1299",
+        "A549",
+        "HCC827",
+        "NCIH1437",
+        "NCIH1563",
+        "NCIH1573",
+        "NCIH1781",
+        "NCIH1975",
+        "NCIH2073",
+        "NCIH2110",
+        "NCIH2172",
+        "NCIH596",
+        "NCIH838",
+        "BEN",
+        "HCC15",
+        "HCC44",
+        "HCC1588",
+        "HCC95",
+        "CORL23",
+        "T3M10"
+      ]
+    },
+    {
+      "bio_context": "colorectal adenocarcinoma",
+      "trace": [
+        {
+          "level": "lineage",
+          "options": [
+            "bone",
+            "breast",
+            "central_nervous_system",
+            "cervix",
+            "endometrium",
+            "haematopoietic_and_lymphoid_tissue",
+            "kidney",
+            "large_intestine",
+            "liver",
+            "lung",
+            "normal_other",
+            "ovary",
+            "pancreas",
+            "prostate",
+            "skin",
+            "soft_tissue",
+            "stomach",
+            "upper_aerodigestive_tract",
+            "urinary_tract"
+          ],
+          "selected": "large_intestine",
+          "source": "fast_rule"
+        },
+        {
+          "level": "subtype",
+          "options": [
+            "adenocarcinoma",
+            "carcinoma"
+          ],
+          "selected": "adenocarcinoma",
+          "source": "fast_rule"
+        }
+      ],
+      "resolved_cells": [
+        "DLD1",
+        "HT29",
+        "LOVO",
+        "NCIH508",
+        "NCIH716",
+        "RKO",
+        "SW480",
+        "SW620",
+        "SW948",
+        "CL34",
+        "SNUC4",
+        "SNUC5",
+        "GP2D"
+      ]
+    },
+    {
+      "bio_context": "NCI-H358-like NSCLC context",
+      "trace": [
+        {
+          "level": "lineage",
+          "options": [
+            "bone",
+            "breast",
+            "central_nervous_system",
+            "cervix",
+            "endometrium",
+            "haematopoietic_and_lymphoid_tissue",
+            "kidney",
+            "large_intestine",
+            "liver",
+            "lung",
+            "normal_other",
+            "ovary",
+            "pancreas",
+            "prostate",
+            "skin",
+            "soft_tissue",
+            "stomach",
+            "upper_aerodigestive_tract",
+            "urinary_tract"
+          ],
+          "selected": "lung",
+          "source": "fast_rule"
+        },
+        {
+          "level": "disease",
+          "options": [
+            "lung cancer",
+            "normal lung sample"
+          ],
+          "selected": "lung cancer",
+          "source": "fast_rule"
+        },
+        {
+          "level": "subtype",
+          "options": [
+            "non-small cell lung carcinoma",
+            "carcinoma",
+            "small cell lung carcinoma",
+            "adenocarcinoma"
+          ],
+          "selected": "non-small cell lung carcinoma",
+          "source": "fast_rule"
+        }
+      ],
+      "resolved_cells": [
+        "H1299",
+        "A549",
+        "HCC827",
+        "NCIH1437",
+        "NCIH1563",
+        "NCIH1573",
+        "NCIH1781",
+        "NCIH1975",
+        "NCIH2073",
+        "NCIH2110",
+        "NCIH2172",
+        "NCIH596",
+        "NCIH838",
+        "BEN",
+        "HCC15",
+        "HCC44",
+        "HCC1588",
+        "HCC95",
+        "CORL23",
+        "T3M10"
+      ]
+    }
+  ]
+}

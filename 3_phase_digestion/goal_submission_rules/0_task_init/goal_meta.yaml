@@ -1,0 +1,10 @@
+goal_id: G-008
+name: Submission rules and package preparation
+phase: digestion
+project: P-012
+objective: Collect, verify, and organize current journal submission rules, official templates, required manuscript files, and practical submission cautions for target journals before manuscript drafting or final delivery work.
+status: active
+tasks:
+- T-015
+created: '2026-06-19'
+notes: G-008 is a digestion-stage goal for submission-rule evidence and package preparation guidance. It does not draft the manuscript itself.

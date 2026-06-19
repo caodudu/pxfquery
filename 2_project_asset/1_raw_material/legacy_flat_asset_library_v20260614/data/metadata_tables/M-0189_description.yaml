@@ -1,0 +1,116 @@
+# 数据资产注册表 — PxFquery 项目
+# 手动维护 / AI 辅助更新
+
+assets:
+
+  # ── 药物扰动元数据 ──────────────────────────────────────────────────────
+  - id: cp_meta_unique
+    name: cp_meta_unique.csv
+    path: input/cp_meta_unique.csv
+    description: LINCS 药物化合物元数据，每行一个唯一药物
+    source: LINCS CMAP Level5 metadata
+    format: csv
+    dimensions: "34419 × 4"
+    key_fields: [drug, target, moa, aliases]
+    notes: |
+      drug 字段为 BRD-id（如 BRD-K70301465）
+      80.7% 药物 aliases 里只有 BRD 编号，无真实名字
+      target/moa 字段覆盖率仅 9.2%
+    readonly: true
+
+  # ── 细胞系元数据 ────────────────────────────────────────────────────────
+  - id: cellline_meta_sub
+    name: cellline_meta_sub.csv
+    path: input/cellline_meta_sub.csv
+    description: LINCS 细胞系元数据子集，约 240 个细胞系
+    source: LINCS CMAP metadata
+    format: csv
+    dimensions: "~240 × 5"
+    key_fields: [cell_iname, cell_lineage, primary_disease, subtype, cell_alias]
+    notes: lineage/disease/subtype 字段较完整，用于构建层次树
+    readonly: true
+
+  # ── genePT 基因嵌入 ──────────────────────────────────────────────────────
+  - id: genept_ada002
+    name: GPT-ada-002_homo_sapiens_embedding_1536d.npz
+    path: input/genePT/GPT-ada-002_homo_sapiens_embedding_1536d.npz
+    description: 人类基因的 text-embedding-ada-002 语义向量（genePT）
+    source: "genePT 项目: https://github.com/yiqunchen/GenePT"
+    format: npz (numpy)
+    dimensions: "18080 × 1536"
+    key_fields: []
+    notes: 与 gene_names.csv 行对应；用于基因近邻预计算
+    readonly: true
+
+  - id: genept_gpt3large
+    name: GPT-3-large_homo_sapiens_embedding_3072d.npz
+    path: input/genePT/GPT-3-large_homo_sapiens_embedding_3072d.npz
+    description: 人类基因的 text-embedding-3-large 语义向量（genePT）
+    source: "genePT 项目: https://github.com/yiqunchen/GenePT"
+    format: npz (numpy)
+    dimensions: "18080 × 3072"
+    key_fields: []
+    notes: 比 ada-002 维度更高；备用版本
+    readonly: true
+
+  - id: gene_names
+    name: gene_names.csv
+    path: input/genePT/gene_names.csv
+    description: genePT 嵌入向量对应的基因名列表
+    source: genePT 项目
+    format: csv
+    dimensions: "18080 行（含列名本身，第一行列名也是基因）"
+    key_fields: []
+    notes: |
+      注意：第一行是列名字符串，但该字符串本身也是一个基因名
+      共 18080 个人类基因
+    readonly: true
+
+  # ── 功能得分矩阵（h5ad）────────────────────────────────────────────────
+  - id: xpr_func_ad
+    name: xpr_func_ad.h5ad
+    path: output/store/gsea_anndata/xpr_func_ad.h5ad
+    description: CRISPR 遗传扰动功能得分矩阵（fgsea NES 得分）
+    source: 本地计算（LINCS XPR Level5 → fgsea）
+    format: h5ad (AnnData)
+    dimensions: "~132k obs × 91 vars"
+    key_fields: [sig_id, project_code, cell_iname, pert_id, cmap_name, pert_dose, pert_time]
+    notes: |
+      obs = 扰动实验；vars = 91 个功能基因集（Hallmark + 3CA MPS）
+      得分 = NES × -log10(FDR+1e-10)；正=激活，负=抑制
+      高度稀疏：cell × gene 大量组合不存在
+    readonly: true
+
+  - id: sh_func_ad
+    name: sh_func_ad.h5ad
+    path: output/store/gsea_anndata/sh_func_ad.h5ad
+    description: shRNA 遗传扰动功能得分矩阵
+    source: 本地计算（LINCS SH Level5 → fgsea）
+    format: h5ad (AnnData)
+    dimensions: "见文件"
+    key_fields: [sig_id, project_code, cell_iname, pert_id, cmap_name, pert_dose, pert_time]
+    notes: 同 xpr_func_ad，扰动类型为 shRNA 敲低
+    readonly: true
+
+  - id: cp_func_ad
+    name: cp_func_ad.h5ad
+    path: output/store/gsea_anndata/cp_func_ad.h5ad
+    description: 药物化合物扰动功能得分矩阵
+    source: 本地计算（LINCS CP Level5 → fgsea）
+    format: h5ad (AnnData)
+    dimensions: "见文件"
+    key_fields: [sig_id, project_code, cell_iname, pert_id, cmap_name, pert_dose, pert_time]
+    notes: pert_id 对应 BRD-id；80.7% 药物无真实名字，查询时过滤
+    readonly: true
+
+  # ── CMAP 辅助元数据 ──────────────────────────────────────────────────────
+  - id: gene_info_beta
+    name: gene_info_beta.csv
+    path: input/cmap/gene_info_beta.csv
+    description: LINCS CMAP 基因信息，含 symbol/alias/type
+    source: LINCS CMAP metadata
+    format: csv
+    dimensions: "12328 × 多列"
+    key_fields: [gene_symbol, gene_id, alias]
+    notes: 用于构建基因别名倒排索引
+    readonly: true

@@ -1,0 +1,29 @@
+# --- cyber managed: text-only tracking (do not edit below) ---
+*
+!*/
+.ipynb_checkpoints/
+.venv/
+__pycache__/
+env/
+node_modules/
+venv/
+!.gitignore
+!*.cfg
+!*.css
+!*.html
+!*.ini
+!*.ipynb
+!*.js
+!*.json
+!*.jsonl
+!*.jsx
+!*.md
+!*.py
+!*.sh
+!*.toml
+!*.ts
+!*.tsx
+!*.txt
+!*.yaml
+!*.yml
+# --- end cyber managed ---

@@ -1,0 +1,1043 @@
+{
+  "time": "2026-04-10 11:28:53",
+  "provider": "minimax",
+  "model": "MiniMax-M2.7",
+  "query_count": 6,
+  "resolver_mode": "always_llm",
+  "no_summary": false,
+  "suite_timing_seconds": 239.295,
+  "prompt_timing_total": {
+    "llm_map_cell_line": {
+      "count": 2,
+      "seconds": 15.686
+    },
+    "llm_map_drug": {
+      "count": 1,
+      "seconds": 8.63
+    },
+    "llm_normalize_drug": {
+      "count": 1,
+      "seconds": 10.657
+    },
+    "llm_parse_intent": {
+      "count": 6,
+      "seconds": 157.029
+    },
+    "llm_summarize_forward": {
+      "count": 6,
+      "seconds": 46.36
+    }
+  },
+  "rows": [
+    {
+      "id": "Q1_exact_gene_cell",
+      "query": "In A549, what pathways are affected by EGFR knockdown?",
+      "found": true,
+      "hit_level": "EXACT",
+      "pert_type": "sh",
+      "selected_source": "sh",
+      "composite_mode": "genetic_multi_source",
+      "resolver_meta": {
+        "query_type": "forward",
+        "hit_level": "EXACT",
+        "pert_type": "sh",
+        "selected_source": "sh",
+        "pert_class": "genetic",
+        "evidence_policy": {
+          "max_forward_evidence": 15,
+          "budget_exact": 1,
+          "budget_proxy_pert": 4,
+          "budget_proxy_cell": 4,
+          "budget_proxy_both": 6
+        },
+        "cell_resolution_reason": "exact_cell_name",
+        "requested_cell": "A549",
+        "used_cell": "A549",
+        "requested_perturbation": "EGFR",
+        "used_perturbation": "EGFR",
+        "proxy_cells_checked": [
+          "H1299",
+          "HCC827",
+          "NCIH1437",
+          "NCIH1563",
+          "NCIH1573",
+          "NCIH1781",
+          "NCIH1975",
+          "NCIH2073",
+          "NCIH2110",
+          "NCIH2172",
+          "NCIH596",
+          "NCIH838",
+          "BEN",
+          "HCC15",
+          "HCC44",
+          "HCC1588",
+          "HCC95",
+          "CORL23",
+          "T3M10",
+          "H1975"
+        ],
+        "proxy_perts_checked": [
+          "EGF",
+          "EREG",
+          "AREG",
+          "AR",
+          "ERBB2",
+          "ERBB4",
+          "ERBB3",
+          "HBEGF",
+          "NRG1",
+          "EPHA1",
+          "GRB7",
+          "AXL",
+          "EGR1",
+          "TLR4",
+          "TGFA",
+          "PDGFRA",
+          "ADGRE5",
+          "EPHB2",
+          "FGFR2",
+          "ERRFI1"
+        ],
+        "evidence_candidates": [
+          {
+            "hit_level": "EXACT",
+            "used_cell": "A549",
+            "used_perturbation": "EGFR",
+            "query_name": "EGFR"
+          },
+          {
+            "hit_level": "PROXY_PERT",
+            "used_cell": "A549",
+            "used_perturbation": "EGF",
+            "query_name": "EGF"
+          },
+          {
+            "hit_level": "PROXY_PERT",
+            "used_cell": "A549",
+            "used_perturbation": "AR",
+            "query_name": "AR"
+          },
+          {
+            "hit_level": "PROXY_PERT",
+            "used_cell": "A549",
+            "used_perturbation": "ERBB2",
+            "query_name": "ERBB2"
+          },
+          {
+            "hit_level": "PROXY_PERT",
+            "used_cell": "A549",
+            "used_perturbation": "ERBB4",
+            "query_name": "ERBB4"
+          },
+          {
+            "hit_level": "PROXY_CELL",
+            "used_cell": "HCC515",
+            "used_perturbation": "EGFR",
+            "query_name": "EGFR"
+          },
+          {
+            "hit_level": "PROXY_BOTH",
+            "used_cell": "HCC515",
+            "used_perturbation": "EGF",
+            "query_name": "EGF"
+          },
+          {
+            "hit_level": "PROXY_BOTH",
+            "used_cell": "HCC515",
+            "used_perturbation": "AR",
+            "query_name": "AR"
+          },
+          {
+            "hit_level": "PROXY_BOTH",
+            "used_cell": "HCC515",
+            "used_perturbation": "ERBB2",
+            "query_name": "ERBB2"
+          },
+          {
+            "hit_level": "PROXY_BOTH",
+            "used_cell": "HCC515",
+            "used_perturbation": "ERBB4",
+            "query_name": "ERBB4"
+          },
+          {
+            "hit_level": "PROXY_BOTH",
+            "used_cell": "HCC515",
+            "used_perturbation": "ERBB3",
+            "query_name": "ERBB3"
+          },
+          {
+            "hit_level": "PROXY_BOTH",
+            "used_cell": "HCC515",
+            "used_perturbation": "NRG1",
+            "query_name": "NRG1"
+          }
+        ],
+        "composite_mode": "genetic_multi_source",
+        "evidence_bundle": [
+          {
+            "pert_type": "xpr",
+            "hit_level": "EXACT",
+            "used_cell": "A549",
+            "used_perturbation": "EGFR",
+            "found": true,
+            "n_obs": 5,
+            "note": ""
+          },
+          {
+            "pert_type": "sh",
+            "hit_level": "EXACT",
+            "used_cell": "A549",
+            "used_perturbation": "EGFR",
+            "found": true,
+            "n_obs": 18,
+            "note": ""
+          }
+        ],
+        "llm_call_stats": {
+          "query": {
+            "llm_parse_intent": {
+              "count": 1,
+              "seconds": 14.826
+            },
+            "llm_summarize_forward": {
+              "count": 1,
+              "seconds": 16.207
+            }
+          },
+          "total": {
+            "llm_parse_intent": {
+              "count": 1,
+              "seconds": 14.826
+            },
+            "llm_summarize_forward": {
+              "count": 1,
+              "seconds": 16.207
+            }
+          }
+        }
+      },
+      "llm_call_stats": {
+        "query": {
+          "llm_parse_intent": {
+            "count": 1,
+            "seconds": 14.826
+          },
+          "llm_summarize_forward": {
+            "count": 1,
+            "seconds": 16.207
+          }
+        },
+        "total": {
+          "llm_parse_intent": {
+            "count": 1,
+            "seconds": 14.826
+          },
+          "llm_summarize_forward": {
+            "count": 1,
+            "seconds": 16.207
+          }
+        }
+      },
+      "summary": "Forward inference in A549 indicates EXACT evidence. Dominant activated programs include HALLMARK_MYOGENESIS, HALLMARK_KRAS_SIGNALING_DN, MP31 Alveolar, HALLMARK_APICAL_SURFACE, MP28 Oligo normal. Dominant suppressed programs include HALLMARK_OXIDATIVE_PHOSPHORYLATION, MP14 EMT-III , MP20 MYC, HALLMARK_MTORC1_SIGNALING, MP8 Proteasomal degradation. Interpretation should consider proxy usage and source evidence in resolver_meta.",
+      "timing_seconds": 31.623,
+      "prompt_timing": {
+        "llm_parse_intent": {
+          "count": 1,
+          "seconds": 14.826
+        },
+        "llm_summarize_forward": {
+          "count": 1,
+          "seconds": 16.207
+        }
+      }
+    },
+    {
+      "id": "Q2_disease_not_cellname",
+      "query": "In non-small cell lung carcinoma, what happens if EGFR is suppressed?",
+      "found": false,
+      "hit_level": "NOT_FOUND",
+      "pert_type": "xpr",
+      "selected_source": "xpr",
+      "composite_mode": "genetic_multi_source",
+      "resolver_meta": {
+        "query_type": "forward",
+        "hit_level": "NOT_FOUND",
+        "pert_type": "xpr",
+        "selected_source": "xpr",
+        "pert_class": "genetic",
+        "evidence_policy": {
+          "max_forward_evidence": 15,
+          "budget_exact": 1,
+          "budget_proxy_pert": 4,
+          "budget_proxy_cell": 4,
+          "budget_proxy_both": 6
+        },
+        "cell_resolution_reason": "bio_context_proxy",
+        "requested_cell": null,
+        "used_cell": null,
+        "requested_perturbation": "EGFR",
+        "used_perturbation": null,
+        "proxy_cells_checked": [
+          "TC32",
+          "A673",
+          "SKES1"
+        ],
+        "proxy_perts_checked": [
+          "EGF",
+          "EREG",
+          "AREG",
+          "AR",
+          "ERBB2",
+          "ERBB4",
+          "ERBB3",
+          "HBEGF",
+          "NRG1",
+          "EPHA1",
+          "GRB7",
+          "AXL",
+          "EGR1",
+          "TLR4",
+          "TGFA",
+          "PDGFRA",
+          "ADGRE5",
+          "EPHB2",
+          "FGFR2",
+          "ERRFI1"
+        ],
+        "evidence_candidates": [],
+        "composite_mode": "genetic_multi_source",
+        "evidence_bundle": [
+          {
+            "pert_type": "xpr",
+            "hit_level": "NOT_FOUND",
+            "used_cell": null,
+            "used_perturbation": null,
+            "found": false,
+            "n_obs": 0,
+            "note": "No exact/proxy evidence found in current matrix for this (B, P) query."
+          },
+          {
+            "pert_type": "sh",
+            "hit_level": "NOT_FOUND",
+            "used_cell": null,
+            "used_perturbation": null,
+            "found": false,
+            "n_obs": 0,
+            "note": "No exact/proxy evidence found in current matrix for this (B, P) query."
+          }
+        ],
+        "llm_call_stats": {
+          "query": {
+            "llm_map_cell_line": {
+              "count": 2,
+              "seconds": 15.686
+            },
+            "llm_parse_intent": {
+              "count": 1,
+              "seconds": 26.501
+            },
+            "llm_summarize_forward": {
+              "count": 1,
+              "seconds": 0.0
+            }
+          },
+          "total": {
+            "llm_map_cell_line": {
+              "count": 2,
+              "seconds": 15.686
+            },
+            "llm_parse_intent": {
+              "count": 2,
+              "seconds": 41.327
+            },
+            "llm_summarize_forward": {
+              "count": 2,
+              "seconds": 16.207
+            }
+          }
+        }
+      },
+      "llm_call_stats": {
+        "query": {
+          "llm_map_cell_line": {
+            "count": 2,
+            "seconds": 15.686
+          },
+          "llm_parse_intent": {
+            "count": 1,
+            "seconds": 26.501
+          },
+          "llm_summarize_forward": {
+            "count": 1,
+            "seconds": 0.0
+          }
+        },
+        "total": {
+          "llm_map_cell_line": {
+            "count": 2,
+            "seconds": 15.686
+          },
+          "llm_parse_intent": {
+            "count": 2,
+            "seconds": 41.327
+          },
+          "llm_summarize_forward": {
+            "count": 2,
+            "seconds": 16.207
+          }
+        }
+      },
+      "summary": "No result found. No exact/proxy evidence found in current matrix for this (B, P) query.",
+      "timing_seconds": 42.188,
+      "prompt_timing": {
+        "llm_map_cell_line": {
+          "count": 2,
+          "seconds": 15.686
+        },
+        "llm_parse_intent": {
+          "count": 1,
+          "seconds": 26.501
+        },
+        "llm_summarize_forward": {
+          "count": 1,
+          "seconds": 0.0
+        }
+      }
+    },
+    {
+      "id": "Q3_unknown_cell_label",
+      "query": "For NCI-H358-like NSCLC context, what pathways change after EGFR knockdown?",
+      "found": false,
+      "hit_level": "NOT_FOUND",
+      "pert_type": "xpr",
+      "selected_source": "xpr",
+      "composite_mode": "genetic_multi_source",
+      "resolver_meta": {
+        "query_type": "forward",
+        "hit_level": "NOT_FOUND",
+        "pert_type": "xpr",
+        "selected_source": "xpr",
+        "pert_class": "genetic",
+        "evidence_policy": {
+          "max_forward_evidence": 15,
+          "budget_exact": 1,
+          "budget_proxy_pert": 4,
+          "budget_proxy_cell": 4,
+          "budget_proxy_both": 6
+        },
+        "cell_resolution_reason": "no_bio_context",
+        "requested_cell": null,
+        "used_cell": null,
+        "requested_perturbation": "EGFR",
+        "used_perturbation": null,
+        "proxy_cells_checked": [],
+        "proxy_perts_checked": [
+          "EGF",
+          "EREG",
+          "AREG",
+          "AR",
+          "ERBB2",
+          "ERBB4",
+          "ERBB3",
+          "HBEGF",
+          "NRG1",
+          "EPHA1",
+          "GRB7",
+          "AXL",
+          "EGR1",
+          "TLR4",
+          "TGFA",
+          "PDGFRA",
+          "ADGRE5",
+          "EPHB2",
+          "FGFR2",
+          "ERRFI1"
+        ],
+        "evidence_candidates": [],
+        "composite_mode": "genetic_multi_source",
+        "evidence_bundle": [
+          {
+            "pert_type": "xpr",
+            "hit_level": "NOT_FOUND",
+            "used_cell": null,
+            "used_perturbation": null,
+            "found": false,
+            "n_obs": 0,
+            "note": "No exact/proxy evidence found in current matrix for this (B, P) query."
+          },
+          {
+            "pert_type": "sh",
+            "hit_level": "NOT_FOUND",
+            "used_cell": null,
+            "used_perturbation": null,
+            "found": false,
+            "n_obs": 0,
+            "note": "No exact/proxy evidence found in current matrix for this (B, P) query."
+          }
+        ],
+        "llm_call_stats": {
+          "query": {
+            "llm_parse_intent": {
+              "count": 1,
+              "seconds": 34.845
+            },
+            "llm_summarize_forward": {
+              "count": 1,
+              "seconds": 0.0
+            }
+          },
+          "total": {
+            "llm_map_cell_line": {
+              "count": 2,
+              "seconds": 15.686
+            },
+            "llm_parse_intent": {
+              "count": 3,
+              "seconds": 76.172
+            },
+            "llm_summarize_forward": {
+              "count": 3,
+              "seconds": 16.207
+            }
+          }
+        }
+      },
+      "llm_call_stats": {
+        "query": {
+          "llm_parse_intent": {
+            "count": 1,
+            "seconds": 34.845
+          },
+          "llm_summarize_forward": {
+            "count": 1,
+            "seconds": 0.0
+          }
+        },
+        "total": {
+          "llm_map_cell_line": {
+            "count": 2,
+            "seconds": 15.686
+          },
+          "llm_parse_intent": {
+            "count": 3,
+            "seconds": 76.172
+          },
+          "llm_summarize_forward": {
+            "count": 3,
+            "seconds": 16.207
+          }
+        }
+      },
+      "summary": "No result found. No exact/proxy evidence found in current matrix for this (B, P) query.",
+      "timing_seconds": 34.846,
+      "prompt_timing": {
+        "llm_parse_intent": {
+          "count": 1,
+          "seconds": 34.845
+        },
+        "llm_summarize_forward": {
+          "count": 1,
+          "seconds": 0.0
+        }
+      }
+    },
+    {
+      "id": "Q5_generic_drug_desc",
+      "query": "In A549, what pathways are affected by an EGFR inhibitor?",
+      "found": false,
+      "hit_level": "NOT_FOUND",
+      "pert_type": "xpr",
+      "selected_source": "xpr",
+      "composite_mode": "genetic_multi_source",
+      "resolver_meta": {
+        "query_type": "forward",
+        "hit_level": "NOT_FOUND",
+        "pert_type": "xpr",
+        "selected_source": "xpr",
+        "pert_class": "genetic",
+        "evidence_policy": {
+          "max_forward_evidence": 15,
+          "budget_exact": 1,
+          "budget_proxy_pert": 4,
+          "budget_proxy_cell": 4,
+          "budget_proxy_both": 6
+        },
+        "cell_resolution_reason": "no_bio_context",
+        "requested_cell": null,
+        "used_cell": null,
+        "requested_perturbation": "EGFR",
+        "used_perturbation": null,
+        "proxy_cells_checked": [],
+        "proxy_perts_checked": [
+          "EGF",
+          "EREG",
+          "AREG",
+          "AR",
+          "ERBB2",
+          "ERBB4",
+          "ERBB3",
+          "HBEGF",
+          "NRG1",
+          "EPHA1",
+          "GRB7",
+          "AXL",
+          "EGR1",
+          "TLR4",
+          "TGFA",
+          "PDGFRA",
+          "ADGRE5",
+          "EPHB2",
+          "FGFR2",
+          "ERRFI1"
+        ],
+        "evidence_candidates": [],
+        "composite_mode": "genetic_multi_source",
+        "evidence_bundle": [
+          {
+            "pert_type": "xpr",
+            "hit_level": "NOT_FOUND",
+            "used_cell": null,
+            "used_perturbation": null,
+            "found": false,
+            "n_obs": 0,
+            "note": "No exact/proxy evidence found in current matrix for this (B, P) query."
+          },
+          {
+            "pert_type": "sh",
+            "hit_level": "NOT_FOUND",
+            "used_cell": null,
+            "used_perturbation": null,
+            "found": false,
+            "n_obs": 0,
+            "note": "No exact/proxy evidence found in current matrix for this (B, P) query."
+          }
+        ],
+        "llm_call_stats": {
+          "query": {
+            "llm_parse_intent": {
+              "count": 1,
+              "seconds": 34.579
+            },
+            "llm_summarize_forward": {
+              "count": 1,
+              "seconds": 0.0
+            }
+          },
+          "total": {
+            "llm_map_cell_line": {
+              "count": 2,
+              "seconds": 15.686
+            },
+            "llm_parse_intent": {
+              "count": 4,
+              "seconds": 110.751
+            },
+            "llm_summarize_forward": {
+              "count": 4,
+              "seconds": 16.207
+            }
+          }
+        }
+      },
+      "llm_call_stats": {
+        "query": {
+          "llm_parse_intent": {
+            "count": 1,
+            "seconds": 34.579
+          },
+          "llm_summarize_forward": {
+            "count": 1,
+            "seconds": 0.0
+          }
+        },
+        "total": {
+          "llm_map_cell_line": {
+            "count": 2,
+            "seconds": 15.686
+          },
+          "llm_parse_intent": {
+            "count": 4,
+            "seconds": 110.751
+          },
+          "llm_summarize_forward": {
+            "count": 4,
+            "seconds": 16.207
+          }
+        }
+      },
+      "summary": "No result found. No exact/proxy evidence found in current matrix for this (B, P) query.",
+      "timing_seconds": 34.579,
+      "prompt_timing": {
+        "llm_parse_intent": {
+          "count": 1,
+          "seconds": 34.579
+        },
+        "llm_summarize_forward": {
+          "count": 1,
+          "seconds": 0.0
+        }
+      }
+    },
+    {
+      "id": "Q6_specific_drug_name",
+      "query": "In A549, what pathways change after erlotinib treatment?",
+      "found": true,
+      "hit_level": "PROXY_PERT",
+      "pert_type": "cp",
+      "selected_source": "cp",
+      "composite_mode": null,
+      "resolver_meta": {
+        "query_type": "forward",
+        "hit_level": "PROXY_PERT",
+        "pert_type": "cp",
+        "selected_source": "cp",
+        "pert_class": "drug",
+        "evidence_policy": {
+          "max_forward_evidence": 15,
+          "budget_exact": 1,
+          "budget_proxy_pert": 4,
+          "budget_proxy_cell": 4,
+          "budget_proxy_both": 6
+        },
+        "cell_resolution_reason": "exact_cell_name",
+        "requested_cell": "A549",
+        "used_cell": "A549",
+        "requested_perturbation": "BRD-K70401845",
+        "used_perturbation": "BRD-K26603252",
+        "proxy_cells_checked": [
+          "H1299",
+          "HCC827",
+          "NCIH1437",
+          "NCIH1563",
+          "NCIH1573",
+          "NCIH1781",
+          "NCIH1975",
+          "NCIH2073",
+          "NCIH2110",
+          "NCIH2172",
+          "NCIH596",
+          "NCIH838",
+          "BEN",
+          "HCC15",
+          "HCC44",
+          "HCC1588",
+          "HCC95",
+          "CORL23",
+          "T3M10",
+          "H1975"
+        ],
+        "proxy_perts_checked": [
+          "BRD-K26603252",
+          "BRD-K68336408",
+          "BRD-K50495309",
+          "BRD-K52850071",
+          "BRD-K64052750",
+          "BRD-K72703948",
+          "BRD-K48735772",
+          "BRD-K41337261",
+          "BRD-K87696786",
+          "BRD-K77625799",
+          "BRD-K17702546",
+          "BRD-K98572433",
+          "BRD-K87782578",
+          "BRD-K57169635",
+          "BRD-K26838195",
+          "BRD-K50168500",
+          "BRD-K76908866"
+        ],
+        "evidence_candidates": [
+          {
+            "hit_level": "PROXY_PERT",
+            "used_cell": "A549",
+            "used_perturbation": "BRD-K26603252",
+            "query_name": "PD-153035"
+          },
+          {
+            "hit_level": "PROXY_PERT",
+            "used_cell": "A549",
+            "used_perturbation": "BRD-K68336408",
+            "query_name": "BRD-K68336408"
+          },
+          {
+            "hit_level": "PROXY_PERT",
+            "used_cell": "A549",
+            "used_perturbation": "BRD-K50495309",
+            "query_name": "BRD-K50495309"
+          },
+          {
+            "hit_level": "PROXY_PERT",
+            "used_cell": "A549",
+            "used_perturbation": "BRD-K52850071",
+            "query_name": "WHI-P154"
+          },
+          {
+            "hit_level": "PROXY_CELL",
+            "used_cell": "NCIH1437",
+            "used_perturbation": "BRD-K70401845",
+            "query_name": "erlotinib"
+          },
+          {
+            "hit_level": "PROXY_CELL",
+            "used_cell": "NCIH1573",
+            "used_perturbation": "BRD-K70401845",
+            "query_name": "erlotinib"
+          },
+          {
+            "hit_level": "PROXY_CELL",
+            "used_cell": "NCIH1975",
+            "used_perturbation": "BRD-K70401845",
+            "query_name": "erlotinib"
+          },
+          {
+            "hit_level": "PROXY_CELL",
+            "used_cell": "NCIH2073",
+            "used_perturbation": "BRD-K70401845",
+            "query_name": "erlotinib"
+          },
+          {
+            "hit_level": "PROXY_BOTH",
+            "used_cell": "H1299",
+            "used_perturbation": "BRD-K68336408",
+            "query_name": "BRD-K68336408"
+          },
+          {
+            "hit_level": "PROXY_BOTH",
+            "used_cell": "NCIH1437",
+            "used_perturbation": "BRD-K64052750",
+            "query_name": "gefitinib"
+          },
+          {
+            "hit_level": "PROXY_BOTH",
+            "used_cell": "NCIH1437",
+            "used_perturbation": "BRD-K77625799",
+            "query_name": "vandetanib"
+          },
+          {
+            "hit_level": "PROXY_BOTH",
+            "used_cell": "NCIH1573",
+            "used_perturbation": "BRD-K64052750",
+            "query_name": "gefitinib"
+          },
+          {
+            "hit_level": "PROXY_BOTH",
+            "used_cell": "NCIH1573",
+            "used_perturbation": "BRD-K87696786",
+            "query_name": "LY-456236"
+          },
+          {
+            "hit_level": "PROXY_BOTH",
+            "used_cell": "NCIH1573",
+            "used_perturbation": "BRD-K77625799",
+            "query_name": "vandetanib"
+          }
+        ],
+        "llm_call_stats": {
+          "query": {
+            "llm_parse_intent": {
+              "count": 1,
+              "seconds": 30.872
+            },
+            "llm_summarize_forward": {
+              "count": 1,
+              "seconds": 30.154
+            }
+          },
+          "total": {
+            "llm_map_cell_line": {
+              "count": 2,
+              "seconds": 15.686
+            },
+            "llm_parse_intent": {
+              "count": 5,
+              "seconds": 141.622
+            },
+            "llm_summarize_forward": {
+              "count": 5,
+              "seconds": 46.36
+            }
+          }
+        }
+      },
+      "llm_call_stats": {
+        "query": {
+          "llm_parse_intent": {
+            "count": 1,
+            "seconds": 30.872
+          },
+          "llm_summarize_forward": {
+            "count": 1,
+            "seconds": 30.154
+          }
+        },
+        "total": {
+          "llm_map_cell_line": {
+            "count": 2,
+            "seconds": 15.686
+          },
+          "llm_parse_intent": {
+            "count": 5,
+            "seconds": 141.622
+          },
+          "llm_summarize_forward": {
+            "count": 5,
+            "seconds": 46.36
+          }
+        }
+      },
+      "summary": "Forward inference in A549 indicates PROXY_PERT evidence. Dominant activated programs include HALLMARK_ADIPOGENESIS, HALLMARK_PROTEIN_SECRETION, HALLMARK_MTORC1_SIGNALING, HALLMARK_UNFOLDED_PROTEIN_RESPONSE, MP17 Interferon/MHC-II (I). Dominant suppressed programs include MP30 PDAC-classical, HALLMARK_KRAS_SIGNALING_DN, MP22 Secreted I, HALLMARK_PANCREAS_BETA_CELLS, HALLMARK_HEME_METABOLISM. Interpretation should consider proxy usage and source evidence in resolver_meta.",
+      "timing_seconds": 61.364,
+      "prompt_timing": {
+        "llm_parse_intent": {
+          "count": 1,
+          "seconds": 30.872
+        },
+        "llm_summarize_forward": {
+          "count": 1,
+          "seconds": 30.154
+        }
+      }
+    },
+    {
+      "id": "Q13_nonexistent_drug",
+      "query": "In PC3, estimate pathway response for l-theanine-like perturbation.",
+      "found": false,
+      "hit_level": "NOT_FOUND",
+      "pert_type": "cp",
+      "selected_source": "cp",
+      "composite_mode": null,
+      "resolver_meta": {
+        "query_type": "forward",
+        "hit_level": "NOT_FOUND",
+        "pert_type": "cp",
+        "selected_source": "cp",
+        "pert_class": "drug",
+        "evidence_policy": {
+          "max_forward_evidence": 15,
+          "budget_exact": 1,
+          "budget_proxy_pert": 4,
+          "budget_proxy_cell": 4,
+          "budget_proxy_both": 6
+        },
+        "cell_resolution_reason": "exact_cell_name",
+        "requested_cell": "PC3",
+        "used_cell": null,
+        "requested_perturbation": "l-theanine-like perturbation",
+        "used_perturbation": null,
+        "proxy_cells_checked": [
+          "VCAP",
+          "22RV1",
+          "DU145",
+          "RWPE1",
+          "LNCAP"
+        ],
+        "proxy_perts_checked": [],
+        "evidence_candidates": [],
+        "llm_call_stats": {
+          "query": {
+            "llm_map_drug": {
+              "count": 1,
+              "seconds": 8.63
+            },
+            "llm_normalize_drug": {
+              "count": 1,
+              "seconds": 10.657
+            },
+            "llm_parse_intent": {
+              "count": 1,
+              "seconds": 15.406
+            },
+            "llm_summarize_forward": {
+              "count": 1,
+              "seconds": 0.0
+            }
+          },
+          "total": {
+            "llm_map_cell_line": {
+              "count": 2,
+              "seconds": 15.686
+            },
+            "llm_map_drug": {
+              "count": 1,
+              "seconds": 8.63
+            },
+            "llm_normalize_drug": {
+              "count": 1,
+              "seconds": 10.657
+            },
+            "llm_parse_intent": {
+              "count": 6,
+              "seconds": 157.029
+            },
+            "llm_summarize_forward": {
+              "count": 6,
+              "seconds": 46.36
+            }
+          }
+        }
+      },
+      "llm_call_stats": {
+        "query": {
+          "llm_map_drug": {
+            "count": 1,
+            "seconds": 8.63
+          },
+          "llm_normalize_drug": {
+            "count": 1,
+            "seconds": 10.657
+          },
+          "llm_parse_intent": {
+            "count": 1,
+            "seconds": 15.406
+          },
+          "llm_summarize_forward": {
+            "count": 1,
+            "seconds": 0.0
+          }
+        },
+        "total": {
+          "llm_map_cell_line": {
+            "count": 2,
+            "seconds": 15.686
+          },
+          "llm_map_drug": {
+            "count": 1,
+            "seconds": 8.63
+          },
+          "llm_normalize_drug": {
+            "count": 1,
+            "seconds": 10.657
+          },
+          "llm_parse_intent": {
+            "count": 6,
+            "seconds": 157.029
+          },
+          "llm_summarize_forward": {
+            "count": 6,
+            "seconds": 46.36
+          }
+        }
+      },
+      "summary": "No result found. No exact/proxy evidence found in current matrix for this (B, P) query.",
+      "timing_seconds": 34.694,
+      "prompt_timing": {
+        "llm_map_drug": {
+          "count": 1,
+          "seconds": 8.63
+        },
+        "llm_normalize_drug": {
+          "count": 1,
+          "seconds": 10.657
+        },
+        "llm_parse_intent": {
+          "count": 1,
+          "seconds": 15.406
+        },
+        "llm_summarize_forward": {
+          "count": 1,
+          "seconds": 0.0
+        }
+      }
+    }
+  ]
+}

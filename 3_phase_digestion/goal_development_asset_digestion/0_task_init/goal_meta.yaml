@@ -1,0 +1,13 @@
+goal_id: G-002
+name: Development asset digestion
+phase: digestion
+project: P-012
+objective: Digest the migrated and legacy PxFquery development assets to understand
+  what the tool was intended to become, what was already implemented or validated,
+  and what should be handed off to the later development phase.
+status: active
+tasks:
+- T-007
+created: '2026-06-17'
+notes: This goal is separate from legacy asset migration. It digests PxFquery development
+  assets before the project enters a later development phase.

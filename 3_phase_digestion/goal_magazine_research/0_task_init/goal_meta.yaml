@@ -1,0 +1,16 @@
+goal_id: G-003
+name: "Magazine research"
+phase: digestion
+project: P-012
+objective: "Build evidence about target journal and publisher ecology, publication cycles, accepted paper forms, affiliation/unit patterns, monthly published-presence trends, and policy/discussion context for journal research tasks."
+status: active
+tasks:
+  - T-004
+  - T-005
+  - T-006
+  - T-008
+  - T-009
+  - T-011
+  - T-012
+created: "2026-06-17"
+notes: "This goal separates journal and magazine research from legacy asset migration. T-004, T-005, T-006, T-008, T-009, T-011, and T-012 are registered here."

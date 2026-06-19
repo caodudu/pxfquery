@@ -1,0 +1,119 @@
+# 6_llm_resovler Act-1 Validation Report
+
+- Time: 2026-04-09 23:21:34
+- Provider: minimax
+- Model: MiniMax-M2.7
+
+## Case Results
+
+### forward_egfr_a549
+- Query: `In A549, what pathways are affected by EGFR knockdown?`
+- Result type: `ForwardResult`
+- Found: `True`
+- Resolver meta: `{"query_type": "forward", "hit_level": "EXACT", "pert_type": "sh", "pert_class": "genetic", "cell_resolution_reason": "exact_cell_name", "requested_cell": "A549", "used_cell": "A549", "requested_perturbation": "EGFR knockdown", "used_perturbation": "EGFR knockdown", "proxy_cells_checked": ["H1299", "HCC827", "NCIH1437", "NCIH1563", "NCIH1573", "NCIH1781", "NCIH1975", "NCIH2073", "NCIH2110", "NCIH2172", "NCIH596", "NCIH838", "BEN", "HCC15", "HCC44", "HCC1588", "HCC95", "CORL23", "T3M10", "H1975"], "proxy_perts_checked": [], "composite_mode": "genetic_multi_source", "evidence_bundle": [{"pert_type": "xpr", "hit_level": "EXACT", "used_cell": "A549", "used_perturbation": "EGFR knockdown", "found": true, "n_obs": 5, "note": ""}, {"pert_type": "sh", "hit_level": "EXACT", "used_cell": "A549", "used_perturbation": "EGFR knockdown", "found": true, "n_obs": 18, "note": ""}], "selected_source": "sh"}`
+
+Summary:
+
+EGFR knockdown in A549 cells produces a clear transcriptional re‑programming consistent with reduced proliferative drive and metabolic remodeling. Activated pathways include myogenesis, KRAS‑signaling down‑regulation, alveolar and apical‑surface markers, G1/S cell‑cycle, mitotic spindle, p53 and heme metabolism, indicating a shift toward differentiation and cell‑cycle arrest. Suppressed pathways—oxidative phosphorylation, MYC, mTORC1 signaling, proteasomal degradation, translation initiation, stress‑response, EMT‑III, and hypoxia—reveal a down‑regulation of biosynthetic and invasive programs. The coordinated down‑regulation of OXPHOS and up‑regulation of p53/heme metabolism suggest a metabolic switch that may sensitize cells to energy stress. These results reflect direct,
+
+Top preview:
+
+```json
+[
+  {
+    "top_activated": [
+      {
+        "term": "HALLMARK_MYOGENESIS",
+        "score": 1.3520987423365989
+      },
+      {
+        "term": "HALLMARK_KRAS_SIGNALING_DN",
+        "score": 1.3311772348932172
+      },
+      {
+        "term": "MP31 Alveolar",
+        "score": 0.867602134273802
+      },
+      {
+        "term": "HALLMARK_APICAL_SURFACE",
+        "score": 0.7758109459154036
+      },
+      {
+        "term": "MP28 Oligo normal",
+        "score": 0.5012076413752954
+      }
+    ]
+  },
+  {
+    "top_suppressed": [
+      {
+        "term": "HALLMARK_OXIDATIVE_PHOSPHORYLATION",
+        "score": -3.116113803315148
+      },
+      {
+        "term": "MP14 EMT-III ",
+        "score": -2.9095219932125658
+      },
+      {
+        "term": "MP20 MYC",
+        "score": -2.748629686189388
+      },
+      {
+        "term": "HALLMARK_MTORC1_SIGNALING",
+        "score": -2.703299852591199
+      },
+      {
+        "term": "MP8 Proteasomal degradation",
+        "score": -2.6928668558879316
+      }
+    ]
+  }
+]
+```
+
+### reverse_apoptosis_myc_a549
+- Query: `In A549, recommend perturbations that activate apoptosis and suppress MYC targets.`
+- Result type: `ReverseResult`
+- Found: `True`
+- Resolver meta: `{"query_type": "reverse", "pert_type": "xpr", "resolved_cell_line": "A549", "activate": ["HALLMARK_APOPTOSIS"], "suppress": ["HALLMARK_MYC_TARGETS_V1", "HALLMARK_MYC_TARGETS_V2"]}`
+
+Summary:
+
+Reverse inference in A549 returned candidate perturbations: NELFA, WDR37, RELL1, CDK20, STH. These are ranked by similarity to requested functional targets; inspect driving_terms for mechanistic hints.
+
+Top preview:
+
+```json
+[
+  {
+    "cmap_name": "NELFA",
+    "cell_iname": "A549",
+    "similarity": 0.5077338434842903,
+    "driving_terms": "HALLMARK_MYC_TARGETS_V2, HALLMARK_MYC_TARGETS_V1, HALLMARK_APOPTOSIS"
+  },
+  {
+    "cmap_name": "WDR37",
+    "cell_iname": "A549",
+    "similarity": 0.49665082676402644,
+    "driving_terms": "HALLMARK_MYC_TARGETS_V1, HALLMARK_MYC_TARGETS_V2, HALLMARK_APOPTOSIS"
+  },
+  {
+    "cmap_name": "RELL1",
+    "cell_iname": "A549",
+    "similarity": 0.4875127053408612,
+    "driving_terms": "HALLMARK_MYC_TARGETS_V1, HALLMARK_MYC_TARGETS_V2, HALLMARK_APOPTOSIS"
+  },
+  {
+    "cmap_name": "CDK20",
+    "cell_iname": "A549",
+    "similarity": 0.4651137052591194,
+    "driving_terms": "HALLMARK_MYC_TARGETS_V1, HALLMARK_MYC_TARGETS_V2, HALLMARK_APOPTOSIS"
+  },
+  {
+    "cmap_name": "STH",
+    "cell_iname": "A549",
+    "similarity": 0.4580987358498377,
+    "driving_terms": "HALLMARK_MYC_TARGETS_V1, HALLMARK_MYC_TARGETS_V2, HALLMARK_APOPTOSIS"
+  }
+]
+```

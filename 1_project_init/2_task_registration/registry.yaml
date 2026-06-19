@@ -1,0 +1,145 @@
+tasks:
+- id: T-001
+  name: Digest legacy assets
+  phase: digestion
+  goal: goal_legacy_asset_migration
+  path: 3_phase_digestion/goal_legacy_asset_migration/task_audit_legacy_assets
+  status: done
+  executor: hybrid
+  created: '2026-06-13'
+  completed: '2026-06-14'
+- id: T-002
+  name: Plan migration map
+  phase: digestion
+  goal: goal_legacy_asset_migration
+  path: 3_phase_digestion/goal_legacy_asset_migration/task_plan_migration_map
+  status: done
+  executor: hybrid
+  created: '2026-06-14'
+  completed: '2026-06-16'
+- id: T-003
+  name: Normalize project protocol from migrated context
+  phase: digestion
+  goal: goal_legacy_asset_migration
+  path: 3_phase_digestion/goal_legacy_asset_migration/task_normalize_project_protocol_from_migrated_context
+  status: done
+  executor: hybrid
+  created: '2026-06-16'
+  completed: '2026-06-16'
+- id: T-004
+  name: Systematic Genes literature survey
+  phase: digestion
+  goal: goal_magazine_research
+  path: 3_phase_digestion/goal_magazine_research/task_systematic_genes_literature_survey
+  status: done
+  executor: hybrid
+  created: '2026-06-16'
+  completed: '2026-06-19'
+- id: T-005
+  name: Genes bioinformatics reference digestion and PxFquery adjustment preparation
+  phase: digestion
+  goal: goal_magazine_research
+  path: 3_phase_digestion/goal_magazine_research/task_design_genes_adjustment
+  status: done
+  executor: hybrid
+  created: '2026-06-17'
+  completed: '2026-06-17'
+- id: T-006
+  name: Genes affiliation country and hospital-source timing analysis
+  phase: digestion
+  goal: goal_magazine_research
+  path: 3_phase_digestion/goal_magazine_research/task_genes_affiliation_bias_analysis
+  status: done
+  executor: hybrid
+  created: '2026-06-17'
+  completed: '2026-06-17'
+- id: T-007
+  name: Digest PxFquery development state
+  phase: digestion
+  goal: goal_development_asset_digestion
+  path: 3_phase_digestion/goal_development_asset_digestion/task_digest_pxfquery_development_state
+  status: done
+  executor: hybrid
+  created: '2026-06-17'
+  completed: '2026-06-18'
+- id: T-011
+  name: Frontiers in Genetics publication timing survey
+  phase: digestion
+  goal: goal_magazine_research
+  path: 3_phase_digestion/goal_magazine_research/task_frontiers_in_genetics_publication_timing
+  status: done
+  executor: hybrid
+  created: '2026-06-18'
+  completed: '2026-06-18'
+- id: T-008
+  name: MDPI cross-journal affiliation and PUMCH publication landscape
+  phase: digestion
+  goal: goal_magazine_research
+  path: 3_phase_digestion/goal_magazine_research/task_mdpi_cross_journal_affiliation_landscape
+  status: done
+  executor: hybrid
+  created: '2026-06-17'
+  completed: '2026-06-18'
+- id: T-009
+  name: Frontiers in Genetics affiliation and PUMCH publication landscape
+  phase: digestion
+  goal: goal_magazine_research
+  path: 3_phase_digestion/goal_magazine_research/task_frontiers_in_genetics_affiliation_landscape
+  status: done
+  executor: hybrid
+  created: '2026-06-17'
+  completed: '2026-06-18'
+- id: T-010
+  name: Genes same-journal citation pattern and observable outcome study
+  phase: digestion
+  goal: goal_citation_research
+  path: 3_phase_digestion/goal_citation_research/task_genes_same_journal_citation_effect
+  status: pending
+  executor: hybrid
+  created: '2026-06-18'
+  completed: null
+- id: T-012
+  name: Genes bioinformatics deliverable paper catalog
+  phase: digestion
+  goal: goal_magazine_research
+  path: 3_phase_digestion/goal_magazine_research/task_genes_bioinformatics_deliverable_catalog
+  status: active
+  executor: hybrid
+  created: '2026-06-18'
+  completed: '2026-06-18'
+- id: T-013
+  name: MVP algorithm run-through review
+  phase: development
+  goal: goal_algorithm_function_review
+  path: 4_phase_development/goal_algorithm_function_review/task_mvp_algorithm_run-through_review
+  status: active
+  executor: hybrid
+  created: '2026-06-18'
+  completed: null
+- id: T-014
+  name: Understand PxFquery precomputed data
+  phase: development
+  goal: goal_precomputed_data_exploration
+  path: 4_phase_development/goal_precomputed_data_exploration/task_understand_pxfquery_precomputed_data
+  status: active
+  executor: hybrid
+  created: '2026-06-18'
+  completed: null
+- id: T-015
+  name: MDPI submission package and guide
+  phase: digestion
+  goal: goal_submission_rules
+  path: 3_phase_digestion/goal_submission_rules/task_mdpi_submission_package_and_guide
+  status: active
+  executor: hybrid
+  created: '2026-06-19'
+  completed: null
+- id: T-016
+  name: Digest WXY Genes template paper package
+  phase: digestion
+  goal: goal_template_paper_digestion
+  path: 3_phase_digestion/goal_template_paper_digestion/task_digest_wxy_genes_template_paper
+  status: done
+  executor: hybrid
+  created: '2026-06-19'
+  completed: '2026-06-19'

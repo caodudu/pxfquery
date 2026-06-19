@@ -1,0 +1,10 @@
+project_id: P-012
+name: PxFquery
+created: '2026-06-13'
+target_delivery: ''
+current_phase: development
+status: active
+focus: 4_phase_development/goal_algorithm_function_review/task_mvp_algorithm_run-through_review
+notes: Entering development phase. Current focus is configuring T-013 under G-005
+  for MVP algorithm run-through review; G-006 is reserved for later algorithm version
+  development.
