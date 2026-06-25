@@ -1,0 +1,32 @@
+task_id: T-051
+name: reverse_validation_m1
+phase: development
+goal: goal_m1_python_package_v2
+project: P-012
+objective: Independently validate the M1 reverse query implementation. Use T-049 as
+  the implementation under test and rerun the reverse demo case from the contract.
+  Deliver smoke logs, JSON output, pass/fail result, and traceability to the loader,
+  fixture/manifest, ranking/scoring behavior, and package version used. This task
+  must not hide instability by changing acceptance criteria.
+executor: hybrid
+agent_id: AGT-002
+config_agent_id: AGT-002
+check_agent_id: AGT-002
+execute_agent_id: AGT-002
+server_id: null
+status: done
+cyhex_version: 1.2.19
+created: '2026-06-24'
+started: null
+completed: '2026-06-24'
+notes: 'Constraint supplement for config AI: This is independent validation, not implementation
+  repair. Re-run the T-042 reverse demo against the T-049 implementation and record
+  traceability to package version, loader, fixture/manifest, ranking/scoring behavior,
+  and output JSON. Do not relax acceptance criteria or hide instability. Failure should
+  produce evidence for same-layer repair/retry.'
+fast_pass_permission: green
+sub_status: ''
+fast_pass_last_auto_approved: check_review
+fast_pass_last_auto_approved_at: '2026-06-24T05:56:08'
+fast_pass_accepted: true
+fast_pass_accepted_at: '2026-06-24T06:00:16'

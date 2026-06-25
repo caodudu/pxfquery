@@ -1,0 +1,52 @@
+{
+  "var_names": [
+    "HALLMARK_ADIPOGENESIS",
+    "HALLMARK_APOPTOSIS",
+    "HALLMARK_E2F_TARGETS",
+    "HALLMARK_P53_PATHWAY",
+    "HALLMARK_TNFA_SIGNALING_VIA_NFKB",
+    "MP39 Metal-response",
+    "MP40 PDAC-related"
+  ],
+  "meta": {
+    "HALLMARK_ADIPOGENESIS": {
+      "source": "hallmark",
+      "label": "Adipogenesis"
+    },
+    "HALLMARK_APOPTOSIS": {
+      "source": "hallmark",
+      "label": "Apoptosis"
+    },
+    "HALLMARK_E2F_TARGETS": {
+      "source": "hallmark",
+      "label": "E2F Targets"
+    },
+    "HALLMARK_P53_PATHWAY": {
+      "source": "hallmark",
+      "label": "P53 Pathway"
+    },
+    "HALLMARK_TNFA_SIGNALING_VIA_NFKB": {
+      "source": "hallmark",
+      "label": "Tnfa Signaling Via Nfkb"
+    },
+    "MP39 Metal-response": {
+      "source": "3ca_mps",
+      "label": "Metal-response",
+      "mp_id": 39
+    },
+    "MP40 PDAC-related": {
+      "source": "3ca_mps",
+      "label": "PDAC-related",
+      "mp_id": 40
+    }
+  },
+  "aliases": {
+    "hallmark_adipogenesis": "HALLMARK_ADIPOGENESIS",
+    "hallmark_apoptosis": "HALLMARK_APOPTOSIS",
+    "hallmark_e2f_targets": "HALLMARK_E2F_TARGETS",
+    "hallmark_p53_pathway": "HALLMARK_P53_PATHWAY",
+    "hallmark_tnfa_signaling_via_nfkb": "HALLMARK_TNFA_SIGNALING_VIA_NFKB",
+    "mp39_metal-response": "MP39 Metal-response",
+    "mp40_pdac-related": "MP40 PDAC-related"
+  }
+}

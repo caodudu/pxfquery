@@ -1,0 +1,70 @@
+version: 1
+required:
+  - A-001
+  - A-002
+  - A-004
+  - A-006
+  - A-007
+  - A-008
+optional:
+  - A-003
+  - A-005
+  - A-009
+forbidden:
+  - path: 1_asset/T-021 standard_resources bundle (D-004)
+    reason: T-021 bundle is read-only input source. Do not modify or delete files inside it. Read by reference only.
+  - path: ../../goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/2_persist/standard_resources/
+    reason: T-021/D-004 bundle is read-only input from predecessor task. Do not overwrite source files.
+  - path: ../task_matrix_loader_v1/4_artifact/
+    reason: T-026 completed artifacts are read-only prebuilt inputs. Do not modify them in place.
+  - path: ../task_index_name_normalizer_v1/4_artifact/2_persist/pxfquery_T027_runtime_query_index/
+    reason: T-027 is a completed predecessor task. T-028 reads its symlinks but must not change them.
+  - path: ../../../goal_algorithm_function_review/task_mvp_algorithm_run-through_review/4_artifact/
+    reason: T-013 is completed predecessor task. Read evidence only.
+  - path: /Users/dudu/Documents/3_Project/8_functional_query
+    reason: Legacy Windows-era historical source. Not needed for T-028 function-index task.
+  - path: ../../../2_project_asset/
+    reason: Project-level raw materials are scoped out. T-028 should use T-026 loader + T-027 index pack + T-013 gap evidence as sufficient input sources.
+output:
+  - path: 3_execution/
+    description: Step-level validation evidence: var_names JSON, upstream-function-index record, validation script, validation JSON + summary, validation CSV.
+  - path: 4_artifact/2_persist/pxfquery_T028_function_index/
+    description: pxfquery-T-028 function index pack. Contains function_index.json with 91 terms and aliases.
+  - path: 4_artifact/2_persist/pxfquery_T028_downstream_usage_notes.md
+    description: English downstream usage notes for query/resolver tasks.
+  - path: 4_artifact/2_persist/pxfquery_T028_downstream_usage_notes_zh.md
+    description: Chinese downstream usage notes for query/resolver tasks.
+  - path: 4_artifact/5_table/
+    description: Per-term validation table CSV (91 rows).
+  - path: 4_artifact/3_document/
+    description: CyHex-mandatory Chinese HTML execution report + result report.
+  - path: 4_artifact/registry.yaml
+    description: T-028 deliverable registration.
+  - path: 5_report/completion.md
+    description: Completion report.
+  - path: 5_report/repair_log.md
+    description: Repair log; only written when upstream function_index.json is missing or partial.
+  - path: 5_report/validation_notes.md
+    description: Narrative notes on each alias gap, mismatch, or unexpected validation finding.
+modifiable:
+  - path: 3_execution/
+  - path: 4_artifact/2_persist/
+  - path: 4_artifact/3_document/
+  - path: 4_artifact/5_table/
+  - path: 4_artifact/registry.yaml
+  - path: 5_report/
+non_modifiable:
+  - path: 1_asset/
+  - path: 2_protocol/
+  - path: ../../../1_project_init/1_project_protocol/
+  - path: ../../../1_project_init/3_project_state/
+  - path: ../task_matrix_loader_v1/4_artifact/
+  - path: ../task_index_name_normalizer_v1/4_artifact/
+  - path: ../../../goal_algorithm_function_review/task_mvp_algorithm_run-through_review/4_artifact/
+  - path: ../../../2_project_asset/
+notes:
+  - The 91 function terms originate from the `var_names` of cp_func_ad.h5ad, sh_func_ad.h5ad, xpr_func_ad.h5ad in the T-021/D-004 bundle. T-028 must derive them via the T-026 loader (A-001) at runtime, never hard-code them.
+  - The upstream function_index.json is read through the T-027 runtime query index pack (A-004) symlink. When it is missing or partial (as T-013 evidence indicates), T-028 produces a corrected local version under 4_artifact/2_persist/pxfquery_T028_function_index/.
+  - All loads are by reference to T-021 bundle; no byte-level copying of upstream files into T-028.
+  - T-023 is intentionally out of scope for this v1 task.
+  - Validation must open H5AD files and JSON via Python. File-existence checks alone are insufficient.

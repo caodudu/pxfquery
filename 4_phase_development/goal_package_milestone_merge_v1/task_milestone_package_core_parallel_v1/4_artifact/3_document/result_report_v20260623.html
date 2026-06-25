@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>T-040 result report</title>
+  <style>
+    body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;max-width:1120px;margin:32px auto;padding:0 20px;line-height:1.58;color:#1f2933}
+    h1,h2{color:#111827}
+    table{border-collapse:collapse;width:100%;font-size:13px;margin:12px 0 24px}
+    th,td{border:1px solid #d8dee4;padding:7px 9px;text-align:left;vertical-align:top}
+    th{background:#f3f4f6}
+    code{background:#f3f4f6;padding:2px 4px;border-radius:4px}
+    .metric{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0}
+    .metric div{border:1px solid #d8dee4;border-radius:6px;padding:12px;background:#f9fafb}
+    .metric strong{display:block;font-size:22px;color:#0f766e}
+    .bar{height:16px;background:#e5e7eb;border-radius:8px;overflow:hidden}
+    .bar span{display:block;height:100%;background:#0f766e}
+    .neg span{background:#b91c1c}
+  </style>
+</head>
+<body>
+  <h1>T-040 成果报告</h1>
+  <p><code>pxfquery-T-040</code> 已形成可导入的 package-core 分支：包含 package workspace、标准资源 loader、deterministic forward query 和 no-hit guard。该分支不依赖 T-038，供 T-039 后续聚合使用。</p>
+
+  <div class="metric">
+    <div><strong>19/19</strong>资源文件打开成功</div>
+    <div><strong>132464 x 91</strong>xpr 矩阵 shape</div>
+    <div><strong>40</strong>EGFR/A549 结果行</div>
+    <div><strong>0</strong>验证失败项</div>
+  </div>
+
+  <h2>Package-Core 组成</h2>
+  <table>
+    <tr><th>组件</th><th>T-040 位置</th><th>来源</th></tr>
+    <tr><td>Package base</td><td><code>4_artifact/2_persist/pxfquery-T-040/</code></td><td>T-024 workspace</td></tr>
+    <tr><td>Resource loader</td><td><code>src/pxfquery/resources.py</code></td><td>T-026 loader behavior</td></tr>
+    <tr><td>Forward facade</td><td><code>src/pxfquery/package_core.py</code></td><td>T-029 deterministic forward behavior</td></tr>
+    <tr><td>No-hit guard</td><td><code>src/pxfquery/query/no_hit_guard.py</code></td><td>T-031 guard behavior</td></tr>
+  </table>
+
+  <h2>EGFR/A549 结果预览</h2>
+  <table>
+    <tr><th>方向</th><th>功能项</th><th>score</th><th>相对幅度</th></tr>
+    <tr><td>Activated</td><td>HALLMARK_INTERFERON_ALPHA_RESPONSE</td><td>4.0312</td><td><div class="bar"><span style="width:55%"></span></div></td></tr>
+    <tr><td>Activated</td><td>MP12 EMT-I</td><td>3.7174</td><td><div class="bar"><span style="width:51%"></span></div></td></tr>
+    <tr><td>Activated</td><td>MP17 Interferon/MHC-II (I)</td><td>2.7174</td><td><div class="bar"><span style="width:37%"></span></div></td></tr>
+    <tr><td>Suppressed</td><td>MP1 Cell Cycle - G2/M</td><td>-7.3427</td><td><div class="bar neg"><span style="width:100%"></span></div></td></tr>
+    <tr><td>Suppressed</td><td>HALLMARK_MYC_TARGETS_V2</td><td>-6.6759</td><td><div class="bar neg"><span style="width:91%"></span></div></td></tr>
+    <tr><td>Suppressed</td><td>HALLMARK_E2F_TARGETS</td><td>-6.6431</td><td><div class="bar neg"><span style="width:90%"></span></div></td></tr>
+  </table>
+
+  <h2>No-Hit 行为</h2>
+  <table>
+    <tr><th>查询</th><th>结果</th><th>说明</th></tr>
+    <tr><td><code>egfr_random / A549</code></td><td><code>found=false</code></td><td>Guard 阻断单 token overlap 的 EGFR 误匹配。</td></tr>
+    <tr><td><code>NONSENSE_ZZZ999 / A549</code></td><td><code>found=false</code></td><td>普通不存在扰动名返回明确 not-found。</td></tr>
+  </table>
+
+  <h2>下游使用</h2>
+  <p>T-039 可优先读取 <code>pxfquery_T040_handoff.md</code>、<code>pxfquery_T040_lineage.md</code> 和 <code>pxfquery_T040_test_results.json</code>。如需运行代码，可将 <code>4_artifact/2_persist/pxfquery-T-040/src</code> 加入 <code>PYTHONPATH</code> 或从该 workspace 执行 editable install。</p>
+</body>
+</html>

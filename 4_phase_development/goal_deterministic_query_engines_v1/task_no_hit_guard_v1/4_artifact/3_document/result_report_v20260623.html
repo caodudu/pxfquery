@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>T-031 无命中守卫结果报告</title>
+  <style>
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;max-width:1100px;margin:32px auto;padding:0 20px;line-height:1.6;color:#1f2933}
+    h1{border-bottom:2px solid #e5e7eb;padding-bottom:8px}
+    h2{margin-top:28px;color:#374151}
+    table{border-collapse:collapse;width:100%;font-size:13px;margin:16px 0}
+    th,td{border:1px solid #d8dee4;padding:6px 10px;text-align:left}
+    th{background:#f3f4f6;font-weight:600}
+    .green{color:#16a34a;font-weight:600}
+    .red{color:#dc2626;font-weight:600}
+    .score-bar{display:inline-block;height:12px;border-radius:2px;margin-right:6px}
+    .score-bar.activated{background:#22c55e}
+    .score-bar.suppressed{background:#ef4444}
+    code{background:#f3f4f6;padding:1px 4px;border-radius:3px;font-size:12px}
+    .card{border:1px solid #e5e7eb;border-radius:6px;padding:16px;margin:12px 0;background:#fafbfc}
+  </style>
+</head>
+<body>
+
+<h1>pxfquery-T-031 No-hit guard 结果报告</h1>
+<p><strong>生成</strong>: 2026-06-23 | <strong>Guard 版本</strong>: pxfquery-T-031</p>
+
+<h2>问题背景</h2>
+<p>PxFquery 的 <code>fuzzy_match</code> 函数有一个危险的 token-overlap 回退：任何 token 重叠（<code>overlap &gt; 0</code>）均视为匹配。
+这导致无意义短 token（如 <code>egr</code>、<code>bra</code>、<code>akt</code>）或包含单个共享 token 的名字（如 <code>egfr_random</code>）被错误匹配到真实基因，
+进而导致正向查询产生假阳性结果。</p>
+
+<div class="card">
+  <strong>T-013 CAP-05 原始状态</strong>: 失败<br>
+  <strong>原因</strong>: "当前 fuzzy fallback 对无意义扰动名仍会给出相近 token，存在误报风险"<br>
+  <strong>修复任务</strong>: T-031 no_hit_guard_v1
+</div>
+
+<h2>守卫实现</h2>
+<table>
+  <tr><th>参数</th><th>默认值</th><th>作用</th></tr>
+  <tr>
+    <td><code>min_query_length_for_substring</code></td>
+    <td>4</td>
+    <td>子串匹配查询的最短长度。阻止如 <code>egr</code>（3 字符）误匹配 EGR1 的情况</td>
+  </tr>
+  <tr>
+    <td><code>min_overlap_for_token_fallback</code></td>
+    <td>2</td>
+    <td>token-overlap 回退时要求的最小共享 token 数。阻止如 <code>egfr_random</code>（只共享 egfr 一个 token）误匹配 EGFR</td>
+  </tr>
+</table>
+<p>守卫通过继承 <code>ForwardQuery</code> 并覆盖 <code>query()</code> 方法实现。不修改 T-024 workspace 中的任何文件。</p>
+
+<h2>测试结果</h2>
+
+<h3>负向无命中测试 — <span class="green">11/11 通过</span></h3>
+<table>
+  <tr><th>查询</th><th>细胞系</th><th>found</th><th>原因</th></tr>
+  <tr><td>NONSENSE_ZZZ999</td><td>A549</td><td class="red">false</td><td>无匹配（无 token 重叠）</td></tr>
+  <tr><td>QWERTYASDFG</td><td>A549</td><td class="red">false</td><td>无匹配</td></tr>
+  <tr><td>egr</td><td>A549</td><td class="red">false</td><td>子串过短（3 &lt; 4）</td></tr>
+  <tr><td>bra</td><td>A549</td><td class="red">false</td><td>子串过短（3 &lt; 4）</td></tr>
+  <tr><td>rab</td><td>A549</td><td class="red">false</td><td>子串过短（3 &lt; 4）</td></tr>
+  <tr><td>akt</td><td>A549</td><td class="red">false</td><td>子串过短（3 &lt; 4）</td></tr>
+  <tr><td>egfr_random</td><td>A549</td><td class="red">false</td><td>token 重叠不足（仅 1 个共享 token）</td></tr>
+  <tr><td>totally_egfr</td><td>A549</td><td class="red">false</td><td>token 重叠不足（仅 1 个共享 token）</td></tr>
+  <tr><td>something_braf</td><td>A549</td><td class="red">false</td><td>token 重叠不足（仅 1 个共享 token）</td></tr>
+  <tr><td>whatever-egfr</td><td>A549</td><td class="red">false</td><td>token 重叠不足（仅 1 个共享 token）</td></tr>
+  <tr><td>ABCDEF123456</td><td>全部</td><td class="red">false</td><td>无匹配</td></tr>
+</table>
+
+<h3>正向控制测试 — <span class="green">2/2 通过</span></h3>
+<table>
+  <tr><th>基因</th><th>细胞系</th><th>found</th><th>激活</th><th>抑制</th><th>观测数</th><th>匹配细胞</th></tr>
+  <tr><td>EGFR</td><td>A549</td><td class="green">true</td><td>20</td><td>20</td><td>5</td><td>A549</td></tr>
+  <tr><td>TP53</td><td>MCF7</td><td class="green">true</td><td>20</td><td>20</td><td>2</td><td>MCF7</td></tr>
+</table>
+
+<h3>假阳性复现证据 — 守卫介入前</h3>
+<p>使用未加守卫的 T-024 ForwardQuery：</p>
+<table>
+  <tr><th>查询</th><th>found</th><th>匹配到</th><th>是否为假阳性</th></tr>
+  <tr><td>egr</td><td class="red">true</td><td>EGR1</td><td class="red">假阳性</td></tr>
+  <tr><td>bra</td><td class="red">true</td><td>BRAF</td><td class="red">假阳性</td></tr>
+  <tr><td>rab</td><td class="red">true</td><td>RAB8B</td><td class="red">假阳性</td></tr>
+  <tr><td>akt</td><td class="red">true</td><td>AKT1</td><td class="red">假阳性</td></tr>
+  <tr><td>egfr_random</td><td class="red">true</td><td>EGFR</td><td class="red">假阳性</td></tr>
+  <tr><td>totally_egfr</td><td class="red">true</td><td>EGFR</td><td class="red">假阳性</td></tr>
+  <tr><td>something_braf</td><td class="red">true</td><td>BRAF</td><td class="red">假阳性</td></tr>
+</table>
+
+<h2>总结</h2>
+<div class="card">
+  <strong>守卫效果</strong>: 
+  在 <strong>9 个原始假阳性</strong> 中成功阻断 9 个。
+  同时保证了 <strong>2 个已知基因</strong>（EGFR/A549、TP53/MCF7）的正向查询路径完全未被破坏。
+</div>
+
+<p>Guard 版本: <code>pxfquery-T-031</code> | 可调参数见 <code>pxfquery_T031_forward_no_hit_guard.py</code> |
+  下游任务可通过 <code>NoHitGuardForwardQuery(adata, min_overlap_for_token_fallback=N)</code> 调整阈值。</p>
+
+</body>
+</html>

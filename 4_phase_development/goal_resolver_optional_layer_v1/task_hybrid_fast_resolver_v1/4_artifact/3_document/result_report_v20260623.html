@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>T-033 结果报告</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.55; margin: 32px; color: #1f2937; }
+    h1, h2 { color: #111827; }
+    code { background: #f3f4f6; padding: 2px 4px; border-radius: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 16px 0; }
+    th, td { border: 1px solid #d1d5db; padding: 8px; text-align: left; }
+    th { background: #f9fafb; }
+  </style>
+</head>
+<body>
+  <h1>T-033 hybrid fast resolver 结果报告</h1>
+  <p>修复后的 T-033 资产完成 exact、proxy、NOT_FOUND 三类行为验证。总证据文件为 <code>4_artifact/5_table/pxfquery_T033_examples_metadata.json</code>，其中 <code>all_passed=true</code>。</p>
+  <table>
+    <tr><th>场景</th><th>输入</th><th>found</th><th>hit_level</th><th>used_cell</th><th>used_perturbation</th></tr>
+    <tr><td>exact</td><td>EGFR/A549/xpr</td><td>true</td><td>EXACT</td><td>A549</td><td>EGFR</td></tr>
+    <tr><td>proxy</td><td>TP53/breast/xpr</td><td>true</td><td>PROXY_CELL</td><td>BT20</td><td>TP53</td></tr>
+    <tr><td>not_found</td><td>NONSENSE_ZZZ999/UNKNOWN_CELL/xpr</td><td>false</td><td>NOT_FOUND</td><td></td><td></td></tr>
+  </table>
+  <h2>Guard 证据</h2>
+  <p>not_found 场景包含 T-031 来源 warning：unsupported perturbation 被 no-hit guard 阻断；proxy 场景包含 T-033 proxy path notice。</p>
+  <h2>交付结论</h2>
+  <p>该 optional resolver metadata layer 已可本地导入并运行。它仍不是主链硬依赖，T-037 可在没有 T-033 的情况下继续里程碑合并。</p>
+</body>
+</html>

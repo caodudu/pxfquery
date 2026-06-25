@@ -1,0 +1,59 @@
+session_id: cli_ecbd42748bee
+driver: codex
+agent_id: AGT-001
+agent_label: Codex hard tasks
+stage: deliver
+status: done
+created: '2026-06-24T05:45:24'
+task_path: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_forward_query_core_repair_m1
+work_dir: /Users/dudu/Documents/3_Project/12_PxFquery
+session_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_forward_query_core_repair_m1/5_report/cli_sessions/deliver/20260624_054524_codex_cli_ecbd42748bee
+prompt_file: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_forward_query_core_repair_m1/5_report/cli_sessions/deliver/20260624_054524_codex_cli_ecbd42748bee/prompt.md
+events_file: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_forward_query_core_repair_m1/5_report/cli_sessions/deliver/20260624_054524_codex_cli_ecbd42748bee/events.jsonl
+stdout_file: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_forward_query_core_repair_m1/5_report/cli_sessions/deliver/20260624_054524_codex_cli_ecbd42748bee/stdout.log
+stderr_file: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_forward_query_core_repair_m1/5_report/cli_sessions/deliver/20260624_054524_codex_cli_ecbd42748bee/stderr.log
+agent_output_file: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_forward_query_core_repair_m1/5_report/cli_sessions/deliver/20260624_054524_codex_cli_ecbd42748bee/agent_output.md
+cmd:
+- /opt/homebrew/bin/codex
+- exec
+- --dangerously-bypass-approvals-and-sandbox
+- --json
+- -C
+- /Users/dudu/Documents/3_Project/12_PxFquery
+- '-'
+agent_session_id: 019ef672-729f-7042-9915-5bfc8d15d37e
+parent_agent_session_id: ''
+dry_run: false
+fork_from_resume: false
+blocked_report_mtime_ns_before: 0
+codex_session_id: 019ef672-729f-7042-9915-5bfc8d15d37e
+prompt_source: auto_recovery
+pid: 93237
+auto_recovery:
+  source_session_id: cli_809925f3d05b
+  attempt: 1
+  reason: process_not_alive
+returncode: 0
+completed: '2026-06-24T05:48:59'
+context_estimate:
+  estimated_tokens: 43290
+  estimated_bytes: 129870
+  limit_tokens: 500000
+  exceeded: false
+  files:
+  - file: prompt.md
+    bytes: 56508
+    estimated_tokens: 18836
+  - file: events.jsonl
+    bytes: 36024
+    estimated_tokens: 12008
+  - file: stdout.log
+    bytes: 35678
+    estimated_tokens: 11893
+  - file: stderr.log
+    bytes: 0
+    estimated_tokens: 0
+  - file: agent_output.md
+    bytes: 1660
+    estimated_tokens: 554
+  method: local_session_file_bytes_div_3

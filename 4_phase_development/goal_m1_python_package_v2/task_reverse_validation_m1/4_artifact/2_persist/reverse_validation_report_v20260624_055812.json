@@ -1,0 +1,231 @@
+{
+  "task_id": "T-051",
+  "task_name": "reverse_validation_m1",
+  "execution_date": "2026-06-24T05:58:12.340328",
+  "package_version": "0.1.0",
+  "package_code_path": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_reverse_validation_m1/1_asset/reverse_query_package_code",
+  "package_resolved_path": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_package_skeleton_m1/4_artifact/1_package/pxfquery",
+  "package_targets_t044": true,
+  "loader": "pxfquery.data.m1_loader.M1FixtureLoader",
+  "manifest_id": "reverse_repair_manifest_m1_1",
+  "fixture_root": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_reverse_validation_m1/1_asset/reverse_repair_fixture_m1_1",
+  "ranking_method": "cosine_similarity (target vector: +1 activate, -1 suppress)",
+  "sort_keys": "similarity desc, cmap_name asc, cell_iname asc, sig_id asc",
+  "total_checks": 42,
+  "passed": 42,
+  "failed": 0,
+  "verdict": "PASS",
+  "checks": [
+    {
+      "check": "p1_symlink_resolvable",
+      "pass": true,
+      "detail": "symlink=/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_reverse_validation_m1/1_asset/reverse_query_package_code -> /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_package_skeleton_m1/4_artifact/1_package/pxfquery"
+    },
+    {
+      "check": "p1_symlink_points_to_t044",
+      "pass": true,
+      "detail": "resolved=/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_package_skeleton_m1/4_artifact/1_package/pxfquery"
+    },
+    {
+      "check": "p1_version_readable",
+      "pass": true,
+      "detail": "version=0.1.0"
+    },
+    {
+      "check": "p2_loader_imports",
+      "pass": true,
+      "detail": "M1FixtureLoader loaded successfully"
+    },
+    {
+      "check": "p2_xpr_shape",
+      "pass": true,
+      "detail": "xpr shape=(15, 9)"
+    },
+    {
+      "check": "p2_has_HALLMARK_MYC_TARGETS_V1",
+      "pass": true,
+      "detail": "var_names=9"
+    },
+    {
+      "check": "p2_has_A549",
+      "pass": true,
+      "detail": "cell_lines=['BICR6', 'PC3', 'A375', 'U251MG', 'A549']"
+    },
+    {
+      "check": "p2_manifest_id",
+      "pass": true,
+      "detail": "manifest loaded"
+    },
+    {
+      "check": "p3_exit_code_0",
+      "pass": true,
+      "detail": "exit=0"
+    },
+    {
+      "check": "p3_found_true",
+      "pass": true,
+      "detail": "found=True"
+    },
+    {
+      "check": "p3_top_n_3",
+      "pass": true,
+      "detail": "candidates=3"
+    },
+    {
+      "check": "p3_no_error",
+      "pass": true,
+      "detail": "keys=['found', 'activate', 'suppress', 'cell_line', 'candidate_columns', 'top_candidates', 'warnings', 'note']"
+    },
+    {
+      "check": "p3_candidate_1_sig_id",
+      "pass": true,
+      "detail": "obs=T060_XPR_A549_SYN_001 ref=T060_XPR_A549_SYN_001"
+    },
+    {
+      "check": "p3_candidate_1_similarity",
+      "pass": true,
+      "detail": "obs=1.0 ref=1.0"
+    },
+    {
+      "check": "p3_candidate_1_cmp_name",
+      "pass": true,
+      "detail": "obs=THTPA ref=THTPA"
+    },
+    {
+      "check": "p3_candidate_1_cell_line",
+      "pass": true,
+      "detail": "obs=A549 ref=A549"
+    },
+    {
+      "check": "p3_candidate_2_sig_id",
+      "pass": true,
+      "detail": "obs=T060_XPR_A549_SYN_002 ref=T060_XPR_A549_SYN_002"
+    },
+    {
+      "check": "p3_candidate_2_similarity",
+      "pass": true,
+      "detail": "obs=0.999959 ref=0.999959"
+    },
+    {
+      "check": "p3_candidate_2_cmp_name",
+      "pass": true,
+      "detail": "obs=SCD ref=SCD"
+    },
+    {
+      "check": "p3_candidate_2_cell_line",
+      "pass": true,
+      "detail": "obs=A549 ref=A549"
+    },
+    {
+      "check": "p3_candidate_3_sig_id",
+      "pass": true,
+      "detail": "obs=T060_XPR_A549_SYN_005 ref=T060_XPR_A549_SYN_005"
+    },
+    {
+      "check": "p3_candidate_3_similarity",
+      "pass": true,
+      "detail": "obs=0.999541 ref=0.999541"
+    },
+    {
+      "check": "p3_candidate_3_cmp_name",
+      "pass": true,
+      "detail": "obs=TP53 ref=TP53"
+    },
+    {
+      "check": "p3_candidate_3_cell_line",
+      "pass": true,
+      "detail": "obs=A549 ref=A549"
+    },
+    {
+      "check": "p4a_no_matrix_loaded_error",
+      "pass": true,
+      "detail": "error=NoMatrixLoaded"
+    },
+    {
+      "check": "p4a_no_matrix_loaded_type",
+      "pass": true,
+      "detail": "type=system"
+    },
+    {
+      "check": "p4b_program_not_found_error",
+      "pass": true,
+      "detail": "error=ProgramNotFound"
+    },
+    {
+      "check": "p4b_program_not_found_unknown",
+      "pass": true,
+      "detail": "unknown_activate=['NONEXISTENT_PROGRAM_XXX']"
+    },
+    {
+      "check": "p4c_context_not_found_error",
+      "pass": true,
+      "detail": "error=ContextNotFound"
+    },
+    {
+      "check": "p4c_context_not_found_cell_line",
+      "pass": true,
+      "detail": "cell_line=UNKNOWN_CELL_LINE"
+    },
+    {
+      "check": "p4d_low_confidence_error",
+      "pass": true,
+      "detail": "error=LowConfidenceResult"
+    },
+    {
+      "check": "p4d_low_confidence_details",
+      "pass": true,
+      "detail": "details=max_abs_similarity=1.000000; max_signal_norm=4.242641; threshold=1.100000"
+    },
+    {
+      "check": "p4e_empty_target_found",
+      "pass": true,
+      "detail": "found=False"
+    },
+    {
+      "check": "p4e_empty_target_reason",
+      "pass": true,
+      "detail": "reason=no functional target programs were provided"
+    },
+    {
+      "check": "p5_ranking_order",
+      "pass": true,
+      "detail": "compared first 3 of 10 reference candidates (top_n=3)"
+    },
+    {
+      "check": "p5_ranking_csv_match",
+      "pass": true,
+      "detail": "compared first 3 of 10 CSV rows against observed top-3"
+    },
+    {
+      "check": "p6_cli_info_exit",
+      "pass": true,
+      "detail": "exit=0"
+    },
+    {
+      "check": "p6_cli_info_package",
+      "pass": true,
+      "detail": "package=pxfquery"
+    },
+    {
+      "check": "p6_cli_reverse_exit",
+      "pass": true,
+      "detail": "exit=0"
+    },
+    {
+      "check": "p6_cli_reverse_found",
+      "pass": true,
+      "detail": "found=True"
+    },
+    {
+      "check": "p6_cli_reverse_top3",
+      "pass": true,
+      "detail": "candidates=3"
+    },
+    {
+      "check": "p6_cli_error_handling",
+      "pass": true,
+      "detail": "exit=1"
+    }
+  ],
+  "failures": []
+}

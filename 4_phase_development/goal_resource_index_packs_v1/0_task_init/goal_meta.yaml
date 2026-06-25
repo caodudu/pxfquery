@@ -1,0 +1,10 @@
+goal_id: G-021
+name: resource_index_packs_v1
+phase: development
+project: P-012
+objective: Create standard resource, matrix loader, runtime index, and function-index
+  asset packs for PxFquery package milestone v1.
+status: active
+tasks: []
+created: '2026-06-23'
+notes: 资源索引资产包创建

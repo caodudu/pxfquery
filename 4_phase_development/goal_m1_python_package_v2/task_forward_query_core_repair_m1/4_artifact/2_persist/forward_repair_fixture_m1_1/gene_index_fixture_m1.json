@@ -1,0 +1,46 @@
+{
+  "a2m": {
+    "gene_type": "protein_coding",
+    "in_matrix": true,
+    "symbol": "A2M"
+  },
+  "aatf": {
+    "gene_type": "protein_coding",
+    "in_matrix": true,
+    "symbol": "AATF"
+  },
+  "abat": {
+    "gene_type": "protein_coding",
+    "in_matrix": true,
+    "symbol": "ABAT"
+  },
+  "abca1": {
+    "gene_type": "protein_coding",
+    "in_matrix": true,
+    "symbol": "ABCA1"
+  },
+  "cpvl": {
+    "gene_type": "protein_coding",
+    "in_matrix": true,
+    "symbol": "CPVL"
+  },
+  "egfr": {
+    "gene_symbol": "EGFR",
+    "provenance": "synthetic_repair_contract_bridge"
+  },
+  "orai3": {
+    "gene_type": "protein_coding",
+    "in_matrix": true,
+    "symbol": "ORAI3"
+  },
+  "slc19a3": {
+    "gene_type": "protein_coding",
+    "in_matrix": true,
+    "symbol": "SLC19A3"
+  },
+  "stac": {
+    "gene_type": "protein_coding",
+    "in_matrix": true,
+    "symbol": "STAC"
+  }
+}

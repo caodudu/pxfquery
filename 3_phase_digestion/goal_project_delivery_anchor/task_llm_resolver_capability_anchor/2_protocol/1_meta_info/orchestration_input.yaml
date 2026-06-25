@@ -1,0 +1,32 @@
+delivery_goal: LLM/resolver capability design anchor for future PxFquery milestones,
+  especially M3.
+predecessor_tasks:
+- task_id: T-007
+  gate: must
+  reason: Trusted development-state source for intended resolver and query-entry behavior.
+- task_id: T-013
+  gate: must
+  reason: MVP gap/review evidence about missing resolver/NL/LLM behavior.
+- task_id: T-061
+  gate: must
+  reason: Clean replacement source digest for legacy source boundaries and resolver-related
+    source hints.
+- task_id: T-062
+  gate: must
+  reason: Overall algorithm-package anchor defines where LLM/resolver fits in the
+    capability hierarchy.
+reference_tasks:
+- task_id: T-033
+  reason: Historical blocked resolver attempt; reference only as failure/anti-pattern.
+- task_id: T-034
+  reason: Historical blocked LLM adapter attempt; reference only as failure/anti-pattern.
+supplemental_notes:
+- Do not implement API code; produce a functional design and acceptance anchor.
+- LLM capability is required when a milestone includes user-facing resolver. Current
+  desired model route is CyHex-registered AI address, deepseek-v4-pro unless a later
+  task explicitly changes it.
+- Fallback is runtime behavior and evidence, not proof that primary LLM/resolver capability
+  is delivered.
+suggested_agent:
+  strength: strong
+  reason: Prior planning mistakenly downgraded LLM/resolver.

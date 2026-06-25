@@ -1,0 +1,109 @@
+{
+  "step": 1,
+  "task": "T-027 index_name_normalizer_v1",
+  "bundle_path": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/2_persist/standard_resources",
+  "manifest_path": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_resource_index_packs_v1/task_resource_manifest_v1/4_artifact/2_persist/pxfquery_T025_standard_resource_manifest_v20260623.yaml",
+  "bundle_resolves_to": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/2_persist/standard_resources",
+  "total_files_in_bundle": 19,
+  "all_filenames": [
+    "cellline_index.json",
+    "cellline_info_standard.csv",
+    "cellline_meta_standard.csv",
+    "cellline_neighbors.json",
+    "cellline_tree.json",
+    "compound_info_standard.csv",
+    "compound_meta_standard.csv",
+    "cp_func_ad.h5ad",
+    "data_description.yaml",
+    "drug_index.json",
+    "drug_neighbors.json",
+    "function_index.json",
+    "gene_index.json",
+    "gene_index_simple.json",
+    "gene_info_standard.csv",
+    "gene_neighbors.json",
+    "gene_neighbors_simple.json",
+    "sh_func_ad.h5ad",
+    "xpr_func_ad.h5ad"
+  ],
+  "json_file_count": 10,
+  "json_files": [
+    "cellline_index.json",
+    "cellline_neighbors.json",
+    "cellline_tree.json",
+    "drug_index.json",
+    "drug_neighbors.json",
+    "function_index.json",
+    "gene_index.json",
+    "gene_index_simple.json",
+    "gene_neighbors.json",
+    "gene_neighbors_simple.json"
+  ],
+  "expected_json_status": {
+    "cellline_index.json": {
+      "exists": true,
+      "resolver_required": true,
+      "size_bytes": 3574
+    },
+    "cellline_neighbors.json": {
+      "exists": true,
+      "resolver_required": true,
+      "size_bytes": 6610
+    },
+    "cellline_tree.json": {
+      "exists": true,
+      "resolver_required": false,
+      "size_bytes": 50548
+    },
+    "drug_index.json": {
+      "exists": true,
+      "resolver_required": true,
+      "size_bytes": 180301
+    },
+    "drug_neighbors.json": {
+      "exists": true,
+      "resolver_required": true,
+      "size_bytes": 4588889
+    },
+    "function_index.json": {
+      "exists": true,
+      "resolver_required": true,
+      "size_bytes": 17899
+    },
+    "gene_index.json": {
+      "exists": true,
+      "resolver_required": false,
+      "size_bytes": 6418019
+    },
+    "gene_index_simple.json": {
+      "exists": true,
+      "resolver_required": true,
+      "size_bytes": 364484
+    },
+    "gene_neighbors.json": {
+      "exists": true,
+      "resolver_required": false,
+      "size_bytes": 22815738
+    },
+    "gene_neighbors_simple.json": {
+      "exists": true,
+      "resolver_required": true,
+      "size_bytes": 20443987
+    }
+  },
+  "resolver_required_count": 7,
+  "resolver_required_present": 7,
+  "all_resolver_required_present": true,
+  "json_file_sizes_bytes": {
+    "cellline_index.json": 3574,
+    "cellline_neighbors.json": 6610,
+    "cellline_tree.json": 50548,
+    "drug_index.json": 180301,
+    "drug_neighbors.json": 4588889,
+    "function_index.json": 17899,
+    "gene_index.json": 6418019,
+    "gene_index_simple.json": 364484,
+    "gene_neighbors.json": 22815738,
+    "gene_neighbors_simple.json": 20443987
+  }
+}

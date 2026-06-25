@@ -1,0 +1,69 @@
+session_id: cli_820ad0179102
+driver: opencode
+agent_id: AGT-002
+agent_label: OpenCode cheap tasks
+stage: check
+status: done
+created: '2026-06-24T05:10:28'
+task_path: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_03_legacy_stress_logic_reuse_boundary
+work_dir: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_03_legacy_stress_logic_reuse_boundary
+session_dir: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_03_legacy_stress_logic_reuse_boundary/5_report/cli_sessions/check/20260624_051028_opencode_cli_820ad0179102
+prompt_file: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_03_legacy_stress_logic_reuse_boundary/5_report/cli_sessions/check/20260624_051028_opencode_cli_820ad0179102/prompt.md
+events_file: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_03_legacy_stress_logic_reuse_boundary/5_report/cli_sessions/check/20260624_051028_opencode_cli_820ad0179102/events.jsonl
+stdout_file: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_03_legacy_stress_logic_reuse_boundary/5_report/cli_sessions/check/20260624_051028_opencode_cli_820ad0179102/stdout.log
+stderr_file: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_03_legacy_stress_logic_reuse_boundary/5_report/cli_sessions/check/20260624_051028_opencode_cli_820ad0179102/stderr.log
+agent_output_file: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_03_legacy_stress_logic_reuse_boundary/5_report/cli_sessions/check/20260624_051028_opencode_cli_820ad0179102/agent_output.md
+cmd:
+- /Users/dudu/.opencode/bin/opencode
+- run
+- Execute the attached CyHex prompt. Return the final user-facing result clearly.
+- --dangerously-skip-permissions
+- --format
+- json
+- --dir
+- /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_03_legacy_stress_logic_reuse_boundary
+- --file
+- /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_03_legacy_stress_logic_reuse_boundary/5_report/cli_sessions/check/20260624_051028_opencode_cli_820ad0179102/prompt.md
+- -m
+- llm_gateway/deepseek-ai/deepseek-v4-pro
+agent_session_id: ses_109ae03ebffeoCqQTk5DdjpsJ3
+parent_agent_session_id: ''
+dry_run: false
+fork_from_resume: false
+blocked_report_mtime_ns_before: 0
+model: llm_gateway/deepseek-ai/deepseek-v4-pro
+prompt_source: assembled
+pid: 21719
+context_guard:
+  reason: stage_context_isolation
+  message: CyHex starts each pipeline stage in a fresh agent session; prior stage
+    state is passed through files, not chat context.
+  previous_session_id: cli_35032c7c498f
+  previous_agent_session_id: ses_109b1cab8ffe3vQptk9aVa21pI
+warnings:
+- CyHex starts each pipeline stage in a fresh agent session; prior stage state is
+  passed through files, not chat context.
+returncode: 0
+completed: '2026-06-24T05:11:43'
+context_estimate:
+  estimated_tokens: 78433
+  estimated_bytes: 235299
+  limit_tokens: 500000
+  exceeded: false
+  files:
+  - file: prompt.md
+    bytes: 45484
+    estimated_tokens: 15162
+  - file: events.jsonl
+    bytes: 94122
+    estimated_tokens: 31374
+  - file: stdout.log
+    bytes: 92999
+    estimated_tokens: 31000
+  - file: stderr.log
+    bytes: 0
+    estimated_tokens: 0
+  - file: agent_output.md
+    bytes: 2694
+    estimated_tokens: 898
+  method: local_session_file_bytes_div_3

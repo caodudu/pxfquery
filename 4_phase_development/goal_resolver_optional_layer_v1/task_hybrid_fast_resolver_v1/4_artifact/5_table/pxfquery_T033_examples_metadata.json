@@ -1,0 +1,52 @@
+{
+  "resolver_version": "pxfquery-T-033",
+  "conda_env": "pxfquery",
+  "python_version": "3.10.20",
+  "platform": "macOS-26.4-arm64-arm-64bit",
+  "index_dir": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_resolver_optional_layer_v1/task_hybrid_fast_resolver_v1/1_asset/T-027 normalized runtime query index pack",
+  "function_index_path": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_resolver_optional_layer_v1/task_hybrid_fast_resolver_v1/1_asset/T-028 function index pack (91 functions + aliases).json",
+  "seed_inputs": {
+    "exact": "EGFR/A549/xpr",
+    "proxy": "TP53/breast/xpr",
+    "not_found": "NONSENSE_ZZZ999/UNKNOWN_CELL/xpr"
+  },
+  "examples": {
+    "exact": {
+      "found": true,
+      "hit_level": "EXACT",
+      "test_passed": true,
+      "used_cell": "A549",
+      "used_perturbation": "EGFR",
+      "guard_warnings": []
+    },
+    "proxy": {
+      "found": true,
+      "hit_level": "PROXY_CELL",
+      "test_passed": true,
+      "used_cell": "BT20",
+      "used_perturbation": "TP53",
+      "guard_warnings": [
+        {
+          "severity": "notice",
+          "source": "T-033",
+          "message": "Proxy resolver path selected: PROXY_CELL."
+        }
+      ]
+    },
+    "not_found": {
+      "found": false,
+      "hit_level": "NOT_FOUND",
+      "test_passed": true,
+      "used_cell": null,
+      "used_perturbation": null,
+      "guard_warnings": [
+        {
+          "severity": "notice",
+          "source": "T-031",
+          "message": "No-hit guard blocked unsupported perturbation 'NONSENSE_ZZZ999'."
+        }
+      ]
+    }
+  },
+  "all_passed": true
+}

@@ -1,0 +1,53 @@
+{
+  "command": "conda run -n pxfquery env PYTHONPATH=<task>/4_artifact/1_package python 3_execution/run_reverse_evidence.py",
+  "cases": {
+    "no_matrix_loaded": {
+      "error": "NoMatrixLoaded",
+      "message": "No functional matrix is loaded. Call PxFquery(matrix_path) or load_data(path) first.",
+      "query_type": "system"
+    },
+    "unknown_program": {
+      "error": "ProgramNotFound",
+      "message": "One or more requested functional program names were not found in the matrix.",
+      "unknown_activate": [
+        "NONEXISTENT_PROGRAM_XXX"
+      ],
+      "unknown_suppress": [],
+      "query_type": "reverse"
+    },
+    "unknown_cell_line": {
+      "error": "ContextNotFound",
+      "message": "The given cell line was not found in the matrix observation metadata.",
+      "cell_line": "UNKNOWN_CELL_LINE",
+      "matrix_type": "xpr",
+      "query_type": "reverse"
+    },
+    "low_confidence": {
+      "error": "LowConfidenceResult",
+      "message": "Query returned results but numerical confidence is low.",
+      "query_type": "reverse",
+      "details": "max_abs_similarity=1.000000; max_signal_norm=0.010000; threshold=0.050000",
+      "warnings": [
+        "zero-norm candidate skipped: T060_XPR_A549_SYN_001",
+        "zero-norm candidate skipped: T060_XPR_A549_SYN_002",
+        "zero-norm candidate skipped: T060_XPR_A549_SYN_003",
+        "zero-norm candidate skipped: T060_XPR_A549_SYN_004",
+        "zero-norm candidate skipped: T060_XPR_A549_SYN_005",
+        "zero-norm candidate skipped: T060_XPR_A549_SYN_006",
+        "zero-norm candidate skipped: T060_XPR_A549_SYN_007",
+        "zero-norm candidate skipped: T060_XPR_A549_SYN_008",
+        "zero-norm candidate skipped: T060_XPR_A549_SYN_009",
+        "zero-norm candidate skipped: T060_XPR_A549_SYN_010"
+      ]
+    },
+    "empty_target_no_hit": {
+      "found": false,
+      "activate": [],
+      "suppress": [],
+      "cell_line": "A549",
+      "query_type": "reverse",
+      "reason": "no functional target programs were provided",
+      "note": ""
+    }
+  }
+}

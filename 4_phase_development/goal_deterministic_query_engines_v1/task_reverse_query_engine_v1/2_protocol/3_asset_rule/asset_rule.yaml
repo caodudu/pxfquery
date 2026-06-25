@@ -1,0 +1,67 @@
+version: 1
+required:
+  - id: A-001
+    path: ../../goal_package_foundation_v1/task_workspace_package_v1/4_artifact/2_persist/workspace/
+    reason: T-024 current pxfquery workspace (src/-layout, pyproject.toml). Provides the ReverseQuery class, ReverseResult schema, DataLoader, core.PxFquery, and all utility functions. Must be installed as editable in the pxfquery conda env before running the reverse demo.
+  - id: A-002
+    path: ../../goal_resource_index_packs_v1/task_matrix_loader_v1/4_artifact/2_persist/loader/
+    reason: T-026 loader package providing load_matrix/load_bundle functions and loader_validation.json with observed matrix shapes, obs columns, and dtypes. Used as a reference for runtime schema discovery and as an alternative loading path if T-024 DataLoader needs repair.
+  - id: A-003
+    path: ../../goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/2_persist/standard_resources/
+    reason: T-021/D-004 canonical standard resource bundle (cp_func_ad.h5ad, sh_func_ad.h5ad, xpr_func_ad.h5ad + indexes + metadata). The actual data consumed by the reverse demo. Load by reference; do not copy.
+  - id: A-004
+    path: ../../goal_algorithm_function_review/task_mvp_algorithm_run-through_review/4_artifact/
+    reason: T-013 MVP capability status matrix and failure/missing capability list. Used to understand what already passed or failed in the legacy reverse query path and to scope T-030 as a deterministic v1 delivery rather than a re-review.
+  - id: A-005
+    path: ../../../1_project_init/1_project_protocol/
+    reason: Current project protocol defining the pxfquery conda environment, workspace boundaries, source authority rules, and non-modification rules for legacy assets.
+optional: []
+forbidden:
+  - path: ../../../2_project_asset/1_raw_material/
+    reason: Legacy flat asset library is read-only. T-021/D-004 is the consolidated data source; T-024 and T-026 already bridge from legacy code/data to current workspace.
+  - path: /Users/dudu/Documents/3_Project/8_functional_query
+    reason: Legacy Windows-era historical source. Not needed for reverse query engine task.
+  - path: ../../goal_algorithm_function_review/
+    reason: T-013 deliverables are read-only reference inputs. Do not modify or regenerate review artifacts.
+  - path: ../../goal_package_foundation_v1/task_workspace_package_v1/4_artifact/
+    reason: T-024 workspace is read-only input. Bugs found in it should be repaired in T-030's own scope (3_execution/pxfquery_T-030_repaired/) and not by modifying the T-024 workspace.
+  - path: ../../../6_project_deliverable/
+    reason: Final project deliverables are not produced by this task.
+output:
+  - path: 3_execution/run_reverse_demo.py
+    description: Reverse query demo script that loads matrices, runs ReverseQuery with apoptosis/MYC targeting, and serializes ranked candidates.
+  - path: 3_execution/demo_validation.json
+    description: Machine-readable validation record capturing run command, environment, query params, candidate count, and top-5 evidence.
+  - path: 3_execution/pxfquery_T-030_repaired/
+    description: Local repaired workspace module copies, only if bugs in T-024 workspace blocked the demo.
+  - path: 4_artifact/2_persist/
+    description: Serialized candidate JSON (pxfquery_T-030_reverse_demo_candidates.json) and metadata JSON (pxfquery_T-030_reverse_demo_meta.json).
+  - path: 4_artifact/3_document/
+    description: Chinese execution_report_vYYYYMMDD.html and result_report_vYYYYMMDD.html.
+  - path: 4_artifact/registry.yaml
+    description: T-030 artifact registry.
+  - path: 5_report/completion.md
+    description: Completion report with run evidence, repaired issues if any, and downstream guidance.
+  - path: 5_report/repair_log.md
+    description: Repair log, only if a bug in T-024 workspace was repaired inside this task.
+modifiable:
+  - 3_execution/
+  - 4_artifact/
+  - 5_report/
+  - 1_asset/registration.yaml
+non_modifiable:
+  - 2_protocol/
+  - ../../../1_project_init/1_project_protocol/
+  - ../../../2_project_asset/
+  - ../../goal_package_foundation_v1/
+  - ../../goal_precomputed_data_exploration/
+  - ../../goal_resource_index_packs_v1/
+  - ../../goal_algorithm_function_review/
+  - ../../../6_project_deliverable/
+  - /Users/dudu/Documents/3_Project/8_functional_query
+notes:
+  - Load matrices by reference through T-024 workspace DataLoader/PxFquery or T-026 loader; do not copy upstream matrix bytes.
+  - Do not hard-code matrix shapes, obs columns, or var term names from planning notes — discover at runtime.
+  - Repair scope is T-030 local: if T-024 has a bug, fix it in 3_execution/pxfquery_T-030_repaired/ and document lineage.
+  - T-023 is not required; T-013 status matrix is the capability reference for this v1.
+  - Acceptable target pattern if exact "HALLMARK_APOPTOSIS" or "HALLMARK_MYC_TARGETS_V1" do not match: fuzzy-match and record the actual matched terms.

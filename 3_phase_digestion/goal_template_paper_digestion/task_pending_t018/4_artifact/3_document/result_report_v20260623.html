@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>T-018 拆解成果报告</title>
+  <style>
+    body { font-family: -apple-system, sans-serif; max-width: 900px; margin: 0 auto; padding: 32px; line-height: 1.6; }
+    h1 { color: #126f82; border-bottom: 2px solid #126f82; padding-bottom: 8px; }
+    h2 { color: #17202a; margin-top: 28px; }
+    .papers { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .card { border: 1px solid #d8dee6; border-radius: 8px; padding: 16px; }
+    .card h3 { margin: 0 0 6px; font-size: 16px; }
+    .card .meta { font-size: 12px; color: #5f6b76; }
+    .card .tags { margin: 6px 0; }
+    .card .tags span { display: inline-block; margin: 2px 4px 2px 0; padding: 2px 8px; border: 1px solid #d8dee6; border-radius: 999px; font-size: 11px; }
+    .summary { border: 1px solid #d8dee6; border-radius: 8px; background: #f7f9fb; padding: 16px 20px; margin: 16px 0; }
+    table { border-collapse: collapse; width: 100%; margin: 12px 0; }
+    th, td { border: 1px solid #d8dee6; padding: 8px 10px; text-align: left; }
+    th { background: #eef3f5; }
+    @media (max-width: 700px) { .papers { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <h1>T-018 生信论文模板拆解 · 成果报告</h1>
+  <p>面向 PxFquery 项目成员 | 2026-06-23 | 面向阅读者：后续参与 manuscript 写作的成员</p>
+
+  <div class="summary">
+    <h2>一句话总结</h2>
+    <p>本任务拆解了 5 篇 Genes 已发表生信论文的介绍/结果/图摆放逻辑，归纳出 Genes 风格可模仿模式。这些拆解可作为 PxFquery 后续论文写作的模板参考——重点是让论文看起来"像 Genes 接受的样子"，而不是追求 Nature 标准。</p>
+  </div>
+
+  <h2>拆解论文一览</h2>
+  <div class="papers">
+    <div class="card">
+      <h3>OHDLF</h3>
+      <div class="meta">GENES-02459 · 工作流/管线</div>
+      <div class="tags"><span>案例应用驱动</span><span>731字 Intro</span><span>5图</span></div>
+      <p>最短Intro案例。从"无参考基因组物种选ortholog难"切入，用Camellia属应用串联所有结果段。Figure 1 = 流程图，后续图按"筛选→建树→对比"递进。</p>
+    </div>
+    <div class="card">
+      <h3>CrossMP</h3>
+      <div class="meta">GENES-02981 · Web Portal</div>
+      <div class="tags"><span>missing_full_text</span><span>UI截图驱动</span></div>
+      <p>Portal型论文——以"可及性缺口"而非方法缺口作为Gap。叙事线路以用户旅程（上传→处理→查看→验证）组织。架构图+界面截图是主力图表类型。</p>
+    </div>
+    <div class="card">
+      <h3>DTVF</h3>
+      <div class="meta">GENES-02693 · Web Server</div>
+      <div class="tags"><span>6图</span><span>对比表撑场</span><span>T005证据</span></div>
+      <p>经典的"数据→性能→SOTA对比→超参数→消融→UI"六段式Results。架构图+对比表+消融图+UI截图是标准组合。优点是超参数优化加分，弱点是无代码仓库和API。</p>
+    </div>
+    <div class="card">
+      <h3>StrainIQ</h3>
+      <div class="meta">GENES-04451 · 软件工具</div>
+      <div class="tags"><span>78段落</span><span>2952字 Results</span><span>三级验证</span></div>
+      <p>段落最多（78段）、Methods最长（2143字）——靠短段落密集推进感知工作量。从模拟数据→公共数据→真实样本逐级验证。n-gram方法名自带简洁记忆点。</p>
+    </div>
+    <div class="card">
+      <h3>GENet</h3>
+      <div class="meta">GENES-02925 · 图模型预测工具</div>
+      <div class="tags"><span>2003字 Intro</span><span>graph model</span><span>4图</span></div>
+      <p>最长 Intro（2003字）——graph model + histone marks/TF整合需要更多背景铺垫。"DNA序列不够"是经典 Gap 句式。4张图：架构→性能→对比→生物学解释。</p>
+    </div>
+  </div>
+
+  <h2>核心发现</h2>
+  <table>
+    <tr><th>维度</th><th>Genes 典型模式</th><th>对 PxFquery 的意义</th></tr>
+    <tr><td>题名</td><td>工具名: 功能 + 应用场景</td><td>给 PxFquery 取一个可记忆的名 + 固定格式</td></tr>
+    <tr><td>Intro</td><td>具体生物学痛点 → Gap（已有方法不足）→ "to address, we..."</td><td>不要空谈 AI/big data，锚定 perturbation→function 的具体场景</td></tr>
+    <tr><td>Results</td><td>短段落(38-44词/段)密集推进，每段配图表引用</td><td>30-80段Results：从内部对比到外部验证再到案例</td></tr>
+    <tr><td>图</td><td>4-6图。图1=架构图。后续按验证深度排列</td><td>架构图 + 性能表 + 案例图 + availability 表 最少组合</td></tr>
+    <tr><td>交付描述</td><td>用户输入→系统处理→用户输出→验证</td><td>固定描述框架，不要含糊</td></tr>
+    <tr><td>弱点</td><td>Discussion 中主动承认</td><td>样本量/外部验证/代码开放等可以在讨论中说明</td></tr>
+  </table>
+
+  <h2>交付物导航</h2>
+  <ul>
+    <li>5 篇拆解 MD：<code>4_artifact/2_persist/paper_deconstruction/</code></li>
+    <li>总 HTML 汇总：<code>4_artifact/2_persist/paper_deconstruction_summary_v20260623.html</code> ← 从这里开始阅读</li>
+  </ul>
+
+  <h2>后续建议</h2>
+  <ul>
+    <li>CrossMP 因 MDPI 反爬无法全文读取，建议人工打开 <a href="https://www.mdpi.com/2073-4425/15/7/882">原文链接</a> 补充拆解。</li>
+    <li>拆解结果可直接用于 PxFquery 论文写作时的段落规划和图表设计。</li>
+    <li>这些拆解是模板归纳阶段产出，不是最终论文写作——需要后续 task 完成实际写作。</li>
+  </ul>
+</body>
+</html>

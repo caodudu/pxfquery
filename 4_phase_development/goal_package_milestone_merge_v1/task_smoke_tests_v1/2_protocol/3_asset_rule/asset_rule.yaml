@@ -1,0 +1,56 @@
+version: 1
+required:
+  - id: A-001
+    path: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_deterministic_query_engines_v1/task_forward_query_engine_v1/4_artifact/
+    reason: T-029 forward query engine deliverable bundle — forward_engine.py, result tables, not-found JSON, validation JSON, completion report. Re-run as smoke test by this task.
+  - id: A-002
+    path: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_deterministic_query_engines_v1/task_reverse_query_engine_v1/4_artifact/
+    reason: T-030 reverse query engine deliverable bundle — run_reverse_demo.py, candidate JSON, meta JSON, validation JSON. Re-run as smoke test if deliverable exists; otherwise record UNMET_DEPENDENCY.
+  - id: A-003
+    path: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_deterministic_query_engines_v1/task_no_hit_guard_v1/4_artifact/
+    reason: T-031 no-hit guard deliverable bundle — guard module, test_no_hit_guard.py, test_positive_control.py, evidence JSONs. Re-run both test scripts as smoke tests.
+  - id: A-004
+    path: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_deterministic_query_engines_v1/task_reverse_stability_guard_v1/4_artifact/
+    reason: T-032 reverse stability guard deliverable bundle — run_stability_guard.py, validation JSON, repaired workspace, warning JSONs. Re-run as smoke test.
+  - id: A-006
+    path: /Users/dudu/Documents/3_Project/12_PxFquery/1_project_init/1_project_protocol/
+    reason: Current project protocol defining the pxfquery conda environment and workspace boundaries required for all Python execution.
+optional:
+  - id: A-005
+    path: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_resolver_optional_layer_v1/task_hybrid_fast_resolver_v1/4_artifact/
+    reason: T-033 hybrid fast resolver deliverable bundle. Smoke-tested only if deliverables exist; otherwise recorded as SKIPPED. Resolver is an optional layer.
+forbidden:
+  - path: /Users/dudu/Documents/3_Project/12_PxFquery/2_project_asset/
+    reason: Project-level raw materials and legacy assets are read-only inputs. Predecessor tasks have already consolidated these into standard resources (T-021), workspace (T-024), and loader (T-026).
+  - path: /Users/dudu/Documents/3_Project/12_PxFquery/6_project_deliverable/
+    reason: Final milestone deliverables are produced by T-037, not by smoke tests.
+  - path: /Users/dudu/Documents/3_Project/8_functional_query
+    reason: Legacy Windows-era historical source root must not be read or written.
+output:
+  - path: 4_artifact/5_table/pxfquery_T035_smoke_results.json
+    description: Consolidated smoke-test pass/fail evidence with command output per predecessor.
+  - path: 4_artifact/3_document/
+    description: CyHex-mandatory execution_report_vYYYYMMDD.html and result_report_vYYYYMMDD.html.
+  - path: 4_artifact/registry.yaml
+    description: T-035 artifact registry.
+  - path: 5_report/completion.md
+    description: Completion report with integration state summary.
+  - path: 5_report/repair_log.md
+    description: Repair log, present only if scoped repairs were performed.
+modifiable:
+  - path: 4_artifact/
+  - path: 5_report/
+  - path: 1_asset/registration.yaml
+non_modifiable:
+  - path: 2_protocol/
+  - path: ../../../1_project_init/1_project_protocol/
+  - path: /Users/dudu/Documents/3_Project/12_PxFquery/2_project_asset/
+  - path: /Users/dudu/Documents/3_Project/12_PxFquery/6_project_deliverable/
+  - path: ../../../4_phase_development/goal_deterministic_query_engines_v1/
+  - path: ../../../4_phase_development/goal_resolver_optional_layer_v1/
+notes:
+  - Smoke tests are black-box: re-run predecessor's own script/demo, do not reimplement the logic.
+  - T-030 and T-033 may not have deliverables yet; record these as UNMET_DEPENDENCY rather than failing the smoke suite.
+  - T-033 resolver is optional; smoke only if artifacts exist, otherwise SKIPPED with evidence.
+  - All test execution must use the pxfquery conda environment for Python execution.
+  - Smoke results JSON must contain actual command output evidence, not just file-existence checks.

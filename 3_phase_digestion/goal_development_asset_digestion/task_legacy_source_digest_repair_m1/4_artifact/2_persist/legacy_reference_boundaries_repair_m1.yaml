@@ -1,0 +1,119 @@
+task_id: T-061
+name: legacy_source_digest_repair_m1
+created: "2026-06-24"
+source_authority:
+  trusted_map:
+    asset_id: A-001
+    origin: T-007/D-001
+    task_local_path: 1_asset/t007_development_source_map.md
+    role: "Authority for locating the migrated package source and for treating core.py as the usable entry point."
+  inspected_package:
+    asset_id: A-002
+    origin: "T-007/D-001 package source map entry"
+    task_local_path: 1_asset/migrated_pxfquery_package_source
+    resolved_path: /Users/dudu/Documents/3_Project/12_PxFquery/2_project_asset/1_raw_material/legacy_flat_asset_library_v20260614/code/pxfquery_package
+    role: "Only raw legacy source inspected for this digest."
+  failed_context_only:
+    task_id: T-041
+    rule: "May be mentioned only as the failed historical dependency being replaced; outputs must not be cited as authority."
+bounded_static_method:
+  package_inventory: 3_execution/a002_file_inventory_20260624.txt
+  symbol_index: 3_execution/a002_python_symbol_index_20260624.txt
+  ast_structure: 3_execution/a002_ast_structure_20260624.txt
+  risk_patterns: 3_execution/a002_risk_pattern_index_20260624.txt
+  constraints:
+    - "No package workflows executed."
+    - "No h5ad, notebook, cache, generated report, or broad project asset scan performed."
+    - "No historical source root read."
+downstream_reference_rules:
+  may_cite_as_authoritative_for_legacy_structure:
+    - 4_artifact/2_persist/legacy_source_digest_repair_m1.md
+    - 4_artifact/5_table/legacy_module_reuse_matrix_repair_m1.csv
+    - 4_artifact/2_persist/legacy_reference_boundaries_repair_m1.yaml
+  may_adapt_for_m1:
+    deterministic_core:
+      - module: data.loader
+        symbols: [DataLoader, _validate_pert_type]
+        conditions:
+          - "Use explicit local h5ad paths registered by the downstream task."
+          - "Do not call download_zenodo as implemented behavior."
+      - module: query.forward
+        symbols: [ForwardQuery, ForwardResult]
+        conditions:
+          - "Validate AnnData obs fields pert_id, cmap_name, and cell_iname."
+          - "Treat fuzzy matching as baseline only."
+      - module: query.reverse
+        symbols: [ReverseQuery, ReverseResult]
+        conditions:
+          - "Validate function var_names and unmatched-term behavior."
+      - module: utils
+        symbols: [fuzzy_match, build_target_vector, cosine_similarity_matrix]
+        conditions:
+          - "Use as deterministic helper logic; do not claim biomedical synonym coverage."
+      - module: logging_utils
+        symbols: [LoggingSettings, QueryIdFilter, resolve_log_level, configure_logger]
+        conditions:
+          - "Use task-local or explicitly configured log paths."
+    facade_reference:
+      - module: core
+        symbols: [PxFquery]
+        conditions:
+          - "Use as public API pattern or instantiate with explicit matrix/index paths."
+          - "Do not rely on default output/store/query_index unless current cwd and registered assets make it valid."
+    visual_support:
+      - module: viz.plots
+        symbols: [plot_forward_bar, plot_reverse_table, plot_heatmap]
+        conditions:
+          - "Require separate visual QA before manuscript figure use."
+  may_adapt_for_m1_1_after_tests:
+    resolver:
+      module: query.resolver
+      symbols: [ResolverConfig, ForwardPlan, QueryResolver]
+      conditions:
+        - "Register and verify JSON index directory before construction."
+        - "Use provider=mock or explicit prompt_hooks for deterministic tests when no API should be called."
+        - "Preserve evidence-level metadata: EXACT, PROXY_PERT, PROXY_CELL, PROXY_BOTH, FORCED_MATCH, FORCED_FALLBACK, NOT_FOUND."
+        - "Do not treat forced fallback levels as strong biological evidence."
+    indexes:
+      modules:
+        - index.cellline_index
+        - index.drug_index
+        - index.function_index
+        - index.gene_index
+      conditions:
+        - "Require exact expected JSON files under registered index_dir."
+        - "Use as readers/adapters, not index builders."
+    llm_layer:
+      modules:
+        - llm.client
+        - llm.prompts
+      conditions:
+        - "Optional only; requires explicit credentials/provider or mock hooks."
+        - "LLM output may support mapping/summarization but must not replace deterministic evidence."
+  must_avoid:
+    modules:
+      - module: main
+        reason: "Pass-heavy historical sketch; not a working implementation."
+      - module: prompt.check_link
+        reason: "Ad hoc connectivity helper with broad imports and direct API calls."
+    paths:
+      - "/Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_development_asset_digestion/task_legacy_source_digest_for_m1/4_artifact/"
+      - "/Users/dudu/Documents/3_Project/8_functional_query"
+      - "unregistered paths under /Users/dudu/Documents/3_Project/12_PxFquery/2_project_asset/"
+    evidence_categories:
+      - "raw h5ad matrices during source digestion"
+      - "notebooks during source digestion"
+      - "__pycache__ and binary metadata"
+      - "generated reports adjacent to package source unless separately registered"
+known_downstream_risks:
+  data:
+    - "Actual matrices were not inspected in T-061; downstream tasks must register and validate matrix assets separately."
+    - "Query engines assume specific obs columns and var_names orientation."
+  indexes:
+    - "Resolver and index classes require precomputed JSON files not bundled in A-002."
+  api:
+    - "LLM and resolver default providers require environment credentials unless mocked."
+  packaging:
+    - "pyproject package discovery may need review because package source appears as the package root rather than a nested pxfquery directory."
+  documentation:
+    - "__init__.py example has stale load_data signature; README contains legacy Windows path notes."

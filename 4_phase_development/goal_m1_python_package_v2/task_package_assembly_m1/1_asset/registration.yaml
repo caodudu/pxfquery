@@ -1,0 +1,198 @@
+assets:
+- id: A-001
+  name: pxfquery_pyproject_base
+  type: config
+  source: predecessor
+  source_task: T-044
+  source_artifact_id: D-001
+  origin: T-044/D-001 pyproject.toml
+  registered: '2026-06-24'
+  path: 1_asset/pxfquery_pyproject_base.toml
+  symlink: true
+  status: ready
+  notes: Base pyproject.toml with name=pxfquery, version=0.1.0, hatchling build, src-layout
+  location: local
+- id: A-002
+  name: pxfquery_cli_init
+  type: code
+  source: predecessor
+  source_task: T-044
+  source_artifact_id: D-002
+  origin: T-044/D-002 pxfquery/cli/__init__.py
+  registered: '2026-06-24'
+  path: 1_asset/pxfquery_cli_init.py
+  symlink: true
+  status: ready
+  notes: CLI wiring with forward, reverse, and info subcommands
+  location: local
+- id: A-003
+  name: pxfquery_cli_main_module
+  type: code
+  source: predecessor
+  source_task: T-044
+  source_artifact_id: D-002
+  origin: T-044/D-002 pxfquery/cli/__main__.py
+  registered: '2026-06-24'
+  path: 1_asset/pxfquery_cli_main_module.py
+  symlink: true
+  status: ready
+  notes: python -m pxfquery entry point
+  location: local
+- id: A-004
+  name: forward_query_impl
+  type: code
+  source: predecessor
+  source_task: T-059
+  source_artifact_id: D-001
+  origin: T-059/D-001 src/pxfquery/query/forward.py
+  registered: '2026-06-24'
+  path: 1_asset/forward_query_impl.py
+  symlink: true
+  status: ready
+  notes: Forward query implementation (pert2func / pert2func logic)
+  location: local
+- id: A-005
+  name: reverse_query_impl
+  type: code
+  source: predecessor
+  source_task: T-059
+  source_artifact_id: D-001
+  origin: T-059/D-001 src/pxfquery/query/reverse.py
+  registered: '2026-06-24'
+  path: 1_asset/reverse_query_impl.py
+  symlink: true
+  status: ready
+  notes: Reverse query implementation (func2pert / reverse_query logic)
+  location: local
+- id: A-006
+  name: forward_package_data_modules
+  type: code
+  source: predecessor
+  source_task: T-059
+  source_artifact_id: D-001
+  origin: T-059/D-001 src/pxfquery/data/
+  registered: '2026-06-24'
+  path: 1_asset/forward_package_data_modules
+  symlink: true
+  status: ready
+  notes: Data loader modules including M1FixtureLoader and base loader
+  location: local
+- id: A-007
+  name: forward_package_index_modules
+  type: code
+  source: predecessor
+  source_task: T-059
+  source_artifact_id: D-001
+  origin: T-059/D-001 src/pxfquery/index/
+  registered: '2026-06-24'
+  path: 1_asset/forward_package_index_modules
+  symlink: true
+  status: ready
+  notes: Index modules (cellline, drug, function, gene)
+  location: local
+- id: A-008
+  name: forward_package_llm_modules
+  type: code
+  source: predecessor
+  source_task: T-059
+  source_artifact_id: D-001
+  origin: T-059/D-001 src/pxfquery/llm/
+  registered: '2026-06-24'
+  path: 1_asset/forward_package_llm_modules
+  symlink: true
+  status: ready
+  notes: LLM prompt module
+  location: local
+- id: A-009
+  name: forward_package_viz_modules
+  type: code
+  source: predecessor
+  source_task: T-059
+  source_artifact_id: D-001
+  origin: T-059/D-001 src/pxfquery/viz/
+  registered: '2026-06-24'
+  path: 1_asset/forward_package_viz_modules
+  symlink: true
+  status: ready
+  notes: Visualization module
+  location: local
+- id: A-010
+  name: forward_package_core_module
+  type: code
+  source: predecessor
+  source_task: T-059
+  source_artifact_id: D-001
+  origin: T-059/D-001 src/pxfquery/core.py
+  registered: '2026-06-24'
+  path: 1_asset/forward_package_core_module.py
+  symlink: true
+  status: ready
+  notes: Reference core module with PxFquery class (func2pert returns NotImplemented
+    in T-059; must be rewired in assembly)
+  location: local
+- id: A-011
+  name: forward_repair_fixture
+  type: data
+  source: predecessor
+  source_task: T-059
+  source_artifact_id: D-003
+  origin: T-059/D-003 forward_repair_fixture_m1_1/
+  registered: '2026-06-24'
+  path: 1_asset/forward_repair_fixture
+  symlink: true
+  status: ready
+  notes: Forward demo fixture with synthetic EGFR/A549/xpr positive-demo row
+  location: local
+- id: A-012
+  name: forward_repair_manifest
+  type: config
+  source: predecessor
+  source_task: T-059
+  source_artifact_id: D-002
+  origin: T-059/D-002 forward_repair_manifest_m1_1.yaml
+  registered: '2026-06-24'
+  path: 1_asset/forward_repair_manifest.yaml
+  symlink: true
+  status: ready
+  notes: Forward repair manifest describing the synthetic_repair fixture provenance
+  location: local
+- id: A-013
+  name: reverse_repair_fixture
+  type: data
+  source: predecessor
+  source_task: T-060
+  source_artifact_id: D-002
+  origin: T-060/D-002 reverse_repair_fixture_m1_1/
+  registered: '2026-06-24'
+  path: 1_asset/reverse_repair_fixture
+  symlink: true
+  status: ready
+  notes: Reverse demo fixture with synthetic HALLMARK_MYC_TARGETS_V1 / A549 positive-demo
+    support
+  location: local
+- id: A-014
+  name: reverse_repair_manifest
+  type: config
+  source: predecessor
+  source_task: T-060
+  source_artifact_id: D-003
+  origin: T-060/D-003 reverse_repair_manifest_m1_1.yaml
+  registered: '2026-06-24'
+  path: 1_asset/reverse_repair_manifest.yaml
+  symlink: true
+  status: ready
+  notes: Reverse repair manifest describing the synthetic_repair fixture provenance
+  location: local
+- id: A-015
+  name: forward_package_pyproject_cli
+  type: config
+  source: predecessor
+  source_task: T-059
+  source_artifact_id: D-001
+  origin: T-059/D-001 pyproject.toml with [project.scripts]
+  registered: '2026-06-24'
+  path: 1_asset/forward_package_pyproject_cli.toml
+  symlink: true
+  status: ready
+  notes: 'pyproject.toml with CLI script entry: pxfquery = pxfquery.cli:main'
+  location: local

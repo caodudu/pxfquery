@@ -1,0 +1,299 @@
+{
+  "profiles": [
+    {
+      "file": "M-0105_cp_func_ad.h5ad",
+      "label": "cp_canon",
+      "size_mb": 569.43,
+      "load_time_sec": 1.22,
+      "n_obs": 201014,
+      "n_vars": 91,
+      "x_dtype": "float64",
+      "x_shape": "(201014, 91)",
+      "obs_columns": [
+        "sig_id",
+        "project_code",
+        "cell_iname",
+        "pert_id",
+        "cmap_name",
+        "pert_dose",
+        "pert_time"
+      ],
+      "var_names_count": 91,
+      "var_names_sample": [
+        "HALLMARK_ADIPOGENESIS",
+        "HALLMARK_ALLOGRAFT_REJECTION",
+        "HALLMARK_ANDROGEN_RESPONSE",
+        "MP39 Metal-response",
+        "MP40 PDAC-related",
+        "MP41 Unassigned"
+      ],
+      "md5": "cba889c3d3acbf7f1778ad48852de472",
+      "x_min": -10.0,
+      "x_max": 10.0,
+      "x_mean": -0.097711,
+      "x_std": 2.855707,
+      "x_nonzero_frac": 0.999965,
+      "n_unique_celllines": 229,
+      "n_unique_pertid": 34413
+    },
+    {
+      "file": "M-0199_cp_func_ad.h5ad",
+      "label": "cp_dup",
+      "size_mb": 569.43,
+      "load_time_sec": 0.66,
+      "n_obs": 201014,
+      "n_vars": 91,
+      "x_dtype": "float64",
+      "x_shape": "(201014, 91)",
+      "obs_columns": [
+        "sig_id",
+        "project_code",
+        "cell_iname",
+        "pert_id",
+        "cmap_name",
+        "pert_dose",
+        "pert_time"
+      ],
+      "var_names_count": 91,
+      "var_names_sample": [
+        "HALLMARK_ADIPOGENESIS",
+        "HALLMARK_ALLOGRAFT_REJECTION",
+        "HALLMARK_ANDROGEN_RESPONSE",
+        "MP39 Metal-response",
+        "MP40 PDAC-related",
+        "MP41 Unassigned"
+      ],
+      "md5": "cba889c3d3acbf7f1778ad48852de472",
+      "x_min": -10.0,
+      "x_max": 10.0,
+      "x_mean": -0.097711,
+      "x_std": 2.855707,
+      "x_nonzero_frac": 0.999965,
+      "n_unique_celllines": 229,
+      "n_unique_pertid": 34413
+    },
+    {
+      "file": "M-0106_sh_func_ad.h5ad",
+      "label": "sh_canon",
+      "size_mb": 533.24,
+      "load_time_sec": 0.93,
+      "n_obs": 189365,
+      "n_vars": 91,
+      "x_dtype": "float64",
+      "x_shape": "(189365, 91)",
+      "obs_columns": [
+        "sig_id",
+        "project_code",
+        "cell_iname",
+        "pert_id",
+        "cmap_name",
+        "pert_dose",
+        "pert_time"
+      ],
+      "var_names_count": 91,
+      "var_names_sample": [
+        "HALLMARK_ADIPOGENESIS",
+        "HALLMARK_ALLOGRAFT_REJECTION",
+        "HALLMARK_ANDROGEN_RESPONSE",
+        "MP39 Metal-response",
+        "MP40 PDAC-related",
+        "MP41 Unassigned"
+      ],
+      "md5": "b8c7c37948ca678ab00dca666c299945",
+      "x_min": -10.0,
+      "x_max": 10.0,
+      "x_mean": -0.203793,
+      "x_std": 3.375959,
+      "x_nonzero_frac": 1.0,
+      "n_unique_celllines": 22,
+      "n_unique_pertid": 27920
+    },
+    {
+      "file": "M-0200_sh_func_ad.h5ad",
+      "label": "sh_dup",
+      "size_mb": 533.24,
+      "load_time_sec": 0.57,
+      "n_obs": 189365,
+      "n_vars": 91,
+      "x_dtype": "float64",
+      "x_shape": "(189365, 91)",
+      "obs_columns": [
+        "sig_id",
+        "project_code",
+        "cell_iname",
+        "pert_id",
+        "cmap_name",
+        "pert_dose",
+        "pert_time"
+      ],
+      "var_names_count": 91,
+      "var_names_sample": [
+        "HALLMARK_ADIPOGENESIS",
+        "HALLMARK_ALLOGRAFT_REJECTION",
+        "HALLMARK_ANDROGEN_RESPONSE",
+        "MP39 Metal-response",
+        "MP40 PDAC-related",
+        "MP41 Unassigned"
+      ],
+      "md5": "b8c7c37948ca678ab00dca666c299945",
+      "x_min": -10.0,
+      "x_max": 10.0,
+      "x_mean": -0.203793,
+      "x_std": 3.375959,
+      "x_nonzero_frac": 1.0,
+      "n_unique_celllines": 22,
+      "n_unique_pertid": 27920
+    },
+    {
+      "file": "M-0107_xpr_func_ad.h5ad",
+      "label": "xpr_canon",
+      "size_mb": 370.31,
+      "load_time_sec": 0.62,
+      "n_obs": 132464,
+      "n_vars": 91,
+      "x_dtype": "float64",
+      "x_shape": "(132464, 91)",
+      "obs_columns": [
+        "sig_id",
+        "project_code",
+        "cell_iname",
+        "pert_id",
+        "cmap_name",
+        "pert_dose",
+        "pert_time"
+      ],
+      "var_names_count": 91,
+      "var_names_sample": [
+        "HALLMARK_ADIPOGENESIS",
+        "HALLMARK_ALLOGRAFT_REJECTION",
+        "HALLMARK_ANDROGEN_RESPONSE",
+        "MP39 Metal-response",
+        "MP40 PDAC-related",
+        "MP41 Unassigned"
+      ],
+      "md5": "c747f663a855280bd99a200778c994fe",
+      "x_min": -10.0,
+      "x_max": 10.0,
+      "x_mean": -0.086048,
+      "x_std": 2.836563,
+      "x_nonzero_frac": 1.0,
+      "n_unique_celllines": 26,
+      "n_unique_pertid": 13466
+    },
+    {
+      "file": "M-0201_xpr_func_ad.h5ad",
+      "label": "xpr_dup",
+      "size_mb": 370.31,
+      "load_time_sec": 0.34,
+      "n_obs": 132464,
+      "n_vars": 91,
+      "x_dtype": "float64",
+      "x_shape": "(132464, 91)",
+      "obs_columns": [
+        "sig_id",
+        "project_code",
+        "cell_iname",
+        "pert_id",
+        "cmap_name",
+        "pert_dose",
+        "pert_time"
+      ],
+      "var_names_count": 91,
+      "var_names_sample": [
+        "HALLMARK_ADIPOGENESIS",
+        "HALLMARK_ALLOGRAFT_REJECTION",
+        "HALLMARK_ANDROGEN_RESPONSE",
+        "MP39 Metal-response",
+        "MP40 PDAC-related",
+        "MP41 Unassigned"
+      ],
+      "md5": "c747f663a855280bd99a200778c994fe",
+      "x_min": -10.0,
+      "x_max": 10.0,
+      "x_mean": -0.086048,
+      "x_std": 2.836563,
+      "x_nonzero_frac": 1.0,
+      "n_unique_celllines": 26,
+      "n_unique_pertid": 13466
+    }
+  ],
+  "duplicate_verification": [
+    {
+      "pert_type": "cp",
+      "same_md5": true,
+      "same_shape": true,
+      "same_x_min": true,
+      "same_x_max": true,
+      "same_x_mean": true,
+      "conclusion": "IDENTICAL (same md5, same shape, same values)"
+    },
+    {
+      "pert_type": "sh",
+      "same_md5": true,
+      "same_shape": true,
+      "same_x_min": true,
+      "same_x_max": true,
+      "same_x_mean": true,
+      "conclusion": "IDENTICAL (same md5, same shape, same values)"
+    },
+    {
+      "pert_type": "xpr",
+      "same_md5": true,
+      "same_shape": true,
+      "same_x_min": true,
+      "same_x_max": true,
+      "same_x_mean": true,
+      "conclusion": "IDENTICAL (same md5, same shape, same values)"
+    }
+  ],
+  "summary": {
+    "total_obs": 522843,
+    "total_canonical_files_mb": 1472.98,
+    "total_dup_files_mb": 1472.98,
+    "canonical_set": [
+      "M-0105 (cp)",
+      "M-0106 (sh)",
+      "M-0107 (xpr)"
+    ],
+    "duplicate_set": [
+      "M-0199 (cp)",
+      "M-0200 (sh)",
+      "M-0201 (xpr)"
+    ],
+    "all_duplicates_identical": true,
+    "cp": {
+      "n_obs": 201014,
+      "size_mb": 569.43,
+      "x_range": "-10.0 to 10.0",
+      "x_mean": -0.097711,
+      "n_celllines": 229,
+      "n_perturbations": 34413
+    },
+    "sh": {
+      "n_obs": 189365,
+      "size_mb": 533.24,
+      "x_range": "-10.0 to 10.0",
+      "x_mean": -0.203793,
+      "n_celllines": 22,
+      "n_perturbations": 27920
+    },
+    "xpr": {
+      "n_obs": 132464,
+      "size_mb": 370.31,
+      "x_range": "-10.0 to 10.0",
+      "x_mean": -0.086048,
+      "n_celllines": 26,
+      "n_perturbations": 13466
+    },
+    "float64_raw_memory_cp_mb": 139.6,
+    "float32_raw_memory_cp_mb": 69.8,
+    "var_names": [
+      "HALLMARK_ADIPOGENESIS",
+      "HALLMARK_ALLOGRAFT_REJECTION",
+      "HALLMARK_ANDROGEN_RESPONSE",
+      "MP39 Metal-response",
+      "MP40 PDAC-related",
+      "MP41 Unassigned"
+    ]
+  }
+}

@@ -1,0 +1,55 @@
+session_id: cli_665939db4bc9
+driver: codex
+agent_id: AGT-001
+agent_label: Codex hard tasks
+stage: config
+status: done
+created: '2026-06-24T13:34:01'
+task_path: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_development_asset_digestion/task_legacy_source_digest_repair_m1
+work_dir: /Users/dudu/Documents/3_Project/12_PxFquery
+session_dir: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_development_asset_digestion/task_legacy_source_digest_repair_m1/5_report/cli_sessions/config/20260624_133401_codex_cli_665939db4bc9
+prompt_file: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_development_asset_digestion/task_legacy_source_digest_repair_m1/5_report/cli_sessions/config/20260624_133401_codex_cli_665939db4bc9/prompt.md
+events_file: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_development_asset_digestion/task_legacy_source_digest_repair_m1/5_report/cli_sessions/config/20260624_133401_codex_cli_665939db4bc9/events.jsonl
+stdout_file: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_development_asset_digestion/task_legacy_source_digest_repair_m1/5_report/cli_sessions/config/20260624_133401_codex_cli_665939db4bc9/stdout.log
+stderr_file: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_development_asset_digestion/task_legacy_source_digest_repair_m1/5_report/cli_sessions/config/20260624_133401_codex_cli_665939db4bc9/stderr.log
+agent_output_file: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_development_asset_digestion/task_legacy_source_digest_repair_m1/5_report/cli_sessions/config/20260624_133401_codex_cli_665939db4bc9/agent_output.md
+cmd:
+- /opt/homebrew/bin/codex
+- exec
+- --dangerously-bypass-approvals-and-sandbox
+- --json
+- -C
+- /Users/dudu/Documents/3_Project/12_PxFquery
+- '-'
+agent_session_id: 019ef81e-fefa-7903-9777-8a847f7a8bb9
+parent_agent_session_id: ''
+dry_run: false
+fork_from_resume: false
+blocked_report_mtime_ns_before: 0
+codex_session_id: 019ef81e-fefa-7903-9777-8a847f7a8bb9
+prompt_source: assembled
+pid: 40376
+returncode: 0
+completed: '2026-06-24T13:45:03'
+context_estimate:
+  estimated_tokens: 45175
+  estimated_bytes: 135525
+  limit_tokens: 500000
+  exceeded: false
+  files:
+  - file: prompt.md
+    bytes: 36804
+    estimated_tokens: 12268
+  - file: events.jsonl
+    bytes: 47840
+    estimated_tokens: 15947
+  - file: stdout.log
+    bytes: 47370
+    estimated_tokens: 15790
+  - file: stderr.log
+    bytes: 671
+    estimated_tokens: 224
+  - file: agent_output.md
+    bytes: 2840
+    estimated_tokens: 947
+  method: local_session_file_bytes_div_3

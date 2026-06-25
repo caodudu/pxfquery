@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>T-043 Execution Report</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; margin: 32px; line-height: 1.5; color: #222; }
+    h1, h2 { color: #111; }
+    code { background: #f4f4f4; padding: 1px 4px; border-radius: 3px; }
+    table { border-collapse: collapse; margin: 12px 0; width: 100%; }
+    th, td { border: 1px solid #ddd; padding: 6px 8px; text-align: left; vertical-align: top; }
+    th { background: #f7f7f7; }
+  </style>
+</head>
+<body>
+<h1>T-043 Execution Report</h1>
+<h2>Scope</h2>
+<div><p>仅使用已注册的 A-001 至 A-006 资产以及当前任务可写文件夹，执行了已批准的 T-043 计划。</p></div>
+<h2>Inputs Inspected</h2>
+<div><p>A-001 标准资源、A-002 指南、A-003 过程记录、A-004 范围、A-005 库存以及 A-006 矩阵覆盖。</p></div>
+<h2>Selection Method</h2>
+<div><p>从 A-001 中选定的确定性真实行：化合物行需匹配药物索引别名，shRNA 行需基因索引覆盖，XPR 行需同时具备基因索引和基因元数据覆盖。</p></div>
+<h2>Matrix Fixtures</h2>
+<div><table><tr><th>Matrix</th><th>Fixture shape</th><th>Source</th><th>Path</th></tr><tr><td>cp</td><td>4 x 7</td><td><code>1_asset/t021_standard_resources_bundle/cp_func_ad.h5ad</code></td><td><code>4_artifact/2_persist/fixture_package_m1/cp_func_fixture_m1.h5ad</code></td></tr><tr><td>sh</td><td>4 x 7</td><td><code>1_asset/t021_standard_resources_bundle/sh_func_ad.h5ad</code></td><td><code>4_artifact/2_persist/fixture_package_m1/sh_func_fixture_m1.h5ad</code></td></tr><tr><td>xpr</td><td>4 x 7</td><td><code>1_asset/t021_standard_resources_bundle/xpr_func_ad.h5ad</code></td><td><code>4_artifact/2_persist/fixture_package_m1/xpr_func_fixture_m1.h5ad</code></td></tr></table></div>
+<h2>Validation</h2>
+<div><p>已生成并重新加载所有 fixture H5AD、CSV、JSON、YAML 和报告输出。预期资源行数：36。样本记录行数：46。</p></div>
+<h2>Exclusions</h2>
+<div><p>未使用原始项目资产、遗留源根目录、失败的 T024-T040 输出、网络数据、上游截断的 H5AD、历史 GSEA 工件或合成生物学记录。</p></div>
+</body>
+</html>

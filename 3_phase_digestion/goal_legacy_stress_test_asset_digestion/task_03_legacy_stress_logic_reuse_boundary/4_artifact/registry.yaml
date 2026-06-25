@@ -1,0 +1,15 @@
+artifacts:
+- id: D-001
+  name: legacy_stress_logic_reuse_boundary_v20260624
+  type: persist
+  path: 4_artifact/2_persist/legacy_stress_logic_reuse_boundary_v20260624.md
+  created: '2026-06-24'
+  status: delivered
+  notes: Full reuse-boundary analysis organized by asset category. Covers 65 classified assets.
+- id: D-002
+  name: stress_logic_reuse_decision_matrix_v20260624
+  type: table
+  path: 4_artifact/5_table/stress_logic_reuse_decision_matrix_v20260624.csv
+  created: '2026-06-24'
+  status: delivered
+  notes: Machine-readable CSV with columns asset_name, asset_path, asset_type, reuse_decision, reasoning, risk_gap, recommended_action. 65 rows covering all evaluated assets.

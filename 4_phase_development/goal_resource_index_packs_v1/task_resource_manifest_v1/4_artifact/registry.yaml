@@ -1,0 +1,122 @@
+artifacts:
+- id: D-006
+  name: pxfquery_T025_standard_resource_manifest
+  path: 4_artifact/2_persist/pxfquery_T025_standard_resource_manifest_v20260623.yaml
+  type: persist
+  origin_step: 03_build_manifest
+  purpose: YAML manifest enumerating all 19 files in the T-021/D-004 standard_resources
+    bundle with schema, category, role, key columns, size, and verification notes.
+  usable_by: downstream development, testing, and packaging tasks; CyHex task graph
+    asset registration
+  created: '2026-06-23'
+  identity: T-025/D-006
+  role: deliverable
+  core: true
+  lineage_anchor: true
+  stars: 5
+  notes: Single-file YAML manifest. The primary output asset for T-025.
+- id: D-007
+  name: pxfquery_T025_schema_summary
+  path: 4_artifact/2_persist/pxfquery_T025_schema_summary_v20260623.md
+  type: persist
+  origin_step: 04_write_schema_summary
+  purpose: Human-readable Markdown schema reference organized by file category (matrices,
+    indexes, metadata, description).
+  usable_by: developers and reviewers needing quick schema reference
+  created: '2026-06-23'
+  identity: T-025/D-007
+  role: support
+  core: false
+  stars: 5
+  notes: Companion document to the manifest YAML; self-contained and independently
+    readable.
+  lineage_anchor: false
+- id: D-008
+  name: pxfquery_T025_usage_notes
+  path: 4_artifact/2_persist/pxfquery_T025_usage_notes_v20260623.md
+  type: persist
+  origin_step: 05_write_usage_notes
+  purpose: Usage instructions covering Python loading snippets, bundle reference rules,
+    verification expectations, hard rules, and provenance.
+  usable_by: downstream tasks as quick-start guide for consuming the bundle
+  created: '2026-06-23'
+  identity: T-025/D-008
+  role: support
+  core: false
+  stars: 5
+  notes: Includes Python code snippets for h5ad/json/csv loading.
+  lineage_anchor: false
+- id: D-009
+  name: step6_validation
+  path: 3_execution/step6_validation.json
+  type: support
+  origin_step: 06_validate_manifest
+  purpose: Python validation evidence confirming manifest filename match, file count,
+    bundle size, and data_description.yaml reference.
+  usable_by: human review and future reproducibility checks
+  created: '2026-06-23'
+  identity: T-025/D-009
+  role: support
+  core: false
+  stars: 5
+  notes: 19/19 file match, 0.00% size deviation, all files exist on disk.
+  lineage_anchor: false
+- id: D-010
+  name: execution_report_v20260623.html
+  path: 4_artifact/3_document/execution_report_v20260623.html
+  type: document
+  origin_step: 07_completion
+  purpose: Chinese HTML execution report covering all 7 steps, asset usage, validation,
+    and known gaps.
+  usable_by: human acceptance review
+  created: '2026-06-23'
+  identity: T-025/D-010
+  role: report
+  core: false
+  stars: 5
+  notes: CyHex-mandatory execution HTML report.
+  lineage_anchor: false
+- id: D-011
+  name: result_report_v20260623.html
+  path: 4_artifact/3_document/result_report_v20260623.html
+  type: document
+  origin_step: 07_completion
+  purpose: Chinese HTML result report with resource overview, size distribution charts,
+    schema consistency summary, and deliverable inventory.
+  usable_by: non-developer readers, manuscript preparation
+  created: '2026-06-23'
+  identity: T-025/D-011
+  role: report
+  core: false
+  stars: 5
+  notes: CyHex-mandatory result HTML report with inline visualizations.
+  lineage_anchor: false
+- id: D-012
+  name: handoff_check_before_exec
+  path: 5_report/handoff_check_before_exec.md
+  type: report
+  origin_step: 00_cyhex_1_2_19_repair
+  purpose: CyHex 1.2.19 check-to-execute handoff summary reconstructed from completed task evidence.
+  usable_by: downstream tasks and future prompt flows that require check handoff context
+  created: '2026-06-24'
+  identity: T-025/D-012
+  role: support
+  core: false
+  stars: 4
+  notes: Added after completion to satisfy updated CyHex prompt expectations without changing the core manifest artifact.
+  lineage_anchor: false
+- id: D-013
+  name: cyhex_1_2_19_supplement
+  path: 5_report/cyhex_1_2_19_supplement.md
+  type: report
+  origin_step: 00_cyhex_1_2_19_repair
+  purpose: Low-pollution supplemental file explaining what parts of T-025 are useful as future reference assets.
+  usable_by: future planners, auditors, and tasks deciding whether to keep or reuse T-025
+  created: '2026-06-24'
+  identity: T-025/D-013
+  role: support
+  core: false
+  stars: 4
+  notes: Does not alter original execution outputs; it only labels reliable reuse boundaries.
+  lineage_anchor: false
+core_artifact_id: D-006

@@ -1,0 +1,24 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>T-059 Execution Report</title>
+<style>body{font-family:Arial,sans-serif;line-height:1.4;margin:32px}table{border-collapse:collapse;width:100%}td,th{border:1px solid #ccc;padding:6px;vertical-align:top}code{white-space:pre-wrap}</style></head>
+<body><h1>T-059 Execution Report</h1>
+<p>日期: 2026-06-24</p>
+<ol>
+<li>已读取已注册的 T-042 契约/demo、T-043 fixture 上下文、T-046 加载器 API/代码以及 T-048 事件报告。</li>
+<li>已将 T-044 包骨架暂存至 <code>3_execution/work_package</code> 并复制了 T-046 加载器代码。</li>
+<li>已在当前任务下创建了一个任务本地 M1.1 修复 fixture 和清单 <code>4_artifact/2_persist</code>.</li>
+<li>已实现前向 API 和 CLI 行为，并验证了导入、加载器兼容性、正向演示、无命中行为以及 CLI JSON 输出。</li>
+</ol>
+<p>验证摘要：11 个通过，0 个失败。</p>
+<table><tr><th>Check</th><th>Requirement</th><th>Status</th><th>Evidence</th></tr><tr><td>SMOKE-001</td><td>包导入成功</td><td>PASS</td><td><code>Imported pxfquery and PxFquery during validation subprocess.</code></td></tr>
+<tr><td>SMOKE-002</td><td>T-046 与加载器兼容的修复夹具加载成功</td><td>PASS</td><td><code>xpr shape=[5, 7]</code></td></tr>
+<tr><td>FORWARD-001</td><td>阳性 EGFR/A549/xpr 发现为真</td><td>PASS</td><td><code>{"found": true, "perturbation": "EGFR", "cell_line": "A549", "n_obs": 1}</code></td></tr>
+<tr><td>FORWARD-002</td><td>top_activated 非空数值字典</td><td>PASS</td><td><code>{'HALLMARK_ADIPOGENESIS': 4.03, 'HALLMARK_APOPTOSIS': 2.47, 'HALLMARK_P53_PATHWAY': 1.25, 'HALLMARK_TNFA_SIGNALING_VIA_NFKB': 0.84}</code></td></tr>
+<tr><td>FORWARD-003</td><td>顶级抑制的非空数字字典</td><td>PASS</td><td><code>{'MP40 PDAC-related': -6.68, 'HALLMARK_E2F_TARGETS': -6.64, 'MP39 Metal-response': -0.51}</code></td></tr>
+<tr><td>FORWARD-004</td><td>输入回显与合约匹配</td><td>PASS</td><td><code>EGFR/A549</code></td></tr>
+<tr><td>NOHIT-001</td><td>未知扰动返回结构化的无命中/错误对象</td><td>PASS</td><td><code>{"error": "PerturbationNotFound", "message": "The given perturbation name was not found in the matrix observation metadata.", "perturbation": "UNKNOWN_GENE_XYZ999", "matrix_type": "xpr", "query_type": "forward", "suggestions": [], "_evidence": {"task_id": "T-059", "source": "task-local synthetic repair fixture", "manifest": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_forward_query_core_repair_m1/4_artifact/2_persist/forward_repair_manifest_m1_1.yaml", "fixture_root": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_forward_query_core_repair_m1/4_artifact/2_persist/forward_repair_fixture_m1_1"}}</code></td></tr>
+<tr><td>JSON-001</td><td>正向和无命中证据均可 JSON 序列化</td><td>PASS</td><td><code>Evidence written as .json files.</code></td></tr>
+<tr><td>CLI-001</td><td>前向 CLI 为正向案例输出 JSON</td><td>PASS</td><td><code>returncode=0</code></td></tr>
+<tr><td>PROV-001</td><td>修复清单标签合成来源</td><td>PASS</td><td><code>forward_repair_manifest_m1_1.yaml contains synthetic_repair.</code></td></tr>
+<tr><td>BOUNDARY-001</td><td>上游工件未被修复修改</td><td>PASS</td><td><code>Repair fixture is copied under T-059 4_artifact/2_persist.</code></td></tr></table>
+</body></html>

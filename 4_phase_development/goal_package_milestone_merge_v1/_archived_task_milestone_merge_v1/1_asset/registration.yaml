@@ -1,0 +1,178 @@
+assets:
+- id: A-001
+  name: T-024 pxfquery workspace package
+  type: deliverable
+  source: predecessor
+  origin: T-024/ART-001
+  location: local
+  path: 1_asset/T-024 pxfquery workspace package
+  description: Current src-layout pxfquery workspace with pyproject.toml and import/compile
+    smoke evidence. Base package source for the T-037 merged milestone.
+  sync_policy: local
+  stars: 5
+  notes: Read-only upstream package foundation; do not edit in place.
+  symlink: true
+- id: A-002
+  name: T-021 standard resources bundle
+  type: deliverable
+  source: predecessor
+  origin: T-021/D-004 via T-025/T-026 asset lineage
+  location: local
+  path: 1_asset/T-021 standard resources bundle
+  description: Canonical 19-file standard resource bundle containing H5AD matrices,
+    JSON indexes, metadata CSV files, and data_description.yaml needed for a runnable
+    milestone package.
+  sync_policy: local
+  stars: 5
+  notes: Consume by copying or packaging as T-037 resources; do not modify upstream
+    files.
+  symlink: true
+- id: A-003
+  name: T-025 standard resource manifest
+  type: deliverable
+  source: predecessor
+  origin: T-025/D-006
+  location: local
+  path: 1_asset/T-025 standard resource manifest.yaml
+  description: Machine-readable manifest enumerating the standard resources bundle,
+    schema roles, sizes, and verification notes.
+  sync_policy: local
+  stars: 5
+  notes: Required for package resource inventory and lineage report.
+  symlink: true
+- id: A-004
+  name: T-026 matrix/resource loader package
+  type: deliverable
+  source: predecessor
+  origin: T-026/D-001
+  location: local
+  path: 1_asset/loader
+  description: Validated resource loader code and validation records for H5AD matrices,
+    JSON indexes, CSV metadata, and YAML description.
+  sync_policy: local
+  stars: 5
+  notes: Integrate into the merged pxfquery-T-037 package where appropriate.
+  symlink: true
+- id: A-005
+  name: T-027 runtime query index directory
+  type: deliverable
+  source: predecessor
+  origin: T-027 completion deliverable D-001
+  location: local
+  path: 1_asset/T-027 runtime query index directory
+  description: Runtime resolver-compatible query index directory with 10 JSON symlinks
+    and validated required filenames.
+  sync_policy: local
+  stars: 4
+  notes: T-027 registry is empty, but completion evidence and concrete files exist;
+    use path directly and record this registry gap in T-037 lineage.
+  symlink: true
+- id: A-006
+  name: T-028 function index pack
+  type: deliverable
+  source: predecessor
+  origin: T-028/D-001
+  location: local
+  path: 1_asset/T-028 function index pack
+  description: Validated 91-function index pack with aliases and validation table,
+    versioned as pxfquery-T-028.
+  sync_policy: local
+  stars: 5
+  notes: Required for function-term lookup and reverse/forward query consistency.
+  symlink: true
+- id: A-007
+  name: T-029 forward query engine artifacts
+  type: deliverable
+  source: predecessor
+  origin: T-029/T029-D-001..D-007
+  location: local
+  path: 1_asset/T-029 forward query engine artifacts
+  description: Forward engine script, canonical EGFR/A549 and TP53/MCF7 result tables,
+    not-found evidence, validation JSON, and HTML reports.
+  sync_policy: local
+  stars: 5
+  notes: Required runnable deterministic forward-query source and evidence.
+  symlink: true
+- id: A-008
+  name: T-031 no-hit guard artifacts
+  type: deliverable
+  source: predecessor
+  origin: T-031/T031-D-001..D-010
+  location: local
+  path: 1_asset/T-031 no-hit guard artifacts
+  description: No-hit guard module, false-positive reproduction, no-hit evidence,
+    positive-control evidence, scripts, and reports.
+  sync_policy: local
+  stars: 5
+  notes: Required to prevent nonsense perturbation false positives in the milestone
+    package.
+  symlink: true
+- id: A-009
+  name: T-032 reverse stability guard artifacts and repaired package
+  type: deliverable
+  source: predecessor
+  origin: T-032/T032-D-001..D-010
+  location: local
+  path: 1_asset/T-032 reverse stability guard artifacts and repaired package
+  description: Reverse stability runnable demo, validation JSON, repaired pxfquery-T-032
+    package, guard warnings, positive-control candidates, metadata, and reports.
+  sync_policy: local
+  stars: 5
+  notes: Required reverse-query/stability source because T-030 direct reverse artifact
+    is missing.
+  symlink: true
+- id: A-010
+  name: T-035 integration smoke test artifacts
+  type: deliverable
+  source: predecessor
+  origin: T-035/T035-D-001..D-010
+  location: local
+  path: 1_asset/T-035 integration smoke test artifacts
+  description: Smoke orchestrator and consolidated smoke evidence showing T-029, T-031,
+    and T-032 pass; T-030 is unmet dependency; resolver is skipped.
+  sync_policy: local
+  stars: 5
+  notes: Required final integration evidence baseline for T-037 tests.
+  symlink: true
+- id: A-011
+  name: T-030 reverse query task record
+  type: reference
+  source: predecessor
+  origin: T-030 task root
+  location: local
+  path: 1_asset/T-030 reverse query task record
+  description: Reverse-query predecessor context selected by the user. Its artifact
+    registry is empty and completion.md is pending, so it is lineage context only,
+    not a runnable required input.
+  sync_policy: local
+  stars: 1
+  notes: Missing direct reverse deliverable; T-037 must use A-009 for reverse/stability
+    behavior unless a valid T-030 artifact appears before execution.
+  symlink: true
+- id: A-012
+  name: T-036 demo CLI task record
+  type: reference
+  source: predecessor
+  origin: T-036 task root
+  location: local
+  path: 1_asset/T-036 demo CLI task record
+  description: Demo CLI predecessor context selected by the user. Its artifact registry
+    is empty and no demo execution files are present, so it is lineage context only.
+  sync_policy: local
+  stars: 1
+  notes: Missing registered demo deliverables; T-037 must produce its own final demo/handoff
+    artifacts.
+  symlink: true
+- id: A-013
+  name: Current project protocol
+  type: reference
+  source: local
+  origin: project_init
+  location: local
+  path: 1_asset/Current project protocol
+  description: Project boundaries, source authority rules, and pxfquery conda environment
+    definition.
+  sync_policy: local
+  stars: 4
+  notes: Read-only governance and runtime reference for this task.
+  symlink: true

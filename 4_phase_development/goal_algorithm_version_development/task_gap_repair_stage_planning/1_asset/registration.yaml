@@ -1,0 +1,131 @@
+assets:
+- id: A-001
+  name: Current project protocol
+  type: deliverable
+  source: self
+  origin: project_init
+  registered: '2026-06-23'
+  path: 1_asset/Current project protocol
+  symlink: true
+  notes: 项目边界、环境规则、轻量Genes投稿路线和开发约束。
+  location: local
+- id: A-002
+  name: T-013 MVP capability contract
+  type: deliverable
+  source: self
+  origin: task_mvp_algorithm_run-through_review
+  registered: '2026-06-23'
+  path: 1_asset/T-013 MVP capability contract.md
+  symlink: true
+  notes: MVP必需能力、门控、可选、范围外事项和禁止声明清单。
+  location: local
+- id: A-003
+  name: T-013 failure and missing capability list
+  type: deliverable
+  source: self
+  origin: task_mvp_algorithm_run-through_review
+  registered: '2026-06-23'
+  path: 1_asset/T-013 failure and missing capability list.md
+  symlink: true
+  notes: CAP-03/CAP-05/CAP-06/CAP-07四个缺口的技术根因、证据和T-013建议的修复方向。
+  location: local
+- id: A-004
+  name: T-013 capability status matrix
+  type: table
+  source: self
+  origin: task_mvp_algorithm_run-through_review
+  registered: '2026-06-23'
+  path: 1_asset/T-013 capability status matrix.csv
+  symlink: true
+  notes: 完整pass/partial/fail/blocked状态表，用于交叉验证缺口。
+  location: local
+- id: A-005
+  name: T-007 development state report
+  type: deliverable
+  source: self
+  origin: task_digest_pxfquery_development_state
+  registered: '2026-06-23'
+  path: 1_asset/T-007 development state report.md
+  symlink: true
+  notes: PxFquery已有模块、API结构、数据模型、索引设计意图和真实完成边界。
+  location: local
+- id: A-006
+  name: T-007 development phase handoff
+  type: deliverable
+  source: self
+  origin: task_digest_pxfquery_development_state
+  registered: '2026-06-23'
+  path: 1_asset/T-007 development phase handoff.md
+  symlink: true
+  notes: T-007推荐的后续开发任务和carry-forward指导。
+  location: local
+- id: A-007
+  name: Genes deliverable phrase library
+  type: deliverable
+  source: self
+  origin: task_genes_bioinformatics_deliverable_catalog
+  registered: '2026-06-23'
+  path: 1_asset/Genes deliverable phrase library.md
+  symlink: true
+  notes: Genes论文中工具可交付物描述的通用措辞模式。
+  location: local
+- id: A-008
+  name: Genes artifact deliverable synthesis report
+  type: deliverable
+  source: self
+  origin: task_genes_bioinformatics_deliverable_catalog
+  registered: '2026-06-23'
+  path: 1_asset/Genes artifact deliverable synthesis report.md
+  symlink: true
+  notes: Genes接受的bioinformatics交付物论文的验证模式和包装方式。
+  location: local
+- id: A-009
+  name: Migrated PxFquery package code
+  type: raw
+  source: self
+  origin: legacy_flat_asset_library_v20260614
+  registered: '2026-06-23'
+  path: 1_asset/Migrated PxFquery package code
+  symlink: true
+  notes: 只读参考，理解resolver/index加载/包结构，用于规划修复路径。
+  location: local
+- id: A-010
+  name: Migrated code design documents
+  type: raw
+  source: self
+  origin: legacy_flat_asset_library_v20260614
+  registered: '2026-06-23'
+  path: 1_asset/Migrated code design documents
+  symlink: true
+  notes: resolver设计意图、索引命名约定的技术参考。
+  location: local
+- id: A-011
+  name: Migrated query indexes
+  type: raw
+  source: self
+  origin: legacy_flat_asset_library_v20260614
+  registered: '2026-06-23'
+  path: 1_asset/Migrated query indexes
+  symlink: true
+  notes: 当前索引文件命名、结构和缺失项（function_index.json）。
+  location: local
+- id: A-012
+  name: Migrated index builders
+  type: raw
+  source: self
+  origin: legacy_flat_asset_library_v20260614
+  registered: '2026-06-23'
+  path: 1_asset/Migrated index builders
+  symlink: true
+  notes: function_index及其他索引的生成逻辑，为索引修复提供技术依据。
+  location: local
+- id: A-013
+  name: T-007 development gap and risk list
+  type: deliverable
+  source: self
+  origin: task_digest_pxfquery_development_state
+  registered: '2026-06-23'
+  path: 1_asset/T-007 development gap and risk list.md
+  symlink: true
+  notes: 宏观开发缺口与风险。
+  location: local

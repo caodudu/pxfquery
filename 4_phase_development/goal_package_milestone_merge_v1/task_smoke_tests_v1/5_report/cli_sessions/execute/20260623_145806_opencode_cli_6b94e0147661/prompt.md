@@ -1,0 +1,212 @@
+# Action Prompt
+Generated: 2026-06-23 14:58
+
+## 第一步：必读文件（按顺序）
+1. ~/.cyhex/app/cyhex_protocol.md          ← CyHex 系统规范（版本验证 + 执行规则）
+2. ~/.cyhex/profile.yaml                   ← 全局工具配置（账号/代理/API Key/SSH）
+
+## Project Context
+Project: PxFquery (P-012)
+Phase: development | Status: active
+
+# Overview
+
+PxFquery is a macOS-hosted restart of a legacy bioinformatics project for LINCS-based perturbation-to-function analysis.
+
+The project's active purpose is to turn useful legacy code, data, reports, and manuscript strategy into a controlled current workspace for later development and submission work. It is not a continuation of the old Windows-era directory trees.
+
+Scientifically, PxFquery is a Python workflow/tool for querying drug- and gene-induced functional programs from perturbation data. Its core direction is:
+
+- forward query: perturbation and biological context to functional response;
+- reverse query: functional target and biological context to candidate perturbations;
+- evidence-aware retrieval using exact and proxy matches;
+- manuscript positioning around a concrete LINCS functional genomics use case rather than an inflated AI-agent platform claim.
+
+The legacy project contains valuable material, including package code, query indexes, CMAP/LINCS-derived functional matrices, resolver reports, and Genes submission strategy. In the current project, those materials are treated as migrated or registered historical assets. Their useful meaning should be digested into current tasks before reuse.
+
+The current project protocol is the persistent project-level rule layer. It should stay concise, current, and independent of old 4t, Obsidian, checkpoint, or Windows directory protocol shells.
+
+# Goal
+
+## Primary Goal
+
+Build a clean, current PxFquery project that can reuse the valuable legacy assets to support controlled software development, reproducible analysis, and a pragmatic manuscript path.
+
+## Scientific Goal
+
+Position PxFquery as a LINCS-based perturbation-to-function bioinformatics workflow for interpreting drug- and gene-induced functional programs in biological contexts such as cancer cell lines.
+
+## Manuscript Goal
+
+Prepare for a realistic MDPI Genes-style submission by emphasizing a narrow, reproducible functional genomics workflow and a concrete biological case study, rather than presenting PxFquery as a broad AI-agent platform.
+
+This manuscript path is graduation-oriented and journal-fit-oriented. The target is not to build a genuinely high-novelty tool paper or to compete with venues such as Bioinformatics, Nature-family journals, or other high-bar computational biology outlets. The work should look sufficiently substantial in the style of recent Genes papers while remaining practically lightweight, easy to understand, and close to article patterns that Genes has already accepted.
+
+## Migration Goal
+
+Use the T-001 semantic digestion outputs and the T-002 flat migrated asset library as the current bridge from legacy materials into new tasks. Future work should read migrated or registered assets first, then create new project outputs inside this repository.
+
+## Near-Term Goals
+
+1. Finish digestion-phase tasks until legacy assets, source authority, and project rules are clear enough for controlled development.
+2. Define the minimal development and analysis work needed to produce manuscript-grade evidence.
+3. Use the Genes literature survey to identify accepted paper patterns, workload presentation styles, and understandable result structures that PxFquery can realistically imitate.
+4. Keep code, reports, figures, tables, and manuscript materials in the current project structure unless a task explicitly registers an external source.
+5. Preserve provenance from legacy assets without reviving legacy directory structures as active protocol.
+
+# Rule
+
+## Source Boundary
+
+- `/Users/dudu/Documents/3_Project/8_functional_query` is a read-only historical source root.
+- Do not continue active development, manuscript drafting, analysis reruns, or protocol writing inside legacy Windows-era folders.
+- Prefer the migrated flat asset library and task-registered assets before consulting the old source root.
+- If a future task must read the old source root directly, it must state why the migrated assets were insufficient and record that reason in its task output.
+
+## Current Workspace Boundary
+
+- New project work belongs under `/Users/dudu/Documents/3_Project/12_PxFquery`.
+- Project-level hard rules belong only in `1_project_init/1_project_protocol/`.
+- Task-specific decisions, uncertainty, interpretation, strategy, and commentary belong in the relevant task's `4_artifact/` or `5_report/`, not in the project protocol.
+- Final deliverable directories should not be touched by digestion tasks unless the task protocol explicitly allows it.
+
+## Legacy Asset Use
+
+- Treat T-001 semantic digestion outputs as the first source for project background, old structure interpretation, and authority rules.
+- Treat the T-002 flat asset library as the preferred location for migrated legacy materials.
+- Treat old protocol shells, navigation files, checkpoint templates, MOC files, and AI handoff prompts as historical evidence only; do not preserve their structure as current project rules.
+- Secret-bearing legacy files must remain redacted or excluded unless a future task explicitly defines a secure handling rule.
+
+## Authority
+
+- For operational truth about old code, indexes, reports, and resolver behavior, use T-001/T-002 records that point to legacy workspace canonical design documents and latest report indexes.
+- For manuscript framing, use the migrated Genes strategy and timing analysis materials.
+- For later project navigation or staged planning, use later overlay materials only after checking whether T-001/T-002 already digested the same content.
+- When current user requirements conflict with old protocol fragments, the current user requirement and current CyHex-managed project structure take priority.
+
+## Development Posture
+
+- Keep scope pragmatic: prioritize working code, traceable evidence, manuscript-grade results, and clear provenance over broad platform claims.
+- Do not overstate LLM or agent capabilities; deterministic indexes and evidence retrieval are the safer manuscript foundation.
+- Treat Genes as a pragmatic graduation target with a relatively low acceptance bar compared with high-impact bioinformatics venues; do not design tasks as if the project must satisfy Bioinformatics, Nature-family, or top-tier computational biology expectations.
+- Favor work that appears substantial in figures, tables, workflow steps, coverage summaries, and case-study evidence while staying lightweight enough to finish quickly.
+- Prefer simple, readable, Genes-like manuscript logic over technically ambitious novelty claims.
+- When choosing between a clever but hard-to-explain method and a familiar Genes-style analysis pattern, prefer the familiar and explainable pattern unless the task explicitly requires innovation.
+- Separate hard constraints from soft working preferences so future tasks can follow rules without inheriting unnecessary commentary.
+
+## Task
+ID: T-035 | Name: smoke_tests_v1
+Status: active | Executor: hybrid
+Objective: Create pxfquery-{task_id} smoke/regression test suite covering package import, resource load, forward query, reverse query, guards, resolver optional layer, and demo.
+Task path: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_package_milestone_merge_v1/task_smoke_tests_v1
+
+## Protocol
+---
+### protocol.md
+# Protocol: smoke_tests_v1
+
+## Objective
+Create a `pxfquery-T-035` smoke/regression test suite that validates integration of the deterministic query engine chain by running each predecessor deliverable as a black-box smoke test and producing a single pass/fail evidence report with actual command execution output.
+
+## Inputs
+- **A-001**: T-029 forward query engine deliverable bundle — `forward_engine.py`, result tables, not-found JSON, validation JSON, completion report. Smoke-tested by re-running the engine script and comparing output against its own registered expectations.
+- **A-002**: T-030 reverse query engine deliverable bundle — `run_reverse_demo.py`, candidate JSON, meta JSON, validation JSON, completion report. Smoke-tested by re-running the demo script. If no deliverable exists yet, the smoke test records that dependency is unmet and proceeds to the next smoke target.
+- **A-003**: T-031 no-hit guard deliverable bundle — guard module, no-hit test script, positive-control test script, evidence JSONs, completion report. Smoke-tested by re-running both test scripts.
+- **A-004**: T-032 reverse stability guard deliverable bundle — guard demo script, validation JSON, repaired workspace, warning JSONs, positive-control candidate JSON, completion report. Smoke-tested by re-running the `run_stability_guard.py` script.
+- **A-005**: T-033 hybrid fast resolver deliverable bundle — resolver artifact if delivered. Smoke-tested only when artifacts exist; otherwise recorded as optional-skipped with evidence.
+- **A-006**: Current project protocol — defines the pxfquery conda environment required for all test execution.
+
+## Steps
+1. Read each predecessor task's `4_artifact/registry.yaml` to inventory expected deliverables and their roles.
+2. For each predecessor (T-029, T-030, T-031, T-032, T-033):
+   - If the task's runnable script or demo exists, execute it inside the pxfquery conda environment and capture stdout, stderr, exit code, and elapsed time.
+   - If a task has no deliverable yet, record it as `UNMET_DEPENDENCY` with a timestamp and move on.
+   - Compare smoke output against the task's own acceptance criteria (e.g. `found=True` for EGFR/A549, `found=False` for nonsense queries, guard warnings fire, candidates contain finite scores).
+3. Produce a consolidated smoke-test evidence JSON at `4_artifact/5_table/pxfquery_T035_smoke_results.json` with one record per predecessor containing: task_id, smoke_target, status (PASS/FAIL/UNMET_DEPENDENCY/SKIPPED), command, exit_code, stdout_summary, stderr_sample, elapsed_seconds, and a note.
+4. If any predecessor test fails and the failure is a scoped integration issue fixable within T-035, repair it locally and record the fix in `5_report/repair_log.md` with lineage back to the predecessor task.
+5. Produce CyHex-mandatory reports:
+   - `4_artifact/3_document/execution_report_vYYYYMMDD.html` — Chinese HTML step-by-step execution record.
+   - `4_artifact/3_document/result_report_vYYYYMMDD.html` — Chinese HTML result report with pass/fail summary table and stderr excerpts.
+6. Write `4_artifact/registry.yaml` registering all T-035 deliverables.
+7. Write `5_report/completion.md` summarizing which predecessors passed smoke, which failed, which were unmet, and which downstream tasks should note the integration state.
+
+### Required Bug-Repair Handling
+- If a bug prevents this task from producing a runnable deliverable, repair it within this task scope instead of only reporting it.
+- Produce the repaired output as a task-versioned PxFquery asset, for example `pxfquery-T-035`.
+- Record what was fixed, the source asset or task id, changed files/assets, validation evidence, and which downstream task should consume the repaired version.
+
+## Constraints
+
+### Scoped Repair And Versioning
+- Every task in this DAG has authority to fix bugs inside its own scope when required to make its deliverable run.
+- Input assets and output deliverables may intentionally be different PxFquery versions. This task may read upstream versions and emit `pxfquery-T-035` as a corrected local version.
+- Do not overwrite unrelated completed upstream artifacts in place. If an upstream asset is wrong, create a corrected downstream asset in this task and document the divergence.
+- Repairs must stay inside this task boundary unless the active task explicitly owns the upstream artifact. Preserve lineage, validation evidence, and downstream consumption guidance.
+
+### Smoke-Test Discipline
+- All test execution must use the project default conda environment: `/Users/dudu/Softwares/miniconda/bin/conda run -n pxfquery python ...`.
+- Smoke tests are black-box: re-run the predecessor's own script/demo, do not reimplement its logic inline.
+- T-030 and T-033 may not have deliverables yet. Record them as UNMET_DEPENDENCY with clear evidence rather than marking the smoke suite as failed.
+- T-033 resolver is optional: smoke it only if artifacts exist; otherwise mark SKIPPED.
+- The consolidated smoke results JSON must include actual command output evidence, not just file-existence checks.
+
+## Deliverables
+- `4_artifact/5_table/pxfquery_T035_smoke_results.json` — Consolidated smoke-test pass/fail evidence with command output per predecessor.
+- `4_artifact/3_document/execution_report_vYYYYMMDD.html` — CyHex-mandatory Chinese execution report.
+- `4_artifact/3_document/result_report_vYYYYMMDD.html` — CyHex-mandatory Chinese result report.
+- `4_artifact/registry.yaml` — T-035 artifact registry.
+- `5_report/completion.md` — Completion report with integration state summary.
+- `5_report/repair_log.md` — Only if scoped repairs were performed.
+
+## Acceptance
+- T-029 forward engine smoke: script re-runs and produces EGFR/A549 `found=True` with non-empty result table.
+- T-030 reverse engine smoke: script re-runs if deliverable exists; otherwise UNMET_DEPENDENCY recorded.
+- T-031 no-hit guard smoke: test scripts re-run, nonsense queries return `found=False`, positive control returns `found=True`.
+- T-032 stability guard smoke: demo re-runs, guard warnings file is non-empty, positive-control candidates are finite.
+- T-033 resolver smoke: run if deliverable exists; otherwise SKIPPED with evidence.
+- Consolidated smoke results JSON contains actual stdout/stderr/exit_code per predecessor, not just a checklist.
+- All Python execution uses the pxfquery conda environment.
+
+## Assets (6)
+- [deliverable] T-029 forward query engine deliverable bundle — goal_deterministic_query_engines_v1/task_forward_query_engine_v1
+- [deliverable] T-030 reverse query engine deliverable bundle — goal_deterministic_query_engines_v1/task_reverse_query_engine_v1
+- [deliverable] T-031 no-hit guard deliverable bundle — goal_deterministic_query_engines_v1/task_no_hit_guard_v1
+- [deliverable] T-032 reverse stability guard deliverable bundle — goal_deterministic_query_engines_v1/task_reverse_stability_guard_v1
+- [deliverable] T-033 hybrid fast resolver deliverable bundle — goal_resolver_optional_layer_v1/task_hybrid_fast_resolver_v1
+- [deliverable] Current project protocol — project_init
+
+## Asset Rules
+
+### Required
+- /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_deterministic_query_engines_v1/task_forward_query_engine_v1/4_artifact/ — T-029 forward query engine deliverable bundle — forward_engine.py, result tables, not-found JSON, validation JSON, completion report. Re-run as smoke test by this task.
+- /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_deterministic_query_engines_v1/task_reverse_query_engine_v1/4_artifact/ — T-030 reverse query engine deliverable bundle — run_reverse_demo.py, candidate JSON, meta JSON, validation JSON. Re-run as smoke test if deliverable exists; otherwise record UNMET_DEPENDENCY.
+- /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_deterministic_query_engines_v1/task_no_hit_guard_v1/4_artifact/ — T-031 no-hit guard deliverable bundle — guard module, test_no_hit_guard.py, test_positive_control.py, evidence JSONs. Re-run both test scripts as smoke tests.
+- /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_deterministic_query_engines_v1/task_reverse_stability_guard_v1/4_artifact/ — T-032 reverse stability guard deliverable bundle — run_stability_guard.py, validation JSON, repaired workspace, warning JSONs. Re-run as smoke test.
+- /Users/dudu/Documents/3_Project/12_PxFquery/1_project_init/1_project_protocol/ — Current project protocol defining the pxfquery conda environment and workspace boundaries required for all Python execution.
+### Forbidden
+- /Users/dudu/Documents/3_Project/12_PxFquery/2_project_asset/ — Project-level raw materials and legacy assets are read-only inputs. Predecessor tasks have already consolidated these into standard resources (T-021), workspace (T-024), and loader (T-026).
+- /Users/dudu/Documents/3_Project/12_PxFquery/6_project_deliverable/ — Final milestone deliverables are produced by T-037, not by smoke tests.
+- /Users/dudu/Documents/3_Project/8_functional_query — Legacy Windows-era historical source root must not be read or written.
+### Output
+- 4_artifact/5_table/pxfquery_T035_smoke_results.json
+- 4_artifact/3_document/
+- 4_artifact/registry.yaml
+- 5_report/completion.md
+- 5_report/repair_log.md
+
+## Instructions
+读完上方所有文件后再执行。
+- 资产文件按需读取（先读 registration.yaml，再取 required 资产内容）
+- 产出写入 4_artifact/ 或 5_report/，以 Protocol ## Deliverables 为准
+- 3_execution/ 下按 Steps 编号建子文件夹（§14）：01_xxx/ 02_xxx/
+- `3_execution/` 只用于运行脚本、临时过程文件、日志和可恢复作业状态。任何需要验收、复用、登记或交给后续 task 的结果，即使执行中临时生成在 `3_execution/`，结束前也必须移动或复制到 `4_artifact/` 的合适子目录，并登记到 `4_artifact/registry.yaml`。
+- 真实性最高优先级：没做就是没做，做不出来就是做不出来。不得把未执行 Step、失败测试、空壳文件、占位结果或"以后再做"包装成完成交付。
+- 如果无法完成或只能部分完成，立即写 `5_report/blocked.md`，说明已做什么、哪一步没做成、失败证据、需要什么才能继续；如果可以调用 CyHex API，同时 POST `/api/projects/12_PxFquery/tasks/goal_package_milestone_merge_v1/task_smoke_tests_v1/stage_incident`，body: `{"stage":"execute","kind":"failed|capability_failed|config_mismatch","reason":"...","evidence":"..."}`。工具/权限/联网/看图/读写/账号能力不足用 `capability_failed`；缺失关键数据，或 CyHex 登记、协议、资产规则、task_graph 与实际文件夹内容不一致，用 `config_mismatch`。最终回复必须明确说"未完成"或"部分完成"，不得请求验收通过。
+- 如果发现自己在重复无意义尝试、没有新增证据、无法形成下一步计划，不要继续消耗时间；写 `5_report/blocked.md` 并上报 `kind=failed`。
+- 如果任务需要三四天级后台运行，不要让本 CLI session 一直监听；在 `3_execution/` 写可恢复脚本、日志、pid/状态文件和检查点，调用 `POST /api/projects/12_PxFquery/tasks/goal_package_milestone_merge_v1/task_smoke_tests_v1/durable_jobs` 登记 command/log_file/status_file，启动 durable job 后结束本轮 session，并在脚本里写入完成回调：`PATCH /api/projects/12_PxFquery/tasks/goal_package_milestone_merge_v1/task_smoke_tests_v1/durable_jobs/{job_id}`。完成只代表进入 `execute_job_ready` 等待检查，不代表 done。
+- **强制产出两份 HTML 报告**，写入 `4_artifact/3_document/`，两份均登记为 5 星（§5 §15）：
+  1. `execution_report_v{YYYYMMDD}.html` — 执行情况报告：任务摘要、每步执行情况、交付物清单、失败/阻断记录
+  2. `result_report_v{YYYYMMDD}.html` — 结果报告：高可读性成果展示，含可视化图表，面向非开发者阅读
+- 产出物登记到 4_artifact/registry.yaml（§15）
+- 写 5_report/completion.md（结果摘要 + 输出清单）
+- 执行完成后不要自行 PATCH status → done；输出交付清单并等待人类验收。验收通过后由人类或验收流程 PATCH done。

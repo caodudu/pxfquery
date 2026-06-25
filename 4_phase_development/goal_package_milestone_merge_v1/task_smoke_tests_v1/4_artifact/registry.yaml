@@ -1,0 +1,107 @@
+task_id: T-035
+task_name: smoke_tests_v1
+task_version: pxfquery-T-035
+artifacts:
+- id: T035-D-001
+  path: 3_execution/02_smoke_runs/run_smoke_suite.py
+  role: smoke_orchestrator_script
+  description: T-035 smoke orchestrator. For each predecessor task, invokes `conda
+    run -n pxfquery python 3_execution/<script>` with cwd set to the predecessor's
+    own task directory, captures stdout/stderr/exit_code/elapsed, and produces a consolidated
+    smoke_results.json.
+  lineage:
+    source_assets:
+    - A-001 (T-029 forward engine bundle)
+    - A-003 (T-031 no-hit guard bundle)
+    - A-004 (T-032 stability guard bundle)
+    upstream_modified: false
+  identity: T-035/T035-D-001
+  core: false
+  lineage_anchor: false
+  stars: 2
+- id: T035-D-002
+  path: 4_artifact/5_table/pxfquery_T035_smoke_results.json
+  role: consolidated_smoke_evidence
+  description: One record per smoke target. Each record contains task_id, smoke_target,
+    status (PASS/FAIL/UNMET_DEPENDENCY/SKIPPED), command, exit_code, elapsed_seconds,
+    stdout_summary, stderr_sample, log paths, timestamp.
+  counts:
+    total: 6
+    pass: 4
+    fail: 0
+    unmet_dependency: 1
+    skipped: 1
+  identity: T-035/T035-D-002
+  core: false
+  lineage_anchor: false
+  stars: 1
+- id: T035-D-003
+  path: 3_execution/02_smoke_runs/T_029_forward_engine_stdout.txt
+  role: t029_smoke_log
+  description: Captured stdout from `conda run -n pxfquery python 3_execution/forward_engine.py`
+    re-run.
+  identity: T-035/T035-D-003
+  core: false
+  lineage_anchor: false
+  stars: 1
+- id: T035-D-004
+  path: 3_execution/02_smoke_runs/T_031_test_no_hit_guard_stdout.txt
+  role: t031_no_hit_smoke_log
+  description: Captured stdout from `conda run -n pxfquery python 3_execution/test_no_hit_guard.py`
+    re-run.
+  identity: T-035/T035-D-004
+  core: false
+  lineage_anchor: false
+  stars: 1
+- id: T035-D-005
+  path: 3_execution/02_smoke_runs/T_031_test_positive_control_stdout.txt
+  role: t031_positive_control_smoke_log
+  description: Captured stdout from `conda run -n pxfquery python 3_execution/test_positive_control.py`
+    re-run.
+  identity: T-035/T035-D-005
+  core: false
+  lineage_anchor: false
+  stars: 1
+- id: T035-D-006
+  path: 3_execution/02_smoke_runs/T_032_run_stability_guard_stdout.txt
+  role: t032_stability_smoke_log
+  description: Captured stdout from `conda run -n pxfquery python 3_execution/run_stability_guard.py`
+    re-run.
+  identity: T-035/T035-D-006
+  core: false
+  lineage_anchor: false
+  stars: 1
+- id: T035-D-007
+  path: 4_artifact/3_document/execution_report_v20260623.html
+  role: execution_report
+  description: CyHex-mandatory Chinese HTML execution report. Step-by-step record
+    of smoke execution per predecessor with raw stdout excerpts.
+  identity: T-035/T035-D-007
+  core: false
+  lineage_anchor: false
+  stars: 5
+- id: T035-D-008
+  path: 4_artifact/3_document/result_report_v20260623.html
+  role: result_report
+  description: CyHex-mandatory Chinese HTML result report. Human-readable summary
+    with per-predecessor result tables and acceptance checklist.
+  identity: T-035/T035-D-008
+  core: false
+  lineage_anchor: false
+  stars: 5
+- id: T035-D-009
+  path: 4_artifact/registry.yaml
+  role: artifact_registry
+  description: This file. T-035 artifact registry.
+  identity: T-035/T035-D-009
+  core: false
+  lineage_anchor: false
+  stars: 1
+- id: T035-D-010
+  path: 5_report/completion.md
+  role: completion_report
+  description: T-035 completion summary with integration state for downstream tasks.
+  identity: T-035/T035-D-010
+  core: false
+  lineage_anchor: false
+  stars: 4

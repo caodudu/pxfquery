@@ -1,0 +1,31 @@
+artifacts:
+- id: D-001
+  name: stress_test_development_handoff_pack
+  type: document
+  path: 4_artifact/2_persist/stress_test_development_handoff_pack_v20260624.md
+  version: v20260624
+  created: '2026-06-24'
+  status: delivered
+  notes: 7-section narrative handoff pack consolidating T-055, T-056, T-057, and T-007
+    findings into a single bridge from stress-test digestion to a future stress-test
+    milestone.
+  identity: T-058/D-001
+  role: support
+  core: false
+  lineage_anchor: false
+  stars: 4
+- id: D-002
+  name: recommended_stress_test_milestone_tasks
+  type: document
+  path: 4_artifact/2_persist/recommended_stress_test_milestone_tasks_v20260624.md
+  version: v20260624
+  created: '2026-06-24'
+  status: delivered
+  notes: 7 recommended future development tasks (ST-M01 through ST-M07) forming a
+    logical stress-test milestone sequence. Each task has name, objective, estimated
+    scope, predecessor dependency, and rationale anchored in T-055/056/057/007 evidence.
+  identity: T-058/D-002
+  role: support
+  core: false
+  lineage_anchor: false
+  stars: 4

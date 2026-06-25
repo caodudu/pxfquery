@@ -1,0 +1,69 @@
+session_id: cli_6a450243b5df
+driver: opencode
+agent_id: AGT-002
+agent_label: OpenCode cheap tasks
+stage: deliver
+status: done
+created: '2026-06-24T05:06:25'
+task_path: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1
+work_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1
+session_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/5_report/cli_sessions/deliver/20260624_050625_opencode_cli_6a450243b5df
+prompt_file: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/5_report/cli_sessions/deliver/20260624_050625_opencode_cli_6a450243b5df/prompt.md
+events_file: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/5_report/cli_sessions/deliver/20260624_050625_opencode_cli_6a450243b5df/events.jsonl
+stdout_file: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/5_report/cli_sessions/deliver/20260624_050625_opencode_cli_6a450243b5df/stdout.log
+stderr_file: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/5_report/cli_sessions/deliver/20260624_050625_opencode_cli_6a450243b5df/stderr.log
+agent_output_file: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/5_report/cli_sessions/deliver/20260624_050625_opencode_cli_6a450243b5df/agent_output.md
+cmd:
+- /Users/dudu/.opencode/bin/opencode
+- run
+- Execute the attached CyHex prompt. Return the final user-facing result clearly.
+- --dangerously-skip-permissions
+- --format
+- json
+- --dir
+- /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1
+- --file
+- /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/5_report/cli_sessions/deliver/20260624_050625_opencode_cli_6a450243b5df/prompt.md
+- -m
+- llm_gateway/deepseek-ai/deepseek-v4-pro
+agent_session_id: ses_109b1b2b0ffebt89fuuuiNF0AZ
+parent_agent_session_id: ''
+dry_run: false
+fork_from_resume: false
+blocked_report_mtime_ns_before: 0
+model: llm_gateway/deepseek-ai/deepseek-v4-pro
+prompt_source: assembled
+pid: 6878
+context_guard:
+  reason: stage_context_isolation
+  message: CyHex starts each pipeline stage in a fresh agent session; prior stage
+    state is passed through files, not chat context.
+  previous_session_id: cli_6535399e5a11
+  previous_agent_session_id: ses_109b2c6e2ffeme6zxvX4OWB9C6
+warnings:
+- CyHex starts each pipeline stage in a fresh agent session; prior stage state is
+  passed through files, not chat context.
+returncode: 0
+completed: '2026-06-24T05:08:13'
+context_estimate:
+  estimated_tokens: 54980
+  estimated_bytes: 164938
+  limit_tokens: 500000
+  exceeded: false
+  files:
+  - file: prompt.md
+    bytes: 50709
+    estimated_tokens: 16903
+  - file: events.jsonl
+    bytes: 57571
+    estimated_tokens: 19191
+  - file: stdout.log
+    bytes: 55816
+    estimated_tokens: 18606
+  - file: stderr.log
+    bytes: 0
+    estimated_tokens: 0
+  - file: agent_output.md
+    bytes: 842
+    estimated_tokens: 281
+  method: local_session_file_bytes_div_3

@@ -1,0 +1,61 @@
+assets:
+  - id: A-001
+    name: T-029 forward query engine deliverable bundle
+    type: deliverable
+    source: predecessor
+    origin: goal_deterministic_query_engines_v1/task_forward_query_engine_v1
+    registered: '2026-06-23'
+    path: 1_asset/T-029 forward query engine deliverable bundle
+    symlink: true
+    notes: T-029 forward query engine deliverable bundle (4_artifact/) containing forward_engine.py, EGFR/A549 and TP53/MCF7 result tables, not-found JSON, validation JSON, reports. Re-run as smoke test by T-035. Read-only.
+    location: local
+  - id: A-002
+    name: T-030 reverse query engine deliverable bundle
+    type: deliverable
+    source: predecessor
+    origin: goal_deterministic_query_engines_v1/task_reverse_query_engine_v1
+    registered: '2026-06-23'
+    path: 1_asset/T-030 reverse query engine deliverable bundle
+    symlink: true
+    notes: T-030 reverse query engine deliverable bundle (4_artifact/) containing run_reverse_demo.py, candidate JSON, meta JSON. Re-run as smoke test if deliverable exists; otherwise record UNMET_DEPENDENCY. Read-only.
+    location: local
+  - id: A-003
+    name: T-031 no-hit guard deliverable bundle
+    type: deliverable
+    source: predecessor
+    origin: goal_deterministic_query_engines_v1/task_no_hit_guard_v1
+    registered: '2026-06-23'
+    path: 1_asset/T-031 no-hit guard deliverable bundle
+    symlink: true
+    notes: T-031 no-hit guard artifact bundle (4_artifact/) containing guard module, test_no_hit_guard.py, test_positive_control.py, no-hit evidence JSON, positive-control evidence JSON, false-positive reproduction JSON, reports. Re-run both test scripts as smoke tests. Read-only.
+    location: local
+  - id: A-004
+    name: T-032 reverse stability guard deliverable bundle
+    type: deliverable
+    source: predecessor
+    origin: goal_deterministic_query_engines_v1/task_reverse_stability_guard_v1
+    registered: '2026-06-23'
+    path: 1_asset/T-032 reverse stability guard deliverable bundle
+    symlink: true
+    notes: T-032 reverse stability guard deliverable bundle (4_artifact/) containing run_stability_guard.py, validation JSON, repaired workspace, warning JSONs, positive-control candidate JSON, positive-control meta JSON, reports. Re-run as smoke test. Read-only.
+    location: local
+  - id: A-005
+    name: T-033 hybrid fast resolver deliverable bundle
+    type: deliverable
+    source: sibling
+    origin: goal_resolver_optional_layer_v1/task_hybrid_fast_resolver_v1
+    registered: '2026-06-23'
+    path: 1_asset/T-033 hybrid fast resolver deliverable bundle
+    symlink: true
+    notes: T-033 hybrid fast resolver artifact bundle (4_artifact/) — resolver is an optional layer. Smoke-tested only if artifacts exist; otherwise recorded as SKIPPED with evidence.
+    location: local
+  - id: A-006
+    name: Current project protocol
+    type: deliverable
+    source: self
+    origin: project_init
+    registered: '2026-06-23'
+    path: 1_asset/Current project protocol
+    symlink: true
+    notes: Active project boundaries, source authority rules, and the default pxfquery conda environment definition required for all Python execution in this task.
+    location: local

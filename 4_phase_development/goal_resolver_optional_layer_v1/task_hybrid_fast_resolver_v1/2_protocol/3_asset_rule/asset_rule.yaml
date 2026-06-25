@@ -1,0 +1,108 @@
+version: 1
+required:
+  - id: A-001
+    path: ../../../4_phase_development/goal_resource_index_packs_v1/task_index_name_normalizer_v1/4_artifact/2_persist/pxfquery_T027_runtime_query_index/
+    reason: T-027 normalized runtime query index pack. The hybrid resolver consumes the seven resolver-required JSON files via symlinks to T-021/D-004.
+  - id: A-002
+    path: ../../../4_phase_development/goal_resource_index_packs_v1/task_function_index_pack_v1/4_artifact/2_persist/pxfquery_T028_function_index/function_index.json
+    reason: T-028 function index with 91 functions and aliases. Direct input for function_desc → var_name mapping in the resolver.
+  - id: A-003
+    path: ../../../4_phase_development/goal_deterministic_query_engines_v1/task_no_hit_guard_v1/4_artifact/2_persist/pxfquery_T031_forward_no_hit_guard.py
+    reason: T-031 no-hit guard module. Hybrid resolver wraps forward perturbation matching with this guard so unsupported perturbations return NOT_FOUND.
+  - id: A-004
+    path: ../../../4_phase_development/goal_deterministic_query_engines_v1/task_reverse_stability_guard_v1/4_artifact/2_persist/
+    reason: T-032 reverse stability guard outputs (guard_warnings JSON, positive control metadata). Used to keep reverse-query metadata consistent for hybrid scenarios.
+optional:
+  - id: R-001
+    path: ../../../4_phase_development/goal_package_foundation_v1/task_workspace_package_v1/4_artifact/2_persist/workspace/
+    reason: T-024 pxfquery workspace (read-only). Used as API-surface reference for QueryResolver / ForwardQuery / ReverseQuery behavior; not mutated.
+  - id: R-002
+    path: ../../../4_phase_development/goal_deterministic_query_engines_v1/task_forward_query_engine_v1/4_artifact/
+    reason: T-029 sibling forward engine deliverable (D-001..D-007). Engine script that hybrid resolver imports as forward engine binding for the EXACT / PROXY examples. Read-only sibling.
+  - id: R-003
+    path: ../../../4_phase_development/goal_deterministic_query_engines_v1/task_no_hit_guard_v1/4_artifact/5_table/pxfquery_T031_no_hit_evidence.json
+    reason: T-031 negative test corpus (nonsense perturbation names). Useful as a seed set for `example_not_found.py` if needed; not a blocker.
+  - id: R-004
+    path: ../../../4_phase_development/goal_deterministic_query_engines_v1/task_no_hit_guard_v1/5_report/completion.md
+    reason: T-031 completion summarizes the guard semantics this resolver must respect.
+  - id: R-005
+    path: ../../../4_phase_development/goal_algorithm_function_review/task_mvp_algorithm_run-through_review/4_artifact/
+    reason: T-013 MVP capability contract and reviewer reports. Soft context for CAP-05 no-hit and reverse-stability guard semantics.
+  - id: R-006
+    path: ../../../3_phase_digestion/goal_development_asset_digestion/task_digest_pxfquery_development_state/4_artifact/
+    reason: T-007 PxFquery project intent. Reference only; not a blocking dependency.
+forbidden:
+  - path: ../../../2_project_asset/1_raw_material/legacy_flat_asset_library_v20260614/
+    reason: Legacy flat asset library is read-only historical material. T-027 already consumes T-021/D-004 by reference.
+  - path: ../../../2_project_asset/
+    reason: Project-level raw materials are scoped out. T-021/D-004 is the consolidated data source via A-001.
+  - path: ../../../6_project_deliverable/
+    reason: Final project deliverables are produced only by the milestone merge task.
+  - path: /Users/dudu/Documents/3_Project/8_functional_query
+    reason: Legacy Windows-era historical source root. Read-only / offline; not used by this task.
+  - path: ../../../1_project_init/1_project_protocol/
+    reason: Project-level rules live in the project init layer and must not be modified by task configuration or execution.
+  - path: ../../../1_project_init/3_project_state/
+    reason: Project state is updated by orchestration, not by this task configuration.
+output:
+  - path: 3_execution/pxfquery_T033_hybrid_fast_resolver.py
+    description: Hybrid fast resolver module (core, T-033/D-001).
+  - path: 3_execution/example_exact_match.py
+    description: Exact-match example driver (T-033/D-002).
+  - path: 3_execution/example_proxy_match.py
+    description: Proxy-match example driver (T-033/D-003).
+  - path: 3_execution/example_not_found.py
+    description: Not-found example driver (T-033/D-004).
+  - path: 4_artifact/5_table/pxfquery_T033_example_exact.json
+    description: Exact-match evidence with visible metadata (T-033/D-005).
+  - path: 4_artifact/5_table/pxfquery_T033_example_proxy.json
+    description: Proxy-match evidence with visible metadata (T-033/D-006).
+  - path: 4_artifact/5_table/pxfquery_T033_example_not_found.json
+    description: Not-found evidence with visible metadata and explicit NOT_FOUND note (T-033/D-007).
+  - path: 4_artifact/5_table/pxfquery_T033_examples_metadata.json
+    description: Metadata roll-up: resolver version, conda env, seed inputs, pass/fail summary (T-033/D-008).
+  - path: 4_artifact/2_persist/pxfquery_T033_downstream_usage_notes.md
+    description: English usage notes for the optional hybrid layer (T-033/D-009).
+  - path: 4_artifact/2_persist/pxfquery_T033_downstream_usage_notes_zh.md
+    description: Chinese usage notes (T-033/D-010).
+  - path: 4_artifact/3_document/execution_report_vYYYYMMDD.html
+    description: CyHex execution report (T-033/D-011, stars: 5).
+  - path: 4_artifact/3_document/result_report_vYYYYMMDD.html
+    description: CyHex result report (T-033/D-012, stars: 5).
+  - path: 4_artifact/registry.yaml
+    description: T-033 deliverable registry.
+  - path: 5_report/completion.md
+    description: Completion report for T-033 (success or non-blocking failure).
+  - path: 5_report/repair_log.md
+    description: Repair log, only written if an in-scope bug was repaired in pxfquery-T-033.
+modifiable:
+  - path: 3_execution/
+  - path: 4_artifact/2_persist/
+  - path: 4_artifact/3_document/
+  - path: 4_artifact/5_table/
+  - path: 4_artifact/registry.yaml
+  - path: 5_report/completion.md
+  - path: 5_report/repair_log.md
+  - path: 1_asset/registration.yaml
+non_modifiable:
+  - path: 2_protocol/2_protocol_split/protocol.md
+  - path: 2_protocol/3_asset_rule/asset_rule.yaml
+  - path: 2_protocol/1_meta_info/meta.yaml
+  - path: ../../../1_project_init/1_project_protocol/
+  - path: ../../../1_project_init/3_project_state/
+  - path: ../../../2_project_asset/
+  - path: ../../../6_project_deliverable/
+  - path: ../../../4_phase_development/goal_resource_index_packs_v1/task_index_name_normalizer_v1/4_artifact/
+  - path: ../../../4_phase_development/goal_resource_index_packs_v1/task_function_index_pack_v1/4_artifact/
+  - path: ../../../4_phase_development/goal_deterministic_query_engines_v1/task_no_hit_guard_v1/4_artifact/
+  - path: ../../../4_phase_development/goal_deterministic_query_engines_v1/task_reverse_stability_guard_v1/4_artifact/
+  - path: ../../../4_phase_development/goal_package_foundation_v1/task_workspace_package_v1/4_artifact/
+  - path: ../../../4_phase_development/goal_deterministic_query_engines_v1/task_forward_query_engine_v1/4_artifact/
+  - path: /Users/dudu/Documents/3_Project/8_functional_query
+notes:
+  - This task is an OPTIONAL hybrid layer; failure of any example does not block the deterministic forward/reverse milestone.
+  - All Python execution must use the pxfquery conda environment: `/Users/dudu/Softwares/miniconda/bin/conda run -n pxfquery python ...`.
+  - The hybrid resolver integrates T-027 query indexes, T-028 function index, T-031 no-hit guard, and T-032 reverse stability semantics; it does NOT replace any of these upstream deliverables.
+  - All upstream assets are read-only. If a bug must be repaired, it is recorded as a pxfquery-T-033 local repair in `5_report/repair_log.md`.
+  - Build the hybrid resolver on top of the existing QueryResolver / ForwardQuery / ReverseQuery API surface from T-024 workspace; do not duplicate the index loading code wholesale.
+  - The not-found example must be explicit NOT_FOUND, not a fuzzy false-positive fallthrough.

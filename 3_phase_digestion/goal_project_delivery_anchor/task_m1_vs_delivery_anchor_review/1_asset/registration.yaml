@@ -1,0 +1,215 @@
+assets:
+- id: A-001
+  name: m1_milestone_report
+  type: document
+  source: predecessor
+  source_task: T-053
+  source_artifact_id: D-001
+  origin: T-053/D-001
+  registered: '2026-06-25'
+  path: 1_asset/m1_milestone_report.md
+  symlink: true
+  status: ready
+  notes: Primary M1 package milestone summary to classify against delivery anchors.
+  location: local
+- id: A-002
+  name: m1_evidence_index
+  type: other
+  source: predecessor
+  source_task: T-053
+  source_artifact_id: D-002
+  origin: T-053/D-002
+  registered: '2026-06-25'
+  path: 1_asset/m1_evidence_index.json
+  symlink: true
+  status: ready
+  notes: Machine-readable M1 evidence streams and gate verdicts.
+  location: local
+- id: A-003
+  name: m1_layered_asset_map
+  type: table
+  source: predecessor
+  source_task: T-053
+  source_artifact_id: D-003
+  origin: T-053/D-003
+  registered: '2026-06-25'
+  path: 1_asset/m1_layered_asset_map.csv
+  symlink: true
+  status: ready
+  notes: M1 provenance map for identifying which layer supplied each claimed capability.
+  location: local
+- id: A-004
+  name: m1_known_gaps
+  type: document
+  source: predecessor
+  source_task: T-053
+  source_artifact_id: D-004
+  origin: T-053/D-004
+  registered: '2026-06-25'
+  path: 1_asset/m1_known_gaps.md
+  symlink: true
+  status: ready
+  notes: Known M1 gaps to compare with anchor-required capabilities and unapproved
+    deferrals.
+  location: local
+- id: A-005
+  name: package_delivery_anchor
+  type: other
+  source: predecessor
+  source_task: T-062
+  source_artifact_id: T062-A-001
+  origin: T-062/T062-A-001
+  registered: '2026-06-25'
+  path: 1_asset/package_delivery_anchor.yaml
+  symlink: true
+  status: ready
+  notes: Primary machine-readable package capability anchor and downgrade trigger
+    source.
+  location: local
+- id: A-006
+  name: package_capability_matrix
+  type: table
+  source: predecessor
+  source_task: T-062
+  source_artifact_id: T062-A-002
+  origin: T-062/T062-A-002
+  registered: '2026-06-25'
+  path: 1_asset/package_capability_matrix.csv
+  symlink: true
+  status: ready
+  notes: Checklist for package capability evidence, thresholds, and failure modes.
+  location: local
+- id: A-007
+  name: package_downgrade_rules
+  type: document
+  source: predecessor
+  source_task: T-062
+  source_artifact_id: T062-A-003
+  origin: T-062/T062-A-003
+  registered: '2026-06-25'
+  path: 1_asset/package_downgrade_rules.md
+  symlink: true
+  status: ready
+  notes: Rules for distinguishing valid fallback from unapproved milestone scope shrinkage.
+  location: local
+- id: A-008
+  name: package_review_rubric
+  type: document
+  source: predecessor
+  source_task: T-062
+  source_artifact_id: T062-A-004
+  origin: T-062/T062-A-004
+  registered: '2026-06-25'
+  path: 1_asset/package_review_rubric.md
+  symlink: true
+  status: ready
+  notes: Review procedure and evidence hierarchy for package milestone classification.
+  location: local
+- id: A-009
+  name: package_classification_vocabulary
+  type: other
+  source: predecessor
+  source_task: T-062
+  source_artifact_id: T062-A-005
+  origin: T-062/T062-A-005
+  registered: '2026-06-25'
+  path: 1_asset/package_classification_vocabulary.yaml
+  symlink: true
+  status: ready
+  notes: Controlled labels for delivered, partial, missing, downgraded, and deferred
+    classifications.
+  location: local
+- id: A-010
+  name: llm_resolver_anchor
+  type: other
+  source: predecessor
+  source_task: T-063
+  source_artifact_id: T063-A-001
+  origin: T-063/T063-A-001
+  registered: '2026-06-25'
+  path: 1_asset/llm_resolver_anchor.yaml
+  symlink: true
+  status: ready
+  notes: Machine-readable resolver/LLM capability scope and acceptance baseline.
+  location: local
+- id: A-011
+  name: llm_resolver_functional_design
+  type: document
+  source: predecessor
+  source_task: T-063
+  source_artifact_id: T063-A-002
+  origin: T-063/T063-A-002
+  registered: '2026-06-25'
+  path: 1_asset/llm_resolver_functional_design.md
+  symlink: true
+  status: ready
+  notes: Human-readable resolver behavior specification to compare against M1 claims.
+  location: local
+- id: A-012
+  name: llm_resolver_demo_cases
+  type: document
+  source: predecessor
+  source_task: T-063
+  source_artifact_id: T063-A-003
+  origin: T-063/T063-A-003
+  registered: '2026-06-25'
+  path: 1_asset/llm_resolver_demo_cases.md
+  symlink: true
+  status: ready
+  notes: Expected future resolver demo coverage for exact/proxy/not-found and LLM
+    fallback behavior.
+  location: local
+- id: A-013
+  name: llm_resolver_acceptance_matrix
+  type: table
+  source: predecessor
+  source_task: T-063
+  source_artifact_id: T063-A-004
+  origin: T-063/T063-A-004
+  registered: '2026-06-25'
+  path: 1_asset/llm_resolver_acceptance_matrix.csv
+  symlink: true
+  status: ready
+  notes: Resolver-specific acceptance matrix and disallowed substitute checklist.
+  location: local
+- id: A-014
+  name: evidence_route_taxonomy
+  type: document
+  source: predecessor
+  source_task: T-064
+  source_artifact_id: D-001
+  origin: T-064/D-001
+  registered: '2026-06-25'
+  path: 1_asset/evidence_route_taxonomy.md
+  symlink: true
+  status: ready
+  notes: Route taxonomy for exact-hit, proxy-hit, no-hit, ambiguous-hit, context-missing,
+    and transfer/suggestion review.
+  location: local
+- id: A-015
+  name: evidence_metadata_contract
+  type: other
+  source: predecessor
+  source_task: T-064
+  source_artifact_id: D-002
+  origin: T-064/D-002
+  registered: '2026-06-25'
+  path: 1_asset/evidence_metadata_contract.yaml
+  symlink: true
+  status: ready
+  notes: Required evidence metadata contract for route-aware milestone review.
+  location: local
+- id: A-016
+  name: evidence_routing_stress_mapping
+  type: table
+  source: predecessor
+  source_task: T-064
+  source_artifact_id: D-003
+  origin: T-064/D-003
+  registered: '2026-06-25'
+  path: 1_asset/evidence_routing_stress_mapping.csv
+  symlink: true
+  status: ready
+  notes: Stress-test route mapping to identify routing capabilities absent from M1
+    evidence.
+  location: local

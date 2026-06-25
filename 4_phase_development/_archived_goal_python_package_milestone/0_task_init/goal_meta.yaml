@@ -1,0 +1,15 @@
+goal_id: G-013
+name: Python package milestone
+phase: development
+project: P-012
+objective: Build a runnable PxFquery Python package milestone from existing digestion,
+  MVP review, and standardized-resource assets, with importable package structure,
+  deterministic query APIs, tests, demo, and milestone evidence suitable for later
+  manuscript and website work.
+status: active
+tasks:
+- T-024
+created: '2026-06-23'
+notes: Created by orchestration AI as a green fast-pass development milestone goal.
+  Existing upstream nodes are referenced but not modified. Fast fixture route uses
+  T014/T013 and does not wait for T021; standard-resource route waits for T021.

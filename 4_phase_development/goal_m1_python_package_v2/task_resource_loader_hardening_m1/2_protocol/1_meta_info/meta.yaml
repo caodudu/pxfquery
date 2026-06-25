@@ -1,0 +1,42 @@
+task_id: T-047
+name: resource_loader_hardening_m1
+phase: development
+goal: goal_m1_python_package_v2
+project: P-012
+objective: Harden the loader against real M1 manifest and index resources. Use T-043
+  for manifest/fixture definitions and T-045 for index health findings; optionally
+  use T-041 legacy source digest if available for implementation clues. Deliver enhanced
+  loader behavior, real-path/index smoke results, and a clear gap list if full hardening
+  is blocked. This is a reusable enhancement asset and must not block the M1 fixture-based
+  path if real resources are incomplete.
+executor: hybrid
+agent_id: AGT-002
+config_agent_id: AGT-002
+check_agent_id: AGT-002
+execute_agent_id: AGT-002
+server_id: null
+status: done
+cyhex_version: 1.2.19
+created: '2026-06-24'
+started: '2026-06-24T04:01:08'
+completed: '2026-06-24'
+notes: 'Constraint supplement for config AI: This is an enhancement/reuse asset, not
+  an M1 blocker. Use T-043 and T-045 as hard inputs; use T-041 only if done and available
+  as may input. Harden real manifest/index loading where feasible and report gaps
+  honestly. Do not mutate authoritative indexes and do not block the fixture loader
+  path if real resources remain incomplete.'
+fast_pass_permission: green
+sub_status: ''
+fast_pass_last_auto_approved: check_review
+fast_pass_last_auto_approved_at: '2026-06-24T04:18:34'
+auto_recovery:
+  check:
+    source_session_id: cli_d2684fc69f1d
+    attempts: 1
+    last_attempt_at: '2026-06-24T04:16:34'
+  execute:
+    source_session_id: cli_f7f9331da18c
+    attempts: 1
+    last_attempt_at: '2026-06-24T05:05:14'
+fast_pass_accepted: true
+fast_pass_accepted_at: '2026-06-24T05:08:15'

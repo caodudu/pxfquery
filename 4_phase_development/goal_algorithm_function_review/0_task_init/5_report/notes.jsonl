@@ -1,0 +1,2 @@
+{"id": "N-core", "ts": "2026-06-18", "actor": "ui", "content": "G-005. First development-stage review goal. Evidence-first; creates repeated algorithm test and review tasks before code-changing development.", "core": false}
+{"id": "N-1782160048685", "ts": "2026-06-23T04:27:28", "actor": "ui", "content": "算法功能审查测试", "core": true}

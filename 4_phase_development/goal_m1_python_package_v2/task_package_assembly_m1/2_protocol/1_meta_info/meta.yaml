@@ -1,0 +1,32 @@
+task_id: T-052
+name: package_assembly_m1
+phase: development
+goal: goal_m1_python_package_v2
+project: P-012
+objective: Assemble the runnable M1 package surface. Use T-044 package skeleton plus
+  T-048 forward and T-049 reverse implementations. Deliver an installable package,
+  import evidence, CLI command wiring, and demo commands for forward and reverse.
+  This task may connect modules and package entry points, but must not reimplement
+  query logic or replace validation evidence from T-050/T-051.
+executor: hybrid
+agent_id: AGT-002
+config_agent_id: AGT-002
+check_agent_id: AGT-002
+execute_agent_id: AGT-002
+server_id: null
+status: done
+cyhex_version: 1.2.19
+created: '2026-06-24'
+started: null
+completed: '2026-06-24'
+notes: 'Constraint supplement for config AI: Assemble and wire the package surface
+  only. Use T-044 skeleton plus T-048/T-049 implementations. Deliver install/import
+  evidence, CLI entry points, and demo commands. Do not reimplement forward/reverse
+  logic, do not replace validation evidence, and do not use T024-T040 artifacts. If
+  assembly fails, report packaging/interface gaps for same-layer repair.'
+fast_pass_permission: green
+sub_status: ''
+fast_pass_last_auto_approved: check_review
+fast_pass_last_auto_approved_at: '2026-06-24T05:57:54'
+fast_pass_accepted: true
+fast_pass_accepted_at: '2026-06-24T06:08:18'

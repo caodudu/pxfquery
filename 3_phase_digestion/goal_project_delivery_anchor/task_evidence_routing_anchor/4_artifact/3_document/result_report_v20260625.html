@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>T-064 结果报告</title>
+  <style>
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.68; margin: 32px auto; max-width: 1080px; color: #202124; }
+h1, h2 { color: #12355b; }
+section { margin: 22px 0; }
+table { border-collapse: collapse; width: 100%; margin: 14px 0; }
+th, td { border: 1px solid #d0d7de; padding: 8px 10px; vertical-align: top; }
+th { background: #f2f5f8; }
+code { background: #f6f8fa; padding: 2px 4px; border-radius: 4px; }
+.note { background: #f8fafc; border-left: 4px solid #4776a8; padding: 12px 14px; }
+.warn { background: #fff8e6; border-left: 4px solid #d29922; padding: 12px 14px; }
+</style>
+</head>
+<body>
+
+<h1>T-064 证据路由锚点结果报告</h1>
+<section><h2>一句话结论</h2><p class="note">T-064 把 PxFquery 的证据路由定义为六类可验收行为，并规定每次返回都必须携带 route_type、context、perturbation resolution、function response、confidence、proxy chain、diagnostics 和 suggestions 等透明元数据。</p></section>
+<section><h2>项目背景</h2><p>PxFquery 的价值不只是查到 perturbation 和 function 的关系，还在于告诉用户“为什么这个结果可信”。前序任务已经暴露 no-hit false-positive、resolver/index 命名缺口、LLM 稳定性和 proxy routing 风险。T-064 针对这些风险建立一套 evidence-routing contract，让未来实现不能把不确定、代理、缺上下文或无命中的情况混成同一种返回。</p></section>
+<section><h2>核心结果</h2><p>结果包含三层。第一层是 route taxonomy：exact-hit、proxy-hit、no-hit、ambiguous-hit、context-missing、transfer/suggestion。第二层是 metadata contract：每个 route response 都要有固定字段和约束，其中 no-hit 要求 similarity threshold，proxy 要求 proxy_chain，LLM 字段必须说明其辅助角色。第三层是 stress-test mapping：T-058 的 29 个场景全部被映射到 route expectations，为后续测试开发提供清晰输入。</p></section>
+<section><h2>项目价值</h2><p>这份结果把“查询失败、代理命中、上下文缺失、模糊候选、用户建议”从模糊体验变成可检查的交付标准。它可以防止后续代码把 false match 当成成功，把 fallback 当成完整 capability，把 LLM 文案当成科学证据。对人类项目管理来说，T-064 是判断后续 M3 是否真的有用户级 evidence routing 的关键依据。</p></section>
+<section><h2>交付物导读</h2><table><tr><th>交付物</th><th>用途</th></tr><tr><td><code>evidence_routing_route_taxonomy_v20260625.md</code></td><td>先读这个，理解六类 route 和每类 acceptance case。</td></tr><tr><td><code>evidence_routing_metadata_contract_v20260625.yaml</code></td><td>实现和测试时读取，固定 response schema、enum、threshold、LLM 边界。</td></tr><tr><td><code>evidence_routing_stress_test_mapping_v20260625.csv</code></td><td>未来 stress-test task 直接把每一行变成测试或验收项。</td></tr></table></section>
+<section><h2>后续使用方式</h2><p>未来 M3 resolver、evidence-routing implementation 或 stress-test milestone 应把 T-064 作为 must/reference 输入。执行时应逐项证明 exact/proxy/no-hit/ambiguous/context-missing/transfer routes 是否被支持，并检查返回 metadata 是否满足 contract。若没有 dedicated ambiguous/transfer stress cases，应新建测试补足，而不是声称 T-058 已覆盖。</p></section>
+<section><h2>边界与风险</h2><p>T-064 没有实现代码，不证明 runtime path 可用，也没有运行压力测试。ambiguous-hit 和 transfer/suggestion 在当前 T-058 场景中覆盖不足，是需要后续补测试的明确 gap。LLM 只能作为解析和解释辅助，不能作为无证据替代。</p></section>
+
+</body>
+</html>

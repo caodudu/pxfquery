@@ -1,0 +1,45 @@
+task_id: T-057
+name: 03_legacy_stress_logic_reuse_boundary
+phase: digestion
+goal: goal_legacy_stress_test_asset_digestion
+project: P-012
+objective: 'Judge the reuse boundary for legacy stress-test-related logic, scripts,
+  reports, and query-validation ideas: which are suitable as references, which require
+  rewrite, which are historical-only, and which are insufficiently supported.
+
+
+  Deliverables: 4_artifact/2_persist/legacy_stress_logic_reuse_boundary_vYYYYMMDD.md
+  and 4_artifact/5_table/stress_logic_reuse_decision_matrix_vYYYYMMDD.csv.
+
+
+  Reference T-001 for authority rules over messy legacy evidence. Reference T-002
+  for migrated asset entry points and migration status. Reference T-007 for code/index/report
+  maturity. Use T-041 only as a may input if done; otherwise omit it.
+
+
+  Important constraints: do not modify code, do not repair old scripts, do not run
+  production-scale tests; produce reuse decisions with reasons: direct reference,
+  rewrite needed, historical evidence only, not usable, or unknown.'
+executor: opencode
+agent_id: AGT-002
+config_agent_id: AGT-002
+check_agent_id: AGT-002
+execute_agent_id: AGT-002
+server_id: null
+status: done
+cyhex_version: 1.2.19
+created: '2026-06-24'
+started: null
+completed: '2026-06-24'
+notes: ''
+fast_pass_permission: green
+sub_status: ''
+fast_pass_last_auto_approved: check_review
+fast_pass_last_auto_approved_at: '2026-06-24T05:11:44'
+auto_recovery:
+  execute:
+    source_session_id: cli_8491b5535b06
+    attempts: 1
+    last_attempt_at: '2026-06-24T07:00:54'
+fast_pass_accepted: true
+fast_pass_accepted_at: '2026-06-24T07:04:46'

@@ -1,0 +1,10 @@
+{"action": "status_change", "from": "pending", "to": "active", "actor": "ui", "ts": "2026-06-23T06:35:31"}
+{"action": "dependency_released", "completed_dependency": "T-031", "actor": "dependency_scheduler", "ts": "2026-06-23T14:22:30"}
+{"action": "fast_pass_approve", "from": "config_review", "to": "config_approved", "actor": "fast_pass_permission", "ts": "2026-06-23T14:49:56"}
+{"action": "fast_pass_approve", "from": "check_review", "to": "check_approved", "actor": "fast_pass_permission", "ts": "2026-06-23T14:58:05"}
+{"action": "artifact_save", "name": "pxfquery_T035_smoke_results_20260623.json", "category": "2_persist", "ts": "2026-06-23T15:52:43"}
+{"action": "artifact_save", "name": "execution_report_v20260623_20260623.html", "category": "2_persist", "ts": "2026-06-23T15:54:37"}
+{"action": "artifact_save", "name": "result_report_v20260623_20260623.html", "category": "2_persist", "ts": "2026-06-23T15:54:37"}
+{"action": "artifact_save", "name": "registry_20260623.yaml", "category": "2_persist", "ts": "2026-06-23T15:54:37"}
+{"action": "fast_pass_accept_delivery", "from": "delivery_review", "to": "done", "actor": "fast_pass_permission", "ts": "2026-06-23T15:56:35"}
+{"action": "status_change", "from": "done", "to": "blocked", "actor": "ui", "ts": "2026-06-24T00:55:16"}

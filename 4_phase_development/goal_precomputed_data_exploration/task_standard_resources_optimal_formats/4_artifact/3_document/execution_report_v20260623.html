@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>T-021 Execution Report</title>
+<style>
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 1100px; margin: 30px auto; padding: 0 20px; color: #222; line-height: 1.5; }
+h1, h2, h3 { color: #1a3c5e; }
+h1 { border-bottom: 3px solid #1a3c5e; padding-bottom: 10px; }
+h2 { border-bottom: 1px solid #ccc; padding-bottom: 5px; margin-top: 30px; }
+table { border-collapse: collapse; width: 100%; margin: 10px 0 20px 0; font-size: 0.95em; }
+th, td { border: 1px solid #ccc; padding: 8px 12px; text-align: left; }
+th { background: #e8eef5; }
+tr:nth-child(even) { background: #f7f8fa; }
+.pass { color: #2a8a2a; font-weight: bold; }
+.fail { color: #b53030; font-weight: bold; }
+.banner { background: linear-gradient(135deg, #1a3c5e, #2a5c8e); color: white; padding: 20px; border-radius: 8px; margin-bottom: 20px; }
+.banner h1 { color: white; border: none; margin: 0 0 5px 0; }
+.banner p { margin: 4px 0; opacity: 0.95; }
+.savings { background: #e8f5e8; padding: 15px; border-left: 5px solid #2a8a2a; border-radius: 4px; margin: 15px 0; }
+</style>
+</head>
+<body>
+
+<div class="banner">
+  <h1>T-021 Execution Report</h1>
+  <p><strong>任务：</strong> standard_resources_optimal_formats</p>
+  <p><strong>生成时间:</strong> 2026-06-23 05:10 UTC | <strong>执行者:</strong> 混合 | <strong>子状态:</strong> 执行结束时</p>
+  <p><strong>项目:</strong> PxFquery (P-012) | <strong>阶段：</strong> development | <strong>目标：</strong> goal_precomputed_data_exploration</p>
+</div>
+
+<h2>1. Task Objective</h2>
+<p>识别并以最佳格式生成PxFquery的标准内置资源，提供Python验证的准确性和全面的文档，用于下游开发和测试。</p>
+
+<h2>2. Execution Summary</h2>
+<table>
+  <tr><th>Step</th><th>Action</th><th>Status</th><th>Output</th></tr>
+  <tr><td>步骤 1</td><td>包代码格式审计（pxfquery代码审查）</td><td><span class="pass">PASS</span></td><td><code>step1_package_format_audit.json</code></td></tr>
+  <tr><td>步骤2</td><td>矩阵分析及重复验证（cp/sh/xpr × 2 个年份）</td><td><span class="pass">PASS</span></td><td><code>step2_matrix_profiling.json</code></td></tr>
+  <tr><td>步骤3</td><td>最佳格式评估（精度、存储、表拆分）</td><td><span class="pass">PASS</span></td><td><code>step3_format_evaluation.json</code></td></tr>
+  <tr><td>步骤4</td><td>生成标准资源（h5ad f32、元数据、索引、function_index）</td><td><span class="pass">PASS</span></td><td>19 files in <code>4_artifact/2_persist/standard_resources/</code></td></tr>
+  <tr><td>步骤5</td><td>Python验证与确认</td><td><span class="pass">PASS</span></td><td><code>step5_verification_results.json</code> — 18/18 PASS</td></tr>
+  <tr><td>步骤6</td><td>编写详细的资源文档</td><td><span class="pass">PASS</span></td><td><code>pxfquery_standard_resource_guide_v20260623.md</code></td></tr>
+  <tr><td>步骤7</td><td>编写完成报告+HTML报告</td><td><span class="pass">PASS</span></td><td><code>completion.md</code>, <code>execution_report_v20260623.html</code>, <code>result_report_v20260623.html</code></td></tr>
+</table>
+
+<h2>3. Predecessor Reads</h2>
+<p>此任务消耗了来自 <strong>T-014</strong> （前驱任务）：</p>
+<table>
+  <tr><th>T-014 Artifact</th><th>Purpose</th></tr>
+  <tr><td><code>pxfquery_t014_data_resource_inventory_v20260618.csv</code></td><td>66-file inventory with roles and readiness labels</td></tr>
+  <tr><td><code>pxfquery_t014_matrix_schema_coverage_v20260618.csv</code></td><td>11 H5AD matrices inspected (6 readable, 5 truncated)</td></tr>
+  <tr><td><code>pxfquery_t014_precomputed_data_understanding_report_v20260618.html</code></td><td>关于预计算数据的中文叙述</td></tr>
+  <tr><td><code>pxfquery_t014_followup_g007_task_proposals_v20260618.md</code></td><td>6项后续提案（G007-D001~D006）</td></tr>
+</table>
+
+<h2>4. Assets Selected</h2>
+<table>
+  <tr><th>ID</th><th>Name</th><th>Type</th><th>Source</th></tr>
+  <tr><td>A-001</td><td>T-014 数据资源清单</td><td>deliverable</td><td>predecessor</td></tr>
+  <tr><td>A-002</td><td>T-014 矩阵模式覆盖范围</td><td>deliverable</td><td>predecessor</td></tr>
+  <tr><td>A-003</td><td>T-014 预计算数据理解报告</td><td>deliverable</td><td>predecessor</td></tr>
+  <tr><td>A-004</td><td>预计算功能矩阵（6个H5AD文件）</td><td>raw</td><td>legacy_flat_asset_library_v20260614</td></tr>
+  <tr><td>A-005</td><td>元数据表（10个CSV文件+2个yaml文件+1个xlsx文件）</td><td>raw</td><td>legacy_flat_asset_library_v20260614</td></tr>
+  <tr><td>A-006</td><td>查询索引（9个JSON文件）</td><td>raw</td><td>legacy_flat_asset_library_v20260614</td></tr>
+  <tr><td>A-007</td><td>T-014 后续G007任务提案</td><td>deliverable</td><td>predecessor</td></tr>
+  <tr><td>A-008</td><td>PxFquery包代码（data/ + index/ 模块）</td><td>raw</td><td>legacy_flat_asset_library_v20260614</td></tr>
+</table>
+
+<h2>5. Files Written / Revised</h2>
+<table>
+  <tr><th>File</th><th>Action</th></tr>
+  <tr><td><code>1_asset/registration.yaml</code></td><td>已修订 — 8个资产已注册</td></tr>
+  <tr><td><code>2_protocol/2_protocol_split/protocol.md</code></td><td>已修订 — 完整的7步T-021协议</td></tr>
+  <tr><td><code>2_protocol/3_asset_rule/asset_rule.yaml</code></td><td>已修订 — 必需=8，禁止=2，可修改区域已定义</td></tr>
+  <tr><td><code>4_artifact/2_persist/process_records/step1_package_format_audit.json</code></td><td>新建</td></tr>
+  <tr><td><code>4_artifact/2_persist/process_records/step2_matrix_profiling.json</code></td><td>新增 — 通过MD5确认重复项相同</td></tr>
+  <tr><td><code>4_artifact/2_persist/process_records/step3_format_evaluation.json</code></td><td>新增 — 确认float32无损</td></tr>
+  <tr><td><code>4_artifact/2_persist/process_records/step4_production_results.json</code></td><td>新增 — 已生成19个文件</td></tr>
+  <tr><td><code>4_artifact/2_persist/process_records/step5_verification_results.json</code></td><td>新建 — 18/18 PASS</td></tr>
+  <tr><td><code>4_artifact/2_persist/standard_resources/</code></td><td>19 new resource files (323.46 MB)</td></tr>
+  <tr><td><code>4_artifact/2_persist/pxfquery_standard_resource_guide_v20260623.md</code></td><td>新增 — 综合指南</td></tr>
+  <tr><td><code>4_artifact/3_document/execution_report_v20260623.html</code></td><td>新建（此文件）</td></tr>
+  <tr><td><code>4_artifact/3_document/result_report_v20260623.html</code></td><td>新增 — 结果可视化</td></tr>
+  <tr><td><code>5_report/completion.md</code></td><td>新增 — 完成摘要</td></tr>
+</table>
+
+<h2>6. Execution Failures / Blockers</h2>
+<p><span class="pass">无。</span> 所有 7 个步骤均成功完成，并附有证据。</p>
+
+<h2>7. Runtime Notes</h2>
+<ul>
+  <li>Python环境： <code>pxfquery</code> conda环境（Python 3.10）</li>
+  <li>使用的库： <code>anndata</code>, <code>numpy</code>, <code>pandas</code>, <code>scipy</code>, <code>pyarrow</code> （在步骤3中安装）</li>
+  <li>H5AD 加载时间：CP 4.08 秒，SH 2.66 秒，XPR 3.81 秒（规范浮点数）</li>
+  <li>Float32 转换：无损（秩相关系数 = 1.000000）</li>
+  <li>重复验证：所有 3 对旧版本的 MD5 哈希值均匹配</li>
+</ul>
+
+</body>
+</html>

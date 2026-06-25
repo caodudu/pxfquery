@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>T-033 执行报告</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.55; margin: 32px; color: #1f2937; }
+    h1, h2 { color: #111827; }
+    code { background: #f3f4f6; padding: 2px 4px; border-radius: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 16px 0; }
+    th, td { border: 1px solid #d1d5db; padding: 8px; text-align: left; }
+    th { background: #f9fafb; }
+  </style>
+</head>
+<body>
+  <h1>T-033 hybrid_fast_resolver_v1 执行报告</h1>
+  <p>本报告记录 T-033 的实际执行情况和任务内修复。原 execute session <code>cli_74dc38c06925</code> 在开始实现前失败，未生成核心交付物。修复在 T-033 任务范围内完成，不修改上游已完成产物。</p>
+  <h2>原始执行状态</h2>
+  <table>
+    <tr><th>阶段</th><th>结果</th><th>说明</th></tr>
+    <tr><td>config</td><td>通过</td><td>修复 registration / asset_rule 路径与 YAML 缩进后，action prompt 正确显示 Assets (10)。</td></tr>
+    <tr><td>check</td><td>通过</td><td>验证 T-027、T-028、T-031、T-032 资产存在且非空。</td></tr>
+    <tr><td>execute</td><td>失败</td><td>输出停在“Let me start with the implementation”，未落地 3_execution 核心文件。</td></tr>
+  </table>
+  <h2>修复动作</h2>
+  <ul>
+    <li>新增 <code>3_execution/pxfquery_T033_hybrid_fast_resolver.py</code>。</li>
+    <li>新增 exact / proxy / not_found 三个示例脚本。</li>
+    <li>使用 <code>conda run -n pxfquery python 3_execution/run_examples.py</code> 完成三例验证。</li>
+    <li>写出 JSON 证据、usage notes、registry、completion 和 repair log。</li>
+  </ul>
+  <h2>边界</h2>
+  <p>T-033 是 optional layer。修复版资产只消费上游 T-027/T-028/T-031/T-032，不写回或修改任何上游目录。</p>
+</body>
+</html>

@@ -1,0 +1,10 @@
+goal_id: G-025
+name: m1_python_package_v2
+phase: development
+project: P-012
+objective: Orchestrate a clean PxFquery M1 Python package milestone from trusted assets,
+  without reusing failed T024-T040 assets.
+status: pending
+tasks: []
+created: '2026-06-24'
+notes: 构建M1Python包里程碑

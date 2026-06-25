@@ -1,0 +1,47 @@
+usage: pxfquery [-h] {forward,reverse,info} ...
+
+positional arguments:
+  {forward,reverse,info}
+
+options:
+  -h, --help            show this help message and exit
+usage: pxfquery forward [-h] --perturbation PERTURBATION --cell-line CELL_LINE
+                        [--matrix MATRIX] [--manifest MANIFEST]
+                        [--fixture-root FIXTURE_ROOT]
+                        [--matrix-type {xpr,sh,cp}] [--top-k TOP_K]
+                        [--compact]
+
+options:
+  -h, --help            show this help message and exit
+  --perturbation PERTURBATION, -p PERTURBATION
+  --cell-line CELL_LINE, -c CELL_LINE
+  --matrix MATRIX, -m MATRIX
+  --manifest MANIFEST
+  --fixture-root FIXTURE_ROOT
+  --matrix-type {xpr,sh,cp}, -t {xpr,sh,cp}
+  --top-k TOP_K
+  --compact
+---
+usage: pxfquery reverse [-h] [--activate ACTIVATE] [--suppress SUPPRESS]
+                        --cell-line CELL_LINE [--matrix MATRIX]
+                        [--manifest MANIFEST] [--fixture-root FIXTURE_ROOT]
+                        [--matrix-type {xpr,sh,cp}] [--top-n TOP_N]
+                        [--compact]
+
+options:
+  -h, --help            show this help message and exit
+  --activate ACTIVATE
+  --suppress SUPPRESS
+  --cell-line CELL_LINE, -c CELL_LINE
+  --matrix MATRIX, -m MATRIX
+  --manifest MANIFEST
+  --fixture-root FIXTURE_ROOT
+  --matrix-type {xpr,sh,cp}, -t {xpr,sh,cp}
+  --top-n TOP_N
+  --compact
+---
+usage: pxfquery info [-h] [--detail]
+
+options:
+  -h, --help  show this help message and exit
+  --detail

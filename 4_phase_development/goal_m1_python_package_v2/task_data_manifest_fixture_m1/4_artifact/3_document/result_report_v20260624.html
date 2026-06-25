@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>T-043 Result Report</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; margin: 32px; line-height: 1.5; color: #222; }
+    h1, h2 { color: #111; }
+    code { background: #f4f4f4; padding: 1px 4px; border-radius: 3px; }
+    table { border-collapse: collapse; margin: 12px 0; width: 100%; }
+    th, td { border: 1px solid #ddd; padding: 6px 8px; text-align: left; vertical-align: top; }
+    th { background: #f7f7f7; }
+  </style>
+</head>
+<body>
+<h1>T-043 Result Report</h1>
+<h2>Produced Deliverables</h2>
+<div><p>在当前任务下已产出清单、fixture 包、形状/键/列表、样本记录表、README、注册表、completion 报告以及 HTML 报告。</p></div>
+<h2>Fixture CSV Outputs</h2>
+<div><ul><li><code>4_artifact/2_persist/fixture_package_m1/cellline_meta_fixture_m1.csv</code> (4 x 8)</li><li><code>4_artifact/2_persist/fixture_package_m1/cellline_info_fixture_m1.csv</code> (4 x 20)</li><li><code>4_artifact/2_persist/fixture_package_m1/compound_meta_fixture_m1.csv</code> (4 x 9)</li><li><code>4_artifact/2_persist/fixture_package_m1/compound_info_fixture_m1.csv</code> (4 x 7)</li><li><code>4_artifact/2_persist/fixture_package_m1/gene_info_fixture_m1.csv</code> (8 x 7)</li></ul></div>
+<h2>Fixture JSON Outputs</h2>
+<div><ul><li><code>4_artifact/2_persist/fixture_package_m1/cellline_index_fixture_m1.json</code> (顶级计数 1)</li><li><code>4_artifact/2_persist/fixture_package_m1/cellline_neighbors_fixture_m1.json</code> (顶级计数 4)</li><li><code>4_artifact/2_persist/fixture_package_m1/cellline_tree_fixture_m1.json</code> (顶级计数 3)</li><li><code>4_artifact/2_persist/fixture_package_m1/drug_index_fixture_m1.json</code> (顶级计数 4)</li><li><code>4_artifact/2_persist/fixture_package_m1/drug_neighbors_fixture_m1.json</code> (顶级计数 4)</li><li><code>4_artifact/2_persist/fixture_package_m1/gene_index_simple_fixture_m1.json</code> (顶级计数 8)</li><li><code>4_artifact/2_persist/fixture_package_m1/gene_neighbors_simple_fixture_m1.json</code> (顶级计数 8)</li><li><code>4_artifact/2_persist/fixture_package_m1/gene_index_fixture_m1.json</code> (顶级计数 8)</li><li><code>4_artifact/2_persist/fixture_package_m1/gene_neighbors_fixture_m1.json</code> (顶级计数 8)</li><li><code>4_artifact/2_persist/fixture_package_m1/function_index_fixture_m1.json</code> (顶级计数 3)</li></ul></div>
+<h2>Downstream Handoff</h2>
+<div><p>使用 <code>resource_manifest_m1.yaml</code> 作为入口点。使用 fixture 资源进行加载器和查询冒烟测试；仅当下游代码需要完整检索行为时，才使用完整标准资源。</p></div>
+<h2>Caveat</h2>
+<div><p>该 fixture 仅验证数据边界以及加载器/查询接线。其规模故意较小，不足以用于生物学排名性能声明。</p></div>
+</body>
+</html>

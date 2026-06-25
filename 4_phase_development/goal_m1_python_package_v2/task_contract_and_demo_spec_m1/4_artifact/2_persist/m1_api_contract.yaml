@@ -1,0 +1,657 @@
+# M1 PxFquery Python Package — API & CLI Contract
+# Generated: 2026-06-24
+# Authority: T-007 (development state) + T-013 (MVP capability)
+# Scope: M1 deterministic forward/reverse query only
+# No LLM, no resolver, no natural-language parsing in this contract.
+
+---
+api:
+  package_name: pxfquery
+  version_spec: ">=0.1.0,<0.2.0"
+  description: >
+    PxFquery is a LINCS-based perturbation-to-function query package.
+    M1 supports deterministic forward (biological_context + perturbation -> functional response)
+    and reverse (biological_context + functional_target -> candidate perturbations) queries
+    over precomputed functional score matrices. Natural-language resolver, proxy retrieval,
+    LLM parsing, and LLM summarization are NOT part of M1 scope.
+  concept_model:
+    formal: "(B, P) -> F   and   (B, F) -> P"
+    B: "biological context (e.g. cell line identifier)"
+    P: "perturbation (e.g. drug compound name or gene symbol)"
+    F: "functional program (e.g. Hallmark gene set or modular program score)"
+
+entry_points:
+  - class: PxFquery
+    module: pxfquery.core
+    doc: "Main entry point for M1 operations. Loads functional matrix and exposes forward/reverse queries."
+    constructor:
+      name: PxFquery.__init__
+      required_params:
+        - name: matrix_path
+          type: str
+          description: "Path to an h5ad file containing functional score matrix (AnnData format)."
+      optional_params:
+        - name: matrix_type
+          type: str
+          default: null
+          description: "Optional hint: 'xpr', 'sh', 'cp'. If null, inferred from filename suffix."
+      errors:
+        - condition: "FileNotFoundError"
+          output_schema_ref: "#/errors/file_not_found"
+        - condition: "ValueError"
+          output_schema_ref: "#/errors/invalid_matrix"
+
+  - function: PxFquery.load_data
+    doc: "Load a single h5ad matrix. Called automatically by __init__ if matrix_path is provided."
+    required_params:
+      - name: path
+        type: str
+        description: "Path to h5ad file."
+
+  - function: PxFquery.load_data_dir
+    doc: "Load all h5ad matrices in a directory. For M1 this is optional and may raise NotImplementedError."
+    required_params:
+      - name: directory
+        type: str
+        description: "Directory path containing h5ad files."
+    optional_params:
+      - name: pattern
+        type: str
+        default: "*.h5ad"
+        description: "Glob pattern to filter files."
+    errors:
+      - condition: "NotImplementedError"
+        output_schema_ref: "#/errors/not_implemented"
+
+  - function: PxFquery.pert2func
+    doc: >
+      Forward query: given a perturbation (gene symbol or drug name) and a biological context
+      (cell line identifier), return the activated and suppressed functional program scores.
+    required_params:
+      - name: perturbation
+        type: str
+        description: "Gene symbol (e.g. 'EGFR') or compound name (e.g. 'erlotinib')."
+      - name: cell_line
+        type: str
+        description: "Cell line identifier present in the loaded matrix (e.g. 'A549')."
+    optional_params:
+      - name: matrix_type
+        type: str
+        default: null
+        description: "Which matrix to query ('xpr', 'sh', 'cp'). If null, uses the loaded matrix or 'xpr' default."
+      - name: top_k
+        type: int
+        default: 20
+        description: "Maximum number of activated and suppressed programs to return each."
+    returns:
+      schema_ref: "#/schemas/forward_result"
+    errors:
+      - condition: "perturbation not in matrix.obs_names"
+        output_schema_ref: "#/errors/no_hit_perturbation"
+      - condition: "cell_line not in matrix.var_names"
+        output_schema_ref: "#/errors/no_hit_context"
+      - condition: "matrix not loaded"
+        output_schema_ref: "#/errors/no_matrix_loaded"
+
+  - function: PxFquery.func2pert
+    doc: >
+      Reverse query: given functional targets to activate and/or suppress and a biological context
+      (cell line identifier), return ranked candidate perturbations that best match the target profile.
+    required_params:
+      - name: activate
+        type: list[str]
+        description: "List of functional program names to activate (e.g. ['HALLMARK_APOPTOSIS'])."
+      - name: suppress
+        type: list[str]
+        description: "List of functional program names to suppress (e.g. ['HALLMARK_MYC_TARGETS_V1'])."
+      - name: cell_line
+        type: str
+        description: "Cell line identifier present in the loaded matrix (e.g. 'A549')."
+    optional_params:
+      - name: matrix_type
+        type: str
+        default: null
+        description: "Which matrix to query ('xpr', 'sh', 'cp'). If null, uses the loaded matrix or 'xpr' default."
+      - name: top_n
+        type: int
+        default: 10
+        description: "Number of top candidate perturbations to return."
+    returns:
+      schema_ref: "#/schemas/reverse_result"
+    errors:
+      - condition: "any program name not in matrix.var_names"
+        output_schema_ref: "#/errors/unknown_program"
+      - condition: "cell_line not in matrix.var_names"
+        output_schema_ref: "#/errors/no_hit_context"
+      - condition: "matrix not loaded"
+        output_schema_ref: "#/errors/no_matrix_loaded"
+
+  - function: PxFquery.query
+    doc: >
+      Unified query dispatcher. If perturbation is provided, calls pert2func.
+      If activate/suppress are provided without perturbation, calls func2pert.
+      For M1, this is a convenience wrapper only; users may call pert2func / func2pert directly.
+    required_params: []
+    optional_params:
+      - name: perturbation
+        type: str
+        default: null
+        description: "Forward: gene symbol or drug name."
+      - name: cell_line
+        type: str
+        default: null
+        description: "Biological context identifier."
+      - name: activate
+        type: list[str]
+        default: null
+        description: "Reverse: programs to activate."
+      - name: suppress
+        type: list[str]
+        default: null
+        description: "Reverse: programs to suppress."
+      - name: top_k
+        type: int
+        default: 20
+        description: "Maximum results (forward)."
+      - name: top_n
+        type: int
+        default: 10
+        description: "Maximum results (reverse)."
+    errors:
+      - condition: "both perturbation AND (activate/suppress) provided"
+        output_schema_ref: "#/errors/ambiguous_query"
+      - condition: "neither perturbation NOR (activate/suppress) provided"
+        output_schema_ref: "#/errors/unsupported_query"
+
+schemas:
+  forward_result:
+    type: object
+    properties:
+      found:
+        type: boolean
+        description: "true if the perturbation+cell_line combination was found in the matrix."
+      perturbation:
+        type: string
+        description: "The input perturbation name (mirrored from request)."
+      cell_line:
+        type: string
+        description: "The input cell line (mirrored from request)."
+      n_obs:
+        type: integer
+        description: "Number of observations used (usually 1 for exact match)."
+      cells_used:
+        type: array
+        items:
+          type: string
+        description: "List of cell lines aggregated (usually [input cell_line])."
+      top_activated:
+        type: object
+        additional_properties:
+          type: number
+        description: "Map of functional program name -> activation score (positive values). Sorted descending. Max top_k entries."
+      top_suppressed:
+        type: object
+        additional_properties:
+          type: number
+        description: "Map of functional program name -> suppression score (negative values). Sorted ascending. Max top_k entries."
+      note:
+        type: string
+        description: "Empty string for exact hit; may contain diagnostic info for proxy or edge cases."
+      warnings:
+        type: array
+        items:
+          type: string
+        optional: true
+        description: "Runtime warnings (e.g. numerical instability). Empty array if none."
+
+  forward_result_no_hit:
+    type: object
+    properties:
+      found:
+        type: boolean
+        const: false
+      perturbation:
+        type: string
+      cell_line:
+        type: string
+      query_type:
+        type: string
+        const: "forward"
+      reason:
+        type: string
+        description: "Human-readable explanation of why no hit was returned (e.g. 'perturbation not found in matrix')."
+      note:
+        type: string
+        description: "Empty string or diagnostic context."
+
+  reverse_result:
+    type: object
+    properties:
+      found:
+        type: boolean
+        description: "true if at least one candidate perturbation was found."
+      activate:
+        type: array
+        items:
+          type: string
+        description: "Programs requested to activate (mirrored from request)."
+      suppress:
+        type: array
+        items:
+          type: string
+        description: "Programs requested to suppress (mirrored from request)."
+      cell_line:
+        type: string
+        description: "The input cell line (mirrored from request)."
+      candidate_columns:
+        type: array
+        items:
+          type: string
+        description: "Column names in the candidates table (e.g. ['cmap_name', 'cell_iname', 'similarity', 'driving_terms'])."
+      top_candidates:
+        type: array
+        items:
+          type: object
+          properties:
+            cmap_name:
+              type: string
+              description: "Candidate perturbation name."
+            cell_iname:
+              type: string
+              description: "Cell line for this candidate."
+            similarity:
+              type: number
+              description: "Cosine similarity score (0..1, higher = better match to target profile)."
+            driving_terms:
+              type: string
+              description: "Comma-separated list of functional programs that drove the ranking."
+        description: "Ranked list of top candidate perturbations. Max top_n entries."
+      warnings:
+        type: array
+        items:
+          type: string
+        optional: true
+        description: "Runtime warnings (e.g. numerical overflow/NaN in similarity calc). Empty if none."
+    required:
+      - found
+      - activate
+      - suppress
+      - cell_line
+      - candidate_columns
+      - top_candidates
+
+  reverse_result_no_hit:
+    type: object
+    properties:
+      found:
+        type: boolean
+        const: false
+      activate:
+        type: array
+        items:
+          type: string
+      suppress:
+        type: array
+        items:
+          type: string
+      cell_line:
+        type: string
+      query_type:
+        type: string
+        const: "reverse"
+      reason:
+        type: string
+        description: "Human-readable explanation (e.g. 'no perturbations match the requested functional profile')."
+      note:
+        type: string
+
+errors:
+  file_not_found:
+    type: object
+    properties:
+      error:
+        type: string
+        const: "FileNotFound"
+      message:
+        type: string
+        description: "Path that was not found."
+      query_type:
+        type: string
+        const: "system"
+    required:
+      - error
+      - message
+      - query_type
+
+  invalid_matrix:
+    type: object
+    properties:
+      error:
+        type: string
+        const: "InvalidMatrix"
+      message:
+        type: string
+        description: "Description of why the matrix file is invalid (e.g. not h5ad, missing obs/var)."
+      query_type:
+        type: string
+        const: "system"
+    required:
+      - error
+      - message
+      - query_type
+
+  no_matrix_loaded:
+    type: object
+    properties:
+      error:
+        type: string
+        const: "NoMatrixLoaded"
+      message:
+        type: string
+        description: "No functional matrix is loaded. Call PxFquery(matrix_path) or load_data(path) first."
+      query_type:
+        type: string
+        const: "system"
+    required:
+      - error
+      - message
+      - query_type
+
+  no_hit_perturbation:
+    type: object
+    properties:
+      error:
+        type: string
+        const: "PerturbationNotFound"
+      message:
+        type: string
+        description: "The given perturbation name was not found in the matrix row index."
+      perturbation:
+        type: string
+      matrix_type:
+        type: string
+      query_type:
+        type: string
+        const: "forward"
+      suggestions:
+        type: array
+        items:
+          type: string
+        optional: true
+        description: "Optional list of similar names in the matrix (for fuzzy matching feedback)."
+    required:
+      - error
+      - message
+      - perturbation
+      - matrix_type
+      - query_type
+
+  no_hit_context:
+    type: object
+    properties:
+      error:
+        type: string
+        const: "ContextNotFound"
+      message:
+        type: string
+        description: "The given cell line was not found in the matrix column index."
+      cell_line:
+        type: string
+      matrix_type:
+        type: string
+      query_type:
+        type: string
+        const: "forward"
+    required:
+      - error
+      - message
+      - cell_line
+      - matrix_type
+      - query_type
+
+  unknown_program:
+    type: object
+    properties:
+      error:
+        type: string
+        const: "ProgramNotFound"
+      message:
+        type: string
+        description: "One or more requested functional program names were not found in the matrix."
+      unknown_activate:
+        type: array
+        items:
+          type: string
+        description: "Activate program names not found."
+      unknown_suppress:
+        type: array
+        items:
+          type: string
+        description: "Suppress program names not found."
+      query_type:
+        type: string
+        const: "reverse"
+    required:
+      - error
+      - message
+      - query_type
+
+  ambiguous_query:
+    type: object
+    properties:
+      error:
+        type: string
+        const: "AmbiguousQuery"
+      message:
+        type: string
+        description: "Both perturbation and functional targets were provided. Use pert2func for forward or func2pert for reverse; do not mix."
+      query_type:
+        type: string
+        const: "unknown"
+    required:
+      - error
+      - message
+      - query_type
+
+  unsupported_query:
+    type: object
+    properties:
+      error:
+        type: string
+        const: "UnsupportedQuery"
+      message:
+        type: string
+        description: "Neither perturbation nor activate/suppress targets were provided. Provide one set of arguments."
+      query_type:
+        type: string
+        const: "unknown"
+    required:
+      - error
+      - message
+      - query_type
+
+  low_confidence:
+    type: object
+    properties:
+      error:
+        type: string
+        const: "LowConfidenceResult"
+      message:
+        type: string
+        description: "Query returned results but numerical confidence is low (e.g. all similarity values near zero, or warnings indicate degenerate input)."
+      query_type:
+        type: string
+      details:
+        type: string
+      warnings:
+        type: array
+        items:
+          type: string
+    required:
+      - error
+      - message
+      - query_type
+
+  not_implemented:
+    type: object
+    properties:
+      error:
+        type: string
+        const: "NotImplemented"
+      message:
+        type: string
+        description: "This method is not yet implemented in M1."
+      query_type:
+        type: string
+        const: "system"
+    required:
+      - error
+      - message
+      - query_type
+
+---
+
+cli:
+  command: pxfquery
+  version: ">=0.1.0"
+  description: >
+    CLI for PxFquery forward and reverse queries over precomputed functional score matrices.
+    M1 supports two subcommands: 'forward' and 'reverse'. No LLM, no resolver mode.
+  output_mode: "JSON to stdout (pretty-printed by default, compact with --compact)"
+  exit_codes:
+    0: "Success. Query result written to stdout as JSON."
+    1: "Operational error (file not found, invalid matrix, missing argument)."
+    2: "Query-specific error (no hit, unknown program, ambiguous input)."
+    3: "Missing index or resource error."
+    4: "Internal error or assertion failure."
+  env_vars:
+    - name: PXFQUERY_MATRIX_PATH
+      description: "Default matrix path. If not set, --matrix is required."
+      optional: true
+    - name: PXFQUERY_MATRIX_TYPE
+      description: "Default matrix type hint ('xpr', 'sh', 'cp')."
+      default: "xpr"
+      optional: true
+
+  subcommands:
+    - name: forward
+      doc: "Forward query: (perturbation, cell_line) -> activated/suppressed functional programs."
+      usage: "pxfquery forward --perturbation EGFR --cell-line A549 [--matrix path] [--matrix-type xpr] [--top-k 20] [--compact]"
+      required_flags:
+        - name: --perturbation
+          short: -p
+          type: str
+          description: "Gene symbol or drug compound name."
+        - name: --cell-line
+          short: -c
+          type: str
+          description: "Cell line identifier (e.g. A549)."
+      optional_flags:
+        - name: --matrix
+          short: -m
+          type: str
+          description: "Path to h5ad matrix. Overrides PXFQUERY_MATRIX_PATH if set."
+        - name: --matrix-type
+          short: -t
+          type: str
+          default: "xpr"
+          choices: ["xpr", "sh", "cp"]
+          description: "Functional matrix type."
+        - name: --top-k
+          type: int
+          default: 20
+          description: "Max activated/suppressed programs to return."
+        - name: --compact
+          type: bool
+          default: false
+          description: "Compact JSON output (no indentation)."
+      exit_behavior:
+        0: "JSON result written to stdout."
+        1: "FileNotFound / InvalidMatrix / NoMatrixLoaded."
+        2: "PerturbationNotFound / ContextNotFound."
+      example:
+        command: 'pxfquery forward -p EGFR -c A549 -m /path/to/xpr_matrix.h5ad'
+        expected_output_ref: "#/schemas/forward_result"
+
+    - name: reverse
+      doc: "Reverse query: (activate programs, suppress programs, cell_line) -> ranked perturbation candidates."
+      usage: "pxfquery reverse --activate HALLMARK_APOPTOSIS --suppress HALLMARK_MYC_TARGETS_V1 --cell-line A549 [--matrix path] [--matrix-type xpr] [--top-n 10] [--compact]"
+      required_flags:
+        - name: --activate
+          action: append
+          type: str
+          description: "Functional program(s) to activate. Repeatable (e.g. --activate APOPTOSIS --activate P53)."
+        - name: --suppress
+          action: append
+          type: str
+          description: "Functional program(s) to suppress. Repeatable."
+        - name: --cell-line
+          short: -c
+          type: str
+          description: "Cell line identifier (e.g. A549)."
+      optional_flags:
+        - name: --matrix
+          short: -m
+          type: str
+          description: "Path to h5ad matrix. Overrides PXFQUERY_MATRIX_PATH if set."
+        - name: --matrix-type
+          short: -t
+          type: str
+          default: "xpr"
+          choices: ["xpr", "sh", "cp"]
+          description: "Functional matrix type."
+        - name: --top-n
+          type: int
+          default: 10
+          description: "Number of top candidate perturbations to return."
+        - name: --compact
+          type: bool
+          default: false
+          description: "Compact JSON output (no indentation)."
+      exit_behavior:
+        0: "JSON result written to stdout."
+        1: "FileNotFound / InvalidMatrix / NoMatrixLoaded."
+        2: "ProgramNotFound / ContextNotFound."
+      example:
+        command: 'pxfquery reverse --activate HALLMARK_APOPTOSIS --suppress HALLMARK_MYC_TARGETS_V1 -c A549 -m /path/to/xpr_matrix.h5ad --top-n 10'
+        expected_output_ref: "#/schemas/reverse_result"
+
+    - name: info
+      doc: "Print package version and available matrix types."
+      usage: "pxfquery info"
+      optional_flags:
+        - name: --detail
+          type: bool
+          default: false
+          description: "Print detailed environment info (Python version, loaded modules, paths)."
+      exit_behavior:
+        0: "Info text written to stdout."
+
+---
+# M1 Contract Scope Assertions
+scope:
+  in_scope:
+    - "Deterministic forward query (B, P) -> F via function score matrix lookup"
+    - "Deterministic reverse query (B, F) -> P via profile similarity ranking"
+    - "Exact perturbation match in matrix rows"
+    - "Exact cell line match in matrix columns"
+    - "Exact functional program name match in matrix columns"
+    - "JSON-serializable output with found/not-found status"
+    - "CLI with 'forward', 'reverse', 'info' subcommands"
+    - "Error structures for: missing matrix, unknown perturbation, unknown cell line, unknown program, ambiguous input, no result"
+  out_of_scope:
+    - "Natural-language resolver (free-text intent parsing)"
+    - "LLM-based perturbation mapping (e.g. PubChem lookup, gene name disambiguation)"
+    - "Proxy retrieval through cell-line hierarchy (neighbor-based fallback)"
+    - "Proxy retrieval through drug neighbor or gene neighbor indexes"
+    - "Function index JSON rebuild (function_index.json assumed present or rebuilt by implementation task)"
+    - "Fuzzy perturbation name matching (no Levenshtein / token similarity fallback for M1)"
+    - "Multi-matrix cross-query (xpr + sh + cp merge)"
+    - "Zenodo download or remote data fetch"
+    - "Plotting or visualization"
+    - "Automated manuscript report generation"
+  known_gaps_and_risks:
+    - "function_index.json not present in migrated query indexes; M1 implementation must rebuild or mock it (recorded in T-007 A-002 §Data and Index Readiness)"
+    - "Reverse query similarity may produce numerical warnings (overflow/NaN); M1 should filter NaN similarities and emit warnings in output"
+    - "Low-confidence detection threshold is a validation requirement for later M1 implementation tasks, not hardcoded here"
+    - "M1 CLI does not include resolver/hybrid/LLM modes — those are gated for M2+"

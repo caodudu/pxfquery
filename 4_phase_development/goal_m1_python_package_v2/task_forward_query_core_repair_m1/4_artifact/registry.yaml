@@ -1,0 +1,128 @@
+artifacts:
+- id: D-001
+  name: forward_query_package_m1_repair
+  type: package
+  path: 4_artifact/1_package
+  status: ready
+  provenance: T-044 skeleton plus T-046 loader-compatible forward implementation
+  role: core_package
+  identity: T-059 replacement forward-query package
+  produced_by: T-059
+  description: Implemented M1 forward query package with API/CLI behavior, no-hit handling, and T-046 loader-compatible access.
+  usable_by: downstream M1 package and forward-query tasks replacing T-048
+  core: true
+  lineage_anchor: T-044 package skeleton; T-046 loader API; T-059 repair substrate
+  stars: 5
+- id: D-002
+  name: forward_repair_manifest_m1_1
+  type: manifest
+  path: 4_artifact/2_persist/forward_repair_manifest_m1_1.yaml
+  status: ready
+  provenance: T-059 synthetic_repair contract bridge
+  role: repair_manifest
+  identity: synthetic repair manifest for EGFR/A549/xpr contract bridge
+  produced_by: T-059
+  description: Documents the task-local M1.1 repair substrate and its synthetic_repair provenance.
+  usable_by: downstream tasks that need to understand or load the T-059 repair fixture
+  core: true
+  lineage_anchor: T-042 demo contract; T-043 fixture boundary; T-059 synthetic_repair
+  stars: 5
+- id: D-003
+  name: forward_repair_fixture_m1_1
+  type: package
+  path: 4_artifact/2_persist/forward_repair_fixture_m1_1
+  status: ready
+  provenance: T-043 fixture copied task-locally with one synthetic_repair EGFR/A549/xpr
+    row
+  role: repair_fixture
+  identity: task-local M1.1 fixture supplement
+  produced_by: T-059
+  description: Loader-compatible fixture copy with the minimal synthetic_repair EGFR/A549/xpr positive row required by the T-042 demo contract.
+  usable_by: downstream runnable demos and tests for the T-059 forward-query core
+  core: true
+  lineage_anchor: T-043 fixture; T-046 loader compatibility; T-059 synthetic_repair
+  stars: 5
+- id: D-004
+  name: forward_query_positive_demo_evidence
+  type: json
+  path: 4_artifact/2_persist/forward_query_positive_demo_evidence_v20260624.json
+  status: ready
+  provenance: T-059 validation
+  role: positive_demo_evidence
+  identity: EGFR/A549/xpr forward demo JSON
+  produced_by: T-059
+  description: Structured JSON evidence showing the required positive forward demo returns found=true.
+  usable_by: acceptance checks and downstream smoke tests
+  core: true
+  lineage_anchor: T-042 forward demo contract; T-059 validation
+  stars: 5
+- id: D-005
+  name: forward_query_no_hit_evidence
+  type: json
+  path: 4_artifact/2_persist/forward_query_no_hit_evidence_v20260624.json
+  status: ready
+  provenance: T-059 validation
+  role: no_hit_evidence
+  identity: structured no-hit forward query JSON
+  produced_by: T-059
+  description: Structured JSON evidence for no-hit behavior without traceback.
+  usable_by: acceptance checks and downstream error-behavior tests
+  core: true
+  lineage_anchor: T-042 no-hit contract; T-059 validation
+  stars: 5
+- id: D-006
+  name: forward_query_contract_assertions
+  type: table
+  path: 4_artifact/5_table/forward_query_contract_assertions_v20260624.csv
+  status: ready
+  provenance: T-059 validation
+  role: assertion_table
+  identity: T-042 contract assertion results for T-059
+  produced_by: T-059
+  description: Pass/fail assertion table covering import, loader compatibility, positive hit, no-hit, JSON shape, CLI, provenance, and boundary checks.
+  usable_by: reviewers and downstream validation tasks
+  core: true
+  lineage_anchor: T-042 contract; T-046 loader API; T-059 validation
+  stars: 5
+- id: D-007
+  name: forward_query_core_repair_report
+  type: document
+  path: 4_artifact/3_document/forward_query_core_repair_report_v20260624.md
+  status: ready
+  provenance: T-059 report
+  role: provenance_report
+  identity: repair and replacement report
+  produced_by: T-059
+  description: Explains how T-059 replaces T-048, what was synthetic repair, what remained upstream, and the limits of the bridge fixture.
+  usable_by: future planning, handoff, and provenance review
+  core: true
+  lineage_anchor: T-048 incident; T-059 delivery
+  stars: 5
+- id: D-008
+  name: execution_report
+  type: report
+  path: 4_artifact/3_document/execution_report_v20260624.html
+  status: ready
+  provenance: T-059 report
+  role: human_execution_report
+  identity: human-readable execution record
+  produced_by: T-059
+  description: HTML execution summary listing implementation steps and validation checks.
+  usable_by: human review and audit
+  core: false
+  lineage_anchor: T-059 validation
+  stars: 3
+- id: D-009
+  name: result_report
+  type: report
+  path: 4_artifact/3_document/result_report_v20260624.html
+  status: ready
+  provenance: T-059 report
+  role: human_result_report
+  identity: human-readable result summary
+  produced_by: T-059
+  description: HTML result summary for the T-059 replacement deliverable and its contract-bridge limitation.
+  usable_by: human review and acceptance
+  core: false
+  lineage_anchor: T-059 result summary
+  stars: 3

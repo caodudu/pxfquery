@@ -1,0 +1,55 @@
+session_id: cli_3479d18d5f7c
+driver: codex
+agent_id: AGT-001
+agent_label: Codex hard tasks
+stage: deliver
+status: done
+created: '2026-06-25T13:11:03'
+task_path: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_project_delivery_anchor/task_evidence_routing_anchor
+work_dir: /Users/dudu/Documents/3_Project/12_PxFquery
+session_dir: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_project_delivery_anchor/task_evidence_routing_anchor/5_report/cli_sessions/deliver/20260625_131103_codex_cli_3479d18d5f7c
+prompt_file: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_project_delivery_anchor/task_evidence_routing_anchor/5_report/cli_sessions/deliver/20260625_131103_codex_cli_3479d18d5f7c/prompt.md
+events_file: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_project_delivery_anchor/task_evidence_routing_anchor/5_report/cli_sessions/deliver/20260625_131103_codex_cli_3479d18d5f7c/events.jsonl
+stdout_file: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_project_delivery_anchor/task_evidence_routing_anchor/5_report/cli_sessions/deliver/20260625_131103_codex_cli_3479d18d5f7c/stdout.log
+stderr_file: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_project_delivery_anchor/task_evidence_routing_anchor/5_report/cli_sessions/deliver/20260625_131103_codex_cli_3479d18d5f7c/stderr.log
+agent_output_file: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_project_delivery_anchor/task_evidence_routing_anchor/5_report/cli_sessions/deliver/20260625_131103_codex_cli_3479d18d5f7c/agent_output.md
+cmd:
+- /opt/homebrew/bin/codex
+- exec
+- --dangerously-bypass-approvals-and-sandbox
+- --json
+- -C
+- /Users/dudu/Documents/3_Project/12_PxFquery
+- '-'
+agent_session_id: 019efd30-5482-75d0-96ee-9d6e4c75e540
+parent_agent_session_id: ''
+dry_run: false
+fork_from_resume: false
+blocked_report_mtime_ns_before: 0
+codex_session_id: 019efd30-5482-75d0-96ee-9d6e4c75e540
+prompt_source: assembled
+pid: 24670
+returncode: 0
+completed: '2026-06-25T13:13:40'
+context_estimate:
+  estimated_tokens: 21521
+  estimated_bytes: 64562
+  limit_tokens: 500000
+  exceeded: false
+  files:
+  - file: prompt.md
+    bytes: 1705
+    estimated_tokens: 569
+  - file: events.jsonl
+    bytes: 31015
+    estimated_tokens: 10339
+  - file: stdout.log
+    bytes: 30643
+    estimated_tokens: 10215
+  - file: stderr.log
+    bytes: 0
+    estimated_tokens: 0
+  - file: agent_output.md
+    bytes: 1199
+    estimated_tokens: 400
+  method: local_session_file_bytes_div_3

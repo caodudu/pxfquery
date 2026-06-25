@@ -1,0 +1,72 @@
+=== T-032 Stability Guard Demo ===
+pxfquery location: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_deterministic_query_engines_v1/task_reverse_stability_guard_v1/3_execution/pxfquery_T-032_repaired/src/pxfquery/__init__.py
+Repaired workspace: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_deterministic_query_engines_v1/task_reverse_stability_guard_v1/3_execution/pxfquery_T-032_repaired/src
+
+--- Scenario A: Positive Control ---
+[loader] Loaded 'cp' — (201014, 91)
+  status: pass
+  n_candidates: 20
+  all_finite: True
+  all_in_range: True
+  negative_similarities: False
+  positive_similarities: True
+  time_sec: 0.018
+  guard_warning_count: 0
+  total_warnings: 0
+  scenario_zero_norm_row: 0
+  scenario_zero_norm_target: 0
+  scenario_nan_row: 0
+  scenario_inf_row: 0
+
+--- Scenario B.1: Zero-Norm Row ---
+  expected_warning_count: 1
+  actual_warning_count: 1
+  warning_match: True
+  all_finite: True
+  within_range: True
+  similarities: [-0.3779644730092272, 0.0, -0.16116459280507603]
+
+--- Scenario B.2: NaN Row ---
+  expected_warning_at_least: 1
+  actual_warning_count: 2
+  warning_match: True
+  all_finite: True
+  similarities: [-0.3779644730092272, 0.0]
+
+--- Scenario B.3: Inf Row ---
+  expected_warning_at_least: 1
+  actual_warning_count: 2
+  warning_match: True
+  all_finite: True
+  similarities: [-0.3779644730092272, 0.0]
+
+--- Scenario B.4: Unmatched Terms in build_target_vector ---
+  matched_empty: True
+  unmatched_present: True
+  zero_vector: True
+  matched_terms: []
+  unmatched_terms: ['NONEXISTENT_TERM_XYZ', 'MISSING_TERM']
+
+--- Scenario B.5: Zero-Norm Target Vector ---
+  expected_warning_count: 1
+  actual_warning_count: 1
+  warning_match: True
+  all_zero_guard: True
+  similarities: [0.0, 0.0]
+
+--- Scenario B.6: All Zero-Norm Rows ---
+  expected_warning_count_at_least: 1
+  actual_warning_count: 1
+  warning_match: True
+  all_zero_guard: True
+  similarities: [0.0, 0.0]
+
+--- Backward Compatibility ---
+  backward_compatible: True
+  guarded: [-0.3779644730092272, -0.16116459280507603, -0.2357022603955158]
+  legacy: [-0.3779644730092272, -0.16116459280507603, -0.2357022603955158]
+  max_diff: 0.0
+
+=== Summary: 8/8 passed ===
+Guard warnings saved to: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_deterministic_query_engines_v1/task_reverse_stability_guard_v1/4_artifact/2_persist/pxfquery_T-032_guard_warnings.json
+Validation saved to: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_deterministic_query_engines_v1/task_reverse_stability_guard_v1/3_execution/stability_guard_validation.json

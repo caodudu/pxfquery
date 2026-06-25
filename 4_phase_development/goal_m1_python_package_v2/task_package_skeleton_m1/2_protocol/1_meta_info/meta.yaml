@@ -1,0 +1,33 @@
+task_id: T-044
+name: package_skeleton_m1
+phase: development
+goal: goal_m1_python_package_v2
+project: P-012
+objective: Create the clean M1 Python package skeleton for PxFquery. Use T-007 to
+  anchor package name, module boundaries, and original tool intent. Deliver pyproject.toml,
+  src/pxfquery layout, minimal package metadata, import smoke evidence, and a clear
+  placeholder structure for loader/query/CLI modules. Do not migrate old implementation
+  code here and do not implement query behavior beyond import-safe stubs.
+executor: hybrid
+agent_id: AGT-002
+config_agent_id: AGT-002
+check_agent_id: AGT-002
+execute_agent_id: AGT-002
+server_id: null
+status: done
+cyhex_version: 1.2.19
+created: '2026-06-24'
+started: null
+completed: '2026-06-24'
+notes: 'Constraint supplement for config AI: Build only the clean package skeleton
+  and import-safe stubs. Anchor package name and module boundaries in T-007. Do not
+  migrate legacy implementation code and do not implement query behavior here. Deliver
+  pyproject.toml, src/pxfquery layout, minimal metadata, and import smoke evidence.
+  This bottom-layer asset should remain reusable even if later query implementation
+  fails.'
+fast_pass_permission: green
+sub_status: ''
+fast_pass_last_auto_approved: check_review
+fast_pass_last_auto_approved_at: '2026-06-24T03:26:17'
+fast_pass_accepted: true
+fast_pass_accepted_at: '2026-06-24T03:40:11'

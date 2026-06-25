@@ -9,5 +9,4 @@ status: active
 tasks:
 - T-007
 created: '2026-06-17'
-notes: This goal is separate from legacy asset migration. It digests PxFquery development
-  assets before the project enters a later development phase.
+notes: 消化开发资产理解工具状态

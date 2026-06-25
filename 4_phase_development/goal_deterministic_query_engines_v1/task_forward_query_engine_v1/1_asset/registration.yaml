@@ -1,0 +1,106 @@
+assets:
+- id: A-001
+  name: T-024 pxfquery workspace package
+  type: deliverable
+  source: predecessor
+  origin: goal_package_foundation_v1/task_workspace_package_v1
+  registered: '2026-06-23'
+  path: 1_asset/T-024 pxfquery workspace package
+  symlink: true
+  notes: T-024 workspace root (4_artifact/2_persist/workspace/) containing ForwardQuery,
+    ForwardResult, DataLoader, and full package tree. Read-only source for the forward
+    query class.
+  location: local
+- id: A-002
+  name: T-026 matrix loader package
+  type: deliverable
+  source: predecessor
+  origin: goal_resource_index_packs_v1/task_matrix_loader_v1
+  registered: '2026-06-23'
+  path: 1_asset/T-026 matrix loader package
+  symlink: true
+  notes: T-026 loader package (4_artifact/2_persist/loader/) providing load_matrix(),
+    load_bundle(), load_index(), load_metadata(). The engine delegates resource loading
+    to this package. Read-only.
+  location: local
+- id: A-003
+  name: T-021 standard_resources bundle (D-004)
+  type: deliverable
+  source: predecessor
+  origin: goal_precomputed_data_exploration/task_standard_resources_optimal_formats
+  registered: '2026-06-23'
+  path: 1_asset/T-021 standard_resources bundle (D-004)
+  symlink: true
+  notes: T-021 standard resource bundle containing xpr_func_ad.h5ad float32 functional
+    matrix (132464 obs x 91 vars) with cmap_name/pert_id/cell_iname obs columns, plus
+    JSON indexes and CSV metadata. The primary data source for forward queries. Read-only
+    by reference; no byte-level copy.
+  location: local
+- id: A-004
+  name: T-013 MVP capability contract (D-001)
+  type: deliverable
+  source: predecessor
+  origin: goal_algorithm_function_review/task_mvp_algorithm_run-through_review
+  registered: '2026-06-23'
+  path: 1_asset/T-013 MVP capability contract (D-001).md
+  symlink: true
+  notes: T-013 MVP capability contract defining required MVP behavior, gated/optional
+    behavior, and claims not allowed without further evidence. Used to set realistic
+    acceptance boundaries.
+  location: local
+- id: A-005
+  name: T-013 failure/missing capability list (D-005)
+  type: deliverable
+  source: predecessor
+  origin: goal_algorithm_function_review/task_mvp_algorithm_run-through_review
+  registered: '2026-06-23'
+  path: 1_asset/pxfquery_t013_failure_missing_capability_list_v20260618.md
+  symlink: true
+  notes: T-013 failure and missing capability list documenting fuzzy-match false-positive
+    risk and resolver-blocking issues. Used to decide repair vs. document decisions.
+  location: local
+- id: A-006
+  name: Current project protocol
+  type: deliverable
+  source: self
+  origin: project_init
+  registered: '2026-06-23'
+  path: 1_asset/Current project protocol
+  symlink: true
+  notes: Active project boundaries, source authority rules, and the default pxfquery
+    conda environment definition required for any Python execution.
+  location: local
+- id: A-007
+  name: T-026 loader validation record (D-003)
+  type: support
+  source: predecessor
+  origin: goal_resource_index_packs_v1/task_matrix_loader_v1
+  registered: '2026-06-23'
+  path: 1_asset/T-026 loader validation record (D-003).json
+  symlink: true
+  notes: T-026 machine-readable validation record (3_execution/loader_validation.json)
+    with observed matrix shapes, obs columns, dtypes. Optional reference for cross-checking
+    before writing engine code.
+  location: local
+- id: A-008
+  name: T-026 loader validation summary (D-004)
+  type: support
+  source: predecessor
+  origin: goal_resource_index_packs_v1/task_matrix_loader_v1
+  registered: '2026-06-23'
+  path: 1_asset/T-026 loader validation summary (D-004).md
+  symlink: true
+  notes: T-026 human-readable load summary (3_execution/loader_validation_summary.md).
+    Quick reference for matrix structure understanding.
+  location: local
+- id: A-009
+  name: T-013 capability status matrix (D-003)
+  type: deliverable
+  source: predecessor
+  origin: goal_algorithm_function_review/task_mvp_algorithm_run-through_review
+  registered: '2026-06-23'
+  path: 1_asset/T-013 capability status matrix (D-003).csv
+  symlink: true
+  notes: T-013 capability status matrix with pass/fail/blocked per capability. Reference
+    for deciding which capabilities are expected to pass.
+  location: local

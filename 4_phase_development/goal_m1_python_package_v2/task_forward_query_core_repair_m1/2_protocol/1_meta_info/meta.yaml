@@ -1,0 +1,42 @@
+task_id: T-059
+name: forward_query_core_repair_m1
+phase: development
+goal: goal_m1_python_package_v2
+project: P-012
+objective: 'Create a same-layer replacement for T-048 forward_query_core_m1. Use T-048
+  only as a reference incident: it showed that the T-042 forward demo contract cannot
+  be satisfied by the currently selected T-046 fixture assets. This task must (1)
+  produce and register a task-local forward repair substrate asset, such as a minimal
+  M1.1 fixture/manifest or contract-bridge supplement, that honestly fills the missing
+  EGFR/A549/xpr positive demo case without modifying completed T-042/T-043/T-046 artifacts;
+  and (2) deliver the forward query core that T-048 was supposed to deliver, including
+  package code, no-hit behavior, runnable demo evidence, structured JSON output, and
+  a clear provenance report. Downstream tasks should consume this task as the must
+  replacement for T-048.'
+executor: hybrid
+agent_id: AGT-001
+config_agent_id: AGT-001
+check_agent_id: AGT-001
+execute_agent_id: AGT-001
+server_id: null
+status: done
+cyhex_version: 1.2.19
+created: '2026-06-24'
+started: null
+completed: '2026-06-24'
+notes: 补充要求：这是 T048 的旁路修复/替代交付任务，不是修改 T048，也不是把 T048 标绿。T048 只能作为 reference 错误案例读取，用于理解
+  EGFR/A549/xpr 缺口。必须引用 T042 的 API/demo contract、T043 的 fixture/schema、T044 的包骨架、T046
+  的 loader API 和 smoke evidence；可参考 T047 hardening 结果。不得修改 upstream done 任务产物；不得使用
+  T024-T040 blocked 资产；不得伪造为原始数据。若创建补充 fixture/manifest，必须在本任务内登记为新资产并写明 synthetic/repair
+  provenance。验收必须实际运行 forward demo，输出 JSON 可见且格式符合 T042。
+fast_pass_permission: green
+sub_status: ''
+fast_pass_last_auto_approved: check_review
+fast_pass_last_auto_approved_at: '2026-06-24T05:31:05'
+auto_recovery:
+  deliver:
+    source_session_id: cli_809925f3d05b
+    attempts: 1
+    last_attempt_at: '2026-06-24T05:45:24'
+fast_pass_accepted: true
+fast_pass_accepted_at: '2026-06-24T05:45:35'

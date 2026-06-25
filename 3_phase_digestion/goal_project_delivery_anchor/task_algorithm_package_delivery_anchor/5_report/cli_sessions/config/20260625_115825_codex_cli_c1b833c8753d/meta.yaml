@@ -1,0 +1,55 @@
+session_id: cli_c1b833c8753d
+driver: codex
+agent_id: AGT-001
+agent_label: Codex hard tasks
+stage: config
+status: done
+created: '2026-06-25T11:58:25'
+task_path: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_project_delivery_anchor/task_algorithm_package_delivery_anchor
+work_dir: /Users/dudu/Documents/3_Project/12_PxFquery
+session_dir: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_project_delivery_anchor/task_algorithm_package_delivery_anchor/5_report/cli_sessions/config/20260625_115825_codex_cli_c1b833c8753d
+prompt_file: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_project_delivery_anchor/task_algorithm_package_delivery_anchor/5_report/cli_sessions/config/20260625_115825_codex_cli_c1b833c8753d/prompt.md
+events_file: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_project_delivery_anchor/task_algorithm_package_delivery_anchor/5_report/cli_sessions/config/20260625_115825_codex_cli_c1b833c8753d/events.jsonl
+stdout_file: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_project_delivery_anchor/task_algorithm_package_delivery_anchor/5_report/cli_sessions/config/20260625_115825_codex_cli_c1b833c8753d/stdout.log
+stderr_file: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_project_delivery_anchor/task_algorithm_package_delivery_anchor/5_report/cli_sessions/config/20260625_115825_codex_cli_c1b833c8753d/stderr.log
+agent_output_file: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_project_delivery_anchor/task_algorithm_package_delivery_anchor/5_report/cli_sessions/config/20260625_115825_codex_cli_c1b833c8753d/agent_output.md
+cmd:
+- /opt/homebrew/bin/codex
+- exec
+- --dangerously-bypass-approvals-and-sandbox
+- --json
+- -C
+- /Users/dudu/Documents/3_Project/12_PxFquery
+- '-'
+agent_session_id: 019efced-d6cd-7602-9f37-9423a61037a5
+parent_agent_session_id: ''
+dry_run: false
+fork_from_resume: false
+blocked_report_mtime_ns_before: 0
+codex_session_id: 019efced-d6cd-7602-9f37-9423a61037a5
+prompt_source: assembled
+pid: 22083
+returncode: 0
+completed: '2026-06-25T12:03:16'
+context_estimate:
+  estimated_tokens: 63872
+  estimated_bytes: 191614
+  limit_tokens: 500000
+  exceeded: false
+  files:
+  - file: prompt.md
+    bytes: 43407
+    estimated_tokens: 14469
+  - file: events.jsonl
+    bytes: 73108
+    estimated_tokens: 24370
+  - file: stdout.log
+    bytes: 72408
+    estimated_tokens: 24136
+  - file: stderr.log
+    bytes: 0
+    estimated_tokens: 0
+  - file: agent_output.md
+    bytes: 2691
+    estimated_tokens: 897
+  method: local_session_file_bytes_div_3

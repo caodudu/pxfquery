@@ -1,0 +1,303 @@
+{
+  "step": 3,
+  "task": "T-027 index_name_normalizer_v1",
+  "index_dir": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_resource_index_packs_v1/task_index_name_normalizer_v1/4_artifact/2_persist/pxfquery_T027_runtime_query_index",
+  "passed": true,
+  "all_entries": [
+    {
+      "name": "cellline_index.json",
+      "is_symlink": true,
+      "target": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/2_persist/standard_resources/cellline_index.json",
+      "target_exists": true,
+      "target_size_bytes": 3574
+    },
+    {
+      "name": "cellline_neighbors.json",
+      "is_symlink": true,
+      "target": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/2_persist/standard_resources/cellline_neighbors.json",
+      "target_exists": true,
+      "target_size_bytes": 6610
+    },
+    {
+      "name": "cellline_tree.json",
+      "is_symlink": true,
+      "target": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/2_persist/standard_resources/cellline_tree.json",
+      "target_exists": true,
+      "target_size_bytes": 50548
+    },
+    {
+      "name": "drug_index.json",
+      "is_symlink": true,
+      "target": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/2_persist/standard_resources/drug_index.json",
+      "target_exists": true,
+      "target_size_bytes": 180301
+    },
+    {
+      "name": "drug_neighbors.json",
+      "is_symlink": true,
+      "target": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/2_persist/standard_resources/drug_neighbors.json",
+      "target_exists": true,
+      "target_size_bytes": 4588889
+    },
+    {
+      "name": "function_index.json",
+      "is_symlink": true,
+      "target": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/2_persist/standard_resources/function_index.json",
+      "target_exists": true,
+      "target_size_bytes": 17899
+    },
+    {
+      "name": "gene_index.json",
+      "is_symlink": true,
+      "target": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/2_persist/standard_resources/gene_index.json",
+      "target_exists": true,
+      "target_size_bytes": 6418019
+    },
+    {
+      "name": "gene_index_simple.json",
+      "is_symlink": true,
+      "target": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/2_persist/standard_resources/gene_index_simple.json",
+      "target_exists": true,
+      "target_size_bytes": 364484
+    },
+    {
+      "name": "gene_neighbors.json",
+      "is_symlink": true,
+      "target": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/2_persist/standard_resources/gene_neighbors.json",
+      "target_exists": true,
+      "target_size_bytes": 22815738
+    },
+    {
+      "name": "gene_neighbors_simple.json",
+      "is_symlink": true,
+      "target": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/2_persist/standard_resources/gene_neighbors_simple.json",
+      "target_exists": true,
+      "target_size_bytes": 20443987
+    }
+  ],
+  "resolver_required_status": {
+    "cellline_index.json": {
+      "present": true,
+      "is_symlink": true,
+      "target": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/2_persist/standard_resources/cellline_index.json",
+      "target_resolvable": true
+    },
+    "cellline_neighbors.json": {
+      "present": true,
+      "is_symlink": true,
+      "target": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/2_persist/standard_resources/cellline_neighbors.json",
+      "target_resolvable": true
+    },
+    "drug_index.json": {
+      "present": true,
+      "is_symlink": true,
+      "target": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/2_persist/standard_resources/drug_index.json",
+      "target_resolvable": true
+    },
+    "drug_neighbors.json": {
+      "present": true,
+      "is_symlink": true,
+      "target": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/2_persist/standard_resources/drug_neighbors.json",
+      "target_resolvable": true
+    },
+    "function_index.json": {
+      "present": true,
+      "is_symlink": true,
+      "target": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/2_persist/standard_resources/function_index.json",
+      "target_resolvable": true
+    },
+    "gene_index_simple.json": {
+      "present": true,
+      "is_symlink": true,
+      "target": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/2_persist/standard_resources/gene_index_simple.json",
+      "target_resolvable": true
+    },
+    "gene_neighbors_simple.json": {
+      "present": true,
+      "is_symlink": true,
+      "target": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/2_persist/standard_resources/gene_neighbors_simple.json",
+      "target_resolvable": true
+    }
+  },
+  "json_load_status": {
+    "cellline_index.json": {
+      "valid_json": true,
+      "type": "dict",
+      "top_level_keys_sample": [
+        "valid_cells"
+      ],
+      "size_estimate": 1
+    },
+    "cellline_neighbors.json": {
+      "valid_json": true,
+      "type": "dict",
+      "top_level_keys_sample": [
+        "bone",
+        "breast",
+        "central_nervous_system",
+        "cervix",
+        "endometrium",
+        "haematopoietic_and_lymphoid_tissue",
+        "kidney",
+        "large_intestine",
+        "liver",
+        "lung"
+      ],
+      "size_estimate": 19
+    },
+    "cellline_tree.json": {
+      "valid_json": true,
+      "type": "dict",
+      "top_level_keys_sample": [
+        "tree",
+        "cell_index",
+        "meta"
+      ],
+      "size_estimate": 3
+    },
+    "drug_index.json": {
+      "valid_json": true,
+      "type": "dict",
+      "top_level_keys_sample": [
+        "l-theanine",
+        "l-citrulline",
+        "7-hydroxy-dpat",
+        "2-hydroxysaclofen",
+        "r(-)-apomorphine",
+        "chlorphensin",
+        "chlorphenesin-carbamate",
+        "palmitoylcarnitine",
+        "1-(1,2-diphenylethyl)piperidine-(+/-)",
+        "psi-7976"
+      ],
+      "size_estimate": 5958
+    },
+    "drug_neighbors.json": {
+      "valid_json": true,
+      "type": "dict",
+      "top_level_keys_sample": [
+        "A08715367",
+        "A12237696",
+        "A18795974",
+        "A27924917",
+        "A77577770",
+        "K05674516",
+        "K13994703",
+        "K17874705",
+        "K19203487",
+        "K25075681"
+      ],
+      "size_estimate": 5312
+    },
+    "function_index.json": {
+      "valid_json": true,
+      "type": "dict",
+      "top_level_keys_sample": [
+        "var_names",
+        "meta",
+        "aliases"
+      ],
+      "size_estimate": 3
+    },
+    "gene_index.json": {
+      "valid_json": true,
+      "type": "dict",
+      "top_level_keys_sample": [
+        "a1bg",
+        "a1cf",
+        "a2m",
+        "aadacl2",
+        "aadat",
+        "aak1",
+        "aamp",
+        "aars",
+        "aass",
+        "aatf"
+      ],
+      "size_estimate": 78061
+    },
+    "gene_index_simple.json": {
+      "valid_json": true,
+      "type": "dict",
+      "top_level_keys_sample": [
+        "A1BG",
+        "A1CF",
+        "A2M",
+        "AADACL2",
+        "AADAT",
+        "AAK1",
+        "AAMP",
+        "AASS",
+        "AATF",
+        "AATK"
+      ],
+      "size_estimate": 25036
+    },
+    "gene_neighbors.json": {
+      "valid_json": true,
+      "type": "dict",
+      "top_level_keys_sample": [
+        "7SK",
+        "A1BG",
+        "A1BG-AS1",
+        "A1CF",
+        "A2M",
+        "A2M-AS1",
+        "A2ML1",
+        "A2ML1-AS1",
+        "A2MP1",
+        "A3GALT2"
+      ],
+      "size_estimate": 33791
+    },
+    "gene_neighbors_simple.json": {
+      "valid_json": true,
+      "type": "dict",
+      "top_level_keys_sample": [
+        "7SK",
+        "A1BG",
+        "A1CF",
+        "A2M",
+        "A2ML1",
+        "A2MP1",
+        "A3GALT2",
+        "A4GALT",
+        "A4GNT",
+        "AAAS"
+      ],
+      "size_estimate": 30319
+    }
+  },
+  "checks": {
+    "all_required_present": true,
+    "all_required_resolvable": true,
+    "all_required_valid_json": true,
+    "all_json_files_valid": true
+  },
+  "resolver_acceptance": {
+    "tested_with_QueryResolver_init": false,
+    "reason": "Resolver init requires LLM client + loaded AnnData matrices (out of scope for this task). Acceptance verified by filename-only check.",
+    "resolver_required_filenames": [
+      "cellline_index.json",
+      "cellline_neighbors.json",
+      "drug_index.json",
+      "drug_neighbors.json",
+      "function_index.json",
+      "gene_index_simple.json",
+      "gene_neighbors_simple.json"
+    ],
+    "all_filenames_present_in_index_dir": [
+      "cellline_index.json",
+      "cellline_neighbors.json",
+      "cellline_tree.json",
+      "drug_index.json",
+      "drug_neighbors.json",
+      "function_index.json",
+      "gene_index.json",
+      "gene_index_simple.json",
+      "gene_neighbors.json",
+      "gene_neighbors_simple.json"
+    ],
+    "index_dir_is_valid_index_dir": true
+  }
+}

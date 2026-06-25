@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>T-032 result report</title>
+  <style>body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;max-width:980px;margin:32px auto;padding:0 20px;line-height:1.55;color:#1f2933}code{background:#f3f4f6;padding:2px 4px;border-radius:4px}table{border-collapse:collapse;width:100%;font-size:13px}td,th{border:1px solid #d8dee4;padding:6px 8px}</style>
+</head>
+<body>
+  <h1>T-032 reverse stability guard result report</h1>
+  <p>核心结果：反向查询数值防护层已经产生可序列化证据。正控结果、异常警告和元数据分别保存在 <code>4_artifact/2_persist/</code>。</p>
+  <table>
+    <thead><tr><th>场景</th><th>结果</th><th>证据</th></tr></thead>
+    <tbody>
+      <tr><td>Positive control</td><td>pass, 20 candidates</td><td><code>pxfquery_T-032_positive_control_candidates.json</code></td></tr>
+      <tr><td>Guard warnings</td><td>pass, structured warnings emitted</td><td><code>pxfquery_T-032_guard_warnings.json</code></td></tr>
+      <tr><td>Backward compatibility</td><td>pass, max_diff 0.0</td><td><code>stability_guard_validation.json</code></td></tr>
+    </tbody>
+  </table>
+  <p>下游如果需要稳定的反向查询排名，应消费 T-032 的 repaired package，而不是直接消费 T-024 原始包。</p>
+</body>
+</html>

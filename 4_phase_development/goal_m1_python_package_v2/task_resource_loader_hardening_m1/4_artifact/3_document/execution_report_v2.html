@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>T-047 Execution Report</title>
+<style>
+body { font-family: -apple-system, sans-serif; max-width: 1200px; margin: 0 auto; padding: 20px; color: #333; }
+h1 { color: #2563eb; }
+h2 { color: #1e40af; border-bottom: 2px solid #dbeafe; padding-bottom: 4px; }
+table { border-collapse: collapse; width: 100%; margin: 12px 0; }
+th, td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; font-size: 13px; }
+th { background: #f3f4f6; font-weight: 600; }
+.pass { color: #059669; font-weight: bold; }
+.warn { color: #d97706; font-weight: bold; }
+.block { color: #dc2626; font-weight: bold; }
+.info { color: #6b7280; }
+.timestamp { color: #6b7280; font-size: 13px; }
+</style>
+</head>
+<body>
+<h1>T-047 resource_loader_hardening_m1 — Execution Report</h1>
+<p class="timestamp">生成时间：20260624_050037 | 版本：v2</p>
+<h2>Execution Summary</h2>
+<table>
+<tr><th>Metric</th><th>Value</th></tr>
+<tr><td>总资源数</td><td>36</td></tr>
+<tr><td>加载成功</td><td class="pass">36</td></tr>
+<tr><td>缺失</td><td class="warn">0</td></tr>
+<tr><td>加载错误</td><td class="block">0</td></tr>
+<tr><td>已跳过</td><td class="info">0</td></tr>
+<tr><td>已应用标准化</td><td>4</td></tr>
+<tr><td>耗时</td><td>4.35s</td></tr>
+<tr><td>标准包存在</td><td>是</td></tr>
+<tr><td>夹具包存在</td><td>是</td></tr>
+</table>
+<h2>Per-Resource Results</h2>
+<table>
+<tr><th>Resource ID</th><th>Type</th><th>Fixture</th><th>Status</th><th>Shape</th></tr>
+<tr><td>m1_full_cp_matrix</td><td>h5ad</td><td>no</td><td class="pass">loaded</td><td>201014 obs x 91 vars</td></tr>
+<tr><td>m1_fixture_cp_matrix</td><td>h5ad</td><td>是</td><td class="pass">loaded</td><td>4 obs x 7 vars</td></tr>
+<tr><td>m1_full_sh_matrix</td><td>h5ad</td><td>no</td><td class="pass">loaded</td><td>189365 obs x 91 vars</td></tr>
+<tr><td>m1_fixture_sh_matrix</td><td>h5ad</td><td>是</td><td class="pass">loaded</td><td>4 obs x 7 vars</td></tr>
+<tr><td>m1_full_xpr_matrix</td><td>h5ad</td><td>no</td><td class="pass">loaded</td><td>132464 obs x 91 vars</td></tr>
+<tr><td>m1_fixture_xpr_matrix</td><td>h5ad</td><td>是</td><td class="pass">loaded</td><td>4 obs x 7 vars</td></tr>
+<tr><td>m1_full_cellline_meta</td><td>csv</td><td>no</td><td class="pass">loaded</td><td>240 rows x 8 cols</td></tr>
+<tr><td>m1_full_cellline_info</td><td>csv</td><td>no</td><td class="pass">loaded</td><td>240 rows x 20 cols</td></tr>
+<tr><td>m1_full_compound_meta</td><td>csv</td><td>no</td><td class="pass">loaded</td><td>6647 rows x 9 cols</td></tr>
+<tr><td>m1_full_compound_info</td><td>csv</td><td>no</td><td class="pass">loaded</td><td>39321 rows x 7 cols</td></tr>
+<tr><td>m1_full_gene_info</td><td>csv</td><td>no</td><td class="pass">loaded</td><td>12328 rows x 7 cols</td></tr>
+<tr><td>m1_fixture_cellline_meta</td><td>csv</td><td>是</td><td class="pass">loaded</td><td>4 rows x 8 cols</td></tr>
+<tr><td>m1_fixture_cellline_info</td><td>csv</td><td>是</td><td class="pass">loaded</td><td>4 rows x 20 cols</td></tr>
+<tr><td>m1_fixture_compound_meta</td><td>csv</td><td>是</td><td class="pass">loaded</td><td>4 rows x 9 cols</td></tr>
+<tr><td>m1_fixture_compound_info</td><td>csv</td><td>是</td><td class="pass">loaded</td><td>4 rows x 7 cols</td></tr>
+<tr><td>m1_fixture_gene_info</td><td>csv</td><td>是</td><td class="pass">loaded</td><td>8 rows x 7 cols</td></tr>
+<tr><td>m1_full_cellline_index</td><td>json</td><td>no</td><td class="pass">loaded</td><td>-</td></tr>
+<tr><td>m1_full_cellline_neighbors</td><td>json</td><td>no</td><td class="pass">loaded</td><td>-</td></tr>
+<tr><td>m1_full_cellline_tree</td><td>json</td><td>no</td><td class="pass">loaded</td><td>-</td></tr>
+<tr><td>m1_full_drug_index</td><td>json</td><td>no</td><td class="pass">loaded</td><td>-</td></tr>
+<tr><td>m1_full_drug_neighbors</td><td>json</td><td>no</td><td class="pass">loaded</td><td>-</td></tr>
+<tr><td>m1_full_gene_index_simple</td><td>json</td><td>no</td><td class="pass">loaded</td><td>-</td></tr>
+<tr><td>m1_full_gene_neighbors_simple</td><td>json</td><td>no</td><td class="pass">loaded</td><td>-</td></tr>
+<tr><td>m1_full_gene_index</td><td>json</td><td>no</td><td class="pass">loaded</td><td>-</td></tr>
+<tr><td>m1_full_gene_neighbors</td><td>json</td><td>no</td><td class="pass">loaded</td><td>-</td></tr>
+<tr><td>m1_full_function_index</td><td>json</td><td>no</td><td class="pass">loaded</td><td>-</td></tr>
+<tr><td>m1_fixture_cellline_index</td><td>json</td><td>是</td><td class="pass">loaded</td><td>-</td></tr>
+<tr><td>m1_fixture_cellline_neighbors</td><td>json</td><td>是</td><td class="pass">loaded</td><td>-</td></tr>
+<tr><td>m1_fixture_cellline_tree</td><td>json</td><td>是</td><td class="pass">loaded</td><td>-</td></tr>
+<tr><td>m1_fixture_drug_index</td><td>json</td><td>是</td><td class="pass">loaded</td><td>-</td></tr>
+<tr><td>m1_fixture_drug_neighbors</td><td>json</td><td>是</td><td class="pass">loaded</td><td>-</td></tr>
+<tr><td>m1_fixture_gene_index_simple</td><td>json</td><td>是</td><td class="pass">loaded</td><td>-</td></tr>
+<tr><td>m1_fixture_gene_neighbors_simple</td><td>json</td><td>是</td><td class="pass">loaded</td><td>-</td></tr>
+<tr><td>m1_fixture_gene_index</td><td>json</td><td>是</td><td class="pass">loaded</td><td>-</td></tr>
+<tr><td>m1_fixture_gene_neighbors</td><td>json</td><td>是</td><td class="pass">loaded</td><td>-</td></tr>
+<tr><td>m1_fixture_function_index</td><td>json</td><td>是</td><td class="pass">loaded</td><td>-</td></tr>
+</table>
+<h2>Normalizations Applied</h2>
+<table>
+<tr><th>Resource ID</th><th>Normalization</th></tr>
+<tr><td>m1_full_gene_index</td><td>symbol->gene_symbol</td></tr>
+<tr><td>m1_full_function_index</td><td>category_from_source</td></tr>
+<tr><td>m1_fixture_gene_index</td><td>symbol->gene_symbol</td></tr>
+<tr><td>m1_fixture_function_index</td><td>category_from_source</td></tr>
+</table>
+<h2>Gaps</h2>
+<table>
+<tr><th>Resource ID</th><th>Issue</th><th>Severity</th><th>Fixture Coverage</th><th>Action</th></tr>
+<tr><td>index:function_index.json</td><td>非标准结构：dict{meta, var_names, aliases}</td><td class="warn">warning</td><td>是</td><td>已处理：参见应用的标准化</td></tr>
+<tr><td>index:function_index.json</td><td>标志性特征：'source' 字段中的 Hallmark 与 3CA MPS，而非 'category'</td><td class="warn">warning</td><td>是</td><td>已处理：参见应用的标准化</td></tr>
+<tr><td>index:gene_index.json</td><td>字段名称：'symbol' 而非 'gene_symbol'，无 'ensembl_id'</td><td class="warn">warning</td><td>是</td><td>已处理：参见应用的标准化</td></tr>
+<tr><td>index:cellline_index.json</td><td>单层包裹键，非 1 对 1 细胞系映射</td><td class="info">cosmetic</td><td>是</td><td>已处理：参见应用的标准化</td></tr>
+<tr><td>index:drug_index.json</td><td>无反向 BRD-&gt;alias 查找</td><td class="info">cosmetic</td><td>是</td><td>已处理：参见应用的标准化</td></tr>
+<tr><td>index:cellline_tree.json</td><td>扁平 3 键结构，非层级树</td><td class="warn">warning</td><td>是</td><td>已处理：参见应用的标准化</td></tr>
+</table>
+</body>
+</html>

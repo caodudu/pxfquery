@@ -1,0 +1,122 @@
+assets:
+- id: A-001
+  name: resource_manifest_m1
+  type: other
+  source: predecessor
+  source_task: T-043
+  source_artifact_id: D-001
+  origin: T-043/D-001
+  registered: '2026-06-24'
+  path: 1_asset/resource_manifest_m1.yaml
+  symlink: true
+  status: ready
+  notes: Entry point for all M1 resource paths (full standard and fixture), loader
+    roles, required keys/columns, expected shapes, validation rules
+  location: local
+- id: A-002
+  name: expected_shapes_keys_columns_m1
+  type: table
+  source: predecessor
+  source_task: T-043
+  source_artifact_id: D-003
+  origin: T-043/D-003
+  registered: '2026-06-24'
+  path: 1_asset/expected_shapes_keys_columns_m1.csv
+  symlink: true
+  status: ready
+  notes: Acceptance evidence for expected shapes, keys, columns, and index semantics
+  location: local
+- id: A-003
+  name: sample_records_m1
+  type: table
+  source: predecessor
+  source_task: T-043
+  source_artifact_id: D-004
+  origin: T-043/D-004
+  registered: '2026-06-24'
+  path: 1_asset/sample_records_m1.csv
+  symlink: true
+  status: ready
+  notes: Traceable sample rows and keys used by the fixture package for smoke verification
+  location: local
+- id: A-004
+  name: index_health_summary
+  type: other
+  source: predecessor
+  source_task: T-045
+  source_artifact_id: T-045/D-001/index_health_summary
+  origin: T-045/T-045/D-001
+  registered: '2026-06-24'
+  path: 1_asset/index_health_summary.json
+  symlink: true
+  status: ready
+  notes: Machine-readable per-index schema status, key completeness, known gaps, patch
+    recommendations for loader configuration
+  location: local
+- id: A-005
+  name: index_health_report
+  type: document
+  source: predecessor
+  source_task: T-045
+  source_artifact_id: T-045/D-002/index_health_report
+  origin: T-045/T-045/D-002
+  registered: '2026-06-24'
+  path: 1_asset/index_health_report.md
+  symlink: true
+  status: ready
+  notes: Human-readable index health overview with pass/warn/block per index and M1
+    readiness verdict
+  location: local
+- id: A-006
+  name: gap_notes
+  type: document
+  source: predecessor
+  source_task: T-045
+  source_artifact_id: T-045/D-003/gap_notes
+  origin: T-045/T-045/D-003
+  registered: '2026-06-24'
+  path: 1_asset/gap_notes.md
+  symlink: true
+  status: ready
+  notes: Detailed gap severity, demo impact, and resolution paths for loader hardening
+    decisions
+  location: local
+- id: A-007
+  name: fixture_package_m1
+  type: package
+  source: predecessor
+  source_task: T-043
+  source_artifact_id: D-002
+  origin: T-043/D-002
+  registered: '2026-06-24'
+  path: 1_asset/fixture_package_m1
+  symlink: true
+  status: ready
+  notes: Compact real-data fixture bundle for deterministic loader smoke/demo runs
+  location: local
+- id: A-008
+  name: data_manifest_fixture_m1_readme
+  type: document
+  source: predecessor
+  source_task: T-043
+  source_artifact_id: D-005
+  origin: T-043/D-005
+  registered: '2026-06-24'
+  path: 1_asset/data_manifest_fixture_m1_readme.md
+  symlink: true
+  status: ready
+  notes: Downstream usage notes and known exclusions
+  location: local
+- id: A-009
+  name: t021_standard_resources_bundle
+  type: other
+  source: predecessor
+  source_task: T-043
+  source_artifact_id: D-001
+  origin: T-043/D-001
+  registered: '2026-06-24'
+  path: 1_asset/t021_standard_resources_bundle
+  symlink: true
+  status: ready
+  notes: Full standard resource bundle (matrices, CSV metadata, JSON indexes); referenced by manifest. May be partially or fully unavailable per T-045 gap notes.
+  location: local

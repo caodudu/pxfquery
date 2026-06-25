@@ -1,0 +1,98 @@
+artifacts:
+- id: D-001
+  name: resource_manifest_m1
+  type: manifest
+  path: 4_artifact/2_persist/resource_manifest_m1.yaml
+  status: ready
+  provenance: T-043 generated from A-001 through A-006
+  notes: Stable M1 resource manifest for full standard resources and fixture resources.
+  identity: T-043/D-001
+  role: support
+  core: false
+  lineage_anchor: false
+  stars: 1
+- id: D-002
+  name: fixture_package_m1
+  type: package
+  path: 4_artifact/2_persist/fixture_package_m1/
+  status: ready
+  provenance: T-043 bounded extraction from A-001 standard resources
+  notes: Small deterministic real-data fixture package for loader, forward, and reverse
+    demos.
+  identity: T-043/D-002
+  role: delivery
+  core: false
+  lineage_anchor: false
+  stars: 1
+- id: D-003
+  name: expected_shapes_keys_columns_m1
+  type: table
+  path: 4_artifact/5_table/expected_shapes_keys_columns_m1.csv
+  status: ready
+  provenance: T-043 generated from A-001 through A-006
+  notes: Expected shape, keys, columns, index semantics, and validation rules.
+  identity: T-043/D-003
+  role: data
+  core: false
+  lineage_anchor: false
+  stars: 2
+- id: D-004
+  name: sample_records_m1
+  type: table
+  path: 4_artifact/5_table/sample_records_m1.csv
+  status: ready
+  provenance: T-043 generated from real A-001 records
+  notes: Traceable sample rows and keys used by the fixture package.
+  identity: T-043/D-004
+  role: data
+  core: false
+  lineage_anchor: false
+  stars: 2
+- id: D-005
+  name: data_manifest_fixture_m1_readme
+  type: document
+  path: 4_artifact/2_persist/data_manifest_fixture_m1_readme.md
+  status: ready
+  provenance: T-043
+  notes: Downstream usage and exclusions.
+  identity: T-043/D-005
+  role: support
+  core: false
+  lineage_anchor: false
+  stars: 4
+- id: D-006
+  name: execution_report_v20260624
+  type: document
+  path: 4_artifact/3_document/execution_report_v20260624.html
+  status: ready
+  provenance: T-043
+  notes: Human-facing execution method and validation summary.
+  identity: T-043/D-006
+  role: report
+  core: false
+  lineage_anchor: false
+  stars: 5
+- id: D-007
+  name: result_report_v20260624
+  type: document
+  path: 4_artifact/3_document/result_report_v20260624.html
+  status: ready
+  provenance: T-043
+  notes: Human-facing result and downstream handoff summary.
+  identity: T-043/D-007
+  role: report
+  core: false
+  lineage_anchor: false
+  stars: 5
+- id: D-008
+  name: validation_log_m1
+  type: execution_record
+  path: 3_execution/validation_log_m1.json
+  status: ready
+  provenance: T-043 validation run
+  notes: Execution-side validation evidence; not a reusable project artifact.
+  identity: T-043/D-008
+  role: support
+  core: false
+  lineage_anchor: false
+  stars: 1

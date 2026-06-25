@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>T-061 Execution Report</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.5; margin: 32px; color: #222; }
+    h1, h2 { color: #15324a; }
+    code { background: #f2f4f7; padding: 1px 4px; border-radius: 3px; }
+    table { border-collapse: collapse; width: 100%; margin: 16px 0; }
+    th, td { border: 1px solid #d6dbe1; padding: 8px; vertical-align: top; }
+    th { background: #eef3f8; }
+  </style>
+</head>
+<body>
+  <h1>T-061 Execution Report</h1>
+  <p><strong>任务：</strong> legacy_source_digest_repair_m1<br>
+  <strong>日期：</strong> 2026-06-24<br>
+  <strong>模式：</strong> 有界静态本地源消化</p>
+
+  <h2>Step List And Evidence</h2>
+  <table>
+    <tr><th>Step</th><th>Operation</th><th>Evidence / Output</th></tr>
+    <tr><td>1. Verify inputs</td><td>已确认 A-001 和 A-002 任务本地符号链接解析到已注册的 T-007 源映射和迁移后的包路径。已确认一次 CyHex API 版本。</td><td>A-002 已解析为已注册的 <code>legacy_flat_asset_library_v20260614/code/pxfquery_package</code> 路径；CyHex 返回应用版本 1.2.19。</td></tr>
+    <tr><td>2. Inventory package</td><td>已使用 <code>find -H</code> 仅用于 <code>1_asset/migrated_pxfquery_package_source</code>, 排除禁止的 cache/notebook/matrix 模式。</td><td><code>3_execution/a002_file_inventory_20260624.txt</code>；25 个文件，22 个 Python 文件。</td></tr>
+    <tr><td>3. Static structure review</td><td>在不导入包模块的情况下，收集了行数、grep 符号/风险模式以及 AST 类/函数结构。</td><td><code>3_execution/a002_python_symbol_index_20260624.txt</code>, <code>3_execution/a002_ast_structure_20260624.txt</code>, <code>3_execution/a002_risk_pattern_index_20260624.txt</code>.</td></tr>
+    <tr><td>4. Targeted source windows</td><td>读取了针对公共外观、数据加载器、查询引擎、索引、解析器、LLM 辅助工具、绘图、打包元数据以及不完整历史文件的目标行窗口。</td><td>具体的模块分类已记录在 markdown 摘要和 CSV 矩阵中。</td></tr>
+    <tr><td>5. Produce deliverables</td><td>在允许的 T-061 输出目录下，编写了摘要、复用矩阵、边界 YAML、HTML 报告、注册表更新和完成说明。</td><td>已在以下文件中注册 <code>4_artifact/registry.yaml</code>.</td></tr>
+  </table>
+
+  <h2>Boundaries Honored</h2>
+  <ul>
+    <li>未执行任何包工作流。</li>
+    <li>未编写任何实现代码。</li>
+    <li>未读取任何 h5ad 矩阵、笔记本、缓存或生成的报告。</li>
+    <li>未读取任何历史源根目录。</li>
+    <li>未读取或复用 T-041 工件作为权威依据。</li>
+    <li>未执行任何网络搜索。</li>
+  </ul>
+
+  <h2>Inspection Limits</h2>
+  <p>对于每个 Python 文件，第一遍使用了行数和 AST/符号提取。超过首选 200 行窗口的文件通过行为特定的源窗口进行检查。额外窗口用于 <code>core.py</code>, <code>query/resolver.py</code>, <code>llm/client.py</code>, <code>llm/prompts.py</code>，以及 <code>viz/plots.py</code> 因为这些文件包含分类所需的公共外观、解析器行为、LLM 耦合和绘图行为。</p>
+</body>
+</html>

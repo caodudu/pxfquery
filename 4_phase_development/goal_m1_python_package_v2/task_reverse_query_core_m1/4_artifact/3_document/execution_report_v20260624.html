@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>T-049 Execution Report</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.45; margin: 32px; color: #1f2933; }
+    code { background: #f4f6f8; padding: 1px 4px; border-radius: 4px; }
+    .status { font-weight: 700; color: #9a3412; }
+    table { border-collapse: collapse; width: 100%; margin: 16px 0; }
+    th, td { border: 1px solid #d8dee4; padding: 8px; text-align: left; vertical-align: top; }
+    th { background: #f6f8fa; }
+  </style>
+</head>
+<body>
+  <h1>T-049 Reverse Query Core M1 Execution Report</h1>
+  <p><strong>Generated:</strong> 2026-06-24</p>
+  <p><strong>Status:</strong> <span class="status">Partial / blocked at fixture-backed demo evidence</span></p>
+
+  <h2>Scope Executed</h2>
+  <table>
+    <tr><th>Step</th><th>Result</th><th>Evidence</th></tr>
+    <tr>
+      <td>Extract T-042 reverse contract</td>
+      <td>Completed</td>
+      <td><code>3_execution/contract_loader_extraction_notes_v20260624.md</code></td>
+    </tr>
+    <tr>
+      <td>Inspect T-046 loader API/code</td>
+      <td>Completed</td>
+      <td>Registered A-004/A-005 read; A-006 smoke terms recorded.</td>
+    </tr>
+    <tr>
+      <td>Implement reverse core package</td>
+      <td>Completed</td>
+      <td><code>4_artifact/1_package/pxfquery/</code></td>
+    </tr>
+    <tr>
+      <td>Validate import and no-matrix error</td>
+      <td>Completed</td>
+      <td><code>reverse_error_no_hit_evidence_v20260624.json</code></td>
+    </tr>
+    <tr>
+      <td>Run DEMO-002 success case</td>
+      <td>Blocked</td>
+      <td>No accepted T-046 fixture manifest/package is available in selected artifacts.</td>
+    </tr>
+  </table>
+
+  <h2>Implementation Notes</h2>
+  <p>The task-local package exposes <code>PxFquery.func2pert</code> and a reusable <code>ReverseQueryCore</code>. The scoring procedure builds a target vector with +1 for activation terms and -1 for suppression terms, computes cosine similarity against each same-cell candidate row, filters non-finite scores, and ranks deterministically by descending similarity followed by <code>cmap_name</code>, <code>cell_iname</code>, and <code>sig_id</code>.</p>
+  <p>All intended matrix access in the implementation goes through the T-046 public loader object and fixture methods: <code>matrix_var_names</code>, <code>get_sig_ids</code>, and <code>get_matrix_row</code>. No private fixture parser or raw asset reader was added.</p>
+
+  <h2>Blocking Evidence</h2>
+  <p>A targeted inspection of the accepted T-046 artifact tree found no <code>resource_manifest_m1.yaml</code> and no <code>fixture_package_m1/</code>. Therefore the required T-042 DEMO-002 success run cannot be reproduced through the loader from the selected assets.</p>
+  <p>The registered loader smoke evidence also lists seven function terms and does not include <code>HALLMARK_MYC_TARGETS_V1</code>, which T-042 DEMO-002 requires as the suppress target.</p>
+</body>
+</html>
+

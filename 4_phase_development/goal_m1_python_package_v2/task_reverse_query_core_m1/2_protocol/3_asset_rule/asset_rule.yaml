@@ -1,0 +1,58 @@
+required:
+  - id: A-001
+    source_task: T-042
+    source_artifact_id: D-001
+    path: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_contract_and_demo_spec_m1/4_artifact/2_persist/m1_api_contract.yaml
+    reason: Authoritative M1 reverse API, CLI, JSON shape, error/no-hit behavior, and pass/fail scope.
+  - id: A-002
+    source_task: T-042
+    source_artifact_id: D-002
+    path: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_contract_and_demo_spec_m1/4_artifact/2_persist/m1_demo_cases.yaml
+    reason: Exact reverse demo case, expected fields, ranking/scoring assertions, and no-hit variants.
+  - id: A-004
+    source_task: T-046
+    source_artifact_id: D-001
+    path: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_m1_fixture_loader/4_artifact/1_package/pxfquery/data/m1_loader.py
+    reason: Required fixture loader code; all reverse query data access must use this loader API.
+  - id: A-005
+    source_task: T-046
+    source_artifact_id: D-002
+    path: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_m1_fixture_loader/4_artifact/2_persist/API_REFERENCE_v20260624.md
+    reason: Public loader API documentation needed to avoid private ad hoc parsing.
+optional:
+  - id: A-003
+    source_task: T-042
+    source_artifact_id: D-003
+    path: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_contract_and_demo_spec_m1/4_artifact/3_document/m1_contract_summary.md
+    reason: Human-readable orientation for contract boundaries.
+  - id: A-006
+    source_task: T-046
+    source_artifact_id: D-003
+    path: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_m1_fixture_loader/4_artifact/5_table/smoke_evidence_observed_vs_expected_v20260624.csv
+    reason: Loader smoke evidence useful for diagnosing fixture shape assumptions.
+forbidden:
+  - path: 2_project_asset/
+    reason: forbidden for non-digestion task; request a predecessor digestion task if raw project assets are needed
+  - path: /Users/dudu/Documents/3_Project/8_functional_query
+    reason: direct legacy-root reads are outside this task scope; use registered predecessor outputs only
+  - path: T024-T040 predecessor artifacts
+    reason: explicitly excluded as failed or non-authoritative inputs for M1 implementation
+output:
+  - path: 4_artifact/1_package/
+    type: package_code
+  - path: 4_artifact/2_persist/
+    type: structured_json_or_yaml_evidence
+  - path: 4_artifact/3_document/
+    type: execution_and_result_reports
+  - path: 4_artifact/5_table/
+    type: optional_validation_tables
+  - path: 5_report/completion.md
+    type: completion_report
+modifiable:
+  - 3_execution/
+  - 4_artifact/
+  - 5_report/
+non_modifiable:
+  - predecessor task directories
+  - 1_project_init/
+  - 2_project_asset/

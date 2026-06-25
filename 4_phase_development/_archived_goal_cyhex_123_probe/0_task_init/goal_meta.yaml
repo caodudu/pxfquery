@@ -1,0 +1,10 @@
+goal_id: G-019
+name: cyhex_123_probe
+phase: development
+project: P-012
+objective: Temporary probe for CyHex 1.2.3 create-task dependency and green behavior;
+  delete after test.
+status: pending
+tasks: []
+created: '2026-06-23'
+notes: ''

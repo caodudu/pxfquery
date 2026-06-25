@@ -1,0 +1,90 @@
+{
+  "float_precision_evaluation": [
+    {
+      "label": "cp",
+      "x_shape": "(201014, 91)",
+      "abs_diff_max": 0.00025,
+      "abs_diff_mean": 3e-06,
+      "rank_corr_mean": 1.0,
+      "rank_corr_min": 1.0,
+      "top5pct_overlap_mean": 1.0,
+      "top5pct_overlap_min": 1.0,
+      "bottom5pct_overlap_mean": 1.0,
+      "bottom5pct_overlap_min": 1.0,
+      "float32_ok": true
+    },
+    {
+      "label": "sh",
+      "x_shape": "(189365, 91)",
+      "abs_diff_max": 0.00025,
+      "abs_diff_mean": 3e-06,
+      "rank_corr_mean": 1.0,
+      "rank_corr_min": 1.0,
+      "top5pct_overlap_mean": 1.0,
+      "top5pct_overlap_min": 1.0,
+      "bottom5pct_overlap_mean": 1.0,
+      "bottom5pct_overlap_min": 1.0,
+      "float32_ok": true
+    },
+    {
+      "label": "xpr",
+      "x_shape": "(132464, 91)",
+      "abs_diff_max": 0.00025,
+      "abs_diff_mean": 3e-06,
+      "rank_corr_mean": 1.0,
+      "rank_corr_min": 1.0,
+      "top5pct_overlap_mean": 1.0,
+      "top5pct_overlap_min": 1.0,
+      "bottom5pct_overlap_mean": 1.0,
+      "bottom5pct_overlap_min": 1.0,
+      "float32_ok": true
+    }
+  ],
+  "storage_format_comparison": {
+    "cp": {
+      "h5ad_f64_mb": 569.43,
+      "h5ad_f32_mb": 105.1,
+      "parquet_f32_mb": 99.21,
+      "feather_f32_mb": 66.14,
+      "table_split_csv_npy_mb": 85.6,
+      "h5ad_f64_to_f32_savings_pct": 81.5,
+      "best_format": "h5ad_f32 (105.1 MB, compatible with pxfquery)"
+    },
+    "sh": {
+      "h5ad_f64_mb": 533.24,
+      "h5ad_f32_mb": 95.51,
+      "parquet_f32_mb": 91.09,
+      "feather_f32_mb": 61.14,
+      "table_split_csv_npy_mb": 78.5,
+      "h5ad_f64_to_f32_savings_pct": 82.1,
+      "best_format": "h5ad_f32 (95.51 MB)"
+    },
+    "xpr": {
+      "h5ad_f64_mb": 370.31,
+      "h5ad_f32_mb": 64.21,
+      "parquet_f32_mb": 65.05,
+      "feather_f32_mb": 43.8,
+      "table_split_csv_npy_mb": 54.0,
+      "h5ad_f64_to_f32_savings_pct": 82.7,
+      "best_format": "h5ad_f32 (64.21 MB)"
+    }
+  },
+  "conclusions": {
+    "float32_safe": true,
+    "precision_evaluation_summary": "Rank correlation = 1.0 across all 91 functions for all 3 perturbation types. Top/bottom 5% overlap = 100%. float32 conversion introduces maximum absolute difference of ~0.00025 (negligible at score scale of [-10, 10]).",
+    "best_storage_format": "h5ad_float32 — preserves AnnData structure required by pxfquery package, while reducing file size by ~82%",
+    "table_split_not_recommended": "AnnData h5ad format is required by pxfquery package (DataLoader.load_local uses anndata.read_h5ad). Table split would require rewriting package code.",
+    "total_original_size_mb": 1472.98,
+    "total_float32_size_mb": 264.82,
+    "total_savings_mb": 1208.16,
+    "total_savings_pct": 82.0,
+    "function_index_missing": true,
+    "function_index_rebuild_required": true,
+    "metadata_dedup_recommended": true,
+    "recommended_canonical_files": [
+      "M-0105 (cp)",
+      "M-0106 (sh)",
+      "M-0107 (xpr)"
+    ]
+  }
+}

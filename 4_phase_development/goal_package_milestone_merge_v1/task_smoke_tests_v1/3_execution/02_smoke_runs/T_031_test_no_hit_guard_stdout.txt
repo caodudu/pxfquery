@@ -1,0 +1,14 @@
+PASS: NONSENSE_ZZZ999 (cell=A549) -> found=False
+PASS: QWERTYASDFG (cell=A549) -> found=False
+PASS: egr (cell=A549) -> found=False
+PASS: bra (cell=A549) -> found=False
+PASS: rab (cell=A549) -> found=False
+PASS: akt (cell=A549) -> found=False
+PASS: egfr_random (cell=A549) -> found=False
+PASS: totally_egfr (cell=A549) -> found=False
+PASS: something_braf (cell=A549) -> found=False
+PASS: whatever-egfr (cell=A549) -> found=False
+PASS: ABCDEF123456 (cell=None) -> found=False
+
+No-hit evidence written to /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_deterministic_query_engines_v1/task_no_hit_guard_v1/4_artifact/5_table/pxfquery_T031_no_hit_evidence.json
+Passed: 11/11

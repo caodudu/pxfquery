@@ -1,0 +1,50 @@
+required:
+  - id: A-001
+    source_task: T-060
+    source_artifact_id: D-001
+    path: 4_artifact/1_package/pxfquery
+    reason: "Implementation under test: reverse query package code (symlink to T-044; see T-060 delivery_qa.md for provenance)"
+  - id: A-002
+    source_task: T-060
+    source_artifact_id: D-002
+    path: 4_artifact/2_persist/reverse_repair_fixture_m1_1/
+    reason: "Repair fixture substrate for T-042 reverse demo (xpr matrix with HALLMARK_MYC_TARGETS_V1 + A549)"
+  - id: A-003
+    source_task: T-060
+    source_artifact_id: D-003
+    path: 4_artifact/2_persist/reverse_repair_manifest_m1_1.yaml
+    reason: "Manifest for loading the repair fixture via T-046 M1FixtureLoader"
+  - id: A-004
+    source_task: T-060
+    source_artifact_id: D-005
+    path: 4_artifact/2_persist/reverse_demo_evidence_v20260624.json
+    reason: "Reference positive demo JSON for reproducibility comparison"
+  - id: A-005
+    source_task: T-060
+    source_artifact_id: D-006
+    path: 4_artifact/2_persist/reverse_error_no_hit_evidence_v20260624.json
+    reason: "Reference no-hit/error JSON for comparison"
+  - id: A-006
+    source_task: T-060
+    source_artifact_id: D-007
+    path: 4_artifact/5_table/reverse_ranking_evidence_v20260624.csv
+    reason: "Reference ranking evidence for deterministic scoring comparison"
+optional: []
+forbidden:
+  - path: 2_project_asset/
+    reason: "forbidden for non-digestion task; request a predecessor digestion task if raw project assets are needed"
+output:
+  - path: 4_artifact/2_persist/reverse_validation_report_v{date}.json
+    type: json_evidence
+  - path: 4_artifact/5_table/reverse_validation_comparison_v{date}.csv
+    type: table
+  - path: 4_artifact/3_document/validation_report_v{date}.html
+    type: html_report
+  - path: 4_artifact/registry.yaml
+    type: registry
+modifiable:
+  - 3_execution/
+  - 4_artifact/
+  - 5_report/
+non_modifiable:
+  - predecessor task directories

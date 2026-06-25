@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>T-058 Result Report — 2026-06-24</title>
+<style>
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 960px; margin: 2rem auto; padding: 0 1.5rem; color: #1a1a1a; background: #fff; line-height: 1.6; }
+h1 { border-bottom: 2px solid #16a34a; padding-bottom: 0.5rem; color: #14532d; }
+h2 { color: #334155; margin-top: 2rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.25rem; }
+table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.9rem; }
+th, td { border: 1px solid #e2e8f0; padding: 0.5rem 0.75rem; text-align: left; }
+th { background: #f8fafc; font-weight: 600; }
+.critical { background: #fef2f2; }
+.high { background: #fef9c3; }
+.pass { color: #16a34a; font-weight: 600; }
+.fail { color: #dc2626; }
+.borderline { color: #ca8a04; }
+.meta { color: #64748b; font-size: 0.9rem; }
+</style>
+</head>
+<body>
+
+<h1>T-058 Result Report</h1>
+<p class="meta">任务：04_压力测试_开发交接包 | 阶段：消化 | 项目：P-012 (PxFquery)</p>
+<p class="meta">交付物：D-001（交接包），D-002（里程碑任务）| 日期：2026-06-24</p>
+
+<h2>Consolidated Findings</h2>
+
+<h3>Asset Landscape (from T-055)</h3>
+<table>
+<tr><th>Category</th><th>Count</th><th>Key Assets</th></tr>
+<tr><td>验证脚本</td><td>6</td><td>M-0386（7/7 矩阵），M-0385（14 题套件）</td></tr>
+<tr><td>验证报告</td><td>57</td><td>M-0291（最新矩阵），M-0275（hybrid_fast），M-0267（稳定性 6/9）</td></tr>
+<tr><td>解析器管道源码</td><td>4</td><td>resolver.py（1072 行），forward.py，reverse.py</td></tr>
+<tr><td>查询索引</td><td>10</td><td>drug（5958），gene（78061），cellline，neighbors</td></tr>
+<tr><td>GSEA 评估脚本</td><td>24</td><td>cp/sh/xpr eval + UMAP；依赖 HPC</td></tr>
+<tr><td>索引构建脚本</td><td>7</td><td>M-0373 function_index 构建器（高优先级）</td></tr>
+<tr><td>演示脚本/笔记本</td><td>6</td><td>resolver 演示，cellline 逐步分析，2 个笔记本</td></tr>
+<tr class="high"><td>已知缺口</td><td>8</td><td>function_index.json 缺失（严重），HPC/SLURM 假设，GSEA 符号链接未解析</td></tr>
+</table>
+
+<h3>Scenario Inventory (from T-056)</h3>
+<table>
+<tr><th>Dimension</th><th>Scenarios</th><th>Result Profile</th></tr>
+<tr><td>复杂查询</td><td>3 (SC-001–003)</td><td class="fail">3/3 FAIL</td></tr>
+<tr><td>严格查询</td><td>3 (SC-004–006)</td><td class="pass">3/3 PASS</td></tr>
+<tr><td>边界查询</td><td>4 (SC-007–010)</td><td class="pass">3 PASS, 1 FAIL</td></tr>
+<tr><td>无命中行为</td><td>3 (SC-011–013)</td><td>1 PASS, 2 ambiguous</td></tr>
+<tr><td>结果过于宽泛</td><td>3 (SC-014–016)</td><td class="borderline">3/3 BORDERLINE</td></tr>
+<tr><td>Proxy/exact matching</td><td>4 (SC-017–020)</td><td class="pass">4/4 PASS</td></tr>
+<tr><td>困难组合</td><td>3 (SC-021–023)</td><td>1 PASS, 1 BORDERLINE, 1 FAIL</td></tr>
+<tr><td>LLM 模式交叉检查</td><td>3 (SC-024–026)</td><td>1 INCONSISTENT, 1 LATENCY, 1 PASS</td></tr>
+<tr><td>Missing/partial index</td><td>3 (SC-027–029)</td><td>1 FAIL, 1 PASS, 1 BORDERLINE</td></tr>
+<tr><th>Total</th><th>29 scenarios</th><th>12 PASS, 6 FAIL, 5 BORDERLINE, 4 ambiguous, 1 INCONSISTENT, 1 LATENCY</th></tr>
+</table>
+
+<h3>Reuse Classification (from T-057)</h3>
+<table>
+<tr><th>Decision</th><th>Count</th><th>Composition</th></tr>
+<tr><td>直接引用</td><td>10</td><td>8 份报告 + resolver.py + 设计文档</td></tr>
+<tr><td>需要重写</td><td>11</td><td>8 个测试脚本 + 1 个索引构建器（M-0373）+ 2 个笔记本</td></tr>
+<tr><td>仅历史证据</td><td>38</td><td>33 份已取代的报告 + 4 个演示 + 1 个追踪</td></tr>
+<tr><td>不可用</td><td>6</td><td>6 GSEA log files (zero analytical value)</td></tr>
+</table>
+
+<h2>Critical Gaps</h2>
+<table>
+<tr><th>#</th><th>Gap</th><th>Priority</th><th>Source</th></tr>
+<tr class="critical"><td>GAP-1</td><td><strong>function_index.json 缺失</strong><br>在迁移后的 data/query_indexes/ 中缺失；构建器 M-0373 和构建报告 M-0252 存在；反向查询和函数映射场景受阻</td><td>CRITICAL</td><td>T-055 §4，T-056 SC-027，T-057 §3.4，T-007 GAP-2</td></tr>
+<tr class="critical"><td>GAP-2</td><td><strong>包可运行性未验证</strong><br>当前工作区中未运行导入/编译/冒烟测试；未知路径漂移</td><td>HIGH</td><td>T-007 GAP-1</td></tr>
+<tr class="high"><td>GAP-3</td><td><strong>LLM path unstable/slow</strong><br>稳定性 6/9；always-LLM 167.3 秒/4 次查询；通用药物振荡</td><td>MEDIUM</td><td>T-007 GAP-3，T-057 §3.3</td></tr>
+<tr class="high"><td>GAP-4</td><td><strong>所有脚本中的旧工作区路径</strong><br>每个脚本都引用旧工作区约定</td><td>HIGH</td><td>T-007 GAP-4，T-057 §3.1</td></tr>
+<tr class="high"><td>GAP-7</td><td><strong>反向查询验证程度低于正向查询</strong><br>仅 Act-1 提供反向证据；7 用例矩阵仅为正向</td><td>MEDIUM</td><td>T-007 GAP-7，T-057 §3.5</td></tr>
+</table>
+
+<h2>Recommended Stress-Test Milestone Tasks</h2>
+<table>
+<tr><th>ID</th><th>Task</th><th>Sessions</th><th>Deps</th></tr>
+<tr><td>ST-M01</td><td>建立压力测试工作区和资产访问</td><td>1–2</td><td>T-007 D001</td></tr>
+<tr><td>ST-M02</td><td>重建函数索引</td><td>2–3</td><td>ST-M01</td></tr>
+<tr><td>ST-M03</td><td>移植确定性查询回归套件</td><td>2–4</td><td>ST-M01, ST-M02*</td></tr>
+<tr><td>ST-M04</td><td>执行解析器模式行为套件</td><td>3–5</td><td>ST-M01–M03</td></tr>
+<tr><td>ST-M05</td><td>移植LLM稳定性评估器</td><td>1–3</td><td>ST-M01–M03</td></tr>
+<tr><td>ST-M06</td><td>反向查询压力测试扩展</td><td>2–4</td><td>ST-M01, ST-M02</td></tr>
+<tr><td>ST-M07</td><td>压力驱动案例研究和风险登记册</td><td>2–4</td><td>ST-M01–M06</td></tr>
+</table>
+
+<h2>Key Evidence Hierarchy</h2>
+<ol>
+<li><strong>M-0291 (前向矩阵 7/7)</strong> — 最强的现有验证证据；确定性，无 LLM 依赖</li>
+<li><strong>M-0275 (hybrid_fast 0.825s/3q)</strong> — 最佳性能参考；可辩护的默认模式</li>
+<li><strong>resolver.py (1072 行)</strong> — 规范实现参考；L1-L4 正向搜索策略</li>
+<li><strong>M-0267 (LLM 稳定性 6/9)</strong> — 关键风险证据；LLM 路径尚未达到稿件就绪状态</li>
+<li><strong>M-0252 (函数索引构建报告)</strong> — 规格：91 个函数，243 个别名；重建指南</li>
+</ol>
+
+<h2>Manuscript Claims Guidance</h2>
+<table>
+<tr><th>Claim Type</th><th>Examples</th><th>Support</th></tr>
+<tr class="pass"><td><strong>Safer (已支持)</strong></td><td>"确定性 LINCS/CMAP 功能查询核心"<br>"Evidence-aware exact/proxy retrieval"<br>"LLMs assist parsing/summarization"</td><td>7/7 矩阵 (SC-004, SC-017–SC-020)<br>L1-L4 解析器 + 3 个索引<br>延迟 (167.3s) + 稳定性 (6/9)</td></tr>
+<tr class="high"><td><strong>避免 (矛盾)</strong></td><td>“稳定的广义AI智能体系统”<br>“自然语言性能在所有领域均保持稳定”<br>“旧验证报告属于当前项目验证”</td><td>6/9 stability, SC-024 inconsistency<br>通用药物振荡 (SC-011)<br>仅所有遗留运行 (GAP-2)</td></tr>
+</table>
+
+<h2>Predecessor Consistency Verdict</h2>
+<p><strong>PASS</strong> — 所有三个前置任务（T-055、T-056、T-057）内部一致。不存在阻碍连贯综合的矛盾。记录了四个微小歧义（Act-1 权限、GSEA 脚本相关性、套件题库枚举、压力测试与验证范围），并已附带解决方案推进。</p>
+
+</body>
+</html>

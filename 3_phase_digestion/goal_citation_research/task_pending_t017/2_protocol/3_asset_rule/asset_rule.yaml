@@ -1,0 +1,32 @@
+version: 1
+required:
+  - A-001
+  - A-002
+  - A-003
+  - A-004
+  - A-005
+optional:
+  - A-006
+forbidden:
+  - path: ../../../2_project_asset/1_raw_material/wxy投稿文件/
+    reason: Read-only reference; do not modify original WXY submission files.
+  - path: ../../6_project_deliverable/
+    reason: This is digestion-stage citation format research, not final deliverable production.
+modifiable:
+  - 3_execution/
+  - 4_artifact/
+  - 5_report/
+non_modifiable:
+  - 1_asset/
+  - 2_protocol/
+  - ../../../2_project_asset/1_raw_material/wxy投稿文件/
+output:
+  - path: 4_artifact/2_persist/
+    reason: Final Markdown report on MDPI citation format findings.
+  - path: 4_artifact/6_archive/
+    reason: Downloaded MDPI CSL file for offline use.
+notes:
+  - A-002 (WXY manuscript) should only be inspected, never modified.
+  - A-004 (CSL file) is the authoritative MDPI citation style definition; verify style details and download a local copy.
+  - A-003 is the official MDPI documentation page; it is the primary rule authority for citation format.
+  - A-005 confirms the style is installable directly from within Zotero, no manual CSL download needed.

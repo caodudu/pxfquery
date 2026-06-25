@@ -1,0 +1,131 @@
+schema_version: 1
+updated_at: '2026-06-24T01:04:37'
+source: cli_sessions
+path: 5_report/process_record.yaml
+template:
+  purpose: Task deliverable process record; refreshed from CyHex CLI session metadata
+    while the task runs.
+  stages:
+  - config
+  - check
+  - execute
+  - deliver
+  memory_note: max_rss_kb is captured from live process RSS when the UI/backend observes
+    a running session; completed sessions may be blank if no live sample was available.
+task:
+  task_id: T-032
+  name: reverse_stability_guard_v1
+  status: done
+  sub_status: ''
+summary:
+  session_count: 4
+  running_count: 0
+  done_count: 3
+  failed_count: 1
+  total_duration_seconds: 14936
+  max_rss_kb: null
+phases:
+- stage: config
+  label_zh: 配置
+  label_en: Configuration
+  status: done
+  started: '2026-06-23T08:48:14'
+  completed: '2026-06-23T09:01:49'
+  duration_seconds: 815
+  max_rss_kb: null
+  sessions:
+  - session_id: cli_05a1fe1149c2
+    stage: config
+    status: done
+    driver: opencode
+    agent_id: ''
+    agent_label: OpenCode cheap tasks
+    model: llm_gateway/deepseek-ai/deepseek-v4-pro
+    pid: 34467
+    created: '2026-06-23T08:48:14'
+    completed: '2026-06-23T09:01:49'
+    duration_seconds: 815
+    current_rss_kb: null
+    max_rss_kb: null
+    returncode: 0
+    prompt_source: assembled
+    work_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_deterministic_query_engines_v1/task_reverse_stability_guard_v1
+    session_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_deterministic_query_engines_v1/task_reverse_stability_guard_v1/5_report/cli_sessions/config/20260623_084814_opencode_cli_05a1fe1149c2
+- stage: check
+  label_zh: 检查
+  label_en: Check
+  status: done
+  started: '2026-06-23T09:01:50'
+  completed: '2026-06-23T09:06:15'
+  duration_seconds: 265
+  max_rss_kb: null
+  sessions:
+  - session_id: cli_cb4f39bce085
+    stage: check
+    status: done
+    driver: opencode
+    agent_id: ''
+    agent_label: OpenCode cheap tasks
+    model: llm_gateway/deepseek-ai/deepseek-v4-pro
+    pid: 46860
+    created: '2026-06-23T09:01:50'
+    completed: '2026-06-23T09:06:15'
+    duration_seconds: 265
+    current_rss_kb: null
+    max_rss_kb: null
+    returncode: 0
+    prompt_source: assembled
+    work_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_deterministic_query_engines_v1/task_reverse_stability_guard_v1
+    session_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_deterministic_query_engines_v1/task_reverse_stability_guard_v1/5_report/cli_sessions/check/20260623_090150_opencode_cli_cb4f39bce085
+- stage: execute
+  label_zh: 执行
+  label_en: Execution
+  status: done
+  started: '2026-06-23T12:44:57'
+  completed: '2026-06-23T12:57:09'
+  duration_seconds: 732
+  max_rss_kb: null
+  sessions:
+  - session_id: cli_c77e1d74119d
+    stage: execute
+    status: done
+    driver: opencode
+    agent_id: AGT-002
+    agent_label: OpenCode cheap tasks
+    model: llm_gateway/deepseek-ai/deepseek-v4-pro
+    pid: 21161
+    created: '2026-06-23T12:44:57'
+    completed: '2026-06-23T12:57:09'
+    duration_seconds: 732
+    current_rss_kb: null
+    max_rss_kb: null
+    returncode: 0
+    prompt_source: assembled
+    work_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_deterministic_query_engines_v1/task_reverse_stability_guard_v1
+    session_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_deterministic_query_engines_v1/task_reverse_stability_guard_v1/5_report/cli_sessions/execute/20260623_124457_opencode_cli_c77e1d74119d
+  - session_id: cli_89f80e2d4925
+    stage: execute
+    status: stopped
+    driver: opencode
+    agent_id: ''
+    agent_label: OpenCode cheap tasks
+    model: llm_gateway/deepseek-ai/deepseek-v4-pro
+    pid: 50161
+    created: '2026-06-23T09:06:16'
+    completed: '2026-06-23T12:45:00'
+    duration_seconds: 13124
+    current_rss_kb: null
+    max_rss_kb: null
+    returncode: null
+    prompt_source: assembled
+    work_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_deterministic_query_engines_v1/task_reverse_stability_guard_v1
+    session_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_deterministic_query_engines_v1/task_reverse_stability_guard_v1/5_report/cli_sessions/execute/20260623_090616_opencode_cli_89f80e2d4925
+- stage: deliver
+  label_zh: 交付
+  label_en: Delivery
+  status: not_started
+  started: ''
+  completed: ''
+  duration_seconds: null
+  max_rss_kb: null
+  sessions: []

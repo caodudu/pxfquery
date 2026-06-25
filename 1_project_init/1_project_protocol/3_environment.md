@@ -10,7 +10,7 @@
 ## Runtime Context
 
 - Primary operating system: macOS.
-- Project orchestration: Cyber local app and Cyber task structure.
+- Project orchestration: CyHex local app and CyHex task structure.
 - Historical code context: Python package/workflow for PxFquery, including perturbation data loading, query indexes, forward/reverse query logic, resolver logic, and LLM-assisted natural-language interpretation.
 
 ## Python Runtime
@@ -38,4 +38,4 @@
 
 - Local project explanations may be written in Chinese when that improves maintainability.
 - Code package names, filenames, technical identifiers, and manuscript-facing labels may remain in English.
-- Persistent project protocol should remain concise and avoid embedding Cyber system internals or old legacy protocol mechanics.
+- Persistent project protocol should remain concise and avoid embedding CyHex system internals or old legacy protocol mechanics.

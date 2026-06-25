@@ -1,0 +1,80 @@
+artifacts:
+- id: D-001
+  name: github_pages_academic_hosting_research.md
+  path: 4_artifact/2_persist/github_pages_academic_hosting_research.md
+  type: persist
+  origin_step: 02_subtask_1_github_pages_research
+  purpose: GitHub Pages 用于学术论文配套网站的调研报告，含 3 个真实论文案例。
+  usable_by: manuscript_strategy, website_planning
+  created: '2026-06-23'
+  identity: T-019/D-001
+  role: report
+  stars: 4
+  core: false
+  lineage_anchor: false
+- id: D-002
+  name: llm_api_static_site_feasibility.md
+  path: 4_artifact/2_persist/llm_api_static_site_feasibility.md
+  type: persist
+  origin_step: 03_subtask_2_llm_api_feasibility
+  purpose: GitHub Pages 纯静态站集成 LLM API 的可行性分析，含 PxFquery 技术分析和三种集成方案。
+  usable_by: website_planning, development_execution
+  created: '2026-06-23'
+  identity: T-019/D-002
+  role: report
+  stars: 4
+  core: false
+  lineage_anchor: false
+- id: D-003
+  name: bioinfo_website_deployment_guide.md
+  path: 4_artifact/2_persist/bioinfo_website_deployment_guide.md
+  type: persist
+  origin_step: 04_subtask_3_deployment_guide
+  purpose: 生信网站从制作到上线的全流程操作指南。
+  usable_by: website_planning
+  created: '2026-06-23'
+  identity: T-019/D-003
+  role: guide
+  stars: 4
+  core: false
+  lineage_anchor: false
+- id: D-004
+  name: low_cost_fullstack_hosting_comparison.md
+  path: 4_artifact/2_persist/low_cost_fullstack_hosting_comparison.md
+  type: persist
+  origin_step: 05_subtask_4_cost_comparison
+  purpose: 5 种低成本前后端方案的价格对比和推荐。
+  usable_by: website_planning, project_budgeting
+  created: '2026-06-23'
+  identity: T-019/D-004
+  role: report
+  stars: 4
+  core: false
+  lineage_anchor: false
+- id: D-005
+  name: execution_report_v20260623.html
+  path: 4_artifact/3_document/execution_report_v20260623.html
+  type: document
+  origin_step: 07_generate_html_reports
+  purpose: 执行情况报告（任务摘要、每步执行情况、交付物清单）。
+  usable_by: task_review
+  created: '2026-06-23'
+  identity: T-019/D-005
+  role: report
+  stars: 5
+  core: false
+  lineage_anchor: false
+- id: D-006
+  name: result_report_v20260623.html
+  path: 4_artifact/3_document/result_report_v20260623.html
+  type: document
+  origin_step: 07_generate_html_reports
+  purpose: 面向人类的调研成果展示报告，含四部分结论和综合建议。
+  usable_by: user_review, manuscript_strategy
+  created: '2026-06-23'
+  identity: T-019/D-006
+  role: report
+  stars: 5
+  core: true
+  lineage_anchor: true
+core_artifact_id: D-006

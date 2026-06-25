@@ -1,0 +1,71 @@
+{
+  "produced_files": [
+    "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/2_persist/standard_resources/cp_func_ad.h5ad",
+    "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/2_persist/standard_resources/sh_func_ad.h5ad",
+    "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/2_persist/standard_resources/xpr_func_ad.h5ad",
+    "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/2_persist/standard_resources/cellline_meta_standard.csv",
+    "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/2_persist/standard_resources/compound_meta_standard.csv",
+    "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/2_persist/standard_resources/cellline_info_standard.csv",
+    "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/2_persist/standard_resources/compound_info_standard.csv",
+    "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/2_persist/standard_resources/gene_info_standard.csv",
+    "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/2_persist/standard_resources/function_index.json",
+    "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/2_persist/standard_resources/data_description.yaml"
+  ],
+  "file_sizes": {
+    "cp_func_ad.h5ad": {
+      "size_mb": 105.11,
+      "save_time_sec": 3.11,
+      "n_obs": 201014,
+      "n_vars": 91,
+      "dtype": "float32"
+    },
+    "sh_func_ad.h5ad": {
+      "size_mb": 95.52,
+      "save_time_sec": 2.66,
+      "n_obs": 189365,
+      "n_vars": 91,
+      "dtype": "float32"
+    },
+    "xpr_func_ad.h5ad": {
+      "size_mb": 64.22,
+      "save_time_sec": 3.81,
+      "n_obs": 132464,
+      "n_vars": 91,
+      "dtype": "float32"
+    },
+    "cellline_meta_standard.csv": {
+      "size_mb": 0.01,
+      "nrows": 240
+    },
+    "compound_meta_standard.csv": {
+      "size_mb": 0.93,
+      "nrows": 6647
+    },
+    "cellline_info_standard.csv": {
+      "size_mb": 0.03,
+      "nrows": 240
+    },
+    "compound_info_standard.csv": {
+      "size_mb": 4.19,
+      "nrows": 39321
+    },
+    "gene_info_standard.csv": {
+      "size_mb": 1.09,
+      "nrows": 12328
+    },
+    "function_index.json": {
+      "size_mb": 0.02,
+      "n_hallmark": 50,
+      "n_3ca_mps": 41,
+      "total": 91
+    },
+    "data_description.yaml": {
+      "size_mb": 0.0
+    }
+  },
+  "total_size_mb": 271.12,
+  "total_files": 10,
+  "h5ad_f32_total_mb": 264.85,
+  "h5ad_f64_original_mb": 1472.98,
+  "h5ad_savings_mb": 1208.13
+}

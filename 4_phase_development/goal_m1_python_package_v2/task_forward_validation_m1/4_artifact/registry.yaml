@@ -1,0 +1,42 @@
+artifacts:
+  - id: D-001
+    name: forward_validation_smoke_log
+    type: log
+    path: 4_artifact/2_persist/forward_validation_smoke_v20260624.log
+    description: Smoke execution log recording install, fixture load, forward demo, no-hit demo, reference comparison, and CLI test.
+
+  - id: D-002
+    name: forward_validation_rerun_positive
+    type: json
+    path: 4_artifact/2_persist/forward_validation_rerun_positive_v20260624.json
+    description: Re-run positive forward query JSON output (EGFR/A549/xpr).
+
+  - id: D-003
+    name: forward_validation_rerun_nohit
+    type: json
+    path: 4_artifact/2_persist/forward_validation_rerun_nohit_v20260624.json
+    description: Re-run no-hit forward query JSON output (UNKNOWN_GENE_XYZ999/A549).
+
+  - id: D-004
+    name: forward_validation_results_table
+    type: table
+    path: 4_artifact/5_table/forward_validation_results_v20260624.csv
+    description: Validation results table with 11 PASS/FAIL checks.
+
+  - id: D-005
+    name: forward_validation_report
+    type: document
+    path: 4_artifact/3_document/forward_validation_report_v20260624.md
+    description: Validation report documenting all steps, traceability, and overall pass/fail.
+
+  - id: D-006
+    name: execution_report
+    type: report
+    path: 4_artifact/3_document/execution_report_v20260624.html
+    description: HTML rendering of smoke log and outputs.
+
+  - id: D-007
+    name: result_report
+    type: report
+    path: 4_artifact/3_document/result_report_v20260624.html
+    description: HTML rendering of validation results table.

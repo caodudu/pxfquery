@@ -1,0 +1,75 @@
+assets:
+- id: A-001
+  name: T-021 standard_resources bundle (D-004)
+  type: deliverable
+  source: predecessor
+  origin: task_standard_resources_optimal_formats
+  registered: '2026-06-23'
+  path: 1_asset/T-021 standard_resources bundle (D-004)
+  notes: 'Canonical PxFquery standard resource bundle produced by T-021: 19 files
+    (3 float32 H5AD matrices, 10 JSON indexes, 5 CSV metadata tables, 1 data_description.yaml).
+    Source-of-truth input for T-025 manifest. Path repaired on 2026-06-23: original
+    `../../../task_standard_resources_optimal_formats/...` over-resolved one directory;
+    correct depth from this task is `../../goal_precomputed_data_exploration/task_standard_resources_optimal_formats/...`.'
+  location: local
+  identity: T-021/D-004
+  symlink: true
+- id: A-002
+  name: T-021 standard resource guide (D-001)
+  type: deliverable
+  source: predecessor
+  origin: task_standard_resources_optimal_formats
+  registered: '2026-06-23'
+  path: 1_asset/T-021 standard resource guide (D-001).md
+  notes: Detailed Chinese/English documentation covering every file in the D-004 bundle,
+    format decisions, and package mapping. Reused by T-025 for cross-reference. Path
+    repaired alongside A-001 (../../ goal_precomputed_data_exploration/...).
+  location: local
+  identity: T-021/D-001
+  symlink: true
+- id: A-003
+  name: T-021 execution report (D-002)
+  type: deliverable
+  source: predecessor
+  origin: task_standard_resources_optimal_formats
+  registered: '2026-06-23'
+  path: 1_asset/T-021 execution report (D-002).html
+  notes: HTML execution report from T-021. Reference only; not modified by T-025.
+  location: local
+  identity: T-021/D-002
+  symlink: true
+- id: A-004
+  name: T-021 result report (D-003)
+  type: deliverable
+  source: predecessor
+  origin: task_standard_resources_optimal_formats
+  registered: '2026-06-23'
+  path: 1_asset/T-021 result report (D-003).html
+  notes: HTML result report from T-021. Reference only; not modified by T-025.
+  location: local
+  identity: T-021/D-003
+  symlink: true
+- id: A-005
+  name: T-021 process records (D-005)
+  type: deliverable
+  source: predecessor
+  origin: task_standard_resources_optimal_formats
+  registered: '2026-06-23'
+  path: 1_asset/T-021 process records (D-005)
+  notes: Audit, profiling, format-evaluation, production, and validation records produced
+    by T-021 (step1–step5 JSON). Optional reference for cross-checking measurements.
+    Path repaired alongside A-001.
+  location: local
+  identity: T-021/D-005
+  symlink: true
+- id: A-006
+  name: T-021 artifact registry
+  type: deliverable
+  source: predecessor
+  origin: task_standard_resources_optimal_formats
+  registered: '2026-06-23'
+  path: 1_asset/T-021 artifact registry.yaml
+  notes: T-021 artifact registry. Confirms D-004 identity and core deliverable status
+    of the standard_resources bundle. Path repaired alongside A-001.
+  location: local
+  symlink: true

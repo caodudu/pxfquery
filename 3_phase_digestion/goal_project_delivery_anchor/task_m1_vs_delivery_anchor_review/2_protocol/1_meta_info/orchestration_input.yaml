@@ -1,0 +1,33 @@
+delivery_goal: Post-M1 delivery-anchor gap review and milestone reclassification.
+predecessor_tasks:
+- task_id: T-053
+  gate: must
+  reason: Completed M1 Python package milestone artifact to be reviewed.
+- task_id: T-062
+  gate: must
+  reason: Overall package delivery anchor defines expected capability set and downgrade
+    rules.
+- task_id: T-063
+  gate: must
+  reason: LLM/resolver anchor defines expected user-facing resolver capability and
+    evidence.
+- task_id: T-064
+  gate: must
+  reason: Evidence-routing anchor defines exact/proxy/no-hit/transfer behavior expected
+    beyond deterministic kernel.
+reference_tasks:
+- task_id: T-059
+  reason: Forward repair implementation evidence may be read through T053 lineage
+    if needed.
+- task_id: T-060
+  reason: Reverse repair implementation evidence may be read through T053 lineage
+    if needed.
+supplemental_notes:
+- Review/gap task only. Do not modify M1 artifacts.
+- Be explicit if M1 is only a deterministic kernel/substrate; do not call it a complete
+  algorithm package unless it satisfies the anchors.
+- Output should include machine-readable gap YAML, Chinese narrative report, and next-milestone
+  recommendations.
+suggested_agent:
+  strength: strong
+  reason: Critical milestone value judgment and scope-correction task.

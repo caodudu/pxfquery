@@ -1,0 +1,432 @@
+task_id: T-065
+review_version: v20260625
+review_date: '2026-06-25'
+overall_classification: deterministic kernel/substrate
+classification_reason: M1 evidences an installable pxfquery v0.1.0 package with deterministic
+  forward and reverse fixture demos, CLI wiring, and structured deterministic errors.
+  It does not evidence resolver-mediated entry, LLM parse/summary, proxy routing,
+  transfer/suggestion semantics, full T-064 route metadata, or T-021 standard-resource
+  compatibility. Therefore it should be treated as a deterministic kernel/substrate,
+  not a complete anchored algorithm package.
+status_counts:
+  partial: 10
+  downgraded: 4
+  deferred-not-approved: 4
+  evidence-insufficient: 4
+controlled_status_labels_used:
+- deferred-not-approved
+- downgraded
+- evidence-insufficient
+- partial
+registered_inputs_used:
+- A-001
+- A-002
+- A-003
+- A-004
+- A-005
+- A-006
+- A-007
+- A-008
+- A-009
+- A-010
+- A-011
+- A-012
+- A-013
+- A-014
+- A-015
+- A-016
+m1_positive_evidence_summary:
+  package: pxfquery 0.1.0, editable install, CLI entry point pxfquery
+  forward: EGFR/A549/xpr fixture query found:true; no-hit unknown gene returns PerturbationNotFound
+  reverse: A549 apoptosis activation/MYC suppression fixture query returns ranked
+    candidates
+  assembly: T-052 package assembly 9/9 acceptance criteria PASS
+m1_limitation_summary:
+  synthetic_fixture: A-004 GAP-001/GAP-002 state synthetic fixture validation, not
+    real LINCS data.
+  minimal_scope: A-004 GAP-006/GAP-007 state one positive/no-hit forward case and
+    one reverse functional profile.
+  standard_resources: A-004 GAP-004 states minimal/synthetic indexes and no full LINCS
+    index loading tested.
+  resolver_llm_proxy: No resolver startup, LLM call, proxy route, transfer/suggestion,
+    or T-064 metadata-contract evidence in A-001 to A-004.
+capability_statuses:
+- capability_id: CAP-FWD-001
+  capability_area: package_core
+  capability: Forward perturbation-to-function query
+  anchor_source: T-062 package anchor
+  in_scope: true
+  status: partial
+  m1_evidence: 'A-001/A-002: EGFR/A549/xpr forward demo found:true; CLI exit 0; JSON
+    valid.'
+  gap_or_limit: Only one exact positive and one no-hit case on synthetic_repair fixture;
+    no real LINCS/T-021 standard-resource evidence.
+  fallback_used: false
+  downgrade_or_deferral: false
+  user_approval_reference: ''
+  reviewer_note: Core deterministic forward path is evidenced, but coverage and resource
+    basis are too narrow for full package delivery.
+- capability_id: CAP-REV-001
+  capability_area: package_core
+  capability: Reverse function-to-perturbation query
+  anchor_source: T-062 package anchor
+  in_scope: true
+  status: partial
+  m1_evidence: 'A-001/A-002: apoptosis activation plus MYC suppression in A549 returns
+    ranked top candidates; 42/42 validation checks pass.'
+  gap_or_limit: Synthetic fixture only; minimal one-profile coverage; one zero-norm
+    candidate skipped with warning; no full matrix numeric robustness evidence.
+  fallback_used: false
+  downgrade_or_deferral: false
+  user_approval_reference: ''
+  reviewer_note: Reverse kernel exists and is validated narrowly, but not enough for
+    complete reverse package capability.
+- capability_id: CAP-CTX-001
+  capability_area: package_core
+  capability: Biological context handling
+  anchor_source: T-062 package anchor
+  in_scope: true
+  status: partial
+  m1_evidence: 'A-001/A-002: A549 is accepted in forward and reverse demos; ContextNotFound
+    is listed among structured reverse errors.'
+  gap_or_limit: No multi-cell-line, lineage, disease, subtype, or context-proxy evidence;
+    context route metadata is not shown against T-064 contract.
+  fallback_used: false
+  downgrade_or_deferral: false
+  user_approval_reference: ''
+  reviewer_note: Context participates in fixture lookup, but anchored biological-context
+    routing is incomplete.
+- capability_id: CAP-EVD-EXACT-001
+  capability_area: evidence_routing
+  capability: Exact evidence routing
+  anchor_source: T-062/T-064 route taxonomy
+  in_scope: true
+  status: partial
+  m1_evidence: 'A-001/A-002: exact EGFR/A549 and exact reverse function examples succeed.'
+  gap_or_limit: Outputs are reported as found:true and valid JSON, but route_type=exact-hit,
+    source index/matrix references, and full metadata contract are not evidenced.
+  fallback_used: false
+  downgrade_or_deferral: false
+  user_approval_reference: ''
+  reviewer_note: Exact deterministic retrieval is present; exact evidence routing
+    as a labeled metadata route is only partially evidenced.
+- capability_id: CAP-EVD-PROXY-001
+  capability_area: evidence_routing
+  capability: Proxy evidence routing
+  anchor_source: T-062/T-064 route taxonomy
+  in_scope: true
+  status: downgraded
+  m1_evidence: No proxy forward, proxy reverse, proxy-cell, proxy-perturbation, or
+    proxy-both case appears in A-001 to A-004.
+  gap_or_limit: M1 validates exact fixture paths only; no exact-miss trigger, neighbor
+    source, similarity/hierarchy basis, proxy confidence, or limitation metadata.
+  fallback_used: false
+  downgrade_or_deferral: true
+  user_approval_reference: ''
+  reviewer_note: If M1 is treated as a complete algorithm package, replacing required
+    proxy routing with exact-only fixture lookup is an unapproved downgrade.
+- capability_id: CAP-EVD-NOTFOUND-001
+  capability_area: evidence_routing
+  capability: Not-found and no-hit routing
+  anchor_source: T-062/T-064 route taxonomy
+  in_scope: true
+  status: partial
+  m1_evidence: 'A-001/A-002: UNKNOWN_GENE_XYZ999/A549 returns structured PerturbationNotFound
+    without traceback.'
+  gap_or_limit: Only one negative control; no attempted-route metadata, threshold
+    guard evidence, context/function no-hit, or no-false-positive confirmation under
+    T-064 contract.
+  fallback_used: true
+  downgrade_or_deferral: false
+  user_approval_reference: ''
+  reviewer_note: A safe deterministic no-hit path is shown for one gene token, but
+    user-facing no-hit routing is incomplete.
+- capability_id: CAP-ENTRY-RESOLVER-001
+  capability_area: resolver_llm
+  capability: Resolver-mediated query entry
+  anchor_source: T-062/T-063 resolver anchor
+  in_scope: true
+  status: downgraded
+  m1_evidence: A-001 lists direct CLI subcommands forward/reverse/info; no resolver
+    startup, parse object, or dispatch log is evidenced.
+  gap_or_limit: Direct deterministic CLI parameters substitute for resolver-mediated
+    natural-language or semi-structured entry.
+  fallback_used: false
+  downgrade_or_deferral: true
+  user_approval_reference: ''
+  reviewer_note: This is acceptable for a deterministic kernel boundary, but not for
+    a complete anchored package milestone without user-approved exclusion.
+- capability_id: CAP-LLM-001
+  capability_area: resolver_llm
+  capability: LLM-assisted parsing and summarization
+  anchor_source: T-062/T-063 resolver anchor
+  in_scope: true
+  status: deferred-not-approved
+  m1_evidence: A-001 package tree includes llm/prompt templates, but A-001 to A-004
+    contain no LLM call, parse, summary, route, latency, failure, or fallback evidence.
+  gap_or_limit: Prompt/code presence is not delivery evidence; endpoint connectivity
+    or templates would also be insufficient under T-063.
+  fallback_used: false
+  downgrade_or_deferral: true
+  user_approval_reference: ''
+  reviewer_note: LLM behavior is absent from M1 evidence and no explicit user approval
+    for deferral is recorded in the registered artifacts.
+- capability_id: CAP-FALLBACK-001
+  capability_area: resolver_llm
+  capability: Deterministic fallback and runtime resilience
+  anchor_source: T-062/T-063 fallback semantics
+  in_scope: true
+  status: partial
+  m1_evidence: 'A-001/A-002: structured errors are shown for perturbation not found
+    and reverse error classes such as NoMatrixLoaded, ProgramNotFound, ContextNotFound,
+    LowConfidenceResult, EmptyTarget.'
+  gap_or_limit: No primary resolver/LLM/proxy failure trigger is exercised; fallback
+    metadata distinguishing primary versus fallback paths is absent.
+  fallback_used: true
+  downgrade_or_deferral: false
+  user_approval_reference: ''
+  reviewer_note: Error resilience exists at deterministic query level, but anchored
+    runtime fallback semantics are not delivered.
+- capability_id: CAP-META-001
+  capability_area: metadata
+  capability: Transparent evidence metadata
+  anchor_source: T-062/T-064 metadata contract
+  in_scope: true
+  status: partial
+  m1_evidence: 'A-001/A-002: outputs are JSON and include found/not-found status;
+    forward reference comparison excludes a harness _evidence field.'
+  gap_or_limit: 'No evidence that all 8 T-064 fields are present: route_type, query_context,
+    perturbation_resolution, function_response, confidence, proxy_chain, diagnostics,
+    suggestions.'
+  fallback_used: false
+  downgrade_or_deferral: false
+  user_approval_reference: ''
+  reviewer_note: Minimal status metadata is present; route-aware metadata contract
+    is not.
+- capability_id: CAP-RES-001
+  capability_area: resources
+  capability: Standard resource compatibility
+  anchor_source: T-062 package anchor
+  in_scope: true
+  status: evidence-insufficient
+  m1_evidence: A-004 GAP-001/GAP-002/GAP-004 state synthetic fixture validation and
+    minimal/synthetic indexes; A-001 package uses M1FixtureLoader.
+  gap_or_limit: No T-021 functional matrix/index loading or function_index runtime
+    compatibility evidence appears in M1 artifacts.
+  fallback_used: false
+  downgrade_or_deferral: false
+  user_approval_reference: ''
+  reviewer_note: Standard-resource compatibility remains unevidenced and blocks full
+    current-package delivery claims.
+- capability_id: RES-ENTRY-NL-001
+  capability_area: resolver_llm
+  capability: Natural-language resolver entry
+  anchor_source: T-063 acceptance matrix
+  in_scope: true
+  status: deferred-not-approved
+  m1_evidence: No natural-language input case in A-001 to A-004.
+  gap_or_limit: No raw NL input, parse, ambiguity fields, dispatch log, or route metadata.
+  fallback_used: false
+  downgrade_or_deferral: true
+  user_approval_reference: ''
+  reviewer_note: Direct CLI demos do not satisfy natural-language resolver entry.
+- capability_id: RES-ENTRY-STRUCT-001
+  capability_area: resolver_llm
+  capability: Semi-structured resolver entry
+  anchor_source: T-063 acceptance matrix
+  in_scope: true
+  status: downgraded
+  m1_evidence: CLI flags provide structured parameters, but no resolver parse/normalization
+    record is shown.
+  gap_or_limit: Manual CLI parameters bypass resolver parse metadata and supported-field
+    normalization.
+  fallback_used: false
+  downgrade_or_deferral: true
+  user_approval_reference: ''
+  reviewer_note: CLI is useful substrate evidence, not resolver entry delivery.
+- capability_id: RES-AI-001
+  capability_area: resolver_llm
+  capability: CyHex-configured LLM route
+  anchor_source: T-063 acceptance matrix
+  in_scope: true
+  status: evidence-insufficient
+  m1_evidence: No CyHex AI route, deepseek-v4-pro or successor, parse/summary call,
+    latency, failure, or fallback metadata in M1 artifacts.
+  gap_or_limit: LLM prompt templates in the package tree do not demonstrate configured
+    LLM behavior.
+  fallback_used: false
+  downgrade_or_deferral: false
+  user_approval_reference: ''
+  reviewer_note: No LLM acceptance evidence is available.
+- capability_id: RES-DEMO-001
+  capability_area: resolver_llm
+  capability: Required M3 demo coverage
+  anchor_source: T-063 demo catalog
+  in_scope: true
+  status: deferred-not-approved
+  m1_evidence: M1 has exact forward, exact reverse, and one no-hit fixture case; no
+    proxy, ambiguous NL, semi-structured resolver, LLM-unavailable fallback, or metadata-inspection
+    demo.
+  gap_or_limit: M3 demo catalog coverage is mostly absent.
+  fallback_used: false
+  downgrade_or_deferral: true
+  user_approval_reference: ''
+  reviewer_note: Next resolver milestone needs a separate demo matrix; M1 cannot be
+    credited for it.
+- capability_id: ROUTE-EXACT-HIT
+  capability_area: evidence_routing
+  capability: T-064 exact-hit route
+  anchor_source: T-064 route taxonomy
+  in_scope: true
+  status: partial
+  m1_evidence: Exact fixture examples succeed.
+  gap_or_limit: Missing route_type exact-hit and full source/index/matrix metadata.
+  fallback_used: false
+  downgrade_or_deferral: false
+  user_approval_reference: ''
+  reviewer_note: Behavior exists but route contract is incomplete.
+- capability_id: ROUTE-PROXY-HIT
+  capability_area: evidence_routing
+  capability: T-064 proxy-hit route
+  anchor_source: T-064 route taxonomy
+  in_scope: true
+  status: downgraded
+  m1_evidence: No proxy case.
+  gap_or_limit: No proxy chain, threshold, similarity, hierarchy, or limitation metadata.
+  fallback_used: false
+  downgrade_or_deferral: true
+  user_approval_reference: ''
+  reviewer_note: Exact-only M1 does not satisfy proxy route anchor.
+- capability_id: ROUTE-NO-HIT
+  capability_area: evidence_routing
+  capability: T-064 no-hit route
+  anchor_source: T-064 route taxonomy
+  in_scope: true
+  status: partial
+  m1_evidence: One unknown gene token returns PerturbationNotFound.
+  gap_or_limit: No threshold-guard, indexes-searched, proxy-below-threshold, or suggestions
+    metadata.
+  fallback_used: true
+  downgrade_or_deferral: false
+  user_approval_reference: ''
+  reviewer_note: Narrow no-hit behavior exists but is not route-complete.
+- capability_id: ROUTE-AMBIGUOUS-HIT
+  capability_area: evidence_routing
+  capability: T-064 ambiguous-hit route
+  anchor_source: T-064 route taxonomy
+  in_scope: true
+  status: evidence-insufficient
+  m1_evidence: No ambiguous perturbation, multi-BRD, or near-tie reverse case in M1
+    artifacts.
+  gap_or_limit: No candidate list, ambiguity flags, or clarification/suggestion behavior.
+  fallback_used: false
+  downgrade_or_deferral: false
+  user_approval_reference: ''
+  reviewer_note: Ambiguous route is missing from evidence.
+- capability_id: ROUTE-CONTEXT-MISSING
+  capability_area: evidence_routing
+  capability: T-064 context-missing route
+  anchor_source: T-064 route taxonomy
+  in_scope: true
+  status: partial
+  m1_evidence: Reverse validation lists ContextNotFound among structured errors.
+  gap_or_limit: No explicit missing/invalid context demo with required fields, validation
+    errors, or suggestions.
+  fallback_used: true
+  downgrade_or_deferral: false
+  user_approval_reference: ''
+  reviewer_note: Error class is evidenced, not the full context-missing user route.
+- capability_id: ROUTE-TRANSFER-SUGGESTION
+  capability_area: evidence_routing
+  capability: T-064 transfer/suggestion route
+  anchor_source: T-064 route taxonomy
+  in_scope: true
+  status: deferred-not-approved
+  m1_evidence: No actionable reformulation, alternative context, related perturbation,
+    or LLM-assisted explanation appears in M1 artifacts.
+  gap_or_limit: M1 returns deterministic results/errors but no user-facing transfer/suggestion
+    semantics.
+  fallback_used: false
+  downgrade_or_deferral: true
+  user_approval_reference: ''
+  reviewer_note: Transfer/suggestion is an anchored project capability and remains
+    undelivered.
+- capability_id: ROUTE-METADATA-CONTRACT
+  capability_area: metadata
+  capability: T-064 eight-field metadata contract
+  anchor_source: T-064 metadata contract
+  in_scope: true
+  status: evidence-insufficient
+  m1_evidence: A-001/A-002 state JSON is valid and found/not-found exists.
+  gap_or_limit: No evidence that route_type, query_context, perturbation_resolution,
+    function_response, confidence, proxy_chain, diagnostics, and suggestions are all
+    present in every response.
+  fallback_used: false
+  downgrade_or_deferral: false
+  user_approval_reference: ''
+  reviewer_note: M1 metadata is below the route-aware evidence contract.
+missing_items:
+- CAP-EVD-PROXY-001
+- CAP-ENTRY-RESOLVER-001
+- CAP-LLM-001
+- CAP-RES-001
+- RES-ENTRY-NL-001
+- RES-ENTRY-STRUCT-001
+- RES-AI-001
+- RES-DEMO-001
+- ROUTE-PROXY-HIT
+- ROUTE-AMBIGUOUS-HIT
+- ROUTE-TRANSFER-SUGGESTION
+- ROUTE-METADATA-CONTRACT
+unapproved_scope_shrinkage:
+- id: SHRINK-001
+  finding: M1 report labels all gates PASS and calls known gaps low-severity, but
+    under delivery anchors synthetic exact fixture lookup cannot stand in for complete
+    package delivery.
+  affected_capabilities:
+  - CAP-EVD-PROXY-001
+  - CAP-ENTRY-RESOLVER-001
+  - CAP-LLM-001
+  - CAP-RES-001
+  - ROUTE-TRANSFER-SUGGESTION
+  approval_found: false
+  recommended_label: downgraded or deferred-not-approved when claimed as complete
+    milestone
+- id: SHRINK-002
+  finding: Direct CLI calls and deterministic function parameters replace resolver-mediated
+    user entry in M1 evidence.
+  affected_capabilities:
+  - CAP-ENTRY-RESOLVER-001
+  - RES-ENTRY-NL-001
+  - RES-ENTRY-STRUCT-001
+  approval_found: false
+  recommended_label: downgraded
+- id: SHRINK-003
+  finding: Exact-only synthetic demos replace required proxy/no-hit/ambiguous/context/transfer
+    route coverage if M1 is treated as full package delivery.
+  affected_capabilities:
+  - CAP-EVD-PROXY-001
+  - ROUTE-PROXY-HIT
+  - ROUTE-AMBIGUOUS-HIT
+  - ROUTE-TRANSFER-SUGGESTION
+  approval_found: false
+  recommended_label: downgraded/deferred-not-approved
+next_milestone_boundary:
+  recommended_name: M2 current-resource evidence-routing package milestone
+  must_deliver_before_full_package_claim:
+  - Load or explicitly inherit T-021 standard matrices/indexes, including function_index
+    runtime compatibility.
+  - Run exact forward, exact reverse, no-hit, context-missing, and at least one proxy
+    route with T-064 metadata.
+  - Emit the eight required evidence metadata fields for every query result.
+  - Keep M1 fixture CLI package as the deterministic kernel rather than calling it
+    a complete package.
+  m3_boundary_after_m2:
+  - Resolver-mediated natural-language and semi-structured entry.
+  - CyHex-configured LLM parse/summary evidence with fallback metadata.
+  - Full proxy, ambiguous, transfer/suggestion, and LLM-unavailable demo catalog coverage.
+  allowed_documented_gaps:
+  - Wheel/distribution build can remain a packaging follow-up if editable install
+    is acceptable for internal milestones.
+  - Large multi-query stress coverage can be staged after route contract conformance
+    is proven.

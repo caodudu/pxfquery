@@ -1,0 +1,84 @@
+artifacts:
+- id: D-001
+  name: milestone_report
+  type: document
+  path: 4_artifact/3_document/milestone_report_v20260624_061117.md
+  role: primary
+  description: M1 milestone report summarizing all three evidence streams, package
+    location/version, layered asset map, known gaps, and demo commands
+  generated: 2026-06-24
+  status: accepted
+  stars: 5
+  task_id: T-053
+  identity: T-053/D-001
+  core: false
+  lineage_anchor: false
+- id: D-002
+  name: evidence_index
+  type: data
+  path: 4_artifact/2_persist/evidence_index_v20260624_061117.json
+  role: primary
+  description: Structured JSON index of all three evidence streams with verdicts,
+    key metrics, and cross-references
+  generated: 2026-06-24
+  status: accepted
+  stars: 5
+  task_id: T-053
+  identity: T-053/D-002
+  core: false
+  lineage_anchor: false
+- id: D-003
+  name: layered_asset_map
+  type: table
+  path: 4_artifact/5_table/layered_asset_map_v20260624_061117.csv
+  role: primary
+  description: CSV mapping each asset to its predecessor task, layer (skeleton → forward
+    impl → reverse impl → package assembly → forward validation → reverse validation),
+    and milestone role
+  generated: 2026-06-24
+  status: accepted
+  stars: 4
+  task_id: T-053
+  identity: T-053/D-003
+  core: false
+  lineage_anchor: false
+- id: D-004
+  name: known_gap_report
+  type: document
+  path: 4_artifact/5_table/known_gaps_v20260624_061117.md
+  role: primary
+  description: List of 7 low-severity known gaps identified from predecessor reports
+  generated: 2026-06-24
+  status: accepted
+  stars: 4
+  task_id: T-053
+  identity: T-053/D-004
+  core: false
+  lineage_anchor: false
+- id: D-005
+  name: demo_commands_reference
+  type: document
+  path: 4_artifact/2_persist/demo_commands_v20260624_061117.md
+  role: primary
+  description: Working CLI commands for forward query, reverse query, and info subcommand
+    with Python API examples
+  generated: 2026-06-24
+  status: accepted
+  stars: 4
+  task_id: T-053
+  identity: T-053/D-005
+  core: false
+  lineage_anchor: false
+- id: D-006
+  name: completion_report
+  type: document
+  path: 5_report/completion.md
+  role: process
+  description: Completion report indicating all deliverables produced and accepted
+  generated: 2026-06-24
+  status: accepted
+  stars: 2
+  task_id: T-053
+  identity: T-053/D-006
+  core: false
+  lineage_anchor: false

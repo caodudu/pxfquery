@@ -1,0 +1,569 @@
+{
+  "version": "pxfquery-T-028",
+  "matrix_source": "T-021 standard_resources bundle (D-004)",
+  "loader_source": "pxfquery-T-026 matrix loader",
+  "n_functions": 91,
+  "var_names": [
+    "HALLMARK_ADIPOGENESIS",
+    "HALLMARK_ALLOGRAFT_REJECTION",
+    "HALLMARK_ANDROGEN_RESPONSE",
+    "HALLMARK_ANGIOGENESIS",
+    "HALLMARK_APICAL_JUNCTION",
+    "HALLMARK_APICAL_SURFACE",
+    "HALLMARK_APOPTOSIS",
+    "HALLMARK_BILE_ACID_METABOLISM",
+    "HALLMARK_CHOLESTEROL_HOMEOSTASIS",
+    "HALLMARK_COAGULATION",
+    "HALLMARK_COMPLEMENT",
+    "HALLMARK_DNA_REPAIR",
+    "HALLMARK_E2F_TARGETS",
+    "HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION",
+    "HALLMARK_ESTROGEN_RESPONSE_EARLY",
+    "HALLMARK_ESTROGEN_RESPONSE_LATE",
+    "HALLMARK_FATTY_ACID_METABOLISM",
+    "HALLMARK_G2M_CHECKPOINT",
+    "HALLMARK_GLYCOLYSIS",
+    "HALLMARK_HEDGEHOG_SIGNALING",
+    "HALLMARK_HEME_METABOLISM",
+    "HALLMARK_HYPOXIA",
+    "HALLMARK_IL2_STAT5_SIGNALING",
+    "HALLMARK_IL6_JAK_STAT3_SIGNALING",
+    "HALLMARK_INFLAMMATORY_RESPONSE",
+    "HALLMARK_INTERFERON_ALPHA_RESPONSE",
+    "HALLMARK_INTERFERON_GAMMA_RESPONSE",
+    "HALLMARK_KRAS_SIGNALING_DN",
+    "HALLMARK_KRAS_SIGNALING_UP",
+    "HALLMARK_MITOTIC_SPINDLE",
+    "HALLMARK_MTORC1_SIGNALING",
+    "HALLMARK_MYC_TARGETS_V1",
+    "HALLMARK_MYC_TARGETS_V2",
+    "HALLMARK_MYOGENESIS",
+    "HALLMARK_NOTCH_SIGNALING",
+    "HALLMARK_OXIDATIVE_PHOSPHORYLATION",
+    "HALLMARK_P53_PATHWAY",
+    "HALLMARK_PANCREAS_BETA_CELLS",
+    "HALLMARK_PEROXISOME",
+    "HALLMARK_PI3K_AKT_MTOR_SIGNALING",
+    "HALLMARK_PROTEIN_SECRETION",
+    "HALLMARK_REACTIVE_OXYGEN_SPECIES_PATHWAY",
+    "HALLMARK_SPERMATOGENESIS",
+    "HALLMARK_TGF_BETA_SIGNALING",
+    "HALLMARK_TNFA_SIGNALING_VIA_NFKB",
+    "HALLMARK_UNFOLDED_PROTEIN_RESPONSE",
+    "HALLMARK_UV_RESPONSE_DN",
+    "HALLMARK_UV_RESPONSE_UP",
+    "HALLMARK_WNT_BETA_CATENIN_SIGNALING",
+    "HALLMARK_XENOBIOTIC_METABOLISM",
+    "MP1  Cell Cycle - G2/M",
+    "MP2  Cell Cycle - G1/S",
+    "MP3  Cell Cylce HMG-rich",
+    "MP4  Chromatin ",
+    "MP5 Stress ",
+    "MP6 Hypoxia",
+    "MP7 Stress (in vitro)",
+    "MP8 Proteasomal degradation",
+    "MP9 Unfolded protein response",
+    "MP10 Protein maturation",
+    "MP11 Translation initiation",
+    "MP12 EMT-I",
+    "MP13 EMT-II",
+    "MP14 EMT-III ",
+    "MP15 EMT IV",
+    "MP16 MES (glioma)",
+    "MP17 Interferon/MHC-II (I)",
+    "MP18 Interferon/MHC-II (II)",
+    "MP19 Epithelial Senescence",
+    "MP20 MYC",
+    "MP21 Respiration",
+    "MP22 Secreted I",
+    "MP23 Secreted II",
+    "MP24 Cilia",
+    "MP25 Astrocytes",
+    "MP26 NPC Glioma",
+    "MP27 Oligo Progenitor",
+    "MP28 Oligo normal",
+    "MP29 NPC/OPC",
+    "MP30 PDAC-classical",
+    "MP31 Alveolar",
+    "MP32 Skin-pigmentation",
+    "MP33 RBCs",
+    "MP34 Platelet-activation",
+    "MP35 Hemato-related-I",
+    "MP36 IG",
+    "MP37 Hemato-related-II",
+    "MP38 Glutathione",
+    "MP39 Metal-response",
+    "MP40 PDAC-related",
+    "MP41 Unassigned"
+  ],
+  "aliases": {
+    "HALLMARK_ADIPOGENESIS": [
+      "HALLMARK_ADIPOGENESIS",
+      "hallmark_adipogenesis",
+      "Adipogenesis"
+    ],
+    "HALLMARK_ALLOGRAFT_REJECTION": [
+      "HALLMARK_ALLOGRAFT_REJECTION",
+      "hallmark_allograft_rejection",
+      "Allograft Rejection"
+    ],
+    "HALLMARK_ANDROGEN_RESPONSE": [
+      "HALLMARK_ANDROGEN_RESPONSE",
+      "hallmark_androgen_response",
+      "Androgen Response"
+    ],
+    "HALLMARK_ANGIOGENESIS": [
+      "HALLMARK_ANGIOGENESIS",
+      "hallmark_angiogenesis",
+      "Angiogenesis"
+    ],
+    "HALLMARK_APICAL_JUNCTION": [
+      "HALLMARK_APICAL_JUNCTION",
+      "hallmark_apical_junction",
+      "Apical Junction"
+    ],
+    "HALLMARK_APICAL_SURFACE": [
+      "HALLMARK_APICAL_SURFACE",
+      "hallmark_apical_surface",
+      "Apical Surface"
+    ],
+    "HALLMARK_APOPTOSIS": [
+      "HALLMARK_APOPTOSIS",
+      "hallmark_apoptosis",
+      "Apoptosis"
+    ],
+    "HALLMARK_BILE_ACID_METABOLISM": [
+      "HALLMARK_BILE_ACID_METABOLISM",
+      "hallmark_bile_acid_metabolism",
+      "Bile Acid Metabolism"
+    ],
+    "HALLMARK_CHOLESTEROL_HOMEOSTASIS": [
+      "HALLMARK_CHOLESTEROL_HOMEOSTASIS",
+      "hallmark_cholesterol_homeostasis",
+      "Cholesterol Homeostasis"
+    ],
+    "HALLMARK_COAGULATION": [
+      "HALLMARK_COAGULATION",
+      "hallmark_coagulation",
+      "Coagulation"
+    ],
+    "HALLMARK_COMPLEMENT": [
+      "HALLMARK_COMPLEMENT",
+      "hallmark_complement",
+      "Complement"
+    ],
+    "HALLMARK_DNA_REPAIR": [
+      "HALLMARK_DNA_REPAIR",
+      "hallmark_dna_repair",
+      "Dna Repair"
+    ],
+    "HALLMARK_E2F_TARGETS": [
+      "HALLMARK_E2F_TARGETS",
+      "hallmark_e2f_targets",
+      "E2F Targets"
+    ],
+    "HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION": [
+      "HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION",
+      "hallmark_epithelial_mesenchymal_transition",
+      "Epithelial Mesenchymal Transition"
+    ],
+    "HALLMARK_ESTROGEN_RESPONSE_EARLY": [
+      "HALLMARK_ESTROGEN_RESPONSE_EARLY",
+      "hallmark_estrogen_response_early",
+      "Estrogen Response Early"
+    ],
+    "HALLMARK_ESTROGEN_RESPONSE_LATE": [
+      "HALLMARK_ESTROGEN_RESPONSE_LATE",
+      "hallmark_estrogen_response_late",
+      "Estrogen Response Late"
+    ],
+    "HALLMARK_FATTY_ACID_METABOLISM": [
+      "HALLMARK_FATTY_ACID_METABOLISM",
+      "hallmark_fatty_acid_metabolism",
+      "Fatty Acid Metabolism"
+    ],
+    "HALLMARK_G2M_CHECKPOINT": [
+      "HALLMARK_G2M_CHECKPOINT",
+      "hallmark_g2m_checkpoint",
+      "G2M Checkpoint"
+    ],
+    "HALLMARK_GLYCOLYSIS": [
+      "HALLMARK_GLYCOLYSIS",
+      "hallmark_glycolysis",
+      "Glycolysis"
+    ],
+    "HALLMARK_HEDGEHOG_SIGNALING": [
+      "HALLMARK_HEDGEHOG_SIGNALING",
+      "hallmark_hedgehog_signaling",
+      "Hedgehog Signaling"
+    ],
+    "HALLMARK_HEME_METABOLISM": [
+      "HALLMARK_HEME_METABOLISM",
+      "hallmark_heme_metabolism",
+      "Heme Metabolism"
+    ],
+    "HALLMARK_HYPOXIA": [
+      "HALLMARK_HYPOXIA",
+      "hallmark_hypoxia",
+      "Hypoxia"
+    ],
+    "HALLMARK_IL2_STAT5_SIGNALING": [
+      "HALLMARK_IL2_STAT5_SIGNALING",
+      "hallmark_il2_stat5_signaling",
+      "Il2 Stat5 Signaling"
+    ],
+    "HALLMARK_IL6_JAK_STAT3_SIGNALING": [
+      "HALLMARK_IL6_JAK_STAT3_SIGNALING",
+      "hallmark_il6_jak_stat3_signaling",
+      "Il6 Jak Stat3 Signaling"
+    ],
+    "HALLMARK_INFLAMMATORY_RESPONSE": [
+      "HALLMARK_INFLAMMATORY_RESPONSE",
+      "hallmark_inflammatory_response",
+      "Inflammatory Response"
+    ],
+    "HALLMARK_INTERFERON_ALPHA_RESPONSE": [
+      "HALLMARK_INTERFERON_ALPHA_RESPONSE",
+      "hallmark_interferon_alpha_response",
+      "Interferon Alpha Response"
+    ],
+    "HALLMARK_INTERFERON_GAMMA_RESPONSE": [
+      "HALLMARK_INTERFERON_GAMMA_RESPONSE",
+      "hallmark_interferon_gamma_response",
+      "Interferon Gamma Response"
+    ],
+    "HALLMARK_KRAS_SIGNALING_DN": [
+      "HALLMARK_KRAS_SIGNALING_DN",
+      "hallmark_kras_signaling_dn",
+      "Kras Signaling Dn"
+    ],
+    "HALLMARK_KRAS_SIGNALING_UP": [
+      "HALLMARK_KRAS_SIGNALING_UP",
+      "hallmark_kras_signaling_up",
+      "Kras Signaling Up"
+    ],
+    "HALLMARK_MITOTIC_SPINDLE": [
+      "HALLMARK_MITOTIC_SPINDLE",
+      "hallmark_mitotic_spindle",
+      "Mitotic Spindle"
+    ],
+    "HALLMARK_MTORC1_SIGNALING": [
+      "HALLMARK_MTORC1_SIGNALING",
+      "hallmark_mtorc1_signaling",
+      "Mtorc1 Signaling"
+    ],
+    "HALLMARK_MYC_TARGETS_V1": [
+      "HALLMARK_MYC_TARGETS_V1",
+      "hallmark_myc_targets_v1",
+      "Myc Targets V1"
+    ],
+    "HALLMARK_MYC_TARGETS_V2": [
+      "HALLMARK_MYC_TARGETS_V2",
+      "hallmark_myc_targets_v2",
+      "Myc Targets V2"
+    ],
+    "HALLMARK_MYOGENESIS": [
+      "HALLMARK_MYOGENESIS",
+      "hallmark_myogenesis",
+      "Myogenesis"
+    ],
+    "HALLMARK_NOTCH_SIGNALING": [
+      "HALLMARK_NOTCH_SIGNALING",
+      "hallmark_notch_signaling",
+      "Notch Signaling"
+    ],
+    "HALLMARK_OXIDATIVE_PHOSPHORYLATION": [
+      "HALLMARK_OXIDATIVE_PHOSPHORYLATION",
+      "hallmark_oxidative_phosphorylation",
+      "Oxidative Phosphorylation"
+    ],
+    "HALLMARK_P53_PATHWAY": [
+      "HALLMARK_P53_PATHWAY",
+      "hallmark_p53_pathway",
+      "P53 Pathway"
+    ],
+    "HALLMARK_PANCREAS_BETA_CELLS": [
+      "HALLMARK_PANCREAS_BETA_CELLS",
+      "hallmark_pancreas_beta_cells",
+      "Pancreas Beta Cells"
+    ],
+    "HALLMARK_PEROXISOME": [
+      "HALLMARK_PEROXISOME",
+      "hallmark_peroxisome",
+      "Peroxisome"
+    ],
+    "HALLMARK_PI3K_AKT_MTOR_SIGNALING": [
+      "HALLMARK_PI3K_AKT_MTOR_SIGNALING",
+      "hallmark_pi3k_akt_mtor_signaling",
+      "Pi3K Akt Mtor Signaling"
+    ],
+    "HALLMARK_PROTEIN_SECRETION": [
+      "HALLMARK_PROTEIN_SECRETION",
+      "hallmark_protein_secretion",
+      "Protein Secretion"
+    ],
+    "HALLMARK_REACTIVE_OXYGEN_SPECIES_PATHWAY": [
+      "HALLMARK_REACTIVE_OXYGEN_SPECIES_PATHWAY",
+      "hallmark_reactive_oxygen_species_pathway",
+      "Reactive Oxygen Species Pathway"
+    ],
+    "HALLMARK_SPERMATOGENESIS": [
+      "HALLMARK_SPERMATOGENESIS",
+      "hallmark_spermatogenesis",
+      "Spermatogenesis"
+    ],
+    "HALLMARK_TGF_BETA_SIGNALING": [
+      "HALLMARK_TGF_BETA_SIGNALING",
+      "hallmark_tgf_beta_signaling",
+      "Tgf Beta Signaling"
+    ],
+    "HALLMARK_TNFA_SIGNALING_VIA_NFKB": [
+      "HALLMARK_TNFA_SIGNALING_VIA_NFKB",
+      "hallmark_tnfa_signaling_via_nfkb",
+      "Tnfa Signaling Via Nfkb"
+    ],
+    "HALLMARK_UNFOLDED_PROTEIN_RESPONSE": [
+      "HALLMARK_UNFOLDED_PROTEIN_RESPONSE",
+      "hallmark_unfolded_protein_response",
+      "Unfolded Protein Response"
+    ],
+    "HALLMARK_UV_RESPONSE_DN": [
+      "HALLMARK_UV_RESPONSE_DN",
+      "hallmark_uv_response_dn",
+      "Uv Response Dn"
+    ],
+    "HALLMARK_UV_RESPONSE_UP": [
+      "HALLMARK_UV_RESPONSE_UP",
+      "hallmark_uv_response_up",
+      "Uv Response Up"
+    ],
+    "HALLMARK_WNT_BETA_CATENIN_SIGNALING": [
+      "HALLMARK_WNT_BETA_CATENIN_SIGNALING",
+      "hallmark_wnt_beta_catenin_signaling",
+      "Wnt Beta Catenin Signaling"
+    ],
+    "HALLMARK_XENOBIOTIC_METABOLISM": [
+      "HALLMARK_XENOBIOTIC_METABOLISM",
+      "hallmark_xenobiotic_metabolism",
+      "Xenobiotic Metabolism"
+    ],
+    "MP1  Cell Cycle - G2/M": [
+      "MP1  Cell Cycle - G2/M",
+      "mp1  cell cycle - g2/m",
+      " Cell Cycle - G2/M"
+    ],
+    "MP2  Cell Cycle - G1/S": [
+      "MP2  Cell Cycle - G1/S",
+      "mp2  cell cycle - g1/s",
+      " Cell Cycle - G1/S"
+    ],
+    "MP3  Cell Cylce HMG-rich": [
+      "MP3  Cell Cylce HMG-rich",
+      "mp3  cell cylce hmg-rich",
+      " Cell Cylce HMG-rich"
+    ],
+    "MP4  Chromatin ": [
+      "MP4  Chromatin ",
+      "mp4  chromatin ",
+      " Chromatin "
+    ],
+    "MP5 Stress ": [
+      "MP5 Stress ",
+      "mp5 stress ",
+      "Stress "
+    ],
+    "MP6 Hypoxia": [
+      "MP6 Hypoxia",
+      "mp6 hypoxia",
+      "Hypoxia"
+    ],
+    "MP7 Stress (in vitro)": [
+      "MP7 Stress (in vitro)",
+      "mp7 stress (in vitro)",
+      "Stress (in vitro)"
+    ],
+    "MP8 Proteasomal degradation": [
+      "MP8 Proteasomal degradation",
+      "mp8 proteasomal degradation",
+      "Proteasomal degradation"
+    ],
+    "MP9 Unfolded protein response": [
+      "MP9 Unfolded protein response",
+      "mp9 unfolded protein response",
+      "Unfolded protein response"
+    ],
+    "MP10 Protein maturation": [
+      "MP10 Protein maturation",
+      "mp10 protein maturation",
+      "Protein maturation"
+    ],
+    "MP11 Translation initiation": [
+      "MP11 Translation initiation",
+      "mp11 translation initiation",
+      "Translation initiation"
+    ],
+    "MP12 EMT-I": [
+      "MP12 EMT-I",
+      "mp12 emt-i",
+      "EMT-I"
+    ],
+    "MP13 EMT-II": [
+      "MP13 EMT-II",
+      "mp13 emt-ii",
+      "EMT-II"
+    ],
+    "MP14 EMT-III ": [
+      "MP14 EMT-III ",
+      "mp14 emt-iii ",
+      "EMT-III "
+    ],
+    "MP15 EMT IV": [
+      "MP15 EMT IV",
+      "mp15 emt iv",
+      "EMT IV"
+    ],
+    "MP16 MES (glioma)": [
+      "MP16 MES (glioma)",
+      "mp16 mes (glioma)",
+      "MES (glioma)"
+    ],
+    "MP17 Interferon/MHC-II (I)": [
+      "MP17 Interferon/MHC-II (I)",
+      "mp17 interferon/mhc-ii (i)",
+      "Interferon/MHC-II (I)"
+    ],
+    "MP18 Interferon/MHC-II (II)": [
+      "MP18 Interferon/MHC-II (II)",
+      "mp18 interferon/mhc-ii (ii)",
+      "Interferon/MHC-II (II)"
+    ],
+    "MP19 Epithelial Senescence": [
+      "MP19 Epithelial Senescence",
+      "mp19 epithelial senescence",
+      "Epithelial Senescence"
+    ],
+    "MP20 MYC": [
+      "MP20 MYC",
+      "mp20 myc",
+      "MYC"
+    ],
+    "MP21 Respiration": [
+      "MP21 Respiration",
+      "mp21 respiration",
+      "Respiration"
+    ],
+    "MP22 Secreted I": [
+      "MP22 Secreted I",
+      "mp22 secreted i",
+      "Secreted I"
+    ],
+    "MP23 Secreted II": [
+      "MP23 Secreted II",
+      "mp23 secreted ii",
+      "Secreted II"
+    ],
+    "MP24 Cilia": [
+      "MP24 Cilia",
+      "mp24 cilia",
+      "Cilia"
+    ],
+    "MP25 Astrocytes": [
+      "MP25 Astrocytes",
+      "mp25 astrocytes",
+      "Astrocytes"
+    ],
+    "MP26 NPC Glioma": [
+      "MP26 NPC Glioma",
+      "mp26 npc glioma",
+      "NPC Glioma"
+    ],
+    "MP27 Oligo Progenitor": [
+      "MP27 Oligo Progenitor",
+      "mp27 oligo progenitor",
+      "Oligo Progenitor"
+    ],
+    "MP28 Oligo normal": [
+      "MP28 Oligo normal",
+      "mp28 oligo normal",
+      "Oligo normal"
+    ],
+    "MP29 NPC/OPC": [
+      "MP29 NPC/OPC",
+      "mp29 npc/opc",
+      "NPC/OPC"
+    ],
+    "MP30 PDAC-classical": [
+      "MP30 PDAC-classical",
+      "mp30 pdac-classical",
+      "PDAC-classical"
+    ],
+    "MP31 Alveolar": [
+      "MP31 Alveolar",
+      "mp31 alveolar",
+      "Alveolar"
+    ],
+    "MP32 Skin-pigmentation": [
+      "MP32 Skin-pigmentation",
+      "mp32 skin-pigmentation",
+      "Skin-pigmentation"
+    ],
+    "MP33 RBCs": [
+      "MP33 RBCs",
+      "mp33 rbcs",
+      "RBCs"
+    ],
+    "MP34 Platelet-activation": [
+      "MP34 Platelet-activation",
+      "mp34 platelet-activation",
+      "Platelet-activation"
+    ],
+    "MP35 Hemato-related-I": [
+      "MP35 Hemato-related-I",
+      "mp35 hemato-related-i",
+      "Hemato-related-I"
+    ],
+    "MP36 IG": [
+      "MP36 IG",
+      "mp36 ig",
+      "IG"
+    ],
+    "MP37 Hemato-related-II": [
+      "MP37 Hemato-related-II",
+      "mp37 hemato-related-ii",
+      "Hemato-related-II"
+    ],
+    "MP38 Glutathione": [
+      "MP38 Glutathione",
+      "mp38 glutathione",
+      "Glutathione"
+    ],
+    "MP39 Metal-response": [
+      "MP39 Metal-response",
+      "mp39 metal-response",
+      "Metal-response"
+    ],
+    "MP40 PDAC-related": [
+      "MP40 PDAC-related",
+      "mp40 pdac-related",
+      "PDAC-related"
+    ],
+    "MP41 Unassigned": [
+      "MP41 Unassigned",
+      "mp41 unassigned",
+      "Unassigned"
+    ]
+  },
+  "meta": {
+    "built_on": "2026-06-23",
+    "upstream_function_index_status": "present",
+    "upstream_file": "T-021/D-004 function_index.json",
+    "alias_seed_sources": [
+      "T-021 standard_resources bundle function_index.json (lowercase->uppercase map)",
+      "T-021 standard_resources bundle function_index.json (meta.label per term)"
+    ],
+    "notes": "Upstream function_index.json is present and well-formed in the T-021 bundle. T-013 flagged function_index.json as missing/incomplete in the *migrated* query index directory; this corrected pxfquery-T-028 pack closes that gap within T-028 scope. Each var term carries: (a) itself, (b) lowercase variant, (c) meta.label (human-readable name when available).",
+    "total_alias_values": 273,
+    "terms_with_full_upstream_mapping": 50,
+    "terms_without_label": 0
+  }
+}

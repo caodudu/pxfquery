@@ -1,0 +1,60 @@
+session_id: cli_b0e63ad69f0c
+driver: opencode
+agent_id: AGT-002
+agent_label: OpenCode cheap tasks
+stage: config
+status: done
+created: '2026-06-25T11:58:41'
+task_path: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_project_delivery_anchor/task_evidence_routing_anchor
+work_dir: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_project_delivery_anchor/task_evidence_routing_anchor
+session_dir: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_project_delivery_anchor/task_evidence_routing_anchor/5_report/cli_sessions/config/20260625_115841_opencode_cli_b0e63ad69f0c
+prompt_file: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_project_delivery_anchor/task_evidence_routing_anchor/5_report/cli_sessions/config/20260625_115841_opencode_cli_b0e63ad69f0c/prompt.md
+events_file: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_project_delivery_anchor/task_evidence_routing_anchor/5_report/cli_sessions/config/20260625_115841_opencode_cli_b0e63ad69f0c/events.jsonl
+stdout_file: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_project_delivery_anchor/task_evidence_routing_anchor/5_report/cli_sessions/config/20260625_115841_opencode_cli_b0e63ad69f0c/stdout.log
+stderr_file: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_project_delivery_anchor/task_evidence_routing_anchor/5_report/cli_sessions/config/20260625_115841_opencode_cli_b0e63ad69f0c/stderr.log
+agent_output_file: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_project_delivery_anchor/task_evidence_routing_anchor/5_report/cli_sessions/config/20260625_115841_opencode_cli_b0e63ad69f0c/agent_output.md
+cmd:
+- /Users/dudu/.opencode/bin/opencode
+- run
+- Execute the attached CyHex prompt. Return the final user-facing result clearly.
+- --dangerously-skip-permissions
+- --format
+- json
+- --dir
+- /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_project_delivery_anchor/task_evidence_routing_anchor
+- --file
+- /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_project_delivery_anchor/task_evidence_routing_anchor/5_report/cli_sessions/config/20260625_115841_opencode_cli_b0e63ad69f0c/prompt.md
+- -m
+- llm_gateway/deepseek-ai/deepseek-v4-pro
+agent_session_id: ses_10311e86bffeNxaKUup4908sKS
+parent_agent_session_id: ''
+dry_run: false
+fork_from_resume: false
+blocked_report_mtime_ns_before: 0
+model: llm_gateway/deepseek-ai/deepseek-v4-pro
+prompt_source: assembled
+pid: 25564
+returncode: 0
+completed: '2026-06-25T12:08:31'
+context_estimate:
+  estimated_tokens: 137252
+  estimated_bytes: 411756
+  limit_tokens: 500000
+  exceeded: false
+  files:
+  - file: prompt.md
+    bytes: 43055
+    estimated_tokens: 14352
+  - file: events.jsonl
+    bytes: 183504
+    estimated_tokens: 61168
+  - file: stdout.log
+    bytes: 182131
+    estimated_tokens: 60711
+  - file: stderr.log
+    bytes: 0
+    estimated_tokens: 0
+  - file: agent_output.md
+    bytes: 3066
+    estimated_tokens: 1022
+  method: local_session_file_bytes_div_3

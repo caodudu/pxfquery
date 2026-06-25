@@ -1,0 +1,31 @@
+assets:
+- id: A-001
+  name: T-007 core observation report
+  type: deliverable
+  source: local
+  origin: task_digest_pxfquery_development_state
+  registered: '2026-06-23'
+  path: 1_asset/T-007 core observation report.html
+  symlink: true
+  notes: 了解 PxFquery 当前技术架构（Python 包、矩阵查询、LLM 集成现状），为网站方案设计提供技术背景约束。
+  location: local
+- id: A-002
+  name: PxFquery 项目协议
+  type: deliverable
+  source: local
+  origin: project_init
+  registered: '2026-06-23'
+  path: 1_asset/PxFquery 项目协议
+  symlink: true
+  notes: 提供项目定位（Genes 投稿导向、轻量实用工具）边界，确保网站方案不偏离项目目标。
+  location: local
+- id: A-003
+  name: 外部网络搜索资源
+  type: external
+  source: web
+  origin: task_pending_t019
+  registered: '2026-06-23'
+  path: null
+  symlink: false
+  notes: 动态获取的浏览器搜索结果，包含论文案例、GitHub Pages 示例、云服务定价页面等。执行时通过 search/browser 工具获取。
+  access: optional

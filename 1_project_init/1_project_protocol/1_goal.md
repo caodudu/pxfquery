@@ -8,6 +8,19 @@ Build a clean, current PxFquery project that can reuse the valuable legacy asset
 
 Position PxFquery as a LINCS-based perturbation-to-function bioinformatics workflow for interpreting drug- and gene-induced functional programs in biological contexts such as cancer cell lines.
 
+## Functional Delivery Goal
+
+PxFquery's project-level functional goal is not limited to static matrix lookup. A project-valid package must preserve the intended user-facing query experience:
+
+- forward query: perturbation and biological context to functional response;
+- reverse query: functional target and biological context to candidate perturbations;
+- resolver-mediated natural-language or semi-structured query entry;
+- exact, proxy, and not-found evidence routing for sparse biological coverage;
+- LLM-assisted parsing and summarization through the current configured AI service when a milestone requires the user-facing resolver layer;
+- deterministic fallback and transparent evidence metadata when LLM or proxy routing fails.
+
+Milestones may stage these capabilities in layers, but a milestone may not silently redefine PxFquery as only deterministic dictionary or matrix lookup if the user-defined milestone requires resolver, LLM, proxy, or transfer behavior. Any proposed scope reduction, deferral, or optionalization of a functional capability must be explicitly reported to the user before task creation and must receive user approval.
+
 ## Manuscript Goal
 
 Prepare for a realistic MDPI Genes-style submission by emphasizing a narrow, reproducible functional genomics workflow and a concrete biological case study, rather than presenting PxFquery as a broad AI-agent platform.

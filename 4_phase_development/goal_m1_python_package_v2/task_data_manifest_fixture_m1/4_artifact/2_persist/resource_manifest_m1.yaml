@@ -1,0 +1,596 @@
+manifest_id: resource_manifest_m1
+task_id: T-043
+generated: '2026-06-24'
+boundary:
+  input_authorities:
+  - A-001 T-021 standard resource bundle
+  - A-002 T-021 standard resource guide
+  - A-003 T-021 process records
+  - A-004 T-014 precomputed data scope
+  - A-005 T-014 data resource inventory
+  - A-006 T-014 matrix schema coverage
+  forbidden_sources_not_used:
+  - 2_project_asset
+  - legacy source root
+  - failed T024-T040 outputs
+  - web or downloaded data
+standard_bundle_root: 1_asset/t021_standard_resources_bundle
+fixture_package_root: 4_artifact/2_persist/fixture_package_m1
+resources:
+- resource_id: m1_full_cp_matrix
+  path: 1_asset/t021_standard_resources_bundle/cp_func_ad.h5ad
+  file_type: h5ad
+  loader_role: compound functional matrix; loader and forward/reverse query substrate
+  required_keys_or_columns:
+  - sig_id
+  - project_code
+  - cell_iname
+  - pert_id
+  - cmap_name
+  - pert_dose
+  - pert_time
+  - 91 var_names
+  expected_shape_or_count: 201014 obs x 91 vars
+  provenance: A-001/T-021 from canonical T-021 standard_resources; T-014 confirms derived matrices as
+    query substrate
+  validation_rule: readable by anndata; float32 X; 91 function vars; required obs columns present
+  notes: Full standard resource, not copied into fixture package.
+- resource_id: m1_fixture_cp_matrix
+  path: 4_artifact/2_persist/fixture_package_m1/cp_func_fixture_m1.h5ad
+  file_type: h5ad
+  loader_role: minimal compound functional matrix; loader and forward/reverse query substrate for smoke/demo
+    use
+  required_keys_or_columns:
+  - sig_id
+  - project_code
+  - cell_iname
+  - pert_id
+  - cmap_name
+  - pert_dose
+  - pert_time
+  - HALLMARK_ADIPOGENESIS
+  - HALLMARK_APOPTOSIS
+  - HALLMARK_E2F_TARGETS
+  - HALLMARK_P53_PATHWAY
+  - HALLMARK_TNFA_SIGNALING_VIA_NFKB
+  - MP39 Metal-response
+  - MP40 PDAC-related
+  expected_shape_or_count: 4 obs x 7 vars
+  provenance: Derived by bounded extraction from A-001/T-021 standard matrix
+  validation_rule: fixture rows/vars must be subsets of full matrix; float32 X; no synthetic scores
+  notes: 'Score range in fixture: -10.000000 to 4.366983.'
+- resource_id: m1_full_sh_matrix
+  path: 1_asset/t021_standard_resources_bundle/sh_func_ad.h5ad
+  file_type: h5ad
+  loader_role: shRNA functional matrix; genetic knockdown query substrate
+  required_keys_or_columns:
+  - sig_id
+  - project_code
+  - cell_iname
+  - pert_id
+  - cmap_name
+  - pert_dose
+  - pert_time
+  - 91 var_names
+  expected_shape_or_count: 189365 obs x 91 vars
+  provenance: A-001/T-021 from canonical T-021 standard_resources; T-014 confirms derived matrices as
+    query substrate
+  validation_rule: readable by anndata; float32 X; 91 function vars; required obs columns present
+  notes: Full standard resource, not copied into fixture package.
+- resource_id: m1_fixture_sh_matrix
+  path: 4_artifact/2_persist/fixture_package_m1/sh_func_fixture_m1.h5ad
+  file_type: h5ad
+  loader_role: minimal shRNA functional matrix; genetic knockdown query substrate for smoke/demo use
+  required_keys_or_columns:
+  - sig_id
+  - project_code
+  - cell_iname
+  - pert_id
+  - cmap_name
+  - pert_dose
+  - pert_time
+  - HALLMARK_ADIPOGENESIS
+  - HALLMARK_APOPTOSIS
+  - HALLMARK_E2F_TARGETS
+  - HALLMARK_P53_PATHWAY
+  - HALLMARK_TNFA_SIGNALING_VIA_NFKB
+  - MP39 Metal-response
+  - MP40 PDAC-related
+  expected_shape_or_count: 4 obs x 7 vars
+  provenance: Derived by bounded extraction from A-001/T-021 standard matrix
+  validation_rule: fixture rows/vars must be subsets of full matrix; float32 X; no synthetic scores
+  notes: 'Score range in fixture: -10.000000 to 3.425702.'
+- resource_id: m1_full_xpr_matrix
+  path: 1_asset/t021_standard_resources_bundle/xpr_func_ad.h5ad
+  file_type: h5ad
+  loader_role: ORF overexpression functional matrix; genetic overexpression query substrate
+  required_keys_or_columns:
+  - sig_id
+  - project_code
+  - cell_iname
+  - pert_id
+  - cmap_name
+  - pert_dose
+  - pert_time
+  - 91 var_names
+  expected_shape_or_count: 132464 obs x 91 vars
+  provenance: A-001/T-021 from canonical T-021 standard_resources; T-014 confirms derived matrices as
+    query substrate
+  validation_rule: readable by anndata; float32 X; 91 function vars; required obs columns present
+  notes: Full standard resource, not copied into fixture package.
+- resource_id: m1_fixture_xpr_matrix
+  path: 4_artifact/2_persist/fixture_package_m1/xpr_func_fixture_m1.h5ad
+  file_type: h5ad
+  loader_role: minimal ORF overexpression functional matrix; genetic overexpression query substrate for
+    smoke/demo use
+  required_keys_or_columns:
+  - sig_id
+  - project_code
+  - cell_iname
+  - pert_id
+  - cmap_name
+  - pert_dose
+  - pert_time
+  - HALLMARK_ADIPOGENESIS
+  - HALLMARK_APOPTOSIS
+  - HALLMARK_E2F_TARGETS
+  - HALLMARK_P53_PATHWAY
+  - HALLMARK_TNFA_SIGNALING_VIA_NFKB
+  - MP39 Metal-response
+  - MP40 PDAC-related
+  expected_shape_or_count: 4 obs x 7 vars
+  provenance: Derived by bounded extraction from A-001/T-021 standard matrix
+  validation_rule: fixture rows/vars must be subsets of full matrix; float32 X; no synthetic scores
+  notes: 'Score range in fixture: -10.000000 to 10.000000.'
+- resource_id: m1_full_cellline_meta
+  path: 1_asset/t021_standard_resources_bundle/cellline_meta_standard.csv
+  file_type: csv
+  loader_role: cell metadata
+  required_keys_or_columns:
+  - cell_iname
+  - cell_lineage
+  - primary_disease
+  - subtype
+  - cell_alias
+  - cellosaurus_site
+  - cellosaurus_disease
+  - cellosaurus_category
+  expected_shape_or_count: 240 rows x 8 columns
+  provenance: A-001/T-021 standard metadata; T-014 confirms metadata layer
+  validation_rule: readable by pandas; required key column cell_iname present
+  notes: Full standard resource, not copied into fixture package.
+- resource_id: m1_full_cellline_info
+  path: 1_asset/t021_standard_resources_bundle/cellline_info_standard.csv
+  file_type: csv
+  loader_role: detailed cell metadata
+  required_keys_or_columns:
+  - cell_iname
+  - cellosaurus_id
+  - donor_age
+  - donor_age_death
+  - donor_disease_age_onset
+  - doubling_time
+  - growth_medium
+  - provider_catalog_id
+  - feature_id
+  - cell_type
+  - donor_ethnicity
+  - donor_sex
+  - donor_tumor_phase
+  - cell_lineage
+  - primary_disease
+  - subtype
+  - provider_name
+  - growth_pattern
+  - ccle_name
+  - cell_alias
+  expected_shape_or_count: 240 rows x 20 columns
+  provenance: A-001/T-021 standard metadata; T-014 confirms metadata layer
+  validation_rule: readable by pandas; required key column cell_iname present
+  notes: Full standard resource, not copied into fixture package.
+- resource_id: m1_full_compound_meta
+  path: 1_asset/t021_standard_resources_bundle/compound_meta_standard.csv
+  file_type: csv
+  loader_role: compound metadata
+  required_keys_or_columns:
+  - 'Unnamed: 0'
+  - drug
+  - target
+  - moa
+  - aliases
+  - query_name
+  - smiles
+  - inchikey
+  - pubchem_cid
+  expected_shape_or_count: 6647 rows x 9 columns
+  provenance: A-001/T-021 standard metadata; T-014 confirms metadata layer
+  validation_rule: readable by pandas; required key column drug present
+  notes: Full standard resource, not copied into fixture package.
+- resource_id: m1_full_compound_info
+  path: 1_asset/t021_standard_resources_bundle/compound_info_standard.csv
+  file_type: csv
+  loader_role: compound annotations
+  required_keys_or_columns:
+  - pert_id
+  - cmap_name
+  - target
+  - moa
+  - canonical_smiles
+  - inchi_key
+  - compound_aliases
+  expected_shape_or_count: 39321 rows x 7 columns
+  provenance: A-001/T-021 standard metadata; T-014 confirms metadata layer
+  validation_rule: readable by pandas; required key column pert_id present
+  notes: Full standard resource, not copied into fixture package.
+- resource_id: m1_full_gene_info
+  path: 1_asset/t021_standard_resources_bundle/gene_info_standard.csv
+  file_type: csv
+  loader_role: gene annotations
+  required_keys_or_columns:
+  - gene_id
+  - gene_symbol
+  - ensembl_id
+  - gene_title
+  - gene_type
+  - src
+  - feature_space
+  expected_shape_or_count: 12328 rows x 7 columns
+  provenance: A-001/T-021 standard metadata; T-014 confirms metadata layer
+  validation_rule: readable by pandas; required key column gene_symbol present
+  notes: Full standard resource, not copied into fixture package.
+- resource_id: m1_fixture_cellline_meta
+  path: 4_artifact/2_persist/fixture_package_m1/cellline_meta_fixture_m1.csv
+  file_type: csv
+  loader_role: minimal metadata fixture linked to selected matrix observations
+  required_keys_or_columns:
+  - cell_iname
+  - cell_lineage
+  - primary_disease
+  - subtype
+  - cell_alias
+  - cellosaurus_site
+  - cellosaurus_disease
+  - cellosaurus_category
+  expected_shape_or_count: 4 rows x 8 columns
+  provenance: Derived by bounded row extraction from A-001/T-021 standard metadata
+  validation_rule: fixture rows are exact subsets of A-001 standard metadata tables
+  notes: Small deterministic fixture file.
+- resource_id: m1_fixture_cellline_info
+  path: 4_artifact/2_persist/fixture_package_m1/cellline_info_fixture_m1.csv
+  file_type: csv
+  loader_role: minimal metadata fixture linked to selected matrix observations
+  required_keys_or_columns:
+  - cell_iname
+  - cellosaurus_id
+  - donor_age
+  - donor_age_death
+  - donor_disease_age_onset
+  - doubling_time
+  - growth_medium
+  - provider_catalog_id
+  - feature_id
+  - cell_type
+  - donor_ethnicity
+  - donor_sex
+  - donor_tumor_phase
+  - cell_lineage
+  - primary_disease
+  - subtype
+  - provider_name
+  - growth_pattern
+  - ccle_name
+  - cell_alias
+  expected_shape_or_count: 4 rows x 20 columns
+  provenance: Derived by bounded row extraction from A-001/T-021 standard metadata
+  validation_rule: fixture rows are exact subsets of A-001 standard metadata tables
+  notes: Small deterministic fixture file.
+- resource_id: m1_fixture_compound_meta
+  path: 4_artifact/2_persist/fixture_package_m1/compound_meta_fixture_m1.csv
+  file_type: csv
+  loader_role: minimal metadata fixture linked to selected matrix observations
+  required_keys_or_columns:
+  - 'Unnamed: 0'
+  - drug
+  - target
+  - moa
+  - aliases
+  - query_name
+  - smiles
+  - inchikey
+  - pubchem_cid
+  expected_shape_or_count: 4 rows x 9 columns
+  provenance: Derived by bounded row extraction from A-001/T-021 standard metadata
+  validation_rule: fixture rows are exact subsets of A-001 standard metadata tables
+  notes: Small deterministic fixture file.
+- resource_id: m1_fixture_compound_info
+  path: 4_artifact/2_persist/fixture_package_m1/compound_info_fixture_m1.csv
+  file_type: csv
+  loader_role: minimal metadata fixture linked to selected matrix observations
+  required_keys_or_columns:
+  - pert_id
+  - cmap_name
+  - target
+  - moa
+  - canonical_smiles
+  - inchi_key
+  - compound_aliases
+  expected_shape_or_count: 4 rows x 7 columns
+  provenance: Derived by bounded row extraction from A-001/T-021 standard metadata
+  validation_rule: fixture rows are exact subsets of A-001 standard metadata tables
+  notes: Small deterministic fixture file.
+- resource_id: m1_fixture_gene_info
+  path: 4_artifact/2_persist/fixture_package_m1/gene_info_fixture_m1.csv
+  file_type: csv
+  loader_role: minimal metadata fixture linked to selected matrix observations
+  required_keys_or_columns:
+  - gene_id
+  - gene_symbol
+  - ensembl_id
+  - gene_title
+  - gene_type
+  - src
+  - feature_space
+  expected_shape_or_count: 8 rows x 7 columns
+  provenance: Derived by bounded row extraction from A-001/T-021 standard metadata
+  validation_rule: fixture rows are exact subsets of A-001 standard metadata tables
+  notes: Small deterministic fixture file.
+- resource_id: m1_full_cellline_index
+  path: 1_asset/t021_standard_resources_bundle/cellline_index.json
+  file_type: json
+  loader_role: valid cell lookup
+  required_keys_or_columns:
+  - valid_cells
+  expected_shape_or_count: dict with top-level count 1
+  provenance: A-001/T-021 standard query index; T-014 confirms query index layer
+  validation_rule: parsable JSON; non-empty; schema described by T-021 guide
+  notes: Full standard resource, not copied into fixture package.
+- resource_id: m1_full_cellline_neighbors
+  path: 1_asset/t021_standard_resources_bundle/cellline_neighbors.json
+  file_type: json
+  loader_role: cell-line proxy lookup
+  required_keys_or_columns:
+  - bone
+  - breast
+  - central_nervous_system
+  - cervix
+  - endometrium
+  - haematopoietic_and_lymphoid_tissue
+  - kidney
+  - large_intestine
+  expected_shape_or_count: dict with top-level count 19
+  provenance: A-001/T-021 standard query index; T-014 confirms query index layer
+  validation_rule: parsable JSON; non-empty; schema described by T-021 guide
+  notes: Full standard resource, not copied into fixture package.
+- resource_id: m1_full_cellline_tree
+  path: 1_asset/t021_standard_resources_bundle/cellline_tree.json
+  file_type: json
+  loader_role: cell-line tree lookup
+  required_keys_or_columns:
+  - tree
+  - cell_index
+  - meta
+  expected_shape_or_count: dict with top-level count 3
+  provenance: A-001/T-021 standard query index; T-014 confirms query index layer
+  validation_rule: parsable JSON; non-empty; schema described by T-021 guide
+  notes: Full standard resource, not copied into fixture package.
+- resource_id: m1_full_drug_index
+  path: 1_asset/t021_standard_resources_bundle/drug_index.json
+  file_type: json
+  loader_role: drug alias exact lookup
+  required_keys_or_columns:
+  - l-theanine
+  - l-citrulline
+  - 7-hydroxy-dpat
+  - 2-hydroxysaclofen
+  - r(-)-apomorphine
+  - chlorphensin
+  - chlorphenesin-carbamate
+  - palmitoylcarnitine
+  expected_shape_or_count: dict with top-level count 5958
+  provenance: A-001/T-021 standard query index; T-014 confirms query index layer
+  validation_rule: parsable JSON; non-empty; schema described by T-021 guide
+  notes: Full standard resource, not copied into fixture package.
+- resource_id: m1_full_drug_neighbors
+  path: 1_asset/t021_standard_resources_bundle/drug_neighbors.json
+  file_type: json
+  loader_role: drug proxy lookup
+  required_keys_or_columns:
+  - A08715367
+  - A12237696
+  - A18795974
+  - A27924917
+  - A77577770
+  - K05674516
+  - K13994703
+  - K17874705
+  expected_shape_or_count: dict with top-level count 5312
+  provenance: A-001/T-021 standard query index; T-014 confirms query index layer
+  validation_rule: parsable JSON; non-empty; schema described by T-021 guide
+  notes: Full standard resource, not copied into fixture package.
+- resource_id: m1_full_gene_index_simple
+  path: 1_asset/t021_standard_resources_bundle/gene_index_simple.json
+  file_type: json
+  loader_role: gene symbol exact lookup
+  required_keys_or_columns:
+  - A1BG
+  - A1CF
+  - A2M
+  - AADACL2
+  - AADAT
+  - AAK1
+  - AAMP
+  - AASS
+  expected_shape_or_count: dict with top-level count 25036
+  provenance: A-001/T-021 standard query index; T-014 confirms query index layer
+  validation_rule: parsable JSON; non-empty; schema described by T-021 guide
+  notes: Full standard resource, not copied into fixture package.
+- resource_id: m1_full_gene_neighbors_simple
+  path: 1_asset/t021_standard_resources_bundle/gene_neighbors_simple.json
+  file_type: json
+  loader_role: gene proxy lookup
+  required_keys_or_columns:
+  - 7SK
+  - A1BG
+  - A1CF
+  - A2M
+  - A2ML1
+  - A2MP1
+  - A3GALT2
+  - A4GALT
+  expected_shape_or_count: dict with top-level count 30319
+  provenance: A-001/T-021 standard query index; T-014 confirms query index layer
+  validation_rule: parsable JSON; non-empty; schema described by T-021 guide
+  notes: Full standard resource, not copied into fixture package.
+- resource_id: m1_full_gene_index
+  path: 1_asset/t021_standard_resources_bundle/gene_index.json
+  file_type: json
+  loader_role: full gene exact lookup
+  required_keys_or_columns:
+  - a1bg
+  - a1cf
+  - a2m
+  - aadacl2
+  - aadat
+  - aak1
+  - aamp
+  - aars
+  expected_shape_or_count: dict with top-level count 78061
+  provenance: A-001/T-021 standard query index; T-014 confirms query index layer
+  validation_rule: parsable JSON; non-empty; schema described by T-021 guide
+  notes: Full standard resource, not copied into fixture package.
+- resource_id: m1_full_gene_neighbors
+  path: 1_asset/t021_standard_resources_bundle/gene_neighbors.json
+  file_type: json
+  loader_role: full gene proxy lookup
+  required_keys_or_columns:
+  - 7SK
+  - A1BG
+  - A1BG-AS1
+  - A1CF
+  - A2M
+  - A2M-AS1
+  - A2ML1
+  - A2ML1-AS1
+  expected_shape_or_count: dict with top-level count 33791
+  provenance: A-001/T-021 standard query index; T-014 confirms query index layer
+  validation_rule: parsable JSON; non-empty; schema described by T-021 guide
+  notes: Full standard resource, not copied into fixture package.
+- resource_id: m1_full_function_index
+  path: 1_asset/t021_standard_resources_bundle/function_index.json
+  file_type: json
+  loader_role: function term and alias catalog
+  required_keys_or_columns:
+  - var_names
+  - meta
+  - aliases
+  expected_shape_or_count: dict with top-level count 3
+  provenance: A-001/T-021 standard query index; T-014 confirms query index layer
+  validation_rule: parsable JSON; non-empty; schema described by T-021 guide
+  notes: Full standard resource, not copied into fixture package.
+- resource_id: m1_fixture_cellline_index
+  path: 4_artifact/2_persist/fixture_package_m1/cellline_index_fixture_m1.json
+  file_type: json
+  loader_role: minimal valid cell lookup
+  required_keys_or_columns:
+  - valid_cells
+  expected_shape_or_count: top-level count 1
+  provenance: Derived by bounded extraction from A-001/T-021 standard query index
+  validation_rule: parsable JSON; keys/values copied or boundedly derived from A-001 standard index
+  notes: Small deterministic fixture file.
+- resource_id: m1_fixture_cellline_neighbors
+  path: 4_artifact/2_persist/fixture_package_m1/cellline_neighbors_fixture_m1.json
+  file_type: json
+  loader_role: minimal cell-line proxy lookup
+  required_keys_or_columns:
+  - lineage/disease/subtype/cell
+  expected_shape_or_count: top-level count 4
+  provenance: Derived by bounded extraction from A-001/T-021 standard query index
+  validation_rule: parsable JSON; keys/values copied or boundedly derived from A-001 standard index
+  notes: Small deterministic fixture file.
+- resource_id: m1_fixture_cellline_tree
+  path: 4_artifact/2_persist/fixture_package_m1/cellline_tree_fixture_m1.json
+  file_type: json
+  loader_role: minimal cell-line tree lookup
+  required_keys_or_columns:
+  - tree/cell_index/meta
+  expected_shape_or_count: top-level count 3
+  provenance: Derived by bounded extraction from A-001/T-021 standard query index
+  validation_rule: parsable JSON; keys/values copied or boundedly derived from A-001 standard index
+  notes: Small deterministic fixture file.
+- resource_id: m1_fixture_drug_index
+  path: 4_artifact/2_persist/fixture_package_m1/drug_index_fixture_m1.json
+  file_type: json
+  loader_role: minimal drug alias exact lookup
+  required_keys_or_columns:
+  - alias_lower
+  expected_shape_or_count: top-level count 4
+  provenance: Derived by bounded extraction from A-001/T-021 standard query index
+  validation_rule: parsable JSON; keys/values copied or boundedly derived from A-001 standard index
+  notes: Small deterministic fixture file.
+- resource_id: m1_fixture_drug_neighbors
+  path: 4_artifact/2_persist/fixture_package_m1/drug_neighbors_fixture_m1.json
+  file_type: json
+  loader_role: minimal drug proxy lookup
+  required_keys_or_columns:
+  - BRD id without prefix
+  expected_shape_or_count: top-level count 4
+  provenance: Derived by bounded extraction from A-001/T-021 standard query index
+  validation_rule: parsable JSON; keys/values copied or boundedly derived from A-001 standard index
+  notes: Small deterministic fixture file.
+- resource_id: m1_fixture_gene_index_simple
+  path: 4_artifact/2_persist/fixture_package_m1/gene_index_simple_fixture_m1.json
+  file_type: json
+  loader_role: minimal gene symbol exact lookup
+  required_keys_or_columns:
+  - SYMBOL
+  expected_shape_or_count: top-level count 8
+  provenance: Derived by bounded extraction from A-001/T-021 standard query index
+  validation_rule: parsable JSON; keys/values copied or boundedly derived from A-001 standard index
+  notes: Small deterministic fixture file.
+- resource_id: m1_fixture_gene_neighbors_simple
+  path: 4_artifact/2_persist/fixture_package_m1/gene_neighbors_simple_fixture_m1.json
+  file_type: json
+  loader_role: minimal gene proxy lookup
+  required_keys_or_columns:
+  - SYMBOL
+  expected_shape_or_count: top-level count 8
+  provenance: Derived by bounded extraction from A-001/T-021 standard query index
+  validation_rule: parsable JSON; keys/values copied or boundedly derived from A-001 standard index
+  notes: Small deterministic fixture file.
+- resource_id: m1_fixture_gene_index
+  path: 4_artifact/2_persist/fixture_package_m1/gene_index_fixture_m1.json
+  file_type: json
+  loader_role: minimal full gene exact lookup
+  required_keys_or_columns:
+  - lowercase alias
+  expected_shape_or_count: top-level count 8
+  provenance: Derived by bounded extraction from A-001/T-021 standard query index
+  validation_rule: parsable JSON; keys/values copied or boundedly derived from A-001 standard index
+  notes: Small deterministic fixture file.
+- resource_id: m1_fixture_gene_neighbors
+  path: 4_artifact/2_persist/fixture_package_m1/gene_neighbors_fixture_m1.json
+  file_type: json
+  loader_role: minimal full gene proxy lookup
+  required_keys_or_columns:
+  - SYMBOL
+  expected_shape_or_count: top-level count 8
+  provenance: Derived by bounded extraction from A-001/T-021 standard query index
+  validation_rule: parsable JSON; keys/values copied or boundedly derived from A-001 standard index
+  notes: Small deterministic fixture file.
+- resource_id: m1_fixture_function_index
+  path: 4_artifact/2_persist/fixture_package_m1/function_index_fixture_m1.json
+  file_type: json
+  loader_role: minimal function term and alias catalog
+  required_keys_or_columns:
+  - var_names/meta/aliases
+  expected_shape_or_count: top-level count 3
+  provenance: Derived by bounded extraction from A-001/T-021 standard query index
+  validation_rule: parsable JSON; keys/values copied or boundedly derived from A-001 standard index
+  notes: Small deterministic fixture file.
+known_exclusions:
+- item: upstream CMAP H5AD files
+  reason: T-014/T-021 report truncated HDF5 files; not needed for runtime loader/query substrate.
+- item: historical GSEA outputs and figures
+  reason: Provenance/support only, not runtime M1 data substrate.
+- item: GenePT embeddings
+  reason: Optional large proxy resource excluded from standard runtime bundle by T-021.

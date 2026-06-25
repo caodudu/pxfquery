@@ -1,0 +1,2 @@
+{"id": "N-core", "ts": "2026-06-25", "actor": "ui", "content": "Review/gap task only. Do not modify M1 artifacts. | Be explicit if M1 is only a deterministic kernel/substrate; do not call it a complete algorithm package unless it satisfies the anchors.", "core": false}
+{"id": "N-1782407653859", "ts": "2026-06-26T01:14:13", "actor": "ui", "content": "M1交付锚点审查", "core": true}

@@ -1,0 +1,29 @@
+session_id: cli_4cfdd3005027
+driver: codex
+agent_id: AGT-003
+agent_label: Codex fresh T037
+stage: config
+status: dry_run
+created: '2026-06-23T17:48:23'
+task_path: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_package_milestone_merge_v1/task_milestone_merge_v1
+work_dir: /Users/dudu/Documents/3_Project/12_PxFquery
+session_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_package_milestone_merge_v1/task_milestone_merge_v1/5_report/cli_sessions/config/20260623_174823_codex_cli_4cfdd3005027
+prompt_file: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_package_milestone_merge_v1/task_milestone_merge_v1/5_report/cli_sessions/config/20260623_174823_codex_cli_4cfdd3005027/prompt.md
+events_file: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_package_milestone_merge_v1/task_milestone_merge_v1/5_report/cli_sessions/config/20260623_174823_codex_cli_4cfdd3005027/events.jsonl
+stdout_file: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_package_milestone_merge_v1/task_milestone_merge_v1/5_report/cli_sessions/config/20260623_174823_codex_cli_4cfdd3005027/stdout.log
+stderr_file: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_package_milestone_merge_v1/task_milestone_merge_v1/5_report/cli_sessions/config/20260623_174823_codex_cli_4cfdd3005027/stderr.log
+agent_output_file: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_package_milestone_merge_v1/task_milestone_merge_v1/5_report/cli_sessions/config/20260623_174823_codex_cli_4cfdd3005027/agent_output.md
+cmd:
+- /opt/homebrew/bin/codex
+- exec
+- --dangerously-bypass-approvals-and-sandbox
+- --json
+- -C
+- /Users/dudu/Documents/3_Project/12_PxFquery
+- '-'
+agent_session_id: null
+parent_agent_session_id: ''
+dry_run: true
+fork_from_resume: false
+codex_session_id: null
+prompt_source: assembled

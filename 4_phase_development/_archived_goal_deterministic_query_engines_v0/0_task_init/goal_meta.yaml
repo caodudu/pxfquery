@@ -1,0 +1,10 @@
+goal_id: G-016
+name: deterministic_query_engines_v0
+phase: development
+project: P-012
+objective: Create small forward and reverse query engine deliverables with safety
+  and numerical-stability guards.
+status: pending
+tasks: []
+created: '2026-06-23'
+notes: ''

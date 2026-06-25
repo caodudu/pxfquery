@@ -1,0 +1,39 @@
+task_id: T-017
+name: mdpi引用格式
+phase: digestion
+goal: goal_citation_research
+project: P-012
+objective: '搜一下mdpi的写作引用格式上哪一种。
+
+  可以结合网络搜索，
+
+
+  参考范文的引用区域。
+
+
+  以及wjy的word
+
+
+  但是最后要确定是具体哪一种，因为我需要在zenoto里用
+
+
+  如果是常规模式，我在zenoto里插入
+
+
+  如果不是，帮我搜到下载相关引用格式文件。我忘记一般引用是什么格式文件了'
+executor: hybrid
+agent_id: null
+config_agent_id: null
+check_agent_id: null
+execute_agent_id: null
+server_id: null
+status: done
+cyhex_version: 1.1.3
+created: '2026-06-23'
+started: null
+completed: '2026-06-22'
+notes: mdpi引用格式
+sub_status: ''
+fast_pass_permission: yellow
+fast_pass_last_auto_approved: check_review
+fast_pass_last_auto_approved_at: '2026-06-23T03:43:46'

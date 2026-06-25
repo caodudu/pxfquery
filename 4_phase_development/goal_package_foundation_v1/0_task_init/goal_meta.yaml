@@ -1,0 +1,10 @@
+goal_id: G-020
+name: package_foundation_v1
+phase: development
+project: P-012
+objective: Prepare the current importable PxFquery package workspace as task-versioned
+  foundation assets for package milestone v1.
+status: active
+tasks: []
+created: '2026-06-23'
+notes: 打包v1基础资产

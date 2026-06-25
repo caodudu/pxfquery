@@ -1,0 +1,240 @@
+{
+  "task_id": "T-045",
+  "generated": "2026-06-24",
+  "index_health": {
+    "cellline_index.json": {
+      "schema_status": "valid",
+      "key_completeness_score": 100,
+      "file_size_bytes": 3574,
+      "element_count": 240,
+      "top_level_type": "dict with list values",
+      "note": "240 cell line names in single key 'valid_cells'",
+      "issues": [
+        "Single wrapping key, not a 1-to-1 mapping; values are a flat name list"
+      ]
+    },
+    "drug_index.json": {
+      "schema_status": "valid",
+      "key_completeness_score": 100,
+      "file_size_bytes": 180301,
+      "element_count": 5958,
+      "top_level_type": "dict",
+      "note": "5870/5958 values are BRD-prefixed; 0 BRD keys",
+      "issues": [
+        "No reverse lookup (BRD->alias keys); one-direction alias->BRD only"
+      ]
+    },
+    "gene_index.json": {
+      "schema_status": "valid",
+      "key_completeness_score": 100,
+      "file_size_bytes": 6418019,
+      "element_count": 78061,
+      "top_level_type": "dict",
+      "entry_fields": [
+        "symbol",
+        "gene_type",
+        "in_matrix"
+      ],
+      "gene_type_categories": [
+        "IG_C_gene",
+        "IG_C_pseudogene",
+        "IG_D_gene",
+        "IG_J_gene",
+        "IG_J_pseudogene",
+        "IG_V_gene",
+        "IG_V_pseudogene",
+        "IG_pseudogene",
+        "Mt_rRNA",
+        "Mt_tRNA",
+        "None",
+        "TEC",
+        "TR_C_gene",
+        "TR_D_gene",
+        "TR_J_gene",
+        "TR_J_pseudogene",
+        "TR_V_gene",
+        "TR_V_pseudogene",
+        "artifact",
+        "lncRNA",
+        "miRNA",
+        "misc_RNA",
+        "processed_pseudogene",
+        "protein_coding",
+        "rRNA",
+        "rRNA_pseudogene",
+        "ribozyme",
+        "sRNA",
+        "scaRNA",
+        "snRNA",
+        "snoRNA",
+        "transcribed_processed_pseudogene",
+        "transcribed_unitary_pseudogene",
+        "transcribed_unprocessed_pseudogene",
+        "translated_processed_pseudogene",
+        "unitary_pseudogene",
+        "unprocessed_pseudogene",
+        "vault_RNA"
+      ],
+      "issues": [
+        "Field names differ from canonical: 'symbol' not 'gene_symbol', no 'ensembl_id'",
+        "'in_matrix' flag present for matrix membership"
+      ]
+    },
+    "function_index.json": {
+      "schema_status": "warning",
+      "key_completeness_score": 100,
+      "file_size_bytes": 17899,
+      "element_count": 91,
+      "structure": "dict",
+      "source_counts": {
+        "hallmark": 50,
+        "3ca_mps": 41
+      },
+      "issues": [
+        "Structure is dict{meta, var_names, aliases} not a flat list",
+        "No 'id' or 'name' field; uses 'source' and 'label' instead",
+        "No 'category' field \u2014 Hallmark/3CA MPS implied by 'source' ('hallmark' vs '$3ca$')"
+      ]
+    },
+    "data_description.yaml": {
+      "schema_status": "valid",
+      "file_size_bytes": 5160,
+      "top_keys": [
+        "assets"
+      ],
+      "note": "Provides index field semantics reference"
+    },
+    "cellline_neighbors.json": {
+      "schema_status": "valid",
+      "file_size_bytes": 6610,
+      "key_count": 19,
+      "empty_values": 0,
+      "sample_edge_cardinality": {
+        "min": 1,
+        "max": 5,
+        "sample_n": 19
+      },
+      "note": "19 lineage groups, 1-5 members each"
+    },
+    "cellline_tree.json": {
+      "schema_status": "valid",
+      "file_size_bytes": 50548,
+      "key_count": 3,
+      "empty_values": 0,
+      "sample_edge_cardinality": {
+        "min": 21,
+        "max": 452,
+        "sample_n": 3
+      },
+      "note": "3 top-level entries; not a hierarchical tree",
+      "issues": [
+        "Flat structure, no recursive children hierarchy"
+      ]
+    },
+    "drug_neighbors.json": {
+      "schema_status": "valid",
+      "file_size_bytes": 4588889,
+      "key_count": 5312,
+      "empty_values": 0,
+      "sample_edge_cardinality": {
+        "min": 50,
+        "max": 50,
+        "sample_n": 100
+      },
+      "note": "5312 drugs with 50 neighbors each"
+    },
+    "gene_neighbors.json": {
+      "schema_status": "valid",
+      "file_size_bytes": 22815738,
+      "key_count": 33791,
+      "empty_values": 0,
+      "sample_edge_cardinality": {
+        "min": 50,
+        "max": 50,
+        "sample_n": 100
+      },
+      "note": "33791 genes with 50 neighbors each"
+    },
+    "gene_neighbors_simple.json": {
+      "schema_status": "valid",
+      "file_size_bytes": 20443987,
+      "key_count": 30319,
+      "empty_values": 0,
+      "sample_edge_cardinality": {
+        "min": 50,
+        "max": 50,
+        "sample_n": 100
+      },
+      "note": "30319 compact genes with 50 neighbors each"
+    },
+    "gene_index_simple.json": {
+      "schema_status": "valid",
+      "file_size_bytes": 364484,
+      "key_count": 25036,
+      "note": "25036 compact gene entries (subset of full gene_index)"
+    }
+  },
+  "known_gaps": [
+    {
+      "index": "function_index.json",
+      "gap": "Non-standard structure: dict{meta, var_names, aliases}",
+      "severity": "warning",
+      "affects": "Loader must unwrap meta"
+    },
+    {
+      "index": "function_index.json",
+      "gap": "Hallmark vs 3CA MPS in 'source' field, not 'category'",
+      "severity": "warning",
+      "affects": "Code expecting 'category' field"
+    },
+    {
+      "index": "gene_index.json",
+      "gap": "Field names: 'symbol' not 'gene_symbol', no 'ensembl_id'",
+      "severity": "warning",
+      "affects": "Query code must use correct field names"
+    },
+    {
+      "index": "cellline_index.json",
+      "gap": "Single wrapping key, not 1-to-1 cell line mapping",
+      "severity": "cosmetic",
+      "affects": "Loader unwrapping needed"
+    },
+    {
+      "index": "drug_index.json",
+      "gap": "No reverse BRD->alias lookup",
+      "severity": "cosmetic",
+      "affects": "Not needed for M1 scope"
+    },
+    {
+      "index": "cellline_tree.json",
+      "gap": "Flat 3-key structure, not hierarchical tree",
+      "severity": "warning",
+      "affects": "No ontology expansion for proxy matching"
+    }
+  ],
+  "patch_recommendations": [
+    {
+      "index": "function_index.json",
+      "recommendation": "Add 'category' field to meta (Hallmark/3CA MPS derived from source)",
+      "safety": "safe \u2014 additive"
+    },
+    {
+      "index": "function_index.json",
+      "recommendation": "Reformat as flat term list for uniform loader access",
+      "safety": "coordinate with T-047"
+    },
+    {
+      "index": "cellline_tree.json",
+      "recommendation": "Rebuild with children nesting for proxy expansion",
+      "safety": "low-risk"
+    }
+  ],
+  "overall_assessment": {
+    "core_indexes_ready": true,
+    "neighbor_indexes_ready": true,
+    "m1_blocker_count": 0,
+    "warning_count": 4,
+    "cosmetic_count": 2,
+    "verdict": "All 10 indexes parse and contain structurally valid data. 4 warnings but non-blocking. No corrupt or empty indexes. Ready for T-047 loader hardening."
+  }
+}

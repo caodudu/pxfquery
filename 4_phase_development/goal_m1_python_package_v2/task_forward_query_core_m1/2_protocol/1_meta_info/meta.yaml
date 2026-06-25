@@ -1,0 +1,32 @@
+task_id: T-048
+name: forward_query_core_m1
+phase: development
+goal: goal_m1_python_package_v2
+project: P-012
+objective: Implement the M1 forward query core. Use T-042 for API/demo contract and
+  T-046 for all data access through the fixture loader; optionally use T-047 hardening
+  and T-041 source digest if available. Deliver forward query code, no-hit behavior
+  required by the contract, and in-task demo evidence with structured JSON output.
+  Do not write a private ad hoc loader and do not treat mock data as a replacement
+  for T-046.
+executor: hybrid
+agent_id: AGT-001
+config_agent_id: AGT-001
+check_agent_id: AGT-001
+execute_agent_id: AGT-001
+server_id: null
+status: blocked
+cyhex_version: 1.2.19
+created: '2026-06-24'
+started: null
+completed: '2026-06-24'
+notes: 'Orchestration resolution 2026-06-24: T-048 correctly found a real T-042/T-046
+  contract-fixture mismatch. EGFR/A549/xpr is absent from the loader-exposed fixture,
+  so the original task cannot honestly complete without changing upstream contract/fixture
+  or bypassing loader rules. T-059 is the completed same-layer replacement and downstream
+  must dependency. Keep T-048 artifacts as failure evidence; consume T-059 instead.
+  See 5_report/orchestration_resolution_20260624.md.'
+fast_pass_permission: green
+sub_status: null
+fast_pass_last_auto_approved: check_review
+fast_pass_last_auto_approved_at: '2026-06-24T04:54:55'

@@ -1,0 +1,61 @@
+assets:
+  - id: A-001
+    name: T-024 workspace package (pxfquery-T-024)
+    type: deliverable
+    source: predecessor
+    origin: goal_package_foundation_v1/task_workspace_package_v1
+    registered: '2026-06-23'
+    path: 1_asset/T-024 workspace package (pxfquery-T-024)
+    symlink: true
+    notes: Current pxfquery workspace with src/-layout, ReverseQuery class, ReverseResult,
+      DataLoader, and core.PxFquery. Installed as editable into pxfquery conda env for
+      demo execution. Symlink target verified: ../goal_package_foundation_v1/task_workspace_package_v1/4_artifact/2_persist/workspace/
+    location: local
+  - id: A-002
+    name: T-026 loader outputs (pxfquery-T-026)
+    type: deliverable
+    source: predecessor
+    origin: goal_resource_index_packs_v1/task_matrix_loader_v1
+    registered: '2026-06-23'
+    path: 1_asset/T-026 loader outputs (pxfquery-T-026)
+    symlink: true
+    notes: pxfquery-T-026 loader package (load_bundle, load_matrix) and loader_validation.json
+      recording observed matrix shapes, obs columns, and dtypes for 19/19 files. Reference
+      for runtime schema discovery. Symlink target verified: ../goal_resource_index_packs_v1/task_matrix_loader_v1/4_artifact/2_persist/loader/
+    location: local
+  - id: A-003
+    name: T-021 standard resources bundle (D-004)
+    type: deliverable
+    source: predecessor
+    origin: goal_precomputed_data_exploration/task_standard_resources_optimal_formats
+    registered: '2026-06-23'
+    path: 1_asset/T-021 standard resources bundle (D-004)
+    symlink: true
+    notes: Canonical 19-file float32 H5AD matrices (cp/sh/xpr), JSON indexes, CSV metadata.
+      Actual data consumed by the reverse demo. Load by reference only. Symlink target verified:
+      ../goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/2_persist/standard_resources/
+      (19 files: cp_func_ad.h5ad, sh_func_ad.h5ad, xpr_func_ad.h5ad, 10 JSON indexes, 5 CSV metadata, data_description.yaml).
+    location: local
+  - id: A-004
+    name: T-013 MVP capability review deliverables
+    type: deliverable
+    source: predecessor
+    origin: goal_algorithm_function_review/task_mvp_algorithm_run-through_review
+    registered: '2026-06-23'
+    path: 1_asset/T-013 MVP capability review deliverables
+    symlink: true
+    notes: T-013 capability status matrix (D-003) and failure/missing capability list (D-005).
+      Used as gap reference for scoping the T-030 reverse demo as a v1 repair+delivery.
+      Symlink target verified: ../goal_algorithm_function_review/task_mvp_algorithm_run-through_review/4_artifact/
+    location: local
+  - id: A-005
+    name: Current project protocol
+    type: deliverable
+    source: self
+    origin: project_init
+    registered: '2026-06-23'
+    path: 1_asset/Current project protocol
+    symlink: true
+    notes: Defines pxfquery conda environment, workspace boundaries, source authority,
+      and non-modification rules for the demo runtime. Symlink target verified: ../../../1_project_init/1_project_protocol/
+    location: local

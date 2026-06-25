@@ -1,0 +1,38 @@
+required:
+  - id: A-001
+    source_task: T-043
+    source_artifact_id: D-001
+    path: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_data_manifest_fixture_m1/4_artifact/2_persist/resource_manifest_m1.yaml
+    reason: Hard source for M1 manifest schema and fixture/full-resource path discovery.
+  - id: A-002
+    source_task: T-043
+    source_artifact_id: D-002
+    path: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_data_manifest_fixture_m1/4_artifact/2_persist/fixture_package_m1/
+    reason: Deterministic fixture package that the loader must load for smoke evidence.
+  - id: A-003
+    source_task: T-043
+    source_artifact_id: D-003
+    path: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_data_manifest_fixture_m1/4_artifact/5_table/expected_shapes_keys_columns_m1.csv
+    reason: Expected shapes, keys, columns, validation rules, and index semantics for loader acceptance.
+optional: []
+forbidden:
+  - path: 2_project_asset/
+    reason: forbidden for non-digestion task; request a predecessor digestion task if raw project assets are needed
+output:
+  - path: 4_artifact/2_persist/
+    type: reusable loader documentation or packaged code references
+  - path: 4_artifact/3_document/
+    type: human-facing loader smoke report
+  - path: 4_artifact/5_table/
+    type: loader smoke evidence tables
+  - path: 4_artifact/registry.yaml
+    type: artifact registry
+  - path: 5_report/completion.md
+    type: completion report
+modifiable:
+  - 3_execution/
+  - 4_artifact/
+  - 5_report/
+non_modifiable:
+  - /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_data_manifest_fixture_m1/
+  - /Users/dudu/Documents/3_Project/12_PxFquery/2_project_asset/

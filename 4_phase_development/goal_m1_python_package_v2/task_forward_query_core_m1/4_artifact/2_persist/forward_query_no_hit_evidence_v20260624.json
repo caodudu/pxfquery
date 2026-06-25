@@ -1,0 +1,37 @@
+{
+  "task_id": "T-048",
+  "case_id": "DEMO-001.no_hit_variants",
+  "source_contract": "T-042/D-001 and T-042/D-002",
+  "loader_source": "T-046/D-001",
+  "input": {
+    "matrix_type": "xpr",
+    "variants": [
+      "unknown_perturbation",
+      "unknown_cell_line",
+      "no_matrix_loaded"
+    ]
+  },
+  "observed": {
+    "unknown_perturbation": {
+      "error": "PerturbationNotFound",
+      "message": "Perturbation 'UNKNOWN_GENE_XYZ999' was not found in xpr matrix observations.",
+      "perturbation": "UNKNOWN_GENE_XYZ999",
+      "matrix_type": "xpr",
+      "query_type": "forward",
+      "suggestions": []
+    },
+    "unknown_cell_line": {
+      "error": "PerturbationNotFound",
+      "message": "Perturbation 'EGFR' was not found in xpr matrix observations.",
+      "perturbation": "EGFR",
+      "matrix_type": "xpr",
+      "query_type": "forward",
+      "suggestions": []
+    },
+    "no_matrix_loaded": {
+      "error": "NoMatrixLoaded",
+      "message": "No functional matrix is loaded. Call PxFquery(matrix_path) or load_data(path) first.",
+      "query_type": "system"
+    }
+  }
+}

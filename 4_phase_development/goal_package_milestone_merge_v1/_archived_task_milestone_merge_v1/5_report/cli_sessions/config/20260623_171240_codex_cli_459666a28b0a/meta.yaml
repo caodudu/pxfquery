@@ -1,0 +1,41 @@
+session_id: cli_459666a28b0a
+driver: codex
+agent_id: AGT-001
+agent_label: Codex hard tasks
+stage: config
+status: stopped
+created: '2026-06-23T17:12:40'
+task_path: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_package_milestone_merge_v1/task_milestone_merge_v1
+work_dir: /Users/dudu/Documents/3_Project/12_PxFquery
+session_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_package_milestone_merge_v1/task_milestone_merge_v1/5_report/cli_sessions/config/20260623_171240_codex_cli_459666a28b0a
+prompt_file: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_package_milestone_merge_v1/task_milestone_merge_v1/5_report/cli_sessions/config/20260623_171240_codex_cli_459666a28b0a/prompt.md
+events_file: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_package_milestone_merge_v1/task_milestone_merge_v1/5_report/cli_sessions/config/20260623_171240_codex_cli_459666a28b0a/events.jsonl
+stdout_file: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_package_milestone_merge_v1/task_milestone_merge_v1/5_report/cli_sessions/config/20260623_171240_codex_cli_459666a28b0a/stdout.log
+stderr_file: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_package_milestone_merge_v1/task_milestone_merge_v1/5_report/cli_sessions/config/20260623_171240_codex_cli_459666a28b0a/stderr.log
+agent_output_file: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_package_milestone_merge_v1/task_milestone_merge_v1/5_report/cli_sessions/config/20260623_171240_codex_cli_459666a28b0a/agent_output.md
+cmd:
+- /opt/homebrew/bin/codex
+- exec
+- --dangerously-bypass-approvals-and-sandbox
+- --json
+- -C
+- /Users/dudu/Documents/3_Project/12_PxFquery
+- '-'
+agent_session_id: 019ef3c0-cff4-7123-b0ff-3a138b7dd4b3
+parent_agent_session_id: ''
+dry_run: false
+fork_from_resume: false
+codex_session_id: 019ef3c0-cff4-7123-b0ff-3a138b7dd4b3
+prompt_source: assembled
+pid: 73833
+stalled_since: '2026-06-23T17:20:22'
+stalled_reason: no_session_output
+last_activity_age_seconds: 658
+completed: '2026-06-23T17:32:48'
+context_estimate:
+  estimated_tokens: 999999
+  estimated_bytes: 2999997
+  limit_tokens: 120000
+  exceeded: true
+  method: manual_t037_rearrange_do_not_resume
+  note: T-037 config session accumulated excessive predecessor context and must not be resumed.

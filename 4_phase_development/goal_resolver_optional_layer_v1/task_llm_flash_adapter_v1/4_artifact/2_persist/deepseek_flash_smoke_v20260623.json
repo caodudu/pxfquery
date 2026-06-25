@@ -1,0 +1,25 @@
+{
+  "recorded_at": "2026-06-23T08:04:35",
+  "task_id": "T-034",
+  "provider": "deepseek-flash",
+  "model": "deepseek-v4-flash",
+  "base_url": "https://api.deepseek.com/v1",
+  "no_traffic": false,
+  "transport": "tcp_probe_then_optional_http",
+  "status": "unavailable",
+  "ok": false,
+  "reason": "missing_api_key",
+  "error_type": "AdapterUnavailable",
+  "error_message": "No DEEPSEEK_API_KEY / OPENAI_API_KEY / api_key= provided.",
+  "reply": null,
+  "latency_ms": 6,
+  "tcp": {
+    "tcp_ok": true,
+    "tcp_error_type": null,
+    "tcp_error_message": null,
+    "tcp_latency_ms": 365,
+    "tcp_host": "api.deepseek.com",
+    "tcp_port": 443
+  },
+  "api_key_present": false
+}

@@ -1,0 +1,41 @@
+session_id: cli_e42feaf4a28f
+driver: opencode
+agent_id: ''
+agent_label: OpenCode cheap tasks
+stage: config
+status: stopped
+created: '2026-06-23T14:22:30'
+task_path: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_resolver_optional_layer_v1/task_hybrid_fast_resolver_v1
+work_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_resolver_optional_layer_v1/task_hybrid_fast_resolver_v1
+session_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_resolver_optional_layer_v1/task_hybrid_fast_resolver_v1/5_report/cli_sessions/config/20260623_142230_opencode_cli_e42feaf4a28f
+prompt_file: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_resolver_optional_layer_v1/task_hybrid_fast_resolver_v1/5_report/cli_sessions/config/20260623_142230_opencode_cli_e42feaf4a28f/prompt.md
+events_file: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_resolver_optional_layer_v1/task_hybrid_fast_resolver_v1/5_report/cli_sessions/config/20260623_142230_opencode_cli_e42feaf4a28f/events.jsonl
+stdout_file: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_resolver_optional_layer_v1/task_hybrid_fast_resolver_v1/5_report/cli_sessions/config/20260623_142230_opencode_cli_e42feaf4a28f/stdout.log
+stderr_file: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_resolver_optional_layer_v1/task_hybrid_fast_resolver_v1/5_report/cli_sessions/config/20260623_142230_opencode_cli_e42feaf4a28f/stderr.log
+agent_output_file: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_resolver_optional_layer_v1/task_hybrid_fast_resolver_v1/5_report/cli_sessions/config/20260623_142230_opencode_cli_e42feaf4a28f/agent_output.md
+cmd:
+- /Users/dudu/.opencode/bin/opencode
+- run
+- Execute the attached CyHex prompt. Return the final user-facing result clearly.
+- --dangerously-skip-permissions
+- --format
+- json
+- --dir
+- /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_resolver_optional_layer_v1/task_hybrid_fast_resolver_v1
+- --file
+- /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_resolver_optional_layer_v1/task_hybrid_fast_resolver_v1/5_report/cli_sessions/config/20260623_142230_opencode_cli_e42feaf4a28f/prompt.md
+- -m
+- llm_gateway/deepseek-ai/deepseek-v4-pro
+agent_session_id: ses_10cdaf686ffec7sPn01oufUGgQ
+parent_agent_session_id: ''
+dry_run: false
+fork_from_resume: false
+model: llm_gateway/deepseek-ai/deepseek-v4-pro
+prompt_source: assembled
+pid: 59396
+completed: '2026-06-23T15:06:00'
+returncode:
+stopped_reason: stale_stalled_process_missing_from_os
+stalled_since: '2026-06-23T14:33:15'
+stalled_reason: no_session_output
+last_activity_age_seconds: 608

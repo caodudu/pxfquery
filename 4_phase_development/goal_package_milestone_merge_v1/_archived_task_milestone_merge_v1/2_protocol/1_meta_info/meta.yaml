@@ -1,0 +1,24 @@
+task_id: T-037
+name: milestone_merge_v1
+phase: development
+goal: goal_package_milestone_merge_v1
+project: P-012
+objective: 'Create pxfquery-T-037 parallel package-core milestone: package workspace,
+  loader/resource access, deterministic forward query, no-hit guard, and minimal package-core
+  tests. Do not consume T-038 or produce final aggregation.'
+executor: codex
+agent_id: AGT-003
+config_agent_id: AGT-003
+check_agent_id: AGT-003
+execute_agent_id: AGT-003
+server_id: null
+status: pending
+cyhex_version: 1.2.3
+created: '2026-06-23'
+started: null
+completed: null
+notes: 'Split milestone: T-037 now only builds slim package core (foundation + loader
+  + forward + no-hit). T-038 handles reverse/demo/final reports after T-037. Do not
+  re-expand T-037 dependencies.'
+fast_pass_permission: green
+sub_status: config_interrupted

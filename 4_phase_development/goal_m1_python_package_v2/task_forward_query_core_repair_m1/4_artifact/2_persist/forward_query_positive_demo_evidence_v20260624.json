@@ -1,0 +1,29 @@
+{
+  "found": true,
+  "perturbation": "EGFR",
+  "cell_line": "A549",
+  "n_obs": 1,
+  "cells_used": [
+    "A549"
+  ],
+  "top_activated": {
+    "HALLMARK_ADIPOGENESIS": 4.03,
+    "HALLMARK_APOPTOSIS": 2.47,
+    "HALLMARK_P53_PATHWAY": 1.25,
+    "HALLMARK_TNFA_SIGNALING_VIA_NFKB": 0.84
+  },
+  "top_suppressed": {
+    "MP40 PDAC-related": -6.68,
+    "HALLMARK_E2F_TARGETS": -6.64,
+    "MP39 Metal-response": -0.51
+  },
+  "note": "",
+  "warnings": [],
+  "_evidence": {
+    "task_id": "T-059",
+    "source": "task-local synthetic repair fixture",
+    "manifest": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_forward_query_core_repair_m1/4_artifact/2_persist/forward_repair_manifest_m1_1.yaml",
+    "fixture_root": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_forward_query_core_repair_m1/4_artifact/2_persist/forward_repair_fixture_m1_1",
+    "cli_returncode": 0
+  }
+}

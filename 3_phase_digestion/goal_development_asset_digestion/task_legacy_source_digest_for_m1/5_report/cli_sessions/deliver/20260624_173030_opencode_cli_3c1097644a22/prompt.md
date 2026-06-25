@@ -1,0 +1,1 @@
+T-041 delivery closeout. Read only 5_report/completion.md, 5_report/execute_repair_20260624.md, and 4_artifact/registry.yaml in the current task. Do not glob directories. Do not inspect legacy source, project assets, predecessor tasks, or cli_sessions. Confirm consistency, respond Completed, exit successfully.

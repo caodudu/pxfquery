@@ -1,0 +1,115 @@
+{
+  "command": "conda run -n pxfquery env PYTHONPATH=<task>/4_artifact/1_package python 3_execution/run_reverse_evidence.py",
+  "matrix": "4_artifact/2_persist/reverse_repair_fixture_m1_1/xpr_func_fixture_m1.h5ad",
+  "manifest": "4_artifact/2_persist/reverse_repair_manifest_m1_1.yaml",
+  "loader_check": {
+    "loader": "pxfquery.data.m1_loader.M1FixtureLoader",
+    "xpr_shape": [
+      15,
+      9
+    ],
+    "has_HALLMARK_MYC_TARGETS_V1": true,
+    "has_A549": true
+  },
+  "result": {
+    "found": true,
+    "activate": [
+      "HALLMARK_APOPTOSIS"
+    ],
+    "suppress": [
+      "HALLMARK_MYC_TARGETS_V1"
+    ],
+    "cell_line": "A549",
+    "candidate_columns": [
+      "cmap_name",
+      "cell_iname",
+      "similarity",
+      "driving_terms"
+    ],
+    "top_candidates": [
+      {
+        "cmap_name": "THTPA",
+        "cell_iname": "A549",
+        "similarity": 1.0,
+        "driving_terms": "HALLMARK_MYC_TARGETS_V1, HALLMARK_APOPTOSIS",
+        "sig_id": "T060_XPR_A549_SYN_001"
+      },
+      {
+        "cmap_name": "SCD",
+        "cell_iname": "A549",
+        "similarity": 0.999959,
+        "driving_terms": "HALLMARK_MYC_TARGETS_V1, HALLMARK_APOPTOSIS",
+        "sig_id": "T060_XPR_A549_SYN_002"
+      },
+      {
+        "cmap_name": "TP53",
+        "cell_iname": "A549",
+        "similarity": 0.999541,
+        "driving_terms": "HALLMARK_MYC_TARGETS_V1, HALLMARK_APOPTOSIS",
+        "sig_id": "T060_XPR_A549_SYN_005"
+      },
+      {
+        "cmap_name": "BCL2L1",
+        "cell_iname": "A549",
+        "similarity": 0.999502,
+        "driving_terms": "HALLMARK_MYC_TARGETS_V1, HALLMARK_APOPTOSIS",
+        "sig_id": "T060_XPR_A549_SYN_003"
+      },
+      {
+        "cmap_name": "CDK2",
+        "cell_iname": "A549",
+        "similarity": 0.999315,
+        "driving_terms": "HALLMARK_MYC_TARGETS_V1, HALLMARK_APOPTOSIS",
+        "sig_id": "T060_XPR_A549_SYN_004"
+      },
+      {
+        "cmap_name": "MAPK1",
+        "cell_iname": "A549",
+        "similarity": 0.999201,
+        "driving_terms": "HALLMARK_MYC_TARGETS_V1, HALLMARK_APOPTOSIS",
+        "sig_id": "T060_XPR_A549_SYN_006"
+      },
+      {
+        "cmap_name": "AKT1",
+        "cell_iname": "A549",
+        "similarity": 0.998618,
+        "driving_terms": "HALLMARK_MYC_TARGETS_V1, HALLMARK_APOPTOSIS",
+        "sig_id": "T060_XPR_A549_SYN_009"
+      },
+      {
+        "cmap_name": "EGFR",
+        "cell_iname": "A549",
+        "similarity": 0.998618,
+        "driving_terms": "HALLMARK_MYC_TARGETS_V1, HALLMARK_APOPTOSIS",
+        "sig_id": "T060_XPR_A549_SYN_007"
+      },
+      {
+        "cmap_name": "STAT3",
+        "cell_iname": "A549",
+        "similarity": 0.997459,
+        "driving_terms": "HALLMARK_MYC_TARGETS_V1, HALLMARK_APOPTOSIS",
+        "sig_id": "T060_XPR_A549_SYN_008"
+      },
+      {
+        "cmap_name": "MYC",
+        "cell_iname": "A549",
+        "similarity": 0.993884,
+        "driving_terms": "HALLMARK_MYC_TARGETS_V1, HALLMARK_APOPTOSIS",
+        "sig_id": "T060_XPR_A549_SYN_010"
+      }
+    ],
+    "warnings": [
+      "zero-norm candidate skipped: T060_XPR_A549_SYN_LOWCONF"
+    ],
+    "note": "Ranking sort keys: similarity descending, cmap_name ascending, cell_iname ascending, sig_id ascending."
+  },
+  "repeatability": {
+    "same_top_candidates_on_repeat": true,
+    "stable_sort_keys": [
+      "similarity desc",
+      "cmap_name asc",
+      "cell_iname asc",
+      "sig_id asc"
+    ]
+  }
+}

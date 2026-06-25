@@ -1,0 +1,34 @@
+task_id: T-042
+name: contract_and_demo_spec_m1
+phase: development
+goal: goal_m1_python_package_v2
+project: P-012
+objective: 'Define the minimal M1 contract for the PxFquery Python package. Use T-007
+  for original tool intent and T-013 for MVP gap/function expectations. Deliver a
+  compact API and CLI contract plus exact forward and reverse demo cases: input fields,
+  output JSON shape, required no-hit/error behavior, and pass/fail criteria. Do not
+  implement code, do not rewrite the full product design, and do not reference failed
+  T024-T040 assets as authorities.'
+executor: hybrid
+agent_id: AGT-001
+config_agent_id: AGT-001
+check_agent_id: AGT-001
+execute_agent_id: AGT-001
+server_id: null
+status: done
+cyhex_version: 1.2.19
+created: '2026-06-24'
+started: null
+completed: '2026-06-24'
+notes: 'Constraint supplement for config AI: Keep this task small and authoritative.
+  Produce the single M1 API/CLI/demo contract that downstream tasks must follow: no
+  broad product redesign, no long narrative report, no implementation code. Use only
+  T-007 and T-013 as authoritative inputs. Do not treat T024-T040 as usable assets.
+  Acceptance must include exact forward/reverse demo inputs, expected output JSON
+  shape, no-hit/error behavior, and pass/fail criteria.'
+fast_pass_permission: green
+sub_status: ''
+fast_pass_last_auto_approved: check_review
+fast_pass_last_auto_approved_at: '2026-06-24T03:38:14'
+fast_pass_accepted: true
+fast_pass_accepted_at: '2026-06-24T04:20:00'

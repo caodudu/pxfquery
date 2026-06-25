@@ -1,0 +1,75 @@
+assets:
+- id: A-001
+  name: T-015 MDPI submission rules outputs
+  type: deliverable
+  source: local
+  path: 1_asset/T-015 MDPI submission rules outputs
+  location: local
+  description: Previously delivered MDPI submission package; provides context for
+    MDPI official citation/reference rules summary, including the mdpi_submission_rules_summary
+    and Chinese submission guide.
+  sync_policy: local
+  notes: Read-only. Cross-reference the MDPI rules summary for citation format mentions.
+  origin: ../../goal_submission_rules/task_mdpi_submission_package_and_guide/4_artifact/
+  symlink: true
+- id: A-002
+  name: WXY manuscript_v8.docx
+  type: raw
+  source: local
+  path: 1_asset/WXY manuscript_v8.docx
+  location: local
+  origin: ../../../2_project_asset/1_raw_material/wxy投稿文件/
+  description: Reference example of a Genes-submitted manuscript. Inspect its in-text
+    citation format (numbered brackets) and reference list to confirm the practical
+    citation format used in a real Genes submission.
+  sync_policy: local
+  notes: Read-only. Do not modify.
+  symlink: true
+- id: A-003
+  name: MDPI Reference List and Citations Style Guide (official)
+  type: reference
+  source: url
+  path: https://www.mdpi.com/authors/references
+  location: url
+  description: Official MDPI citation and reference formatting guide. Identifies the
+    recommended Zotero style as "Multidisciplinary Digital Publishing Institute" and
+    documents the numbered-bracket citation format.
+  sync_policy: metadata_only
+  notes: Primary rule authority for MDPI citation format. Fetch at execution time.
+- id: A-004
+  name: MDPI CSL file (multidisciplinary-digital-publishing-institute.csl)
+  type: reference
+  source: url
+  path: https://raw.githubusercontent.com/citation-style-language/styles/master/multidisciplinary-digital-publishing-institute.csl
+  location: url
+  description: Official CSL style file for MDPI (Multidisciplinary Digital Publishing
+    Institute) from the citation-style-language/styles GitHub repository. Downloadable
+    for local Zotero installation. Numeric citation style (ACS-based), in-text as
+    [1], [2].
+  sync_policy: metadata_only
+  notes: Raw download link. Can also be installed directly from within Zotero via
+    Preferences → Cite → Styles → Get additional styles, searching "Multidisciplinary
+    Digital Publishing Institute".
+- id: A-005
+  name: Zotero Style Repository page for MDPI
+  type: reference
+  source: url
+  path: https://www.zotero.org/styles/?q=id%3Amultidisciplinary-digital-publishing-institute
+  location: url
+  description: Zotero official style repository search result confirming the style
+    ID "multidisciplinary-digital-publishing-institute" (MDPI) exists and is directly
+    installable from within Zotero.
+  sync_policy: metadata_only
+  notes: Verification source. Fetch at execution time to confirm availability.
+- id: A-006
+  name: Web search results for MDPI citation Zotero
+  type: other
+  source: url
+  path: https://github.com/nelsoncardenas/MDPI-Alternative-Style-for-Zotero-Mendeley
+  location: url
+  description: Non-official alternative MDPI Zotero style repository. May be useful
+    as secondary reference, but official CSL from citation-style-language/styles is
+    authoritative.
+  sync_policy: metadata_only
+  notes: Non-official. Do not use as primary authority. Only consult if official style
+    has issues.

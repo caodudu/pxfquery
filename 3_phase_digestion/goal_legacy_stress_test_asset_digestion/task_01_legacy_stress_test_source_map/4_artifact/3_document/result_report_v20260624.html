@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Result Report — T-055 01_legacy_stress_test_source_map</title>
+<style>
+body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; max-width: 960px; margin: 2em auto; padding: 0 1em; line-height: 1.6; color: #1a1a1a; }
+h1 { border-bottom: 2px solid #333; padding-bottom: 0.3em; }
+h2 { margin-top: 1.5em; border-bottom: 1px solid #ccc; padding-bottom: 0.2em; }
+table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+th { background: #f5f5f5; }
+tr:nth-child(even) { background: #fafafa; }
+.badge { display: inline-block; padding: 2px 8px; border-radius: 3px; font-size: 0.85em; }
+.badge-green { background: #d4edda; color: #155724; }
+.badge-red { background: #f8d7da; color: #721c24; }
+.badge-amber { background: #fff3cd; color: #856404; }
+.section { margin: 1em 0; padding: 0.5em 1em; background: #f8f9fa; border-left: 4px solid #007bff; }
+</style>
+</head>
+<body>
+<h1>Result Report — T-055</h1>
+<p><strong>任务：</strong> 01_legacy_stress_test_source_map</p>
+<p><strong>日期：</strong> 2026-06-24</p>
+<p><strong>状态：</strong> <span class="badge badge-green">Delivered</span></p>
+
+<h2>1. Summary</h2>
+<div class="section">
+<p>从迁移后的平面资产库中创建了包含约 160 个候选压力测试资产的综合源映射，覆盖 7 个目标目录。该映射按压力测试相关性对资产进行分类，交叉引用 T-007 验证证据索引（15 条记录），并记录了缺失/不明确的线索。</p>
+</div>
+
+<h2>2. Key Findings</h2>
+
+<h3>Strongest Validation Baseline</h3>
+<p><strong>M-0386 (test_forward_matrix.py)</strong> — 所有命中级别（EXACT、PROXY_PERT、PROXY_CELL、PROXY_BOTH）的确定性通过率为 7/7。使用模拟钩子，无真实 LLM。主要回归测试的最佳候选。</p>
+
+<h3>Critical Gap</h3>
+<p><span class="badge badge-red">缺少运行时资源</span> <strong>function_index.json</strong> — 在迁移后的查询索引中未找到。构建报告（M-0252）确认已构建 91 函数索引，并且存在 M-0373_build_function_index.py 用于重建该索引。</p>
+
+<h3>LLM Stability Risk</h3>
+<p><span class="badge badge-amber">6/9 success rate</span> 在已记录的 LLM 稳定性检查（M-0267）中。EGFR 抑制剂和 NSCLC 类查询失败。建议采用保守的 LLM 声明。</p>
+
+<h3>Performance Data</h3>
+<table>
+<tr><th>Mode</th><th>Queries</th><th>Time</th><th>Source</th></tr>
+<tr><td>hybrid_fast v3</td><td>3</td><td>0.825s</td><td>M-0275</td></tr>
+<tr><td>always_LLM</td><td>4</td><td>167.3s</td><td>M-0277</td></tr>
+<tr><td>always_LLM (parse_intent)</td><td>4</td><td>117.1s</td><td>M-0277</td></tr>
+</table>
+<p>always_LLM 比 hybrid_fast 慢约 200 倍。llm_parse_intent 占主导延迟（占总量的 70%）。</p>
+
+<h2>3. T-007 Cross-Reference Coverage</h2>
+<table>
+<tr><th>Coverage Area</th><th>This Map</th><th>T-007</th><th>Notes</th></tr>
+<tr><td>验证报告</td><td>约 57 条记录</td><td>15 entries</td><td>映射覆盖所有报告；T-007 仅为规范集</td></tr>
+<tr><td>验证脚本</td><td>12 scripts</td><td>0</td><td>新编目</td></tr>
+<tr><td>查询索引</td><td>9 indexes</td><td>3 (via build reports)</td><td>本映射补充运行时文件</td></tr>
+<tr><td>解析器源代码</td><td>5 files</td><td>0</td><td>新编目</td></tr>
+<tr><td>GSEA 评估</td><td>约 40 条记录</td><td>0</td><td>新编目</td></tr>
+</table>
+
+<h2>4. Missing/Ambiguous Leads</h2>
+<ol>
+<li><strong>function_index.json 缺失</strong> — 关键运行时缺口</li>
+<li><strong>重复脚本对</strong> — M-013x 与 M-034x/035x 系列对比</li>
+<li><strong>大型日志文件</strong> — M-0121（3.4MB）、M-0125（9.8MB）可能包含时序数据</li>
+<li><strong>GSEA 表符号链接</strong> — 6 个 CSV 文件是大型符号链接占位符（每个 244-372MB）</li>
+<li><strong>HPC 路径假设</strong> — GSEA 脚本引用了 SLURM/集群路径</li>
+<li><strong>套件运行变体扩散</strong> — 多个带时间戳的重复项</li>
+<li><strong>旧版 main.py (M-0298)</strong> — 包含 pass 方法的遗留类，不可用</li>
+</ol>
+
+<h2>5. Deliverables</h2>
+<table>
+<tr><th>Deliverable</th><th>Path</th><th>Size</th><th>Status</th></tr>
+<tr><td>Legacy stress test source map</td><td>4_artifact/2_persist/legacy_stress_test_source_map_v20260624.md</td><td>365 lines</td><td><span class="badge badge-green">Accepted</span></td></tr>
+<tr><td>Stress test candidate asset index</td><td>4_artifact/5_table/stress_test_candidate_asset_index_v20260624.csv</td><td>124 rows</td><td><span class="badge badge-green">Accepted</span></td></tr>
+</table>
+</body>
+</html>

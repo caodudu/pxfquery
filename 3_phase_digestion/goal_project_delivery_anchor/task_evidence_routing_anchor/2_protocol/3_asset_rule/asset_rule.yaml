@@ -1,0 +1,47 @@
+required:
+  - id: A-001
+    source_task: T-007
+    source_artifact_id: D-002
+    path: 4_artifact/2_persist/pxfquery_development_state_report_v20260617.md
+    reason: Intended resolver/proxy/exact routing behavior, known gaps, and current PxFquery package identity needed to define route semantics.
+  - id: A-002
+    source_task: T-013
+    source_artifact_id: D-005
+    path: 4_artifact/2_persist/pxfquery_t013_failure_missing_capability_list_v20260618.md
+    reason: Specific capability failures (CAP-05 no-hit false-positive, CAP-07 resolver blocked) that must be addressed in route definitions.
+  - id: A-003
+    source_task: T-021
+    source_artifact_id: D-001
+    path: 4_artifact/2_persist/pxfquery_standard_resource_guide_v20260623.md
+    reason: Canonical standard resource definitions (matrices, indexes, metadata tables) that route behavior must reference.
+  - id: A-004
+    source_task: T-058
+    source_artifact_id: D-001
+    path: 4_artifact/2_persist/stress_test_development_handoff_pack_v20260624.md
+    reason: 29 stress-test scenarios with hit-level categories needed to produce stress-test anchor mapping.
+  - id: A-005
+    source_task: T-007
+    source_artifact_id: D-005
+    path: 4_artifact/2_persist/pxfquery_development_gap_and_risk_list_v20260617.md
+    reason: Known risks (LLM stability, latency, NOT_FOUND patterns) to encode in route constraints.
+optional: []
+forbidden:
+  - legacy source root directories
+  - predecessor 2_protocol/ directories
+  - predecessor 1_asset/ directories
+  - predecessor 3_execution/ directories
+output:
+  - path: 4_artifact/2_persist/evidence_routing_route_taxonomy_v20260625.md
+    type: document
+  - path: 4_artifact/2_persist/evidence_routing_metadata_contract_v20260625.yaml
+    type: data
+  - path: 4_artifact/5_table/evidence_routing_stress_test_mapping_v20260625.csv
+    type: table
+modifiable:
+  - 3_execution/
+  - 4_artifact/
+  - 5_report/
+non_modifiable:
+  - predecessor task directories
+  - 2_project_asset/
+  - legacy source root

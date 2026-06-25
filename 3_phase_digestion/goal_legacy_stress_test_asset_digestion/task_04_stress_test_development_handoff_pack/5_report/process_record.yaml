@@ -1,0 +1,199 @@
+schema_version: 1
+updated_at: '2026-06-24T12:34:44'
+source: cli_sessions
+path: 5_report/process_record.yaml
+template:
+  purpose: Task deliverable process record; refreshed from CyHex CLI session metadata
+    while the task runs.
+  stages:
+  - config
+  - check
+  - execute
+  - deliver
+  memory_note: max_rss_kb is captured from live process RSS when the UI/backend observes
+    a running session; completed sessions may be blank if no live sample was available.
+task:
+  task_id: T-058
+  name: 04_stress_test_development_handoff_pack
+  status: done
+  sub_status: ''
+summary:
+  session_count: 8
+  running_count: 1
+  done_count: 4
+  failed_count: 4
+  total_duration_seconds: 20748
+  max_rss_kb: 447152
+phases:
+- stage: config
+  label_zh: 配置
+  label_en: Configuration
+  status: done
+  started: '2026-06-24T07:04:50'
+  completed: '2026-06-24T07:10:15'
+  duration_seconds: 325
+  max_rss_kb: null
+  sessions:
+  - session_id: cli_7fc71ced82fd
+    stage: config
+    status: done
+    driver: opencode
+    agent_id: AGT-002
+    agent_label: OpenCode cheap tasks
+    model: llm_gateway/deepseek-ai/deepseek-v4-pro
+    pid: 66885
+    created: '2026-06-24T07:04:50'
+    completed: '2026-06-24T07:10:15'
+    duration_seconds: 325
+    current_rss_kb: null
+    max_rss_kb: null
+    returncode: 0
+    prompt_source: assembled
+    work_dir: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_04_stress_test_development_handoff_pack
+    session_dir: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_04_stress_test_development_handoff_pack/5_report/cli_sessions/config/20260624_070450_opencode_cli_7fc71ced82fd
+- stage: check
+  label_zh: 检查
+  label_en: Check
+  status: done
+  started: '2026-06-24T07:21:47'
+  completed: '2026-06-24T07:22:58'
+  duration_seconds: 71
+  max_rss_kb: 373872
+  sessions:
+  - session_id: cli_1efdf94e1a20
+    stage: check
+    status: done
+    driver: opencode
+    agent_id: AGT-002
+    agent_label: OpenCode cheap tasks
+    model: llm_gateway/deepseek-ai/deepseek-v4-pro
+    pid: 75724
+    created: '2026-06-24T07:21:47'
+    completed: '2026-06-24T07:22:58'
+    duration_seconds: 71
+    current_rss_kb: null
+    max_rss_kb: 373872
+    returncode: 0
+    prompt_source: auto_recovery
+    work_dir: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_04_stress_test_development_handoff_pack
+    session_dir: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_04_stress_test_development_handoff_pack/5_report/cli_sessions/check/20260624_072147_opencode_cli_1efdf94e1a20
+  - session_id: cli_c9c3674d8454
+    stage: check
+    status: interrupted
+    driver: opencode
+    agent_id: AGT-002
+    agent_label: OpenCode cheap tasks
+    model: llm_gateway/deepseek-ai/deepseek-v4-pro
+    pid: 70155
+    created: '2026-06-24T07:10:18'
+    completed: '2026-06-24T07:21:33'
+    duration_seconds: 675
+    current_rss_kb: null
+    max_rss_kb: null
+    returncode: null
+    prompt_source: assembled
+    work_dir: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_04_stress_test_development_handoff_pack
+    session_dir: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_04_stress_test_development_handoff_pack/5_report/cli_sessions/check/20260624_071018_opencode_cli_c9c3674d8454
+- stage: execute
+  label_zh: 执行
+  label_en: Execution
+  status: done
+  started: '2026-06-24T07:52:38'
+  completed: '2026-06-24T07:53:46'
+  duration_seconds: 68
+  max_rss_kb: 447152
+  sessions:
+  - session_id: cli_58a5e4920205
+    stage: execute
+    status: done
+    driver: opencode
+    agent_id: AGT-002
+    agent_label: OpenCode cheap tasks
+    model: llm_gateway/deepseek-ai/deepseek-v4-pro
+    pid: 94971
+    created: '2026-06-24T07:52:38'
+    completed: '2026-06-24T07:53:46'
+    duration_seconds: 68
+    current_rss_kb: null
+    max_rss_kb: null
+    returncode: 0
+    prompt_source: heartbeat_repair
+    work_dir: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_04_stress_test_development_handoff_pack
+    session_dir: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_04_stress_test_development_handoff_pack/5_report/cli_sessions/execute/20260624_075238_opencode_cli_58a5e4920205
+  - session_id: cli_7b87c7389200
+    stage: execute
+    status: stalled
+    driver: opencode
+    agent_id: AGT-002
+    agent_label: OpenCode cheap tasks
+    model: llm_gateway/deepseek-ai/deepseek-v4-pro
+    pid: 87463
+    created: '2026-06-24T07:41:13'
+    completed: ''
+    duration_seconds: 17611
+    current_rss_kb: null
+    max_rss_kb: 447152
+    returncode: null
+    prompt_source: auto_recovery
+    work_dir: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_04_stress_test_development_handoff_pack
+    session_dir: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_04_stress_test_development_handoff_pack/5_report/cli_sessions/execute/20260624_074113_opencode_cli_7b87c7389200
+  - session_id: cli_9c722234e19b
+    stage: execute
+    status: interrupted
+    driver: opencode
+    agent_id: AGT-002
+    agent_label: OpenCode cheap tasks
+    model: llm_gateway/deepseek-ai/deepseek-v4-pro
+    pid: 77087
+    created: '2026-06-24T07:23:00'
+    completed: '2026-06-24T07:40:59'
+    duration_seconds: 1079
+    current_rss_kb: null
+    max_rss_kb: 435168
+    returncode: null
+    prompt_source: assembled
+    work_dir: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_04_stress_test_development_handoff_pack
+    session_dir: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_04_stress_test_development_handoff_pack/5_report/cli_sessions/execute/20260624_072300_opencode_cli_9c722234e19b
+- stage: deliver
+  label_zh: 交付
+  label_en: Delivery
+  status: done
+  started: '2026-06-24T08:06:13'
+  completed: '2026-06-24T08:09:24'
+  duration_seconds: 191
+  max_rss_kb: 246096
+  sessions:
+  - session_id: cli_fee9ea862c44
+    stage: deliver
+    status: done
+    driver: opencode
+    agent_id: AGT-002
+    agent_label: OpenCode cheap tasks
+    model: llm_gateway/deepseek-ai/deepseek-v4-pro
+    pid: 2180
+    created: '2026-06-24T08:06:13'
+    completed: '2026-06-24T08:09:24'
+    duration_seconds: 191
+    current_rss_kb: null
+    max_rss_kb: null
+    returncode: 0
+    prompt_source: auto_recovery
+    work_dir: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_04_stress_test_development_handoff_pack
+    session_dir: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_04_stress_test_development_handoff_pack/5_report/cli_sessions/deliver/20260624_080613_opencode_cli_fee9ea862c44
+  - session_id: cli_126be2427657
+    stage: deliver
+    status: interrupted
+    driver: opencode
+    agent_id: AGT-002
+    agent_label: OpenCode cheap tasks
+    model: llm_gateway/deepseek-ai/deepseek-v4-pro
+    pid: 96147
+    created: '2026-06-24T07:53:51'
+    completed: '2026-06-24T08:05:59'
+    duration_seconds: 728
+    current_rss_kb: null
+    max_rss_kb: 246096
+    returncode: null
+    prompt_source: assembled
+    work_dir: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_04_stress_test_development_handoff_pack
+    session_dir: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_04_stress_test_development_handoff_pack/5_report/cli_sessions/deliver/20260624_075351_opencode_cli_126be2427657

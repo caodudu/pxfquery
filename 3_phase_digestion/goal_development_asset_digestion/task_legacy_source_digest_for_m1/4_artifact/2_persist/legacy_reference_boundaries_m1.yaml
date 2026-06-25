@@ -1,0 +1,107 @@
+# Legacy Reference Boundaries for M1 Tasks
+# Generated: 2026-06-24
+# Task: T-041 legacy_source_digest_for_m1
+#
+# This file defines which legacy package-source code each downstream M1 task
+# may reference, and which legacy code is forbidden.
+#
+# ALL downstream M1 tasks MUST read T-041 outputs (this file and the digest)
+# rather than reading raw legacy source directly.
+
+version: 1
+
+rule: "Downstream M1 tasks must use T-041 outputs, not raw legacy source"
+
+allowed_references:
+  T046:
+    - module: core.py
+      files: ["core.py", "__init__.py", "pyproject.toml"]
+      usage: "API template for package class and exports"
+      condition: "Replace hard-coded default paths (index_dir, log_dir)"
+    - module: data/loader.py
+      files: ["data/loader.py"]
+      usage: "Reference for DataLoader API design patterns"
+      condition: "Skip download_zenodo (NotImplementedError)"
+
+  T048:
+    - module: data/loader.py
+      files: ["data/loader.py"]
+      usage: "DataLoader API — load_local, load_all_local, get"
+    - module: query/forward.py
+      files: ["query/forward.py"]
+      usage: "ForwardQuery forward query logic and ForwardResult model"
+    - module: utils.py
+      files: ["utils.py"]
+      usage: "fuzzy_match utility"
+
+  T049:
+    - module: query/forward.py
+      files: ["query/forward.py"]
+      usage: "ForwardQuery for forward use cases"
+    - module: query/reverse.py
+      files: ["query/reverse.py"]
+      usage: "ReverseQuery reverse query logic and ReverseResult model"
+    - module: utils.py
+      files: ["utils.py"]
+      usage: "build_target_vector and cosine_similarity_matrix"
+    - module: query/resolver.py
+      files: ["query/resolver.py"]
+      usage: "Reference only — L1-L4 proxy architecture concept"
+      condition: "Do NOT reuse resolver class directly; hard-coded paths and LLM coupling require rewrite"
+
+  T052:
+    - module: index/cellline_index.py
+      files: ["index/cellline_index.py"]
+      usage: "CellLineIndex class"
+    - module: index/drug_index.py
+      files: ["index/drug_index.py"]
+      usage: "DrugIndex class"
+    - module: index/gene_index.py
+      files: ["index/gene_index.py"]
+      usage: "GeneIndex class"
+    - module: index/function_index.py
+      files: ["index/function_index.py"]
+      usage: "FunctionIndex class"
+      condition: "Requires function_index.json to be rebuilt first (missing from migrated query_indexes)"
+    - module: viz/plots.py
+      files: ["viz/plots.py"]
+      usage: "Figure templates for manuscript preparation"
+      condition: "Verify QA before manuscript use"
+
+forbidden_references:
+  global:
+    - path: main.py
+      reason: "All methods are pass; imports obsolete stack (scanpy, seaborn)"
+    - path: prompt/check_link.py
+      reason: "Legacy health check; superseded by LLMClient"
+    - path: README.md
+      reason: "Only contains obsolete Windows paths"
+    - pattern: "*.py"
+      rule: "Do not hard-code legacy paths like 'output/store/query_index' or 'report/04_management/logs'"
+  T046:
+    - path: query/resolver.py
+      reason: "Resolver contains hard-coded paths and LLM coupling — too risky for initial package setup"
+  T048:
+    - path: data/loader.py
+      method: download_zenodo
+      reason: "NotImplementedError — do not call"
+  T049:
+    - path: query/resolver.py
+      reason: "Do not reuse resolver class with hard-coded paths; reference architecture concepts only"
+  T052:
+    - path: index/function_index.py
+      condition: "Without rebuilt function_index.json"
+      reason: "Runtime asset missing — class will fail on instantiation"
+
+gap_register:
+  - id: GAP-001
+    description: "function_index.json not found in migrated data/query_indexes/"
+    impact: "FunctionIndex class cannot be instantiated without it"
+    action: "Rebuild using index_builders/M-0373_build_function_index.py from legacy flat asset library"
+    downstream: T052
+
+  - id: GAP-002
+    description: "Hard-coded legacy paths in resolver.py, core.py, logging_utils.py"
+    impact: "Code will not work in current project directory structure"
+    action: "Replace with configurable project-root-relative paths in M1 tasks"
+    downstream: T046, T048, T049

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>T-040 execution report</title>
+  <style>
+    body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;max-width:1120px;margin:32px auto;padding:0 20px;line-height:1.58;color:#1f2933}
+    h1,h2{color:#111827}
+    table{border-collapse:collapse;width:100%;font-size:13px;margin:12px 0 24px}
+    th,td{border:1px solid #d8dee4;padding:7px 9px;text-align:left;vertical-align:top}
+    th{background:#f3f4f6}
+    code{background:#f3f4f6;padding:2px 4px;border-radius:4px}
+    .ok{color:#166534;font-weight:600}
+    .warn{color:#92400e;font-weight:600}
+  </style>
+</head>
+<body>
+  <h1>T-040 执行情况报告</h1>
+  <p>任务目标：创建独立于 T-038 的 <code>pxfquery-T-040</code> package-core milestone，整合 T-024 package workspace、T-026 loader、T-029 deterministic forward query 和 T-031 no-hit guard，并完成最小验证。</p>
+
+  <h2>执行步骤</h2>
+  <table>
+    <tr><th>步骤</th><th>状态</th><th>证据</th></tr>
+    <tr><td>读取协议和资产规则</td><td class="ok">完成</td><td>读取 CyHex 协议、profile、当前 task protocol、asset registry、asset rule。</td></tr>
+    <tr><td>核验前序资产</td><td class="ok">完成</td><td>T-024/T-026/T-029/T-031 artifact 目录均存在且包含相关代码、注册表或验证证据。</td></tr>
+    <tr><td>组装 package-core</td><td class="ok">完成</td><td>输出 <code>4_artifact/2_persist/pxfquery-T-040/</code>，新增 <code>resources.py</code>、<code>package_core.py</code>、<code>query/no_hit_guard.py</code>。</td></tr>
+    <tr><td>运行验证</td><td class="ok">完成</td><td>命令 <code>/Users/dudu/Softwares/miniconda/bin/conda run -n pxfquery python 3_execution/05_run_verification/verify_package_core.py</code> 退出码 0。</td></tr>
+    <tr><td>写交付物</td><td class="ok">完成</td><td>写入 JSON/CSV evidence、lineage、handoff、HTML reports、registry 和 completion。</td></tr>
+  </table>
+
+  <h2>验证摘要</h2>
+  <table>
+    <tr><th>检查项</th><th>结果</th></tr>
+    <tr><td>package import</td><td class="ok">通过</td></tr>
+    <tr><td>Python compile</td><td class="ok">通过</td></tr>
+    <tr><td>loader smoke</td><td class="ok">19/19 standard resource files loaded, 0 failed</td></tr>
+    <tr><td>xpr matrix</td><td class="ok">(132464, 91), float32</td></tr>
+    <tr><td>EGFR/A549 forward demo</td><td class="ok">found=true, 20 activated + 20 suppressed</td></tr>
+    <tr><td>no-hit guard</td><td class="ok">egfr_random found=false; NONSENSE_ZZZ999 found=false</td></tr>
+    <tr><td>T-038 dependency</td><td class="ok">未使用；evidence 记录 t038_not_used=true</td></tr>
+  </table>
+
+  <h2>交付清单</h2>
+  <ul>
+    <li><code>4_artifact/2_persist/pxfquery-T-040/</code></li>
+    <li><code>3_execution/05_run_verification/verify_package_core.py</code></li>
+    <li><code>4_artifact/5_table/pxfquery_T040_test_results.json</code></li>
+    <li><code>4_artifact/5_table/pxfquery_T040_demo_summary.json</code></li>
+    <li><code>4_artifact/5_table/pxfquery_T040_EGFR_A549_forward_result.csv</code></li>
+    <li><code>4_artifact/2_persist/pxfquery_T040_lineage.md</code></li>
+    <li><code>4_artifact/2_persist/pxfquery_T040_handoff.md</code></li>
+    <li><code>4_artifact/3_document/result_report_v20260623.html</code></li>
+    <li><code>4_artifact/registry.yaml</code></li>
+    <li><code>5_report/completion.md</code></li>
+  </ul>
+
+  <h2>失败或阻断</h2>
+  <p class="ok">无阻断。验证过程中发现一次证据 schema 编码问题：将期望为 false 的 <code>t038_used=false</code> 放进全量布尔通过列表导致 wrapper 返回失败。已改为 <code>t038_not_used=true</code> 并重新运行，最终退出码为 0。</p>
+</body>
+</html>

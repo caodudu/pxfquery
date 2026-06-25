@@ -1,0 +1,116 @@
+required:
+  - id: A-001
+    source_task: T-053
+    source_artifact_id: D-001
+    path: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_m1_python_package_milestone/4_artifact/3_document/milestone_report_v20260624_061117.md
+    reason: Primary M1 milestone summary and claimed delivery basis.
+  - id: A-002
+    source_task: T-053
+    source_artifact_id: D-002
+    path: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_m1_python_package_milestone/4_artifact/2_persist/evidence_index_v20260624_061117.json
+    reason: Structured M1 evidence streams and gate verdicts.
+  - id: A-003
+    source_task: T-053
+    source_artifact_id: D-003
+    path: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_m1_python_package_milestone/4_artifact/5_table/layered_asset_map_v20260624_061117.csv
+    reason: M1 layer provenance for capability attribution.
+  - id: A-004
+    source_task: T-053
+    source_artifact_id: D-004
+    path: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_m1_python_package_milestone/4_artifact/5_table/known_gaps_v20260624_061117.md
+    reason: Known M1 gaps to compare with anchor-required capabilities.
+  - id: A-005
+    source_task: T-062
+    source_artifact_id: T062-A-001
+    path: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_project_delivery_anchor/task_algorithm_package_delivery_anchor/4_artifact/2_persist/pxfquery_algorithm_package_delivery_anchor_v20260625.yaml
+    reason: Primary machine-readable package capability anchor.
+  - id: A-006
+    source_task: T-062
+    source_artifact_id: T062-A-002
+    path: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_project_delivery_anchor/task_algorithm_package_delivery_anchor/4_artifact/5_table/pxfquery_algorithm_capability_matrix_v20260625.csv
+    reason: Package capability checklist, evidence requirements, thresholds, and failure modes.
+  - id: A-007
+    source_task: T-062
+    source_artifact_id: T062-A-003
+    path: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_project_delivery_anchor/task_algorithm_package_delivery_anchor/4_artifact/2_persist/pxfquery_algorithm_downgrade_rules_v20260625.md
+    reason: Rules distinguishing valid runtime fallback from unapproved scope downgrade.
+  - id: A-008
+    source_task: T-062
+    source_artifact_id: T062-A-004
+    path: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_project_delivery_anchor/task_algorithm_package_delivery_anchor/4_artifact/2_persist/pxfquery_milestone_review_rubric_v20260625.md
+    reason: Review procedure and evidence hierarchy.
+  - id: A-009
+    source_task: T-062
+    source_artifact_id: T062-A-005
+    path: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_project_delivery_anchor/task_algorithm_package_delivery_anchor/4_artifact/2_persist/pxfquery_milestone_classification_vocabulary_v20260625.yaml
+    reason: Controlled classification vocabulary for the review output.
+  - id: A-010
+    source_task: T-063
+    source_artifact_id: T063-A-001
+    path: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_project_delivery_anchor/task_llm_resolver_capability_anchor/4_artifact/2_persist/pxfquery_llm_resolver_capability_anchor_v20260625.yaml
+    reason: Resolver/LLM capability scope and acceptance baseline.
+  - id: A-011
+    source_task: T-063
+    source_artifact_id: T063-A-002
+    path: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_project_delivery_anchor/task_llm_resolver_capability_anchor/4_artifact/2_persist/pxfquery_llm_resolver_functional_design_v20260625.md
+    reason: Human-readable resolver behavior and disallowed substitutes.
+  - id: A-012
+    source_task: T-063
+    source_artifact_id: T063-A-003
+    path: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_project_delivery_anchor/task_llm_resolver_capability_anchor/4_artifact/2_persist/pxfquery_llm_resolver_demo_case_catalog_v20260625.md
+    reason: Expected resolver demo coverage for exact/proxy/not-found and LLM fallback behavior.
+  - id: A-013
+    source_task: T-063
+    source_artifact_id: T063-A-004
+    path: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_project_delivery_anchor/task_llm_resolver_capability_anchor/4_artifact/5_table/pxfquery_llm_resolver_acceptance_matrix_v20260625.csv
+    reason: Resolver acceptance matrix and evidence labels.
+  - id: A-014
+    source_task: T-064
+    source_artifact_id: D-001
+    path: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_project_delivery_anchor/task_evidence_routing_anchor/4_artifact/2_persist/evidence_routing_route_taxonomy_v20260625.md
+    reason: Route taxonomy for exact-hit, proxy-hit, no-hit, ambiguous-hit, context-missing, and transfer/suggestion review.
+  - id: A-015
+    source_task: T-064
+    source_artifact_id: D-002
+    path: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_project_delivery_anchor/task_evidence_routing_anchor/4_artifact/2_persist/evidence_routing_metadata_contract_v20260625.yaml
+    reason: Evidence metadata contract for route-aware milestone review.
+  - id: A-016
+    source_task: T-064
+    source_artifact_id: D-003
+    path: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_project_delivery_anchor/task_evidence_routing_anchor/4_artifact/5_table/evidence_routing_stress_test_mapping_v20260625.csv
+    reason: Stress-route mapping to identify routing capabilities absent from M1 evidence.
+optional: []
+forbidden:
+  - predecessor task directories outside the registered artifact paths
+  - predecessor 2_protocol/ directories
+  - predecessor 1_asset/ directories
+  - predecessor 3_execution/ directories
+  - package source code modification
+  - project protocol modification
+  - 6_project_deliverable/
+  - web search
+output:
+  - path: 4_artifact/2_persist/m1_vs_delivery_anchor_gap_review_v20260625.yaml
+    type: yaml
+  - path: 4_artifact/5_table/m1_vs_delivery_anchor_capability_matrix_v20260625.csv
+    type: table
+  - path: 4_artifact/2_persist/m1_vs_delivery_anchor_review_report_v20260625.md
+    type: document
+  - path: 4_artifact/2_persist/m1_next_milestone_boundary_recommendations_v20260625.md
+    type: document
+  - path: 4_artifact/3_document/execution_report_v20260625.html
+    type: html_report
+  - path: 4_artifact/3_document/result_report_v20260625.html
+    type: html_report
+  - path: 4_artifact/registry.yaml
+    type: registry
+  - path: 5_report/completion.md
+    type: report
+modifiable:
+  - 3_execution/
+  - 4_artifact/
+  - 5_report/
+non_modifiable:
+  - predecessor task directories
+  - 1_project_init/1_project_protocol/
+  - 6_project_deliverable/

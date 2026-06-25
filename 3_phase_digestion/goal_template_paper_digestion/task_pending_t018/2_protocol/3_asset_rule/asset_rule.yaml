@@ -1,0 +1,70 @@
+version: 1
+required:
+  - id: A-001
+    path: "../task_genes_bioinformatics_deliverable_catalog/4_artifact/2_persist/genes_bioinformatics_priority_reading_papers_v20260619.html"
+    reason: T012 D-013 priority reading paper list — identifies the 5 papers and their key metrics
+  - id: A-002
+    path: "../task_genes_bioinformatics_deliverable_catalog/4_artifact/2_persist/genes_bioinformatics_artifact_deliverable_records_v20260618/GENES-02459_OHDLF_A_Method_for_Selecting_Orthologous_Genes_for_Phylogenetic_Construction_and_Its_App.md"
+    reason: T012 per-paper catalog record for OHDLF
+  - id: A-003
+    path: "../task_genes_bioinformatics_deliverable_catalog/4_artifact/2_persist/genes_bioinformatics_artifact_deliverable_records_v20260618/GENES-02981_CrossMP_Enabling_Cross-Modality_Translation_between_Single-Cell_RNA-Seq_and_Single-Cell.md"
+    reason: T012 per-paper catalog record for CrossMP
+  - id: A-004
+    path: "../task_genes_bioinformatics_deliverable_catalog/4_artifact/2_persist/genes_bioinformatics_artifact_deliverable_records_v20260618/GENES-02693_DTVF_A_User-Friendly_Tool_for_Virulence_Factor_Prediction_Based_on_ProtT5_and_Deep_Trans.md"
+    reason: T012 per-paper catalog record for DTVF
+  - id: A-005
+    path: "../task_genes_bioinformatics_deliverable_catalog/4_artifact/2_persist/genes_bioinformatics_artifact_deliverable_records_v20260618/GENES-04451_StrainIQ_A_Novel_n-Gram-Based_Method_for_Taxonomic_Profiling_of_Human_Microbiota_at_the.md"
+    reason: T012 per-paper catalog record for StrainIQ
+  - id: A-006
+    path: "../task_genes_bioinformatics_deliverable_catalog/4_artifact/2_persist/genes_bioinformatics_artifact_deliverable_records_v20260618/GENES-02925_GENet_A_Graph-Based_Model_Leveraging_Histone_Marks_and_Transcription_Factors_for_Enhance.md"
+    reason: T012 per-paper catalog record for GENet
+  - id: A-007
+    path: "../task_genes_bioinformatics_deliverable_catalog/4_artifact/2_persist/genes_bioinformatics_deliverable_catalog_scope_note_v20260618.md"
+    reason: T012 scope note — defines artifact-deliverable boundaries and context
+  - id: A-008
+    path: "../task_genes_bioinformatics_deliverable_catalog/4_artifact/2_persist/genes_bioinformatics_artifact_deliverable_synthesis_report_v20260618.md"
+    reason: T012 synthesis report — Genes deliverable description patterns and writing style baseline
+  - id: A-009
+    path: "../task_genes_bioinformatics_deliverable_catalog/4_artifact/2_persist/genes_bioinformatics_deliverable_phrase_library_v20260618.md"
+    reason: T012 phrase library — reusable deliverable description patterns
+optional:
+  - id: A-010
+    path: "https://www.mdpi.com/2073-4425/15/11/1404"
+    reason: OHDLF original MDPI article page for full-text reading
+  - id: A-011
+    path: "https://www.mdpi.com/2073-4425/15/7/882"
+    reason: CrossMP original MDPI article page for full-text reading
+  - id: A-012
+    path: "https://www.mdpi.com/2073-4425/15/9/1170"
+    reason: DTVF original MDPI article page for full-text reading
+  - id: A-013
+    path: "https://www.mdpi.com/2073-4425/14/8/1647"
+    reason: StrainIQ original MDPI article page for full-text reading
+  - id: A-014
+    path: "https://www.mdpi.com/2073-4425/15/7/938"
+    reason: GENet original MDPI article page for full-text reading
+forbidden:
+  - path: "../../../../8_functional_query/"
+    reason: Legacy project source root is unrelated to this paper template deconstruction task
+  - path: "../../../6_project_deliverable/"
+    reason: T-018 is digestion-phase paper analysis, not final deliverable production
+output:
+  - path: "4_artifact/2_persist/paper_deconstruction/"
+    description: Per-paper deconstruction MD files, one per paper
+  - path: "4_artifact/2_persist/"
+    description: Summary HTML dashboard
+  - path: "5_report/"
+    description: Completion report
+modifiable:
+  - path: "3_execution/"
+  - path: "4_artifact/"
+  - path: "5_report/"
+non_modifiable:
+  - path: "1_asset/"
+  - path: "2_protocol/"
+  - path: "../task_genes_bioinformatics_deliverable_catalog/4_artifact/"
+    reason: T-012 predecessor artifacts are read-only
+notes:
+  - All 5 priority papers are from T-012 D-013; do not extend to the full 103-paper T-012 corpus
+  - Full-text reading requires fetching MDPI article pages via web; no local PDF archive needed
+  - Analysis is about Genes-style writing template, not scientific quality assessment

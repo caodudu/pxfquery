@@ -1,0 +1,148 @@
+schema_version: 1
+updated_at: '2026-06-23T19:01:26'
+source: cli_sessions
+path: 5_report/process_record.yaml
+template:
+  purpose: Task deliverable process record; refreshed from CyHex CLI session metadata
+    while the task runs.
+  stages:
+  - config
+  - check
+  - execute
+  - deliver
+  memory_note: max_rss_kb is captured from live process RSS when the UI/backend observes
+    a running session; completed sessions may be blank if no live sample was available.
+task:
+  task_id: T-038
+  name: milestone_reverse_demo_reports_v1
+  status: active
+  sub_status: check_interrupted
+summary:
+  session_count: 5
+  running_count: 0
+  done_count: 1
+  failed_count: 4
+  total_duration_seconds: 1747
+  max_rss_kb: null
+phases:
+- stage: config
+  label_zh: 配置
+  label_en: Configuration
+  status: done
+  started: '2026-06-23T18:40:51'
+  completed: '2026-06-23T18:46:32'
+  duration_seconds: 341
+  max_rss_kb: null
+  sessions:
+  - session_id: cli_e06c91c8ef41
+    stage: config
+    status: done
+    driver: codex
+    agent_id: AGT-003
+    agent_label: Codex fresh T037
+    model: ''
+    pid: 75749
+    created: '2026-06-23T18:40:51'
+    completed: '2026-06-23T18:46:32'
+    duration_seconds: 341
+    current_rss_kb: null
+    max_rss_kb: null
+    returncode: 0
+    prompt_source: assembled
+    work_dir: /Users/dudu/Documents/3_Project/12_PxFquery
+    session_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_package_milestone_merge_v1/task_milestone_reverse_demo_reports_v1/5_report/cli_sessions/config/20260623_184051_codex_cli_e06c91c8ef41
+  - session_id: cli_9db55313583f
+    stage: config
+    status: stopped
+    driver: codex
+    agent_id: AGT-003
+    agent_label: Codex fresh T037
+    model: ''
+    pid: 65699
+    created: '2026-06-23T18:29:50'
+    completed: '2026-06-23T18:32:05'
+    duration_seconds: 135
+    current_rss_kb: null
+    max_rss_kb: null
+    returncode: -15
+    prompt_source: assembled
+    work_dir: /Users/dudu/Documents/3_Project/12_PxFquery
+    session_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_package_milestone_merge_v1/task_milestone_reverse_demo_reports_v1/5_report/cli_sessions/config/20260623_182950_codex_cli_9db55313583f
+  - session_id: cli_f54e742931d3
+    stage: config
+    status: stopped
+    driver: codex
+    agent_id: AGT-003
+    agent_label: Codex fresh T037
+    model: ''
+    pid: 51918
+    created: '2026-06-23T18:09:31'
+    completed: '2026-06-23T18:28:41'
+    duration_seconds: 1150
+    current_rss_kb: null
+    max_rss_kb: null
+    returncode: null
+    prompt_source: assembled
+    work_dir: /Users/dudu/Documents/3_Project/12_PxFquery
+    session_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_package_milestone_merge_v1/task_milestone_reverse_demo_reports_v1/5_report/cli_sessions/config/20260623_180931_codex_cli_f54e742931d3
+- stage: check
+  label_zh: 检查
+  label_en: Check
+  status: stopped
+  started: '2026-06-23T18:48:56'
+  completed: '2026-06-23T18:49:14'
+  duration_seconds: 18
+  max_rss_kb: null
+  sessions:
+  - session_id: cli_ac2261be4404
+    stage: check
+    status: stopped
+    driver: codex
+    agent_id: AGT-003
+    agent_label: Codex fresh T037
+    model: ''
+    pid: 95011
+    created: '2026-06-23T18:48:56'
+    completed: '2026-06-23T18:49:14'
+    duration_seconds: 18
+    current_rss_kb: null
+    max_rss_kb: null
+    returncode: -15
+    prompt_source: assembled
+    work_dir: /Users/dudu/Documents/3_Project/12_PxFquery
+    session_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_package_milestone_merge_v1/task_milestone_reverse_demo_reports_v1/5_report/cli_sessions/check/20260623_184856_codex_cli_ac2261be4404
+  - session_id: cli_04d439557c32
+    stage: check
+    status: stopped
+    driver: codex
+    agent_id: AGT-003
+    agent_label: Codex fresh T037
+    model: ''
+    pid: 88445
+    created: '2026-06-23T18:46:33'
+    completed: '2026-06-23T18:48:16'
+    duration_seconds: 103
+    current_rss_kb: null
+    max_rss_kb: null
+    returncode: -15
+    prompt_source: assembled
+    work_dir: /Users/dudu/Documents/3_Project/12_PxFquery
+    session_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_package_milestone_merge_v1/task_milestone_reverse_demo_reports_v1/5_report/cli_sessions/check/20260623_184633_codex_cli_04d439557c32
+- stage: execute
+  label_zh: 执行
+  label_en: Execution
+  status: not_started
+  started: ''
+  completed: ''
+  duration_seconds: null
+  max_rss_kb: null
+  sessions: []
+- stage: deliver
+  label_zh: 交付
+  label_en: Delivery
+  status: not_started
+  started: ''
+  completed: ''
+  duration_seconds: null
+  max_rss_kb: null
+  sessions: []

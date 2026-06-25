@@ -1,0 +1,61 @@
+assets:
+  - id: A-001
+    name: PxFquery development state report
+    type: document
+    source: predecessor
+    source_task: T-007
+    source_artifact_id: D-002
+    origin: "T-007/D-002: Summarizes intended product scope, implemented components, data/index readiness, validation state, and development interpretation"
+    registered: "2026-06-25"
+    path: "/Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_development_asset_digestion/task_digest_pxfquery_development_state/4_artifact/2_persist/pxfquery_development_state_report_v20260617.md"
+    symlink: false
+    status: ready
+    notes: Intended resolver/proxy/exact routing behavior, known gaps (no-hit fuzzy false-positive, function_index.json missing, always_llm instability)
+  - id: A-002
+    name: T013 Failure and missing capability list
+    type: document
+    source: predecessor
+    source_task: T-013
+    source_artifact_id: D-005
+    origin: "T-013/D-005: CAP-05 no-hit fuzzy fallback false-positive risk, CAP-07 resolver blocked by index naming and function_index gap"
+    registered: "2026-06-25"
+    path: "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_algorithm_function_review/task_mvp_algorithm_run-through_review/4_artifact/2_persist/pxfquery_t013_failure_missing_capability_list_v20260618.md"
+    symlink: false
+    status: ready
+    notes: Specific capability evidence that must be addressed in no-hit, proxy-hit, and transfer/suggestion route definitions
+  - id: A-003
+    name: Standard resource guide
+    type: document
+    source: predecessor
+    source_task: T-021
+    source_artifact_id: D-001
+    origin: "T-021/D-001: 19 standard resources with format decisions, schemas, and usage instructions; rebuilt function_index.json"
+    registered: "2026-06-25"
+    path: "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/2_persist/pxfquery_standard_resource_guide_v20260623.md"
+    symlink: false
+    status: ready
+    notes: Canonical reference for the index and matrix resources that evidence routing operates on
+  - id: A-004
+    name: Stress test development handoff pack
+    type: document
+    source: predecessor
+    source_task: T-058
+    source_artifact_id: D-001
+    origin: "T-058/D-001: 7-section handoff pack with 29 stress-test scenarios, pass/fail/borderline map, reusable assets, and known gaps"
+    registered: "2026-06-25"
+    path: "/Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_04_stress_test_development_handoff_pack/4_artifact/2_persist/stress_test_development_handoff_pack_v20260624.md"
+    symlink: false
+    status: ready
+    notes: Scenario inventory for stress-test anchor mapping; covers no-hit, proxy/exact, boundary, overly-broad, and complex query dimensions
+  - id: A-005
+    name: Development gap and risk list
+    type: document
+    source: predecessor
+    source_task: T-007
+    source_artifact_id: D-005
+    origin: "T-007/D-005: Lists high-priority gaps, risks, claims to avoid, and safer claims"
+    registered: "2026-06-25"
+    path: "/Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_development_asset_digestion/task_digest_pxfquery_development_state/4_artifact/2_persist/pxfquery_development_gap_and_risk_list_v20260617.md"
+    symlink: false
+    status: ready
+    notes: Known risks to encode in route constraints: LLM stability 6/9, always_llm latency 167.3s, NOT_FOUND for generic drugs

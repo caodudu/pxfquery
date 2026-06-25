@@ -1,0 +1,42 @@
+session_id: cli_15934c67f273
+driver: opencode
+agent_id: AGT-002
+agent_label: OpenCode cheap tasks
+stage: execute
+status: interrupted
+created: '2026-06-24T05:25:03'
+task_path: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_01_legacy_stress_test_source_map
+work_dir: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_01_legacy_stress_test_source_map
+session_dir: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_01_legacy_stress_test_source_map/5_report/cli_sessions/execute/20260624_052503_opencode_cli_15934c67f273
+prompt_file: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_01_legacy_stress_test_source_map/5_report/cli_sessions/execute/20260624_052503_opencode_cli_15934c67f273/prompt.md
+events_file: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_01_legacy_stress_test_source_map/5_report/cli_sessions/execute/20260624_052503_opencode_cli_15934c67f273/events.jsonl
+stdout_file: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_01_legacy_stress_test_source_map/5_report/cli_sessions/execute/20260624_052503_opencode_cli_15934c67f273/stdout.log
+stderr_file: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_01_legacy_stress_test_source_map/5_report/cli_sessions/execute/20260624_052503_opencode_cli_15934c67f273/stderr.log
+agent_output_file: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_01_legacy_stress_test_source_map/5_report/cli_sessions/execute/20260624_052503_opencode_cli_15934c67f273/agent_output.md
+cmd:
+- /Users/dudu/.opencode/bin/opencode
+- run
+- Execute the attached CyHex prompt. Return the final user-facing result clearly.
+- --dangerously-skip-permissions
+- --format
+- json
+- --dir
+- /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_01_legacy_stress_test_source_map
+- --file
+- /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_01_legacy_stress_test_source_map/5_report/cli_sessions/execute/20260624_052503_opencode_cli_15934c67f273/prompt.md
+- -m
+- llm_gateway/deepseek-ai/deepseek-v4-pro
+agent_session_id: ses_109a0a5d4ffeK2G2FpS4yRpTkZ
+parent_agent_session_id: ''
+dry_run: false
+fork_from_resume: false
+blocked_report_mtime_ns_before: 0
+model: llm_gateway/deepseek-ai/deepseek-v4-pro
+prompt_source: auto_recovery
+pid: 55231
+auto_recovery:
+  source_session_id: cli_debaa6e5037f
+  attempt: 1
+  reason: process_not_alive
+completed: '2026-06-24T05:37:30'
+interrupted_reason: process_not_alive

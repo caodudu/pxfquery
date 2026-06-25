@@ -1,0 +1,1 @@
+/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_resource_index_packs_v1/task_resource_manifest_v1/4_artifact/2_persist/pxfquery_T025_usage_notes_v20260623.md

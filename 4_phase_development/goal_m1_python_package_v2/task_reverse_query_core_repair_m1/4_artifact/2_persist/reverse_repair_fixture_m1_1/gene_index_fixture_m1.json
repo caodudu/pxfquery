@@ -1,0 +1,42 @@
+{
+  "a2m": {
+    "symbol": "A2M",
+    "gene_type": "protein_coding",
+    "in_matrix": true
+  },
+  "aatf": {
+    "symbol": "AATF",
+    "gene_type": "protein_coding",
+    "in_matrix": true
+  },
+  "abat": {
+    "symbol": "ABAT",
+    "gene_type": "protein_coding",
+    "in_matrix": true
+  },
+  "abca1": {
+    "symbol": "ABCA1",
+    "gene_type": "protein_coding",
+    "in_matrix": true
+  },
+  "cpvl": {
+    "symbol": "CPVL",
+    "gene_type": "protein_coding",
+    "in_matrix": true
+  },
+  "orai3": {
+    "symbol": "ORAI3",
+    "gene_type": "protein_coding",
+    "in_matrix": true
+  },
+  "slc19a3": {
+    "symbol": "SLC19A3",
+    "gene_type": "protein_coding",
+    "in_matrix": true
+  },
+  "stac": {
+    "symbol": "STAC",
+    "gene_type": "protein_coding",
+    "in_matrix": true
+  }
+}

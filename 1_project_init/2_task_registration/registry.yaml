@@ -79,7 +79,7 @@ tasks:
   status: done
   executor: hybrid
   created: '2026-06-17'
-  completed: '2026-06-18'
+  completed: '2026-06-19'
 - id: T-009
   name: Frontiers in Genetics affiliation and PUMCH publication landscape
   phase: digestion
@@ -103,37 +103,39 @@ tasks:
   phase: digestion
   goal: goal_magazine_research
   path: 3_phase_digestion/goal_magazine_research/task_genes_bioinformatics_deliverable_catalog
-  status: active
+  status: done
   executor: hybrid
   created: '2026-06-18'
-  completed: '2026-06-18'
+  completed: '2026-06-22'
 - id: T-013
   name: MVP algorithm run-through review
   phase: development
   goal: goal_algorithm_function_review
   path: 4_phase_development/goal_algorithm_function_review/task_mvp_algorithm_run-through_review
-  status: active
+  status: done
   executor: hybrid
   created: '2026-06-18'
-  completed: null
+  completed: '2026-06-22'
 - id: T-014
   name: Understand PxFquery precomputed data
   phase: development
   goal: goal_precomputed_data_exploration
   path: 4_phase_development/goal_precomputed_data_exploration/task_understand_pxfquery_precomputed_data
-  status: active
+  status: done
   executor: hybrid
   created: '2026-06-18'
-  completed: null
+  completed: '2026-06-22'
+  notes: 预计算数据理解探索
 - id: T-015
   name: MDPI submission package and guide
   phase: digestion
   goal: goal_submission_rules
   path: 3_phase_digestion/goal_submission_rules/task_mdpi_submission_package_and_guide
-  status: active
+  status: done
   executor: hybrid
   created: '2026-06-19'
-  completed: null
+  completed: '2026-06-22'
+  notes: 整理MDPI投稿规则与指南
 - id: T-016
   name: Digest WXY Genes template paper package
   phase: digestion
@@ -143,3 +145,1040 @@ tasks:
   executor: hybrid
   created: '2026-06-19'
   completed: '2026-06-19'
+- id: T-017
+  name: mdpi引用格式
+  phase: digestion
+  goal: goal_citation_research
+  path: 3_phase_digestion/goal_citation_research/task_pending_t017
+  status: done
+  executor: hybrid
+  created: '2026-06-23'
+  completed: '2026-06-22'
+  objective: '搜一下mdpi的写作引用格式上哪一种。
+
+    可以结合网络搜索，
+
+
+    参考范文的引用区域。
+
+
+    以及wjy的word
+
+
+    但是最后要确定是具体哪一种，因为我需要在zenoto里用
+
+
+    如果是常规模式，我在zenoto里插入
+
+
+    如果不是，帮我搜到下载相关引用格式文件。我忘记一般引用是什么格式文件了'
+- id: T-018
+  name: 生信论文模板拆解
+  phase: digestion
+  goal: goal_template_paper_digestion
+  path: 3_phase_digestion/goal_template_paper_digestion/task_pending_t018
+  status: done
+  executor: hybrid
+  created: '2026-06-23'
+  completed: '2026-06-22'
+  objective: '为t012 的交付物d013里记录的每篇论文建立单独的拆解md讲解。
+
+    每一篇单独一个md。要有总的html最后汇总。
+
+
+    不需要先考虑对我项目本身启迪。
+
+
+    而是讲解每一篇的介绍写作逻辑。结果写作逻辑。图的摆放逻辑
+
+
+    注意这是mdpi杂志不是什么好杂志。我们说学习不是说他们多好多科学。而是对齐genes喜欢的风格以及工作量设置。不要用nature或者大sci标准理解它们。
+
+
+    这里其实是开始归纳我们写作的参考模板了
+
+    '
+- id: T-019
+  name: bioinformatics_website_hosting_options
+  phase: translation
+  goal: goal_pending_g010
+  path: 5_phase_translation/goal_pending_g010/task_pending_t019
+  status: active
+  executor: hybrid
+  created: '2026-06-23'
+  completed: null
+- id: T-021
+  name: standard_resources_optimal_formats
+  phase: development
+  goal: goal_precomputed_data_exploration
+  path: 4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats
+  status: done
+  executor: hybrid
+  created: '2026-06-23'
+  completed: '2026-06-23'
+- id: T-022
+  name: 论文figure1示意图设计
+  phase: translation
+  goal: goal_paper_figure_planning
+  path: 5_phase_translation/goal_paper_figure_planning/task_figure1
+  status: pending
+  executor: hybrid
+  created: '2026-06-23'
+  completed: null
+- id: T-023
+  name: gap_repair_stage_planning
+  phase: development
+  goal: goal_algorithm_version_development
+  path: 4_phase_development/goal_algorithm_version_development/task_gap_repair_stage_planning
+  status: pending
+  executor: hybrid
+  created: '2026-06-23'
+  completed: null
+- id: T-024
+  name: package_architecture_contract
+  phase: development
+  goal: goal_python_package_milestone
+  path: 4_phase_development/goal_python_package_milestone/task_package_architecture_contract
+  status: superseded
+  executor: hybrid
+  created: '2026-06-23'
+  completed: '2026-06-23'
+  previous_status: done
+  superseded_by:
+    id: T-024
+    path: 4_phase_development/goal_package_foundation_v1/task_workspace_package_v1
+  superseded_at: '2026-06-24T00:55:16'
+  notes: Auto-superseded by registry normalization; duplicate current row for T-024.
+- id: T-025
+  name: fast_package_milestone_v0
+  phase: development
+  goal: goal_python_package_milestone
+  path: 4_phase_development/goal_python_package_milestone/task_fast_package_milestone_v0
+  status: superseded
+  executor: hybrid
+  created: '2026-06-23'
+  completed: '2026-06-23'
+  notes: 'Green fast-pass milestone task. Fast route must deliver runnable Python
+    package v0 without waiting for T021. Use llm_gateway/deepseek-ai/deepseek-v4-flash
+    for LLM/API-related implementation or demos.
+
+    Auto-superseded by registry normalization; duplicate current row for T-025.'
+  previous_status: done
+  superseded_by:
+    id: T-025
+    path: 4_phase_development/goal_resource_index_packs_v1/task_resource_manifest_v1
+  superseded_at: '2026-06-24T00:55:16'
+- id: T-026
+  name: workspace_package_t026
+  phase: development
+  goal: goal_package_foundation_v0
+  path: 4_phase_development/goal_package_foundation_v0/task_workspace_package_t026
+  status: superseded
+  executor: hybrid
+  created: '2026-06-23'
+  completed: '2026-06-23'
+  notes: 'Green fast-pass DAG node. Do not start automatically; activate only when
+    dependency/waiting order is intended.
+
+    Auto-superseded by registry normalization; duplicate current row for T-026.'
+  previous_status: done
+  superseded_by:
+    id: T-026
+    path: 4_phase_development/goal_resource_index_packs_v1/task_matrix_loader_v1
+  superseded_at: '2026-06-24T00:55:16'
+- id: T-027
+  name: resource_manifest_t027
+  phase: development
+  goal: goal_resource_index_packs_v0
+  path: 4_phase_development/goal_resource_index_packs_v0/task_resource_manifest_t027
+  status: superseded
+  executor: hybrid
+  created: '2026-06-23'
+  completed: '2026-06-23'
+  notes: 'Green fast-pass DAG node. Do not start automatically; activate only when
+    dependency/waiting order is intended.
+
+    Auto-superseded by registry normalization; duplicate current row for T-027.'
+  previous_status: done
+  superseded_by:
+    id: T-027
+    path: 4_phase_development/goal_resource_index_packs_v1/task_index_name_normalizer_v1
+  superseded_at: '2026-06-24T00:55:16'
+- id: T-028
+  name: matrix_loader_t028
+  phase: development
+  goal: goal_resource_index_packs_v0
+  path: 4_phase_development/goal_resource_index_packs_v0/task_matrix_loader_t028
+  status: superseded
+  executor: hybrid
+  created: '2026-06-23'
+  completed: '2026-06-23'
+  notes: '功能索引资产包创建
+
+    Auto-superseded by registry normalization; duplicate current row for T-028.'
+  previous_status: done
+  superseded_by:
+    id: T-028
+    path: 4_phase_development/goal_resource_index_packs_v1/task_function_index_pack_v1
+  superseded_at: '2026-06-24T00:55:16'
+- id: T-029
+  name: index_name_normalizer_t029
+  phase: development
+  goal: goal_resource_index_packs_v0
+  path: 4_phase_development/goal_resource_index_packs_v0/task_index_name_normalizer_t029
+  status: superseded
+  executor: hybrid
+  created: '2026-06-23'
+  completed: '2026-06-23'
+  notes: 'Green fast-pass DAG node. Do not start automatically; activate only when
+    dependency/waiting order is intended.
+
+    Auto-superseded by registry normalization; duplicate current row for T-029.'
+  previous_status: done
+  superseded_by:
+    id: T-029
+    path: 4_phase_development/goal_deterministic_query_engines_v1/task_forward_query_engine_v1
+  superseded_at: '2026-06-24T00:55:16'
+- id: T-030
+  name: function_index_pack_t030
+  phase: development
+  goal: goal_resource_index_packs_v0
+  path: 4_phase_development/goal_resource_index_packs_v0/task_function_index_pack_t030
+  status: superseded
+  executor: hybrid
+  created: '2026-06-23'
+  completed: '2026-06-23'
+  notes: 'Green fast-pass DAG node. Do not start automatically; activate only when
+    dependency/waiting order is intended.
+
+    Auto-superseded by registry normalization; duplicate current row for T-030.'
+  previous_status: done
+  superseded_by:
+    id: T-030
+    path: 4_phase_development/goal_deterministic_query_engines_v1/task_reverse_query_engine_v1
+  superseded_at: '2026-06-24T00:55:16'
+- id: T-031
+  name: forward_query_engine_t031
+  phase: development
+  goal: goal_deterministic_query_engines_v0
+  path: 4_phase_development/goal_deterministic_query_engines_v0/task_forward_query_engine_t031
+  status: superseded
+  executor: hybrid
+  created: '2026-06-23'
+  completed: '2026-06-23'
+  notes: '防误报无命中安全防护
+
+    Auto-superseded by registry normalization; duplicate current row for T-031.'
+  previous_status: done
+  superseded_by:
+    id: T-031
+    path: 4_phase_development/goal_deterministic_query_engines_v1/task_no_hit_guard_v1
+  superseded_at: '2026-06-24T00:55:16'
+- id: T-032
+  name: reverse_query_engine_t032
+  phase: development
+  goal: goal_deterministic_query_engines_v0
+  path: 4_phase_development/goal_deterministic_query_engines_v0/task_reverse_query_engine_t032
+  status: superseded
+  executor: hybrid
+  created: '2026-06-23'
+  completed: '2026-06-23'
+  notes: '反向查询数值稳定性保护
+
+    Auto-superseded by registry normalization; duplicate current row for T-032.'
+  previous_status: done
+  superseded_by:
+    id: T-032
+    path: 4_phase_development/goal_deterministic_query_engines_v1/task_reverse_stability_guard_v1
+  superseded_at: '2026-06-24T00:55:16'
+- id: T-033
+  name: no_hit_guard_t033
+  phase: development
+  goal: goal_deterministic_query_engines_v0
+  path: 4_phase_development/goal_deterministic_query_engines_v0/task_no_hit_guard_t033
+  status: superseded
+  executor: hybrid
+  created: '2026-06-23'
+  completed: null
+  notes: 'Green fast-pass DAG node. Do not start automatically; activate only when
+    dependency/waiting order is intended.
+
+    Auto-superseded by registry normalization; duplicate current row for T-033.'
+  previous_status: active
+  superseded_by:
+    id: T-033
+    path: 4_phase_development/goal_resolver_optional_layer_v1/task_hybrid_fast_resolver_v1
+  superseded_at: '2026-06-24T00:55:16'
+- id: T-034
+  name: reverse_stability_guard_t034
+  phase: development
+  goal: goal_deterministic_query_engines_v0
+  path: 4_phase_development/goal_deterministic_query_engines_v0/task_reverse_stability_guard_t034
+  status: superseded
+  executor: hybrid
+  created: '2026-06-23'
+  completed: '2026-06-23'
+  notes: 'Green fast-pass DAG node. Do not start automatically; activate only when
+    dependency/waiting order is intended.
+
+    Auto-superseded by registry normalization; duplicate current row for T-034.'
+  previous_status: done
+  superseded_by:
+    id: T-034
+    path: 4_phase_development/goal_resolver_optional_layer_v1/task_llm_flash_adapter_v1
+  superseded_at: '2026-06-24T00:55:16'
+- id: T-035
+  name: hybrid_fast_resolver_t035
+  phase: development
+  goal: goal_resolver_optional_layer_v0
+  path: 4_phase_development/goal_resolver_optional_layer_v0/task_hybrid_fast_resolver_t035
+  status: superseded
+  executor: hybrid
+  created: '2026-06-23'
+  completed: '2026-06-23'
+  notes: '冒烟测试套件
+
+    Auto-superseded by registry normalization; duplicate current row for T-035.'
+  previous_status: done
+  superseded_by:
+    id: T-035
+    path: 4_phase_development/goal_package_milestone_merge_v1/task_smoke_tests_v1
+  superseded_at: '2026-06-24T00:55:16'
+- id: T-036
+  name: llm_flash_adapter_t036
+  phase: development
+  goal: goal_resolver_optional_layer_v0
+  path: 4_phase_development/goal_resolver_optional_layer_v0/task_llm_flash_adapter_t036
+  status: superseded
+  executor: hybrid
+  created: '2026-06-23'
+  completed: '2026-06-23'
+  notes: '演示CLI脚本开发
+
+    Auto-superseded by registry normalization; duplicate current row for T-036.'
+  previous_status: done
+  superseded_by:
+    id: T-036
+    path: 4_phase_development/goal_package_milestone_merge_v1/task_demo_cli_v1
+  superseded_at: '2026-06-24T00:55:16'
+- id: T-037
+  name: smoke_tests_t037
+  phase: development
+  goal: goal_package_milestone_merge_v0
+  path: 4_phase_development/goal_package_milestone_merge_v0/task_smoke_tests_t037
+  status: pending
+  executor: codex
+  created: '2026-06-23'
+  completed: null
+  notes: 'Split milestone: T-037 now only builds slim package core (foundation + loader
+    + forward + no-hit). T-038 handles reverse/demo/final reports after T-037. Do
+    not re-expand T-037 dependencies.'
+  agent_id: AGT-003
+  config_agent_id: AGT-003
+  check_agent_id: AGT-003
+  execute_agent_id: AGT-003
+  objective: 'Create pxfquery-T-037 parallel package-core milestone: package workspace,
+    loader/resource access, deterministic forward query, no-hit guard, and minimal
+    package-core tests. Do not consume T-038 or produce final aggregation.'
+- id: T-038
+  name: demo_cli_t038
+  phase: development
+  goal: goal_package_milestone_merge_v0
+  path: 4_phase_development/goal_package_milestone_merge_v0/task_demo_cli_t038
+  status: blocked
+  executor: codex
+  created: '2026-06-23'
+  completed: null
+  notes: 'Split milestone part 2: consume T-037 package core plus T-032/T-035 only.
+    Keep predecessor count <=5. Do not pull T-024/T-026/T-029/T-031 directly unless
+    via T-037 lineage.'
+  agent_id: AGT-003
+  config_agent_id: AGT-003
+  check_agent_id: AGT-003
+  execute_agent_id: AGT-003
+  objective: Create a parallel pxfquery reverse/demo/report milestone from completed
+    reverse engine, reverse stability guard, smoke-test, and demo CLI assets. This
+    branch must not depend on T-040/T-037; T-039 is the only aggregation point.
+- id: T-039
+  name: milestone_merge_t039
+  phase: development
+  goal: goal_package_milestone_merge_v0
+  path: 4_phase_development/goal_package_milestone_merge_v0/task_milestone_merge_t039
+  status: blocked
+  executor: codex
+  created: '2026-06-23'
+  completed: null
+  notes: 'Split milestone part 3: final aggregation only from T-037 and T-038. Keep
+    predecessor count <=5. Do not redo package implementation or reverse/demo generation.'
+  agent_id: AGT-003
+  config_agent_id: AGT-003
+  check_agent_id: AGT-003
+  execute_agent_id: AGT-003
+  objective: Create pxfquery final aggregation from the parallel T-040 package-core
+    branch and T-038 reverse/demo/report branch. T-039 is the only merge point; do
+    not redo implementation.
+- id: T-024
+  name: probe_root_temporary
+  phase: development
+  goal: goal_cyhex_123_probe
+  path: 4_phase_development/goal_cyhex_123_probe/task_probe_root_temporary
+  status: superseded
+  executor: hybrid
+  created: '2026-06-23'
+  completed: '2026-06-23'
+  previous_status: done
+  superseded_by:
+    id: T-024
+    path: 4_phase_development/goal_package_foundation_v1/task_workspace_package_v1
+  superseded_at: '2026-06-24T00:55:16'
+  notes: Auto-superseded by registry normalization; duplicate current row for T-024.
+- id: T-025
+  name: probe_child_waiting_temporary
+  phase: development
+  goal: goal_cyhex_123_probe
+  path: 4_phase_development/goal_cyhex_123_probe/task_probe_child_waiting_temporary
+  status: superseded
+  executor: hybrid
+  created: '2026-06-23'
+  completed: '2026-06-23'
+  previous_status: done
+  superseded_by:
+    id: T-025
+    path: 4_phase_development/goal_resource_index_packs_v1/task_resource_manifest_v1
+  superseded_at: '2026-06-24T00:55:16'
+  notes: Auto-superseded by registry normalization; duplicate current row for T-025.
+- id: T-024
+  name: workspace_package_v1
+  phase: development
+  goal: goal_package_foundation_v1
+  path: 4_phase_development/goal_package_foundation_v1/task_workspace_package_v1
+  status: blocked
+  executor: hybrid
+  created: '2026-06-23'
+  completed: '2026-06-23'
+- id: T-025
+  name: resource_manifest_v1
+  phase: development
+  goal: goal_resource_index_packs_v1
+  path: 4_phase_development/goal_resource_index_packs_v1/task_resource_manifest_v1
+  status: done
+  executor: hybrid
+  created: '2026-06-23'
+  completed: '2026-06-23'
+- id: T-026
+  name: matrix_loader_v1
+  phase: development
+  goal: goal_resource_index_packs_v1
+  path: 4_phase_development/goal_resource_index_packs_v1/task_matrix_loader_v1
+  status: blocked
+  executor: hybrid
+  created: '2026-06-23'
+  completed: '2026-06-23'
+- id: T-027
+  name: index_name_normalizer_v1
+  phase: development
+  goal: goal_resource_index_packs_v1
+  path: 4_phase_development/goal_resource_index_packs_v1/task_index_name_normalizer_v1
+  status: blocked
+  executor: hybrid
+  created: '2026-06-23'
+  completed: '2026-06-23'
+- id: T-028
+  name: function_index_pack_v1
+  phase: development
+  goal: goal_resource_index_packs_v1
+  path: 4_phase_development/goal_resource_index_packs_v1/task_function_index_pack_v1
+  status: done
+  executor: hybrid
+  created: '2026-06-23'
+  completed: '2026-06-23'
+  notes: 功能索引资产包创建
+- id: T-029
+  name: forward_query_engine_v1
+  phase: development
+  goal: goal_deterministic_query_engines_v1
+  path: 4_phase_development/goal_deterministic_query_engines_v1/task_forward_query_engine_v1
+  status: blocked
+  executor: hybrid
+  created: '2026-06-23'
+  completed: '2026-06-23'
+- id: T-030
+  name: reverse_query_engine_v1
+  phase: development
+  goal: goal_deterministic_query_engines_v1
+  path: 4_phase_development/goal_deterministic_query_engines_v1/task_reverse_query_engine_v1
+  status: blocked
+  executor: hybrid
+  created: '2026-06-23'
+  completed: '2026-06-23'
+- id: T-031
+  name: no_hit_guard_v1
+  phase: development
+  goal: goal_deterministic_query_engines_v1
+  path: 4_phase_development/goal_deterministic_query_engines_v1/task_no_hit_guard_v1
+  status: done
+  executor: hybrid
+  created: '2026-06-23'
+  completed: '2026-06-23'
+  notes: 防误报无命中安全防护
+- id: T-032
+  name: reverse_stability_guard_v1
+  phase: development
+  goal: goal_deterministic_query_engines_v1
+  path: 4_phase_development/goal_deterministic_query_engines_v1/task_reverse_stability_guard_v1
+  status: blocked
+  executor: hybrid
+  created: '2026-06-23'
+  completed: '2026-06-23'
+  notes: 反向查询数值稳定性保护
+- id: T-033
+  name: hybrid_fast_resolver_v1
+  phase: development
+  goal: goal_resolver_optional_layer_v1
+  path: 4_phase_development/goal_resolver_optional_layer_v1/task_hybrid_fast_resolver_v1
+  status: blocked
+  executor: hybrid
+  created: '2026-06-23'
+  completed: '2026-06-23'
+- id: T-034
+  name: llm_flash_adapter_v1
+  phase: development
+  goal: goal_resolver_optional_layer_v1
+  path: 4_phase_development/goal_resolver_optional_layer_v1/task_llm_flash_adapter_v1
+  status: blocked
+  executor: hybrid
+  created: '2026-06-23'
+  completed: '2026-06-23'
+- id: T-035
+  name: smoke_tests_v1
+  phase: development
+  goal: goal_package_milestone_merge_v1
+  path: 4_phase_development/goal_package_milestone_merge_v1/task_smoke_tests_v1
+  status: blocked
+  executor: hybrid
+  created: '2026-06-23'
+  completed: '2026-06-23'
+  notes: 冒烟测试套件
+- id: T-036
+  name: demo_cli_v1
+  phase: development
+  goal: goal_package_milestone_merge_v1
+  path: 4_phase_development/goal_package_milestone_merge_v1/task_demo_cli_v1
+  status: blocked
+  executor: hybrid
+  created: '2026-06-23'
+  completed: '2026-06-23'
+  notes: 演示CLI脚本开发
+- id: T-037
+  name: milestone_merge_v1
+  phase: development
+  goal: goal_package_milestone_merge_v1
+  path: 4_phase_development/goal_package_milestone_merge_v1/task_milestone_merge_v1
+  status: superseded
+  executor: codex
+  created: '2026-06-23'
+  completed: null
+  notes: 'Split milestone: T-037 now only builds slim package core (foundation + loader
+    + forward + no-hit). T-038 handles reverse/demo/final reports after T-037. Do
+    not re-expand T-037 dependencies.
+
+    Auto-superseded by registry normalization; duplicate current row for T-037.'
+  agent_id: AGT-003
+  config_agent_id: AGT-003
+  check_agent_id: AGT-003
+  execute_agent_id: AGT-003
+  objective: 'Create pxfquery-T-037 parallel package-core milestone: package workspace,
+    loader/resource access, deterministic forward query, no-hit guard, and minimal
+    package-core tests. Do not consume T-038 or produce final aggregation.'
+  previous_status: pending
+  superseded_by:
+    id: T-037
+    path: 4_phase_development/goal_package_milestone_merge_v0/task_smoke_tests_t037
+  superseded_at: '2026-06-24T00:55:16'
+- id: T-038
+  name: milestone_reverse_demo_reports_v1
+  phase: development
+  goal: goal_package_milestone_merge_v1
+  path: 4_phase_development/goal_package_milestone_merge_v1/task_milestone_reverse_demo_reports_v1
+  status: blocked
+  executor: codex
+  created: '2026-06-23'
+  completed: null
+  notes: 'Split milestone part 2: consume T-037 package core plus T-032/T-035 only.
+    Keep predecessor count <=5. Do not pull T-024/T-026/T-029/T-031 directly unless
+    via T-037 lineage.'
+  agent_id: AGT-003
+  config_agent_id: AGT-003
+  check_agent_id: AGT-003
+  execute_agent_id: AGT-003
+  objective: Create a parallel pxfquery reverse/demo/report milestone from completed
+    reverse engine, reverse stability guard, smoke-test, and demo CLI assets. This
+    branch must not depend on T-040/T-037; T-039 is the only aggregation point.
+- id: T-039
+  name: milestone_final_aggregation_v1
+  phase: development
+  goal: goal_package_milestone_merge_v1
+  path: 4_phase_development/goal_package_milestone_merge_v1/task_milestone_final_aggregation_v1
+  status: blocked
+  executor: codex
+  created: '2026-06-23'
+  completed: null
+  notes: 'Split milestone part 3: final aggregation only from T-037 and T-038. Keep
+    predecessor count <=5. Do not redo package implementation or reverse/demo generation.'
+  agent_id: AGT-003
+  config_agent_id: AGT-003
+  check_agent_id: AGT-003
+  execute_agent_id: AGT-003
+  objective: Create pxfquery final aggregation from the parallel T-040 package-core
+    branch and T-038 reverse/demo/report branch. T-039 is the only merge point; do
+    not redo implementation.
+- id: T-040
+  name: milestone_package_core_parallel_v1
+  phase: development
+  goal: goal_package_milestone_merge_v1
+  path: 4_phase_development/goal_package_milestone_merge_v1/task_milestone_package_core_parallel_v1
+  status: blocked
+  executor: codex
+  created: '2026-06-23'
+  completed: null
+  agent_id: AGT-003
+  config_agent_id: AGT-003
+  check_agent_id: AGT-003
+  execute_agent_id: AGT-003
+- id: T-041
+  name: legacy_source_digest_for_m1
+  phase: digestion
+  goal: goal_development_asset_digestion
+  path: 3_phase_digestion/goal_development_asset_digestion/task_legacy_source_digest_for_m1
+  status: done
+  executor: hybrid
+  created: '2026-06-24'
+  completed: '2026-06-24'
+  notes: 'Constraint supplement for config AI: This digestion task is the only new
+    DAG task allowed to read the explicit legacy package-source path exposed through
+    T-007 registered assets. Do not scan the whole project asset tree. Do not modify
+    legacy files or completed task artifacts. Deliver reusable source digest only.'
+  agent_id: AGT-002
+  config_agent_id: AGT-002
+  check_agent_id: AGT-002
+  execute_agent_id: AGT-002
+- id: T-042
+  name: contract_and_demo_spec_m1
+  phase: development
+  goal: goal_m1_python_package_v2
+  path: 4_phase_development/goal_m1_python_package_v2/task_contract_and_demo_spec_m1
+  status: done
+  executor: hybrid
+  created: '2026-06-24'
+  completed: '2026-06-24'
+  notes: 'Constraint supplement for config AI: Keep this task small and authoritative.
+    Produce the single M1 API/CLI/demo contract that downstream tasks must follow:
+    no broad product redesign, no long narrative report, no implementation code. Use
+    only T-007 and T-013 as authoritative inputs. Do not treat T024-T040 as usable
+    assets. Acceptance must include exact forward/reverse demo inputs, expected output
+    JSON shape, no-hit/error behavior, and pass/fail criteria.'
+  agent_id: AGT-001
+  config_agent_id: AGT-001
+  check_agent_id: AGT-001
+  execute_agent_id: AGT-001
+- id: T-043
+  name: data_manifest_fixture_m1
+  phase: development
+  goal: goal_m1_python_package_v2
+  path: 4_phase_development/goal_m1_python_package_v2/task_data_manifest_fixture_m1
+  status: done
+  executor: hybrid
+  created: '2026-06-24'
+  completed: '2026-06-24'
+  notes: 'Constraint supplement for config AI: This is a stable bottom-layer asset
+    task. It must produce reusable manifest schema, concrete paths, minimal fixture
+    files or fixture package, expected shapes/keys/columns, and sample records. Use
+    T-014 and T-021 only as authorities. Do not invent data, do not scan unrelated
+    project assets, and do not use T024-T040 outputs. Downstream loader/query tasks
+    depend on this task for reliable data boundaries.'
+  agent_id: AGT-001
+  config_agent_id: AGT-001
+  check_agent_id: AGT-001
+  execute_agent_id: AGT-001
+- id: T-044
+  name: package_skeleton_m1
+  phase: development
+  goal: goal_m1_python_package_v2
+  path: 4_phase_development/goal_m1_python_package_v2/task_package_skeleton_m1
+  status: done
+  executor: hybrid
+  created: '2026-06-24'
+  completed: '2026-06-24'
+  notes: 'Constraint supplement for config AI: Build only the clean package skeleton
+    and import-safe stubs. Anchor package name and module boundaries in T-007. Do
+    not migrate legacy implementation code and do not implement query behavior here.
+    Deliver pyproject.toml, src/pxfquery layout, minimal metadata, and import smoke
+    evidence. This bottom-layer asset should remain reusable even if later query implementation
+    fails.'
+  agent_id: AGT-002
+  config_agent_id: AGT-002
+  check_agent_id: AGT-002
+  execute_agent_id: AGT-002
+- id: T-045
+  name: index_health_check_m1
+  phase: development
+  goal: goal_m1_python_package_v2
+  path: 4_phase_development/goal_m1_python_package_v2/task_index_health_check_m1
+  status: done
+  executor: hybrid
+  created: '2026-06-24'
+  completed: '2026-06-24'
+  notes: 'Constraint supplement for config AI: This is an audit/check asset, not a
+    rebuild task. Verify only M1-relevant index schema, readability, required keys,
+    and gaps from T-021. Do not overwrite or regenerate authoritative indexes. Deliver
+    machine-readable health summary plus human-readable gap notes. This task supports
+    T-047 hardening and should not block the fixture-only M1 path.'
+  agent_id: AGT-002
+  config_agent_id: AGT-002
+  check_agent_id: AGT-002
+  execute_agent_id: AGT-002
+- id: T-046
+  name: m1_fixture_loader
+  phase: development
+  goal: goal_m1_python_package_v2
+  path: 4_phase_development/goal_m1_python_package_v2/task_m1_fixture_loader
+  status: done
+  executor: hybrid
+  created: '2026-06-24'
+  completed: '2026-06-24'
+  notes: 'Constraint supplement for config AI: Keep loader scope deliberately small
+    and reliable. Implement fixture/manifest loading from T-043 and prove it with
+    loader smoke. Do not attempt full production hardening, do not read raw legacy
+    assets, and do not create private query logic. T-048/T-049 must use this loader
+    API; therefore the API must be stable and documented.'
+  agent_id: AGT-001
+  config_agent_id: AGT-001
+  check_agent_id: AGT-001
+  execute_agent_id: AGT-001
+- id: T-047
+  name: resource_loader_hardening_m1
+  phase: development
+  goal: goal_m1_python_package_v2
+  path: 4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1
+  status: done
+  executor: hybrid
+  created: '2026-06-24'
+  completed: '2026-06-24'
+  notes: 'Constraint supplement for config AI: This is an enhancement/reuse asset,
+    not an M1 blocker. Use T-043 and T-045 as hard inputs; use T-041 only if done
+    and available as may input. Harden real manifest/index loading where feasible
+    and report gaps honestly. Do not mutate authoritative indexes and do not block
+    the fixture loader path if real resources remain incomplete.'
+  agent_id: AGT-002
+  config_agent_id: AGT-002
+  check_agent_id: AGT-002
+  execute_agent_id: AGT-002
+- id: T-048
+  name: forward_query_core_m1
+  phase: development
+  goal: goal_m1_python_package_v2
+  path: 4_phase_development/goal_m1_python_package_v2/task_forward_query_core_m1
+  status: blocked
+  executor: hybrid
+  created: '2026-06-24'
+  completed: '2026-06-24'
+  notes: 'Orchestration resolution 2026-06-24: T-048 correctly found a real T-042/T-046
+    contract-fixture mismatch. EGFR/A549/xpr is absent from the loader-exposed fixture,
+    so the original task cannot honestly complete without changing upstream contract/fixture
+    or bypassing loader rules. T-059 is the completed same-layer replacement and downstream
+    must dependency. Keep T-048 artifacts as failure evidence; consume T-059 instead.
+    See 5_report/orchestration_resolution_20260624.md.'
+  agent_id: AGT-001
+  config_agent_id: AGT-001
+  check_agent_id: AGT-001
+  execute_agent_id: AGT-001
+- id: T-049
+  name: reverse_query_core_m1
+  phase: development
+  goal: goal_m1_python_package_v2
+  path: 4_phase_development/goal_m1_python_package_v2/task_reverse_query_core_m1
+  status: blocked
+  executor: hybrid
+  created: '2026-06-24'
+  completed: '2026-06-24'
+  notes: 'Orchestration resolution 2026-06-24: T-049 correctly found a real T-042/T-046
+    contract-fixture mismatch. HALLMARK_MYC_TARGETS_V1 and required selected fixture
+    resources are absent, so the original task cannot honestly complete without changing
+    upstream contract/fixture or fabricating private data. T-060 is the completed
+    same-layer replacement and downstream must dependency. Keep T-049 artifacts as
+    failure evidence; consume T-060 instead. See 5_report/orchestration_resolution_20260624.md.'
+  agent_id: AGT-001
+  config_agent_id: AGT-001
+  check_agent_id: AGT-001
+  execute_agent_id: AGT-001
+- id: T-050
+  name: forward_validation_m1
+  phase: development
+  goal: goal_m1_python_package_v2
+  path: 4_phase_development/goal_m1_python_package_v2/task_forward_validation_m1
+  status: done
+  executor: hybrid
+  created: '2026-06-24'
+  completed: '2026-06-24'
+  notes: 'Constraint supplement for config AI: This is independent validation, not
+    implementation repair. Re-run the T-042 forward demo against the T-048 implementation
+    and record traceability to package version, loader, fixture/manifest, and output
+    JSON. Do not relax acceptance criteria and do not repair core logic here except
+    for task-local validation harness files. Failure should produce evidence for same-layer
+    repair/retry.'
+  agent_id: AGT-002
+  config_agent_id: AGT-002
+  check_agent_id: AGT-002
+  execute_agent_id: AGT-002
+- id: T-051
+  name: reverse_validation_m1
+  phase: development
+  goal: goal_m1_python_package_v2
+  path: 4_phase_development/goal_m1_python_package_v2/task_reverse_validation_m1
+  status: done
+  executor: hybrid
+  created: '2026-06-24'
+  completed: '2026-06-24'
+  notes: 'Constraint supplement for config AI: This is independent validation, not
+    implementation repair. Re-run the T-042 reverse demo against the T-049 implementation
+    and record traceability to package version, loader, fixture/manifest, ranking/scoring
+    behavior, and output JSON. Do not relax acceptance criteria or hide instability.
+    Failure should produce evidence for same-layer repair/retry.'
+  agent_id: AGT-002
+  config_agent_id: AGT-002
+  check_agent_id: AGT-002
+  execute_agent_id: AGT-002
+- id: T-052
+  name: package_assembly_m1
+  phase: development
+  goal: goal_m1_python_package_v2
+  path: 4_phase_development/goal_m1_python_package_v2/task_package_assembly_m1
+  status: done
+  executor: hybrid
+  created: '2026-06-24'
+  completed: '2026-06-24'
+  notes: 'Constraint supplement for config AI: Assemble and wire the package surface
+    only. Use T-044 skeleton plus T-048/T-049 implementations. Deliver install/import
+    evidence, CLI entry points, and demo commands. Do not reimplement forward/reverse
+    logic, do not replace validation evidence, and do not use T024-T040 artifacts.
+    If assembly fails, report packaging/interface gaps for same-layer repair.'
+  agent_id: AGT-002
+  config_agent_id: AGT-002
+  check_agent_id: AGT-002
+  execute_agent_id: AGT-002
+- id: T-053
+  name: m1_python_package_milestone
+  phase: development
+  goal: goal_m1_python_package_v2
+  path: 4_phase_development/goal_m1_python_package_v2/task_m1_python_package_milestone
+  status: done
+  executor: hybrid
+  created: '2026-06-24'
+  completed: '2026-06-24'
+  notes: 'Constraint supplement for config AI: This is a milestone aggregation task,
+    not a repair or implementation task. Hard acceptance is exactly three evidence
+    streams: T-050 forward validation, T-051 reverse validation, and T-052 package
+    assembly. Deliver final package path/version, demo commands, evidence index, layered
+    asset map, and known gaps. If evidence is missing, identify the failed layer and
+    recommend same-layer repair tasks; do not modify lower-layer assets or mark optional
+    gaps as done.'
+  agent_id: AGT-002
+  config_agent_id: AGT-002
+  check_agent_id: AGT-002
+  execute_agent_id: AGT-002
+- id: T-054
+  name: large_asset_reading_rules_probe
+  phase: development
+  goal: goal_m1_python_package_v2
+  path: 4_phase_development/goal_m1_python_package_v2/task_large_asset_reading_rules_probe
+  status: pending
+  executor: hybrid
+  created: '2026-06-24'
+  completed: null
+  objective: 'Side-path pending task parallel to T047, not part of the M1 package
+    delivery chain unless later promoted by human review. Re-run the resource_loader_hardening_m1
+    style task with the same practical goal as T047: use the registered T043 data
+    manifest/fixture package and T045 index health artifacts to produce a bounded
+    resource-loader hardening deliverable, smoke evidence, gap notes, registry, reports,
+    and completion. The key experimental difference from T047 is that config/check/execute
+    protocol must explicitly include large-input reading rules: do not ask agents
+    or subagents to return full verbatim contents of large manifests/tables/logs;
+    use structured parsers or bounded previews; summarize rows/resources/counts/gaps
+    instead of copying full files into context; forbid subagents for large-file dumps;
+    record file sizes and sampled evidence. Use T047 only as an incident reference
+    explaining what failure mode to avoid. Do not modify T047, upstream completed
+    artifacts, or active M1 DAG tasks. Keep this task pending until human activation.'
+  notes: 旁路实验任务：其他目标与 T047 resource_loader_hardening_m1 类似，但必须在 protocol/steps/acceptance
+    中增加大文件读取限制规则，用来测试是否能避免 T047 的全文读取/subagent 过量上下文问题。pending，不激活，不接入当前主链。
+- id: T-055
+  name: 01_legacy_stress_test_source_map
+  phase: digestion
+  goal: goal_legacy_stress_test_asset_digestion
+  path: 3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_01_legacy_stress_test_source_map
+  status: done
+  executor: opencode
+  created: '2026-06-24'
+  completed: '2026-06-24'
+  agent_id: AGT-002
+  config_agent_id: AGT-002
+  check_agent_id: AGT-002
+  execute_agent_id: AGT-002
+- id: T-056
+  name: 02_stress_query_scenario_inventory
+  phase: digestion
+  goal: goal_legacy_stress_test_asset_digestion
+  path: 3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_02_stress_query_scenario_inventory
+  status: done
+  executor: opencode
+  created: '2026-06-24'
+  completed: '2026-06-24'
+  agent_id: AGT-002
+  config_agent_id: AGT-002
+  check_agent_id: AGT-002
+  execute_agent_id: AGT-002
+- id: T-057
+  name: 03_legacy_stress_logic_reuse_boundary
+  phase: digestion
+  goal: goal_legacy_stress_test_asset_digestion
+  path: 3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_03_legacy_stress_logic_reuse_boundary
+  status: done
+  executor: opencode
+  created: '2026-06-24'
+  completed: '2026-06-24'
+  agent_id: AGT-002
+  config_agent_id: AGT-002
+  check_agent_id: AGT-002
+  execute_agent_id: AGT-002
+- id: T-058
+  name: 04_stress_test_development_handoff_pack
+  phase: digestion
+  goal: goal_legacy_stress_test_asset_digestion
+  path: 3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_04_stress_test_development_handoff_pack
+  status: done
+  executor: opencode
+  created: '2026-06-24'
+  completed: '2026-06-24'
+  agent_id: AGT-002
+  config_agent_id: AGT-002
+  check_agent_id: AGT-002
+  execute_agent_id: AGT-002
+- id: T-059
+  name: forward_query_core_repair_m1
+  phase: development
+  goal: goal_m1_python_package_v2
+  path: 4_phase_development/goal_m1_python_package_v2/task_forward_query_core_repair_m1
+  status: done
+  executor: hybrid
+  created: '2026-06-24'
+  completed: '2026-06-24'
+  notes: 补充要求：这是 T048 的旁路修复/替代交付任务，不是修改 T048，也不是把 T048 标绿。T048 只能作为 reference 错误案例读取，用于理解
+    EGFR/A549/xpr 缺口。必须引用 T042 的 API/demo contract、T043 的 fixture/schema、T044 的包骨架、T046
+    的 loader API 和 smoke evidence；可参考 T047 hardening 结果。不得修改 upstream done 任务产物；不得使用
+    T024-T040 blocked 资产；不得伪造为原始数据。若创建补充 fixture/manifest，必须在本任务内登记为新资产并写明 synthetic/repair
+    provenance。验收必须实际运行 forward demo，输出 JSON 可见且格式符合 T042。
+  agent_id: AGT-001
+  config_agent_id: AGT-001
+  check_agent_id: AGT-001
+  execute_agent_id: AGT-001
+- id: T-060
+  name: reverse_query_core_repair_m1
+  phase: development
+  goal: goal_m1_python_package_v2
+  path: 4_phase_development/goal_m1_python_package_v2/task_reverse_query_core_repair_m1
+  status: done
+  executor: hybrid
+  created: '2026-06-24'
+  completed: '2026-06-24'
+  notes: 补充要求：这是 T049 的旁路修复/替代交付任务，不是修改 T049，也不是把 T049 标绿。T049 只能作为 reference 错误案例读取，用于理解
+    HALLMARK_MYC_TARGETS_V1 / fixture package 缺口。必须引用 T042 的 API/demo contract、T043
+    的 fixture/schema、T044 的包骨架、T046 的 loader API 和 smoke evidence；可参考 T045 index health
+    与 T047 hardening 结果。不得修改 upstream done 任务产物；不得使用 T024-T040 blocked 资产；不得伪造为原始数据。若创建补充
+    fixture/manifest，必须在本任务内登记为新资产并写明 synthetic/repair provenance。验收必须实际运行 reverse
+    demo，输出 JSON 可见、排名稳定、格式符合 T042。
+  agent_id: AGT-001
+  config_agent_id: AGT-001
+  check_agent_id: AGT-001
+  execute_agent_id: AGT-001
+- id: T-061
+  name: legacy_source_digest_repair_m1
+  phase: digestion
+  goal: goal_development_asset_digestion
+  path: 3_phase_digestion/goal_development_asset_digestion/task_legacy_source_digest_repair_m1
+  status: done
+  executor: hybrid
+  created: '2026-06-24'
+  completed: '2026-06-24'
+  notes: 'T061 recovery: prior check_review was based on deterministic local evidence
+    but CyHex fast-pass requires a completed check session. Rolled back to check_interrupted
+    to start a minimal recovery check session using 2_protocol/0_prompt/2026-06-24_1710_minimal_check_recovery_prompt.md.
+    Existing evidence: 5_report/deterministic_check_20260624_1656.md and 5_report/handoff_check_before_exec.md.'
+  agent_id: AGT-001
+  config_agent_id: AGT-001
+  check_agent_id: AGT-001
+  execute_agent_id: AGT-001
+- id: T-062
+  name: algorithm_package_delivery_anchor
+  phase: digestion
+  goal: goal_project_delivery_anchor
+  path: 3_phase_digestion/goal_project_delivery_anchor/task_algorithm_package_delivery_anchor
+  status: done
+  executor: hybrid
+  created: '2026-06-25'
+  completed: '2026-06-25'
+  notes: Digestion anchor only; do not write package code and do not redefine the
+    milestone to the easiest deterministic subset. | Separate manuscript claim restraint
+    from development deliverable scope; LLM/resolver is not optional merely because
+    manuscript claims must be conservative.
+  agent_id: AGT-001
+  config_agent_id: AGT-001
+  check_agent_id: AGT-001
+  execute_agent_id: AGT-001
+- id: T-063
+  name: llm_resolver_capability_anchor
+  phase: digestion
+  goal: goal_project_delivery_anchor
+  path: 3_phase_digestion/goal_project_delivery_anchor/task_llm_resolver_capability_anchor
+  status: done
+  executor: hybrid
+  created: '2026-06-25'
+  completed: '2026-06-25'
+  notes: Do not implement API code; produce a functional design and acceptance anchor.
+    | LLM capability is required when a milestone includes user-facing resolver. Current
+    desired model route is CyHex-registered AI address, deepseek-v4-pro unless a later
+    task explicitly changes it.
+  agent_id: AGT-001
+  config_agent_id: AGT-001
+  check_agent_id: AGT-001
+  execute_agent_id: AGT-001
+- id: T-064
+  name: evidence_routing_anchor
+  phase: digestion
+  goal: goal_project_delivery_anchor
+  path: 3_phase_digestion/goal_project_delivery_anchor/task_evidence_routing_anchor
+  status: done
+  executor: hybrid
+  created: '2026-06-25'
+  completed: '2026-06-25'
+  notes: Do not write implementation code. Produce route taxonomy, acceptance cases,
+    metadata contract, and stress-test-oriented anchor assets. | Route behavior must
+    include user-facing transfer/suggestion semantics, not just returning empty results.
+  agent_id: AGT-002
+  config_agent_id: AGT-002
+  check_agent_id: AGT-002
+  execute_agent_id: AGT-002
+- id: T-065
+  name: m1_vs_delivery_anchor_review
+  phase: digestion
+  goal: goal_project_delivery_anchor
+  path: 3_phase_digestion/goal_project_delivery_anchor/task_m1_vs_delivery_anchor_review
+  status: done
+  executor: hybrid
+  created: '2026-06-25'
+  completed: '2026-06-25'
+  notes: Review/gap task only. Do not modify M1 artifacts. | Be explicit if M1 is
+    only a deterministic kernel/substrate; do not call it a complete algorithm package
+    unless it satisfies the anchors.
+  agent_id: AGT-001
+  config_agent_id: AGT-001
+  check_agent_id: AGT-001
+  execute_agent_id: AGT-001

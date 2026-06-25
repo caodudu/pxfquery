@@ -1,0 +1,153 @@
+1_asset/migrated_pxfquery_package_source/llm/client.py:14:import json
+1_asset/migrated_pxfquery_package_source/llm/client.py:44:    api_key : str, optional
+1_asset/migrated_pxfquery_package_source/llm/client.py:45:        API key. Falls back to OPENAI_API_KEY / SILICONFLOW_API_KEY env vars.
+1_asset/migrated_pxfquery_package_source/llm/client.py:47:        API base URL (e.g. 'https://api.siliconflow.cn/v1').
+1_asset/migrated_pxfquery_package_source/llm/client.py:55:    >>> client = LLMClient(api_key="sk-...", base_url="https://api.siliconflow.cn/v1",
+1_asset/migrated_pxfquery_package_source/llm/client.py:64:        api_key: Optional[str] = None,
+1_asset/migrated_pxfquery_package_source/llm/client.py:72:        self.api_key = (
+1_asset/migrated_pxfquery_package_source/llm/client.py:73:            api_key
+1_asset/migrated_pxfquery_package_source/llm/client.py:74:            or os.getenv("OPENAI_API_KEY")
+1_asset/migrated_pxfquery_package_source/llm/client.py:78:        if not self.api_key:
+1_asset/migrated_pxfquery_package_source/llm/client.py:80:                "No API key provided. Pass api_key= or set OPENAI_API_KEY "
+1_asset/migrated_pxfquery_package_source/llm/client.py:109:            resp = self._client.chat.completions.create(
+1_asset/migrated_pxfquery_package_source/llm/client.py:129:            self._logger.info("LLM health_check: %s", json.dumps(result, ensure_ascii=False))
+1_asset/migrated_pxfquery_package_source/llm/client.py:186:            resp = self._client.chat.completions.create(
+1_asset/migrated_pxfquery_package_source/llm/client.py:197:            content = re.sub(r"^```(?:json)?\s*", "", content)
+1_asset/migrated_pxfquery_package_source/llm/client.py:199:            return json.loads(content)
+1_asset/migrated_pxfquery_package_source/llm/client.py:200:        except json.JSONDecodeError as e:
+1_asset/migrated_pxfquery_package_source/llm/client.py:250:            resp = self._client.chat.completions.create(
+1_asset/migrated_pxfquery_package_source/llm/client.py:302:            resp = self._client.chat.completions.create(
+1_asset/migrated_pxfquery_package_source/llm/client.py:319:        kwargs = {"api_key": self.api_key}
+1_asset/migrated_pxfquery_package_source/llm/prompts.py:9:import json
+1_asset/migrated_pxfquery_package_source/llm/prompts.py:29:        f"Schema: {json.dumps(schema, ensure_ascii=True)}\n"
+1_asset/migrated_pxfquery_package_source/llm/prompts.py:38:    payload = _chat_json(
+1_asset/migrated_pxfquery_package_source/llm/prompts.py:49:        payload = _chat_json(
+1_asset/migrated_pxfquery_package_source/llm/prompts.py:87:    payload = _chat_json(
+1_asset/migrated_pxfquery_package_source/llm/prompts.py:124:    payload = _chat_json(
+1_asset/migrated_pxfquery_package_source/llm/prompts.py:142:    payload = _chat_json(
+1_asset/migrated_pxfquery_package_source/llm/prompts.py:159:    payload = _chat_json(
+1_asset/migrated_pxfquery_package_source/llm/prompts.py:188:    payload = _chat_json(
+1_asset/migrated_pxfquery_package_source/llm/prompts.py:225:        f"Evidence meta: {json.dumps(resolver_meta, ensure_ascii=True)}\n"
+1_asset/migrated_pxfquery_package_source/llm/prompts.py:262:        f"Evidence meta: {json.dumps(resolver_meta, ensure_ascii=True)}\n"
+1_asset/migrated_pxfquery_package_source/llm/prompts.py:273:def _chat_json(
+1_asset/migrated_pxfquery_package_source/llm/prompts.py:290:    parsed = _safe_json_load(text)
+1_asset/migrated_pxfquery_package_source/llm/prompts.py:320:            resp = client.chat.completions.create(**kwargs)
+1_asset/migrated_pxfquery_package_source/llm/prompts.py:335:def _safe_json_load(text: str) -> Any:
+1_asset/migrated_pxfquery_package_source/llm/prompts.py:338:    clean = re.sub(r"^\s*```(?:json)?\s*", "", text, flags=re.IGNORECASE)
+1_asset/migrated_pxfquery_package_source/llm/prompts.py:341:        return json.loads(clean)
+1_asset/migrated_pxfquery_package_source/llm/prompts.py:343:        pass
+1_asset/migrated_pxfquery_package_source/llm/prompts.py:347:            return json.loads(m.group(0))
+1_asset/migrated_pxfquery_package_source/__init__.py:16:pxf.load_data("path/to/xpr_func_ad.h5ad")
+1_asset/migrated_pxfquery_package_source/__init__.py:17:pxf.load_llm(api_key="...", base_url="...", model="...")
+1_asset/migrated_pxfquery_package_source/core.py:36:    >>> pxf.load_data("xpr", "/path/to/xpr_func_ad.h5ad")
+1_asset/migrated_pxfquery_package_source/core.py:42:    >>> pxf.load_llm(api_key="sk-...", base_url="https://api.siliconflow.cn/v1",
+1_asset/migrated_pxfquery_package_source/core.py:78:        Load a single matrix from a local h5ad file.
+1_asset/migrated_pxfquery_package_source/core.py:85:            Path to the .h5ad file.
+1_asset/migrated_pxfquery_package_source/core.py:101:        Expects files: xpr_func_ad.h5ad, sh_func_ad.h5ad, cp_func_ad.h5ad
+1_asset/migrated_pxfquery_package_source/core.py:124:        api_key: Optional[str] = None,
+1_asset/migrated_pxfquery_package_source/core.py:134:        api_key : str, optional
+1_asset/migrated_pxfquery_package_source/core.py:135:            Falls back to OPENAI_API_KEY / SILICONFLOW_API_KEY env vars.
+1_asset/migrated_pxfquery_package_source/core.py:148:        self._llm = LLMClient(api_key=api_key, base_url=base_url, model=model)
+1_asset/migrated_pxfquery_package_source/core.py:159:        api_key: Optional[str] = None,
+1_asset/migrated_pxfquery_package_source/core.py:186:        api_key : str, optional
+1_asset/migrated_pxfquery_package_source/core.py:204:            api_key=api_key,
+1_asset/migrated_pxfquery_package_source/core.py:468:    Path(path).parent.mkdir(parents=True, exist_ok=True)
+1_asset/migrated_pxfquery_package_source/prompt/check_link.py:12:import json
+1_asset/migrated_pxfquery_package_source/prompt/check_link.py:40:            print(json.dumps(result, ensure_ascii=False))
+1_asset/migrated_pxfquery_package_source/prompt/check_link.py:47:            print(json.dumps(result, ensure_ascii=False))
+1_asset/migrated_pxfquery_package_source/prompt/check_link.py:58:        resp = client.chat.completions.create(
+1_asset/migrated_pxfquery_package_source/prompt/check_link.py:82:        print(json.dumps(result, ensure_ascii=False))
+1_asset/migrated_pxfquery_package_source/index/drug_index.py:5:  drug_index.json     : {alias_lowercase: BRD-id}  176 KB
+1_asset/migrated_pxfquery_package_source/index/drug_index.py:6:  drug_neighbors.json : {id_no_prefix: [[neighbor_no_prefix, t_int], ...]}  4.4 MB
+1_asset/migrated_pxfquery_package_source/index/drug_index.py:8:Storage format of drug_neighbors.json
+1_asset/migrated_pxfquery_package_source/index/drug_index.py:20:TODO: llm_normalize_drug fallback
+1_asset/migrated_pxfquery_package_source/index/drug_index.py:23:  If still None, try real-time PubChem InChIKey match against cp_meta_enriched.csv.
+1_asset/migrated_pxfquery_package_source/index/drug_index.py:29:import json
+1_asset/migrated_pxfquery_package_source/index/drug_index.py:45:        Path to drug_index.json
+1_asset/migrated_pxfquery_package_source/index/drug_index.py:47:        Path to drug_neighbors.json
+1_asset/migrated_pxfquery_package_source/index/drug_index.py:51:    >>> idx = DrugIndex("output/store/query_index/drug_index.json",
+1_asset/migrated_pxfquery_package_source/index/drug_index.py:52:    ...                 "output/store/query_index/drug_neighbors.json")
+1_asset/migrated_pxfquery_package_source/index/drug_index.py:60:        with open(index_path, encoding="utf-8") as f:
+1_asset/migrated_pxfquery_package_source/index/drug_index.py:61:            self._index: dict[str, str] = json.load(f)  # alias → full BRD-id
+1_asset/migrated_pxfquery_package_source/index/drug_index.py:63:        with open(neighbors_path, encoding="utf-8") as f:
+1_asset/migrated_pxfquery_package_source/index/drug_index.py:64:            self._neighbors_raw: dict[str, list] = json.load(f)  # id_no_prefix → [[id_no_prefix, t_int]]
+1_asset/migrated_pxfquery_package_source/index/function_index.py:5:  function_index.json  (< 50 KB)
+1_asset/migrated_pxfquery_package_source/index/function_index.py:8:      "var_names":  [...],          # 91 exact var names matching h5ad .var_names
+1_asset/migrated_pxfquery_package_source/index/function_index.py:28:When lookup() returns None, pass for_llm() output to llm_map_function() in llm/prompts.py.
+1_asset/migrated_pxfquery_package_source/index/function_index.py:33:import json
+1_asset/migrated_pxfquery_package_source/index/function_index.py:42:    Covers the 91 var columns used in xpr/sh/cp h5ad matrices:
+1_asset/migrated_pxfquery_package_source/index/function_index.py:48:        Path to function_index.json.
+1_asset/migrated_pxfquery_package_source/index/function_index.py:52:    >>> idx = FunctionIndex("output/store/query_index/function_index.json")
+1_asset/migrated_pxfquery_package_source/index/function_index.py:66:        with open(index_path, encoding="utf-8") as f:
+1_asset/migrated_pxfquery_package_source/index/function_index.py:67:            data = json.load(f)
+1_asset/migrated_pxfquery_package_source/index/function_index.py:115:        # direct var_name match (user might pass exact var_name)
+1_asset/migrated_pxfquery_package_source/index/function_index.py:123:        Return True if var_name is a valid h5ad column name.
+1_asset/migrated_pxfquery_package_source/index/gene_index.py:5:  gene_index_simple.json     : {SYMBOL_UPPER: type_code}  356 KB
+1_asset/migrated_pxfquery_package_source/index/gene_index.py:6:  gene_neighbors_simple.json : {symbol: [[neighbor, cosine_int], ...]}  19.5 MB
+1_asset/migrated_pxfquery_package_source/index/gene_index.py:15:Storage format of gene_neighbors_simple.json
+1_asset/migrated_pxfquery_package_source/index/gene_index.py:28:TODO: llm_map_gene fallback
+1_asset/migrated_pxfquery_package_source/index/gene_index.py:37:import json
+1_asset/migrated_pxfquery_package_source/index/gene_index.py:58:        Path to gene_index_simple.json (UPPERCASE key → type_code).
+1_asset/migrated_pxfquery_package_source/index/gene_index.py:60:        Path to gene_neighbors_simple.json (symbol → [[neighbor, cosine_int], ...]).
+1_asset/migrated_pxfquery_package_source/index/gene_index.py:64:    >>> idx = GeneIndex("output/store/query_index/gene_index_simple.json",
+1_asset/migrated_pxfquery_package_source/index/gene_index.py:65:    ...                 "output/store/query_index/gene_neighbors_simple.json")
+1_asset/migrated_pxfquery_package_source/index/gene_index.py:75:        with open(index_path, encoding="utf-8") as f:
+1_asset/migrated_pxfquery_package_source/index/gene_index.py:76:            self._index: dict[str, str] = json.load(f)  # UPPER_SYMBOL → type_code
+1_asset/migrated_pxfquery_package_source/index/gene_index.py:78:        with open(neighbors_path, encoding="utf-8") as f:
+1_asset/migrated_pxfquery_package_source/index/gene_index.py:79:            self._neighbors_raw: dict[str, list] = json.load(f)  # symbol → [[nbr, cosine_int]]
+1_asset/migrated_pxfquery_package_source/index/cellline_index.py:5:  - cellline_index.json     {"valid_cells": [...]}
+1_asset/migrated_pxfquery_package_source/index/cellline_index.py:6:  - cellline_neighbors.json {lineage: {disease: {subtype: [cells]}}}
+1_asset/migrated_pxfquery_package_source/index/cellline_index.py:11:import json
+1_asset/migrated_pxfquery_package_source/index/cellline_index.py:22:        with open(index_path, encoding="utf-8") as f:
+1_asset/migrated_pxfquery_package_source/index/cellline_index.py:23:            data = json.load(f)
+1_asset/migrated_pxfquery_package_source/index/cellline_index.py:24:        with open(neighbors_path, encoding="utf-8") as f:
+1_asset/migrated_pxfquery_package_source/index/cellline_index.py:25:            self._tree: dict = json.load(f)
+1_asset/migrated_pxfquery_package_source/main.py:11:import json
+1_asset/migrated_pxfquery_package_source/main.py:18:        pass 
+1_asset/migrated_pxfquery_package_source/main.py:26:        pass 
+1_asset/migrated_pxfquery_package_source/main.py:31:        api_key: Union[str,None]=None, 
+1_asset/migrated_pxfquery_package_source/main.py:38:        #api_key = os.getenv("SILICONFLOW_API_KEY")
+1_asset/migrated_pxfquery_package_source/main.py:42:        #    api_key=api_key,
+1_asset/migrated_pxfquery_package_source/main.py:43:        #    base_url="https://api.siliconflow.cn/"  # 硅基流动 API 的根路径
+1_asset/migrated_pxfquery_package_source/main.py:47:            api_key=api_key,
+1_asset/migrated_pxfquery_package_source/main.py:58:        pass
+1_asset/migrated_pxfquery_package_source/main.py:64:        pass
+1_asset/migrated_pxfquery_package_source/main.py:70:        pass
+1_asset/migrated_pxfquery_package_source/main.py:80:        pass 
+1_asset/migrated_pxfquery_package_source/main.py:90:        pass 
+1_asset/migrated_pxfquery_package_source/main.py:97:        pass 
+1_asset/migrated_pxfquery_package_source/main.py:104:        pass
+1_asset/migrated_pxfquery_package_source/main.py:109:        pass 
+1_asset/migrated_pxfquery_package_source/main.py:114:        pass
+1_asset/migrated_pxfquery_package_source/main.py:120:        pass 
+1_asset/migrated_pxfquery_package_source/main.py:125:        pass 
+1_asset/migrated_pxfquery_package_source/query/resolver.py:35:    api_key: Optional[str] = None
+1_asset/migrated_pxfquery_package_source/query/resolver.py:86:        self.index_dir = Path(index_dir)
+1_asset/migrated_pxfquery_package_source/query/resolver.py:93:            self.index_dir / "cellline_index.json",
+1_asset/migrated_pxfquery_package_source/query/resolver.py:94:            self.index_dir / "cellline_neighbors.json",
+1_asset/migrated_pxfquery_package_source/query/resolver.py:97:            self.index_dir / "gene_index_simple.json",
+1_asset/migrated_pxfquery_package_source/query/resolver.py:98:            self.index_dir / "gene_neighbors_simple.json",
+1_asset/migrated_pxfquery_package_source/query/resolver.py:101:            self.index_dir / "drug_index.json",
+1_asset/migrated_pxfquery_package_source/query/resolver.py:102:            self.index_dir / "drug_neighbors.json",
+1_asset/migrated_pxfquery_package_source/query/resolver.py:104:        self.function_index = FunctionIndex(self.index_dir / "function_index.json")
+1_asset/migrated_pxfquery_package_source/query/resolver.py:1058:        api_key = config.api_key
+1_asset/migrated_pxfquery_package_source/query/resolver.py:1062:            api_key = api_key or os.getenv("SILICONFLOW_API_KEY") or os.getenv("OPENAI_API_KEY")
+1_asset/migrated_pxfquery_package_source/query/resolver.py:1063:            base_url = base_url or os.getenv("SILICONFLOW_BASE_URL") or "https://api.siliconflow.cn/v1"
+1_asset/migrated_pxfquery_package_source/query/resolver.py:1065:            api_key = api_key or os.getenv("MINIMAX_API_KEY") or os.getenv("OPENAI_API_KEY")
+1_asset/migrated_pxfquery_package_source/query/resolver.py:1066:            base_url = base_url or os.getenv("MINIMAX_BASE_URL") or "https://api.minimax.chat/v1"
+1_asset/migrated_pxfquery_package_source/query/resolver.py:1068:        if not api_key:
+1_asset/migrated_pxfquery_package_source/query/resolver.py:1072:        return OpenAI(api_key=api_key, base_url=base_url)
+1_asset/migrated_pxfquery_package_source/data/loader.py:4:Supports loading from local h5ad (AnnData) files.
+1_asset/migrated_pxfquery_package_source/data/loader.py:33:        Directory to look for local h5ad files.
+1_asset/migrated_pxfquery_package_source/data/loader.py:39:    >>> loader.load_local("xpr", "/path/to/xpr_func_ad.h5ad")
+1_asset/migrated_pxfquery_package_source/data/loader.py:45:        self.cache_dir = Path(cache_dir) if cache_dir else None
+1_asset/migrated_pxfquery_package_source/data/loader.py:53:        Load a single h5ad matrix from a local path.
+1_asset/migrated_pxfquery_package_source/data/loader.py:60:            Path to the .h5ad file.
+1_asset/migrated_pxfquery_package_source/data/loader.py:70:        path = Path(path)
+1_asset/migrated_pxfquery_package_source/data/loader.py:75:        self._data[pert_type] = ad.read_h5ad(path)
+1_asset/migrated_pxfquery_package_source/data/loader.py:82:        Expects files named: xpr_func_ad.h5ad, sh_func_ad.h5ad, cp_func_ad.h5ad
+1_asset/migrated_pxfquery_package_source/data/loader.py:88:        directory = Path(directory)
+1_asset/migrated_pxfquery_package_source/data/loader.py:90:            fpath = directory / f"{pert_type}_func_ad.h5ad"
+1_asset/migrated_pxfquery_package_source/data/loader.py:151:        raise NotImplementedError(
+1_asset/migrated_pxfquery_package_source/logging_utils.py:69:        Path(settings.log_dir).mkdir(parents=True, exist_ok=True)
+1_asset/migrated_pxfquery_package_source/logging_utils.py:71:        log_path = Path(settings.log_dir) / f"{settings.file_prefix}_{day}.log"

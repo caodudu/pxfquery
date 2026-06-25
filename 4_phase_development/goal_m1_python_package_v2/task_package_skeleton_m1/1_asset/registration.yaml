@@ -1,0 +1,40 @@
+assets:
+- id: A-001
+  name: pxfquery_development_state_report
+  type: document
+  source: predecessor
+  source_task: T-007
+  source_artifact_id: D-002
+  origin: T-007/D-002
+  registered: '2026-06-24'
+  path: 1_asset/pxfquery_development_state_report.md
+  symlink: true
+  status: ready
+  notes: Anchors package name (pxfquery) and module boundaries (core/data/query/index/llm/viz)
+  location: local
+- id: A-002
+  name: pxfquery_module_asset_status_matrix
+  type: table
+  source: predecessor
+  source_task: T-007
+  source_artifact_id: D-003
+  origin: T-007/D-003
+  registered: '2026-06-24'
+  path: 1_asset/pxfquery_module_asset_status_matrix.csv
+  symlink: true
+  status: ready
+  notes: Confirms per-module implementation status for stub planning
+  location: local
+- id: A-003
+  name: pxfquery_development_phase_handoff
+  type: document
+  source: predecessor
+  source_task: T-007
+  source_artifact_id: D-006
+  origin: T-007/D-006
+  registered: '2026-06-24'
+  path: 1_asset/pxfquery_development_phase_handoff.md
+  symlink: true
+  status: ready
+  notes: Provides D001 package setup scope and acceptance criteria
+  location: local

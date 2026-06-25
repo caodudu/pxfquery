@@ -1,0 +1,55 @@
+session_id: cli_494e8dfb1d7d
+driver: codex
+agent_id: AGT-001
+agent_label: Codex hard tasks
+stage: config
+status: failed
+created: '2026-06-24T03:17:32'
+task_path: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_contract_and_demo_spec_m1
+work_dir: /Users/dudu/Documents/3_Project/12_PxFquery
+session_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_contract_and_demo_spec_m1/5_report/cli_sessions/config/20260624_031732_codex_cli_494e8dfb1d7d
+prompt_file: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_contract_and_demo_spec_m1/5_report/cli_sessions/config/20260624_031732_codex_cli_494e8dfb1d7d/prompt.md
+events_file: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_contract_and_demo_spec_m1/5_report/cli_sessions/config/20260624_031732_codex_cli_494e8dfb1d7d/events.jsonl
+stdout_file: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_contract_and_demo_spec_m1/5_report/cli_sessions/config/20260624_031732_codex_cli_494e8dfb1d7d/stdout.log
+stderr_file: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_contract_and_demo_spec_m1/5_report/cli_sessions/config/20260624_031732_codex_cli_494e8dfb1d7d/stderr.log
+agent_output_file: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_contract_and_demo_spec_m1/5_report/cli_sessions/config/20260624_031732_codex_cli_494e8dfb1d7d/agent_output.md
+cmd:
+- /opt/homebrew/bin/codex
+- exec
+- --dangerously-bypass-approvals-and-sandbox
+- --json
+- -C
+- /Users/dudu/Documents/3_Project/12_PxFquery
+- '-'
+agent_session_id: 019ef5ea-992b-7d30-a858-7a7141020a13
+parent_agent_session_id: ''
+dry_run: false
+fork_from_resume: false
+blocked_report_mtime_ns_before: 0
+codex_session_id: 019ef5ea-992b-7d30-a858-7a7141020a13
+prompt_source: assembled
+pid: 12622
+returncode: 1
+completed: '2026-06-24T03:19:30'
+context_estimate:
+  estimated_tokens: 13665
+  estimated_bytes: 40995
+  limit_tokens: 500000
+  exceeded: false
+  files:
+  - file: prompt.md
+    bytes: 35868
+    estimated_tokens: 11956
+  - file: events.jsonl
+    bytes: 2476
+    estimated_tokens: 826
+  - file: stdout.log
+    bytes: 2409
+    estimated_tokens: 803
+  - file: stderr.log
+    bytes: 0
+    estimated_tokens: 0
+  - file: agent_output.md
+    bytes: 242
+    estimated_tokens: 81
+  method: local_session_file_bytes_div_3

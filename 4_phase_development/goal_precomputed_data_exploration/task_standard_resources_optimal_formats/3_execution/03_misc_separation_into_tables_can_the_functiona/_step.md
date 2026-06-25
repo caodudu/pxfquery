@@ -1,0 +1,1 @@
+# Step 3: **Separation into tables**: Can the functional matrix be split into standalone tables? Assess: perturbation metadata table (obs data), function metadata table (var names + descriptions), and sparse score table (perturbation × function). Measure size trade-offs.

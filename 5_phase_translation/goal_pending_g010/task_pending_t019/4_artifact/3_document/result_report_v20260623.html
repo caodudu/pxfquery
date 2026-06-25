@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>T-019 调研结果报告 20260623</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: #172126;
+      background: #eef2f3;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif;
+      line-height: 1.68;
+    }
+    main {
+      width: min(960px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 34px 0 52px;
+    }
+    header {
+      background: #fff;
+      border: 1px solid #d9e0e4;
+      border-radius: 8px;
+      padding: 30px;
+      margin-bottom: 18px;
+    }
+    .eyebrow { color: #0f766e; font-size: 13px; font-weight: 700; margin: 0 0 10px; }
+    h1 { font-size: 32px; line-height: 1.18; margin: 0 0 14px; }
+    .lead { font-size: 18px; max-width: 900px; margin: 0; color: #26323a; }
+    section {
+      background: #fff;
+      border: 1px solid #d9e0e4;
+      border-radius: 8px;
+      padding: 24px;
+      margin-top: 16px;
+    }
+    h2 { font-size: 24px; line-height: 1.25; margin: 0 0 14px; }
+    h3 { font-size: 18px; line-height: 1.35; margin: 0 0 8px; }
+    p { margin: 0 0 12px; }
+    p:last-child { margin-bottom: 0; }
+    .tag {
+      display: inline-block;
+      border: 1px solid #d9e0e4;
+      border-radius: 999px;
+      padding: 2px 9px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #2f3b42;
+      background: #fbfcfd;
+      margin-right: 6px;
+    }
+    .card {
+      border: 1px solid #d9e0e4;
+      border-radius: 8px;
+      padding: 20px;
+      margin-top: 12px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    th, td {
+      border-bottom: 1px solid #d9e0e4;
+      padding: 10px 8px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: #f5f7f8; font-weight: 800; }
+    tr:last-child td { border-bottom: 0; }
+    code {
+      background: #eef2f4;
+      border: 1px solid #dce3e7;
+      border-radius: 4px;
+      padding: 1px 5px;
+      font-family: ui-monospace, monospace;
+      font-size: 0.92em;
+    }
+    .free { color: #15803d; font-weight: 700; }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <p class="eyebrow">T-019 · 2026-06-23 · PxFquery 网站交付方案</p>
+    <h1>生物信息查询网站交付可行性调研 — 结果报告</h1>
+    <p class="lead">本文档汇总 T-019 四个调研子任务的成果，为 PxFquery 论文的配套网站方案提供决策依据。</p>
+  </header>
+
+  <section>
+    <h2>子任务 1：GitHub Pages 用于学术论文配套网站</h2>
+    <div class="card">
+      <h3>结论：完全可行，已被大量期刊论文采用</h3>
+      <p>GitHub Pages（<code>*.github.io</code>）是学术界广泛接受的论文配套网站托管平台，包括 MDPI Genes、<em>Bioinformatics</em>、<em>Nucleic Acids Research</em> 等期刊均不限制使用。期刊核心关注的是论文的同行评审质量和数据可访问性，而非托管服务商。</p>
+      <p><strong>真实论文案例：</strong></p>
+      <ul>
+        <li><strong>BioBuntu</strong> — 开源生物信息平台，发布在 <em>BioTech</em> (MDPI, 2025)。网站：<code>biobuntu.github.io</code></li>
+        <li><strong>EDGE</strong> — 微生物基因组分析工具，发表在 <em>Nucleic Acids Research</em> Web Server Issue。网站：<code>lanl-bioinformatics.github.io/EDGE/</code></li>
+        <li><strong>Epiviz File Server</strong> — 基因组交互式可视化工具，发表在 <em>Bioinformatics</em> (Oxford, 2020)。网站：<code>epiviz.github.io</code></li>
+      </ul>
+      <p><strong>免费额度</strong>：GitHub Pages 免费，无强制收费。公共仓库即可使用，支持自定义域名和自动 HTTPS。</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>子任务 2：GitHub Pages 集成 LLM API</h2>
+    <div class="card">
+      <h3>结论：纯静态站可以直接调 LLM API，但有约束</h3>
+      <table>
+        <thead><tr><th>方案</th><th>后端需求</th><th>安全性</th><th>延迟</th></tr></thead>
+        <tbody>
+          <tr><td>纯前端 JS 直接调 API</td><td>无</td><td>⚠ 密钥暴露</td><td>客户端直接</td></tr>
+          <tr><td>+ Cloudflare Workers 代理</td><td>免费 Workers 层</td><td>密钥在 Worker</td><td>加一跳</td></tr>
+          <tr><td>+ 完整后端（PxFquery 全部功能）</td><td>需要服务器</td><td>安全</td><td>可接受</td></tr>
+        </tbody>
+      </table>
+      <p><strong>PxFquery 分析</strong>：纯前端方案可展示预计算结果和 LLM 对话示例；但完整矩阵查询（h5ad 加载、索引检索）必须有后端。建议论文初期用纯静态站做展示，完整分析功能放在 GitHub 仓库中供用户本地运行。</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>子任务 3：生信网站完整部署流程</h2>
+    <div class="card">
+      <h3>全流程概览</h3>
+      <ol>
+        <li><strong>准备</strong>：前端代码（HTML/React/Vue）+ 后端代码（Python Flask/FastAPI）+ 数据文件（h5ad/JSON）→ GitHub 仓库</li>
+        <li><strong>域名</strong>：免费 <code>username.github.io</code> 或自定义域名 ¥50-150/年</li>
+        <li><strong>部署</strong>：静态页 → GitHub Pages；有后端 → Render/Railway/Fly.io/阿里云</li>
+        <li><strong>分析型站特点</strong>：需要 Python 运行时、大文件存储、异步任务（Serverless 超时 10-30s 不适合长计算）</li>
+        <li><strong>维护</strong>：UptimeRobot 免费监控、GitHub Actions 自动 CI/CD</li>
+      </ol>
+      <p>详细步骤见 <code>4_artifact/2_persist/bioinfo_website_deployment_guide.md</code></p>
+    </div>
+  </section>
+
+  <section>
+    <h2>子任务 4：低成本托管方案对比</h2>
+    <div class="card">
+      <table>
+        <thead><tr><th>方案</th><th>起步年费</th><th>Python 支持</th><th>大文件</th><th>适合场景</th></tr></thead>
+        <tbody>
+          <tr><td><span class="free">A. 纯 GitHub Pages</span></td><td><span class="free">$0</span></td><td>✗</td><td>✗（GitHub 仓库 1GB）</td><td>纯静态展示、文档</td></tr>
+          <tr><td>B. GitHub Pages + Vercel</td><td><span class="free">$0</span></td><td>✓（Vercel Functions）</td><td>△</td><td>静态站 + API 代理</td></tr>
+          <tr><td>C. Render Free</td><td><span class="free">$0</span></td><td>✓（750h/月，有冷启动）</td><td>△</td><td>小 Python 后端演示</td></tr>
+          <tr><td>D. Railway</td><td>$60（$5/月）</td><td>✓</td><td>✓</td><td>持续运行的 Python 服务</td></tr>
+          <tr><td>E. 阿里云轻量服务器</td><td>¥500+</td><td>✓</td><td>✓</td><td>国内访问、数据量大</td></tr>
+        </tbody>
+      </table>
+      <p><strong>推荐</strong>：论文早期用方案 A/免费层，有后端需求时先用 B 或 C（免费），确认流量后再决定是否升级到 D 或 E。</p>
+      <p>详细价格数据见 <code>4_artifact/2_persist/low_cost_fullstack_hosting_comparison.md</code></p>
+    </div>
+  </section>
+
+  <section>
+    <h2>综合建议（对 PxFquery）</h2>
+    <div class="card">
+      <h3>推荐起步方案</h3>
+      <p><strong>第一阶段（论文提交前）</strong>：GitHub Pages 免费静态站 + 论文摘要、方法介绍、功能截图、文档链接。零成本，无后顾之忧。</p>
+      <p><strong>第二阶段（审稿中或发表后）</strong>：在 GitHub Pages 上增加一个交互式案例演示页（纯前端 JS + Cloudflare Workers + LLM API 代理），展示一个 PxFquery 正向/反向查询的实时示例。</p>
+      <p><strong>第三阶段（如需完整在线分析功能）</strong>：使用 Render 免费层或 Railway $5/月 部署 Python 后端，支持用户上传简化的表达矩阵并运行查询。</p>
+      <p><strong>底层计算</strong>：核心矩阵计算和索引检索留在 Python 包中，用户可通过 <code>pip install</code> 和 Jupyter notebook 本地运行。网站上展示结果截图和预计算案例。</p>
+    </div>
+  </section>
+</main>
+</body>
+</html>

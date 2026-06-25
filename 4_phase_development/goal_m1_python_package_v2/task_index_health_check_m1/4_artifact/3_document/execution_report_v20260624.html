@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Execution Report — T-045 Index Health Check M1</title>
+<style>
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 960px; margin: 40px auto; padding: 0 20px; line-height: 1.6; color: #1a1a1a; }
+h1 { border-bottom: 2px solid #333; padding-bottom: 8px; }
+h2 { margin-top: 32px; border-bottom: 1px solid #ddd; padding-bottom: 4px; }
+table { border-collapse: collapse; width: 100%; margin: 16px 0; }
+th, td { border: 1px solid #ccc; padding: 8px 12px; text-align: left; }
+th { background: #f5f5f5; }
+.status-pass { color: #1a7f37; font-weight: bold; }
+.status-warn { color: #9a6700; font-weight: bold; }
+.code { font-family: 'SF Mono', 'Cascadia Code', monospace; background: #f0f0f0; padding: 2px 6px; border-radius: 3px; font-size: 0.9em; }
+pre { background: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; font-size: 0.9em; }
+</style>
+</head>
+<body>
+<h1>Execution Report — T-045 Index Health Check M1</h1>
+
+<p><strong>生成时间:</strong> 2026-06-24<br>
+<strong>任务：</strong> T-045 index_health_check_m1<br>
+<strong>阶段：</strong> development | <strong>目标：</strong> goal_m1_python_package_v2</p>
+
+<h2>Summary</h2>
+<table>
+<tr><th>Metric</th><th>Count</th></tr>
+<tr><td>核心索引已检查</td><td>4 (all valid JSON)</td></tr>
+<tr><td>可选索引已检查</td><td>6 (all valid JSON)</td></tr>
+<tr><td>M1 阻塞项</td><td>0</td></tr>
+<tr><td>警告</td><td>4</td></tr>
+<tr><td>外观问题</td><td>2</td></tr>
+<tr><td>步骤已完成</td><td>7/7</td></tr>
+</table>
+
+<h2>Execution Steps</h2>
+
+<h3>Step 1 — Load and inspect required core indexes</h3>
+<table>
+<tr><th>Index</th><th>Type</th><th>Size</th><th>Entries</th><th>Status</th></tr>
+<tr><td>cellline_index.json</td><td>dict</td><td>3.5 KB</td><td>240 cell lines</td><td class="status-pass">PASS</td></tr>
+<tr><td>drug_index.json</td><td>dict</td><td>180 KB</td><td>5,958 entries</td><td class="status-pass">PASS</td></tr>
+<tr><td>gene_index.json</td><td>dict</td><td>6.4 MB</td><td>78,061 entries</td><td class="status-pass">PASS</td></tr>
+<tr><td>function_index.json</td><td>dict (meta/var_names/aliases)</td><td>18 KB</td><td>91 terms</td><td class="status-warn">WARNING</td></tr>
+</table>
+
+<h3>Step 2 — Validate M1-required keys</h3>
+<ul>
+<li><strong>cellline_index:</strong> 包装键 <span class="code">valid_cells</span> 映射到 240 个名称的列表。非 1 对 1 映射——仅用于展示</li>
+<li><strong>drug_index:</strong> 5,958 条记录，98%+ 为 BRD 前缀值。单向别名→BRD——有效</li>
+<li><strong>gene_index:</strong> 字段: <span class="code">symbol</span>, <span class="code">gene_type</span>, <span class="code">in_matrix</span>. No <span class="code">ensembl_id</span> — 警告</li>
+<li><strong>function_index:</strong> 91 个术语（50 个 Hallmark + 41 个 3CA MPS）位于 <span class="code">meta</span> dict. Has <span class="code">来源</span>/<span class="code">标签</span>, no <span class="code">id</span>/<span class="code">名称</span>/<span class="code">类别</span> — 警告</li>
+<li><strong>data_description.yaml:</strong> 有效的 YAML，包含 <span class="code">资产</span> 提供字段语义的键</li>
+</ul>
+
+<h3>Step 3 — Inspect optional neighbor/tree indexes</h3>
+<ul>
+<li>所有 6 个索引均已解析且结构有效</li>
+<li>邻居图（药物：5,312，基因：33,791/30,319）均具有统一的 50 边基数</li>
+<li>cellline_neighbors：19 个谱系组，每组 1-5 个成员</li>
+<li>cellline_tree：3 个扁平键， <strong>非层次树</strong> ——代理扩展警告</li>
+</ul>
+
+<h3>Step 4 — Cross-reference with M1 demo requirements</h3>
+<ul>
+<li>T-042 尚未执行——使用 T-013 历史证据作为代理</li>
+<li>EGFR、A549、HALLMARK_APOPTOSIS、HALLMARK_MYC_TARGETS_V1：全部存在且已覆盖</li>
+<li>未发现实体级覆盖缺口</li>
+<li>识别出6个结构缺口（详见 gap_notes.md）</li>
+</ul>
+
+<h3>Step 5 — Machine-readable health summary</h3>
+<p>已写入 <span class="code">4_artifact/2_persist/index_health_summary.json</span> （239行，有效JSON）</p>
+
+<h3>Step 6 — Human-readable health report</h3>
+<p>已写入 <span class="code">4_artifact/2_persist/index_health_report.md</span>.</p>
+
+<h3>Step 7 — Gap notes</h3>
+<p>已写入 <span class="code">4_artifact/3_document/gap_notes.md</span>.</p>
+
+<h2>Commands Executed</h2>
+<ol>
+<li>已验证所有11个T-021索引文件均存在</li>
+<li>Python JSON 冒烟测试：function_index.json（包含3个键的字典，meta中有91个术语）</li>
+<li>完整Python检查：所有索引已解析、模式已记录、键已验证、邻接图已检查</li>
+<li>实体覆盖检查：EGFR/A549/HALLMARK_APOPTOSIS/HALLMARK_MYC_TARGETS_V1全部存在</li>
+<li>可交付物生成：summary JSON + report MD + gap notes MD</li>
+</ol>
+
+<h2>Environment</h2>
+<p>Python：pxfquery conda 环境 | 所有资源本地化 | 无网络/API 调用</p>
+
+<h2>Conclusion</h2>
+<p><strong>所有 7 个步骤已完成。</strong> 无阻塞步骤。所有3个必需可交付物已生成。T-045已准备好移交给T-047加载器加固。</p>
+</body>
+</html>

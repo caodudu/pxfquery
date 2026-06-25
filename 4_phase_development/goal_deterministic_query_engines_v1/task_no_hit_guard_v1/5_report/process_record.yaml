@@ -1,0 +1,114 @@
+schema_version: 1
+updated_at: '2026-06-24T01:08:45'
+source: cli_sessions
+path: 5_report/process_record.yaml
+template:
+  purpose: Task deliverable process record; refreshed from CyHex CLI session metadata
+    while the task runs.
+  stages:
+  - config
+  - check
+  - execute
+  - deliver
+  memory_note: max_rss_kb is captured from live process RSS when the UI/backend observes
+    a running session; completed sessions may be blank if no live sample was available.
+task:
+  task_id: T-031
+  name: no_hit_guard_v1
+  status: done
+  sub_status: ''
+summary:
+  session_count: 3
+  running_count: 0
+  done_count: 3
+  failed_count: 0
+  total_duration_seconds: 4898
+  max_rss_kb: null
+phases:
+- stage: config
+  label_zh: 配置
+  label_en: Configuration
+  status: done
+  started: '2026-06-23T13:00:49'
+  completed: '2026-06-23T13:22:16'
+  duration_seconds: 1287
+  max_rss_kb: null
+  sessions:
+  - session_id: cli_25ebdc576250
+    stage: config
+    status: done
+    driver: opencode
+    agent_id: ''
+    agent_label: OpenCode cheap tasks
+    model: llm_gateway/deepseek-ai/deepseek-v4-pro
+    pid: 31891
+    created: '2026-06-23T13:00:49'
+    completed: '2026-06-23T13:22:16'
+    duration_seconds: 1287
+    current_rss_kb: null
+    max_rss_kb: null
+    returncode: 0
+    prompt_source: assembled
+    work_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_deterministic_query_engines_v1/task_no_hit_guard_v1
+    session_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_deterministic_query_engines_v1/task_no_hit_guard_v1/5_report/cli_sessions/config/20260623_130049_opencode_cli_25ebdc576250
+- stage: check
+  label_zh: 检查
+  label_en: Check
+  status: done
+  started: '2026-06-23T13:22:17'
+  completed: '2026-06-23T13:44:33'
+  duration_seconds: 1336
+  max_rss_kb: null
+  sessions:
+  - session_id: cli_a1a2032358d8
+    stage: check
+    status: done
+    driver: opencode
+    agent_id: ''
+    agent_label: OpenCode cheap tasks
+    model: llm_gateway/deepseek-ai/deepseek-v4-pro
+    pid: 37182
+    created: '2026-06-23T13:22:17'
+    completed: '2026-06-23T13:44:33'
+    duration_seconds: 1336
+    current_rss_kb: null
+    max_rss_kb: null
+    returncode: 0
+    prompt_source: assembled
+    work_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_deterministic_query_engines_v1/task_no_hit_guard_v1
+    session_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_deterministic_query_engines_v1/task_no_hit_guard_v1/5_report/cli_sessions/check/20260623_132217_opencode_cli_a1a2032358d8
+- stage: execute
+  label_zh: 执行
+  label_en: Execution
+  status: done
+  started: '2026-06-23T13:44:34'
+  completed: '2026-06-23T14:22:29'
+  duration_seconds: 2275
+  max_rss_kb: null
+  sessions:
+  - session_id: cli_62dc423a8814
+    stage: execute
+    status: done
+    driver: opencode
+    agent_id: ''
+    agent_label: OpenCode cheap tasks
+    model: llm_gateway/deepseek-ai/deepseek-v4-pro
+    pid: 45384
+    created: '2026-06-23T13:44:34'
+    completed: '2026-06-23T14:22:29'
+    duration_seconds: 2275
+    current_rss_kb: null
+    max_rss_kb: null
+    returncode: 0
+    prompt_source: assembled
+    work_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_deterministic_query_engines_v1/task_no_hit_guard_v1
+    session_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_deterministic_query_engines_v1/task_no_hit_guard_v1/5_report/cli_sessions/execute/20260623_134434_opencode_cli_62dc423a8814
+- stage: deliver
+  label_zh: 交付
+  label_en: Delivery
+  status: not_started
+  started: ''
+  completed: ''
+  duration_seconds: null
+  max_rss_kb: null
+  sessions: []

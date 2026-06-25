@@ -1,0 +1,1 @@
+# Step 4: **Missing function_index.json**: Check whether the 91 HALLMARK names can be reconstructed from matrix `var` attributes or from context cards. Determine whether a new `function_index.json` should be part of the standard resource output.

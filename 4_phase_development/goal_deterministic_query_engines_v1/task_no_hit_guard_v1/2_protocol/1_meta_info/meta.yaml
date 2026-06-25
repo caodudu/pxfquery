@@ -1,0 +1,25 @@
+task_id: T-031
+name: no_hit_guard_v1
+phase: development
+goal: goal_deterministic_query_engines_v1
+project: P-012
+objective: Create pxfquery-{task_id} no-hit safety guard to prevent fuzzy false-positive
+  perturbation matches. Deliver patch, tests, and NOT_FOUND evidence.
+executor: hybrid
+agent_id: null
+config_agent_id: null
+check_agent_id: null
+execute_agent_id: null
+server_id: null
+status: done
+cyhex_version: 1.2.3
+created: '2026-06-23'
+started: null
+completed: '2026-06-23'
+notes: 防误报无命中安全防护
+fast_pass_permission: green
+sub_status: ''
+fast_pass_last_auto_approved: check_review
+fast_pass_last_auto_approved_at: '2026-06-23T13:44:34'
+fast_pass_accepted: true
+fast_pass_accepted_at: '2026-06-23T14:22:30'

@@ -1,0 +1,67 @@
+manifest_id: reverse_repair_manifest_m1_1
+task_id: T-060
+generated: '2026-06-24'
+fixture_package_root: 4_artifact/2_persist/reverse_repair_fixture_m1_1
+provenance:
+  base_fixture: T-043 fixture_package_m1 via registered A-004
+  repair_content: Synthetic task-local A549 xpr rows and target columns for T-042
+    DEMO-002
+  not_raw_data: true
+resources:
+- resource_id: m1_fixture_cp_matrix
+  path: 4_artifact/2_persist/reverse_repair_fixture_m1_1/cp_func_fixture_m1.h5ad
+  file_type: h5ad
+  loader_role: T-060 repair cp functional matrix
+  required_keys_or_columns:
+  - sig_id
+  - project_code
+  - cell_iname
+  - pert_id
+  - cmap_name
+  - pert_dose
+  - pert_time
+  - HALLMARK_APOPTOSIS
+  - HALLMARK_MYC_TARGETS_V1
+  - NON_DIFFERENTIALLY_SCORED_PROGRAM
+  provenance: Base copied from A-004; target-column additions are synthetic repair
+    support.
+  validation_rule: Readable by T-046 M1FixtureLoader; repair content is task-local
+    synthetic support.
+- resource_id: m1_fixture_sh_matrix
+  path: 4_artifact/2_persist/reverse_repair_fixture_m1_1/sh_func_fixture_m1.h5ad
+  file_type: h5ad
+  loader_role: T-060 repair sh functional matrix
+  required_keys_or_columns:
+  - sig_id
+  - project_code
+  - cell_iname
+  - pert_id
+  - cmap_name
+  - pert_dose
+  - pert_time
+  - HALLMARK_APOPTOSIS
+  - HALLMARK_MYC_TARGETS_V1
+  - NON_DIFFERENTIALLY_SCORED_PROGRAM
+  provenance: Base copied from A-004; target-column additions are synthetic repair
+    support.
+  validation_rule: Readable by T-046 M1FixtureLoader; repair content is task-local
+    synthetic support.
+- resource_id: m1_fixture_xpr_matrix
+  path: 4_artifact/2_persist/reverse_repair_fixture_m1_1/xpr_func_fixture_m1.h5ad
+  file_type: h5ad
+  loader_role: T-060 repair xpr functional matrix
+  required_keys_or_columns:
+  - sig_id
+  - project_code
+  - cell_iname
+  - pert_id
+  - cmap_name
+  - pert_dose
+  - pert_time
+  - HALLMARK_APOPTOSIS
+  - HALLMARK_MYC_TARGETS_V1
+  - NON_DIFFERENTIALLY_SCORED_PROGRAM
+  provenance: Base copied from A-004; target-column additions are synthetic repair
+    support.
+  validation_rule: Readable by T-046 M1FixtureLoader; repair content is task-local
+    synthetic support.

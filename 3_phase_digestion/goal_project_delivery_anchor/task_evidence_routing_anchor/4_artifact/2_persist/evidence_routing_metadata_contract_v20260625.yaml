@@ -1,0 +1,762 @@
+# PxFquery Evidence Routing — Metadata Contract
+# Task: T-064 evidence_routing_anchor
+# Generated: 2026-06-25
+# Version: 1.0.0
+#
+# This YAML defines the evidence metadata schema that every PxFquery route response
+# must conform to. All 8 fields are required in every response.
+
+metadata_contract:
+  version: "1.0.0"
+  description: >
+    Evidence metadata contract for PxFquery route responses.
+    Every query response (exact-hit, proxy-hit, no-hit, ambiguous-hit,
+    context-missing, transfer/suggestion) must include all 8 fields.
+    Fields may have null/empty values where semantically appropriate
+    (e.g., proxy_chain is null for exact-hit).
+
+  fields:
+    route_type:
+      type: string
+      required: true
+      description: >
+        The evidence routing route type determined for this query.
+        Must be one of the six defined route types.
+      enum:
+        - exact-hit
+        - proxy-hit
+        - no-hit
+        - ambiguous-hit
+        - context-missing
+        - transfer/suggestion
+      valid_range: "One of the six enum values exactly; case-sensitive."
+      example: "exact-hit"
+
+    query_context:
+      type: object
+      required: true
+      description: >
+        Resolved biological context for the query. Contains the cell line,
+        tissue lineage, perturbation type, and any normalization state
+        used for matrix selection.
+      properties:
+        cell_line:
+          type: string
+          required: true
+          description: >
+            Resolved cell line name as found in cellline_index.json or
+            proxy chain. Null if context-missing.
+          example: "A549"
+        cell_line_source:
+          type: string
+          required: true
+          description: >
+            How the cell line was resolved. One of: exact, proxy, unresolved.
+          enum: [exact, proxy, unresolved]
+          example: "exact"
+        tissue_lineage:
+          type: string
+          required: false
+          description: >
+            Tissue/lineage classification from cellline_neighbors.json
+            or cellline_meta_standard.csv. Null if unresolved.
+          example: "lung"
+        disease:
+          type: string
+          required: false
+          description: >
+            Disease classification from cellline_neighbors.json.
+            Null if unresolved.
+          example: "NSCLC"
+        subtype:
+          type: string
+          required: false
+          description: >
+            Subtype classification from cellline_neighbors.json.
+            Null if unresolved.
+          example: "adenocarcinoma"
+        perturbation_type:
+          type: string
+          required: true
+          description: >
+            Type of perturbation: compound, shRNA, ORF_overexpression, gene.
+            Determines which functional matrix (cp/sh/xpr) is selected.
+            Null if perturbation unresolved.
+          enum: [compound, shRNA, orf_overexpression, gene, unresolved, null]
+          example: "compound"
+        direction:
+          type: string
+          required: true
+          description: >
+            Query direction: forward (perturbation → function) or
+            reverse (function → perturbation).
+          enum: [forward, reverse]
+          example: "forward"
+        normalization_state:
+          type: string
+          required: false
+          description: >
+            Any normalization applied to the functional scores.
+            Default: none (raw float32 scores from functional matrices).
+          example: null
+      example:
+        cell_line: "A549"
+        cell_line_source: "exact"
+        tissue_lineage: "lung"
+        disease: "NSCLC"
+        subtype: "adenocarcinoma"
+        perturbation_type: "compound"
+        direction: "forward"
+        normalization_state: null
+
+    perturbation_resolution:
+      type: object
+      required: true
+      description: >
+        How the perturbation was resolved. Records the resolution
+        method, the matched entity, and the source index.
+      properties:
+        method:
+          type: string
+          required: true
+          description: >
+            Resolution method used.
+          enum:
+            - exact_match
+            - proxy_neighbor
+            - ambiguous
+            - unmatched
+            - not_applicable
+          example: "exact_match"
+        resolved_name:
+          type: string
+          required: true
+          description: >
+            The final resolved perturbation name or symbol.
+            For proxy: the proxy neighbor name.
+            For unmatched: the original query string.
+            Null if not_applicable.
+          example: "gefitinib"
+        resolved_id:
+          type: string
+          required: false
+          description: >
+            The canonical identifier: BRD-ID for drugs,
+            gene symbol (upper) for genes. Null if unmatched.
+          example: "BRD-K68045993"
+        original_query:
+          type: string
+          required: true
+          description: >
+            The perturbation string as provided in the query.
+          example: "gefitinib"
+        source_index:
+          type: string
+          required: true
+          description: >
+            Which T-021 standard index was used for resolution.
+          enum:
+            - drug_index.json
+            - gene_index.json
+            - gene_index_simple.json
+            - drug_neighbors.json
+            - gene_neighbors.json
+            - gene_neighbors_simple.json
+            - null
+          example: "drug_index.json"
+        perturbation_type:
+          type: string
+          required: true
+          description: >
+            Resolved perturbation type.
+          enum: [compound, gene, shRNA, orf_overexpression, unknown]
+          example: "compound"
+      example:
+        method: "exact_match"
+        resolved_name: "gefitinib"
+        resolved_id: "BRD-K68045993"
+        original_query: "gefitinib"
+        source_index: "drug_index.json"
+        perturbation_type: "compound"
+
+    function_response:
+      type: object
+      required: true
+      description: >
+        The functional score result of the query. Structure depends on
+        the route_type and query direction.
+      properties:
+        status:
+          type: string
+          required: true
+          description: >
+            Retrieval status indicator.
+          enum:
+            - OK
+            - NO_HIT
+            - NO_RETRIEVAL
+            - AMBIGUOUS
+            - NO_RANKING
+          example: "OK"
+        matrix_source:
+          type: string
+          required: false
+          description: >
+            Which T-021 functional matrix was queried.
+            Null if no matrix was queried.
+          enum:
+            - cp_func_ad.h5ad
+            - sh_func_ad.h5ad
+            - xpr_func_ad.h5ad
+            - null
+          example: "cp_func_ad.h5ad"
+        sig_id:
+          type: string
+          required: false
+          description: >
+            Signature identifier from the matrix obs row.
+            Null if no observation was retrieved.
+          example: "ABY001_A549_XH:BRD-K68045993"
+        scores:
+          type: object
+          required: false
+          description: >
+            The 91-function score vector or ranked candidates.
+            For exact-hit and proxy-hit (forward): full score dict.
+            For reverse: ranked list of perturbation candidates.
+            Null if no retrieval.
+          properties:
+            score_vector:
+              type: object
+              required: false
+              description: >
+                Dict mapping function term name → float32 score.
+                91 entries from the functional matrix var_names.
+                Score range: [-10.0, 10.0].
+              example:
+                HALLMARK_APOPTOSIS: 1.234
+                HALLMARK_ADIPOGENESIS: -0.567
+            ranked_candidates:
+              type: array
+              required: false
+              description: >
+                For reverse query: ranked list of candidate perturbations.
+                Each entry: {pert_id, cmap_name, score, rank}.
+              items:
+                type: object
+                properties:
+                  pert_id:
+                    type: string
+                  cmap_name:
+                    type: string
+                  score:
+                    type: number
+                  rank:
+                    type: integer
+        function_terms:
+          type: array
+          required: false
+          description: >
+            The 91 function terms queried (from function_index.json var_names).
+            Present to validate score vector dimension.
+          items:
+            type: string
+          example: ["HALLMARK_ADIPOGENESIS", "HALLMARK_APOPTOSIS", "..."]
+      example:
+        status: "OK"
+        matrix_source: "cp_func_ad.h5ad"
+        sig_id: "ABY001_A549_XH:BRD-K68045993"
+        scores:
+          score_vector:
+            HALLMARK_APOPTOSIS: 1.234
+            HALLMARK_ADIPOGENESIS: -0.567
+
+    confidence:
+      type: string
+      required: true
+      description: >
+        Route-level confidence classification based on resolution quality.
+        Must be one of the four defined values.
+      enum:
+        - high
+        - medium
+        - low
+        - n/a
+      valid_range: "high | medium | low | n/a"
+      description_detail: >
+        - high: Both perturbation and context resolved by exact index match.
+          No proxy, no ambiguity.
+        - medium: One dimension resolved by proxy (PROXY_PERT or PROXY_CELL).
+          Proxy source and similarity documented.
+        - low: Both dimensions proxy-resolved (PROXY_BOTH), or ambiguous-hit
+          with multiple valid candidates.
+        - n/a: No functional retrieval attempted (context-missing,
+          transfer/suggestion).
+      example: "high"
+
+    proxy_chain:
+      type: array
+      required: true
+      description: >
+        If proxy routing was used, the full proxy chain documenting each
+        proxy step. Each entry describes one dimension's proxy path.
+        Empty array or null if no proxy was used.
+      items:
+        type: object
+        properties:
+          dimension:
+            type: string
+            required: true
+            description: "Which dimension was proxied: perturbation or cell_line."
+            enum: [perturbation, cell_line]
+          from:
+            type: string
+            required: true
+            description: "Original query value."
+          to:
+            type: string
+            required: true
+            description: "Proxy neighbor selected."
+          via:
+            type: string
+            required: true
+            description: >
+              Proxy path description including the neighbor index used
+              and the biological/similarity rationale.
+          similarity:
+            type: number
+            required: false
+            description: >
+              Raw similarity score (Tanimoto for drugs, cosine for genes).
+              For drugs: Tanimoto ∈ [0, 1].
+              For genes: cosine ∈ [-1, 1] (typically ≥ 0.50 for proxy use).
+          similarity_unit:
+            type: string
+            required: false
+            description: "Similarity metric used: Tanimoto, cosine, lineage."
+            enum: [Tanimoto, cosine, lineage]
+          threshold_applied:
+            type: number
+            required: false
+            description: "The minimum similarity threshold that was met."
+      example:
+        - dimension: "cell_line"
+          from: "NCI-H226"
+          to: "A549"
+          via: "lung/NSCLC/adenocarcinoma via cellline_neighbors.json"
+          similarity_unit: "lineage"
+        - dimension: "perturbation"
+          from: "imatinib"
+          to: "dasatinib"
+          via: "drug_neighbors.json Tanimoto neighbor"
+          similarity: 0.78
+          similarity_unit: "Tanimoto"
+          threshold_applied: 0.40
+
+    diagnostics:
+      type: object
+      required: true
+      description: >
+        Auxiliary diagnostic information about the resolution process.
+        Always present; may be empty if no warnings or issues.
+      properties:
+        warnings:
+          type: array
+          required: false
+          description: >
+            Non-blocking warnings about the resolution process
+            (e.g., "cell_line_proxy_used", "perturbation_proxy_used",
+            "double_proxy_used", "near_tie_detected").
+          items:
+            type: string
+        missing_fields:
+          type: array
+          required: false
+          description: >
+            Required query fields that were missing (context-missing route).
+          items:
+            type: string
+        invalid_fields:
+          type: array
+          required: false
+          description: >
+            Query fields that failed validation (e.g., unknown cell line).
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              value:
+                type: string
+              reason:
+                type: string
+        indexes_searched:
+          type: array
+          required: false
+          description: >
+            For no-hit: the full list of index resources consulted.
+          items:
+            type: string
+        matrices_searched:
+          type: array
+          required: false
+          description: >
+            For no-hit with identified perturbation: which matrices
+            were checked for the observation.
+          items:
+            type: string
+        perturbation_not_found:
+          type: boolean
+          required: false
+          description: >
+            For no-hit: true if the perturbation was not in any index.
+        free_text_query:
+          type: boolean
+          required: false
+          description: >
+            For no-hit: true if the perturbation query was free-text
+            and could not be matched to an index entry.
+        fuzzy_candidate_blocked:
+          type: object
+          required: false
+          description: >
+            For no-hit with threshold enforcement: documents a fuzzy
+            match that was blocked by the similarity threshold.
+          properties:
+            candidate:
+              type: string
+            reason:
+              type: string
+            threshold_applied:
+              type: string
+        ambiguous_perturbation:
+          type: boolean
+          required: false
+          description: >
+            For ambiguous-hit: true if the perturbation resolved to
+            multiple valid index entries.
+        candidates:
+          type: array
+          required: false
+          description: >
+            For ambiguous-hit: list of candidate perturbation names/IDs.
+          items:
+            type: string
+        candidate_count:
+          type: integer
+          required: false
+          description: >
+            For ambiguous-hit: total number of candidates found.
+        near_tie:
+          type: boolean
+          required: false
+          description: >
+            For ambiguous-hit/reverse: true if top-2 candidates have
+            near-identical functional scores.
+        score_difference:
+          type: number
+          required: false
+          description: >
+            For near-tie: absolute score difference between top-2.
+        top_candidates:
+          type: array
+          required: false
+          description: >
+            For near-tie: list of top tied candidates.
+          items:
+            type: object
+            properties:
+              pert_id:
+                type: string
+              score:
+                type: number
+              rank:
+                type: integer
+        multiple_brd_ids:
+          type: boolean
+          required: false
+          description: >
+            For ambiguous-hit/drug: true if the query resolved to
+            multiple BRD-IDs.
+        note:
+          type: string
+          required: false
+          description: >
+            Free-text diagnostic note, e.g., explaining why a free-text
+            query cannot be resolved deterministically.
+        llm_mode:
+          type: string
+          required: false
+          description: >
+            For transfer/suggestion: whether LLM-assisted explanation
+            was generated.
+          enum: [enabled, disabled]
+      example:
+        warnings: ["cell_line_proxy_used"]
+        indexes_searched: []
+        matrices_searched: []
+        perturbation_not_found: false
+
+    suggestions:
+      type: array
+      required: true
+      description: >
+        Transfer/suggestion list. Always present; empty array for
+        exact-hit and proxy-hit routes with no issues.
+        For no-hit and ambiguous-hit: populated with actionable
+        next-query suggestions.
+      items:
+        type: object
+        properties:
+          type:
+            type: string
+            required: true
+            description: >
+              Suggestion type.
+            enum:
+              - reformulated_query
+              - related_perturbation
+              - alternative_context
+              - disambiguation
+              - missing_field
+              - llm_explanation
+              - diagnostic
+          text:
+            type: string
+            required: true
+            description: >
+              Human-readable suggestion text.
+          action:
+            type: string
+            required: false
+            description: >
+              Machine-readable action string for programmatic query
+              reformulation. Format: "forward_query(perturbation=..., cell_line=...)"
+              or "reverse_query(function_target=..., cell_line=...)".
+          required_field:
+            type: string
+            required: false
+            description: >
+              For missing_field type: the name of the required field.
+          examples:
+            type: array
+            required: false
+            description: >
+              Example values for the suggested field or query.
+            items:
+              type: string
+          options:
+            type: array
+            required: false
+            description: >
+              For disambiguation type: selectable candidate options.
+            items:
+              type: string
+          llm_mode:
+            type: string
+            required: false
+            description: >
+              For llm_explanation type: whether LLM was used to
+              generate this suggestion.
+            enum: [enabled, disabled]
+      example:
+        - type: "reformulated_query"
+          text: "Try 'gefitinib' (BRD-K68045993) in A549"
+          action: "forward_query(perturbation='gefitinib', cell_line='A549')"
+        - type: "related_perturbation"
+          text: "Related EGFR-targeting compounds: erlotinib, osimertinib, afatinib"
+        - type: "alternative_context"
+          text: "EGFR perturbation data also available in A375, MCF7"
+
+# --- Route-Type-Specific Field Requirements ---
+# While all 8 fields are always present, certain routes mandate
+# specific subfield content:
+#
+# exact-hit:
+#   confidence: high
+#   proxy_chain: []
+#   suggestions: []
+#
+# proxy-hit:
+#   confidence: medium (single proxy) | low (double proxy)
+#   proxy_chain: [non-empty array with at least 1 proxy step]
+#   diagnostics.warnings: must include which dimensions were proxied
+#   suggestions: may include reformulated query for direct hit
+#
+# no-hit:
+#   confidence: high (for the negative determination)
+#   function_response.status: NO_HIT
+#   diagnostics.perturbation_not_found: true or
+#     diagnostics.matrices_searched: [list indicating no observation found]
+#   suggestions: [non-empty array with reformulated_query and related_perturbation]
+#
+# ambiguous-hit:
+#   confidence: low
+#   function_response.status: AMBIGUOUS or NO_RANKING
+#   diagnostics.candidates: [non-empty list]
+#   suggestions: [non-empty array with disambiguation options]
+#
+# context-missing:
+#   confidence: n/a
+#   function_response.status: NO_RETRIEVAL
+#   diagnostics.missing_fields or diagnostics.invalid_fields: [non-empty]
+#   suggestions: [non-empty array with missing_field guidance]
+#
+# transfer/suggestion:
+#   confidence: varies (inherited from source route)
+#   function_response.status: NO_HIT or NO_RETRIEVAL or NO_RANKING
+#   suggestions: [non-empty array; this is the primary deliverable of this route]
+#   diagnostics: inherited from the source route that triggered transfer/suggestion
+
+route_type_field_constraints:
+  exact-hit:
+    confidence: "high"
+    proxy_chain: "[] (empty)"
+    function_response.status: "OK"
+    suggestions: "[] (empty)"
+  proxy-hit:
+    confidence: "medium | low"
+    proxy_chain: "[at least 1 entry]"
+    function_response.status: "OK"
+    diagnostics.warnings:
+      must_include_one_of:
+        - "cell_line_proxy_used"
+        - "perturbation_proxy_used"
+        - "double_proxy_used"
+  no-hit:
+    confidence: "high"
+    proxy_chain: "[] (empty)"
+    function_response.status: "NO_HIT"
+    diagnostics:
+      must_include_one_of:
+        - "perturbation_not_found: true"
+        - "matrices_searched: [non-empty]"
+    suggestions: "[non-empty]"
+  ambiguous-hit:
+    confidence: "low"
+    proxy_chain: "[] (empty)"
+    function_response.status: "AMBIGUOUS | NO_RANKING"
+    diagnostics.candidates: "[non-empty]"
+    suggestions: "[non-empty with disambiguation]"
+  context-missing:
+    confidence: "n/a"
+    proxy_chain: "null or []"
+    function_response.status: "NO_RETRIEVAL"
+    diagnostics:
+      must_include_one_of:
+        - "missing_fields: [non-empty]"
+        - "invalid_fields: [non-empty]"
+    suggestions: "[non-empty]"
+  transfer/suggestion:
+    confidence: "varies"
+    function_response.status: "NO_HIT | NO_RETRIEVAL | NO_RANKING"
+    suggestions: "[non-empty; primary output of this route]"
+    diagnostics: "inherited from triggering route"
+
+# --- LLM Field Policy ---
+# Protocol-named section describing where LLM assistance may appear.
+# LLM output is supplemental explanation only; deterministic index/matrix
+# retrieval remains the authority for route_type and function_response.
+llm_fields:
+  allowed_locations:
+    diagnostics.llm_mode:
+      type: string
+      enum: [enabled, disabled]
+      description: >
+        Records whether LLM assistance was used for explanation or
+        transfer/suggestion generation.
+    suggestions[].llm_mode:
+      type: string
+      enum: [enabled, disabled]
+      description: >
+        Records whether an individual suggestion was generated or
+        phrased with LLM assistance.
+    suggestions[].type:
+      allowed_value: "llm_explanation"
+      description: >
+        Optional suggestion type for explanatory text after deterministic
+        routing has already completed.
+  prohibited_roles:
+    - "LLM output must not override exact index matches."
+    - "LLM output must not create proxy-hit without threshold-passing neighbor evidence."
+    - "LLM output must not fabricate function_response scores or matrix observations."
+    - "LLM output must not convert no-hit into exact-hit or proxy-hit."
+  required_diagnostics:
+    when_llm_used:
+      - diagnostics.llm_mode
+      - suggestions[].llm_mode
+    when_llm_not_used:
+      - diagnostics.llm_mode may be omitted or set to disabled
+
+# --- Threshold Configuration ---
+# Similarity thresholds for proxy routing. These are the
+# numeric guards that prevent false-positive proxy hits (CAP-05).
+thresholds:
+  drug_proxy:
+    metric: "Tanimoto"
+    threshold: 0.40
+    source: "drug_neighbors.json (integer-coded: Tanimoto × 100)"
+    rationale: >
+      Standard Tanimoto threshold for chemical similarity.
+      Below 0.40, structural similarity is too weak to
+      justify functional proxy substitution.
+  gene_proxy:
+    metric: "cosine"
+    threshold: 0.50
+    source: "gene_neighbors.json / gene_neighbors_simple.json (integer-coded: cosine × 100)"
+    rationale: >
+      Cosine similarity threshold for GenePT embedding neighbors.
+      0.50 is a conservative threshold; GenePT cosine values
+      for biologically related genes typically exceed 0.70.
+  cell_line_proxy:
+    metric: "lineage"
+    threshold: "same lineage/disease/subtype group"
+    source: "cellline_neighbors.json"
+    rationale: >
+      Cell-line proxy is only valid within the same
+      lineage/disease/subtype group as defined in
+      cellline_neighbors.json. Cross-lineage proxy is
+      not allowed.
+
+threshold_policy:
+  source: "Alias of thresholds section, named for T-064 protocol verification."
+  enforcement: "required_before_proxy_hit"
+  false_positive_guard: "Unthresholded fuzzy/token fallback is disallowed."
+  fallback_when_not_met: "no-hit"
+  policies:
+    drug_proxy:
+      metric: "Tanimoto"
+      minimum: 0.40
+      source_index: "drug_neighbors.json"
+    gene_proxy:
+      metric: "cosine"
+      minimum: 0.50
+      source_index: "gene_neighbors.json / gene_neighbors_simple.json"
+    cell_line_proxy:
+      metric: "lineage"
+      minimum: "same lineage/disease/subtype group"
+      source_index: "cellline_neighbors.json"
+
+# --- T-021 Standard Resource References ---
+# All index and matrix references in this contract point to:
+standard_resources_base: "T-021 4_artifact/2_persist/standard_resources/"
+standard_resources:
+  functional_matrices:
+    - cp_func_ad.h5ad
+    - sh_func_ad.h5ad
+    - xpr_func_ad.h5ad
+  query_indexes:
+    - cellline_index.json
+    - cellline_neighbors.json
+    - cellline_tree.json
+    - drug_index.json
+    - drug_neighbors.json
+    - gene_index.json
+    - gene_index_simple.json
+    - gene_neighbors.json
+    - gene_neighbors_simple.json
+    - function_index.json
+  metadata_tables:
+    - cellline_meta_standard.csv
+    - compound_meta_standard.csv
+    - gene_info_standard.csv

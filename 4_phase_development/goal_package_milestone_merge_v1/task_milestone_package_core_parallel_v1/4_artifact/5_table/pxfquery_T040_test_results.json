@@ -1,0 +1,99 @@
+{
+  "task": "T-040_milestone_package_core_parallel_v1",
+  "timestamp": "2026-06-24T00:27:15",
+  "command": "/Users/dudu/Softwares/miniconda/bin/conda run -n pxfquery python 3_execution/05_run_verification/verify_package_core.py",
+  "argv": [
+    "3_execution/05_run_verification/verify_package_core.py"
+  ],
+  "cwd": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_package_milestone_merge_v1/task_milestone_package_core_parallel_v1",
+  "python": "/Users/dudu/Softwares/miniconda/envs/pxfquery/bin/python",
+  "exit_status": 0,
+  "package_root": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_package_milestone_merge_v1/task_milestone_package_core_parallel_v1/4_artifact/2_persist/pxfquery-T-040",
+  "package_src": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_package_milestone_merge_v1/task_milestone_package_core_parallel_v1/4_artifact/2_persist/pxfquery-T-040/src",
+  "predecessors_checked": {
+    "T-024": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_package_foundation_v1/task_workspace_package_v1/4_artifact",
+    "T-026": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_resource_index_packs_v1/task_matrix_loader_v1/4_artifact",
+    "T-029": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_deterministic_query_engines_v1/task_forward_query_engine_v1/4_artifact",
+    "T-031": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_deterministic_query_engines_v1/task_no_hit_guard_v1/4_artifact"
+  },
+  "required_paths": {
+    "t024_artifact": {
+      "path": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_package_foundation_v1/task_workspace_package_v1/4_artifact",
+      "kind": "dir",
+      "exists": true,
+      "ok": true
+    },
+    "t026_artifact": {
+      "path": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_resource_index_packs_v1/task_matrix_loader_v1/4_artifact",
+      "kind": "dir",
+      "exists": true,
+      "ok": true
+    },
+    "t029_artifact": {
+      "path": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_deterministic_query_engines_v1/task_forward_query_engine_v1/4_artifact",
+      "kind": "dir",
+      "exists": true,
+      "ok": true
+    },
+    "t031_artifact": {
+      "path": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_deterministic_query_engines_v1/task_no_hit_guard_v1/4_artifact",
+      "kind": "dir",
+      "exists": true,
+      "ok": true
+    },
+    "package_root": {
+      "path": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_package_milestone_merge_v1/task_milestone_package_core_parallel_v1/4_artifact/2_persist/pxfquery-T-040",
+      "kind": "dir",
+      "exists": true,
+      "ok": true
+    },
+    "package_src": {
+      "path": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_package_milestone_merge_v1/task_milestone_package_core_parallel_v1/4_artifact/2_persist/pxfquery-T-040/src",
+      "kind": "dir",
+      "exists": true,
+      "ok": true
+    },
+    "resource_bundle": {
+      "path": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/2_persist/standard_resources",
+      "kind": "dir",
+      "exists": true,
+      "ok": true
+    },
+    "xpr_matrix": {
+      "path": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/2_persist/standard_resources/xpr_func_ad.h5ad",
+      "kind": "file",
+      "exists": true,
+      "ok": true
+    }
+  },
+  "bundle_summary": {
+    "total_files_loaded": 19,
+    "failed_files": [],
+    "warnings": [],
+    "loaded_by_category": {
+      "matrices": 3,
+      "indexes": 10,
+      "metadata": 5,
+      "description": 1
+    }
+  },
+  "acceptance": {
+    "required_paths_ok": true,
+    "package_import_ok": true,
+    "compile_ok": true,
+    "loader_smoke_ok": true,
+    "xpr_matrix_loaded": true,
+    "forward_demo_found": true,
+    "forward_demo_has_terms": true,
+    "no_hit_guard_found_false": true,
+    "plain_not_found_false": true,
+    "t038_not_used": true
+  },
+  "stdout_summary": "Package import, compile, loader smoke, EGFR/A549 forward demo, and no-hit demos completed.",
+  "stderr_summary": "",
+  "outputs": {
+    "test_results": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_package_milestone_merge_v1/task_milestone_package_core_parallel_v1/4_artifact/5_table/pxfquery_T040_test_results.json",
+    "demo_summary": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_package_milestone_merge_v1/task_milestone_package_core_parallel_v1/4_artifact/5_table/pxfquery_T040_demo_summary.json",
+    "egfr_csv": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_package_milestone_merge_v1/task_milestone_package_core_parallel_v1/4_artifact/5_table/pxfquery_T040_EGFR_A549_forward_result.csv"
+  }
+}

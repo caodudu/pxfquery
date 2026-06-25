@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Execution Report — T-052 package_assembly_m1</title>
+<style>
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; max-width: 960px; margin: 2em auto; padding: 0 1em; line-height: 1.6; }
+h1, h2, h3 { color: #1a1a2e; }
+pre { background: #f4f4f8; padding: 1em; border-radius: 6px; overflow-x: auto; }
+code { background: #f0f0f5; padding: 0.2em 0.4em; border-radius: 3px; }
+table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+th { background: #e8e8f0; }
+.pass { color: #2e7d32; font-weight: bold; }
+.fail { color: #c62828; font-weight: bold; }
+</style>
+</head>
+<body>
+<h1>Execution Report — T-052 package_assembly_m1</h1>
+<p>生成日期：2026-06-24</p>
+
+<h2>1. Task Summary</h2>
+<table>
+<tr><th>Property</th><th>Value</th></tr>
+<tr><td>任务 ID</td><td>T-052</td></tr>
+<tr><td>名称</td><td>package_assembly_m1</td></tr>
+<tr><td>目标</td><td>goal_m1_python_package_v2</td></tr>
+<tr><td>目的</td><td>从T-044骨架、T-059正向修复、T-060反向修复组装可运行的M1包表面</td></tr>
+<tr><td>执行者</td><td>hybrid (AGT-002)</td></tr>
+<tr><td>状态</td><td>Completed</td></tr>
+</table>
+
+<h2>2. Execution Steps</h2>
+
+<h3>Step 1: Create package directory</h3>
+<p>已创建 <code>4_artifact/1_package/src/pxfquery/</code> 包含子目录：query、data、index、llm、viz、cli。</p>
+<p class="pass">PASS</p>
+
+<h3>Step 2: Establish pyproject.toml</h3>
+<p>使用了 A-015 (T-059 pyproject.toml with <code>[project.scripts]</code> entry)。已修复 <code>readme</code> 从 README_TASK.md 到 README.md 的引用。</p>
+<p class="pass">PASS</p>
+
+<h3>Step 3: Assemble module tree</h3>
+<p>从 T-059 前身资产复制：</p>
+<ul>
+<li><code>query/forward.py</code> — A-004 (forward_query 实现)</li>
+<li><code>query/reverse.py</code> — A-005 (reverse_query 实现)</li>
+<li><code>data/</code> — A-006 (M1FixtureLoader, base loader, __init__.py)</li>
+<li><code>index/</code> — A-007 (cellline, drug, function, gene index 模块)</li>
+<li><code>llm/</code> — A-008 (prompt 模块)</li>
+<li><code>viz/</code> — A-009 (visualization 模块)</li>
+</ul>
+<p class="pass">PASS</p>
+
+<h3>Step 4: Wire core.py</h3>
+<p>已创建 <code>src/pxfquery/core.py</code> 使用 PxFquery 类。关键接线变更：</p>
+<ul>
+<li><code>func2pert()</code> 现在委托给 <code>query/reverse.reverse_query()</code> (在 T-059 中为 NotImplemented)</li>
+<li><code>pert2func()</code> 委托给 <code>query/forward.forward_query()</code></li>
+<li><code>load_data()</code>, <code>load_fixture()</code>, <code>query()</code> 来自 T-059 模式的方法</li>
+</ul>
+<p class="pass">PASS</p>
+
+<h3>Step 5: Wire __init__.py</h3>
+<p>导出 <code>PxFquery</code> class 和 <code>__version__ = "0.1.0"</code>.</p>
+<p class="pass">PASS</p>
+
+<h3>Step 6: Wire CLI</h3>
+<p>复制 T-044 CLI (A-002/A-003) — 提供 forward、reverse 和 info 子命令。</p>
+<p class="pass">PASS</p>
+
+<h3>Step 7: Install package</h3>
+<p><code>pip install -e .</code> 在修复 README.md 引用后成功。</p>
+<p class="pass">PASS</p>
+
+<h3>Step 8: Import smoke</h3>
+<pre>
+import pxfquery OK
+version: 0.1.0
+PxFquery import OK
+pxfquery info → {"package": "pxfquery", "version": "0.1.0", "matrix_types": ["xpr", "sh", "cp"]}
+pxfquery --help → shows forward, reverse, info subcommands
+pxfquery forward --help → shows --perturbation, --cell-line, --matrix, --manifest, etc.
+pxfquery reverse --help → shows --activate, --suppress, --cell-line, --matrix, etc.
+</pre>
+<p class="pass">PASS</p>
+
+<h3>Step 9: Forward demo</h3>
+<p>命令： <code>pxfquery forward --perturbation EGFR --cell-line A549 --manifest &lt;manifest&gt; --fixture-root &lt;fixture_root&gt;</code></p>
+<pre>
+{"found": true, "perturbation": "EGFR", "cell_line": "A549", "n_obs": 1,
+ "top_activated": {"HALLMARK_ADIPOGENESIS": 4.03, "HALLMARK_APOPTOSIS": 2.47, ...},
+ "top_suppressed": {"MP40 PDAC-related": -6.68, "HALLMARK_E2F_TARGETS": -6.64, ...}}
+</pre>
+<p class="pass">PASS</p>
+
+<h3>Step 10: Reverse demo</h3>
+<p>命令： <code>pxfquery reverse --activate HALLMARK_APOPTOSIS --suppress HALLMARK_MYC_TARGETS_V1 --cell-line A549 --manifest &lt;manifest&gt; --fixture-root &lt;fixture_root&gt;</code></p>
+<pre>
+{"found": true, "activate": ["HALLMARK_APOPTOSIS"], "suppress": ["HALLMARK_MYC_TARGETS_V1"],
+ "top_candidates": [{"cmap_name": "THTPA", "similarity": 1.0}, ...]}
+</pre>
+<p class="pass">PASS</p>
+
+<h2>3. Acceptance Criteria Verification</h2>
+<table>
+<tr><th>Criterion</th><th>Result</th></tr>
+<tr><td>pip install -e . 成功</td><td class="pass">PASS</td></tr>
+<tr><td>import pxfquery; print(__version__) 返回 0.1.0</td><td class="pass">PASS</td></tr>
+<tr><td>pxfquery info 返回包含包名和版本的有效 JSON</td><td class="pass">PASS</td></tr>
+<tr><td>pxfquery forward --help 显示子命令选项</td><td class="pass">PASS</td></tr>
+<tr><td>pxfquery reverse --help 显示子命令选项</td><td class="pass">PASS</td></tr>
+<tr><td>Forward 演示返回 found:true (针对 EGFR/A549/xpr)</td><td class="pass">PASS</td></tr>
+<tr><td>Reverse 演示返回 found:true (针对 HALLMARK_MYC_TARGETS_V1 + A549)</td><td class="pass">PASS</td></tr>
+<tr><td>所有输出 JSON 均符合 T-042 契约格式</td><td class="pass">PASS</td></tr>
+<tr><td>未重新实现任何查询逻辑 — 全部来自前序导入</td><td class="pass">PASS</td></tr>
+</table>
+
+<h2>4. Deliverables Produced</h2>
+<table>
+<tr><th>Deliverable</th><th>Path</th><th>Status</th></tr>
+<tr><td>已组装的包源码</td><td>4_artifact/1_package/</td><td class="pass">accepted</td></tr>
+<tr><td>导入冒烟测试证据</td><td>4_artifact/2_import_smoke/smoke_test_v20260624.txt</td><td class="pass">accepted</td></tr>
+<tr><td>Forward 演示 JSON</td><td>4_artifact/2_persist/forward_demo_v20260624.json</td><td class="pass">accepted</td></tr>
+<tr><td>Reverse 演示 JSON</td><td>4_artifact/2_persist/reverse_demo_v20260624.json</td><td class="pass">accepted</td></tr>
+<tr><td>CLI 帮助文本</td><td>4_artifact/2_persist/cli_help_v20260624.txt</td><td class="pass">accepted</td></tr>
+<tr><td>执行报告</td><td>4_artifact/3_document/execution_report_v20260624.html</td><td class="pass">accepted</td></tr>
+<tr><td>结果报告</td><td>4_artifact/3_document/result_report_v20260624.html</td><td class="pass">accepted</td></tr>
+</table>
+
+<h2>5. Constraints Compliance</h2>
+<ul>
+<li class="pass">✓ 未重新实现任何查询逻辑 — 全部来自导入模块</li>
+<li class="pass">✓ 未修改任何 T-050/T-051 验证证据</li>
+<li class="pass">✓ 未使用任何 T024-T040 阻塞资产</li>
+<li class="pass">✓ 未引用 T-048/T-049 工件</li>
+<li class="pass">✓ 未读取 2_project_asset/ 下的项目级原始资产</li>
+<li class="pass">✓ fixture 使用中保留了 synthetic_repair 来源</li>
+<li class="pass">✓ 未修改任何前序任务工件</li>
+</ul>
+</body>
+</html>

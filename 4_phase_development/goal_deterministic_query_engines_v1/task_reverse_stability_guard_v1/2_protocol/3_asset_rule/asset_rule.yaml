@@ -1,0 +1,80 @@
+version: 1
+required:
+  - id: A-001
+    path: ../../goal_package_foundation_v1/task_workspace_package_v1/4_artifact/2_persist/workspace/
+    reason: T-024 current pxfquery workspace (pxfquery-T-024). Provides the editable src/-layout Python package containing `query/reverse.py` (ReverseQuery, ReverseResult), `query/forward.py`, `query/resolver.py`, `data/loader.py`, `core.PxFquery`, and the utility functions `build_target_vector`, `cosine_similarity_matrix`, `fuzzy_match` in `utils.py`. T-032 reads these modules to locate the existing zero-norm / abnormal-similarity code paths and to install the repaired workspaces as editable packages in the `pxfquery` conda env.
+  - id: A-002
+    path: ../../goal_resource_index_packs_v1/task_matrix_loader_v1/4_artifact/2_persist/loader/
+    reason: T-026 loader outputs (load_bundle, load_matrix) and loader_validation.json. Used as the canonical runtime schema probe (matrix shapes, obs columns, dtypes) so the guard test can build realistic abnormal-similarity input rows and confirm that 19/19 standard files still load through the same path.
+  - id: A-003
+    path: ../../goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/2_persist/standard_resources/
+    reason: T-021/D-004 canonical 19-file float32 H5AD matrices (cp/sh/xpr), JSON indexes, CSV metadata. Provides the actual cp_func_ad.h5ad used by both the positive-control reverse query and the stability/zero-norm guard tests. Loaded by reference, never copied.
+  - id: A-004
+    path: ../../goal_algorithm_function_review/task_mvp_algorithm_run-through_review/4_artifact/
+    reason: T-013 MVP capability status matrix (D-003) and failure/missing capability list (D-005). The T-013 review recorded that the legacy reverse query path silently filled zero-denominator rows in `cosine_similarity_matrix` with the 1e-10 epsilon and returned similarity = inner / 1e-10, producing arbitrarily huge values. T-032 uses this as the warning evidence that justifies the stability guard and as the baseline for the "no regression on normal ranking" check.
+  - id: A-005
+    path: ../../../1_project_init/1_project_protocol/
+    reason: Current project protocol (overview/goal/rule/environment) defining the pxfquery conda env, workspace boundaries, legacy-source non-modification rules, and the requirement that any ranked output be saved as a runnable artifact (not a placeholder).
+optional: []
+forbidden:
+  - path: ../../../2_project_asset/1_raw_material/
+    reason: Legacy flat asset library is read-only. T-021/D-004 is the consolidated data source; T-024 and T-026 already bridge legacy data into the current workspace.
+  - path: /Users/dudu/Documents/3_Project/8_functional_query
+    reason: Legacy Windows-era historical source. Not needed for the stability guard task.
+  - path: ../../goal_package_foundation_v1/task_workspace_package_v1/4_artifact/
+    reason: T-024 workspace is a read-only input. Bugs found in its reverse.py / utils.py must be repaired in T-032's own scope (`3_execution/pxfquery_T-032_repaired/`) and registered as `pxfquery-T-032`; the upstream T-024 package files must not be modified in place.
+  - path: ../../goal_resource_index_packs_v1/task_matrix_loader_v1/4_artifact/
+    reason: T-026 loader outputs are read-only inputs. The repaired workspace, if any, ships its own loader copy.
+  - path: ../../goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/
+    reason: T-021/D-004 canonical bundles are read-only inputs. T-032 only loads by reference.
+  - path: ../../goal_algorithm_function_review/
+    reason: T-013 deliverables are read-only reference inputs. Do not modify or regenerate review artifacts.
+  - path: ../../../6_project_deliverable/
+    reason: Final project deliverables are not produced by this task.
+output:
+  - path: 3_execution/run_stability_guard.py
+    description: Stability guard demo script. Runs both the abnormal-similarity cases (zero-norm row, zero-norm target, NaN/Inf row, all-zero matrix slice, mismatched term) and the normal HALLMARK_APOPTOSIS + HALLMARK_MYC_TARGETS_V1 positive control. Asserts guard behavior and writes JSON evidence.
+  - path: 3_execution/stability_guard_validation.json
+    description: Machine-readable validation record capturing scenario-by-scenario expected vs actual behavior (guard flagged, similarity clipped, ranking preserved, NaN/Inf counts, command, env versions).
+  - path: 3_execution/pxfquery_T-032_repaired/
+    description: Local repaired copy of the pxfquery workspace module(s) where the guard logic is implemented (reverse.py / utils.py / __init__.py). Only written if the upstream T-024 code needs bug repair to satisfy guard behavior. Versioned as pxfquery-T-032.
+  - path: 4_artifact/2_persist/pxfquery_T-032_guard_warnings.json
+    description: Structured JSON listing every guard warning emitted by the demo, severity, scenario, message, and offending row/term indices.
+  - path: 4_artifact/2_persist/pxfquery_T-032_positive_control_candidates.json
+    description: Ranked candidate output for the normal HALLMARK_APOPTOSIS + HALLMARK_MYC_TARGETS_V1 reverse query (apoptosis activation / MYC suppression), mirroring T-030's produce schema and confirming no regression.
+  - path: 4_artifact/2_persist/pxfquery_T-032_positive_control_meta.json
+    description: Query metadata for the positive control (activate, suppress, cell_line, note, guard flag count).
+  - path: 4_artifact/3_document/execution_report_vYYYYMMDD.html
+    description: Chinese execution report: scenario inventory, per-scenario outcomes, repaired files, validation summary.
+  - path: 4_artifact/3_document/result_report_vYYYYMMDD.html
+    description: Chinese result report: human-readable summary of guard behavior, positive-control ranking, and ranking sanity check.
+  - path: 4_artifact/registry.yaml
+    description: T-032 artifact registry.
+  - path: 5_report/completion.md
+    description: Completion report summarizing guard behavior, repaired issues (if any), downstream consumption guidance.
+  - path: 5_report/repair_log.md
+    description: Repair log, only if T-024 workspace code was repaired inside this task.
+modifiable:
+  - 3_execution/
+  - 4_artifact/
+  - 5_report/
+  - 1_asset/registration.yaml
+non_modifiable:
+  - 2_protocol/
+  - ../../../1_project_init/1_project_protocol/
+  - ../../../2_project_asset/
+  - ../../goal_package_foundation_v1/
+  - ../../goal_precomputed_data_exploration/
+  - ../../goal_resource_index_packs_v1/
+  - ../../goal_algorithm_function_review/
+  - ../../../6_project_deliverable/
+  - /Users/dudu/Documents/3_Project/8_functional_query
+notes:
+  - Guard semantics must NOT corrupt normal ranking: for any row with non-zero norm and a non-zero target, similarity must be the original cosine value within floating-point tolerance.
+  - Abnormal cases that the guard must catch explicitly: zero-norm row in matrix, zero-norm target vector, NaN or Inf in row, all-zero matrix slice (no usable rows), term that fails fuzzy match, division-by-zero in cosine denominator.
+  - "Guard flag" pattern: each guarded event emits a warning with (severity, scenario, message, offending_index). Warnings are aggregated on the ReverseResult and serialized as `pxfquery_T-032_guard_warnings.json`. The execution script asserts that every abnormal scenario produced at least one guard warning and that all top-K similarities of the positive control are finite within [-1.0, 1.0].
+  - Load matrices by reference through the T-024 workspace DataLoader / PxFquery; do not copy upstream matrix bytes.
+  - Do not hard-code matrix shapes, column names, or term names from planning notes — discover them at runtime.
+  - Repair scope is T-032 local: if T-024 has a zero-norm / abnormal-similarity bug, fix it in 3_execution/pxfquery_T-032_repaired/, register a corrected `pxfquery-T-032` workspace, and document lineage back to T-024.
+  - The repaired `pxfquery-T-032` workspace must also be installed as editable into the pxfquery conda env (`pip install -e .`) before running the stability demo and positive control.
+  - All Python execution must run inside the project default conda environment: `/Users/dudu/Softwares/miniconda/bin/conda run -n pxfquery python ...`.

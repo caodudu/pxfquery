@@ -1,0 +1,71 @@
+required:
+  - id: A-001
+    source_task: T-003
+    source_artifact_id: T003-A-001
+    path: "/Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_legacy_asset_migration/task_normalize_project_protocol_from_migrated_context/4_artifact/2_persist/project_protocol_revision_report_v20260616.md"
+    reason: "Protocol-normalization history and source-boundary context for the delivery anchor."
+  - id: A-002
+    source_task: T-007
+    source_artifact_id: D-002
+    path: "/Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_development_asset_digestion/task_digest_pxfquery_development_state/4_artifact/2_persist/pxfquery_development_state_report_v20260617.md"
+    reason: "Authoritative digestion of intended PxFquery package identity and behavior."
+  - id: A-003
+    source_task: T-007
+    source_artifact_id: D-005
+    path: "/Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_development_asset_digestion/task_digest_pxfquery_development_state/4_artifact/2_persist/pxfquery_development_gap_and_risk_list_v20260617.md"
+    reason: "Risk and overclaim controls for acceptance and downgrade rules."
+  - id: A-004
+    source_task: T-013
+    source_artifact_id: D-001
+    path: "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_algorithm_function_review/task_mvp_algorithm_run-through_review/4_artifact/2_persist/pxfquery_t013_mvp_capability_contract_v20260618.md"
+    reason: "Prior MVP capability contract to generalize into package-delivery capability anchors."
+  - id: A-005
+    source_task: T-013
+    source_artifact_id: D-003
+    path: "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_algorithm_function_review/task_mvp_algorithm_run-through_review/4_artifact/5_table/pxfquery_t013_capability_status_matrix_v20260618.csv"
+    reason: "Current-run capability status evidence."
+  - id: A-006
+    source_task: T-013
+    source_artifact_id: D-005
+    path: "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_algorithm_function_review/task_mvp_algorithm_run-through_review/4_artifact/2_persist/pxfquery_t013_failure_missing_capability_list_v20260618.md"
+    reason: "Known failure, blocked, partial, and missing capabilities for stop and downgrade rules."
+  - id: A-007
+    source_task: T-021
+    source_artifact_id: D-001
+    path: "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/2_persist/pxfquery_standard_resource_guide_v20260623.md"
+    reason: "Verified standard resource basis for package capability grounding."
+  - id: A-008
+    source_task: T-021
+    source_artifact_id: D-004
+    path: "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/2_persist/standard_resources/"
+    reason: "Canonical resource bundle reference for acceptance criteria; not a mandate to rerun validation."
+optional: []
+forbidden:
+  - "Implementation or modification of package source code."
+  - "Running algorithm tests, rebuilding resources, or analyzing raw matrices as task execution."
+  - "Writing final project deliverables under 6_project_deliverable/."
+  - "Direct reads from /Users/dudu/Documents/3_Project/8_functional_query unless a later approved task explicitly registers that source."
+output:
+  - path: "4_artifact/2_persist/pxfquery_algorithm_package_delivery_anchor_v20260625.yaml"
+    type: yaml
+  - path: "4_artifact/5_table/pxfquery_algorithm_capability_matrix_v20260625.csv"
+    type: table
+  - path: "4_artifact/2_persist/pxfquery_algorithm_downgrade_rules_v20260625.md"
+    type: document
+  - path: "4_artifact/2_persist/pxfquery_milestone_review_rubric_v20260625.md"
+    type: document
+  - path: "4_artifact/2_persist/pxfquery_milestone_classification_vocabulary_v20260625.yaml"
+    type: yaml
+  - path: "4_artifact/3_document/pxfquery_algorithm_package_delivery_anchor_summary_v20260625.html"
+    type: document
+  - path: "4_artifact/2_persist/pxfquery_algorithm_package_delivery_anchor_summary_v20260625.md"
+    type: document
+modifiable:
+  - 3_execution/
+  - 4_artifact/
+  - 5_report/
+non_modifiable:
+  - predecessor task directories
+  - 1_project_init/1_project_protocol/
+  - 2_project_asset/
+  - 6_project_deliverable/

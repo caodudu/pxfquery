@@ -1,12 +1,13 @@
 goal_id: G-001
-name: "Legacy asset migration"
+name: Legacy asset migration
 phase: digestion
 project: P-012
-objective: "Audit the Windows-era PxFquery assets and define a controlled migration path into the macOS Cyber project."
+objective: Audit the Windows-era PxFquery assets and define a controlled migration
+  path into the macOS Cyber project.
 status: active
 tasks:
-  - T-001
-  - T-002
-  - T-003
-created: "2026-06-13"
-notes: "This goal separates historical asset digestion from later migration planning and future active development."
+- T-001
+- T-002
+- T-003
+created: '2026-06-13'
+notes: 审计迁移旧版资产

@@ -1,0 +1,33 @@
+required:
+  - id: A-001
+    source_task: T-007
+    source_artifact_id: D-002
+    path: 4_artifact/2_persist/pxfquery_development_state_report_v20260617.md
+    reason: "Anchors canonical package name (pxfquery), intended module boundaries (core/data/query/index/llm/viz), and component architecture from legacy development state digest"
+  - id: A-002
+    source_task: T-007
+    source_artifact_id: D-003
+    path: 4_artifact/5_table/pxfquery_module_asset_status_matrix_v20260617.csv
+    reason: "Confirms per-module implementation status to decide which modules need stubs and which are historical/incomplete"
+  - id: A-003
+    source_task: T-007
+    source_artifact_id: D-006
+    path: 4_artifact/2_persist/pxfquery_development_phase_handoff_v20260617.md
+    reason: "Provides recommended D001 package setup scope, acceptance criteria, and do-not-do rules"
+optional: []
+forbidden:
+  - path: 2_project_asset/
+    reason: forbidden for non-digestion task; request a predecessor digestion task if raw project assets are needed
+output:
+  - path: 4_artifact/2_import_smoke/
+    type: persist
+  - path: 4_artifact/1_package/
+    type: code
+modifiable:
+  - 3_execution/
+  - 4_artifact/
+  - 5_report/
+non_modifiable:
+  - predecessor task directories
+  - 2_project_asset/
+  - 1_project_init/

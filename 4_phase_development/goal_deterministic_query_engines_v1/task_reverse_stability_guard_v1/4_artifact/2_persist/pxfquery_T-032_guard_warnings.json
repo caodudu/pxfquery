@@ -1,0 +1,60 @@
+[
+  {
+    "severity": "notice",
+    "scenario": "zero_norm_row",
+    "message": "Zero-norm rows detected at indices [np.int64(1)]. Setting similarity to 0.0 for these rows.",
+    "indices": [
+      "1"
+    ]
+  },
+  {
+    "severity": "warning",
+    "scenario": "nan_row",
+    "message": "NaN-norm rows detected at indices [np.int64(1)]. Setting similarity to 0.0 for these rows.",
+    "indices": [
+      "1"
+    ]
+  },
+  {
+    "severity": "warning",
+    "scenario": "nan_row",
+    "message": "NaN values in matrix rows at indices [np.int64(1)]. Setting similarity to 0.0.",
+    "indices": [
+      "1"
+    ]
+  },
+  {
+    "severity": "warning",
+    "scenario": "inf_row",
+    "message": "Inf-norm rows detected at indices [np.int64(1)]. Setting similarity to 0.0 for these rows.",
+    "indices": [
+      "1"
+    ]
+  },
+  {
+    "severity": "warning",
+    "scenario": "inf_row",
+    "message": "Inf values in matrix rows at indices [np.int64(1)]. Setting similarity to 0.0.",
+    "indices": [
+      "1"
+    ]
+  },
+  {
+    "severity": "warning",
+    "scenario": "zero_norm_target",
+    "message": "Target vector norm is 0 (all-zero target). Returning zeros for all 2 rows.",
+    "indices": [
+      0,
+      1
+    ]
+  },
+  {
+    "severity": "notice",
+    "scenario": "zero_norm_row",
+    "message": "Zero-norm rows detected at indices [np.int64(0), np.int64(1)]. Setting similarity to 0.0 for these rows.",
+    "indices": [
+      "0",
+      "1"
+    ]
+  }
+]

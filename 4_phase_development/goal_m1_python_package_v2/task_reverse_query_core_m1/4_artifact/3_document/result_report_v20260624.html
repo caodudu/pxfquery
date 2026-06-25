@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>T-049 Result Report</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.45; margin: 32px; color: #1f2933; }
+    code { background: #f4f6f8; padding: 1px 4px; border-radius: 4px; }
+    .partial { font-weight: 700; color: #9a3412; }
+    table { border-collapse: collapse; width: 100%; margin: 16px 0; }
+    th, td { border: 1px solid #d8dee4; padding: 8px; text-align: left; vertical-align: top; }
+    th { background: #f6f8fa; }
+  </style>
+</head>
+<body>
+  <h1>T-049 Reverse Query Core M1 Result Report</h1>
+  <p><strong>Generated:</strong> 2026-06-24</p>
+  <p><strong>Delivery state:</strong> <span class="partial">Partial</span></p>
+
+  <h2>Produced Outputs</h2>
+  <table>
+    <tr><th>Output</th><th>Path</th><th>Status</th></tr>
+    <tr>
+      <td>Reverse query package code</td>
+      <td><code>4_artifact/1_package/pxfquery/</code></td>
+      <td>Produced and import/compile validated.</td>
+    </tr>
+    <tr>
+      <td>Error/no-hit evidence</td>
+      <td><code>4_artifact/2_persist/reverse_error_no_hit_evidence_v20260624.json</code></td>
+      <td>NoMatrixLoaded case validated; fixture-dependent variants blocked.</td>
+    </tr>
+    <tr>
+      <td>Success demo evidence</td>
+      <td><code>4_artifact/2_persist/reverse_demo_evidence_v20260624.json</code></td>
+      <td>Not produced because the selected artifacts do not include loadable fixture resources.</td>
+    </tr>
+  </table>
+
+  <h2>Validation</h2>
+  <p>Validated command output confirmed that <code>pxfquery</code> and <code>PxFquery</code> were imported from this task-local artifact path, not from another package skeleton. <code>compileall</code> completed with exit code 0. The no-matrix reverse call returned the contract-shaped <code>NoMatrixLoaded</code> object.</p>
+
+  <h2>Remaining Required Input</h2>
+  <p>To complete the task, a predecessor or configuration revision must register a T-046-compatible <code>resource_manifest_m1.yaml</code> plus <code>fixture_package_m1/</code> as selected T-049 assets, and the fixture must include the T-042 DEMO-002 functional term <code>HALLMARK_MYC_TARGETS_V1</code> or the demo contract must be revised to use an available fixture term.</p>
+</body>
+</html>
+

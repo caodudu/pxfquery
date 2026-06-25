@@ -1,0 +1,131 @@
+schema_version: 1
+updated_at: '2026-06-23T17:36:33'
+source: cli_sessions
+path: 5_report/process_record.yaml
+template:
+  purpose: Task deliverable process record; refreshed from CyHex CLI session metadata
+    while the task runs.
+  stages:
+  - config
+  - check
+  - execute
+  - deliver
+  memory_note: max_rss_kb is captured from live process RSS when the UI/backend observes
+    a running session; completed sessions may be blank if no live sample was available.
+task:
+  task_id: T-037
+  name: milestone_merge_v1
+  status: active
+  sub_status: config_interrupted
+summary:
+  session_count: 4
+  running_count: 0
+  done_count: 0
+  failed_count: 4
+  total_duration_seconds: 2147
+  max_rss_kb: null
+phases:
+- stage: config
+  label_zh: 配置
+  label_en: Configuration
+  status: stopped
+  started: '2026-06-23T17:35:09'
+  completed: '2026-06-23T17:36:05'
+  duration_seconds: 56
+  max_rss_kb: null
+  sessions:
+  - session_id: cli_48286bfebab5
+    stage: config
+    status: stopped
+    driver: codex
+    agent_id: AGT-001
+    agent_label: Codex hard tasks
+    model: ''
+    pid: 5443
+    created: '2026-06-23T17:35:09'
+    completed: '2026-06-23T17:36:05'
+    duration_seconds: 56
+    current_rss_kb: null
+    max_rss_kb: null
+    returncode: -15
+    prompt_source: manual
+    work_dir: /Users/dudu/Documents/3_Project/12_PxFquery
+    session_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_package_milestone_merge_v1/task_milestone_merge_v1/5_report/cli_sessions/config/20260623_173509_codex_cli_48286bfebab5
+  - session_id: cli_8cbe25c5f46d
+    stage: config
+    status: stopped
+    driver: codex
+    agent_id: AGT-001
+    agent_label: Codex hard tasks
+    model: ''
+    pid: 3983
+    created: '2026-06-23T17:34:03'
+    completed: '2026-06-23T17:34:56'
+    duration_seconds: 53
+    current_rss_kb: null
+    max_rss_kb: null
+    returncode: -15
+    prompt_source: manual
+    work_dir: /Users/dudu/Documents/3_Project/12_PxFquery
+    session_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_package_milestone_merge_v1/task_milestone_merge_v1/5_report/cli_sessions/config/20260623_173403_codex_cli_8cbe25c5f46d
+  - session_id: cli_459666a28b0a
+    stage: config
+    status: stopped
+    driver: codex
+    agent_id: AGT-001
+    agent_label: Codex hard tasks
+    model: ''
+    pid: 73833
+    created: '2026-06-23T17:12:40'
+    completed: '2026-06-23T17:32:48'
+    duration_seconds: 1208
+    current_rss_kb: null
+    max_rss_kb: null
+    returncode: null
+    prompt_source: assembled
+    work_dir: /Users/dudu/Documents/3_Project/12_PxFquery
+    session_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_package_milestone_merge_v1/task_milestone_merge_v1/5_report/cli_sessions/config/20260623_171240_codex_cli_459666a28b0a
+  - session_id: cli_3b60a24e661b
+    stage: config
+    status: stopped
+    driver: opencode
+    agent_id: ''
+    agent_label: OpenCode cheap tasks
+    model: llm_gateway/deepseek-ai/deepseek-v4-pro
+    pid: 51806
+    created: '2026-06-23T16:57:58'
+    completed: '2026-06-23T17:11:48'
+    duration_seconds: 830
+    current_rss_kb: null
+    max_rss_kb: null
+    returncode: -15
+    prompt_source: assembled
+    work_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_package_milestone_merge_v1/task_milestone_merge_v1
+    session_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_package_milestone_merge_v1/task_milestone_merge_v1/5_report/cli_sessions/config/20260623_165758_opencode_cli_3b60a24e661b
+- stage: check
+  label_zh: 检查
+  label_en: Check
+  status: not_started
+  started: ''
+  completed: ''
+  duration_seconds: null
+  max_rss_kb: null
+  sessions: []
+- stage: execute
+  label_zh: 执行
+  label_en: Execution
+  status: not_started
+  started: ''
+  completed: ''
+  duration_seconds: null
+  max_rss_kb: null
+  sessions: []
+- stage: deliver
+  label_zh: 交付
+  label_en: Delivery
+  status: not_started
+  started: ''
+  completed: ''
+  duration_seconds: null
+  max_rss_kb: null
+  sessions: []

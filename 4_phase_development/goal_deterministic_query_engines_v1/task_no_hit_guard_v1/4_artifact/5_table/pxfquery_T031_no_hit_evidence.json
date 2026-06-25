@@ -1,0 +1,156 @@
+{
+  "task": "T-031",
+  "guard_version": "pxfquery-T-031",
+  "timestamp": "2026-06-24T01:13:05",
+  "test_type": "negative_no_hit",
+  "engine_config": {
+    "min_overlap_for_token_fallback": 2,
+    "min_query_length_for_substring": 4
+  },
+  "matrix": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_deterministic_query_engines_v1/task_no_hit_guard_v1/1_asset/T-021 standard_resources bundle (D-004)/xpr_func_ad.h5ad",
+  "matrix_shape": [
+    132464,
+    91
+  ],
+  "total_queries": 11,
+  "passed": 11,
+  "failed": 0,
+  "results": [
+    {
+      "query": "NONSENSE_ZZZ999",
+      "cell_line": "A549",
+      "found": false,
+      "matched_perturbation": "NONSENSE_ZZZ999",
+      "note": "No match found for 'NONSENSE_ZZZ999'",
+      "n_obs": 0,
+      "activated_terms": 0,
+      "suppressed_terms": 0,
+      "guard_version": "pxfquery-T-031",
+      "test_passed": true
+    },
+    {
+      "query": "QWERTYASDFG",
+      "cell_line": "A549",
+      "found": false,
+      "matched_perturbation": "QWERTYASDFG",
+      "note": "No match found for 'QWERTYASDFG'",
+      "n_obs": 0,
+      "activated_terms": 0,
+      "suppressed_terms": 0,
+      "guard_version": "pxfquery-T-031",
+      "test_passed": true
+    },
+    {
+      "query": "egr",
+      "cell_line": "A549",
+      "found": false,
+      "matched_perturbation": "egr",
+      "note": "No-hit guard (pxfquery-T-031): query 'egr' matched 'EGR1' via substring but failed quality check (reason: query 'egr' (3 chars) is too short for substring match (min 4 required)). Threshold: min_overlap_for_token_fallback=2, min_query_length_for_substring=4.",
+      "n_obs": 0,
+      "activated_terms": 0,
+      "suppressed_terms": 0,
+      "guard_version": "pxfquery-T-031",
+      "test_passed": true
+    },
+    {
+      "query": "bra",
+      "cell_line": "A549",
+      "found": false,
+      "matched_perturbation": "bra",
+      "note": "No-hit guard (pxfquery-T-031): query 'bra' matched 'BRAF' via substring but failed quality check (reason: query 'bra' (3 chars) is too short for substring match (min 4 required)). Threshold: min_overlap_for_token_fallback=2, min_query_length_for_substring=4.",
+      "n_obs": 0,
+      "activated_terms": 0,
+      "suppressed_terms": 0,
+      "guard_version": "pxfquery-T-031",
+      "test_passed": true
+    },
+    {
+      "query": "rab",
+      "cell_line": "A549",
+      "found": false,
+      "matched_perturbation": "rab",
+      "note": "No-hit guard (pxfquery-T-031): query 'rab' matched 'RAB8B' via substring but failed quality check (reason: query 'rab' (3 chars) is too short for substring match (min 4 required)). Threshold: min_overlap_for_token_fallback=2, min_query_length_for_substring=4.",
+      "n_obs": 0,
+      "activated_terms": 0,
+      "suppressed_terms": 0,
+      "guard_version": "pxfquery-T-031",
+      "test_passed": true
+    },
+    {
+      "query": "akt",
+      "cell_line": "A549",
+      "found": false,
+      "matched_perturbation": "akt",
+      "note": "No-hit guard (pxfquery-T-031): query 'akt' matched 'AKT1' via substring but failed quality check (reason: query 'akt' (3 chars) is too short for substring match (min 4 required)). Threshold: min_overlap_for_token_fallback=2, min_query_length_for_substring=4.",
+      "n_obs": 0,
+      "activated_terms": 0,
+      "suppressed_terms": 0,
+      "guard_version": "pxfquery-T-031",
+      "test_passed": true
+    },
+    {
+      "query": "egfr_random",
+      "cell_line": "A549",
+      "found": false,
+      "matched_perturbation": "egfr_random",
+      "note": "No-hit guard (pxfquery-T-031): query 'egfr_random' matched 'EGFR' via token_overlap(1) but failed quality check (reason: only 1 shared tokens (min 2 required): query_tokens=['egfr', 'random'], matched_tokens=['egfr']). Threshold: min_overlap_for_token_fallback=2, min_query_length_for_substring=4.",
+      "n_obs": 0,
+      "activated_terms": 0,
+      "suppressed_terms": 0,
+      "guard_version": "pxfquery-T-031",
+      "test_passed": true
+    },
+    {
+      "query": "totally_egfr",
+      "cell_line": "A549",
+      "found": false,
+      "matched_perturbation": "totally_egfr",
+      "note": "No-hit guard (pxfquery-T-031): query 'totally_egfr' matched 'EGFR' via token_overlap(1) but failed quality check (reason: only 1 shared tokens (min 2 required): query_tokens=['egfr', 'totally'], matched_tokens=['egfr']). Threshold: min_overlap_for_token_fallback=2, min_query_length_for_substring=4.",
+      "n_obs": 0,
+      "activated_terms": 0,
+      "suppressed_terms": 0,
+      "guard_version": "pxfquery-T-031",
+      "test_passed": true
+    },
+    {
+      "query": "something_braf",
+      "cell_line": "A549",
+      "found": false,
+      "matched_perturbation": "something_braf",
+      "note": "No-hit guard (pxfquery-T-031): query 'something_braf' matched 'BRAF' via token_overlap(1) but failed quality check (reason: only 1 shared tokens (min 2 required): query_tokens=['braf', 'something'], matched_tokens=['braf']). Threshold: min_overlap_for_token_fallback=2, min_query_length_for_substring=4.",
+      "n_obs": 0,
+      "activated_terms": 0,
+      "suppressed_terms": 0,
+      "guard_version": "pxfquery-T-031",
+      "test_passed": true
+    },
+    {
+      "query": "whatever-egfr",
+      "cell_line": "A549",
+      "found": false,
+      "matched_perturbation": "whatever-egfr",
+      "note": "No-hit guard (pxfquery-T-031): query 'whatever-egfr' matched 'EGFR' via token_overlap(1) but failed quality check (reason: only 1 shared tokens (min 2 required): query_tokens=['egfr', 'whatever'], matched_tokens=['egfr']). Threshold: min_overlap_for_token_fallback=2, min_query_length_for_substring=4.",
+      "n_obs": 0,
+      "activated_terms": 0,
+      "suppressed_terms": 0,
+      "guard_version": "pxfquery-T-031",
+      "test_passed": true
+    },
+    {
+      "query": "ABCDEF123456",
+      "cell_line": null,
+      "found": false,
+      "matched_perturbation": "ABCDEF123456",
+      "note": "No match found for 'ABCDEF123456'",
+      "n_obs": 0,
+      "activated_terms": 0,
+      "suppressed_terms": 0,
+      "guard_version": "pxfquery-T-031",
+      "test_passed": true
+    }
+  ],
+  "acceptance_criteria": {
+    "min_queries": 3,
+    "all_must_return_found_False": true
+  }
+}

@@ -1,0 +1,43 @@
+version: 1
+required:
+  - A-001
+  - A-002
+optional: []
+forbidden:
+  - path: ../../../4_phase_development/goal_package_foundation_v1/
+    reason: T-039 must consume T-040/T-038 summaries, not raw upstream package tasks.
+  - path: ../../../4_phase_development/goal_deterministic_query_engines_v1/
+    reason: T-039 must not directly aggregate low-level engine tasks.
+  - path: ../_archived_task_milestone_merge_v1/
+    reason: Old T-037 was archived and must not be used as input.
+  - path: ../task_milestone_package_core_parallel_v1/3_execution/
+    reason: T-039 should consume T-040 artifacts and reports, not process internals.
+  - path: ../task_milestone_reverse_demo_reports_v1/3_execution/
+    reason: T-039 should consume T-038 artifacts and reports, not process internals.
+modifiable:
+  - 3_execution/
+  - 4_artifact/
+  - 5_report/
+non_modifiable:
+  - 1_asset/
+  - 2_protocol/
+  - ../task_milestone_package_core_parallel_v1/
+  - ../task_milestone_reverse_demo_reports_v1/
+output:
+  - path: 4_artifact/2_persist/pxfquery_T039_final_milestone_index.md
+    description: Final milestone index.
+  - path: 4_artifact/2_persist/pxfquery_T039_acceptance_summary.md
+    description: Human-readable acceptance summary.
+  - path: 4_artifact/2_persist/pxfquery_T039_promotion_manifest.yaml
+    description: Promotion-ready manifest.
+  - path: 4_artifact/5_table/pxfquery_T039_final_acceptance.json
+    description: Machine-readable final acceptance status.
+  - path: 4_artifact/3_document/
+    description: Chinese HTML reports.
+  - path: 4_artifact/registry.yaml
+    description: T-039 output registry.
+  - path: 5_report/completion.md
+    description: T-039 completion report.
+notes:
+  - Keep predecessor count <=5. Current hard predecessors are T-040 and T-038.
+  - T-039 is an aggregation task only; no implementation work belongs here.

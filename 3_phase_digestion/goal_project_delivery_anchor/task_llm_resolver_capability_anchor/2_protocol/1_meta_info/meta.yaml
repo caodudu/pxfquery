@@ -1,0 +1,29 @@
+task_id: T-063
+name: llm_resolver_capability_anchor
+phase: digestion
+goal: goal_project_delivery_anchor
+project: P-012
+objective: Create the LLM/resolver capability anchor for future PxFquery package milestones.
+  Specify user-facing natural-language/semi-structured query behavior, CyHex-configured
+  AI service use, exact/proxy/not-found handoff with LLM assistance, fallback semantics,
+  demo cases, and acceptance evidence for M3-level resolver delivery.
+executor: hybrid
+agent_id: AGT-001
+config_agent_id: AGT-001
+check_agent_id: AGT-001
+execute_agent_id: AGT-001
+server_id: null
+status: done
+cyhex_version: 1.2.20
+milestone_id: ''
+milestone_final: false
+created: '2026-06-25'
+started: null
+completed: '2026-06-25'
+notes: LLM解析能力锚点
+fast_pass_permission: green
+sub_status: ''
+fast_pass_last_auto_approved: check_review
+fast_pass_last_auto_approved_at: '2026-06-25T13:10:01'
+fast_pass_accepted: true
+fast_pass_accepted_at: '2026-06-25T13:29:59'

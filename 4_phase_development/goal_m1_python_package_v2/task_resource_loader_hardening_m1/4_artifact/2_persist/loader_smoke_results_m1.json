@@ -1,0 +1,1013 @@
+{
+  "task_id": "T-047",
+  "generated": "2026-06-24T05:03:39",
+  "manifest_id": "resource_manifest_m1",
+  "standard_bundle_exists": true,
+  "fixture_package_exists": true,
+  "resource_count": 36,
+  "results": [
+    {
+      "resource_id": "m1_full_cp_matrix",
+      "file_type": "h5ad",
+      "path": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/1_asset/t021_standard_resources_bundle/cp_func_ad.h5ad",
+      "is_fixture": false,
+      "status": "loaded",
+      "details": {
+        "shape": "201014 obs x 91 vars",
+        "load_time_s": 0.74,
+        "X_dtype": "float32",
+        "obs_columns_present": [
+          "sig_id",
+          "project_code",
+          "cell_iname",
+          "pert_id",
+          "cmap_name",
+          "pert_dose",
+          "pert_time"
+        ],
+        "obs_columns_missing": [],
+        "var_count": 91,
+        "var_names_ok": true
+      }
+    },
+    {
+      "resource_id": "m1_fixture_cp_matrix",
+      "file_type": "h5ad",
+      "path": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/4_artifact/2_persist/fixture_package_m1/cp_func_fixture_m1.h5ad",
+      "is_fixture": true,
+      "status": "loaded",
+      "details": {
+        "shape": "4 obs x 7 vars",
+        "load_time_s": 0.03,
+        "X_dtype": "float32",
+        "obs_columns_present": [
+          "sig_id",
+          "project_code",
+          "cell_iname",
+          "pert_id",
+          "cmap_name",
+          "pert_dose",
+          "pert_time"
+        ],
+        "obs_columns_missing": [],
+        "var_names_matched": [
+          "HALLMARK_E2F_TARGETS",
+          "MP40 PDAC-related",
+          "MP39 Metal-response",
+          "HALLMARK_APOPTOSIS",
+          "HALLMARK_TNFA_SIGNALING_VIA_NFKB",
+          "HALLMARK_ADIPOGENESIS",
+          "HALLMARK_P53_PATHWAY"
+        ],
+        "var_names_missing": []
+      }
+    },
+    {
+      "resource_id": "m1_full_sh_matrix",
+      "file_type": "h5ad",
+      "path": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/1_asset/t021_standard_resources_bundle/sh_func_ad.h5ad",
+      "is_fixture": false,
+      "status": "loaded",
+      "details": {
+        "shape": "189365 obs x 91 vars",
+        "load_time_s": 0.51,
+        "X_dtype": "float32",
+        "obs_columns_present": [
+          "sig_id",
+          "project_code",
+          "cell_iname",
+          "pert_id",
+          "cmap_name",
+          "pert_dose",
+          "pert_time"
+        ],
+        "obs_columns_missing": [],
+        "var_count": 91,
+        "var_names_ok": true
+      }
+    },
+    {
+      "resource_id": "m1_fixture_sh_matrix",
+      "file_type": "h5ad",
+      "path": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/4_artifact/2_persist/fixture_package_m1/sh_func_fixture_m1.h5ad",
+      "is_fixture": true,
+      "status": "loaded",
+      "details": {
+        "shape": "4 obs x 7 vars",
+        "load_time_s": 0.02,
+        "X_dtype": "float32",
+        "obs_columns_present": [
+          "sig_id",
+          "project_code",
+          "cell_iname",
+          "pert_id",
+          "cmap_name",
+          "pert_dose",
+          "pert_time"
+        ],
+        "obs_columns_missing": [],
+        "var_names_matched": [
+          "HALLMARK_E2F_TARGETS",
+          "MP40 PDAC-related",
+          "MP39 Metal-response",
+          "HALLMARK_APOPTOSIS",
+          "HALLMARK_TNFA_SIGNALING_VIA_NFKB",
+          "HALLMARK_ADIPOGENESIS",
+          "HALLMARK_P53_PATHWAY"
+        ],
+        "var_names_missing": []
+      }
+    },
+    {
+      "resource_id": "m1_full_xpr_matrix",
+      "file_type": "h5ad",
+      "path": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/1_asset/t021_standard_resources_bundle/xpr_func_ad.h5ad",
+      "is_fixture": false,
+      "status": "loaded",
+      "details": {
+        "shape": "132464 obs x 91 vars",
+        "load_time_s": 0.26,
+        "X_dtype": "float32",
+        "obs_columns_present": [
+          "sig_id",
+          "project_code",
+          "cell_iname",
+          "pert_id",
+          "cmap_name",
+          "pert_dose",
+          "pert_time"
+        ],
+        "obs_columns_missing": [],
+        "var_count": 91,
+        "var_names_ok": true
+      }
+    },
+    {
+      "resource_id": "m1_fixture_xpr_matrix",
+      "file_type": "h5ad",
+      "path": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/4_artifact/2_persist/fixture_package_m1/xpr_func_fixture_m1.h5ad",
+      "is_fixture": true,
+      "status": "loaded",
+      "details": {
+        "shape": "4 obs x 7 vars",
+        "load_time_s": 0.02,
+        "X_dtype": "float32",
+        "obs_columns_present": [
+          "sig_id",
+          "project_code",
+          "cell_iname",
+          "pert_id",
+          "cmap_name",
+          "pert_dose",
+          "pert_time"
+        ],
+        "obs_columns_missing": [],
+        "var_names_matched": [
+          "HALLMARK_E2F_TARGETS",
+          "MP40 PDAC-related",
+          "MP39 Metal-response",
+          "HALLMARK_APOPTOSIS",
+          "HALLMARK_TNFA_SIGNALING_VIA_NFKB",
+          "HALLMARK_ADIPOGENESIS",
+          "HALLMARK_P53_PATHWAY"
+        ],
+        "var_names_missing": []
+      }
+    },
+    {
+      "resource_id": "m1_full_cellline_meta",
+      "file_type": "csv",
+      "path": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/1_asset/t021_standard_resources_bundle/cellline_meta_standard.csv",
+      "is_fixture": false,
+      "status": "loaded",
+      "details": {
+        "shape": "240 rows x 8 cols",
+        "load_time_s": 0.0,
+        "row_count_match": true,
+        "columns_present": [
+          "cell_iname",
+          "cell_lineage",
+          "primary_disease",
+          "subtype",
+          "cell_alias",
+          "cellosaurus_site",
+          "cellosaurus_disease",
+          "cellosaurus_category"
+        ],
+        "columns_missing": []
+      }
+    },
+    {
+      "resource_id": "m1_full_cellline_info",
+      "file_type": "csv",
+      "path": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/1_asset/t021_standard_resources_bundle/cellline_info_standard.csv",
+      "is_fixture": false,
+      "status": "loaded",
+      "details": {
+        "shape": "240 rows x 20 cols",
+        "load_time_s": 0.0,
+        "row_count_match": true,
+        "columns_present": [
+          "cell_iname",
+          "cellosaurus_id",
+          "donor_age",
+          "donor_age_death",
+          "donor_disease_age_onset",
+          "doubling_time",
+          "growth_medium",
+          "provider_catalog_id",
+          "feature_id",
+          "cell_type",
+          "donor_ethnicity",
+          "donor_sex",
+          "donor_tumor_phase",
+          "cell_lineage",
+          "primary_disease",
+          "subtype",
+          "provider_name",
+          "growth_pattern",
+          "ccle_name",
+          "cell_alias"
+        ],
+        "columns_missing": []
+      }
+    },
+    {
+      "resource_id": "m1_full_compound_meta",
+      "file_type": "csv",
+      "path": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/1_asset/t021_standard_resources_bundle/compound_meta_standard.csv",
+      "is_fixture": false,
+      "status": "loaded",
+      "details": {
+        "shape": "6647 rows x 9 cols",
+        "load_time_s": 0.02,
+        "row_count_match": true,
+        "columns_present": [
+          "Unnamed: 0",
+          "drug",
+          "target",
+          "moa",
+          "aliases",
+          "query_name",
+          "smiles",
+          "inchikey",
+          "pubchem_cid"
+        ],
+        "columns_missing": []
+      }
+    },
+    {
+      "resource_id": "m1_full_compound_info",
+      "file_type": "csv",
+      "path": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/1_asset/t021_standard_resources_bundle/compound_info_standard.csv",
+      "is_fixture": false,
+      "status": "loaded",
+      "details": {
+        "shape": "39321 rows x 7 cols",
+        "load_time_s": 0.11,
+        "row_count_match": true,
+        "columns_present": [
+          "pert_id",
+          "cmap_name",
+          "target",
+          "moa",
+          "canonical_smiles",
+          "inchi_key",
+          "compound_aliases"
+        ],
+        "columns_missing": []
+      }
+    },
+    {
+      "resource_id": "m1_full_gene_info",
+      "file_type": "csv",
+      "path": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/1_asset/t021_standard_resources_bundle/gene_info_standard.csv",
+      "is_fixture": false,
+      "status": "loaded",
+      "details": {
+        "shape": "12328 rows x 7 cols",
+        "load_time_s": 0.03,
+        "row_count_match": true,
+        "columns_present": [
+          "gene_id",
+          "gene_symbol",
+          "ensembl_id",
+          "gene_title",
+          "gene_type",
+          "src",
+          "feature_space"
+        ],
+        "columns_missing": []
+      }
+    },
+    {
+      "resource_id": "m1_fixture_cellline_meta",
+      "file_type": "csv",
+      "path": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/4_artifact/2_persist/fixture_package_m1/cellline_meta_fixture_m1.csv",
+      "is_fixture": true,
+      "status": "loaded",
+      "details": {
+        "shape": "4 rows x 8 cols",
+        "load_time_s": 0.0,
+        "row_count_match": true,
+        "columns_present": [
+          "cell_iname",
+          "cell_lineage",
+          "primary_disease",
+          "subtype",
+          "cell_alias",
+          "cellosaurus_site",
+          "cellosaurus_disease",
+          "cellosaurus_category"
+        ],
+        "columns_missing": []
+      }
+    },
+    {
+      "resource_id": "m1_fixture_cellline_info",
+      "file_type": "csv",
+      "path": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/4_artifact/2_persist/fixture_package_m1/cellline_info_fixture_m1.csv",
+      "is_fixture": true,
+      "status": "loaded",
+      "details": {
+        "shape": "4 rows x 20 cols",
+        "load_time_s": 0.0,
+        "row_count_match": true,
+        "columns_present": [
+          "cell_iname",
+          "cellosaurus_id",
+          "donor_age",
+          "donor_age_death",
+          "donor_disease_age_onset",
+          "doubling_time",
+          "growth_medium",
+          "provider_catalog_id",
+          "feature_id",
+          "cell_type",
+          "donor_ethnicity",
+          "donor_sex",
+          "donor_tumor_phase",
+          "cell_lineage",
+          "primary_disease",
+          "subtype",
+          "provider_name",
+          "growth_pattern",
+          "ccle_name",
+          "cell_alias"
+        ],
+        "columns_missing": []
+      }
+    },
+    {
+      "resource_id": "m1_fixture_compound_meta",
+      "file_type": "csv",
+      "path": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/4_artifact/2_persist/fixture_package_m1/compound_meta_fixture_m1.csv",
+      "is_fixture": true,
+      "status": "loaded",
+      "details": {
+        "shape": "4 rows x 9 cols",
+        "load_time_s": 0.0,
+        "row_count_match": true,
+        "columns_present": [
+          "Unnamed: 0",
+          "drug",
+          "target",
+          "moa",
+          "aliases",
+          "query_name",
+          "smiles",
+          "inchikey",
+          "pubchem_cid"
+        ],
+        "columns_missing": []
+      }
+    },
+    {
+      "resource_id": "m1_fixture_compound_info",
+      "file_type": "csv",
+      "path": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/4_artifact/2_persist/fixture_package_m1/compound_info_fixture_m1.csv",
+      "is_fixture": true,
+      "status": "loaded",
+      "details": {
+        "shape": "4 rows x 7 cols",
+        "load_time_s": 0.0,
+        "row_count_match": true,
+        "columns_present": [
+          "pert_id",
+          "cmap_name",
+          "target",
+          "moa",
+          "canonical_smiles",
+          "inchi_key",
+          "compound_aliases"
+        ],
+        "columns_missing": []
+      }
+    },
+    {
+      "resource_id": "m1_fixture_gene_info",
+      "file_type": "csv",
+      "path": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/4_artifact/2_persist/fixture_package_m1/gene_info_fixture_m1.csv",
+      "is_fixture": true,
+      "status": "loaded",
+      "details": {
+        "shape": "8 rows x 7 cols",
+        "load_time_s": 0.0,
+        "row_count_match": true,
+        "columns_present": [
+          "gene_id",
+          "gene_symbol",
+          "ensembl_id",
+          "gene_title",
+          "gene_type",
+          "src",
+          "feature_space"
+        ],
+        "columns_missing": []
+      }
+    },
+    {
+      "resource_id": "m1_full_cellline_index",
+      "file_type": "json",
+      "path": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/1_asset/t021_standard_resources_bundle/cellline_index.json",
+      "is_fixture": false,
+      "status": "loaded",
+      "details": {
+        "load_time_s": 0.0,
+        "special_handling": "cellline_index_unwrap",
+        "top_level_keys": [
+          "valid_cells"
+        ],
+        "cell_count": 240,
+        "health_note": "240 cell line names in single key 'valid_cells'"
+      }
+    },
+    {
+      "resource_id": "m1_full_cellline_neighbors",
+      "file_type": "json",
+      "path": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/1_asset/t021_standard_resources_bundle/cellline_neighbors.json",
+      "is_fixture": false,
+      "status": "loaded",
+      "details": {
+        "load_time_s": 0.0,
+        "top_level_keys": [
+          "bone",
+          "breast",
+          "central_nervous_system",
+          "cervix",
+          "endometrium",
+          "haematopoietic_and_lymphoid_tissue",
+          "kidney",
+          "large_intestine",
+          "liver",
+          "lung"
+        ],
+        "key_count": 19,
+        "health_note": "19 lineage groups, 1-5 members each"
+      }
+    },
+    {
+      "resource_id": "m1_full_cellline_tree",
+      "file_type": "json",
+      "path": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/1_asset/t021_standard_resources_bundle/cellline_tree.json",
+      "is_fixture": false,
+      "status": "loaded",
+      "details": {
+        "load_time_s": 0.0,
+        "special_handling": "cellline_tree_flat",
+        "top_level_keys": [
+          "tree",
+          "cell_index",
+          "meta"
+        ],
+        "key_count": 3,
+        "note": "Flat 3-key structure (not hierarchical tree)",
+        "health_note": "3 top-level entries; not a hierarchical tree"
+      }
+    },
+    {
+      "resource_id": "m1_full_drug_index",
+      "file_type": "json",
+      "path": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/1_asset/t021_standard_resources_bundle/drug_index.json",
+      "is_fixture": false,
+      "status": "loaded",
+      "details": {
+        "load_time_s": 0.0,
+        "top_level_keys": [
+          "l-theanine",
+          "l-citrulline",
+          "7-hydroxy-dpat",
+          "2-hydroxysaclofen",
+          "r(-)-apomorphine",
+          "chlorphensin",
+          "chlorphenesin-carbamate",
+          "palmitoylcarnitine",
+          "1-(1,2-diphenylethyl)piperidine-(+/-)",
+          "psi-7976"
+        ],
+        "key_count": 5958,
+        "health_note": "5870/5958 values are BRD-prefixed; 0 BRD keys"
+      }
+    },
+    {
+      "resource_id": "m1_full_drug_neighbors",
+      "file_type": "json",
+      "path": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/1_asset/t021_standard_resources_bundle/drug_neighbors.json",
+      "is_fixture": false,
+      "status": "loaded",
+      "details": {
+        "load_time_s": 0.22,
+        "top_level_keys": [
+          "A08715367",
+          "A12237696",
+          "A18795974",
+          "A27924917",
+          "A77577770",
+          "K05674516",
+          "K13994703",
+          "K17874705",
+          "K19203487",
+          "K25075681"
+        ],
+        "key_count": 5312,
+        "health_note": "5312 drugs with 50 neighbors each"
+      }
+    },
+    {
+      "resource_id": "m1_full_gene_index_simple",
+      "file_type": "json",
+      "path": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/1_asset/t021_standard_resources_bundle/gene_index_simple.json",
+      "is_fixture": false,
+      "status": "loaded",
+      "details": {
+        "load_time_s": 0.01,
+        "top_level_keys": [
+          "A1BG",
+          "A1CF",
+          "A2M",
+          "AADACL2",
+          "AADAT",
+          "AAK1",
+          "AAMP",
+          "AASS",
+          "AATF",
+          "AATK"
+        ],
+        "key_count": 25036,
+        "health_note": "25036 compact gene entries (subset of full gene_index)"
+      }
+    },
+    {
+      "resource_id": "m1_full_gene_neighbors_simple",
+      "file_type": "json",
+      "path": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/1_asset/t021_standard_resources_bundle/gene_neighbors_simple.json",
+      "is_fixture": false,
+      "status": "loaded",
+      "details": {
+        "load_time_s": 1.49,
+        "top_level_keys": [
+          "7SK",
+          "A1BG",
+          "A1CF",
+          "A2M",
+          "A2ML1",
+          "A2MP1",
+          "A3GALT2",
+          "A4GALT",
+          "A4GNT",
+          "AAAS"
+        ],
+        "key_count": 30319,
+        "health_note": "30319 compact genes with 50 neighbors each"
+      }
+    },
+    {
+      "resource_id": "m1_full_gene_index",
+      "file_type": "json",
+      "path": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/1_asset/t021_standard_resources_bundle/gene_index.json",
+      "is_fixture": false,
+      "status": "loaded",
+      "details": {
+        "load_time_s": 0.08,
+        "special_handling": "gene_index_field_normalization",
+        "actual_fields": [
+          "symbol",
+          "gene_type",
+          "in_matrix"
+        ],
+        "normalization_applied": "symbol->gene_symbol",
+        "normalization_note": "Field 'symbol' maps to canonical 'gene_symbol'",
+        "health_note": ""
+      }
+    },
+    {
+      "resource_id": "m1_full_gene_neighbors",
+      "file_type": "json",
+      "path": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/1_asset/t021_standard_resources_bundle/gene_neighbors.json",
+      "is_fixture": false,
+      "status": "loaded",
+      "details": {
+        "load_time_s": 1.32,
+        "top_level_keys": [
+          "7SK",
+          "A1BG",
+          "A1BG-AS1",
+          "A1CF",
+          "A2M",
+          "A2M-AS1",
+          "A2ML1",
+          "A2ML1-AS1",
+          "A2MP1",
+          "A3GALT2"
+        ],
+        "key_count": 33791,
+        "health_note": "33791 genes with 50 neighbors each"
+      }
+    },
+    {
+      "resource_id": "m1_full_function_index",
+      "file_type": "json",
+      "path": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/1_asset/t021_standard_resources_bundle/function_index.json",
+      "is_fixture": false,
+      "status": "loaded",
+      "details": {
+        "load_time_s": 0.0,
+        "special_handling": "function_index_unwrap",
+        "top_level_keys": [
+          "var_names",
+          "meta",
+          "aliases"
+        ],
+        "meta_term_count": 91,
+        "var_names_count": 91,
+        "aliases_count": 91,
+        "derived_categories": {
+          "HALLMARK_ADIPOGENESIS": "Hallmark",
+          "HALLMARK_ALLOGRAFT_REJECTION": "Hallmark",
+          "HALLMARK_ANDROGEN_RESPONSE": "Hallmark",
+          "HALLMARK_ANGIOGENESIS": "Hallmark",
+          "HALLMARK_APICAL_JUNCTION": "Hallmark",
+          "HALLMARK_APICAL_SURFACE": "Hallmark",
+          "HALLMARK_APOPTOSIS": "Hallmark",
+          "HALLMARK_BILE_ACID_METABOLISM": "Hallmark",
+          "HALLMARK_CHOLESTEROL_HOMEOSTASIS": "Hallmark",
+          "HALLMARK_COAGULATION": "Hallmark",
+          "HALLMARK_COMPLEMENT": "Hallmark",
+          "HALLMARK_DNA_REPAIR": "Hallmark",
+          "HALLMARK_E2F_TARGETS": "Hallmark",
+          "HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION": "Hallmark",
+          "HALLMARK_ESTROGEN_RESPONSE_EARLY": "Hallmark",
+          "HALLMARK_ESTROGEN_RESPONSE_LATE": "Hallmark",
+          "HALLMARK_FATTY_ACID_METABOLISM": "Hallmark",
+          "HALLMARK_G2M_CHECKPOINT": "Hallmark",
+          "HALLMARK_GLYCOLYSIS": "Hallmark",
+          "HALLMARK_HEDGEHOG_SIGNALING": "Hallmark",
+          "HALLMARK_HEME_METABOLISM": "Hallmark",
+          "HALLMARK_HYPOXIA": "Hallmark",
+          "HALLMARK_IL2_STAT5_SIGNALING": "Hallmark",
+          "HALLMARK_IL6_JAK_STAT3_SIGNALING": "Hallmark",
+          "HALLMARK_INFLAMMATORY_RESPONSE": "Hallmark",
+          "HALLMARK_INTERFERON_ALPHA_RESPONSE": "Hallmark",
+          "HALLMARK_INTERFERON_GAMMA_RESPONSE": "Hallmark",
+          "HALLMARK_KRAS_SIGNALING_DN": "Hallmark",
+          "HALLMARK_KRAS_SIGNALING_UP": "Hallmark",
+          "HALLMARK_MITOTIC_SPINDLE": "Hallmark",
+          "HALLMARK_MTORC1_SIGNALING": "Hallmark",
+          "HALLMARK_MYC_TARGETS_V1": "Hallmark",
+          "HALLMARK_MYC_TARGETS_V2": "Hallmark",
+          "HALLMARK_MYOGENESIS": "Hallmark",
+          "HALLMARK_NOTCH_SIGNALING": "Hallmark",
+          "HALLMARK_OXIDATIVE_PHOSPHORYLATION": "Hallmark",
+          "HALLMARK_P53_PATHWAY": "Hallmark",
+          "HALLMARK_PANCREAS_BETA_CELLS": "Hallmark",
+          "HALLMARK_PEROXISOME": "Hallmark",
+          "HALLMARK_PI3K_AKT_MTOR_SIGNALING": "Hallmark",
+          "HALLMARK_PROTEIN_SECRETION": "Hallmark",
+          "HALLMARK_REACTIVE_OXYGEN_SPECIES_PATHWAY": "Hallmark",
+          "HALLMARK_SPERMATOGENESIS": "Hallmark",
+          "HALLMARK_TGF_BETA_SIGNALING": "Hallmark",
+          "HALLMARK_TNFA_SIGNALING_VIA_NFKB": "Hallmark",
+          "HALLMARK_UNFOLDED_PROTEIN_RESPONSE": "Hallmark",
+          "HALLMARK_UV_RESPONSE_DN": "Hallmark",
+          "HALLMARK_UV_RESPONSE_UP": "Hallmark",
+          "HALLMARK_WNT_BETA_CATENIN_SIGNALING": "Hallmark",
+          "HALLMARK_XENOBIOTIC_METABOLISM": "Hallmark",
+          "MP1  Cell Cycle - G2/M": "3CA MPS",
+          "MP2  Cell Cycle - G1/S": "3CA MPS",
+          "MP3  Cell Cylce HMG-rich": "3CA MPS",
+          "MP4  Chromatin ": "3CA MPS",
+          "MP5 Stress ": "3CA MPS",
+          "MP6 Hypoxia": "3CA MPS",
+          "MP7 Stress (in vitro)": "3CA MPS",
+          "MP8 Proteasomal degradation": "3CA MPS",
+          "MP9 Unfolded protein response": "3CA MPS",
+          "MP10 Protein maturation": "3CA MPS",
+          "MP11 Translation initiation": "3CA MPS",
+          "MP12 EMT-I": "3CA MPS",
+          "MP13 EMT-II": "3CA MPS",
+          "MP14 EMT-III ": "3CA MPS",
+          "MP15 EMT IV": "3CA MPS",
+          "MP16 MES (glioma)": "3CA MPS",
+          "MP17 Interferon/MHC-II (I)": "3CA MPS",
+          "MP18 Interferon/MHC-II (II)": "3CA MPS",
+          "MP19 Epithelial Senescence": "3CA MPS",
+          "MP20 MYC": "3CA MPS",
+          "MP21 Respiration": "3CA MPS",
+          "MP22 Secreted I": "3CA MPS",
+          "MP23 Secreted II": "3CA MPS",
+          "MP24 Cilia": "3CA MPS",
+          "MP25 Astrocytes": "3CA MPS",
+          "MP26 NPC Glioma": "3CA MPS",
+          "MP27 Oligo Progenitor": "3CA MPS",
+          "MP28 Oligo normal": "3CA MPS",
+          "MP29 NPC/OPC": "3CA MPS",
+          "MP30 PDAC-classical": "3CA MPS",
+          "MP31 Alveolar": "3CA MPS",
+          "MP32 Skin-pigmentation": "3CA MPS",
+          "MP33 RBCs": "3CA MPS",
+          "MP34 Platelet-activation": "3CA MPS",
+          "MP35 Hemato-related-I": "3CA MPS",
+          "MP36 IG": "3CA MPS",
+          "MP37 Hemato-related-II": "3CA MPS",
+          "MP38 Glutathione": "3CA MPS",
+          "MP39 Metal-response": "3CA MPS",
+          "MP40 PDAC-related": "3CA MPS",
+          "MP41 Unassigned": "3CA MPS"
+        },
+        "normalization_applied": "category_from_source",
+        "health_note": ""
+      }
+    },
+    {
+      "resource_id": "m1_fixture_cellline_index",
+      "file_type": "json",
+      "path": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/4_artifact/2_persist/fixture_package_m1/cellline_index_fixture_m1.json",
+      "is_fixture": true,
+      "status": "loaded",
+      "details": {
+        "load_time_s": 0.0,
+        "special_handling": "cellline_index_unwrap",
+        "top_level_keys": [
+          "valid_cells"
+        ],
+        "cell_count": 4
+      }
+    },
+    {
+      "resource_id": "m1_fixture_cellline_neighbors",
+      "file_type": "json",
+      "path": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/4_artifact/2_persist/fixture_package_m1/cellline_neighbors_fixture_m1.json",
+      "is_fixture": true,
+      "status": "loaded",
+      "details": {
+        "load_time_s": 0.0,
+        "top_level_keys": [
+          "central_nervous_system",
+          "prostate",
+          "skin",
+          "upper_aerodigestive_tract"
+        ],
+        "key_count": 4
+      }
+    },
+    {
+      "resource_id": "m1_fixture_cellline_tree",
+      "file_type": "json",
+      "path": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/4_artifact/2_persist/fixture_package_m1/cellline_tree_fixture_m1.json",
+      "is_fixture": true,
+      "status": "loaded",
+      "details": {
+        "load_time_s": 0.0,
+        "special_handling": "cellline_tree_flat",
+        "top_level_keys": [
+          "tree",
+          "cell_index",
+          "meta"
+        ],
+        "key_count": 3,
+        "note": "Flat 3-key structure (not hierarchical tree)"
+      }
+    },
+    {
+      "resource_id": "m1_fixture_drug_index",
+      "file_type": "json",
+      "path": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/4_artifact/2_persist/fixture_package_m1/drug_index_fixture_m1.json",
+      "is_fixture": true,
+      "status": "loaded",
+      "details": {
+        "load_time_s": 0.0,
+        "top_level_keys": [
+          "hmn-214",
+          "afatinib",
+          "erlotinib",
+          "neratinib"
+        ],
+        "key_count": 4
+      }
+    },
+    {
+      "resource_id": "m1_fixture_drug_neighbors",
+      "file_type": "json",
+      "path": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/4_artifact/2_persist/fixture_package_m1/drug_neighbors_fixture_m1.json",
+      "is_fixture": true,
+      "status": "loaded",
+      "details": {
+        "load_time_s": 0.0,
+        "top_level_keys": [
+          "K70511574",
+          "K66175015",
+          "K70401845",
+          "K85606544"
+        ],
+        "key_count": 4
+      }
+    },
+    {
+      "resource_id": "m1_fixture_gene_index_simple",
+      "file_type": "json",
+      "path": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/4_artifact/2_persist/fixture_package_m1/gene_index_simple_fixture_m1.json",
+      "is_fixture": true,
+      "status": "loaded",
+      "details": {
+        "load_time_s": 0.0,
+        "top_level_keys": [
+          "A2M",
+          "AATF",
+          "ABAT",
+          "ABCA1",
+          "CPVL",
+          "ORAI3",
+          "SLC19A3",
+          "STAC"
+        ],
+        "key_count": 8
+      }
+    },
+    {
+      "resource_id": "m1_fixture_gene_neighbors_simple",
+      "file_type": "json",
+      "path": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/4_artifact/2_persist/fixture_package_m1/gene_neighbors_simple_fixture_m1.json",
+      "is_fixture": true,
+      "status": "loaded",
+      "details": {
+        "load_time_s": 0.0,
+        "top_level_keys": [
+          "A2M",
+          "AATF",
+          "ABAT",
+          "ABCA1",
+          "CPVL",
+          "ORAI3",
+          "SLC19A3",
+          "STAC"
+        ],
+        "key_count": 8
+      }
+    },
+    {
+      "resource_id": "m1_fixture_gene_index",
+      "file_type": "json",
+      "path": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/4_artifact/2_persist/fixture_package_m1/gene_index_fixture_m1.json",
+      "is_fixture": true,
+      "status": "loaded",
+      "details": {
+        "load_time_s": 0.0,
+        "special_handling": "gene_index_field_normalization",
+        "actual_fields": [
+          "symbol",
+          "gene_type",
+          "in_matrix"
+        ],
+        "normalization_applied": "symbol->gene_symbol",
+        "normalization_note": "Field 'symbol' maps to canonical 'gene_symbol'"
+      }
+    },
+    {
+      "resource_id": "m1_fixture_gene_neighbors",
+      "file_type": "json",
+      "path": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/4_artifact/2_persist/fixture_package_m1/gene_neighbors_fixture_m1.json",
+      "is_fixture": true,
+      "status": "loaded",
+      "details": {
+        "load_time_s": 0.0,
+        "top_level_keys": [
+          "A2M",
+          "AATF",
+          "ABAT",
+          "ABCA1",
+          "CPVL",
+          "ORAI3",
+          "SLC19A3",
+          "STAC"
+        ],
+        "key_count": 8
+      }
+    },
+    {
+      "resource_id": "m1_fixture_function_index",
+      "file_type": "json",
+      "path": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/4_artifact/2_persist/fixture_package_m1/function_index_fixture_m1.json",
+      "is_fixture": true,
+      "status": "loaded",
+      "details": {
+        "load_time_s": 0.0,
+        "special_handling": "function_index_unwrap",
+        "top_level_keys": [
+          "var_names",
+          "meta",
+          "aliases"
+        ],
+        "meta_term_count": 7,
+        "var_names_count": 7,
+        "aliases_count": 7,
+        "derived_categories": {
+          "HALLMARK_ADIPOGENESIS": "Hallmark",
+          "HALLMARK_APOPTOSIS": "Hallmark",
+          "HALLMARK_E2F_TARGETS": "Hallmark",
+          "HALLMARK_P53_PATHWAY": "Hallmark",
+          "HALLMARK_TNFA_SIGNALING_VIA_NFKB": "Hallmark",
+          "MP39 Metal-response": "3CA MPS",
+          "MP40 PDAC-related": "3CA MPS"
+        },
+        "normalization_applied": "category_from_source"
+      }
+    }
+  ],
+  "summary": {
+    "total": 36,
+    "loaded": 36,
+    "missing": 0,
+    "load_error": 0,
+    "not_attempted": 0,
+    "unsupported": 0
+  },
+  "normalizations_applied": [
+    {
+      "resource_id": "m1_full_gene_index",
+      "normalization": "symbol->gene_symbol"
+    },
+    {
+      "resource_id": "m1_full_function_index",
+      "normalization": "category_from_source"
+    },
+    {
+      "resource_id": "m1_fixture_gene_index",
+      "normalization": "symbol->gene_symbol"
+    },
+    {
+      "resource_id": "m1_fixture_function_index",
+      "normalization": "category_from_source"
+    }
+  ],
+  "gaps": [
+    {
+      "resource_id": "index:function_index.json",
+      "path": "standard_bundle/function_index.json",
+      "issue": "Non-standard structure: dict{meta, var_names, aliases}",
+      "severity": "warning",
+      "fixture_coverage": true,
+      "recommended_action": "Handled: see normalizations applied"
+    },
+    {
+      "resource_id": "index:function_index.json",
+      "path": "standard_bundle/function_index.json",
+      "issue": "Hallmark vs 3CA MPS in 'source' field, not 'category'",
+      "severity": "warning",
+      "fixture_coverage": true,
+      "recommended_action": "Handled: see normalizations applied"
+    },
+    {
+      "resource_id": "index:gene_index.json",
+      "path": "standard_bundle/gene_index.json",
+      "issue": "Field names: 'symbol' not 'gene_symbol', no 'ensembl_id'",
+      "severity": "warning",
+      "fixture_coverage": true,
+      "recommended_action": "Handled: see normalizations applied"
+    },
+    {
+      "resource_id": "index:cellline_index.json",
+      "path": "standard_bundle/cellline_index.json",
+      "issue": "Single wrapping key, not 1-to-1 cell line mapping",
+      "severity": "cosmetic",
+      "fixture_coverage": true,
+      "recommended_action": "Handled: see normalizations applied"
+    },
+    {
+      "resource_id": "index:drug_index.json",
+      "path": "standard_bundle/drug_index.json",
+      "issue": "No reverse BRD->alias lookup",
+      "severity": "cosmetic",
+      "fixture_coverage": true,
+      "recommended_action": "Handled: see normalizations applied"
+    },
+    {
+      "resource_id": "index:cellline_tree.json",
+      "path": "standard_bundle/cellline_tree.json",
+      "issue": "Flat 3-key structure, not hierarchical tree",
+      "severity": "warning",
+      "fixture_coverage": true,
+      "recommended_action": "Handled: see normalizations applied"
+    }
+  ],
+  "elapsed_s": 6.74
+}

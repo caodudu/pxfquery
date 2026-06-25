@@ -1,0 +1,54 @@
+version: 1
+required:
+  - id: A-001
+    path: ../../../2_project_asset/1_raw_material/legacy_flat_asset_library_v20260614/code/pxfquery_package/
+    reason: Read-only source for migrated legacy package code; provides all .py modules, pyproject.toml README.md and the package tree to mirror into a current src/-layout workspace. No edits allowed in this path.
+  - id: A-002
+    path: ../../../4_phase_development/goal_algorithm_function_review/task_mvp_algorithm_run-through_review/4_artifact/
+    reason: T-013 MVP capability review outputs (capability contract, capability status matrix, failure/missing capability list) used to judge which import/compile smoke tests are realistic and which are expected to fail.
+  - id: A-003
+    path: ../../../1_project_init/1_project_protocol/
+    reason: Active project boundaries, source authority rules, and the default pxfquery conda environment definition required for any Python execution.
+optional:
+  - id: A-004
+    path: ../../../2_project_asset/1_raw_material/legacy_flat_asset_library_v20260614/code/design_docs/
+    reason: Optional reference for original design intent when reconciling import behavior or deciding which historical claims should not be repeated as smoke evidence.
+forbidden:
+  - path: /Users/dudu/Documents/3_Project/8_functional_query
+    reason: Legacy Windows-era project root is historical source only; must not be read or written by this task.
+  - path: ../../../2_project_asset/1_raw_material/legacy_flat_asset_library_v20260614/
+    reason: Migrated flat asset library is the input source. The pxfquery_package/ folder must be read-only; it must not be modified, regenerated, or repaired from this task.
+  - path: ../../../6_project_deliverable/
+    reason: Final project deliverables are not produced by a workspace-creation task and must remain untouched.
+output:
+  - path: 3_execution/
+    description: Workspace scaffold scripts, copy/compile smoke commands, and per-step logs.
+  - path: 4_artifact/2_persist/workspace/
+    description: Current pxfquery src/-layout workspace, including pyproject.toml, README.md, and src/pxfquery/ tree copied from legacy source.
+  - path: 4_artifact/2_persist/
+    description: Import/compile smoke evidence log in markdown.
+  - path: 4_artifact/3_document/
+    description: Chinese workspace summary HTML plus execution_report_vYYYYMMDD.html and result_report_vYYYYMMDD.html.
+  - path: 4_artifact/registry.yaml
+    description: Final artifact registry for everything produced above.
+  - path: 5_report/completion.md
+    description: Final completion report recording what was created and what remains for downstream tasks.
+modifiable:
+  - 3_execution/
+  - 4_artifact/
+  - 5_report/
+  - 1_asset/registration.yaml
+non_modifiable:
+  - 2_protocol/
+  - ../../../1_project_init/1_project_protocol/
+  - ../../../2_project_asset/
+  - ../../../3_phase_digestion/
+  - ../../../4_phase_development/goal_algorithm_function_review/
+  - ../../../6_project_deliverable/
+  - /Users/dudu/Documents/3_Project/8_functional_query
+notes:
+  - Copy (do not edit) the migrated package source into 4_artifact/2_persist/workspace/src/pxfquery/ as the foundation of the new workspace.
+  - Exclude any __pycache__ directories when copying legacy source files.
+  - Treat import/compile failures as evidence to record, not bugs to silently fix.
+  - Run all Python commands inside the pxfquery conda environment defined in 3_environment.md.
+  - This task creates a workspace; later tasks may repair, extend, or replace modules.

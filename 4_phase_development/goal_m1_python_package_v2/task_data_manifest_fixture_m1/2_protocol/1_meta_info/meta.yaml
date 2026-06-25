@@ -1,0 +1,33 @@
+task_id: T-043
+name: data_manifest_fixture_m1
+phase: development
+goal: goal_m1_python_package_v2
+project: P-012
+objective: Prepare the stable M1 data substrate. Use T-014 for precomputed-data understanding
+  and T-021 for standard resource formats. Deliver a resource manifest, a minimal
+  fixture package, expected shapes/keys/columns, and small example records sufficient
+  for loader, forward, and reverse demos. This task must confirm concrete paths and
+  fixture contents; it must not invent data or depend on failed T024-T040 outputs.
+executor: hybrid
+agent_id: AGT-001
+config_agent_id: AGT-001
+check_agent_id: AGT-001
+execute_agent_id: AGT-001
+server_id: null
+status: done
+cyhex_version: 1.2.19
+created: '2026-06-24'
+started: null
+completed: '2026-06-24'
+notes: 'Constraint supplement for config AI: This is a stable bottom-layer asset task.
+  It must produce reusable manifest schema, concrete paths, minimal fixture files
+  or fixture package, expected shapes/keys/columns, and sample records. Use T-014
+  and T-021 only as authorities. Do not invent data, do not scan unrelated project
+  assets, and do not use T024-T040 outputs. Downstream loader/query tasks depend on
+  this task for reliable data boundaries.'
+fast_pass_permission: green
+sub_status: ''
+fast_pass_last_auto_approved: check_review
+fast_pass_last_auto_approved_at: '2026-06-24T03:25:09'
+fast_pass_accepted: true
+fast_pass_accepted_at: '2026-06-24T04:01:01'

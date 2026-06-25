@@ -1,0 +1,48 @@
+assets:
+- id: A-001
+  name: Legacy PxFquery package code
+  type: raw
+  source: local
+  origin: legacy_flat_asset_library_v20260614
+  registered: '2026-06-23'
+  path: 1_asset/Legacy PxFquery package code
+  symlink: true
+  notes: Read-only source for migrated legacy package code. Provides all .py modules,
+    pyproject.toml, README.md and the package tree (data, index, llm, prompt, query,
+    viz) to mirror into a current src/-layout workspace. Must not be modified by this
+    task.
+  location: local
+- id: A-002
+  name: T-013 MVP capability review deliverables
+  type: deliverable
+  source: self
+  origin: goal_algorithm_function_review/task_mvp_algorithm_run-through_review/4_artifact
+  registered: '2026-06-23'
+  path: 1_asset/T-013 MVP capability review deliverables
+  symlink: true
+  notes: T-013 MVP capability contract, capability status matrix, and failure/missing
+    capability list used to judge which import/compile smoke tests are realistic and
+    which are expected to fail.
+  location: local
+- id: A-003
+  name: Current project protocol
+  type: deliverable
+  source: self
+  origin: project_init
+  registered: '2026-06-23'
+  path: 1_asset/Current project protocol
+  symlink: true
+  notes: Active project boundaries, source authority rules, and the default pxfquery
+    conda environment definition required for any Python execution.
+  location: local
+- id: A-004
+  name: Migrated code design documents
+  type: reference
+  source: self
+  origin: legacy_flat_asset_library_v20260614
+  registered: '2026-06-23'
+  path: 1_asset/Migrated code design documents
+  symlink: true
+  notes: Optional reference for original design intent when reconciling import behavior
+    or judging what historical claims should not be repeated as smoke evidence.
+  location: local

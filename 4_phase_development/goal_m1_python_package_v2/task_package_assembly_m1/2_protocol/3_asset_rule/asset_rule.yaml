@@ -1,0 +1,101 @@
+required:
+  - id: A-001
+    source_task: T-044
+    source_artifact_id: D-001
+    path: "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_package_skeleton_m1/4_artifact/1_package/pyproject.toml"
+    reason: "Canonical base pyproject.toml for the pxfquery package"
+  - id: A-002
+    source_task: T-044
+    source_artifact_id: D-002
+    path: "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_package_skeleton_m1/4_artifact/1_package/pxfquery/cli/__init__.py"
+    reason: "CLI wiring with forward, reverse, and info subcommands"
+  - id: A-003
+    source_task: T-044
+    source_artifact_id: D-002
+    path: "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_package_skeleton_m1/4_artifact/1_package/pxfquery/cli/__main__.py"
+    reason: "python -m pxfquery entry point"
+  - id: A-004
+    source_task: T-059
+    source_artifact_id: D-001
+    path: "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_forward_query_core_repair_m1/4_artifact/1_package/src/pxfquery/query/forward.py"
+    reason: "Forward query implementation (pert2func)"
+  - id: A-005
+    source_task: T-059
+    source_artifact_id: D-001
+    path: "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_forward_query_core_repair_m1/4_artifact/1_package/src/pxfquery/query/reverse.py"
+    reason: "Reverse query implementation (reverse_query / func2pert logic)"
+  - id: A-010
+    source_task: T-059
+    source_artifact_id: D-001
+    path: "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_forward_query_core_repair_m1/4_artifact/1_package/src/pxfquery/core.py"
+    reason: "Reference PxFquery class; func2pert returns NotImplemented and must be rewired in assembly"
+  - id: A-006
+    source_task: T-059
+    source_artifact_id: D-001
+    path: "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_forward_query_core_repair_m1/4_artifact/1_package/src/pxfquery/data"
+    reason: "Data loader: M1FixtureLoader and base loader for demo fixture loading"
+  - id: A-011
+    source_task: T-059
+    source_artifact_id: D-003
+    path: "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_forward_query_core_repair_m1/4_artifact/2_persist/forward_repair_fixture_m1_1"
+    reason: "Forward demo fixture with synthetic EGFR/A549/xpr positive-demo row"
+  - id: A-012
+    source_task: T-059
+    source_artifact_id: D-002
+    path: "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_forward_query_core_repair_m1/4_artifact/2_persist/forward_repair_manifest_m1_1.yaml"
+    reason: "Forward repair manifest documenting synthetic_repair provenance"
+  - id: A-013
+    source_task: T-060
+    source_artifact_id: D-002
+    path: "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_reverse_query_core_repair_m1/4_artifact/2_persist/reverse_repair_fixture_m1_1"
+    reason: "Reverse demo fixture with synthetic HALLMARK_MYC_TARGETS_V1 / A549 support"
+  - id: A-014
+    source_task: T-060
+    source_artifact_id: D-003
+    path: "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_reverse_query_core_repair_m1/4_artifact/2_persist/reverse_repair_manifest_m1_1.yaml"
+    reason: "Reverse repair manifest documenting synthetic_repair provenance"
+  - id: A-015
+    source_task: T-059
+    source_artifact_id: D-001
+    path: "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_forward_query_core_repair_m1/4_artifact/1_package/pyproject.toml"
+    reason: "pyproject.toml with [project.scripts] entry: pxfquery = pxfquery.cli:main"
+optional:
+  - id: A-007
+    source_task: T-059
+    source_artifact_id: D-001
+    path: "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_forward_query_core_repair_m1/4_artifact/1_package/src/pxfquery/index"
+    reason: "Index modules — not required for M1 demo but included for completeness"
+  - id: A-009
+    source_task: T-059
+    source_artifact_id: D-001
+    path: "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_forward_query_core_repair_m1/4_artifact/1_package/src/pxfquery/viz"
+    reason: "Viz module — not required for M1 assembly but included for completeness"
+  - id: A-008
+    source_task: T-059
+    source_artifact_id: D-001
+    path: "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_forward_query_core_repair_m1/4_artifact/1_package/src/pxfquery/llm"
+    reason: "LLM prompt module — not required for M1 assembly but included for completeness"
+forbidden:
+  - path: 2_project_asset/
+    reason: "forbidden for non-digestion task; request a predecessor digestion task if raw project assets are needed"
+  - path: "T-024/T-025/T-026/T-027/T-028/T-029/T-030/T-031/T-032/T-033/T-034/T-035/T-036/T-037/T-038/T-039/T-040"
+    reason: "T024-T040 blocked assets — do not read or reference"
+  - path: "T-048/T-049"
+    reason: "T-048/T-049 are failed predecessor tasks; use T-059/T-060 replacement outputs only"
+output:
+  - path: 4_artifact/1_package
+    type: code
+  - path: 4_artifact/2_import_smoke
+    type: document
+  - path: 4_artifact/3_document
+    type: document
+  - path: 4_artifact/5_table
+    type: table
+modifiable:
+  - 3_execution/
+  - 4_artifact/
+  - 5_report/
+non_modifiable:
+  - 2_protocol/
+  - 1_asset/
+  - predecessor task directories

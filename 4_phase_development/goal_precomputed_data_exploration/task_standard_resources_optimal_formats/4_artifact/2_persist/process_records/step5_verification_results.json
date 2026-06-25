@@ -1,0 +1,262 @@
+{
+  "verifications": [
+    {
+      "file": "cp_func_ad.h5ad",
+      "category": "functional_matrix",
+      "exists": true,
+      "size_mb": 105.11,
+      "load_time_sec": 1.46,
+      "checks": {
+        "n_obs_gt_0": true,
+        "n_vars_91": true,
+        "x_dtype_float32": true,
+        "obs_has_sig_id": true,
+        "obs_has_cell_iname": true,
+        "obs_has_pert_id": true,
+        "obs_has_cmap_name": true,
+        "obs_has_project_code": true,
+        "x_no_null": true,
+        "x_no_inf": true,
+        "x_range_ok": true,
+        "var_names_start_with_hallmark": true
+      },
+      "status": "PASS"
+    },
+    {
+      "file": "sh_func_ad.h5ad",
+      "category": "functional_matrix",
+      "exists": true,
+      "size_mb": 95.52,
+      "load_time_sec": 0.78,
+      "checks": {
+        "n_obs_gt_0": true,
+        "n_vars_91": true,
+        "x_dtype_float32": true,
+        "obs_has_sig_id": true,
+        "obs_has_cell_iname": true,
+        "obs_has_pert_id": true,
+        "obs_has_cmap_name": true,
+        "obs_has_project_code": true,
+        "x_no_null": true,
+        "x_no_inf": true,
+        "x_range_ok": true,
+        "var_names_start_with_hallmark": true
+      },
+      "status": "PASS"
+    },
+    {
+      "file": "xpr_func_ad.h5ad",
+      "category": "functional_matrix",
+      "exists": true,
+      "size_mb": 64.22,
+      "load_time_sec": 0.4,
+      "checks": {
+        "n_obs_gt_0": true,
+        "n_vars_91": true,
+        "x_dtype_float32": true,
+        "obs_has_sig_id": true,
+        "obs_has_cell_iname": true,
+        "obs_has_pert_id": true,
+        "obs_has_cmap_name": true,
+        "obs_has_project_code": true,
+        "x_no_null": true,
+        "x_no_inf": true,
+        "x_range_ok": true,
+        "var_names_start_with_hallmark": true
+      },
+      "status": "PASS"
+    },
+    {
+      "file": "function_index.json",
+      "category": "query_index",
+      "exists": true,
+      "size_mb": 0.02,
+      "load_time_sec": 0.0,
+      "checks": {
+        "has_var_names": true,
+        "has_meta": true,
+        "has_aliases": true,
+        "n_total_91": true,
+        "n_hallmark_50": true,
+        "n_3ca_mps_41": true,
+        "all_hallmark_have_meta": true,
+        "all_mps_have_meta": true
+      },
+      "status": "PASS"
+    },
+    {
+      "file": "cellline_index.json",
+      "category": "query_index",
+      "exists": true,
+      "size_mb": 0.0,
+      "load_time_sec": 0.0,
+      "checks": {
+        "is_dict": true,
+        "non_empty": true
+      },
+      "status": "PASS"
+    },
+    {
+      "file": "cellline_neighbors.json",
+      "category": "query_index",
+      "exists": true,
+      "size_mb": 0.01,
+      "load_time_sec": 0.0,
+      "checks": {
+        "is_dict": true,
+        "non_empty": true
+      },
+      "status": "PASS"
+    },
+    {
+      "file": "drug_index.json",
+      "category": "query_index",
+      "exists": true,
+      "size_mb": 0.17,
+      "load_time_sec": 0.0,
+      "checks": {
+        "is_dict": true,
+        "non_empty": true
+      },
+      "status": "PASS"
+    },
+    {
+      "file": "drug_neighbors.json",
+      "category": "query_index",
+      "exists": true,
+      "size_mb": 4.38,
+      "load_time_sec": 0.3,
+      "checks": {
+        "is_dict": true,
+        "non_empty": true
+      },
+      "status": "PASS"
+    },
+    {
+      "file": "gene_index_simple.json",
+      "category": "query_index",
+      "exists": true,
+      "size_mb": 0.35,
+      "load_time_sec": 0.01,
+      "checks": {
+        "is_dict": true,
+        "non_empty": true
+      },
+      "status": "PASS"
+    },
+    {
+      "file": "gene_neighbors_simple.json",
+      "category": "query_index",
+      "exists": true,
+      "size_mb": 19.5,
+      "load_time_sec": 2.62,
+      "checks": {
+        "is_dict": true,
+        "non_empty": true
+      },
+      "status": "PASS"
+    },
+    {
+      "file": "gene_index.json",
+      "category": "query_index",
+      "exists": true,
+      "size_mb": 6.12,
+      "load_time_sec": 0.12,
+      "checks": {
+        "is_dict": true,
+        "non_empty": true
+      },
+      "status": "PASS"
+    },
+    {
+      "file": "gene_neighbors.json",
+      "category": "query_index",
+      "exists": true,
+      "size_mb": 21.76,
+      "load_time_sec": 3.01,
+      "checks": {
+        "is_dict": true,
+        "non_empty": true
+      },
+      "status": "PASS"
+    },
+    {
+      "file": "cellline_tree.json",
+      "category": "query_index",
+      "exists": true,
+      "size_mb": 0.05,
+      "load_time_sec": 0.0,
+      "checks": {
+        "is_dict": true,
+        "non_empty": true
+      },
+      "status": "PASS"
+    },
+    {
+      "file": "cellline_meta_standard.csv",
+      "category": "metadata_table",
+      "exists": true,
+      "size_mb": 0.01,
+      "load_time_sec": 0.01,
+      "checks": {
+        "has_cell_iname": true,
+        "has_cell_lineage": true,
+        "has_primary_disease": true
+      },
+      "status": "PASS"
+    },
+    {
+      "file": "compound_meta_standard.csv",
+      "category": "metadata_table",
+      "exists": true,
+      "size_mb": 0.93,
+      "load_time_sec": 0.01,
+      "checks": {
+        "has_drug": true,
+        "has_target": true,
+        "has_smiles": true
+      },
+      "status": "PASS"
+    },
+    {
+      "file": "cellline_info_standard.csv",
+      "category": "metadata_table",
+      "exists": true,
+      "size_mb": 0.03,
+      "load_time_sec": 0.0,
+      "checks": {
+        "has_cell_iname": true,
+        "has_cellosaurus_id": true,
+        "has_cell_lineage": true
+      },
+      "status": "PASS"
+    },
+    {
+      "file": "compound_info_standard.csv",
+      "category": "metadata_table",
+      "exists": true,
+      "size_mb": 4.19,
+      "load_time_sec": 0.01,
+      "checks": {
+        "has_pert_id": true,
+        "has_cmap_name": true,
+        "has_target": true
+      },
+      "status": "PASS"
+    },
+    {
+      "file": "gene_info_standard.csv",
+      "category": "metadata_table",
+      "exists": true,
+      "size_mb": 1.09,
+      "load_time_sec": 0.0,
+      "checks": {
+        "has_gene_id": true,
+        "has_gene_symbol": true,
+        "has_ensembl_id": true
+      },
+      "status": "PASS"
+    }
+  ],
+  "failures": []
+}

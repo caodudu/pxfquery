@@ -1,0 +1,131 @@
+schema_version: 1
+updated_at: '2026-06-24T01:08:45'
+source: cli_sessions
+path: 5_report/process_record.yaml
+template:
+  purpose: Task deliverable process record; refreshed from CyHex CLI session metadata
+    while the task runs.
+  stages:
+  - config
+  - check
+  - execute
+  - deliver
+  memory_note: max_rss_kb is captured from live process RSS when the UI/backend observes
+    a running session; completed sessions may be blank if no live sample was available.
+task:
+  task_id: T-025
+  name: resource_manifest_v1
+  status: done
+  sub_status: ''
+summary:
+  session_count: 4
+  running_count: 0
+  done_count: 3
+  failed_count: 1
+  total_duration_seconds: 2675
+  max_rss_kb: null
+phases:
+- stage: config
+  label_zh: 配置
+  label_en: Configuration
+  status: stopped
+  started: '2026-06-23T06:51:05'
+  completed: '2026-06-23T06:51:54'
+  duration_seconds: 49
+  max_rss_kb: null
+  sessions:
+  - session_id: cli_b1769e756694
+    stage: config
+    status: stopped
+    driver: opencode
+    agent_id: ''
+    agent_label: OpenCode cheap tasks
+    model: llm_gateway/deepseek-ai/deepseek-v4-pro
+    pid: 24340
+    created: '2026-06-23T06:51:05'
+    completed: '2026-06-23T06:51:54'
+    duration_seconds: 49
+    current_rss_kb: null
+    max_rss_kb: null
+    returncode: -15
+    prompt_source: manual
+    work_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_resource_index_packs_v1/task_resource_manifest_v1
+    session_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_resource_index_packs_v1/task_resource_manifest_v1/5_report/cli_sessions/config/20260623_065105_opencode_cli_b1769e756694
+  - session_id: cli_97c389424c56
+    stage: config
+    status: done
+    driver: opencode
+    agent_id: ''
+    agent_label: OpenCode cheap tasks
+    model: llm_gateway/deepseek-ai/deepseek-v4-pro
+    pid: 3670
+    created: '2026-06-23T06:35:10'
+    completed: '2026-06-23T06:46:22'
+    duration_seconds: 672
+    current_rss_kb: null
+    max_rss_kb: null
+    returncode: 0
+    prompt_source: assembled
+    work_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_resource_index_packs_v1/task_resource_manifest_v1
+    session_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_resource_index_packs_v1/task_resource_manifest_v1/5_report/cli_sessions/config/20260623_063510_opencode_cli_97c389424c56
+- stage: check
+  label_zh: 检查
+  label_en: Check
+  status: done
+  started: '2026-06-23T06:46:23'
+  completed: '2026-06-23T06:58:03'
+  duration_seconds: 700
+  max_rss_kb: null
+  sessions:
+  - session_id: cli_79981d4c1055
+    stage: check
+    status: done
+    driver: opencode
+    agent_id: ''
+    agent_label: OpenCode cheap tasks
+    model: llm_gateway/deepseek-ai/deepseek-v4-pro
+    pid: 19156
+    created: '2026-06-23T06:46:23'
+    completed: '2026-06-23T06:58:03'
+    duration_seconds: 700
+    current_rss_kb: null
+    max_rss_kb: null
+    returncode: 0
+    prompt_source: assembled
+    work_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_resource_index_packs_v1/task_resource_manifest_v1
+    session_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_resource_index_packs_v1/task_resource_manifest_v1/5_report/cli_sessions/check/20260623_064623_opencode_cli_79981d4c1055
+- stage: execute
+  label_zh: 执行
+  label_en: Execution
+  status: done
+  started: '2026-06-23T06:58:04'
+  completed: '2026-06-23T07:18:58'
+  duration_seconds: 1254
+  max_rss_kb: null
+  sessions:
+  - session_id: cli_1cdb8899fe5e
+    stage: execute
+    status: done
+    driver: opencode
+    agent_id: ''
+    agent_label: OpenCode cheap tasks
+    model: llm_gateway/deepseek-ai/deepseek-v4-pro
+    pid: 37069
+    created: '2026-06-23T06:58:04'
+    completed: '2026-06-23T07:18:58'
+    duration_seconds: 1254
+    current_rss_kb: null
+    max_rss_kb: null
+    returncode: 0
+    prompt_source: assembled
+    work_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_resource_index_packs_v1/task_resource_manifest_v1
+    session_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_resource_index_packs_v1/task_resource_manifest_v1/5_report/cli_sessions/execute/20260623_065804_opencode_cli_1cdb8899fe5e
+- stage: deliver
+  label_zh: 交付
+  label_en: Delivery
+  status: not_started
+  started: ''
+  completed: ''
+  duration_seconds: null
+  max_rss_kb: null
+  sessions: []

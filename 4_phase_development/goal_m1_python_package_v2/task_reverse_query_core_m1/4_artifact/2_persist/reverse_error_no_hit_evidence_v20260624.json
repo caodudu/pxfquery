@@ -1,0 +1,52 @@
+{
+  "task_id": "T-049",
+  "generated": "2026-06-24",
+  "status": "partial",
+  "evidence_type": "reverse_error_no_hit_evidence",
+  "validated_cases": [
+    {
+      "case": "no_matrix_loaded",
+      "api_call": "PxFquery().func2pert(activate=['HALLMARK_APOPTOSIS'], suppress=['HALLMARK_MYC_TARGETS_V1'], cell_line='A549', matrix_type='xpr', top_n=10)",
+      "observed": {
+        "error": "NoMatrixLoaded",
+        "message": "No functional matrix is loaded. Call PxFquery(matrix_path) or load_data(path) first.",
+        "query_type": "system"
+      },
+      "contract_match": true
+    }
+  ],
+  "not_validated": [
+    {
+      "case": "DEMO-002 success",
+      "reason": "Selected T-046 accepted artifacts expose loader code and API documentation but do not include resource_manifest_m1.yaml or fixture_package_m1/, so the required fixture cannot be loaded through the public loader in this task."
+    },
+    {
+      "case": "unknown_program, unknown_cell_line, low_confidence",
+      "reason": "These require an actual loaded fixture. Generating private fixture data would violate the T-049 loader-only and selected-asset constraints."
+    }
+  ],
+  "contract_fixture_mismatch": {
+    "demo_required_suppress_term": "HALLMARK_MYC_TARGETS_V1",
+    "observed_fixture_terms_from_A006": [
+      "HALLMARK_ADIPOGENESIS",
+      "HALLMARK_APOPTOSIS",
+      "HALLMARK_E2F_TARGETS",
+      "HALLMARK_P53_PATHWAY",
+      "HALLMARK_TNFA_SIGNALING_VIA_NFKB",
+      "MP39 Metal-response",
+      "MP40 PDAC-related"
+    ],
+    "term_present_in_A006": false
+  },
+  "commands": [
+    {
+      "command": "PYTHONPATH=$PWD/4_artifact/1_package /Users/dudu/Softwares/miniconda/bin/conda run -n pxfquery python -c \"import json, inspect, pxfquery; from pxfquery import PxFquery; q=PxFquery(); print(pxfquery.__file__); print(inspect.getfile(PxFquery)); print(json.dumps(q.func2pert(['HALLMARK_APOPTOSIS'], ['HALLMARK_MYC_TARGETS_V1'], 'A549', matrix_type='xpr', top_n=10), sort_keys=True))\"",
+      "exit_code": 0
+    },
+    {
+      "command": "PYTHONPATH=$PWD/4_artifact/1_package /Users/dudu/Softwares/miniconda/bin/conda run -n pxfquery python -m compileall -q 4_artifact/1_package/pxfquery",
+      "exit_code": 0
+    }
+  ]
+}
+

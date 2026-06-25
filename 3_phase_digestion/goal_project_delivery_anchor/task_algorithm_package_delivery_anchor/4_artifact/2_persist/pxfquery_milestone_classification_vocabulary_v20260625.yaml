@@ -1,0 +1,94 @@
+task_id: T-062
+artifact_id: T062-A-005
+name: pxfquery_milestone_classification_vocabulary
+version: v20260625
+labels:
+  delivered:
+    definition: Working behavior is evidenced by accepted current milestone artifacts or runs.
+    use_when:
+      - primary_capability_path_operates
+      - output_is_inspectable_or_machine_readable
+      - status_and_evidence_metadata_are_present_when_required
+    do_not_use_when:
+      - only_code_presence_is_known
+      - only_historical_report_exists
+      - fallback_only_replaced_required_primary_path_without_approval
+  partial:
+    definition: Some required behavior is evidenced but coverage, robustness, or scope is incomplete.
+    use_when:
+      - narrow_success_case_only
+      - unresolved_warning_remains
+      - only_subcomponent_is_evidenced
+    do_not_use_when:
+      - behavior_is_unsafe_or_incorrect
+      - missing_capability_was_never_attempted_due_to_blocker
+  blocked:
+    definition: A dependency, missing resource, tool/account/configuration issue, or runtime prerequisite prevents operation or evaluation.
+    use_when:
+      - resolver_cannot_start_due_to_missing_index
+      - LLM_required_but_authentication_or_backend_unavailable
+      - standard_resource_basis_unavailable
+    do_not_use_when:
+      - capability_was_attempted_and_returned_wrong_result
+  failed:
+    definition: Required behavior was attempted and produced incorrect, unsafe, or unusable results.
+    use_when:
+      - false_positive_match_returned_as_found
+      - query_crashes_without_controlled_status
+      - output_contradicts_required_evidence
+    do_not_use_when:
+      - no_attempt_was_possible_due_to_blocker
+  downgraded:
+    definition: A required capability was removed, optionalized, deferred, or replaced by a weaker substitute without qualifying as delivered.
+    use_when:
+      - deterministic_lookup_replaces_required_resolver
+      - exact_only_lookup_replaces_required_proxy
+      - LLM_behavior_removed_because_claims_are_conservative
+    approval_required: true
+  deferred-user-approved:
+    definition: Capability is not delivered now, but explicit user approval records the deferral and follow-up expectation.
+    required_fields:
+      - approving_user_or_decision_reference
+      - approval_date
+      - deferred_capability
+      - reason
+      - expected_follow_up_or_milestone
+  deferred-not-approved:
+    definition: Capability is deferred implicitly or by executor choice without explicit user approval.
+    use_when:
+      - task_output_moves_required_capability_later_without_recorded_approval
+      - scope_reduction_is_presented_as_convenience
+    acceptance_effect: not_accepted_as_full_delivery
+  out-of-scope:
+    definition: Capability is explicitly excluded by the milestone contract.
+    use_when:
+      - exclusion_is_written_in_protocol_or_user_instruction
+      - exclusion_does_not_conflict_with_project_capability_anchor
+    do_not_use_when:
+      - capability_is_part_of_milestone_but_inconvenient_or_blocked
+  evidence-insufficient:
+    definition: Claim cannot be accepted because evidence is missing, stale, indirect, or only planned.
+    use_when:
+      - only_legacy_report_supports_current_claim
+      - only_endpoint_connectivity_supports_full_LLM_claim
+      - no_machine_readable_or_reviewable_output_exists
+review_fields_required_for_each_capability:
+  - capability_id
+  - in_scope_boolean
+  - classification_label
+  - evidence_paths_or_ids
+  - fallback_used_boolean
+  - downgrade_or_deferral_boolean
+  - user_approval_reference_if_any
+  - reviewer_note
+package_level_decision_labels:
+  delivered:
+    definition: All in-scope blocker capabilities are delivered and no unapproved downgrade remains.
+  partial:
+    definition: Core behavior is partly demonstrated but one or more non-fatal capabilities are partial or evidence-insufficient.
+  blocked:
+    definition: A dependency or resource prevents evaluating required capabilities.
+  failed:
+    definition: A required safety or correctness behavior fails.
+  downgraded:
+    definition: The milestone achieves a reduced capability set without valid approval.

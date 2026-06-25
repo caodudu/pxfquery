@@ -1,0 +1,50 @@
+required:
+  - id: A-001
+    source_task: T-007
+    source_artifact_id: D-001
+    path: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_development_asset_digestion/task_digest_pxfquery_development_state/4_artifact/2_persist/pxfquery_development_source_map_v20260617.md
+    reason: Trusted source map that identifies the migrated PxFquery package-source path and source-priority rules.
+  - id: A-002
+    source_task: project_asset
+    source_artifact_id: pxfquery_package_path_from_T007_D001
+    path: /Users/dudu/Documents/3_Project/12_PxFquery/2_project_asset/1_raw_material/legacy_flat_asset_library_v20260614/code/pxfquery_package/
+    reason: Only raw legacy package-source directory allowed for bounded static inspection in this digestion repair task.
+optional: []
+forbidden:
+  - path: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_development_asset_digestion/task_legacy_source_digest_for_m1/4_artifact/
+    reason: T-041 outputs are failed/context only and must not be reused as authoritative inputs.
+  - path: /Users/dudu/Documents/3_Project/8_functional_query
+    reason: Historical source root is outside this task's allowed source boundary.
+  - path: unregistered paths under /Users/dudu/Documents/3_Project/12_PxFquery/2_project_asset/
+    reason: Broad project-asset scanning is forbidden; execution may inspect only the registered A-002 package-source directory.
+  - path: "**/__pycache__/**"
+    reason: Cache files are not source evidence.
+  - path: "**/*.h5ad"
+    reason: Matrix/data files are outside the static source-digest scope.
+  - path: "**/*.ipynb"
+    reason: Notebooks are outside the static source-digest scope.
+output:
+  - path: 4_artifact/2_persist/legacy_source_digest_repair_m1.md
+    type: document
+  - path: 4_artifact/5_table/legacy_module_reuse_matrix_repair_m1.csv
+    type: table
+  - path: 4_artifact/2_persist/legacy_reference_boundaries_repair_m1.yaml
+    type: document
+  - path: 4_artifact/3_document/execution_report_v20260624.html
+    type: report
+  - path: 4_artifact/3_document/result_report_v20260624.html
+    type: report
+  - path: 4_artifact/registry.yaml
+    type: registry
+  - path: 5_report/completion.md
+    type: report
+modifiable:
+  - 3_execution/
+  - 4_artifact/
+  - 5_report/
+non_modifiable:
+  - predecessor task directories
+  - project protocol directories
+  - legacy source root
+  - registered project assets
+  - /Users/dudu/Documents/3_Project/12_PxFquery/2_project_asset/1_raw_material/legacy_flat_asset_library_v20260614/code/pxfquery_package/

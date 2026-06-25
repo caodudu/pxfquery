@@ -1,0 +1,50 @@
+task_id: T-055
+name: 01_legacy_stress_test_source_map
+phase: digestion
+goal: goal_legacy_stress_test_asset_digestion
+project: P-012
+objective: 'Create a source map for migrated legacy materials that may relate to PxFquery
+  stress testing, complex queries, resolver validation, strict edge cases, and old
+  validation scripts/reports.
+
+
+  Deliverables: 4_artifact/2_persist/legacy_stress_test_source_map_vYYYYMMDD.md and
+  4_artifact/5_table/stress_test_candidate_asset_index_vYYYYMMDD.csv.
+
+
+  Reference T-001 because it defines legacy background, old structure interpretation,
+  and source authority rules. Reference T-002 because it defines the migrated flat
+  asset library and prevents direct legacy-root wandering. Reference T-007 because
+  it summarizes current development asset/code/index/report maturity.
+
+
+  Important constraints: do not scan the unregistered legacy root; do not claim any
+  old script is runnable; create candidate source mapping only; record missing or
+  ambiguous leads honestly.'
+executor: opencode
+agent_id: AGT-002
+config_agent_id: AGT-002
+check_agent_id: AGT-002
+execute_agent_id: AGT-002
+server_id: null
+status: done
+cyhex_version: 1.2.19
+created: '2026-06-24'
+started: null
+completed: '2026-06-24'
+notes: 旧压力测试资产源映射
+fast_pass_permission: green
+sub_status: ''
+fast_pass_last_auto_approved: check_review
+fast_pass_last_auto_approved_at: '2026-06-24T05:20:30'
+auto_recovery:
+  execute:
+    source_session_id: cli_5b7a3793ec0a
+    attempts: 1
+    last_attempt_at: '2026-06-24T05:48:41'
+  deliver:
+    source_session_id: cli_8fefc997f59a
+    attempts: 1
+    last_attempt_at: '2026-06-24T06:01:04'
+fast_pass_accepted: true
+fast_pass_accepted_at: '2026-06-24T06:01:53'

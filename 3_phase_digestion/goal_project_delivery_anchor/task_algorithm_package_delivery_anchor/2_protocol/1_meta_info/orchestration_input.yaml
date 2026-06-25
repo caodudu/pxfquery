@@ -1,0 +1,30 @@
+delivery_goal: Authoritative algorithm-package delivery anchor for PxFquery milestones.
+predecessor_tasks:
+- task_id: T-003
+  gate: must
+  reason: Project protocol normalization history, including the source of prior LLM/resolver
+    optionalization that must now be corrected.
+- task_id: T-007
+  gate: must
+  reason: Trusted development-state digestion for intended tool behavior and legacy
+    capability map.
+- task_id: T-013
+  gate: must
+  reason: MVP gap/review evidence for expected package capabilities and missing pieces.
+- task_id: T-021
+  gate: must
+  reason: Trusted standard resource/data basis for package capability grounding.
+reference_tasks:
+- task_id: T-061
+  reason: Reference for migrated source boundaries if needed; do not rescan raw legacy
+    project.
+supplemental_notes:
+- Digestion anchor only; do not write package code and do not redefine the milestone
+  to the easiest deterministic subset.
+- Separate manuscript claim restraint from development deliverable scope; LLM/resolver
+  is not optional merely because manuscript claims must be conservative.
+- 'Expected outputs: machine-readable anchor YAML, capability matrix, downgrade rules,
+  milestone review rubric, and Chinese HTML/Markdown summary under 4_artifact/.'
+suggested_agent:
+  strength: strong
+  reason: Project-level scope anchor.

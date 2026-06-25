@@ -1,0 +1,28 @@
+manifest_id: forward_repair_manifest_m1_1
+task_id: T-059
+generated: '2026-06-24'
+purpose: Task-local M1.1 repair substrate for the T-042 EGFR/A549/xpr forward demo
+  contract.
+provenance_label: synthetic_repair
+not_original_raw_data: true
+upstream_artifacts_modified: false
+baseline_fixture_source: T-043 fixture_package_m1 via T-059 A-004
+loader_boundary: Compatible with T-046 M1FixtureLoader filenames and fixture API.
+repair_case:
+  perturbation: EGFR
+  cell_line: A549
+  matrix_type: xpr
+  sig_id: T059_SYNTHETIC_EGFR_A549_XPR
+  reason: T-048 showed the selected baseline fixture lacks the positive demo hit required
+    by T-042.
+  score_provenance: Synthetic numeric scores copied from the T-042 shape example to
+    bridge the demo contract only.
+  biological_validity_claim: none
+resources:
+- resource_id: m1_1_repair_fixture_xpr_matrix
+  path: 4_artifact/2_persist/forward_repair_fixture_m1_1/xpr_func_fixture_m1.h5ad
+  file_type: h5ad
+  loader_role: xpr forward demo matrix containing baseline rows plus the synthetic
+    EGFR/A549 repair row
+  expected_shape_or_count: 5 obs x 7 vars
+  provenance: T-043 fixture copied task-locally; one T-059 synthetic_repair row appended

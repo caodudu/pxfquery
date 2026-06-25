@@ -1,0 +1,45 @@
+assets:
+  - id: A-001
+    name: T-030 reverse query engine task record
+    type: reference
+    source: linked
+    path: ../../../4_phase_development/goal_deterministic_query_engines_v1/task_reverse_query_engine_v1/
+    origin: T-030 task root
+    location: local
+    description: Required predecessor task record for reverse query engine lineage. Current visible artifact registry is empty, completion.md is pending, and shallow inventory on 2026-06-23 showed no concrete 3_execution or 4_artifact deliverable files beyond registry.yaml; execution must verify this and record missing reverse-engine deliverables rather than assuming runnable artifacts exist.
+    sync_policy: metadata_only
+    stars: 5
+    notes: Read meta, protocol, asset rule, artifact registry, and completion report. Treat 3_execution/ and 4_artifact/ contents as missing unless concrete files are present at execution time.
+  - id: A-002
+    name: T-032 reverse stability guard artifacts
+    type: deliverable
+    source: linked
+    path: ../../../4_phase_development/goal_deterministic_query_engines_v1/task_reverse_stability_guard_v1/
+    origin: T-032 task root and artifacts
+    location: local
+    description: Completed reverse stability guard package, including repaired workspace, validation JSON, guard warnings, positive-control candidates, reports, registry, completion report, and repair log.
+    sync_policy: metadata_only
+    stars: 5
+    notes: Read-only predecessor input. Use concrete files under 3_execution/, 4_artifact/, and 5_report/ as needed.
+  - id: A-003
+    name: T-035 smoke test artifacts
+    type: deliverable
+    source: linked
+    path: ../task_smoke_tests_v1/
+    origin: T-035 task root and artifacts
+    location: local
+    description: Integration smoke evidence and reports. Confirms T-032 stability path passed and records T-030 reverse demo as UNMET_DEPENDENCY at smoke time.
+    sync_policy: metadata_only
+    stars: 5
+    notes: Read-only predecessor input. Use smoke results JSON, registry, completion report, and logs needed for the T-038 milestone evidence package.
+  - id: A-004
+    name: T-036 demo CLI task record
+    type: reference
+    source: linked
+    path: ../task_demo_cli_v1/
+    origin: T-036 task root
+    location: local
+    description: Required predecessor task record for demo CLI lineage. Current visible artifact registry is empty, completion.md is pending, and shallow inventory on 2026-06-23 showed no concrete 3_execution or 4_artifact deliverable files beyond registry.yaml; execution must verify this and record missing demo CLI deliverables rather than assuming runnable artifacts exist.
+    sync_policy: metadata_only
+    stars: 5
+    notes: Read meta, protocol, asset rule, artifact registry, and completion report. Treat 3_execution/ and 4_artifact/ contents as missing unless concrete files are present at execution time.

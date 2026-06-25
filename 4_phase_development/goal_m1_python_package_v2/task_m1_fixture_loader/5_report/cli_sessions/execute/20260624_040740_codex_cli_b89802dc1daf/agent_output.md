@@ -1,0 +1,4 @@
+I’ll execute T-046 against the registered assets only, first checking the fixture contract and package layout, then adding the smallest loader API and smoke evidence required by the protocol.
+The registered task assets are present. `rg` is not installed in this shell, so I’m switching to bounded `find`/`sed` checks inside the current M1 goal and the task folders only.
+The T-043 contract points to three fixture `.h5ad` matrices plus CSV/JSON fixture metadata/indexes. The existing M1 package skeleton lives under the same goal, but I’ll avoid editing that predecessor task and will publish this task’s loader package copy under the current task artifacts.
+I’m going to create a task-local package artifact that follows the skeleton’s `src/pxfquery/...` layout, with the loader in `pxfquery.data.loader`. This keeps the reusable code versioned under T-046 instead of altering predecessor outputs.

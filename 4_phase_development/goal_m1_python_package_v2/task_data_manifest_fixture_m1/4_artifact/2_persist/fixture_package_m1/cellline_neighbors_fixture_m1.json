@@ -1,0 +1,30 @@
+{
+  "central_nervous_system": {
+    "brain cancer": {
+      "astrocytoma": [
+        "U251MG"
+      ]
+    }
+  },
+  "prostate": {
+    "prostate cancer": {
+      "adenocarcinoma": [
+        "PC3"
+      ]
+    }
+  },
+  "skin": {
+    "skin cancer": {
+      "melanoma": [
+        "A375"
+      ]
+    }
+  },
+  "upper_aerodigestive_tract": {
+    "head and neck cancer": {
+      "carcinoma": [
+        "BICR6"
+      ]
+    }
+  }
+}

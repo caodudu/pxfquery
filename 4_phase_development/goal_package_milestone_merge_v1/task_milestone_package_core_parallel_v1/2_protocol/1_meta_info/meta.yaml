@@ -1,0 +1,30 @@
+task_id: T-040
+name: milestone_package_core_parallel_v1
+phase: development
+goal: goal_package_milestone_merge_v1
+project: P-012
+objective: 'Create a parallel pxfquery package-core milestone: assemble package workspace,
+  loader/resource access, deterministic forward query, no-hit guard, and minimal package-core
+  verification. This branch must not depend on T-038; T-039 is the only aggregation
+  point.'
+executor: codex
+agent_id: AGT-003
+config_agent_id: AGT-003
+check_agent_id: AGT-003
+execute_agent_id: AGT-003
+server_id: null
+status: blocked
+cyhex_version: 1.2.3
+created: '2026-06-23'
+started: null
+completed: null
+notes: ''
+fast_pass_permission: green
+sub_status: execute_interrupted
+fast_pass_last_auto_approved: check_review
+fast_pass_last_auto_approved_at: '2026-06-23T18:20:06'
+auto_recovery:
+  execute:
+    source_session_id: cli_530f7a4f1d29
+    attempts: 1
+    last_attempt_at: '2026-06-23T20:48:36'

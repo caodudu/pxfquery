@@ -1,0 +1,265 @@
+manifest_version: 1
+task_id: T-025
+name: pxfquery-T025 standard resource manifest
+generated: '2026-06-23'
+source_bundle:
+  identity: T-021/D-004
+  path: ../../goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/2_persist/standard_resources
+  file_count: 19
+  total_size_mb: 323.468
+  total_size_bytes: 339180970
+files:
+  # ── Functional matrices (float32 h5ad) ──────────────────────────────────
+  - id: SRM-001
+    filename: cp_func_ad.h5ad
+    category: matrix
+    format: h5ad
+    role: compound (cp) perturbation functional score matrix
+    obs_columns:
+      - sig_id
+      - project_code
+      - cell_iname
+      - pert_id
+      - cmap_name
+      - pert_dose
+      - pert_time
+    var_count: 91
+    n_obs: 201014
+    X_dtype: float32
+    size_mb: 105.114
+    notes: Score = NES × -log10(FDR+1e-10); positive=activation, negative=inhibition.
+      Float32 precision verified lossless by T-021 (rank correlation 1.000 across all 91 functions).
+  - id: SRM-002
+    filename: sh_func_ad.h5ad
+    category: matrix
+    format: h5ad
+    role: shRNA knockdown perturbation functional score matrix
+    obs_columns:
+      - sig_id
+      - project_code
+      - cell_iname
+      - pert_id
+      - cmap_name
+      - pert_dose
+      - pert_time
+    var_count: 91
+    n_obs: 189365
+    X_dtype: float32
+    size_mb: 95.523
+    notes: Same scoring conventions as cp_func_ad. Float32 format, lossless.
+  - id: SRM-003
+    filename: xpr_func_ad.h5ad
+    category: matrix
+    format: h5ad
+    role: CRISPR/ORF perturbation functional score matrix
+    obs_columns:
+      - sig_id
+      - project_code
+      - cell_iname
+      - pert_id
+      - cmap_name
+      - pert_dose
+      - pert_time
+    var_count: 91
+    n_obs: 132464
+    X_dtype: float32
+    size_mb: 64.225
+    notes: Smallest of the three perturbation-type matrices. Float32, lossless.
+
+  # ── Query indexes (JSON) ────────────────────────────────────────────────
+  - id: SRM-004
+    filename: cellline_index.json
+    category: index
+    format: json
+    role: valid cell line name list
+    top_level_keys:
+      - valid_cells
+    key_count: 1
+    item_count: 243
+    size_mb: 0.003
+    notes: Array of 243 cell line names used across LINCS perturbation signatures.
+  - id: SRM-005
+    filename: cellline_neighbors.json
+    category: index
+    format: json
+    role: cell line neighbor groupings by lineage→disease→subtype hierarchy
+    top_level_keys: lineage_hierarchy
+    key_count: 19
+    item_count: 19
+    size_mb: 0.006
+    notes: Nested dict: {lineage: {disease: {subtype: [cell_names]}}}. 19 top-level lineages (bone, breast, lung, kidney, etc.).
+  - id: SRM-006
+    filename: cellline_tree.json
+    category: index
+    format: json
+    role: cell line lineage tree with cell_index and metadata
+    top_level_keys:
+      - tree
+      - cell_index
+      - meta
+    key_count: 3
+    size_mb: 0.048
+    notes: Full hierarchical tree of cell lineages + flat cell index + metadata.
+  - id: SRM-007
+    filename: drug_index.json
+    category: index
+    format: json
+    role: drug alias-to-BRD-ID lookup map
+    top_level_keys: alias_map
+    key_count: 5958
+    item_count: 5958
+    size_mb: 0.172
+    notes: Flat dict mapping lowercase drug names/aliases to BRD-IDs. Contains compound aliases (multiple keys may point to same BRD-ID).
+  - id: SRM-008
+    filename: drug_neighbors.json
+    category: index
+    format: json
+    role: drug functional neighbor similarity graph
+    top_level_keys: brd_suffix_map
+    key_count: 5312
+    item_count: 5312
+    size_mb: 4.376
+    notes: Dict keyed by BRD suffix (e.g. 'A08715367'); values are lists of [neighbor_BRD_suffix, cosine_similarity_int×100]. Similarity derived from functional score profiles.
+  - id: SRM-009
+    filename: function_index.json
+    category: index
+    format: json
+    role: function term metadata, aliases, and source annotation
+    top_level_keys:
+      - var_names
+      - meta
+      - aliases
+    key_count: 3
+    item_count: 91
+    size_mb: 0.017
+    notes: Rebuilt by T-021 (was missing since T-007/T-014). 91 function terms: 50 Hallmark + 41 3CA MPS. meta maps each term to {source, label, [mp_id]}; aliases maps lowercase slug to canonical name.
+  - id: SRM-010
+    filename: gene_index.json
+    category: index
+    format: json
+    role: full gene symbol-to-metadata lookup (case-insensitive)
+    top_level_keys: lowercase_symbol_map
+    key_count: 78061
+    item_count: 78061
+    size_mb: 6.121
+    notes: Dict keyed by lowercased gene symbol; values are {symbol, gene_type, in_matrix}. Larger key space due to synonyms, aliases, pseudogenes.
+  - id: SRM-011
+    filename: gene_index_simple.json
+    category: index
+    format: json
+    role: gene type lookup (protein-coding, ncRNA, etc.)
+    top_level_keys: uppercase_symbol_map
+    key_count: 25036
+    item_count: 25036
+    size_mb: 0.348
+    notes: Dict keyed by upper gene symbol; values are gene type codes (pc=ncRNA, etc.). Simpler subset of gene_index.json.
+  - id: SRM-012
+    filename: gene_neighbors.json
+    category: index
+    format: json
+    role: gene functional neighbor similarity graph (full)
+    top_level_keys: gene_symbol_map
+    key_count: 33791
+    item_count: 33791
+    size_mb: 21.759
+    notes: Dict keyed by gene symbol; values are [[neighbor, cosine_int], ...] ranked by similarity descending. ~34k genes covered.
+  - id: SRM-013
+    filename: gene_neighbors_simple.json
+    category: index
+    format: json
+    role: gene functional neighbor similarity graph (simple)
+    top_level_keys: gene_symbol_map
+    key_count: 30319
+    item_count: 30319
+    size_mb: 19.497
+    notes: Simpler subset of gene_neighbors.json; ~30k genes. Uses same format: [[neighbor, cosine_int]].
+
+  # ── Metadata tables (CSV) ───────────────────────────────────────────────
+  - id: SRM-014
+    filename: cellline_info_standard.csv
+    category: metadata
+    format: csv
+    role: extended cell line metadata (cellosaurus IDs, donor info, growth media, etc.)
+    key_columns:
+      - cell_iname
+      - cell_type
+      - donor_sex
+      - cell_lineage
+      - primary_disease
+      - subtype
+    column_count: 20
+    row_count_estimate: 240
+    size_mb: 0.034
+    notes: Enriched version compiled from LINCS + Cellosaurus. Many donor-age/growth-medium fields are blank for most entries.
+  - id: SRM-015
+    filename: cellline_meta_standard.csv
+    category: metadata
+    format: csv
+    role: standard cell line metadata subset (lineage, disease, subtype)
+    key_columns:
+      - cell_iname
+      - cell_lineage
+      - primary_disease
+      - subtype
+      - cell_alias
+    column_count: 8
+    row_count_estimate: 240
+    size_mb: 0.015
+    notes: Deduplicated canonical cell-line table; 240 cell lines with lineage/disease/subtype hierarchy and Cellosaurus cross-links.
+  - id: SRM-016
+    filename: compound_info_standard.csv
+    category: metadata
+    format: csv
+    role: compound perturbation target/MOA metadata (full)
+    key_columns:
+      - pert_id
+      - cmap_name
+      - target
+      - moa
+      - canonical_smiles
+      - compound_aliases
+    column_count: 7
+    row_count_estimate: 39321
+    size_mb: 4.189
+    notes: LINCS compound information with SMILES/inchi-key and aliases. ~39k entries.
+  - id: SRM-017
+    filename: compound_meta_standard.csv
+    category: metadata
+    format: csv
+    role: compound metadata with drug names, targets, SMILES, and pubchem IDs
+    key_columns:
+      - drug
+      - target
+      - moa
+      - aliases
+      - query_name
+    column_count: 9
+    row_count_estimate: 6647
+    size_mb: 0.926
+    notes: Deduplicated canonical compound table; 6,647 unique drugs. Drug column = BRD-IDs. 80.7% missing target/moa.
+  - id: SRM-018
+    filename: gene_info_standard.csv
+    category: metadata
+    format: csv
+    role: gene information (symbol, ensembl ID, gene type, NCBI/feature space)
+    key_columns:
+      - gene_id
+      - gene_symbol
+      - ensembl_id
+      - gene_title
+      - gene_type
+      - src
+      - feature_space
+    column_count: 7
+    row_count_estimate: 12328
+    size_mb: 1.09
+    notes: LINCS CMAP gene_info_beta. 12,328 genes with NCBI gene IDs, Ensembl IDs, gene type classification (protein_coding, ncRNA, etc.).
+
+  # ── Data description ────────────────────────────────────────────────────
+  - id: SRM-019
+    filename: data_description.yaml
+    category: description
+    format: yaml
+    role: legacy-style asset registry describing upstream data sources
+    size_mb: 0.005
+    notes: Contains legacy asset entries (cp_meta_unique, cellline_meta_sub, gene embeddings, h5ad matrix IDs, etc.) with id/name/path/format/dimensions/key_fields conventions. Not authoritative for T-025 manifest entries but preserved as bundled provenance record.

@@ -9,5 +9,4 @@ status: active
 tasks:
 - T-013
 created: '2026-06-18'
-notes: G-005. First development-stage review goal. Evidence-first; creates repeated
-  algorithm test and review tasks before code-changing development.
+notes: 算法功能审查测试

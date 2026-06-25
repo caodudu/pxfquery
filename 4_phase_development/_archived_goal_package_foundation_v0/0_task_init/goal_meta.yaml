@@ -1,0 +1,10 @@
+goal_id: G-014
+name: package_foundation_v0
+phase: development
+project: P-012
+objective: Prepare the current importable PxFquery package workspace as pxfquery-tXXX
+  foundation assets for the Python package milestone v0.
+status: pending
+tasks: []
+created: '2026-06-23'
+notes: ''

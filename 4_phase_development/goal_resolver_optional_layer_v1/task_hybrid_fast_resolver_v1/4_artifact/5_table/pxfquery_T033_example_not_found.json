@@ -1,0 +1,50 @@
+{
+  "query_input": {
+    "raw": "NONSENSE_ZZZ999/UNKNOWN_CELL/xpr",
+    "perturbation": "NONSENSE_ZZZ999",
+    "cell": "UNKNOWN_CELL",
+    "pert_type": "xpr",
+    "function_desc": "Apoptosis"
+  },
+  "found": false,
+  "intent": "forward_query_plan",
+  "hit_level": "NOT_FOUND",
+  "used_cell": null,
+  "used_perturbation": null,
+  "query_name": null,
+  "activated_terms": [],
+  "suppressed_terms": [],
+  "top_k_summary": [],
+  "guard_warnings": [
+    {
+      "severity": "notice",
+      "source": "T-031",
+      "message": "No-hit guard blocked unsupported perturbation 'NONSENSE_ZZZ999'."
+    }
+  ],
+  "resolver_meta": {
+    "resolver_version": "pxfquery-T-033",
+    "intent": "hybrid_fast_resolver",
+    "hit_level": "NOT_FOUND",
+    "optional_layer": true,
+    "reverse_guard_schema_sample": [
+      {
+        "severity": "notice",
+        "scenario": "zero_norm_row",
+        "message": "Zero-norm rows detected at indices [np.int64(1)]. Setting similarity to 0.0 for these rows."
+      },
+      {
+        "severity": "warning",
+        "scenario": "nan_row",
+        "message": "NaN-norm rows detected at indices [np.int64(1)]. Setting similarity to 0.0 for these rows."
+      },
+      {
+        "severity": "warning",
+        "scenario": "nan_row",
+        "message": "NaN values in matrix rows at indices [np.int64(1)]. Setting similarity to 0.0."
+      }
+    ]
+  },
+  "note": "NOT_FOUND: perturbation rejected by no-hit guard.",
+  "test_passed": true
+}

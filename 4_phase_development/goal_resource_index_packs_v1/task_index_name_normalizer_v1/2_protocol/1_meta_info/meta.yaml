@@ -1,0 +1,25 @@
+task_id: T-027
+name: index_name_normalizer_v1
+phase: development
+goal: goal_resource_index_packs_v1
+project: P-012
+objective: Create pxfquery-{task_id} runtime query index directory with resolver-compatible
+  filenames from T021 standard indexes. Deliver normalized index pack and schema report.
+executor: hybrid
+agent_id: null
+config_agent_id: null
+check_agent_id: null
+execute_agent_id: null
+server_id: null
+status: blocked
+cyhex_version: 1.2.3
+created: '2026-06-23'
+started: null
+completed: '2026-06-23'
+notes: 索引名称规范化
+fast_pass_permission: green
+sub_status: null
+fast_pass_last_auto_approved: check_review
+fast_pass_last_auto_approved_at: '2026-06-23T08:21:25'
+fast_pass_accepted: true
+fast_pass_accepted_at: '2026-06-23T08:50:54'

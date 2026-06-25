@@ -1,0 +1,199 @@
+schema_version: 1
+updated_at: '2026-06-24T04:20:54'
+source: cli_sessions
+path: 5_report/process_record.yaml
+template:
+  purpose: Task deliverable process record; refreshed from CyHex CLI session metadata
+    while the task runs.
+  stages:
+  - config
+  - check
+  - execute
+  - deliver
+  memory_note: max_rss_kb is captured from live process RSS when the UI/backend observes
+    a running session; completed sessions may be blank if no live sample was available.
+task:
+  task_id: T-042
+  name: contract_and_demo_spec_m1
+  status: done
+  sub_status: ''
+summary:
+  session_count: 8
+  running_count: 0
+  done_count: 4
+  failed_count: 4
+  total_duration_seconds: 1284
+  max_rss_kb: 74480
+phases:
+- stage: config
+  label_zh: 配置
+  label_en: Configuration
+  status: done
+  started: '2026-06-24T03:24:07'
+  completed: '2026-06-24T03:28:27'
+  duration_seconds: 260
+  max_rss_kb: 74480
+  sessions:
+  - session_id: cli_cbd40681815f
+    stage: config
+    status: done
+    driver: codex
+    agent_id: AGT-001
+    agent_label: Codex hard tasks
+    model: ''
+    pid: 28747
+    created: '2026-06-24T03:24:07'
+    completed: '2026-06-24T03:28:27'
+    duration_seconds: 260
+    current_rss_kb: null
+    max_rss_kb: 74480
+    returncode: 0
+    prompt_source: assembled
+    work_dir: /Users/dudu/Documents/3_Project/12_PxFquery
+    session_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_contract_and_demo_spec_m1/5_report/cli_sessions/config/20260624_032407_codex_cli_cbd40681815f
+  - session_id: cli_494e8dfb1d7d
+    stage: config
+    status: failed
+    driver: codex
+    agent_id: AGT-001
+    agent_label: Codex hard tasks
+    model: ''
+    pid: 12622
+    created: '2026-06-24T03:17:32'
+    completed: '2026-06-24T03:19:30'
+    duration_seconds: 118
+    current_rss_kb: null
+    max_rss_kb: null
+    returncode: 1
+    prompt_source: assembled
+    work_dir: /Users/dudu/Documents/3_Project/12_PxFquery
+    session_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_contract_and_demo_spec_m1/5_report/cli_sessions/config/20260624_031732_codex_cli_494e8dfb1d7d
+- stage: check
+  label_zh: 检查
+  label_en: Check
+  status: done
+  started: '2026-06-24T03:36:36'
+  completed: '2026-06-24T03:38:12'
+  duration_seconds: 96
+  max_rss_kb: null
+  sessions:
+  - session_id: cli_9d30ffc5335d
+    stage: check
+    status: done
+    driver: opencode
+    agent_id: AGT-002
+    agent_label: OpenCode cheap tasks
+    model: llm_gateway/deepseek-ai/deepseek-v4-pro
+    pid: 55291
+    created: '2026-06-24T03:36:36'
+    completed: '2026-06-24T03:38:12'
+    duration_seconds: 96
+    current_rss_kb: null
+    max_rss_kb: null
+    returncode: 0
+    prompt_source: assembled
+    work_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_contract_and_demo_spec_m1
+    session_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_contract_and_demo_spec_m1/5_report/cli_sessions/check/20260624_033636_opencode_cli_9d30ffc5335d
+  - session_id: cli_ced0408076a2
+    stage: check
+    status: failed
+    driver: codex
+    agent_id: AGT-001
+    agent_label: Codex hard tasks
+    model: ''
+    pid: 35954
+    created: '2026-06-24T03:28:28'
+    completed: '2026-06-24T03:30:20'
+    duration_seconds: 112
+    current_rss_kb: null
+    max_rss_kb: null
+    returncode: 1
+    prompt_source: assembled
+    work_dir: /Users/dudu/Documents/3_Project/12_PxFquery
+    session_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_contract_and_demo_spec_m1/5_report/cli_sessions/check/20260624_032828_codex_cli_ced0408076a2
+- stage: execute
+  label_zh: 执行
+  label_en: Execution
+  status: done
+  started: '2026-06-24T03:59:49'
+  completed: '2026-06-24T04:06:40'
+  duration_seconds: 411
+  max_rss_kb: null
+  sessions:
+  - session_id: cli_fa0d721d06e9
+    stage: execute
+    status: done
+    driver: opencode
+    agent_id: AGT-002
+    agent_label: OpenCode cheap tasks
+    model: llm_gateway/deepseek-ai/deepseek-v4-pro
+    pid: 94690
+    created: '2026-06-24T03:59:49'
+    completed: '2026-06-24T04:06:40'
+    duration_seconds: 411
+    current_rss_kb: null
+    max_rss_kb: null
+    returncode: 0
+    prompt_source: assembled
+    work_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_contract_and_demo_spec_m1
+    session_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_contract_and_demo_spec_m1/5_report/cli_sessions/execute/20260624_035949_opencode_cli_fa0d721d06e9
+  - session_id: cli_a9db947c7bec
+    stage: execute
+    status: failed
+    driver: codex
+    agent_id: AGT-001
+    agent_label: Codex hard tasks
+    model: llm_gateway/deepseek-ai/deepseek-v4-pro
+    pid: 60146
+    created: '2026-06-24T03:38:14'
+    completed: '2026-06-24T03:40:09'
+    duration_seconds: 115
+    current_rss_kb: null
+    max_rss_kb: null
+    returncode: 1
+    prompt_source: assembled
+    work_dir: /Users/dudu/Documents/3_Project/12_PxFquery
+    session_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_contract_and_demo_spec_m1/5_report/cli_sessions/execute/20260624_033814_codex_cli_a9db947c7bec
+- stage: deliver
+  label_zh: 交付
+  label_en: Delivery
+  status: done
+  started: '2026-06-24T04:19:00'
+  completed: '2026-06-24T04:19:59'
+  duration_seconds: 59
+  max_rss_kb: null
+  sessions:
+  - session_id: cli_da7a00ed8d89
+    stage: deliver
+    status: done
+    driver: opencode
+    agent_id: AGT-002
+    agent_label: OpenCode cheap tasks
+    model: llm_gateway/deepseek-ai/deepseek-v4-pro
+    pid: 16465
+    created: '2026-06-24T04:19:00'
+    completed: '2026-06-24T04:19:59'
+    duration_seconds: 59
+    current_rss_kb: null
+    max_rss_kb: null
+    returncode: 0
+    prompt_source: assembled
+    work_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_contract_and_demo_spec_m1
+    session_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_contract_and_demo_spec_m1/5_report/cli_sessions/deliver/20260624_041900_opencode_cli_da7a00ed8d89
+  - session_id: cli_8bca2f98b4b3
+    stage: deliver
+    status: failed
+    driver: codex
+    agent_id: AGT-001
+    agent_label: Codex hard tasks
+    model: llm_gateway/deepseek-ai/deepseek-v4-pro
+    pid: 6115
+    created: '2026-06-24T04:06:42'
+    completed: '2026-06-24T04:08:35'
+    duration_seconds: 113
+    current_rss_kb: null
+    max_rss_kb: null
+    returncode: 1
+    prompt_source: assembled
+    work_dir: /Users/dudu/Documents/3_Project/12_PxFquery
+    session_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_contract_and_demo_spec_m1/5_report/cli_sessions/deliver/20260624_040642_codex_cli_8bca2f98b4b3

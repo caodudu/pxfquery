@@ -1,0 +1,142 @@
+{
+  "task": "T-031",
+  "guard_version": "pxfquery-T-031",
+  "timestamp": "2026-06-24T01:13:07",
+  "test_type": "positive_control",
+  "engine_config": {
+    "min_overlap_for_token_fallback": 2,
+    "min_query_length_for_substring": 4
+  },
+  "matrix": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_deterministic_query_engines_v1/task_no_hit_guard_v1/1_asset/T-021 standard_resources bundle (D-004)/xpr_func_ad.h5ad",
+  "matrix_shape": [
+    132464,
+    91
+  ],
+  "total_cases": 2,
+  "passed": 2,
+  "failed": 0,
+  "results": [
+    {
+      "query": "EGFR",
+      "cell_line": "A549",
+      "found": true,
+      "matched_perturbation": "EGFR",
+      "matched_cell_line": "A549",
+      "n_obs": 5,
+      "cells_used": [
+        "A549"
+      ],
+      "activated_terms": 20,
+      "suppressed_terms": 20,
+      "top_activated": [
+        [
+          "HALLMARK_INTERFERON_ALPHA_RESPONSE",
+          4.031160831451416
+        ],
+        [
+          "MP12 EMT-I",
+          3.7174229621887207
+        ],
+        [
+          "MP17 Interferon/MHC-II (I)",
+          2.7173895835876465
+        ],
+        [
+          "HALLMARK_ADIPOGENESIS",
+          2.615006923675537
+        ],
+        [
+          "HALLMARK_INTERFERON_GAMMA_RESPONSE",
+          2.482923984527588
+        ]
+      ],
+      "top_suppressed": [
+        [
+          "MP1  Cell Cycle - G2/M",
+          -7.342734336853027
+        ],
+        [
+          "HALLMARK_MYC_TARGETS_V2",
+          -6.675942897796631
+        ],
+        [
+          "HALLMARK_E2F_TARGETS",
+          -6.643139839172363
+        ],
+        [
+          "HALLMARK_G2M_CHECKPOINT",
+          -6.4353437423706055
+        ],
+        [
+          "MP20 MYC",
+          -6.366727352142334
+        ]
+      ],
+      "guard_version": "pxfquery-T-031",
+      "test_passed": true
+    },
+    {
+      "query": "TP53",
+      "cell_line": "MCF7",
+      "found": true,
+      "matched_perturbation": "TP53",
+      "matched_cell_line": "MCF7",
+      "n_obs": 2,
+      "cells_used": [
+        "MCF7"
+      ],
+      "activated_terms": 20,
+      "suppressed_terms": 20,
+      "top_activated": [
+        [
+          "HALLMARK_G2M_CHECKPOINT",
+          10.0
+        ],
+        [
+          "HALLMARK_MYC_TARGETS_V1",
+          10.0
+        ],
+        [
+          "HALLMARK_MYC_TARGETS_V2",
+          10.0
+        ],
+        [
+          "MP21 Respiration",
+          10.0
+        ],
+        [
+          "MP1  Cell Cycle - G2/M",
+          10.0
+        ]
+      ],
+      "top_suppressed": [
+        [
+          "HALLMARK_P53_PATHWAY",
+          -10.0
+        ],
+        [
+          "MP12 EMT-I",
+          -5.299951076507568
+        ],
+        [
+          "MP13 EMT-II",
+          -4.628179550170898
+        ],
+        [
+          "HALLMARK_HYPOXIA",
+          -4.085944652557373
+        ],
+        [
+          "MP6 Hypoxia",
+          -3.9031577110290527
+        ]
+      ],
+      "guard_version": "pxfquery-T-031",
+      "test_passed": true
+    }
+  ],
+  "acceptance_criteria": {
+    "all_must_return_found_True": true,
+    "each_must_have_activated_and_suppressed": true
+  }
+}

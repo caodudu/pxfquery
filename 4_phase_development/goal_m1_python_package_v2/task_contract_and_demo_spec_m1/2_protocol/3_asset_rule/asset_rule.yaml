@@ -1,0 +1,78 @@
+required:
+  - id: A-001
+    source_task: T-007
+    source_artifact_id: D-001
+    path: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_development_asset_digestion/task_digest_pxfquery_development_state/4_artifact/2_persist/pxfquery_development_source_map_v20260617.md
+    reason: Anchor source authority, package identity, and safe carry-forward boundaries.
+  - id: A-002
+    source_task: T-007
+    source_artifact_id: D-002
+    path: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_development_asset_digestion/task_digest_pxfquery_development_state/4_artifact/2_persist/pxfquery_development_state_report_v20260617.md
+    reason: Keep the M1 contract aligned with actual PxFquery tool intent and known component readiness.
+  - id: A-004
+    source_task: T-013
+    source_artifact_id: D-001
+    path: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_algorithm_function_review/task_mvp_algorithm_run-through_review/4_artifact/2_persist/pxfquery_t013_mvp_capability_contract_v20260618.md
+    reason: Primary authority for M1 required capabilities, scope limits, and prohibited claims.
+  - id: A-005
+    source_task: T-013
+    source_artifact_id: D-005
+    path: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_algorithm_function_review/task_mvp_algorithm_run-through_review/4_artifact/2_persist/pxfquery_t013_failure_missing_capability_list_v20260618.md
+    reason: Define negative cases and capabilities M1 must not claim.
+optional:
+  - id: A-003
+    source_task: T-007
+    source_artifact_id: D-005
+    path: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_development_asset_digestion/task_digest_pxfquery_development_state/4_artifact/2_persist/pxfquery_development_gap_and_risk_list_v20260617.md
+    reason: Cross-check unsafe claims, scope boundaries, and no-hit/error behavior.
+  - id: A-006
+    source_task: T-013
+    source_artifact_id: D-003
+    path: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_algorithm_function_review/task_mvp_algorithm_run-through_review/4_artifact/5_table/pxfquery_t013_capability_status_matrix_v20260618.csv
+    reason: Optional tabular cross-check for pass/fail criteria.
+  - id: A-007
+    source_task: T-013
+    source_artifact_id: D-004
+    path: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_algorithm_function_review/task_mvp_algorithm_run-through_review/4_artifact/6_archive/pxfquery_t013_run_evidence_bundle_v20260618/
+    reason: Optional evidence-shape reference for prior forward, reverse, and no-hit examples.
+forbidden:
+  - path: 2_project_asset/
+    reason: forbidden for non-digestion task; request a predecessor digestion task if raw project assets are needed
+  - path: /Users/dudu/Documents/3_Project/8_functional_query
+    reason: Direct legacy-root reads are outside this development contract task.
+  - path: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_package_foundation_v1
+    reason: T024-T040 are a failed/polluted prior route and must not be authoritative inputs.
+  - path: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_resource_index_packs_v1
+    reason: T024-T040 are a failed/polluted prior route and must not be authoritative inputs.
+  - path: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_deterministic_query_engines_v1
+    reason: T024-T040 are a failed/polluted prior route and must not be authoritative inputs.
+  - path: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_resolver_optional_layer_v1
+    reason: T024-T040 are a failed/polluted prior route and must not be authoritative inputs.
+  - path: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_package_milestone_merge_v1
+    reason: T024-T040 are a failed/polluted prior route and must not be authoritative inputs.
+output:
+  - path: 4_artifact/2_persist/m1_api_contract.yaml
+    type: yaml
+    reason: Structured API and CLI contract.
+  - path: 4_artifact/2_persist/m1_demo_cases.yaml
+    type: yaml
+    reason: Exact forward and reverse demo cases with pass/fail assertions.
+  - path: 4_artifact/3_document/m1_contract_summary.md
+    type: markdown
+    reason: Short human-readable contract summary.
+  - path: 4_artifact/registry.yaml
+    type: yaml
+    reason: Registry for accepted/reusable task outputs.
+  - path: 5_report/completion.md
+    type: markdown
+    reason: Completion note and handoff assumptions.
+modifiable:
+  - 3_execution/
+  - 4_artifact/
+  - 5_report/
+  - 2_protocol/2_protocol_split/protocol.md
+  - 2_protocol/3_asset_rule/asset_rule.yaml
+  - 1_asset/registration.yaml
+non_modifiable:
+  - /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_development_asset_digestion/task_digest_pxfquery_development_state
+  - /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_algorithm_function_review/task_mvp_algorithm_run-through_review

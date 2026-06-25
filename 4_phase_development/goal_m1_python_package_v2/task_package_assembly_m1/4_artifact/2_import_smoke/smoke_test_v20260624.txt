@@ -1,0 +1,57 @@
+Smoke Test Evidence — T-052 package_assembly_m1
+Date: 2026-06-24
+
+=== import pxfquery ===
+import pxfquery OK
+version: 0.1.0
+PxFquery import OK
+PxFquery methods: ['func2pert', 'load_data', 'load_data_dir', 'load_fixture', 'pert2func', 'query']
+
+=== pxfquery info ===
+{"package": "pxfquery", "version": "0.1.0", "matrix_types": ["xpr", "sh", "cp"]}
+
+=== pxfquery --help ===
+usage: pxfquery [-h] {forward,reverse,info} ...
+
+positional arguments:
+  {forward,reverse,info}
+
+options:
+  -h, --help            show this help message and exit
+
+=== pxfquery forward --help ===
+usage: pxfquery forward [-h] --perturbation PERTURBATION --cell-line CELL_LINE
+                        [--matrix MATRIX] [--manifest MANIFEST]
+                        [--fixture-root FIXTURE_ROOT]
+                        [--matrix-type {xpr,sh,cp}] [--top-k TOP_K]
+                        [--compact]
+
+options:
+  -h, --help            show this help message and exit
+  --perturbation PERTURBATION, -p PERTURBATION
+  --cell-line CELL_LINE, -c CELL_LINE
+  --matrix MATRIX, -m MATRIX
+  --manifest MANIFEST
+  --fixture-root FIXTURE_ROOT
+  --matrix-type {xpr,sh,cp}, -t {xpr,sh,cp}
+  --top-k TOP_K
+  --compact
+
+=== pxfquery reverse --help ===
+usage: pxfquery reverse [-h] [--activate ACTIVATE] [--suppress SUPPRESS]
+                        --cell-line CELL_LINE [--matrix MATRIX]
+                        [--manifest MANIFEST] [--fixture-root FIXTURE_ROOT]
+                        [--matrix-type {xpr,sh,cp}] [--top-n TOP_N]
+                        [--compact]
+
+options:
+  -h, --help            show this help message and exit
+  --activate ACTIVATE
+  --suppress SUPPRESS
+  --cell-line CELL_LINE, -c CELL_LINE
+  --matrix MATRIX, -m MATRIX
+  --manifest MANIFEST
+  --fixture-root FIXTURE_ROOT
+  --matrix-type {xpr,sh,cp}, -t {xpr,sh,cp}
+  --top-n TOP_N
+  --compact

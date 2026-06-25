@@ -1,0 +1,139 @@
+{
+  "task": "T-031",
+  "timestamp": "2026-06-23T13:54:45",
+  "description": "Reproduced CAP-05 false-positive fuzzy-match evidence using T-024 ForwardQuery without guard. These nonsense or short tokens silently match real gene names via fuzzy_match substring/token-overlap fallback (utils.fuzzy_match returns anything with overlap>0).",
+  "matrix": "T-021 xpr_func_ad.h5ad",
+  "matrix_unique_cmap_names": 5154,
+  "guard_state": "UNGUARDED — T-024 ForwardQuery original behavior reproduced for evidence",
+  "cap05_evidence_summary": {
+    "short_random_tokens": [
+      "egr",
+      "bra",
+      "rab",
+      "akt",
+      "myc"
+    ],
+    "shared_token_examples": [
+      "egfr_random",
+      "totally_egfr",
+      "something_braf",
+      "REALfakeegfr"
+    ],
+    "false_positive_mechanism": "fuzzy_match uses substring fallback then token-overlap fallback. Any token overlap > 0 is treated as a hit. Short nonsense tokens like \"egr\" silently match EGR1/EGR2/EGR3, which is a downstream query false-positive."
+  },
+  "results": [
+    {
+      "query": "egr",
+      "fuzzy_match_returns": [
+        "EGR1",
+        "EGR2",
+        "EGR3",
+        "EGR4"
+      ],
+      "forward_query_found": true,
+      "matched_perturbation": "EGR1",
+      "n_obs": 2,
+      "note": "",
+      "is_cap05_false_positive": true
+    },
+    {
+      "query": "bra",
+      "fuzzy_match_returns": [
+        "BRAF",
+        "BRAF1",
+        "GABRA1",
+        "GABRA2",
+        "GABRA3"
+      ],
+      "forward_query_found": true,
+      "matched_perturbation": "BRAF",
+      "n_obs": 3,
+      "note": "",
+      "is_cap05_false_positive": true
+    },
+    {
+      "query": "rab",
+      "fuzzy_match_returns": [
+        "RAB11FIP1",
+        "RAB11FIP5",
+        "RAB23",
+        "RAB27A",
+        "RAB29"
+      ],
+      "forward_query_found": true,
+      "matched_perturbation": "RAB8B",
+      "n_obs": 2,
+      "note": "",
+      "is_cap05_false_positive": true
+    },
+    {
+      "query": "akt",
+      "fuzzy_match_returns": [
+        "AKT1"
+      ],
+      "forward_query_found": true,
+      "matched_perturbation": "AKT1",
+      "n_obs": 7,
+      "note": "",
+      "is_cap05_false_positive": true
+    },
+    {
+      "query": "myc",
+      "fuzzy_match_returns": [
+        "MYC"
+      ],
+      "forward_query_found": true,
+      "matched_perturbation": "MYC",
+      "n_obs": 6,
+      "note": "",
+      "is_cap05_false_positive": false
+    },
+    {
+      "query": "egfr_random",
+      "fuzzy_match_returns": [
+        "EGFR"
+      ],
+      "forward_query_found": true,
+      "matched_perturbation": "EGFR",
+      "n_obs": 5,
+      "note": "",
+      "is_cap05_false_positive": true
+    },
+    {
+      "query": "totally_egfr",
+      "fuzzy_match_returns": [
+        "EGFR"
+      ],
+      "forward_query_found": true,
+      "matched_perturbation": "EGFR",
+      "n_obs": 5,
+      "note": "",
+      "is_cap05_false_positive": true
+    },
+    {
+      "query": "something_braf",
+      "fuzzy_match_returns": [
+        "BRAF"
+      ],
+      "forward_query_found": true,
+      "matched_perturbation": "BRAF",
+      "n_obs": 3,
+      "note": "",
+      "is_cap05_false_positive": true
+    },
+    {
+      "query": "REALfakeegfr",
+      "fuzzy_match_returns": [],
+      "forward_query_found": false,
+      "matched_perturbation": null,
+      "n_obs": 0,
+      "note": "No match found for 'REALfakeegfr'",
+      "is_cap05_false_positive": false
+    }
+  ],
+  "count_summary": {
+    "total_perturbations_tested": 9,
+    "false_positives_detected": 7,
+    "forward_query_found_TRUE_on_nonsense": 8
+  }
+}

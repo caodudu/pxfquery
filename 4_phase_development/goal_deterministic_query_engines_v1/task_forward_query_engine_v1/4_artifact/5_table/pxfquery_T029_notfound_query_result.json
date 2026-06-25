@@ -1,0 +1,9 @@
+{
+  "query": "NONEXISTENT_PERT_XYZ",
+  "requested_cell_line": "A549",
+  "found": false,
+  "note": "No match found for 'NONEXISTENT_PERT_XYZ'",
+  "n_obs": 0,
+  "activated_terms": 0,
+  "suppressed_terms": 0
+}

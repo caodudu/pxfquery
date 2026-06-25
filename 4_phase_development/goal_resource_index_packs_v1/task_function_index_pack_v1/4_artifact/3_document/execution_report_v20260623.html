@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>T-028 execution report</title>
+  <style>
+    body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;max-width:980px;margin:32px auto;padding:0 20px;line-height:1.6;color:#1f2933}
+    code{background:#f3f4f6;padding:2px 4px;border-radius:4px}
+    table{border-collapse:collapse;width:100%;font-size:14px}
+    th,td{border:1px solid #d8dee4;padding:7px 9px;text-align:left}
+    th{background:#f6f8fa}
+  </style>
+</head>
+<body>
+  <h1>T-028 function_index_pack_v1 执行报告</h1>
+  <p>本任务生成 <code>pxfquery-T-028</code> 功能索引包，核心交付物为 <code>4_artifact/2_persist/pxfquery_T028_function_index/function_index.json</code>。</p>
+  <table>
+    <thead><tr><th>步骤</th><th>执行内容</th><th>结果</th><th>证据</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>读取三个 H5AD 矩阵的 var_names</td><td>通过</td><td><code>3_execution/01_verify/01_var_names.json</code></td></tr>
+      <tr><td>2</td><td>检查上游 function_index.json</td><td>通过</td><td><code>3_execution/02_inspect/02_upstream_function_index.json</code></td></tr>
+      <tr><td>3</td><td>构建 T-028 function index pack</td><td>通过</td><td><code>4_artifact/2_persist/pxfquery_T028_function_index/function_index.json</code></td></tr>
+      <tr><td>4</td><td>生成 91 行验证表</td><td>通过</td><td><code>4_artifact/5_table/pxfquery_t028_function_index_validation.csv</code></td></tr>
+      <tr><td>5</td><td>运行验证脚本</td><td>7/7 通过</td><td><code>3_execution/05_validate/03_validation.json</code></td></tr>
+      <tr><td>6</td><td>写下游使用说明</td><td>完成</td><td><code>4_artifact/2_persist/pxfquery_T028_downstream_usage_notes*.md</code></td></tr>
+    </tbody>
+  </table>
+  <h2>执行边界</h2>
+  <p>任务未修改 T-021、T-026、T-027 或 T-013 上游资产。功能术语来自实际 H5AD 矩阵 var_names，不从计划文本硬编码。</p>
+  <h2>复现命令</h2>
+  <p><code>/Users/dudu/Softwares/miniconda/bin/conda run -n pxfquery python 3_execution/validate_function_index.py</code></p>
+</body>
+</html>

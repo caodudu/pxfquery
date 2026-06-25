@@ -1,0 +1,64 @@
+session_id: cli_a9b8b52032fc
+driver: opencode
+agent_id: AGT-002
+agent_label: OpenCode cheap tasks
+stage: execute
+status: failed
+created: '2026-06-24T05:48:41'
+task_path: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_development_asset_digestion/task_legacy_source_digest_for_m1
+work_dir: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_development_asset_digestion/task_legacy_source_digest_for_m1
+session_dir: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_development_asset_digestion/task_legacy_source_digest_for_m1/5_report/cli_sessions/execute/20260624_054841_opencode_cli_a9b8b52032fc
+prompt_file: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_development_asset_digestion/task_legacy_source_digest_for_m1/5_report/cli_sessions/execute/20260624_054841_opencode_cli_a9b8b52032fc/prompt.md
+events_file: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_development_asset_digestion/task_legacy_source_digest_for_m1/5_report/cli_sessions/execute/20260624_054841_opencode_cli_a9b8b52032fc/events.jsonl
+stdout_file: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_development_asset_digestion/task_legacy_source_digest_for_m1/5_report/cli_sessions/execute/20260624_054841_opencode_cli_a9b8b52032fc/stdout.log
+stderr_file: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_development_asset_digestion/task_legacy_source_digest_for_m1/5_report/cli_sessions/execute/20260624_054841_opencode_cli_a9b8b52032fc/stderr.log
+agent_output_file: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_development_asset_digestion/task_legacy_source_digest_for_m1/5_report/cli_sessions/execute/20260624_054841_opencode_cli_a9b8b52032fc/agent_output.md
+cmd:
+- /Users/dudu/.opencode/bin/opencode
+- run
+- Execute the attached CyHex prompt. Return the final user-facing result clearly.
+- --dangerously-skip-permissions
+- --format
+- json
+- --dir
+- /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_development_asset_digestion/task_legacy_source_digest_for_m1
+- --file
+- /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_development_asset_digestion/task_legacy_source_digest_for_m1/5_report/cli_sessions/execute/20260624_054841_opencode_cli_a9b8b52032fc/prompt.md
+- -m
+- llm_gateway/deepseek-ai/deepseek-v4-pro
+agent_session_id: ses_1098b065dffencw3BX3U0YQxLH
+parent_agent_session_id: ''
+dry_run: false
+fork_from_resume: false
+blocked_report_mtime_ns_before: 0
+model: llm_gateway/deepseek-ai/deepseek-v4-pro
+prompt_source: auto_recovery
+pid: 1756
+auto_recovery:
+  source_session_id: cli_58dae85d64da
+  attempt: 1
+  reason: process_not_alive
+returncode: 1
+completed: '2026-06-24T05:50:13'
+context_estimate:
+  estimated_tokens: 40633
+  estimated_bytes: 121898
+  limit_tokens: 500000
+  exceeded: false
+  files:
+  - file: prompt.md
+    bytes: 47389
+    estimated_tokens: 15797
+  - file: events.jsonl
+    bytes: 37344
+    estimated_tokens: 12448
+  - file: stdout.log
+    bytes: 37078
+    estimated_tokens: 12360
+  - file: stderr.log
+    bytes: 0
+    estimated_tokens: 0
+  - file: agent_output.md
+    bytes: 87
+    estimated_tokens: 29
+  method: local_session_file_bytes_div_3

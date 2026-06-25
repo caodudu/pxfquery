@@ -1,0 +1,9 @@
+goal_id: G-011
+name: paper_figure_planning
+phase: translation
+project: P-012
+objective: 论文图规划，包括主图和附录图
+status: pending
+tasks: []
+created: '2026-06-23'
+notes: ''

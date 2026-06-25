@@ -1,0 +1,38 @@
+session_id: cli_9db55313583f
+driver: codex
+agent_id: AGT-003
+agent_label: Codex fresh T037
+stage: config
+status: stopped
+created: '2026-06-23T18:29:50'
+task_path: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_package_milestone_merge_v1/task_milestone_reverse_demo_reports_v1
+work_dir: /Users/dudu/Documents/3_Project/12_PxFquery
+session_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_package_milestone_merge_v1/task_milestone_reverse_demo_reports_v1/5_report/cli_sessions/config/20260623_182950_codex_cli_9db55313583f
+prompt_file: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_package_milestone_merge_v1/task_milestone_reverse_demo_reports_v1/5_report/cli_sessions/config/20260623_182950_codex_cli_9db55313583f/prompt.md
+events_file: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_package_milestone_merge_v1/task_milestone_reverse_demo_reports_v1/5_report/cli_sessions/config/20260623_182950_codex_cli_9db55313583f/events.jsonl
+stdout_file: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_package_milestone_merge_v1/task_milestone_reverse_demo_reports_v1/5_report/cli_sessions/config/20260623_182950_codex_cli_9db55313583f/stdout.log
+stderr_file: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_package_milestone_merge_v1/task_milestone_reverse_demo_reports_v1/5_report/cli_sessions/config/20260623_182950_codex_cli_9db55313583f/stderr.log
+agent_output_file: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_package_milestone_merge_v1/task_milestone_reverse_demo_reports_v1/5_report/cli_sessions/config/20260623_182950_codex_cli_9db55313583f/agent_output.md
+cmd:
+- /opt/homebrew/bin/codex
+- exec
+- --dangerously-bypass-approvals-and-sandbox
+- --json
+- -C
+- /Users/dudu/Documents/3_Project/12_PxFquery
+- '-'
+agent_session_id: 019ef407-793b-7390-afcd-fae584b13464
+parent_agent_session_id: ''
+dry_run: false
+fork_from_resume: false
+codex_session_id: 019ef407-793b-7390-afcd-fae584b13464
+prompt_source: assembled
+pid: 65699
+completed: '2026-06-23T18:32:05'
+returncode: -15
+context_estimate:
+  estimated_tokens: null
+  threshold: null
+  exceeded: true
+  method: manual_t038_reconfigure_do_not_resume
+  note: Session was stopped during T-038 cleanup after producing only minimal config progress; restart should use a fresh config session.

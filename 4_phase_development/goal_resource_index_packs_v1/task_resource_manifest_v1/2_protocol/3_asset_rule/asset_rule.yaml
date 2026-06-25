@@ -1,0 +1,38 @@
+version: 1
+required:
+  - A-001
+  - A-002
+optional:
+  - A-003
+  - A-004
+  - A-005
+  - A-006
+forbidden:
+  - path: ../../goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/
+    reason: T-021 bundle and all its artefacts are read-only input. Do not modify
+      upstream deliverables.
+  - path: ../../../2_project_asset/
+    reason: Project-level raw materials are scoped out; T-021 already consolidated
+      the relevant subset into D-004.
+  - path: /Users/dudu/Documents/3_Project/8_functional_query
+    reason: Legacy Windows-era historical source. Not needed for manifest derivation.
+output:
+  - path: 4_artifact/2_persist/
+    description: Manifest YAML, schema summary, and usage notes.
+  - path: 4_artifact/registry.yaml
+    description: T-025 deliverable registration.
+  - path: 3_execution/
+    description: Validation evidence JSON.
+  - path: 5_report/
+    description: Completion report.
+modifiable:
+  - path: 4_artifact/2_persist/
+  - path: 4_artifact/registry.yaml
+  - path: 3_execution/
+  - path: 5_report/
+non_modifiable:
+  - path: 1_asset/
+  - path: 2_protocol/
+  - path: ../../../1_project_init/
+  - path: ../../../task_standard_resources_optimal_formats/
+  - path: ../../../2_project_asset/

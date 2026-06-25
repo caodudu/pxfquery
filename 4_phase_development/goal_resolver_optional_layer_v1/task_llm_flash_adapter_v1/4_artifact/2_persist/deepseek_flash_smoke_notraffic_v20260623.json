@@ -1,0 +1,25 @@
+{
+  "recorded_at": "2026-06-23T08:04:54",
+  "task_id": "T-034",
+  "provider": "deepseek-flash",
+  "model": "deepseek-v4-flash",
+  "base_url": "https://api.deepseek.com/v1",
+  "no_traffic": true,
+  "transport": "tcp_probe_then_optional_http",
+  "status": "reachable_no_traffic",
+  "ok": true,
+  "reason": "skipped_by_flag",
+  "error_type": null,
+  "error_message": null,
+  "reply": null,
+  "latency_ms": 15,
+  "tcp": {
+    "tcp_ok": true,
+    "tcp_error_type": null,
+    "tcp_error_message": null,
+    "tcp_latency_ms": 15,
+    "tcp_host": "api.deepseek.com",
+    "tcp_port": 443
+  },
+  "api_key_present": false
+}

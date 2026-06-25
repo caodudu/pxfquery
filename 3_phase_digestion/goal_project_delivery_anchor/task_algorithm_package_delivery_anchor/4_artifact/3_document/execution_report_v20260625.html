@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>T-062 执行报告</title>
+  <style>
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.68; margin: 32px auto; max-width: 1080px; color: #202124; }
+h1, h2 { color: #12355b; }
+section { margin: 22px 0; }
+table { border-collapse: collapse; width: 100%; margin: 14px 0; }
+th, td { border: 1px solid #d0d7de; padding: 8px 10px; vertical-align: top; }
+th { background: #f2f5f8; }
+code { background: #f6f8fa; padding: 2px 4px; border-radius: 4px; }
+.note { background: #f8fafc; border-left: 4px solid #4776a8; padding: 12px 14px; }
+.warn { background: #fff8e6; border-left: 4px solid #d29922; padding: 12px 14px; }
+</style>
+</head>
+<body>
+
+<h1>T-062 算法包交付锚点执行报告</h1>
+<section><h2>任务意图</h2><p>这个 task 的目的不是写代码，而是给后续 PxFquery 算法包里程碑建立一套不能被悄悄缩小的交付锚点。前序工作已经证明项目有确定性查询内核、资源整理和若干风险清单，但如果没有一个明确的能力边界，后续 milestone 很容易把 PxFquery 降级成“能查几个 fixture 的 deterministic lookup”。T-062 因此把项目真正需要的包能力、验收证据、降级规则和分类词汇固定下来，供后续配置、检查、执行和验收 task 直接引用。</p></section>
+<section><h2>输入资产与依据</h2><p>执行只读取了已注册资产 A-001 至 A-008。T-003 提供项目协议规范化和历史边界；T-007 提供 PxFquery 原始开发状态、意图、缺口和风险；T-013 提供 MVP 能力合同、状态矩阵和失败能力清单；T-021 提供标准资源和数据格式基础。每个输入都用于提炼“未来算法包应交付什么”和“什么情况只能算 partial、downgraded 或 evidence-insufficient”。没有读取 legacy root，没有直接读取 <code>8_functional_query</code>，也没有使用网络搜索。</p></section>
+<section><h2>实际执行过程</h2><table><tr><th>步骤</th><th>执行内容</th><th>证据</th></tr><tr><td>1</td><td>确认 task 目录、资产链接和协议边界。</td><td>所有已注册输入可用，未做额外资产发现。</td></tr><tr><td>2</td><td>从 T-003/T-007/T-013/T-021 中提取能力、风险、降级和标准资源事实。</td><td>过程笔记写入 <code>3_execution/step_list_and_extraction_notes_v20260625.md</code>。</td></tr><tr><td>3</td><td>建立 capability anchor、capability matrix、downgrade rules、rubric 和 classification vocabulary。</td><td>所有可复用产物写入 <code>4_artifact/</code>。</td></tr><tr><td>4</td><td>做轻量解析验证。</td><td>两个 YAML 可解析为 dict，能力矩阵 CSV 有 11 行能力记录。</td></tr><tr><td>5</td><td>登记 artifact 并写 completion。</td><td><code>4_artifact/registry.yaml</code> 和 <code>5_report/completion.md</code> 已更新。</td></tr></table></section>
+<section><h2>关键判断与证据</h2><p>核心判断是：PxFquery 的算法包验收不能只看确定性 forward/reverse lookup 是否能运行，还必须看 resolver-mediated entry、LLM-assisted parsing/summarization、proxy routing、not-found routing、deterministic fallback、transparent evidence metadata 和 standard resource compatibility 是否在当前 milestone 范围内被明确交付或明确批准延期。执行中把 runtime fallback 和 scope downgrade 分开：fallback 可以是有效运行策略，但不能冒充 primary resolver/LLM/proxy capability 的交付。这个判断直接来自 T-007 的意图和风险、T-013 的失败能力清单以及 T-021 的标准资源要求。</p></section>
+<section><h2>交付物清单</h2><ul><li><code>pxfquery_algorithm_package_delivery_anchor_v20260625.yaml</code>：机器可读的能力锚点。</li><li><code>pxfquery_algorithm_capability_matrix_v20260625.csv</code>：11 项能力到证据、阈值和失败模式的矩阵。</li><li><code>pxfquery_algorithm_downgrade_rules_v20260625.md</code>：区分 fallback 与未经批准的 scope downgrade。</li><li><code>pxfquery_milestone_review_rubric_v20260625.md</code>：未来里程碑评审方法。</li><li><code>pxfquery_milestone_classification_vocabulary_v20260625.yaml</code>：delivered、partial、blocked、downgraded、deferred 等受控词汇。</li><li><code>pxfquery_algorithm_package_delivery_anchor_summary_v20260625.md/html</code>：给人读的中文摘要。</li></ul></section>
+<section><h2>边界与未完成事项</h2><p>本 task 是 digestion/governance 层工作，没有实现包源码，没有运行算法测试，没有重建索引或矩阵，也没有把任何内容提升到最终交付目录。它的价值是建立评审与验收边界，不是证明当前代码已经满足这些边界。后续 task 使用它时，应把它作为检查清单和降级警戒线，而不是当作 runtime 通过证据。</p></section>
+
+</body>
+</html>

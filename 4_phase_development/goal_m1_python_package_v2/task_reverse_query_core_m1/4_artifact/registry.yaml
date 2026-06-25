@@ -1,0 +1,29 @@
+artifacts:
+  - id: D-001
+    name: reverse_query_core_package_partial
+    type: package_code
+    path: 1_package/pxfquery
+    status: partial
+    created: "2026-06-24"
+    notes: Task-local reverse query core implementing deterministic cosine ranking through the documented M1 fixture loader API. Import and compile validated; fixture-backed demo blocked by missing selected fixture resources.
+  - id: D-002
+    name: reverse_error_no_hit_evidence_partial
+    type: json_evidence
+    path: 2_persist/reverse_error_no_hit_evidence_v20260624.json
+    status: partial
+    created: "2026-06-24"
+    notes: Validates NoMatrixLoaded reverse error shape and records why fixture-dependent no-hit/error cases were not run.
+  - id: D-003
+    name: execution_report
+    type: html_report
+    path: 3_document/execution_report_v20260624.html
+    status: ready
+    created: "2026-06-24"
+    notes: Execution report with implementation summary and blocking evidence.
+  - id: D-004
+    name: result_report
+    type: html_report
+    path: 3_document/result_report_v20260624.html
+    status: ready
+    created: "2026-06-24"
+    notes: Result report summarizing produced outputs, validation, and remaining required input.

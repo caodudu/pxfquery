@@ -1,0 +1,114 @@
+schema_version: 1
+updated_at: '2026-06-24T00:57:33'
+source: cli_sessions
+path: 5_report/process_record.yaml
+template:
+  purpose: Task deliverable process record; refreshed from CyHex CLI session metadata
+    while the task runs.
+  stages:
+  - config
+  - check
+  - execute
+  - deliver
+  memory_note: max_rss_kb is captured from live process RSS when the UI/backend observes
+    a running session; completed sessions may be blank if no live sample was available.
+task:
+  task_id: T-034
+  name: llm_flash_adapter_v1
+  status: done
+  sub_status: ''
+summary:
+  session_count: 3
+  running_count: 0
+  done_count: 3
+  failed_count: 0
+  total_duration_seconds: 3514
+  max_rss_kb: null
+phases:
+- stage: config
+  label_zh: 配置
+  label_en: Configuration
+  status: done
+  started: '2026-06-23T07:12:46'
+  completed: '2026-06-23T07:17:25'
+  duration_seconds: 279
+  max_rss_kb: null
+  sessions:
+  - session_id: cli_202f9c5603b4
+    stage: config
+    status: done
+    driver: opencode
+    agent_id: ''
+    agent_label: OpenCode cheap tasks
+    model: llm_gateway/deepseek-ai/deepseek-v4-pro
+    pid: 53018
+    created: '2026-06-23T07:12:46'
+    completed: '2026-06-23T07:17:25'
+    duration_seconds: 279
+    current_rss_kb: null
+    max_rss_kb: null
+    returncode: 0
+    prompt_source: assembled
+    work_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_resolver_optional_layer_v1/task_llm_flash_adapter_v1
+    session_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_resolver_optional_layer_v1/task_llm_flash_adapter_v1/5_report/cli_sessions/config/20260623_071246_opencode_cli_202f9c5603b4
+- stage: check
+  label_zh: 检查
+  label_en: Check
+  status: done
+  started: '2026-06-23T07:17:26'
+  completed: '2026-06-23T07:29:25'
+  duration_seconds: 719
+  max_rss_kb: null
+  sessions:
+  - session_id: cli_c4a20db87125
+    stage: check
+    status: done
+    driver: opencode
+    agent_id: ''
+    agent_label: OpenCode cheap tasks
+    model: llm_gateway/deepseek-ai/deepseek-v4-pro
+    pid: 55546
+    created: '2026-06-23T07:17:26'
+    completed: '2026-06-23T07:29:25'
+    duration_seconds: 719
+    current_rss_kb: null
+    max_rss_kb: null
+    returncode: 0
+    prompt_source: assembled
+    work_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_resolver_optional_layer_v1/task_llm_flash_adapter_v1
+    session_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_resolver_optional_layer_v1/task_llm_flash_adapter_v1/5_report/cli_sessions/check/20260623_071726_opencode_cli_c4a20db87125
+- stage: execute
+  label_zh: 执行
+  label_en: Execution
+  status: done
+  started: '2026-06-23T07:29:26'
+  completed: '2026-06-23T08:11:22'
+  duration_seconds: 2516
+  max_rss_kb: null
+  sessions:
+  - session_id: cli_7aed862f8774
+    stage: execute
+    status: done
+    driver: opencode
+    agent_id: ''
+    agent_label: OpenCode cheap tasks
+    model: llm_gateway/deepseek-ai/deepseek-v4-pro
+    pid: 63436
+    created: '2026-06-23T07:29:26'
+    completed: '2026-06-23T08:11:22'
+    duration_seconds: 2516
+    current_rss_kb: null
+    max_rss_kb: null
+    returncode: 0
+    prompt_source: assembled
+    work_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_resolver_optional_layer_v1/task_llm_flash_adapter_v1
+    session_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_resolver_optional_layer_v1/task_llm_flash_adapter_v1/5_report/cli_sessions/execute/20260623_072926_opencode_cli_7aed862f8774
+- stage: deliver
+  label_zh: 交付
+  label_en: Delivery
+  status: not_started
+  started: ''
+  completed: ''
+  duration_seconds: null
+  max_rss_kb: null
+  sessions: []

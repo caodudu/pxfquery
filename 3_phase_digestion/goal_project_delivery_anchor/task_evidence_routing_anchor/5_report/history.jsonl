@@ -1,0 +1,6 @@
+{"action": "status_change", "from": "pending", "to": "active", "actor": "ui", "ts": "2026-06-25T11:58:39"}
+{"action": "fast_pass_approve", "from": "config_review", "to": "config_approved", "actor": "fast_pass_permission", "ts": "2026-06-25T12:10:02"}
+{"action": "fast_pass_approve", "from": "check_review", "to": "check_approved", "actor": "fast_pass_permission", "ts": "2026-06-25T12:20:02"}
+{"action": "fast_pass_accept_delivery", "from": "delivery_review", "to": "done", "actor": "fast_pass_permission", "ts": "2026-06-25T13:20:12"}
+{"action": "task_note_add", "note_id": "N-1782405876132", "ts": "2026-06-26T00:44:36"}
+{"action": "task_note_pin", "note_id": "N-1782405876132", "ts": "2026-06-26T00:44:37"}

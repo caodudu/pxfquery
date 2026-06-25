@@ -1,0 +1,69 @@
+required:
+  - id: A-001
+    source_task: T-043
+    source_artifact_id: D-001
+    path: 4_artifact/2_persist/resource_manifest_m1.yaml
+    reason: Entry point for all M1 resource paths, loader roles, expected shapes, keys, columns, and validation rules
+  - id: A-002
+    source_task: T-043
+    source_artifact_id: D-003
+    path: 4_artifact/5_table/expected_shapes_keys_columns_m1.csv
+    reason: Acceptance evidence for expected shapes, keys, columns, and index semantics
+  - id: A-003
+    source_task: T-043
+    source_artifact_id: D-004
+    path: 4_artifact/5_table/sample_records_m1.csv
+    reason: Traceable sample rows and keys for smoke verification
+  - id: A-004
+    source_task: T-045
+    source_artifact_id: T-045/D-001/index_health_summary
+    path: 4_artifact/2_persist/index_health_summary.json
+    reason: Machine-readable per-index schema status, key completeness, gaps, and patch recommendations for loader configuration
+  - id: A-005
+    source_task: T-045
+    source_artifact_id: T-045/D-002/index_health_report
+    path: 4_artifact/2_persist/index_health_report.md
+    reason: Human-readable index health overview with pass/warn/block per index and M1 readiness verdict
+  - id: A-006
+    source_task: T-045
+    source_artifact_id: T-045/D-003/gap_notes
+    path: 4_artifact/3_document/gap_notes.md
+    reason: Detailed gap severity, demo impact, and resolution paths for loader hardening decisions
+  - id: A-007
+    source_task: T-043
+    source_artifact_id: D-002
+    path: 4_artifact/2_persist/fixture_package_m1/
+    reason: Compact real-data fixture bundle for deterministic loader smoke/demo runs; fallback when real resources are incomplete
+  - id: A-008
+    source_task: T-043
+    source_artifact_id: D-005
+    path: 4_artifact/2_persist/data_manifest_fixture_m1_readme.md
+    reason: Downstream usage notes and known exclusions for contextual guidance
+optional:
+  - id: A-009
+    source_task: T-043
+    source_artifact_id: D-001
+    path: 1_asset/t021_standard_resources_bundle/
+    reason: Full standard resource bundle (matrices, CSV, JSON indexes) — may be partially unavailable; task must work with fixture fallback
+forbidden:
+  - path: 2_project_asset/
+    reason: forbidden for non-digestion task; request a predecessor digestion task if raw project assets are needed
+output:
+  - path: 4_artifact/1_code/loader_hardening_m1.py
+    type: code
+  - path: 4_artifact/2_persist/loader_smoke_results_m1.json
+    type: data
+  - path: 4_artifact/3_document/loader_smoke_report_m1.md
+    type: document
+  - path: 4_artifact/3_document/loader_gap_list_m1.md
+    type: document
+  - path: 4_artifact/3_document/execution_report_v*.html
+    type: report
+  - path: 4_artifact/3_document/result_report_v*.html
+    type: report
+modifiable:
+  - 3_execution/
+  - 4_artifact/
+  - 5_report/
+non_modifiable:
+  - predecessor task directories

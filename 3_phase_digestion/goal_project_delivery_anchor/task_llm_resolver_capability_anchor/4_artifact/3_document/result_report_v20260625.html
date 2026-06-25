@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>T-063 结果报告</title>
+  <style>
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.68; margin: 32px auto; max-width: 1080px; color: #202124; }
+h1, h2 { color: #12355b; }
+section { margin: 22px 0; }
+table { border-collapse: collapse; width: 100%; margin: 14px 0; }
+th, td { border: 1px solid #d0d7de; padding: 8px 10px; vertical-align: top; }
+th { background: #f2f5f8; }
+code { background: #f6f8fa; padding: 2px 4px; border-radius: 4px; }
+.note { background: #f8fafc; border-left: 4px solid #4776a8; padding: 12px 14px; }
+.warn { background: #fff8e6; border-left: 4px solid #d29922; padding: 12px 14px; }
+</style>
+</head>
+<body>
+
+<h1>T-063 LLM/Resolver 能力锚点结果报告</h1>
+<section><h2>一句话结论</h2><p class="note">T-063 定义了 PxFquery M3 级 resolver/LLM 交付标准：它必须支持自然语言或半结构化入口、解析字段、消歧、exact/proxy/not-found handoff、透明 metadata 和明确的 LLM fallback 语义，而不能用 deterministic lookup 代替。</p></section>
+<section><h2>项目背景</h2><p>PxFquery 的用户价值依赖用户能用自然语言或半结构化问题进入系统，而不是只调用底层函数。前序 M1/M2 工作可以建立 deterministic kernel 和资源基础，但如果 resolver 层没有被单独定义，后续 milestone 很容易把 CLI demo 或 fixture lookup 当成用户级查询系统。T-063 就是为避免这个误判而建立的 resolver-specific anchor。</p></section>
+<section><h2>核心结果</h2><p>结果包括四项核心产物：机器可读 capability anchor、人类可读 functional design、demo case catalog 和 acceptance matrix。它们共同规定了 resolver 输入应该如何解析，什么时候需要 LLM，exact/proxy/no-hit 如何转接到 evidence-routing 层，LLM 不可用时怎样 fallback，以及哪些替代方案被视为不合格。它还固定了当前期望 AI route 为 deepseek-v4-pro，并要求任何 route change 后续显式批准。</p></section>
+<section><h2>项目价值</h2><p>这个结果让未来 M3 不再只是“接上一个 AI 调用”或“写一个入口函数”。它给出了可检查的能力清单：输入解析、上下文补全、候选消歧、证据路由、metadata、fallback、demo 覆盖和 downgrade 标记。后续检查 AI 可以据此判断 resolver 是否真实可用，人类也可以用它区分 demo、设计、fallback 和完整交付。</p></section>
+<section><h2>交付物导读</h2><table><tr><th>文件</th><th>用途</th></tr><tr><td><code>pxfquery_llm_resolver_capability_anchor_v20260625.yaml</code></td><td>给 CyHex/AI 使用的 resolver 能力合同。</td></tr><tr><td><code>pxfquery_llm_resolver_functional_design_v20260625.md</code></td><td>人类先读这个，理解 resolver 该做什么和哪些替代不允许。</td></tr><tr><td><code>pxfquery_llm_resolver_demo_case_catalog_v20260625.md</code></td><td>后续 M3 demo/test task 的用例来源。</td></tr><tr><td><code>pxfquery_llm_resolver_acceptance_matrix_v20260625.csv</code></td><td>逐项检查最小行为、证据、禁止替代和评审标签。</td></tr></table></section>
+<section><h2>后续使用方式</h2><p>未来 M3 resolver implementation、AI gateway integration、demo validation 或 milestone review 应把 T-063 作为必须输入。若实现只支持 deterministic CLI，不支持 natural-language/semi-structured parsing 或 LLM fallback semantics，应标记为 partial/downgraded，而不是完整 resolver milestone。</p></section>
+<section><h2>边界与风险</h2><p>T-063 不证明 LLM route 已经跑通，也不证明 resolver code 存在。它没有测试 deepseek-v4-pro、没有验证 API 延迟或失败模式。它的边界是设计和验收锚点；真正的实现、集成、运行和 benchmark 需要后续开发任务完成。</p></section>
+
+</body>
+</html>

@@ -1,0 +1,81 @@
+{
+  "task": "T-021_step1_package_format_audit",
+  "source": "pxfquery package code inspection",
+  "functional_matrices": {
+    "format": "h5ad (AnnData on-disk)",
+    "loader_library": "anndata.read_h5ad",
+    "expected_naming": "pert_type_func_ad.h5ad where pert_type in {xpr, sh, cp}",
+    "perturbation_types": [
+      "xpr",
+      "sh",
+      "cp"
+    ],
+    "obs_schema": [
+      "sig_id",
+      "project_code",
+      "cell_iname",
+      "pert_id",
+      "cmap_name",
+      "pert_dose",
+      "pert_time"
+    ],
+    "var_schema": "91 functional terms (50 MSigDB Hallmark + 41 3CA MPS programs)",
+    "x_dtype": "dense float64",
+    "loader_class": "DataLoader (data/loader.py)",
+    "no_other_formats_supported": true
+  },
+  "query_indexes": {
+    "cellline": {
+      "files": [
+        "cellline_index.json",
+        "cellline_neighbors.json"
+      ],
+      "format": "JSON",
+      "present": true
+    },
+    "drug": {
+      "files": [
+        "drug_index.json",
+        "drug_neighbors.json"
+      ],
+      "format": "JSON",
+      "present": true
+    },
+    "gene_simple": {
+      "files": [
+        "gene_index_simple.json",
+        "gene_neighbors_simple.json"
+      ],
+      "format": "JSON",
+      "present": true
+    },
+    "gene_full": {
+      "files": [
+        "gene_index.json",
+        "gene_neighbors.json"
+      ],
+      "format": "JSON",
+      "present": true
+    },
+    "cellline_tree": {
+      "files": [
+        "cellline_tree.json"
+      ],
+      "format": "JSON",
+      "present": true
+    },
+    "function": {
+      "files": [
+        "function_index.json"
+      ],
+      "format": "JSON",
+      "present": false,
+      "note": "MISSING - must be rebuilt"
+    }
+  },
+  "package_config": {
+    "default_index_dir": "output/store/query_index",
+    "default_min_tanimoto": 0.3,
+    "default_min_cosine": 0.5
+  }
+}

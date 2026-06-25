@@ -7,5 +7,4 @@ objective: Develop, repair, and version the PxFquery algorithm after G005 review
 status: pending
 tasks: []
 created: '2026-06-18'
-notes: G-006. Reserved for code-changing algorithm repair, implementation, and version
-  packaging tasks.
+notes: 算法版本开发修复打包

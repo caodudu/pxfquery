@@ -1,0 +1,347 @@
+task_id: T-062
+artifact_id: T062-A-001
+name: pxfquery_algorithm_package_delivery_anchor
+version: v20260625
+status: authoritative_task_level_anchor
+scope:
+  project: P-012
+  package_identity: LINCS-based perturbation-to-function bioinformatics workflow
+  purpose: >
+    Define the project-valid package capability set, acceptance evidence, fallback
+    handling, downgrade triggers, and user-approval rules for future PxFquery
+    algorithm-package milestones.
+  not_allowed_as_substitute:
+    - deterministic_lookup_only_when_milestone_requires_resolver_or_proxy
+    - manuscript_claim_restraint_as_delivery_scope_reduction
+    - planned_behavior_without_current_run_or_artifact_evidence
+sources:
+  - asset_id: A-001
+    source_task: T-003
+    role: protocol_normalization_and_source_boundary
+  - asset_id: A-002
+    source_task: T-007
+    role: intended_package_identity_behavior_and_completion_boundary
+  - asset_id: A-003
+    source_task: T-007
+    role: gaps_risks_and_overclaim_controls
+  - asset_id: A-004
+    source_task: T-013
+    role: mvp_capability_contract
+  - asset_id: A-005
+    source_task: T-013
+    role: current_capability_status_evidence
+  - asset_id: A-006
+    source_task: T-013
+    role: failure_missing_blocked_capability_evidence
+  - asset_id: A-007
+    source_task: T-021
+    role: standard_resource_basis
+  - asset_id: A-008
+    source_task: T-021
+    role: canonical_standard_resource_bundle_reference
+acceptance_state_vocabulary:
+  delivered: Working behavior is evidenced by current milestone artifacts or runs.
+  partial: Some required behavior is evidenced, but coverage, robustness, or scope is incomplete.
+  blocked: A dependency, missing resource, tool failure, or configuration gap prevents evaluation or operation.
+  failed: A required behavior was attempted and produced incorrect, unsafe, or unusable results.
+  downgraded: A required capability was removed, replaced by a weaker substitute, or marked optional.
+  deferred_user_approved: Deferral is explicit, user-approved, and recorded with target follow-up.
+  deferred_not_approved: Deferral is proposed or implicit but lacks explicit user approval.
+  out_of_scope: Capability is not required by the specific milestone and is explicitly excluded.
+  evidence_insufficient: Claims cannot be accepted because evidence is missing, stale, indirect, or only planned.
+downgrade_policy:
+  explicit_user_approval_required_for:
+    - removing_required_capability
+    - marking_required_capability_optional
+    - replacing_resolver_or_proxy_with_deterministic_lookup_only
+    - treating_llm_required_behavior_as_not_applicable_without_milestone_change
+    - accepting_fallback_only_as_primary_delivery
+    - deferring_user_facing_query_entry_or_transfer_behavior
+  runtime_fallback_rule: >
+    Deterministic fallback or no-hit fallback may be valid runtime behavior, but
+    fallback evidence does not prove delivery of the primary resolver, LLM, or
+    proxy capability unless the milestone explicitly accepts fallback-only scope.
+  manuscript_claim_rule: >
+    Conservative manuscript claims reduce external positioning risk; they do not
+    make required software capabilities optional for development milestones.
+standard_resource_basis:
+  source_task: T-021
+  bundle_path: 1_asset/standard_resources_bundle
+  required_compatibility_evidence:
+    - functional_matrices_h5ad_float32_for_cp_sh_xpr
+    - query_indexes_json_including_function_index
+    - metadata_csv_tables
+    - package_component_format_match
+  acceptance_note: >
+    Future package milestones should test against or explicitly reference the
+    T-021 standard resources unless they register a newer canonical resource set.
+capabilities:
+  - id: CAP-FWD-001
+    name: forward_perturbation_to_function_query
+    description: Answer perturbation plus biological context to activated/suppressed functional response.
+    required_when: any_algorithm_package_milestone
+    required_evidence:
+      - current_run_or_artifact_showing_perturbation_context_query
+      - ranked_or_scored_functional_program_output
+      - serializable_table_or_json_result
+      - found_status_and_evidence_metadata
+    predecessor_evidence:
+      - T-007 implemented ForwardQuery and ForwardResult
+      - T-013 CAP-04 passed EGFR/A549/xpr forward exact query
+    allowed_fallback:
+      - return_not_found_when_exact_and_allowed_proxy_routes_fail
+      - deterministic_summary_without_llm_if_llm_not_required_by_milestone
+    acceptance_threshold: delivered only with current milestone evidence of working forward query.
+    likely_failure_modes:
+      - matrix_not_loadable
+      - perturbation_or_context_misresolved
+      - missing_status_metadata
+    absence_treatment: blocker_for_algorithm_package_delivery
+    downgrade_triggers:
+      - replacing_forward_query_with_static_documented_lookup_only
+      - omitting_context_requirement
+    user_approval_required_for_deferral: true
+  - id: CAP-REV-001
+    name: reverse_function_to_perturbation_query
+    description: Answer desired functional target plus biological context to candidate perturbations.
+    required_when: any_algorithm_package_milestone
+    required_evidence:
+      - current_run_or_artifact_showing_function_target_query
+      - ranked_candidate_perturbation_output
+      - directionality_or_target_score_handling
+      - numeric_sanity_or_warning_review
+    predecessor_evidence:
+      - T-007 implemented ReverseQuery and ReverseResult
+      - T-013 CAP-06 partial A549 apoptosis activation/MYC inhibition candidate ranking with numeric warning
+    allowed_fallback:
+      - return_evidence_insufficient_or_blocked_when_function_mapping_or_numeric_stability_fails
+    acceptance_threshold: delivered only after reverse output and numeric stability are evidenced.
+    likely_failure_modes:
+      - missing_function_index
+      - unstable_similarity_or_zero_norm_warning
+      - weak_ranking_sanity
+    absence_treatment: blocker_or_partial_depending_on_milestone_scope
+    downgrade_triggers:
+      - presenting_forward_query_only_as_full_package
+      - hiding_numeric_warning
+    user_approval_required_for_deferral: true
+  - id: CAP-CTX-001
+    name: biological_context_handling
+    description: Resolve and apply biological context such as cell line, lineage, disease, or subtype.
+    required_when: forward_reverse_or_resolver_milestones
+    required_evidence:
+      - accepted_context_input
+      - context_filter_or_context_proxy_route
+      - reported exact_or_proxy_context_status
+    predecessor_evidence:
+      - T-007 cell-line indexes and hierarchy described
+      - T-021 cellline_index, cellline_neighbors, cellline_tree and metadata are standard resources
+    allowed_fallback:
+      - explicit not_found for unsupported context
+      - approved proxy context with lineage or disease metadata
+    acceptance_threshold: delivered when context affects retrieval and metadata reports route.
+    likely_failure_modes:
+      - ignoring_context
+      - unreported_context_proxy
+      - unsupported_cell_line_silent_default
+    absence_treatment: blocker_for_contextual_query_claims
+    downgrade_triggers:
+      - reducing biological context to free text label only
+    user_approval_required_for_deferral: true
+  - id: CAP-EVD-EXACT-001
+    name: exact_evidence_routing
+    description: Prefer exact perturbation, function, and context matches before proxy routes.
+    required_when: any_query_milestone
+    required_evidence:
+      - exact_match_route_status
+      - source_index_or_matrix_row_reference
+      - output metadata distinguishing exact from proxy
+    predecessor_evidence:
+      - T-007 intended exact-first retrieval
+      - T-013 CAP-04 exact forward query passed
+    allowed_fallback:
+      - proxy_route_only_after_exact_miss_is_reported
+    acceptance_threshold: delivered when exact route is explicitly evidenced and labeled.
+    likely_failure_modes:
+      - exact_and_proxy_collapsed
+      - missing_route_metadata
+    absence_treatment: blocker_for_evidence_aware_retrieval
+    downgrade_triggers:
+      - returning scores_without_route_status
+    user_approval_required_for_deferral: true
+  - id: CAP-EVD-PROXY-001
+    name: proxy_evidence_routing
+    description: Use cell-line hierarchy, gene neighbors, drug neighbors, or function aliases when exact evidence is sparse.
+    required_when: milestone_includes_proxy_or_resolver_behavior
+    required_evidence:
+      - exact_miss_or_low_coverage_trigger
+      - proxy_candidate_source_and_similarity_or_hierarchy_basis
+      - output label distinguishing proxy from exact
+      - transparent explanation of proxy limitations
+    predecessor_evidence:
+      - T-007 describes proxy evidence through cell-line hierarchy and gene/drug neighbor indexes
+      - T-013 CAP-07 blocked for natural-language resolver/proxy in that run
+      - T-021 standard resources include neighbor indexes
+    allowed_fallback:
+      - deterministic not_found when proxy confidence is below threshold
+      - skip proxy only when milestone explicitly excludes proxy behavior
+    acceptance_threshold: delivered only with successful proxy route evidence or explicit user-approved exclusion.
+    likely_failure_modes:
+      - false_positive_fuzzy_match
+      - missing_neighbor_index
+      - proxy_returned_as_exact
+    absence_treatment: blocker_when_proxy_required_otherwise_out_of_scope
+    downgrade_triggers:
+      - marking_proxy_optional_after_milestone_required_it
+      - using fuzzy guesses without threshold as proxy evidence
+    user_approval_required_for_deferral: true
+  - id: CAP-EVD-NOTFOUND-001
+    name: not_found_and_no_hit_routing
+    description: Safely return not-found/no-hit states rather than crashing or fabricating matches.
+    required_when: any_user_facing_or_query_milestone
+    required_evidence:
+      - negative_control_query
+      - explicit no_hit_or_not_found_status
+      - no false-positive perturbation/function/context substitution
+    predecessor_evidence:
+      - T-013 CAP-05 failed because fuzzy fallback mis-matched meaningless perturbation token
+      - T-013 contract requires found/not-found statuses
+    allowed_fallback:
+      - deterministic no_hit with evidence metadata
+      - suggestions only when clearly marked below-threshold or unaccepted
+    acceptance_threshold: delivered only after negative-control behavior is safe.
+    likely_failure_modes:
+      - fuzzy_false_positive
+      - crash_on_missing_input
+      - unlabelled_substitution
+    absence_treatment: blocker_for_user_facing_delivery
+    downgrade_triggers:
+      - treating nearest token as found without threshold
+    user_approval_required_for_deferral: true
+  - id: CAP-ENTRY-RESOLVER-001
+    name: resolver_mediated_query_entry
+    description: Accept natural-language or semi-structured user query and map it to package query intent and parameters.
+    required_when: milestone_includes_resolver_natural_language_or_user_facing_query_entry
+    required_evidence:
+      - resolver_startup_with_current_indexes
+      - parsed_intent_and_parameters
+      - dispatch_to_forward_or_reverse_or_not_found
+      - route_metadata_and_logs
+    predecessor_evidence:
+      - T-007 resolver implemented but risk-bearing
+      - T-013 CAP-07 blocked by index naming and function_index gap
+      - T-021 rebuilt function_index and standard index bundle
+    allowed_fallback:
+      - semi_structured_entry_when_natural_language_is_explicitly_not_required
+      - deterministic parser_fallback_after_llm_failure
+    acceptance_threshold: delivered only when resolver runs against current resources and dispatches correctly.
+    likely_failure_modes:
+      - resolver_cannot_find_indexes
+      - intent_misclassification
+      - unreported_fallback_to_manual_parameters
+    absence_treatment: blocker_when_resolver_required_otherwise_out_of_scope
+    downgrade_triggers:
+      - substituting direct API calls for required user-facing resolver
+      - labeling blocked resolver as optional without approval
+    user_approval_required_for_deferral: true
+  - id: CAP-LLM-001
+    name: llm_assisted_parsing_and_summarization
+    description: Use configured AI service for parsing, mapping, normalization, or summary where milestone scope requires it.
+    required_when: milestone_includes_llm_assisted_behavior
+    required_evidence:
+      - configured_backend_connectivity
+      - prompt_or_call_path_used
+      - parsed_or_summarized_output
+      - deterministic_fallback_behavior_on_llm_failure
+      - latency_or_failure_metadata_when relevant
+    predecessor_evidence:
+      - T-007 LLM prompts implemented but real LLM path unstable and slow
+      - T-013 CAP-08 passed DeepSeek endpoint connectivity only
+    allowed_fallback:
+      - deterministic parser or fixed summary if LLM fails, with status showing fallback
+      - skip real LLM only when milestone excludes it or user approves deferral
+    acceptance_threshold: delivered only with required LLM path evidence, not connectivity alone.
+    likely_failure_modes:
+      - authentication_failure
+      - slow_or_unstable_response
+      - generic_biological_query_not_found
+    absence_treatment: blocker_when_llm_required_or_partial_when_only_connectivity_evidenced
+    downgrade_triggers:
+      - counting endpoint_connectivity_as_full_llm_delivery
+      - removing_llm_behavior_due_to_manuscript_claim_restraint
+    user_approval_required_for_deferral: true
+  - id: CAP-FALLBACK-001
+    name: deterministic_fallback_and_runtime_resilience
+    description: Provide deterministic fallback behavior when LLM, resolver, proxy, or input resolution fails.
+    required_when: resolver_llm_proxy_or_user_facing_milestones
+    required_evidence:
+      - failure_trigger_or_unavailable_dependency
+      - deterministic fallback result or explicit not-found
+      - metadata distinguishing fallback from primary path
+    predecessor_evidence:
+      - T-007 LLM fallback summaries implemented
+      - T-013 avoided forcing NL pipeline while resolver was blocked
+    allowed_fallback:
+      - no_hit_status
+      - deterministic_parser
+      - direct_structured_query
+    acceptance_threshold: delivered when fallback is intentional, tested, and labeled.
+    likely_failure_modes:
+      - fallback_hidden_as_primary_success
+      - fallback_returns_false_positive
+    absence_treatment: partial_or_failed_for_user_facing_milestones
+    downgrade_triggers:
+      - using_fallback_only_to_claim_primary_resolver_or_llm_delivery
+    user_approval_required_for_deferral: true
+  - id: CAP-META-001
+    name: transparent_evidence_metadata
+    description: Every query result exposes route, source, status, confidence/proxy basis, fallback, and limitations.
+    required_when: any_package_milestone
+    required_evidence:
+      - machine_readable_status
+      - exact_proxy_not_found_or_fallback_route_label
+      - source_resource_or_index_reference
+      - warnings_or_limitations_when_present
+    predecessor_evidence:
+      - T-007 resolver logging metadata described
+      - T-013 contract requires serializable table/JSON with found/not-found status
+    allowed_fallback:
+      - minimal metadata for low-level deterministic tests if milestone excludes resolver
+    acceptance_threshold: delivered when metadata is present in outputs and not only described.
+    likely_failure_modes:
+      - opaque_scores
+      - lost_warning
+      - no_source_trace
+    absence_treatment: blocker_for_evidence_aware_claims
+    downgrade_triggers:
+      - omitting metadata for convenience
+    user_approval_required_for_deferral: true
+  - id: CAP-RES-001
+    name: standard_resource_compatibility
+    description: Package can load and query against the canonical standard resources or explicitly registered successor resources.
+    required_when: any_current_package_or_milestone_review
+    required_evidence:
+      - resource_path_registered_or_configured
+      - h5ad_matrices_loadable_by_package
+      - JSON_indexes_parsed_by_resolver_or_index_wrappers
+      - function_index_available
+    predecessor_evidence:
+      - T-021 verified 19 standard files, package component format match, and rebuilt function_index
+    allowed_fallback:
+      - explicitly registered successor_resource_bundle
+      - blocked classification when resources are unavailable
+    acceptance_threshold: delivered when compatibility is verified in the milestone or inherited from an approved unchanged resource bundle.
+    likely_failure_modes:
+      - old_prefixed_index_names
+      - missing_function_index
+      - package_path_assumption_to_legacy_workspace
+    absence_treatment: blocker_for_current_package_delivery
+    downgrade_triggers:
+      - relying_on_legacy_paths_without_registered_current_resources
+    user_approval_required_for_deferral: true
+future_milestone_review_requirements:
+  - classify_each_capability_using_acceptance_state_vocabulary
+  - record_current_evidence_not_only_legacy_or_planned_evidence
+  - identify_required_capability_absences_as_blocked_failed_partial_downgraded_or_deferred
+  - record_user_approval_for_every_deferral_or_scope_reduction
+  - distinguish manuscript_claim_limits_from_software_acceptance_scope

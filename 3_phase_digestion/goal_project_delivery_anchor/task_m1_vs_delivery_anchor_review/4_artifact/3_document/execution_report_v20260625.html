@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>T-065 执行报告</title>
+  <style>
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.68; margin: 32px auto; max-width: 1080px; color: #202124; }
+h1, h2 { color: #12355b; }
+section { margin: 22px 0; }
+table { border-collapse: collapse; width: 100%; margin: 14px 0; }
+th, td { border: 1px solid #d0d7de; padding: 8px 10px; vertical-align: top; }
+th { background: #f2f5f8; }
+code { background: #f6f8fa; padding: 2px 4px; border-radius: 4px; }
+.note { background: #f8fafc; border-left: 4px solid #4776a8; padding: 12px 14px; }
+.warn { background: #fff8e6; border-left: 4px solid #d29922; padding: 12px 14px; }
+</style>
+</head>
+<body>
+
+<h1>T-065 M1 vs Delivery Anchor Review 执行报告</h1>
+<section><h2>任务意图</h2><p>T-065 的目的是审查已经完成的 M1 Python package milestone 到底算什么。M1 可能有可运行包、CLI 和 deterministic forward/reverse kernel，但项目交付锚点要求的能力远不止这些。本 task 通过 T-062 包级锚点、T-063 resolver/LLM 锚点和 T-064 evidence-routing 锚点，对 T-053 的 M1 证据做一次明确分类，防止后续把 deterministic kernel 当成完整算法包。</p></section>
+<section><h2>输入资产与依据</h2><p>执行读取了 16 个注册输入。A-001 至 A-004 来自 T-053 M1 milestone，包括 milestone report、evidence index、layered asset map 和 known gaps。A-005 至 A-009 来自 T-062，提供 package capability anchor、matrix、downgrade rules、rubric 和 vocabulary。A-010 至 A-013 来自 T-063，提供 resolver/LLM 能力标准。A-014 至 A-016 来自 T-064，提供 evidence-routing taxonomy、metadata contract 和 stress-test mapping。</p></section>
+<section><h2>实际执行过程</h2><table><tr><th>步骤</th><th>执行内容</th><th>结果</th></tr><tr><td>1</td><td>提取 M1 明确声称和已证明的能力。</td><td>确认 M1 主要证明 deterministic kernel、包安装/CLI 基础和窄范围 demo。</td></tr><tr><td>2</td><td>根据 T-062 建立 package capability checklist。</td><td>把 forward/reverse、context、metadata、standard resource compatibility 等纳入检查。</td></tr><tr><td>3</td><td>根据 T-063 单独审查 resolver/LLM。</td><td>确认 natural-language entry、LLM evidence 和 resolver demo coverage 未被 M1 支撑。</td></tr><tr><td>4</td><td>根据 T-064 单独审查 evidence routing。</td><td>确认 exact 部分有窄证据，proxy/no-hit/ambiguous/context-missing/transfer 未完整交付。</td></tr><tr><td>5</td><td>生成 YAML、CSV、Markdown 和 HTML 报告。</td><td>整体分类为 deterministic kernel/substrate，并提出下一 milestone boundary。</td></tr></table></section>
+<section><h2>关键判断与证据</h2><p>关键判断是 M1 不能作为完整算法包交付锚点通过。它有可用 substrate：deterministic forward/reverse fixture kernel、基础包装和 CLI 证据；但缺少标准资源兼容、resolver-mediated query entry、LLM-assisted parsing/summarization、proxy routing、完整 no-hit/transfer behavior 和 route-aware metadata。若把 M1 称作完整包，会构成未经批准的 scope shrinkage。</p></section>
+<section><h2>交付物清单</h2><ul><li><code>m1_vs_delivery_anchor_gap_review_v20260625.yaml</code>：机器可读 gap review 和整体分类。</li><li><code>m1_vs_delivery_anchor_capability_matrix_v20260625.csv</code>：能力状态矩阵。</li><li><code>m1_vs_delivery_anchor_review_report_v20260625.md</code>：中文叙事评审报告。</li><li><code>m1_next_milestone_boundary_recommendations_v20260625.md</code>：下一里程碑边界建议。</li></ul></section>
+<section><h2>边界与未完成事项</h2><p>本 task 是证据审查，不运行包验证、不修复代码、不分析原始数据、不修改 T-053/T-062/T-063/T-064。结论只基于已登记证据；如果未来补充了 runtime validation 或 resolver implementation，需要另建 task 更新 milestone 状态。</p></section>
+
+</body>
+</html>

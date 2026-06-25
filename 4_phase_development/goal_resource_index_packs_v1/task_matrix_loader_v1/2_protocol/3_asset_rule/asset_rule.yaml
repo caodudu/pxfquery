@@ -1,0 +1,61 @@
+version: 1
+required:
+  - A-001
+  - A-004
+optional:
+  - A-002
+  - A-003
+  - A-005
+  - A-006
+  - A-007
+  - A-008
+  - A-009
+forbidden:
+  - path: 1_asset/T-021 standard_resources bundle (D-004)
+    reason: T-021 bundle is read-only input source. Do not modify or delete files inside it; load by reference.
+  - path: ../../goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/2_persist/standard_resources/
+    reason: T-021/D-004 bundle contents are read-only inputs from predecessor task.
+  - path: ../../../2_project_asset/
+    reason: Project-level raw materials are scoped out; T-021 already consolidated the relevant subset into D-004 and T-025 enumerated it.
+  - path: /Users/dudu/Documents/3_Project/8_functional_query
+    reason: Legacy Windows-era historical source. Not needed for matrix loader task; migrated assets are sufficient.
+output:
+  - path: 3_execution/loader/
+    description: pxfquery-T-026 loader package source code.
+  - path: 3_execution/validate_loader.py
+    description: Validation driver script.
+  - path: 3_execution/loader_validation.json
+    description: Machine-readable load record.
+  - path: 3_execution/loader_validation_summary.md
+    description: Short readable load summary.
+  - path: 4_artifact/2_persist/loader/
+    description: Copy of loader package registered as deliverable.
+  - path: 4_artifact/2_persist/
+    description: Any repaired local-version resource files (if repairs were required).
+  - path: 4_artifact/registry.yaml
+    description: T-026 deliverable registration.
+  - path: 4_artifact/3_document/
+    description: execution_report_vYYYYMMDD.html + result_report_vYYYYMMDD.html.
+  - path: 5_report/completion.md
+    description: Completion report.
+  - path: 5_report/repair_log.md
+    description: Repair log, only if a bug was repaired.
+modifiable:
+  - path: 3_execution/
+  - path: 4_artifact/2_persist/
+  - path: 4_artifact/registry.yaml
+  - path: 4_artifact/3_document/
+  - path: 5_report/
+non_modifiable:
+  - path: 1_asset/
+  - path: 2_protocol/
+  - path: ../../../1_project_init/1_project_protocol/
+  - path: ../../../1_project_init/3_project_state/
+  - path: ../../goal_precomputed_data_exploration/task_standard_resources_optimal_formats/
+  - path: ../task_resource_manifest_v1/4_artifact/
+  - path: ../../../2_project_asset/
+notes:
+  - Loader must discover matrix shape, obs columns, var count at runtime from H5AD files; do not hard-code.
+  - All loads are by reference to A-004; no byte-level copying of upstream files.
+  - Validation script must physically open every file with anndata/pandas/json/yaml; file-existence checks alone are insufficient.
+  - T-023 is intentionally out of scope; precedent of A-001 (T-025 manifest) + A-004 (T-021 bundle) is sufficient.

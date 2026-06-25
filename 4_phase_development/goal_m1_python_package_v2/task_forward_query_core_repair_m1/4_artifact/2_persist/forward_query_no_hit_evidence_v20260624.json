@@ -1,0 +1,14 @@
+{
+  "error": "PerturbationNotFound",
+  "message": "The given perturbation name was not found in the matrix observation metadata.",
+  "perturbation": "UNKNOWN_GENE_XYZ999",
+  "matrix_type": "xpr",
+  "query_type": "forward",
+  "suggestions": [],
+  "_evidence": {
+    "task_id": "T-059",
+    "source": "task-local synthetic repair fixture",
+    "manifest": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_forward_query_core_repair_m1/4_artifact/2_persist/forward_repair_manifest_m1_1.yaml",
+    "fixture_root": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_forward_query_core_repair_m1/4_artifact/2_persist/forward_repair_fixture_m1_1"
+  }
+}

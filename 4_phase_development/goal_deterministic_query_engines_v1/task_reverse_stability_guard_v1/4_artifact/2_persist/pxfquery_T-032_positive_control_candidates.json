@@ -1,0 +1,142 @@
+[
+  {
+    "index": 1,
+    "cmap_name": "BRD-K75035820",
+    "cell_iname": "MCF7",
+    "similarity": 0.6288240064576348,
+    "driving_terms": "HALLMARK_MYC_TARGETS_V1, HALLMARK_APOPTOSIS"
+  },
+  {
+    "index": 2,
+    "cmap_name": "BRD-K54906270",
+    "cell_iname": "MCF7",
+    "similarity": 0.5532452540167659,
+    "driving_terms": "HALLMARK_MYC_TARGETS_V1, HALLMARK_APOPTOSIS"
+  },
+  {
+    "index": 3,
+    "cmap_name": "acifran",
+    "cell_iname": "MCF7",
+    "similarity": 0.5490269921844133,
+    "driving_terms": "HALLMARK_MYC_TARGETS_V1, HALLMARK_APOPTOSIS"
+  },
+  {
+    "index": 4,
+    "cmap_name": "arvanil",
+    "cell_iname": "MCF7",
+    "similarity": 0.5479304159072738,
+    "driving_terms": "HALLMARK_MYC_TARGETS_V1, HALLMARK_APOPTOSIS"
+  },
+  {
+    "index": 5,
+    "cmap_name": "BRD-K10268154",
+    "cell_iname": "MCF7",
+    "similarity": 0.5369887244018082,
+    "driving_terms": "HALLMARK_MYC_TARGETS_V1, HALLMARK_APOPTOSIS"
+  },
+  {
+    "index": 6,
+    "cmap_name": "BRD-K23060602",
+    "cell_iname": "MCF7",
+    "similarity": 0.5278051602997147,
+    "driving_terms": "HALLMARK_MYC_TARGETS_V1, HALLMARK_APOPTOSIS"
+  },
+  {
+    "index": 7,
+    "cmap_name": "olmesartan",
+    "cell_iname": "MCF7",
+    "similarity": 0.512662305828401,
+    "driving_terms": "HALLMARK_MYC_TARGETS_V1, HALLMARK_APOPTOSIS"
+  },
+  {
+    "index": 8,
+    "cmap_name": "BRD-K40829514",
+    "cell_iname": "MCF7",
+    "similarity": 0.49452065839185116,
+    "driving_terms": "HALLMARK_MYC_TARGETS_V1, HALLMARK_APOPTOSIS"
+  },
+  {
+    "index": 9,
+    "cmap_name": "BRD-K98225498",
+    "cell_iname": "MCF7",
+    "similarity": 0.48821265516667733,
+    "driving_terms": "HALLMARK_MYC_TARGETS_V1, HALLMARK_APOPTOSIS"
+  },
+  {
+    "index": 10,
+    "cmap_name": "BRD-K23897615",
+    "cell_iname": "MCF7",
+    "similarity": 0.48776851206371297,
+    "driving_terms": "HALLMARK_MYC_TARGETS_V1, HALLMARK_APOPTOSIS"
+  },
+  {
+    "index": 11,
+    "cmap_name": "BRD-K87790979",
+    "cell_iname": "MCF7",
+    "similarity": 0.4871065647189628,
+    "driving_terms": "HALLMARK_MYC_TARGETS_V1, HALLMARK_APOPTOSIS"
+  },
+  {
+    "index": 12,
+    "cmap_name": "BRD-K35892797",
+    "cell_iname": "MCF7",
+    "similarity": 0.48519521802259774,
+    "driving_terms": "HALLMARK_MYC_TARGETS_V1, HALLMARK_APOPTOSIS"
+  },
+  {
+    "index": 13,
+    "cmap_name": "anidulafungin",
+    "cell_iname": "MCF7",
+    "similarity": 0.4619309481370854,
+    "driving_terms": "HALLMARK_MYC_TARGETS_V1, HALLMARK_APOPTOSIS"
+  },
+  {
+    "index": 14,
+    "cmap_name": "tropicamide",
+    "cell_iname": "MCF7",
+    "similarity": 0.4471980613952316,
+    "driving_terms": "HALLMARK_MYC_TARGETS_V1, HALLMARK_APOPTOSIS"
+  },
+  {
+    "index": 15,
+    "cmap_name": "BRD-K14307099",
+    "cell_iname": "MCF7",
+    "similarity": 0.44226200327582227,
+    "driving_terms": "HALLMARK_MYC_TARGETS_V1, HALLMARK_APOPTOSIS"
+  },
+  {
+    "index": 16,
+    "cmap_name": "BRD-K99182933",
+    "cell_iname": "MCF7",
+    "similarity": 0.43669508541658464,
+    "driving_terms": "HALLMARK_MYC_TARGETS_V1, HALLMARK_APOPTOSIS"
+  },
+  {
+    "index": 17,
+    "cmap_name": "BRD-K41513507",
+    "cell_iname": "MCF7",
+    "similarity": 0.4365809706217862,
+    "driving_terms": "HALLMARK_MYC_TARGETS_V1, HALLMARK_APOPTOSIS"
+  },
+  {
+    "index": 18,
+    "cmap_name": "BRD-K11977286",
+    "cell_iname": "MCF7",
+    "similarity": 0.4347214537285446,
+    "driving_terms": "HALLMARK_MYC_TARGETS_V1, HALLMARK_APOPTOSIS"
+  },
+  {
+    "index": 19,
+    "cmap_name": "BRD-K11236606",
+    "cell_iname": "MCF7",
+    "similarity": 0.42838119794197305,
+    "driving_terms": "HALLMARK_MYC_TARGETS_V1, HALLMARK_APOPTOSIS"
+  },
+  {
+    "index": 20,
+    "cmap_name": "BRD-K81300454",
+    "cell_iname": "MCF7",
+    "similarity": 0.42747444154505176,
+    "driving_terms": "HALLMARK_MYC_TARGETS_V1, HALLMARK_APOPTOSIS"
+  }
+]

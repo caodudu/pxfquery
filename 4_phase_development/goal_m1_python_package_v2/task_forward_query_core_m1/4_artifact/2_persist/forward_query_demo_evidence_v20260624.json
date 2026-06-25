@@ -1,0 +1,54 @@
+{
+  "task_id": "T-048",
+  "case_id": "DEMO-001",
+  "source_contract": "T-042/D-001 and T-042/D-002",
+  "loader_source": "T-046/D-001",
+  "loader_manifest_path": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_m1_fixture_loader/1_asset/resource_manifest_m1.yaml",
+  "loader_smoke": {
+    "status": "PASS",
+    "matrix_type": "xpr",
+    "shape": [
+      4,
+      7
+    ],
+    "obs_columns": [
+      "sig_id",
+      "project_code",
+      "cell_iname",
+      "pert_id",
+      "cmap_name",
+      "pert_dose",
+      "pert_time"
+    ],
+    "var_names": [
+      "HALLMARK_ADIPOGENESIS",
+      "HALLMARK_APOPTOSIS",
+      "HALLMARK_E2F_TARGETS",
+      "HALLMARK_P53_PATHWAY",
+      "HALLMARK_TNFA_SIGNALING_VIA_NFKB",
+      "MP39 Metal-response",
+      "MP40 PDAC-related"
+    ],
+    "sig_ids": [
+      "XPR025_BICR6.311_96H:E13",
+      "XPR028_PC3.311B_96H:J15",
+      "XPR015_A375.311_96H:E11",
+      "XPR031_U251MG.311_96H:E03"
+    ],
+    "matching_rows_for_EGFR_A549": 0
+  },
+  "input": {
+    "perturbation": "EGFR",
+    "cell_line": "A549",
+    "matrix_type": "xpr",
+    "top_k": 20
+  },
+  "observed": {
+    "error": "PerturbationNotFound",
+    "message": "Perturbation 'EGFR' was not found in xpr matrix observations.",
+    "perturbation": "EGFR",
+    "matrix_type": "xpr",
+    "query_type": "forward",
+    "suggestions": []
+  }
+}

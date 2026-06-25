@@ -1,0 +1,26 @@
+task_id: T-038
+name: milestone_reverse_demo_reports_v1
+phase: development
+goal: goal_package_milestone_merge_v1
+project: P-012
+objective: Create a parallel pxfquery reverse/demo/report milestone from completed
+  reverse engine, reverse stability guard, smoke-test, and demo CLI assets. This branch
+  must not depend on T-040, and the archived old T-037 is forbidden; T-039 is the
+  only aggregation point.
+executor: codex
+agent_id: AGT-003
+config_agent_id: AGT-003
+check_agent_id: AGT-003
+execute_agent_id: AGT-003
+server_id: null
+status: blocked
+cyhex_version: 1.2.3
+created: '2026-06-23'
+started: null
+completed: null
+notes: 'Parallel milestone branch: consume T-030, T-032, T-035, and T-036 only. Do
+  not depend on T-040 or the archived old T-037. T-039 is the only aggregation point.'
+fast_pass_permission: green
+sub_status: check_interrupted
+fast_pass_last_auto_approved: config_review
+fast_pass_last_auto_approved_at: '2026-06-23T18:46:33'

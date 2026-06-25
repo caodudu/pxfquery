@@ -1,0 +1,114 @@
+schema_version: 1
+updated_at: '2026-06-24T05:06:25'
+source: cli_sessions
+path: 5_report/process_record.yaml
+template:
+  purpose: Task deliverable process record; refreshed from CyHex CLI session metadata
+    while the task runs.
+  stages:
+  - config
+  - check
+  - execute
+  - deliver
+  memory_note: max_rss_kb is captured from live process RSS when the UI/backend observes
+    a running session; completed sessions may be blank if no live sample was available.
+task:
+  task_id: T-048
+  name: forward_query_core_m1
+  status: active
+  sub_status: execute_failed
+summary:
+  session_count: 3
+  running_count: 0
+  done_count: 3
+  failed_count: 0
+  total_duration_seconds: 1033
+  max_rss_kb: null
+phases:
+- stage: config
+  label_zh: 配置
+  label_en: Configuration
+  status: done
+  started: '2026-06-24T04:47:46'
+  completed: '2026-06-24T04:52:00'
+  duration_seconds: 254
+  max_rss_kb: null
+  sessions:
+  - session_id: cli_e6e057c50a19
+    stage: config
+    status: done
+    driver: codex
+    agent_id: AGT-001
+    agent_label: Codex hard tasks
+    model: ''
+    pid: 56228
+    created: '2026-06-24T04:47:46'
+    completed: '2026-06-24T04:52:00'
+    duration_seconds: 254
+    current_rss_kb: null
+    max_rss_kb: null
+    returncode: 0
+    prompt_source: assembled
+    work_dir: /Users/dudu/Documents/3_Project/12_PxFquery
+    session_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_forward_query_core_m1/5_report/cli_sessions/config/20260624_044746_codex_cli_e6e057c50a19
+- stage: check
+  label_zh: 检查
+  label_en: Check
+  status: done
+  started: '2026-06-24T04:52:01'
+  completed: '2026-06-24T04:54:52'
+  duration_seconds: 171
+  max_rss_kb: null
+  sessions:
+  - session_id: cli_8ccb68445f2b
+    stage: check
+    status: done
+    driver: codex
+    agent_id: AGT-001
+    agent_label: Codex hard tasks
+    model: ''
+    pid: 65496
+    created: '2026-06-24T04:52:01'
+    completed: '2026-06-24T04:54:52'
+    duration_seconds: 171
+    current_rss_kb: null
+    max_rss_kb: null
+    returncode: 0
+    prompt_source: assembled
+    work_dir: /Users/dudu/Documents/3_Project/12_PxFquery
+    session_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_forward_query_core_m1/5_report/cli_sessions/check/20260624_045201_codex_cli_8ccb68445f2b
+- stage: execute
+  label_zh: 执行
+  label_en: Execution
+  status: done
+  started: '2026-06-24T04:54:55'
+  completed: '2026-06-24T05:05:03'
+  duration_seconds: 608
+  max_rss_kb: null
+  sessions:
+  - session_id: cli_52c684be8de8
+    stage: execute
+    status: done
+    driver: codex
+    agent_id: AGT-001
+    agent_label: Codex hard tasks
+    model: ''
+    pid: 74341
+    created: '2026-06-24T04:54:55'
+    completed: '2026-06-24T05:05:03'
+    duration_seconds: 608
+    current_rss_kb: null
+    max_rss_kb: null
+    returncode: 0
+    prompt_source: assembled
+    work_dir: /Users/dudu/Documents/3_Project/12_PxFquery
+    session_dir: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_forward_query_core_m1/5_report/cli_sessions/execute/20260624_045455_codex_cli_52c684be8de8
+- stage: deliver
+  label_zh: 交付
+  label_en: Delivery
+  status: not_started
+  started: ''
+  completed: ''
+  duration_seconds: null
+  max_rss_kb: null
+  sessions: []

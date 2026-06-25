@@ -1,0 +1,10 @@
+goal_id: G-023
+name: resolver_optional_layer_v1
+phase: development
+project: P-012
+objective: Create optional hybrid_fast resolver and DeepSeek v4 flash adapter deliverables
+  without blocking deterministic package v1.
+status: blocked
+tasks: []
+created: '2026-06-23'
+notes: 开发可选快速解析器与适配器

@@ -1,0 +1,173 @@
+assets:
+- id: A-001
+  name: T-007_development_state_report
+  type: document
+  source: predecessor
+  source_task: T-007
+  source_artifact_id: D-002
+  origin: T-007/D-002 pxfquery_development_state_report_v20260617.md
+  registered: '2026-06-24'
+  path: 1_asset/T-007_development_state_report.md
+  symlink: true
+  status: ready
+  notes: Summarizes intended product scope, implemented components, data/index readiness,
+    validation state — needed to assess code/index/report maturity
+  location: local
+- id: A-002
+  name: T-007_module_asset_status_matrix
+  type: table
+  source: predecessor
+  source_task: T-007
+  source_artifact_id: D-003
+  origin: T-007/D-003 pxfquery_module_asset_status_matrix_v20260617.csv
+  registered: '2026-06-24'
+  path: 1_asset/T-007_module_asset_status_matrix.csv
+  symlink: true
+  status: ready
+  notes: Per-component status (implemented/partial/risk/historical) — needed to classify
+    each stress-test asset's maturity
+  location: local
+- id: A-003
+  name: T-007_validation_evidence_index
+  type: table
+  source: predecessor
+  source_task: T-007
+  source_artifact_id: D-004
+  origin: T-007/D-004 pxfquery_validation_evidence_index_v20260617.csv
+  registered: '2026-06-24'
+  path: 1_asset/T-007_validation_evidence_index.csv
+  symlink: true
+  status: ready
+  notes: Indexes validation reports with result/status/development_implication — primary
+    reference for assigning reuse categories to validation evidence
+  location: local
+- id: A-004
+  name: T-007_gap_and_risk_list
+  type: document
+  source: predecessor
+  source_task: T-007
+  source_artifact_id: D-005
+  origin: T-007/D-005 pxfquery_development_gap_and_risk_list_v20260617.md
+  registered: '2026-06-24'
+  path: 1_asset/T-007_gap_and_risk_list.md
+  symlink: true
+  status: ready
+  notes: High-priority gaps, risks, claims to avoid — informs which stress-test assets
+    carry risk flags
+  location: local
+- id: A-005
+  name: T-001_asset_structure_report
+  type: document
+  source: predecessor
+  source_task: T-001
+  source_artifact_id: D-003
+  origin: T-001/D-003 old_asset_structure_report.md
+  registered: '2026-06-24'
+  path: 1_asset/T-001_asset_structure_report.md
+  symlink: true
+  status: ready
+  notes: Authority rules over messy legacy evidence — needed to distinguish operational
+    core from archive noise when classifying stress-test assets
+  location: local
+- id: A-006
+  name: T-002_library_structure_guide
+  type: document
+  source: predecessor
+  source_task: T-002
+  source_artifact_id: D-005
+  origin: T-002/D-005 flat_asset_library_structure_zh_v20260615.md
+  registered: '2026-06-24'
+  path: 1_asset/T-002_library_structure_guide.md
+  symlink: true
+  status: ready
+  notes: Flat asset library structure guide — entry point for navigating migrated
+    assets
+  location: local
+- id: A-007
+  name: T-002_not_migrated_assets_report
+  type: document
+  source: predecessor
+  source_task: T-002
+  source_artifact_id: D-007
+  origin: T-002/D-007 not_migrated_assets_report_zh_v20260616.md
+  registered: '2026-06-24'
+  path: 1_asset/T-002_not_migrated_assets_report.md
+  symlink: true
+  status: ready
+  notes: Records which legacy assets were intentionally not migrated — prevents wasting
+    effort on unmigrated candidates
+  location: local
+- id: A-008
+  name: PL_stress_test_scripts
+  type: code
+  source: project_asset
+  source_task: project_asset
+  source_artifact_id: legacy_flat_asset_library
+  origin: T-002/D-001 legacy_flat_asset_library_v20260614/code/index_builders/
+  registered: '2026-06-24'
+  path: 1_asset/PL_stress_test_scripts
+  symlink: true
+  status: ready
+  notes: Directory containing M-0385 test_resolver_smoke.py, M-0386 test_forward_matrix.py,
+    M-0387 (unnamed), M-0388 (unnamed), M-0389 verify_resolver_cases.py — legacy stress-test-adjacent
+    test/verify scripts for reuse boundary assessment
+  location: local
+- id: A-009
+  name: PL_validation_reports_dir
+  type: document
+  source: project_asset
+  source_task: project_asset
+  source_artifact_id: legacy_flat_asset_library
+  origin: T-002/D-001 legacy_flat_asset_library_v20260614/reports/validation_reports/
+  registered: '2026-06-24'
+  path: 1_asset/PL_validation_reports_dir
+  symlink: true
+  status: ready
+  notes: 57 validation reports including forward matrix tests, LLM question suites,
+    stability checks, known risks, execution order guidance, obsolete list — the primary
+    stress-test evidence corpus for reuse classification
+  location: local
+- id: A-010
+  name: PL_resolver_source_plus_design
+  type: code
+  source: project_asset
+  source_task: project_asset
+  source_artifact_id: legacy_flat_asset_library
+  origin: T-002/D-001 legacy_flat_asset_library_v20260614/code/pxfquery_package/query/resolver.py
+    + code/design_docs/
+  registered: '2026-06-24'
+  path: 1_asset/PL_resolver_source_plus_design.py
+  symlink: true
+  status: ready
+  notes: Core resolver logic that stress tests target + design documents explaining
+    intent — needed to understand what stress-test assets actually test
+  location: local
+- id: A-011
+  name: PL_validation_traces
+  type: other
+  source: project_asset
+  source_task: project_asset
+  source_artifact_id: legacy_flat_asset_library
+  origin: T-002/D-001 legacy_flat_asset_library_v20260614/history/design_traces/M-0213
+    + provenance/misc_useful/M-0212
+  registered: '2026-06-24'
+  path: 1_asset/PL_validation_traces.json
+  symlink: true
+  status: ready
+  notes: Act-1 validation JSON traces (design_traces and misc_useful copies) — supplementary
+    evidence for assessing validation-run reproducibility and reuse potential
+  location: local
+- id: A-012
+  name: T-007_development_source_map
+  type: document
+  source: predecessor
+  source_task: T-007
+  source_artifact_id: D-001
+  origin: T-007/D-001 pxfquery_development_source_map_v20260617.md
+  registered: '2026-06-24'
+  path: 1_asset/T-007_development_source_map.md
+  symlink: true
+  status: ready
+  notes: Maps authoritative sources for interpreting migrated PxFquery development
+    assets — needed to avoid citing superseded or duplicate validation reports
+  location: local

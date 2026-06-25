@@ -1,0 +1,14 @@
+goal_id: G-026
+name: legacy_stress_test_asset_digestion
+phase: digestion
+project: P-012
+objective: Digest migrated legacy materials related to PxFquery stress testing, complex
+  query scenarios, strict/edge-case query logic, and old validation scripts into reusable
+  assets for a later development-phase stress-test milestone. Do not scan the legacy
+  root directly during orchestration; task agents should prefer T-001/T-002/T-007
+  digested and migrated assets and justify any exceptional direct legacy-root read
+  in their own outputs.
+status: pending
+tasks: []
+created: '2026-06-24'
+notes: 消化旧压力测试资产

@@ -1,0 +1,25 @@
+{
+  "recorded_at": "2026-06-23T08:04:54",
+  "task_id": "T-034",
+  "provider": "deepseek-flash",
+  "model": "deepseek-v4-flash",
+  "base_url": "http://127.0.0.1:1",
+  "no_traffic": true,
+  "transport": "tcp_probe_then_optional_http",
+  "status": "unavailable",
+  "ok": false,
+  "reason": "endpoint_unreachable",
+  "error_type": "ConnectionRefusedError",
+  "error_message": "[Errno 61] Connection refused",
+  "reply": null,
+  "latency_ms": 1,
+  "tcp": {
+    "tcp_ok": false,
+    "tcp_error_type": "ConnectionRefusedError",
+    "tcp_error_message": "[Errno 61] Connection refused",
+    "tcp_latency_ms": 1,
+    "tcp_host": "127.0.0.1",
+    "tcp_port": 1
+  },
+  "api_key_present": false
+}

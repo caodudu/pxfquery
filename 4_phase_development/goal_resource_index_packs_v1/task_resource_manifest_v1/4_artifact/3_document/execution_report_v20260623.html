@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>T-025 执行情况报告 — pxfquery 标准资源清单</title>
+<style>
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; max-width: 960px; margin: 2rem auto; padding: 0 1rem; color: #1a1a1a; line-height: 1.6; }
+h1 { border-bottom: 2px solid #2563eb; padding-bottom: 0.5rem; }
+h2 { margin-top: 2rem; color: #1e40af; }
+table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+th, td { border: 1px solid #d1d5db; padding: 0.5rem 0.75rem; text-align: left; }
+th { background: #f3f4f6; font-weight: 600; }
+.pass { color: #16a34a; font-weight: bold; }
+.fail { color: #dc2626; font-weight: bold; }
+.info { color: #6b7280; font-size: 0.9rem; }
+.box { background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 6px; padding: 1rem; margin: 1rem 0; }
+.summary { background: #ecfdf5; border: 1px solid #6ee7b7; padding: 0.75rem 1rem; border-radius: 6px; }
+</style>
+</head>
+<body>
+<h1>T-025 resource_manifest_v1 — 执行情况报告</h1>
+<p class="info">生成时间: 2026-06-23 | 任务 ID: T-025 | 状态: 执行完成，等待人工验收</p>
+
+<div class="summary">
+<strong>全部 7 个步骤执行成功，零失败。</strong>
+</div>
+
+<h2>1. 任务摘要</h2>
+<div class="box">
+<p><strong>目标:</strong> 基于 T-021 standard_resources 包 (D-004) 构建 pxfquery-T025 标准资源清单 (manifest)、schema 摘要及使用手册。</p>
+<p><strong>输入:</strong> T-021/D-004 标准资源包 (19 个文件, 323.47 MB)</p>
+<p><strong>输出:</strong> manifest YAML (19 条目) + schema 摘要 + 使用手册 + 验证证据</p>
+</div>
+
+<h2>2. 每步执行情况</h2>
+<table>
+<tr><th>步骤</th><th>描述</th><th>状态</th><th>产物</th></tr>
+<tr><td>步骤 1</td><td>枚举 bundle 内容 (19 个文件, 4 类别: 3 h5ad, 10 json, 5 csv, 1 yaml)</td><td class="pass">完成</td><td>内嵌表格</td></tr>
+<tr><td>步骤2</td><td>推导每个文件的 schema (H5AD obs 列, JSON 顶层键, CSV 列名/行数)</td><td class="pass">完成</td><td>Python 提取 (anndata, pandas, json)</td></tr>
+<tr><td>步骤3</td><td>构建 manifest YAML (19 个 SRM 条目, 含 schema/角色/注释)</td><td class="pass">完成</td><td>pxfquery_T025_standard_resource_manifest_v20260623.yaml</td></tr>
+<tr><td>步骤4</td><td>编写 schema 摘要（按类别组织的 Markdown 参考）</td><td class="pass">完成</td><td>pxfquery_T025_schema_summary_v20260623.md</td></tr>
+<tr><td>步骤5</td><td>编写使用手册 (Python 加载片段、路径约定、验证清单)</td><td class="pass">完成</td><td>pxfquery_T025_usage_notes_v20260623.md</td></tr>
+<tr><td>步骤6</td><td>Python 验证 manifest 与 bundle</td><td class="pass">全部通过</td><td>step6_validation.json</td></tr>
+<tr><td>步骤7</td><td>登记产出 + 写完成报告</td><td class="pass">完成</td><td>registry.yaml + completion.md</td></tr>
+</table>
+
+<h2>3. 验证结果详情</h2>
+<table>
+<tr><th>检查项</th><th>结果</th></tr>
+<tr><td>文件数量匹配</td><td class="pass">✓ 19/19</td></tr>
+<tr><td>精确文件名匹配（manifest 与 bundle）</td><td class="pass">✓ 无差异</td></tr>
+<tr><td>manifest 中所有文件在磁盘上存在</td><td class="pass">✓ 全部存在</td></tr>
+<tr><td>data_description.yaml 被引用</td><td class="pass">✓ 已引用</td></tr>
+<tr><td>Bundle 总大小误差 &lt; 5%</td><td class="pass">✓ 323.47 MB (0.00% 偏差)</td></tr>
+</table>
+
+<h2>4. 交付物清单</h2>
+<table>
+<tr><th>ID</th><th>名称</th><th>路径</th><th>角色</th></tr>
+<tr><td>D-006</td><td>pxfquery_T025_standard_resource_manifest_v20260623.yaml</td><td>4_artifact/2_persist/</td><td>core deliverable</td></tr>
+<tr><td>D-007</td><td>pxfquery_T025_schema_summary_v20260623.md</td><td>4_artifact/2_persist/</td><td>support</td></tr>
+<tr><td>D-008</td><td>pxfquery_T025_usage_notes_v20260623.md</td><td>4_artifact/2_persist/</td><td>support</td></tr>
+<tr><td>D-009</td><td>step6_validation.json</td><td>3_execution/</td><td>support</td></tr>
+<tr><td>—</td><td>registry.yaml</td><td>4_artifact/</td><td>artifact registration</td></tr>
+<tr><td>—</td><td>completion.md</td><td>5_report/</td><td>completion report</td></tr>
+</table>
+
+<h2>5. 执行过程中的修复记录</h2>
+<div class="box">
+<p><strong>配置阶段路径 bug (已在检查阶段修复):</strong></p>
+<ul>
+<li>原始路径 <code>../../../task_standard_resources_optimal_formats/...</code> 解析到了不存在的目录</li>
+<li>修正为 <code>../../goal_precomputed_data_exploration/task_standard_resources_optimal_formats/...</code></li>
+<li>受影响文件: registration.yaml（6 条资产路径）, protocol.md, asset_rule.yaml</li>
+<li>修复后全部 6 个资产路径可解析，所有文件存在且非空</li>
+</ul>
+</div>
+
+<h2>6. 已知缺口 / 未产生的内容</h2>
+<ul>
+<li>未复制 bundle 文件的任何字节（manifest 是索引，不是数据副本）</li>
+<li>未生成新数据文件</li>
+<li>5 个不可读的 CMAP 上游 h5ad 文件不在标准资源范围内（T-021 已确认其截断且不可修复）</li>
+</ul>
+
+</body>
+</html>

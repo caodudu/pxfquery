@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>T-051 Validation Report</title>
+<style>
+body { font-family: sans-serif; margin: 2em; }
+h1 { color: #333; }
+.pass { color: #4CAF50; }
+.fail { color: #f44336; }
+table { border-collapse: collapse; width: 100%; }
+th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+th { background-color: #f2f2f2; }
+.summary { font-size: 1.2em; margin: 1em 0; }
+</style></head><body>
+<h1>T-051 reverse_validation_m1 — Validation Report</h1>
+<p>Generated: 2026-06-24T05:58:12.340816</p>
+<p>Package version: 0.1.0</p>
+<p>Package path: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_reverse_validation_m1/1_asset/reverse_query_package_code → /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_package_skeleton_m1/4_artifact/1_package/pxfquery</p>
+<p>Loader: pxfquery.data.m1_loader.M1FixtureLoader</p>
+<p>Manifest: reverse_repair_manifest_m1_1</p>
+<p>Ranking: cosine similarity</p>
+<div class="summary">
+  <span>Total: 42</span> |
+  <span class="pass">Passed: 42</span> |
+  <span class="fail">Failed: 0</span> |
+  <span><strong>Verdict: PASS</strong></span>
+</div>
+<table><tr><th>Status</th><th>Check</th><th>Detail</th></tr>
+<tr><td style="color:#4CAF50">&#10004;</td><td>p1_symlink_resolvable</td><td>symlink=/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_reverse_validation_m1/1_asset/reverse_query_package_code -> /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_package_skeleton_m1/4_artifact/1_package/pxfquery</td></tr>
+<tr><td style="color:#4CAF50">&#10004;</td><td>p1_symlink_points_to_t044</td><td>resolved=/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_package_skeleton_m1/4_artifact/1_package/pxfquery</td></tr>
+<tr><td style="color:#4CAF50">&#10004;</td><td>p1_version_readable</td><td>version=0.1.0</td></tr>
+<tr><td style="color:#4CAF50">&#10004;</td><td>p2_loader_imports</td><td>M1FixtureLoader loaded successfully</td></tr>
+<tr><td style="color:#4CAF50">&#10004;</td><td>p2_xpr_shape</td><td>xpr shape=(15, 9)</td></tr>
+<tr><td style="color:#4CAF50">&#10004;</td><td>p2_has_HALLMARK_MYC_TARGETS_V1</td><td>var_names=9</td></tr>
+<tr><td style="color:#4CAF50">&#10004;</td><td>p2_has_A549</td><td>cell_lines=['BICR6', 'PC3', 'A375', 'U251MG', 'A549']</td></tr>
+<tr><td style="color:#4CAF50">&#10004;</td><td>p2_manifest_id</td><td>manifest loaded</td></tr>
+<tr><td style="color:#4CAF50">&#10004;</td><td>p3_exit_code_0</td><td>exit=0</td></tr>
+<tr><td style="color:#4CAF50">&#10004;</td><td>p3_found_true</td><td>found=True</td></tr>
+<tr><td style="color:#4CAF50">&#10004;</td><td>p3_top_n_3</td><td>candidates=3</td></tr>
+<tr><td style="color:#4CAF50">&#10004;</td><td>p3_no_error</td><td>keys=['found', 'activate', 'suppress', 'cell_line', 'candidate_columns', 'top_candidates', 'warnings', 'note']</td></tr>
+<tr><td style="color:#4CAF50">&#10004;</td><td>p3_candidate_1_sig_id</td><td>obs=T060_XPR_A549_SYN_001 ref=T060_XPR_A549_SYN_001</td></tr>
+<tr><td style="color:#4CAF50">&#10004;</td><td>p3_candidate_1_similarity</td><td>obs=1.0 ref=1.0</td></tr>
+<tr><td style="color:#4CAF50">&#10004;</td><td>p3_candidate_1_cmp_name</td><td>obs=THTPA ref=THTPA</td></tr>
+<tr><td style="color:#4CAF50">&#10004;</td><td>p3_candidate_1_cell_line</td><td>obs=A549 ref=A549</td></tr>
+<tr><td style="color:#4CAF50">&#10004;</td><td>p3_candidate_2_sig_id</td><td>obs=T060_XPR_A549_SYN_002 ref=T060_XPR_A549_SYN_002</td></tr>
+<tr><td style="color:#4CAF50">&#10004;</td><td>p3_candidate_2_similarity</td><td>obs=0.999959 ref=0.999959</td></tr>
+<tr><td style="color:#4CAF50">&#10004;</td><td>p3_candidate_2_cmp_name</td><td>obs=SCD ref=SCD</td></tr>
+<tr><td style="color:#4CAF50">&#10004;</td><td>p3_candidate_2_cell_line</td><td>obs=A549 ref=A549</td></tr>
+<tr><td style="color:#4CAF50">&#10004;</td><td>p3_candidate_3_sig_id</td><td>obs=T060_XPR_A549_SYN_005 ref=T060_XPR_A549_SYN_005</td></tr>
+<tr><td style="color:#4CAF50">&#10004;</td><td>p3_candidate_3_similarity</td><td>obs=0.999541 ref=0.999541</td></tr>
+<tr><td style="color:#4CAF50">&#10004;</td><td>p3_candidate_3_cmp_name</td><td>obs=TP53 ref=TP53</td></tr>
+<tr><td style="color:#4CAF50">&#10004;</td><td>p3_candidate_3_cell_line</td><td>obs=A549 ref=A549</td></tr>
+<tr><td style="color:#4CAF50">&#10004;</td><td>p4a_no_matrix_loaded_error</td><td>error=NoMatrixLoaded</td></tr>
+<tr><td style="color:#4CAF50">&#10004;</td><td>p4a_no_matrix_loaded_type</td><td>type=system</td></tr>
+<tr><td style="color:#4CAF50">&#10004;</td><td>p4b_program_not_found_error</td><td>error=ProgramNotFound</td></tr>
+<tr><td style="color:#4CAF50">&#10004;</td><td>p4b_program_not_found_unknown</td><td>unknown_activate=['NONEXISTENT_PROGRAM_XXX']</td></tr>
+<tr><td style="color:#4CAF50">&#10004;</td><td>p4c_context_not_found_error</td><td>error=ContextNotFound</td></tr>
+<tr><td style="color:#4CAF50">&#10004;</td><td>p4c_context_not_found_cell_line</td><td>cell_line=UNKNOWN_CELL_LINE</td></tr>
+<tr><td style="color:#4CAF50">&#10004;</td><td>p4d_low_confidence_error</td><td>error=LowConfidenceResult</td></tr>
+<tr><td style="color:#4CAF50">&#10004;</td><td>p4d_low_confidence_details</td><td>details=max_abs_similarity=1.000000; max_signal_norm=4.242641; threshold=1.100000</td></tr>
+<tr><td style="color:#4CAF50">&#10004;</td><td>p4e_empty_target_found</td><td>found=False</td></tr>
+<tr><td style="color:#4CAF50">&#10004;</td><td>p4e_empty_target_reason</td><td>reason=no functional target programs were provided</td></tr>
+<tr><td style="color:#4CAF50">&#10004;</td><td>p5_ranking_order</td><td>compared first 3 of 10 reference candidates (top_n=3)</td></tr>
+<tr><td style="color:#4CAF50">&#10004;</td><td>p5_ranking_csv_match</td><td>compared first 3 of 10 CSV rows against observed top-3</td></tr>
+<tr><td style="color:#4CAF50">&#10004;</td><td>p6_cli_info_exit</td><td>exit=0</td></tr>
+<tr><td style="color:#4CAF50">&#10004;</td><td>p6_cli_info_package</td><td>package=pxfquery</td></tr>
+<tr><td style="color:#4CAF50">&#10004;</td><td>p6_cli_reverse_exit</td><td>exit=0</td></tr>
+<tr><td style="color:#4CAF50">&#10004;</td><td>p6_cli_reverse_found</td><td>found=True</td></tr>
+<tr><td style="color:#4CAF50">&#10004;</td><td>p6_cli_reverse_top3</td><td>candidates=3</td></tr>
+<tr><td style="color:#4CAF50">&#10004;</td><td>p6_cli_error_handling</td><td>exit=1</td></tr>
+
+</table></body></html>

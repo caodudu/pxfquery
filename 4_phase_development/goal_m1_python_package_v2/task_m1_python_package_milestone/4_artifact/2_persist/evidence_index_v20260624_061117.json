@@ -1,0 +1,57 @@
+{
+  "milestone": "M1 Python Package Milestone (T-053)",
+  "generated": "2026-06-24T06:11:17",
+  "package": {
+    "name": "pxfquery",
+    "version": "0.1.0",
+    "location": "1_asset/assembled_package_source/ -> T-052/4_artifact/1_package/"
+  },
+  "evidence_streams": {
+    "forward_validation": {
+      "source_task": "T-050",
+      "verdict": "PASS",
+      "checks_total": 11,
+      "checks_passed": 11,
+      "checks_failed": 0,
+      "key_metrics": {
+        "positive_demo": "EGFR/A549/xpr, found:true",
+        "no_hit_demo": "UNKNOWN_GENE_XYZ999/A549, PerturbationNotFound",
+        "cli_demo": "pxfquery forward --perturbation EGFR --cell-line A549, exit=0"
+      },
+      "reference_assets": ["A-001", "A-002"],
+      "notes": "All 11 checks PASS. Forward query validated against synthetic_repair fixture via M1FixtureLoader."
+    },
+    "reverse_validation": {
+      "source_task": "T-051",
+      "verdict": "PASS",
+      "checks_total": 42,
+      "checks_passed": 42,
+      "checks_failed": 0,
+      "key_metrics": {
+        "ranking_method": "cosine_similarity",
+        "top_candidates": "THTPA (1.0), SCD (0.999959), TP53 (0.999541)",
+        "error_handling": "NoMatrixLoaded, ProgramNotFound, ContextNotFound, LowConfidenceResult"
+      },
+      "reference_assets": ["A-003", "A-004", "A-005"],
+      "notes": "All 42 checks PASS. Reverse query validated with cosine similarity ranking, top-3 matches reference."
+    },
+    "package_assembly": {
+      "source_task": "T-052",
+      "verdict": "PASS",
+      "acceptance_criteria_total": 9,
+      "acceptance_criteria_passed": 9,
+      "acceptance_criteria_failed": 0,
+      "key_metrics": {
+        "install": "pip install -e . succeeded",
+        "import": "import pxfquery OK, version 0.1.0",
+        "cli_info": "Valid JSON: package=pxfquery, version=0.1.0, matrix_types=[xpr, sh, cp]",
+        "forward_demo": "EGFR/A549/xpr, found:true, top_activated=4, top_suppressed=3",
+        "reverse_demo": "HALLMARK_APOPTOSIS activate + HALLMARK_MYC_TARGETS_V1 suppress / A549, found:true, top_candidates=10"
+      },
+      "reference_assets": ["A-006", "A-007", "A-008", "A-009", "A-010", "A-011", "A-012"],
+      "notes": "All 9 acceptance criteria PASS. Package assembled from T-044 skeleton, T-059 forward impl, T-060 reverse impl. No query logic reimplemented."
+    }
+  },
+  "overall_verdict": "PASS",
+  "all_gates_green": true
+}

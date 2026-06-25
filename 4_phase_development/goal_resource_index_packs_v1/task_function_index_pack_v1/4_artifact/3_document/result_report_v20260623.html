@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>T-028 result report</title>
+  <style>
+    body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;max-width:980px;margin:32px auto;padding:0 20px;line-height:1.6;color:#1f2933}
+    code{background:#f3f4f6;padding:2px 4px;border-radius:4px}
+    .metric{display:inline-block;margin:8px 14px 8px 0;padding:10px 14px;border:1px solid #d8dee4;border-radius:6px;background:#f6f8fa}
+    table{border-collapse:collapse;width:100%;font-size:14px}
+    th,td{border:1px solid #d8dee4;padding:7px 9px;text-align:left}
+    th{background:#f6f8fa}
+  </style>
+</head>
+<body>
+  <h1>T-028 功能索引包结果报告</h1>
+  <p>本交付物为后续 query/resolver 任务提供可信的 91 项功能术语索引和别名映射。</p>
+  <div class="metric"><strong>功能术语</strong><br>91</div>
+  <div class="metric"><strong>验证检查</strong><br>7/7 pass</div>
+  <div class="metric"><strong>别名覆盖</strong><br>91/91</div>
+  <div class="metric"><strong>矩阵一致性</strong><br>cp/sh/xpr 一致</div>
+  <h2>核心输出</h2>
+  <table>
+    <thead><tr><th>文件</th><th>用途</th></tr></thead>
+    <tbody>
+      <tr><td><code>function_index.json</code></td><td>核心 91 项 function index pack</td></tr>
+      <tr><td><code>pxfquery_t028_function_index_validation.csv</code></td><td>每个术语一行的验证表</td></tr>
+      <tr><td><code>03_validation.json</code></td><td>机器可读验证记录</td></tr>
+      <tr><td><code>pxfquery_T028_downstream_usage_notes.md</code></td><td>下游使用说明</td></tr>
+    </tbody>
+  </table>
+  <h2>验收结论</h2>
+  <p>可作为后续任务的低污染参考资产。它不是 resolver 实现，也不是查询引擎；它只提供功能术语与 alias pack。</p>
+</body>
+</html>

@@ -1,0 +1,8 @@
+{
+  "error": "PerturbationNotFound",
+  "message": "The given perturbation name was not found in the matrix observation metadata.",
+  "perturbation": "UNKNOWN_GENE_XYZ999",
+  "matrix_type": "xpr",
+  "query_type": "forward",
+  "suggestions": []
+}

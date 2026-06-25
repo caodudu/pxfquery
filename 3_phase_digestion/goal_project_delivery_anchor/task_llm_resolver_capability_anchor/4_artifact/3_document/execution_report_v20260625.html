@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>T-063 执行报告</title>
+  <style>
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.68; margin: 32px auto; max-width: 1080px; color: #202124; }
+h1, h2 { color: #12355b; }
+section { margin: 22px 0; }
+table { border-collapse: collapse; width: 100%; margin: 14px 0; }
+th, td { border: 1px solid #d0d7de; padding: 8px 10px; vertical-align: top; }
+th { background: #f2f5f8; }
+code { background: #f6f8fa; padding: 2px 4px; border-radius: 4px; }
+.note { background: #f8fafc; border-left: 4px solid #4776a8; padding: 12px 14px; }
+.warn { background: #fff8e6; border-left: 4px solid #d29922; padding: 12px 14px; }
+</style>
+</head>
+<body>
+
+<h1>T-063 LLM/Resolver 能力锚点执行报告</h1>
+<section><h2>任务意图</h2><p>T-063 专门处理 PxFquery 的 LLM/resolver 层。T-062 已经建立包级能力锚点，但 resolver 是一个容易被 deterministic CLI demo 替代或被模糊延期的关键层。本 task 的意图是明确：当未来 milestone 把自然语言、半结构化输入、CyHex 配置 AI 服务、解析、消歧、fallback 和 evidence metadata 纳入范围时，什么才算真正交付，什么只能算缺失、降级或未经批准延期。</p></section>
+<section><h2>输入资产与依据</h2><p>执行确认并读取了 13 个已注册输入资产。它们来自项目协议、T-062 包级 anchor、T-064 route anchor、前序开发状态和当前 AI/profile 约束。输入提供了三类依据：一是 resolver/LLM 不能被 deterministic lookup 悄悄替代；二是 deepseek-v4-pro 与 CyHex-registered AI address 是当前期望的 AI route；三是 exact/proxy/not-found/fallback 都必须保留 provenance 和 evidence metadata。</p></section>
+<section><h2>实际执行过程</h2><table><tr><th>步骤</th><th>执行内容</th><th>结果</th></tr><tr><td>1</td><td>检查 task workspace 和 13 个注册资产。</td><td>全部可用。</td></tr><tr><td>2</td><td>抽取 resolver 相关 requirements、gaps、downgrade rules 和 vocabulary。</td><td>形成执行提取笔记，未读取未授权目录。</td></tr><tr><td>3</td><td>写 machine-readable capability anchor。</td><td>产出 <code>pxfquery_llm_resolver_capability_anchor_v20260625.yaml</code>。</td></tr><tr><td>4</td><td>写 functional design、demo case catalog 和 acceptance matrix。</td><td>覆盖 natural-language、semi-structured、exact、proxy、not-found、ambiguous、LLM unavailable 和 metadata inspection。</td></tr><tr><td>5</td><td>解析验证并登记输出。</td><td>YAML/CSV 解析通过，关键术语覆盖检查通过。</td></tr></table></section>
+<section><h2>关键判断与证据</h2><p>关键判断是：resolver delivery 不能等同于 deterministic package entry point。自然语言和半结构化输入必须被解析成明确字段；LLM 只能帮助解析、归一化和 summarization，不能当作生物学证据来源；LLM unavailable 时 fallback 是运行韧性，不是 primary resolver 能力交付。输出中明确了 deepseek-v4-pro、CyHex-registered AI address、exact/proxy/not-found handoff、evidence metadata 和 downgrade control。</p></section>
+<section><h2>交付物清单</h2><ul><li><code>pxfquery_llm_resolver_capability_anchor_v20260625.yaml</code>：机器可读 resolver 能力锚点。</li><li><code>pxfquery_llm_resolver_functional_design_v20260625.md</code>：人类可读功能设计。</li><li><code>pxfquery_llm_resolver_demo_case_catalog_v20260625.md</code>：未来 M3 demo case 目录。</li><li><code>pxfquery_llm_resolver_acceptance_matrix_v20260625.csv</code>：能力到最小行为、替代禁区和验收证据的矩阵。</li></ul></section>
+<section><h2>边界与未完成事项</h2><p>本 task 没有实现 resolver/API/source code，没有运行包工作流、notebook 或矩阵检查，也没有测试 LLM 服务是否真实可用。它只定义未来 M3 resolver milestone 的验收合同。任何 runtime 通过、AI service latency 或 resolver correctness 都需要后续执行任务证明。</p></section>
+
+</body>
+</html>

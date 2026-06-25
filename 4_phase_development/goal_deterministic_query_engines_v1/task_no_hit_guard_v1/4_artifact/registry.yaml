@@ -1,0 +1,113 @@
+task_id: T-031
+task_name: no_hit_guard_v1
+guard_version: pxfquery-T-031
+artifacts:
+- id: T031-D-001
+  path: 4_artifact/2_persist/pxfquery_T031_forward_no_hit_guard.py
+  role: no_hit_guard_module
+  description: T-031 no-hit guard module. Subclasses ForwardQuery with tunable quality
+    thresholds (min_query_length_for_substring=4, min_overlap_for_token_fallback=2)
+    to prevent fuzzy-match false positives. Usable as a drop-in wrapper by downstream
+    tasks.
+  lineage:
+    source_asset: A-003 (T-024 pxfquery workspace package)
+    version: pxfquery-T-031
+    upstream_modified: false
+  identity: T-031/T031-D-001
+  core: false
+  lineage_anchor: false
+  stars: 2
+- id: T031-D-002
+  path: 3_execution/test_no_hit_guard.py
+  role: no_hit_test_script
+  description: Runs 11 nonsense perturbations through the guard, asserts found=False
+    for each, writes evidence JSON.
+  identity: T-031/T031-D-002
+  core: false
+  lineage_anchor: false
+  stars: 2
+- id: T031-D-003
+  path: 3_execution/test_positive_control.py
+  role: positive_control_test_script
+  description: Runs EGFR/A549 and TP53/MCF7 through the guard, asserts found=True
+    with activated and suppressed terms, writes evidence JSON.
+  identity: T-031/T031-D-003
+  core: false
+  lineage_anchor: false
+  stars: 2
+- id: T031-D-004
+  path: 4_artifact/5_table/pxfquery_T031_false_positive_reproduced.json
+  role: cap05_false_positive_reproduction
+  description: Reproduced 7/9 false positives using unguarded T-024 ForwardQuery to
+    confirm CAP-05 failure before guard intervention.
+  identity: T-031/T031-D-004
+  core: false
+  lineage_anchor: false
+  stars: 1
+- id: T031-D-005
+  path: 4_artifact/5_table/pxfquery_T031_no_hit_evidence.json
+  role: no_hit_evidence
+  description: '11/11 no-hit test evidence: all nonsense names return found=False
+    through the guard.'
+  identity: T-031/T031-D-005
+  core: false
+  lineage_anchor: false
+  stars: 1
+- id: T031-D-006
+  path: 4_artifact/5_table/pxfquery_T031_positive_control_evidence.json
+  role: positive_control_evidence
+  description: '2/2 positive-control evidence: EGFR/A549 and TP53/MCF7 return found=True
+    with functional terms through the guard.'
+  identity: T-031/T031-D-006
+  core: false
+  lineage_anchor: false
+  stars: 1
+- id: T031-D-007
+  path: 4_artifact/3_document/execution_report_v20260623.html
+  role: execution_report
+  description: CyHex-mandatory Chinese HTML execution report (step-by-step).
+  identity: T-031/T031-D-007
+  core: false
+  lineage_anchor: false
+  stars: 5
+- id: T031-D-008
+  path: 4_artifact/3_document/result_report_v20260623.html
+  role: result_report
+  description: CyHex-mandatory Chinese HTML result report with guard results, evidence
+    tables, and CAP-05 resolution summary.
+  identity: T-031/T031-D-008
+  core: false
+  lineage_anchor: false
+  stars: 5
+- id: T031-D-009
+  path: 4_artifact/registry.yaml
+  role: artifact_registry
+  description: This file.
+  identity: T-031/T031-D-009
+  core: false
+  lineage_anchor: false
+  stars: 1
+- id: T031-D-010
+  path: 5_report/completion.md
+  role: completion_report
+  description: Completion summary for T-031.
+  identity: T-031/T031-D-010
+  core: false
+  lineage_anchor: false
+  stars: 4
+- id: T031-D-011
+  path: 5_report/handoff_check_before_exec.md
+  role: handoff_check_before_exec
+  description: CyHex 1.2.19 check-to-execute handoff summary reconstructed from completed guard evidence.
+  identity: T-031/T031-D-011
+  core: false
+  lineage_anchor: false
+  stars: 4
+- id: T031-D-012
+  path: 5_report/cyhex_1_2_19_supplement.md
+  role: cyhex_1_2_19_supplement
+  description: Supplemental reliability and reuse note for future tasks that may consume the no-hit guard asset.
+  identity: T-031/T031-D-012
+  core: false
+  lineage_anchor: false
+  stars: 4

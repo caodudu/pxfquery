@@ -1,0 +1,10 @@
+goal_id: G-024
+name: package_milestone_merge_v1
+phase: development
+project: P-012
+objective: Merge package, resources, query engines, tests, and demos into a runnable
+  PxFquery Python package milestone v1.
+status: blocked
+tasks: []
+created: '2026-06-23'
+notes: 合并打包里程碑版本

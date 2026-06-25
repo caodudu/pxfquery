@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>T-018 生信论文模板拆解 · 5 篇 Genes 论文汇总</title>
+  <style>
+    :root {
+      --ink: #17202a; --muted: #5f6b76; --line: #d8dee6; --panel: #f7f9fb;
+      --accent: #126f82; --accent2: #20744a; --warn: #9b5d00;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: var(--ink); background: #fff; line-height: 1.6; }
+    header { padding: 32px 48px 20px; border-bottom: 1px solid var(--line); background: #f4f7f8; }
+    main { padding: 24px 48px 48px; }
+    h1 { margin: 0 0 6px; font-size: 28px; }
+    h2 { margin: 32px 0 10px; font-size: 20px; border-bottom: 1px solid var(--line); padding-bottom: 6px; }
+    h3 { margin: 18px 0 8px; font-size: 16px; }
+    .meta { color: var(--muted); font-size: 13px; }
+    table { width: 100%; border-collapse: collapse; margin: 10px 0 20px; font-size: 13px; }
+    th, td { border: 1px solid var(--line); padding: 8px 10px; text-align: left; vertical-align: top; }
+    th { background: #eef3f5; font-weight: 600; }
+    .tag { display: inline-block; margin: 2px 4px 2px 0; padding: 2px 8px; border: 1px solid var(--line); border-radius: 999px; font-size: 11px; color: var(--muted); background: #fff; }
+    .note { border: 1px solid var(--line); border-radius: 8px; background: var(--panel); padding: 14px 18px; margin: 14px 0; }
+    .card { border: 1px solid var(--line); border-radius: 8px; padding: 16px; margin: 12px 0; }
+    .card h3 { margin: 0 0 6px; }
+    .grid2 { display: grid; grid-template-columns: repeat(2, minmax(280px, 1fr)); gap: 16px; }
+    .section-meta { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 14px 0; }
+    .stat { border: 1px solid var(--line); border-radius: 6px; padding: 10px 12px; text-align: center; }
+    .stat strong { display: block; font-size: 22px; color: var(--accent); }
+    .stat span { font-size: 12px; color: var(--muted); }
+    .point { margin: 4px 0 4px 16px; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    @media (max-width: 900px) {
+      header, main { padding-left: 18px; padding-right: 18px; }
+      .grid2, .section-meta { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>T-018 生信论文模板拆解 · 5 篇 Genes 论文汇总</h1>
+  <p class="meta">生成日期：2026-06-23 · 数据来源：T-012 D-013 重点阅读记录 + T012 D-006 逐篇 catalog · 拆解口径：对齐 Genes 风格，不做 Nature/大 SCI 评判</p>
+</header>
+
+<main>
+<section>
+  <h2>总览</h2>
+  <div class="section-meta">
+    <div class="stat"><strong>5</strong><span>论文</span></div>
+    <div class="stat"><strong>3</strong><span>交付类型</span></div>
+    <div class="stat"><strong>2023-2024</strong><span>年份区间</span></div>
+    <div class="stat"><strong>5</strong><span>拆解 MD</span></div>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th><th>交付物</th><th>主类型</th><th>DOI</th><th>Intro</th><th>Methods</th><th>Results</th><th>Discussion</th><th>图数</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="paper_deconstruction/GENES-02459_OHDLF_template_deconstruction.md">GENES-02459</a></td>
+        <td>OHDLF</td>
+        <td>workflow/pipeline</td>
+        <td>10.3390/genes15111404</td>
+        <td>731</td><td>844</td><td>3493</td><td>3493</td><td>5</td>
+      </tr>
+      <tr>
+        <td><a href="paper_deconstruction/GENES-02981_CrossMP_template_deconstruction.md">GENES-02981</a></td>
+        <td>CrossMP</td>
+        <td>web portal</td>
+        <td>10.3390/genes15070882</td>
+        <td colspan="4" style="color:var(--warn)">missing_full_text（无本地全文结构统计）</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td><a href="paper_deconstruction/GENES-02693_DTVF_template_deconstruction.md">GENES-02693</a></td>
+        <td>DTVF</td>
+        <td>web server</td>
+        <td>10.3390/genes15091170</td>
+        <td>864</td><td>1472</td><td>1039</td><td>475</td><td>6</td>
+      </tr>
+      <tr>
+        <td><a href="paper_deconstruction/GENES-04451_StrainIQ_template_deconstruction.md">GENES-04451</a></td>
+        <td>StrainIQ</td>
+        <td>software tool</td>
+        <td>10.3390/genes14081647</td>
+        <td>944</td><td>2143</td><td>2952</td><td>993</td><td>6</td>
+      </tr>
+      <tr>
+        <td><a href="paper_deconstruction/GENES-02925_GENet_template_deconstruction.md">GENES-02925</a></td>
+        <td>GENet</td>
+        <td>software tool</td>
+        <td>10.3390/genes15070938</td>
+        <td>2003</td><td style="color:var(--warn)">0*</td><td>1895</td><td>1895</td><td>4</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="meta">* GENet Methods 0字为T012自动统计未识别章节标题导致。Intro/Discussion 字数一致可能是T012分节边界问题。字数单位：英文词数。</p>
+</section>
+
+<section>
+  <h2>交叉对比：介绍写作逻辑</h2>
+  <table>
+    <thead>
+      <tr><th>论文</th><th>切入方式</th><th>Gap 构建</th><th>字数</th><th>特色</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>OHDLF</td><td>具体技术痛点→"无参考基因组物种如何做系统发育"</td><td>现有方法在选 ortholog 上有困难</td><td>731</td><td>最短，最聚焦</td>
+      </tr>
+      <tr>
+        <td>CrossMP</td><td>热门趋势→单细胞多组学整合需求</td><td>"缺易用 web tool 来做跨模态翻译"</td><td>-</td><td>以可及性缺口而非方法缺口切入</td>
+      </tr>
+      <tr>
+        <td>DTVF</td><td>应用问题→"鉴定病原毒力因子很重要"</td><td>现有 VF 预测方法不够好</td><td>864</td><td>强调首次将ProtT5+双通道DL结合</td>
+      </tr>
+      <tr>
+        <td>StrainIQ</td><td>技术推动→NGS使微生物组研究成为可能</td><td>strain-level 分类是困难但重要的问题</td><td>944</td><td>中等长度，标准工具论文 Intro</td>
+      </tr>
+      <tr>
+        <td>GENet</td><td>大命题落地→"理解基因表达调控"</td><td>仅靠DNA序列不够，需要histone marks+TF</td><td>2003</td><td>最长，多来源特征整合需要更长的背景</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="note">
+    <strong>Genes 介绍写作模式归纳：</strong><br>
+    1. Intro 字数区间 ~700-2000，说明 Genes 对长度容忍度大。<br>
+    2. 起手式：一个具体生物学问题或应用需求（不要空谈 AI 或 big data）。<br>
+    3. Gap 写法："已有方法做了 X，但 Y 还不够好／没解决 Z" → "to address this, we propose..."<br>
+    4. Portal 类论文不需要方法创新 Gap，可以用"缺工具"作为 Gap。
+  </div>
+</section>
+
+<section>
+  <h2>交叉对比：结果写作逻辑</h2>
+  <table>
+    <thead>
+      <tr><th>论文</th><th>Results 字数</th><th>段落数</th><th>段均字数</th><th>叙事主线</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>OHDLF</td><td>3493</td><td>80</td><td>~44</td><td>方法输出 → 案例应用 → 效果对比</td></tr>
+      <tr><td>CrossMP</td><td>-</td><td>-</td><td>-</td><td>用户旅程：上传→处理→查看→验证（推测）</td></tr>
+      <tr><td>DTVF</td><td>1039</td><td>26</td><td>~40</td><td>数据→性能→SOTA对比→超参数→消融→案例</td></tr>
+      <tr><td>StrainIQ</td><td>2952</td><td>78</td><td>~38</td><td>模拟数据→公共数据→真实样本逐级验证</td></tr>
+      <tr><td>GENet</td><td>1895</td><td>48</td><td>~39</td><td>特征→图模型→预测→对比→生物学解释</td></tr>
+    </tbody>
+  </table>
+  <div class="note">
+    <strong>Genes 结果写作模式归纳：</strong><br>
+    1. 段均字数 38-44，短段落密集推进是主流。<br>
+    2. 每个子结论独立成段，每段配一个数据点或图表引用。<br>
+    3. 核心叙事链：数据→结果→对比→分析→应用/案例，从内到外逐层验证。<br>
+    4. 工具/软件论文的 Results 在 1000-3500 字之间都属正常。<br>
+    5. Discussion 字数和 Results 接近或略少——Genes 不要求长 Discussion。
+  </div>
+</section>
+
+<section>
+  <h2>交叉对比：图摆放逻辑</h2>
+  <table>
+    <thead>
+      <tr><th>论文</th><th>图数</th><th>图1 功能</th><th>图序逻辑</th><th>图类型分布</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>OHDLF</td><td>5</td><td>流程图/方法概览</td><td>方法→筛选→建树→对比→案例</td><td>流程图 + 结果图 + 对比图 + 树</td></tr>
+      <tr><td>CrossMP</td><td>-</td><td>架构图（推测）</td><td>架构→界面→翻译→可视化→验证</td><td>UI截图为主（推测）</td></tr>
+      <tr><td>DTVF</td><td>6</td><td>模型架构图</td><td>架构→性能→对比→超参→消融→UI</td><td>架构图 + 对比表 + 消融图 + UI</td></tr>
+      <tr><td>StrainIQ</td><td>6</td><td>工具流程/架构图</td><td>方法→模拟→对比→鲁棒→真实→菌株</td><td>流程图 + 性能图 + 对比表</td></tr>
+      <tr><td>GENet</td><td>4</td><td>图模型架构图</td><td>架构→性能→对比→生物学解释</td><td>架构图 + 性能图 + feature贡献</td></tr>
+    </tbody>
+  </table>
+  <div class="note">
+    <strong>Genes 图摆放模式归纳：</strong><br>
+    1. Figure 1 必须是方法/工具的总体架构图或流程图——让审稿人一眼看懂"你做了什么"。<br>
+    2. 后续图按"验证维度逐级加深"排列：内部性能 → 外部对比 → 应用案例 → 生物学解释。<br>
+    3. 图的类型组合标配：架构图 1 + 性能/对比图 2-3 + 案例/UI图 1-2。<br>
+    4. 每张图对应 1-2 个结果段落，形成独立的图-文叙事单元。<br>
+    5. 图数范围 4-6，Genes 不需要大量图表——重要的是每张图回答一个清楚的问题。
+  </div>
+</section>
+
+<section>
+  <h2>Genes 风格要点总结（供 PxFquery 写作参考）</h2>
+  <div class="grid2">
+    <div class="card">
+      <h3>1. 题名</h3>
+      <p>"工具名: 功能描述 + 应用场景". 例：OHDLF: A Method for ... and Its Application in ...</p>
+      <p>给工具起一个可记忆的名字（OHDLF/DTVF/CrossMP/GENet/StrainIQ），不要纯描述性标题。</p>
+    </div>
+    <div class="card">
+      <h3>2. 介绍</h3>
+      <p>从具体生物学问题切入，锚定一个应用场景。Gap 用"现有方法有X不足"而非"这个领域没人做过"。</p>
+      <p>700-2000 字均可，关键是把"为什么需要这个工具"说清楚。</p>
+    </div>
+    <div class="card">
+      <h3>3. 方法</h3>
+      <p>详细描述模型/算法/架构。844-2143 字的 Methods 在 Genes 是常规长度。</p>
+      <p>明确标注章节标题（Materials and Methods），方便同行定位。</p>
+    </div>
+    <div class="card">
+      <h3>4. 结果</h3>
+      <p>短段落密集推进（30-80段）。从内到外验证：先自己数据 → 再对比其他方法 → 最后真实案例。</p>
+      <p>每段配图表引用。1000-3500 字 Results 均可接受。</p>
+    </div>
+    <div class="card">
+      <h3>5. 图</h3>
+      <p>4-6 张图是标准。图1=架构/流程图。后面按性能→对比→案例排列。</p>
+      <p>每张图回答一个具体问题。架构图 + 对比表 + 案例图 是 Genes 的最低图包配置。</p>
+    </div>
+    <div class="card">
+      <h3>6. 交付描述</h3>
+      <p>固定描述：用户输入什么 → 系统做什么 → 输出什么 → 怎么验证 → 在哪获取。</p>
+      <p>不要含糊的 availability 声明。给出明确的 URL/仓库/数据链接。</p>
+    </div>
+    <div class="card">
+      <h3>7. 弱点管理</h3>
+      <p>在讨论中主动承认：样本规模、外部验证不足、单数据集、没有API/命令行等。</p>
+      <p>Genes 接受这些弱点，但需要在 Discussion 中提及。</p>
+    </div>
+    <div class="card">
+      <h3>8. 工作量感</h3>
+      <p>靠多图表 + 多验证维度 + 短段落密集论述来营造"做了很多事"的感觉。</p>
+      <p>案例应用比纯方法描述更有效：用真实数据演示工具价值。</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>交付物索引</h2>
+  <table>
+    <thead><tr><th>文件</th><th>路径</th></tr></thead>
+    <tbody>
+      <tr><td>OHDLF 拆解</td><td><a href="paper_deconstruction/GENES-02459_OHDLF_template_deconstruction.md">paper_deconstruction/GENES-02459_OHDLF_template_deconstruction.md</a></td></tr>
+      <tr><td>CrossMP 拆解</td><td><a href="paper_deconstruction/GENES-02981_CrossMP_template_deconstruction.md">paper_deconstruction/GENES-02981_CrossMP_template_deconstruction.md</a></td></tr>
+      <tr><td>DTVF 拆解</td><td><a href="paper_deconstruction/GENES-02693_DTVF_template_deconstruction.md">paper_deconstruction/GENES-02693_DTVF_template_deconstruction.md</a></td></tr>
+      <tr><td>StrainIQ 拆解</td><td><a href="paper_deconstruction/GENES-04451_StrainIQ_template_deconstruction.md">paper_deconstruction/GENES-04451_StrainIQ_template_deconstruction.md</a></td></tr>
+      <tr><td>GENet 拆解</td><td><a href="paper_deconstruction/GENES-02925_GENet_template_deconstruction.md">paper_deconstruction/GENES-02925_GENet_template_deconstruction.md</a></td></tr>
+      <tr><td>总 HTML 汇总</td><td>paper_deconstruction_summary_v20260623.html（本页）</td></tr>
+    </tbody>
+  </table>
+</section>
+</main>
+</body>
+</html>

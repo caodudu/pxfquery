@@ -1,0 +1,75 @@
+version: 1
+required:
+  - id: A-001
+    path: ../../../1_project_init/1_project_protocol/
+    reason: Current project protocol defining the pxfquery conda environment and workspace boundaries. Required for all Python execution.
+  - id: A-002
+    path: ../task_forward_query_engine_v1/
+    reason: Sibling T-029 task deliverable bundle with forward_engine.py script template and result evidence. Used as positive-control baseline; the guard must not break the existing EGFR/A549 forward path.
+  - id: A-003
+    path: ../../goal_package_foundation_v1/task_workspace_package_v1/4_artifact/2_persist/workspace/
+    reason: T-024 pxfquery workspace package with ForwardQuery, ForwardResult, DataLoader. The guard must understand the perturbation resolution path in ForwardQuery to wrap it safely. Read-only.
+  - id: A-004
+    path: ../../goal_resource_index_packs_v1/task_matrix_loader_v1/4_artifact/2_persist/loader/
+    reason: T-026 loader package providing load_matrix(), load_bundle(), load_index(), load_metadata(). Required to load the A-005 bundle in guard validation tests. Read-only.
+  - id: A-005
+    path: ../../goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/2_persist/standard_resources/
+    reason: T-021 standard_resources bundle with xpr_func_ad.h5ad matrix. Primary data source for both positive-control and no-hit tests. Read-only by reference.
+  - id: A-006
+    path: ../../goal_algorithm_function_review/task_mvp_algorithm_run-through_review/4_artifact/2_persist/pxfquery_t013_mvp_capability_contract_v20260618.md
+    reason: T-013 MVP capability contract. CAP-05 defines the no-hit behavior this guard implements.
+  - id: A-007
+    path: ../../goal_algorithm_function_review/task_mvp_algorithm_run-through_review/4_artifact/2_persist/pxfquery_t013_failure_missing_capability_list_v20260618.md
+    reason: T-013 failure list documenting CAP-05 false-positive evidence. The upstream evidence that drives the guard specification.
+forbidden:
+  - path: /Users/dudu/Documents/3_Project/8_functional_query
+    reason: Legacy Windows-era project root is historical source only; must not be read or written.
+  - path: ../../goal_package_foundation_v1/task_workspace_package_v1/4_artifact/2_persist/workspace/
+    reason: T-024 workspace is a completed upstream deliverable. Do not modify in place. Any correction must be a local copy in this task's 4_artifact.
+  - path: ../../goal_resource_index_packs_v1/task_matrix_loader_v1/4_artifact/
+    reason: T-026 is a completed upstream deliverable. Do not modify in place.
+  - path: ../../goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/
+    reason: T-021 bundle contents are read-only upstream assets. Do not modify, delete, or regenerate.
+  - path: ../task_forward_query_engine_v1/4_artifact/
+    reason: Sibling T-029 deliverable directory. Read the evidence but do not modify T-029 deliverables.
+  - path: ../../../2_project_asset/
+    reason: Project-level raw materials are downstream from A-005 standard resources. T-021 bundle is the consolidated data source for this task.
+  - path: ../../../6_project_deliverable/
+    reason: Final external deliverables must remain untouched by development tasks.
+output:
+  - path: 4_artifact/2_persist/
+    description: No-hit guard module and any required repair patches.
+  - path: 3_execution/
+    description: No-hit test script and positive-control test script.
+  - path: 4_artifact/5_table/
+    description: No-hit evidence JSON, positive-control evidence JSON, and false-positive reproduction evidence JSON.
+  - path: 4_artifact/3_document/
+    description: CyHex-mandatory execution_report_vYYYYMMDD.html and result_report_vYYYYMMDD.html.
+  - path: 4_artifact/registry.yaml
+    description: T-031 deliverable registration.
+  - path: 5_report/completion.md
+    description: Completion report.
+  - path: 5_report/repair_log.md
+    description: Repair log, present only if a bug had to be fixed for guard implementation.
+modifiable:
+  - path: 3_execution/
+  - path: 4_artifact/
+  - path: 5_report/
+  - path: 1_asset/registration.yaml
+non_modifiable:
+  - path: 2_protocol/
+  - path: ../../../1_project_init/1_project_protocol/
+  - path: ../../../1_project_init/3_project_state/
+  - path: ../../goal_package_foundation_v1/task_workspace_package_v1/4_artifact/
+  - path: ../../goal_resource_index_packs_v1/task_matrix_loader_v1/4_artifact/
+  - path: ../../goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/
+  - path: ../../goal_algorithm_function_review/task_mvp_algorithm_run-through_review/4_artifact/
+  - path: ../task_forward_query_engine_v1/4_artifact/
+  - path: ../../../2_project_asset/
+  - path: ../../../6_project_deliverable/
+notes:
+  - The guard targets only CAP-05 (fuzzy false-positive on unsupported perturbations). It is NOT responsible for resolver, NL layer, function_index, or index naming issues.
+  - The guard must not break the deterministic forward query path: known perturbations must still return found=True.
+  - The guard must be importable as a Python module and runnable from the pxfquery conda environment.
+  - If ForwardQuery's fuzzy-match code structurally blocks patching, repair it locally in this task and document.
+  - All upstream artifacts are read-only; corrections are local pxfquery-T-031 versions.

@@ -1,0 +1,69 @@
+session_id: cli_f835dd0035bd
+driver: opencode
+agent_id: AGT-002
+agent_label: OpenCode cheap tasks
+stage: check
+status: done
+created: '2026-06-24T05:08:44'
+task_path: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_02_stress_query_scenario_inventory
+work_dir: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_02_stress_query_scenario_inventory
+session_dir: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_02_stress_query_scenario_inventory/5_report/cli_sessions/check/20260624_050844_opencode_cli_f835dd0035bd
+prompt_file: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_02_stress_query_scenario_inventory/5_report/cli_sessions/check/20260624_050844_opencode_cli_f835dd0035bd/prompt.md
+events_file: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_02_stress_query_scenario_inventory/5_report/cli_sessions/check/20260624_050844_opencode_cli_f835dd0035bd/events.jsonl
+stdout_file: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_02_stress_query_scenario_inventory/5_report/cli_sessions/check/20260624_050844_opencode_cli_f835dd0035bd/stdout.log
+stderr_file: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_02_stress_query_scenario_inventory/5_report/cli_sessions/check/20260624_050844_opencode_cli_f835dd0035bd/stderr.log
+agent_output_file: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_02_stress_query_scenario_inventory/5_report/cli_sessions/check/20260624_050844_opencode_cli_f835dd0035bd/agent_output.md
+cmd:
+- /Users/dudu/.opencode/bin/opencode
+- run
+- Execute the attached CyHex prompt. Return the final user-facing result clearly.
+- --dangerously-skip-permissions
+- --format
+- json
+- --dir
+- /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_02_stress_query_scenario_inventory
+- --file
+- /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_02_stress_query_scenario_inventory/5_report/cli_sessions/check/20260624_050844_opencode_cli_f835dd0035bd/prompt.md
+- -m
+- llm_gateway/deepseek-ai/deepseek-v4-pro
+agent_session_id: ses_109af96eeffew0fvCei588tt28
+parent_agent_session_id: ''
+dry_run: false
+fork_from_resume: false
+blocked_report_mtime_ns_before: 0
+model: llm_gateway/deepseek-ai/deepseek-v4-pro
+prompt_source: assembled
+pid: 14634
+context_guard:
+  reason: stage_context_isolation
+  message: CyHex starts each pipeline stage in a fresh agent session; prior stage
+    state is passed through files, not chat context.
+  previous_session_id: cli_44bde0c8db24
+  previous_agent_session_id: ses_109b22109ffeTGm4m5JW5Oov71
+warnings:
+- CyHex starts each pipeline stage in a fresh agent session; prior stage state is
+  passed through files, not chat context.
+returncode: 0
+completed: '2026-06-24T05:09:47'
+context_estimate:
+  estimated_tokens: 42368
+  estimated_bytes: 127104
+  limit_tokens: 500000
+  exceeded: false
+  files:
+  - file: prompt.md
+    bytes: 42463
+    estimated_tokens: 14155
+  - file: events.jsonl
+    bytes: 41739
+    estimated_tokens: 13913
+  - file: stdout.log
+    bytes: 40647
+    estimated_tokens: 13549
+  - file: stderr.log
+    bytes: 0
+    estimated_tokens: 0
+  - file: agent_output.md
+    bytes: 2255
+    estimated_tokens: 752
+  method: local_session_file_bytes_div_3

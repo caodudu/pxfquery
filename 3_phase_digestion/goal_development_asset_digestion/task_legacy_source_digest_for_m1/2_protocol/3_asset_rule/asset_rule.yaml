@@ -1,0 +1,43 @@
+version: 1
+required:
+  - A-001
+  - A-003
+optional:
+  - A-002
+  - A-004
+  - A-005
+forbidden:
+  - path: /Users/dudu/Documents/3_Project/8_functional_query
+    reason: Use the migrated registered package source, not the old historical root.
+  - path: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_package_foundation_v1
+    reason: T024-T040 are a failed/polluted prior route and must not be authoritative inputs.
+  - path: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_resource_index_packs_v1
+    reason: T024-T040 are a failed/polluted prior route and must not be authoritative inputs.
+  - path: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_deterministic_query_engines_v1
+    reason: T024-T040 are a failed/polluted prior route and must not be authoritative inputs.
+  - path: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_resolver_optional_layer_v1
+    reason: T024-T040 are a failed/polluted prior route and must not be authoritative inputs.
+  - path: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_package_milestone_merge_v1
+    reason: T024-T040 are a failed/polluted prior route and must not be authoritative inputs.
+modifiable:
+  - 2_protocol/2_protocol_split/protocol.md
+  - 2_protocol/3_asset_rule/asset_rule.yaml
+  - 1_asset/registration.yaml
+  - 4_artifact/
+  - 5_report/
+non_modifiable:
+  - /Users/dudu/Documents/3_Project/12_PxFquery/2_project_asset/1_raw_material/legacy_flat_asset_library_v20260614/code/pxfquery_package
+  - /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_development_asset_digestion/task_digest_pxfquery_development_state
+output:
+  - path: 4_artifact/2_persist/legacy_source_digest_m1.md
+    reason: Human-readable reusable source digest.
+  - path: 4_artifact/5_table/legacy_module_reuse_matrix_m1.csv
+    reason: Machine-checkable module reuse matrix.
+  - path: 4_artifact/2_persist/legacy_reference_boundaries_m1.yaml
+    reason: Downstream raw-source access boundary for M1 tasks.
+  - path: 5_report/completion.md
+    reason: Completion note and source-scope confirmation.
+notes:
+  - A-003 is the only allowed legacy package-source directory from project assets.
+  - Do not scan the broad 2_project_asset tree; read only registered assets and the A-003 symlink.
+  - This task digests source into reusable references; it must not implement M1 package code.

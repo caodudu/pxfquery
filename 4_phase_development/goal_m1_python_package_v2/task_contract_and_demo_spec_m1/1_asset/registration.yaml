@@ -1,0 +1,96 @@
+assets:
+- id: A-001
+  name: t007_development_source_map
+  type: document
+  source: predecessor
+  source_task: T-007
+  source_artifact_id: D-001
+  origin: T-007/D-001
+  registered: '2026-06-24'
+  path: 1_asset/t007_development_source_map.md
+  symlink: true
+  status: ready
+  notes: Anchor source authority, package identity, and safe carry-forward boundaries.
+  location: local
+- id: A-002
+  name: t007_development_state_report
+  type: document
+  source: predecessor
+  source_task: T-007
+  source_artifact_id: D-002
+  origin: T-007/D-002
+  registered: '2026-06-24'
+  path: 1_asset/t007_development_state_report.md
+  symlink: true
+  status: ready
+  notes: Keep the M1 contract aligned with actual PxFquery tool intent and known component
+    readiness.
+  location: local
+- id: A-003
+  name: t007_development_gap_and_risk_list
+  type: document
+  source: predecessor
+  source_task: T-007
+  source_artifact_id: D-005
+  origin: T-007/D-005
+  registered: '2026-06-24'
+  path: 1_asset/t007_development_gap_and_risk_list.md
+  symlink: true
+  status: ready
+  notes: Optional cross-check for unsafe claims, scope boundaries, and no-hit/error
+    behavior.
+  location: local
+- id: A-004
+  name: t013_mvp_capability_contract
+  type: document
+  source: predecessor
+  source_task: T-013
+  source_artifact_id: D-001
+  origin: T-013/D-001
+  registered: '2026-06-24'
+  path: 1_asset/t013_mvp_capability_contract.md
+  symlink: true
+  status: ready
+  notes: Primary authority for M1 required capabilities, scope limits, and prohibited
+    claims.
+  location: local
+- id: A-005
+  name: t013_failure_missing_capability_list
+  type: document
+  source: predecessor
+  source_task: T-013
+  source_artifact_id: D-005
+  origin: T-013/D-005
+  registered: '2026-06-24'
+  path: 1_asset/t013_failure_missing_capability_list.md
+  symlink: true
+  status: ready
+  notes: Define negative cases and capabilities M1 must not claim.
+  location: local
+- id: A-006
+  name: t013_capability_status_matrix
+  type: table
+  source: predecessor
+  source_task: T-013
+  source_artifact_id: D-003
+  origin: T-013/D-003
+  registered: '2026-06-24'
+  path: 1_asset/t013_capability_status_matrix.csv
+  symlink: true
+  status: ready
+  notes: Optional tabular cross-check for pass/fail criteria.
+  location: local
+- id: A-007
+  name: t013_run_evidence_bundle
+  type: other
+  source: predecessor
+  source_task: T-013
+  source_artifact_id: D-004
+  origin: T-013/D-004
+  registered: '2026-06-24'
+  path: 1_asset/t013_run_evidence_bundle
+  symlink: true
+  status: ready
+  notes: Optional evidence-shape reference for prior forward, reverse, and no-hit
+    examples; not current M1 output.
+  location: local

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>T-026 matrix_loader_v1 — 执行情况报告</title>
+<style>
+body { font-family: -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif; background:#fafafa; color:#222; max-width:1080px; margin:24px auto; padding:0 24px; line-height:1.5; }
+h1 { color:#1a5fa0; border-bottom:3px solid #1a5fa0; padding-bottom:8px; }
+h2 { color:#2c3e50; border-left:5px solid #1a5fa0; padding-left:10px; margin-top:32px; }
+table { border-collapse:collapse; width:100%; margin:12px 0; background:#fff; }
+th, td { border:1px solid #ccd; padding:8px 12px; text-align:left; font-size:0.94em; }
+th { background:#1a5fa0; color:#fff; }
+tr:nth-child(even) { background:#f3f6fa; }
+.status-ok { color:#0a8a3a; font-weight:bold; }
+.status-fail { color:#c61c1c; font-weight:bold; }
+code, pre { background:#eef1f4; padding:2px 6px; border-radius:4px; font-family:"Menlo","Consolas",monospace; }
+pre { padding:12px; overflow-x:auto; }
+.highlight { background:#fff3c4; padding:2px 6px; border-radius:4px; }
+.callout { background:#e6f2fb; border-left:5px solid #1a5fa0; padding:12px 18px; margin:18px 0; border-radius:4px; }
+</style>
+</head>
+<body>
+<h1>T-026 matrix_loader_v1 执行情况报告</h1>
+<p><strong>生成时间：</strong>2026-06-23 07:50 &nbsp;&nbsp;|&nbsp;&nbsp; <strong>任务版本：</strong> pxfquery-T-026 &nbsp;&nbsp;|&nbsp;&nbsp; <strong>执行器：</strong> hybrid</p>
+
+<h2>1. 任务摘要</h2>
+<div class="callout">
+本任务交付 <code>pxfquery-T-026</code> Python 矩阵/资源加载器，从 T-021 标准资源包（含 <code>cp/sh/xpr</code> 三个 float32 H5AD 矩阵、10 个 JSON 索引、5 个 CSV 元数据、1 个 YAML 描述文件，共 19 个文件）外加 T-025 manifest 出发，在运行时发现并验证资源结构。所有加载均通过引用完成，未复制任何 T-021 包字节。
+</div>
+
+<h2>2. 执行步骤</h2>
+<table>
+<thead>
+<tr><th>步骤</th><th>说明</th><th>状态</th><th>输出</th></tr>
+</thead>
+<tbody>
+<tr><td>1. 读取 manifest</td><td>读 A-001 T-025 manifest 异步收集文件清单 + T-025 usage notes</td><td class="status-ok">PASS</td><td><code>3_execution/01_manifest_read/</code></td></tr>
+<tr><td>2. 加载器实现</td><td>实现 <code>loader</code> 包，包含 <code>load_matrix</code>, <code>load_index</code>, <code>load_metadata</code>, <code>load_description</code>, <code>load_bundle</code> 等运行时发现函数</td><td class="status-ok">PASS</td><td><code>3_execution/loader/__init__.py</code></td></tr>
+<tr><td>3. 验证脚本</td><td>驱动 <code>load_bundle()</code>，写入 JSON + Markdown 验证记录</td><td class="status-ok">PASS</td><td><code>3_execution/validate_loader.py</code></td></tr>
+<tr><td>3b. 物理运行</td><td>在 <code>pxfquery</code> conda 环境下实际打开 19/19 文件，无失败</td><td class="status-ok">PASS</td><td><code>loader_validation.json</code> (3.5MB)</td></tr>
+<tr><td>4. 修复分支</td><td>本任务无需原位修复；19/19 成功</td><td class="status-ok">PASS</td><td>—</td></tr>
+<tr><td>5. 注册交付物</td><td>复制加载器到 <code>4_artifact/2_persist/loader/</code>，登记 registry</td><td class="status-ok">PASS</td><td><code>4_artifact/registry.yaml</code></td></tr>
+<tr><td>6. 完成报告</td><td>写 <code>completion.md</code> + 两份 HTML 报告</td><td class="status-ok">PASS</td><td><code>5_report/completion.md</code></td></tr>
+</tbody>
+</table>
+
+<h2>3. 输入资产使用情况</h2>
+<table>
+<thead>
+<tr><th>资产</th><th>类型</th><th>使用方式</th></tr>
+</thead>
+<tbody>
+<tr><td>A-001 T-025 manifest (D-006)</td><td>必需</td><td>枚举文件清单；交叉验证预期 schema</td></tr>
+<tr><td>A-002 T-025 schema summary (D-007)</td><td>可选</td><td>交叉参考人类可读 schema 描述</td></tr>
+<tr><td>A-003 T-025 usage notes (D-008)</td><td>可选</td><td>参考加载策略</td></tr>
+<tr><td><strong>A-004 T-021/D-004 资源包</strong></td><td><strong>必需</strong></td><td><strong>加载器的真实输入；19/19 被打开</strong></td></tr>
+<tr><td>A-005 T-021 standard resource guide (D-001)</td><td>可选</td><td>预期 schema 交叉验证</td></tr>
+<tr><td>A-006/A-007 T-021 HTML 报告</td><td>可选</td><td>参考；未修改</td></tr>
+<tr><td>A-008 T-021 process records</td><td>可选</td><td>参考；未改动</td></tr>
+<tr><td>A-009 T-021 artifact registry</td><td>可选</td><td>确认 D-004 身份</td></tr>
+</tbody>
+</table>
+
+<h2>4. 验证摘要（19/19 全部成功）</h2>
+<table>
+<thead>
+<tr><th>类别</th><th>文件数</th><th>失败数</th></tr>
+</thead>
+<tbody>
+<tr><td>Functional Matrices (H5AD)</td><td>3</td><td>0</td></tr>
+<tr><td>Query Indexes (JSON)</td><td>10</td><td>0</td></tr>
+<tr><td>Metadata Tables (CSV)</td><td>5</td><td>0</td></tr>
+<tr><td>Data Description (YAML)</td><td>1</td><td>0</td></tr>
+<tr><td><strong>合计</strong></td><td><strong>19</strong></td><td><strong>0</strong></td></tr>
+</tbody>
+</table>
+
+<h2>5. 字节级副本检查</h2>
+<div class="callout">
+本次执行 <strong>未复制</strong> T-021 包内任何文件。所有加载通过 <code>anndata.read_h5ad</code>、<code>json.load</code>、<code>pandas.read_csv</code>、<code>yaml.safe_load</code> 打开原始字节，加载完释放，输出目录（<code>3_execution/</code> 和 <code>4_artifact/2_persist/loader/</code>）只包含加载器源代码，不包含 T-021 包字节。
+</div>
+
+<h2>6. 修复日志</h2>
+<p>无原位修复。<span class="status-ok">所有文件加载均成功，无需触发修复分支。</span></p>
+
+<h2>7. 交付物清单</h2>
+<table>
+<thead>
+<tr><th>ID</th><th>名称</th><th>路径</th><th>类型</th><th>星级</th></tr>
+</thead>
+<tbody>
+<tr><td>D-001</td><td>pxfquery-T026 loader package</td><td><code>4_artifact/2_persist/loader/__init__.py</code></td><td>源码（核心）</td><td>5</td></tr>
+<tr><td>D-002</td><td>pxfquery-T026 validate script</td><td><code>4_artifact/2_persist/loader/validate_loader.py</code></td><td>源码</td><td>5</td></tr>
+<tr><td>D-003</td><td>loader validation record (JSON)</td><td><code>3_execution/loader_validation.json</code></td><td>support</td><td>5</td></tr>
+<tr><td>D-004</td><td>loader validation summary (MD)</td><td><code>3_execution/loader_validation_summary.md</code></td><td>support</td><td>5</td></tr>
+<tr><td>D-005</td><td>execution_report_v20260623.html</td><td><code>4_artifact/3_document/execution_report_v20260623.html</code></td><td>报告</td><td>5</td></tr>
+<tr><td>D-006</td><td>result_report_v20260623.html</td><td><code>4_artifact/3_document/result_report_v20260623.html</code></td><td>报告</td><td>5</td></tr>
+<tr><td>D-007</td><td>registry.yaml</td><td><code>4_artifact/registry.yaml</code></td><td>登记</td><td>—</td></tr>
+<tr><td>D-008</td><td>completion.md</td><td><code>5_report/completion.md</code></td><td>report</td><td>5</td></tr>
+</tbody>
+</table>
+
+<h2>8. 工具能力确认</h2>
+<table>
+<thead><tr><th>能力</th><th>状态</th><th>证据</th></tr></thead>
+<tbody>
+<tr><td>Python 读取 JSON</td><td class="status-ok">OK</td><td>10/10 JSON 文件成功加载</td></tr>
+<tr><td>anndata 读 H5AD</td><td class="status-ok">OK</td><td>3/3 矩阵加载，dtype=float32</td></tr>
+<tr><td>pandas 读 CSV</td><td class="status-ok">OK</td><td>5/5 CSV 加载，行数与 T-025 manifest 匹配</td></tr>
+<tr><td>PyYAML 读 YAML</td><td class="status-ok">OK</td><td>data_description.yaml 加载成功</td></tr>
+<tr><td>tmpfile I/O</td><td class="status-ok">OK</td><td>JSON 记录 3.5MB，Markdown 1.87MB</td></tr>
+<tr><td>miniconda 环境管理</td><td class="status-ok">OK</td><td><code>conda run -n pxfquery python ...</code> 成功</td></tr>
+</tbody>
+</table>
+
+<h2>9. 阻断/故障记录</h2>
+<p>无。</p>
+
+<h2>10. 下一步建议</h2>
+<ul>
+<li>T-027（如有）可对正确加载的资源进行具体业务查询；不需要重新发现资源结构。</li>
+<li>如果任务移到上游 T-025 manifest 同步，可调用 <code>load_bundle(new_root)</code> 重新生成 <code>loader_validation.json</code>。</li>
+</ul>
+
+<p style="margin-top:36px;color:#666;font-size:0.9em;">本报告由 CyHex 执行 AI 自动生成。供人类验收使用，<strong>请勿</strong>由 AI 自动 PATCH <code>status: done</code>。</p>
+</body>
+</html>

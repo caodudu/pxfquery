@@ -1,0 +1,64 @@
+session_id: cli_17b934f76bdf
+driver: codex
+agent_id: AGT-001
+agent_label: Codex hard tasks
+stage: deliver
+status: done
+created: '2026-06-25T13:59:54'
+task_path: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_project_delivery_anchor/task_m1_vs_delivery_anchor_review
+work_dir: /Users/dudu/Documents/3_Project/12_PxFquery
+session_dir: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_project_delivery_anchor/task_m1_vs_delivery_anchor_review/5_report/cli_sessions/deliver/20260625_135954_codex_cli_17b934f76bdf
+prompt_file: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_project_delivery_anchor/task_m1_vs_delivery_anchor_review/5_report/cli_sessions/deliver/20260625_135954_codex_cli_17b934f76bdf/prompt.md
+events_file: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_project_delivery_anchor/task_m1_vs_delivery_anchor_review/5_report/cli_sessions/deliver/20260625_135954_codex_cli_17b934f76bdf/events.jsonl
+stdout_file: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_project_delivery_anchor/task_m1_vs_delivery_anchor_review/5_report/cli_sessions/deliver/20260625_135954_codex_cli_17b934f76bdf/stdout.log
+stderr_file: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_project_delivery_anchor/task_m1_vs_delivery_anchor_review/5_report/cli_sessions/deliver/20260625_135954_codex_cli_17b934f76bdf/stderr.log
+agent_output_file: /Users/dudu/Documents/3_Project/12_PxFquery/3_phase_digestion/goal_project_delivery_anchor/task_m1_vs_delivery_anchor_review/5_report/cli_sessions/deliver/20260625_135954_codex_cli_17b934f76bdf/agent_output.md
+cmd:
+- /opt/homebrew/bin/codex
+- exec
+- --dangerously-bypass-approvals-and-sandbox
+- --json
+- -C
+- /Users/dudu/Documents/3_Project/12_PxFquery
+- '-'
+agent_session_id: 019efd5d-0ce2-7fc0-a045-d30091df19a7
+parent_agent_session_id: ''
+dry_run: false
+fork_from_resume: false
+blocked_report_mtime_ns_before: 0
+codex_session_id: 019efd5d-0ce2-7fc0-a045-d30091df19a7
+prompt_source: assembled
+pid: 71440
+context_guard:
+  reason: stage_context_isolation
+  message: CyHex starts each pipeline stage in a fresh agent session; prior stage
+    state is passed through files, not chat context.
+  previous_session_id: cli_210ae7f19bf2
+  previous_agent_session_id: 019efd54-1028-76b1-8ffe-b78235dd62cf
+warnings:
+- CyHex starts each pipeline stage in a fresh agent session; prior stage state is
+  passed through files, not chat context.
+returncode: 0
+completed: '2026-06-25T14:09:03'
+context_estimate:
+  estimated_tokens: 48111
+  estimated_bytes: 144333
+  limit_tokens: 500000
+  exceeded: false
+  files:
+  - file: prompt.md
+    bytes: 59946
+    estimated_tokens: 19982
+  - file: events.jsonl
+    bytes: 41478
+    estimated_tokens: 13826
+  - file: stdout.log
+    bytes: 41063
+    estimated_tokens: 13688
+  - file: stderr.log
+    bytes: 0
+    estimated_tokens: 0
+  - file: agent_output.md
+    bytes: 1846
+    estimated_tokens: 616
+  method: local_session_file_bytes_div_3

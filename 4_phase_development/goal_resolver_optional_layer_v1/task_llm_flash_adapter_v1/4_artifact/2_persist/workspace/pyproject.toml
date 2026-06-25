@@ -1,0 +1,51 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pxfquery-T-034"
+version = "0.1.0"
+description = "Optional DeepSeek v4 flash LLM adapter layer for PxFquery (CyHex T-034)."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "PxFquery team" }]
+keywords = ["pxfquery", "cyhex", "deepseek", "llm-adapter"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: MacOS",
+]
+
+# Core runtime: the openai SDK is already pulled in by the upstream pxfquery
+# package on the pxfquery conda env. We pin a minimum so the adapter is
+# importable in fresh envs.
+dependencies = [
+    "openai>=1.40",
+]
+
+[project.optional-dependencies]
+# Optional install target — installs nothing extra beyond what the core dep
+# already provides, but reserved so users can opt in explicitly:
+#   pip install pxfquery-T-034[llm-flash]
+llm-flash = []
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["pxfquery*"]
+
+[tool.setuptools.package-dir]
+"" = "src"
+
+[tool.cyhex]
+task_id = "T-034"
+task_name = "llm_flash_adapter_v1"
+phase = "development"
+goal = "goal_resolver_optional_layer_v1"
+optional = true
+cyhex_runtime_model = "deepseek-v3.2"  # informational only; llm_gateway is the active runtime
+default_llm_provider = "CyHex llm_gateway (do not switch from this task)"
+graceful_fallback = true
+downstream_consumers = ["T-037"]

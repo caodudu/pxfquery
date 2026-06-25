@@ -1,0 +1,1235 @@
+{
+  "tree": {
+    "central_nervous_system": {
+      "brain cancer": {
+        "astrocytoma": [
+          "U251MG"
+        ]
+      }
+    },
+    "prostate": {
+      "prostate cancer": {
+        "adenocarcinoma": [
+          "PC3"
+        ]
+      }
+    },
+    "skin": {
+      "skin cancer": {
+        "melanoma": [
+          "A375"
+        ]
+      }
+    },
+    "upper_aerodigestive_tract": {
+      "head and neck cancer": {
+        "carcinoma": [
+          "BICR6"
+        ]
+      }
+    }
+  },
+  "cell_index": {},
+  "meta": {
+    "1HAE": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "normal fibroblast sample"
+    },
+    "AALE": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "normal epithelium sample"
+    },
+    "AG06263_2": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "AG06840_A": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "AG078N1_1": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "C42": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "CD34": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "normal stem cell sample"
+    },
+    "HAP1": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "chronic myeloid leukemia (cml)"
+    },
+    "HEK293T": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "HIMG001": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "HIMG002": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "HME": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "normal epithelium sample"
+    },
+    "HMELZ": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "HPTEC": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "normal epithelium sample"
+    },
+    "HS27A": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "HUES3": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "normal stem cell sample"
+    },
+    "HUH751": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "hepatoma"
+    },
+    "HUVEC": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "normal umbilical vein sample"
+    },
+    "IPS-15-2": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "IPS-3": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "IPS-ND34732": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "LHSAR": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "normal prostate sample"
+    },
+    "MCH58": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "MCLF0067SZ": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "MCLF015CN": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "MCLF022CN": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "MCLF027CN": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "MCLF033SZ": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "MCLF035SZ": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "MCLF037SZ": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "MCLF040SZ": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "MCLF051CN": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "MCLF054CN": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "MCLF056CN": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "MCLF076SZ": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "MCLF100SZ": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "MCLF117SZ": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "MCLF123SZ": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "MCLF126CN": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "MCLF130CN": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "MCLF135CN": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "MCLF137CN": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "MCLF141SZ": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "MCLF162SZ": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "MICROGLIA-PSEN1": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "MNEU": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "NAMEC8": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "normal stem cell sample"
+    },
+    "ND34732_7": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "NKDBA": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "P1A82": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "P2X2B2": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "medullary cystic?kidney?disease (MCKD) type 1"
+    },
+    "SKB": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "WA09": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "normal stem cell sample"
+    },
+    "XC.500": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "XC.L10": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "XC.L100": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "XC.P026": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "XC.P031": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "XC.P033": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "XC.P091": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "XC.P092": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "XC.P901": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "XC.P904": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "XC.P905": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "XC.P906": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "XC.P907": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "XC.P908": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "XC.P909": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "XC.P910": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "XC.P911": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "XC.P912": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "XC.P914": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "XC.P915": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "XC.P922": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "XC.P930": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "XC.P931": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "XC.P932": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "XC.P933": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "XC.P934": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "XC.P935": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "XC.P936": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "XC.R10": {
+      "lineage": "unknown",
+      "disease": "unknown",
+      "subtype": "unknown"
+    },
+    "HME1": {
+      "lineage": "breast",
+      "disease": "leukemia",
+      "subtype": "acute myelogenous leukemia (aml)"
+    },
+    "BJAB": {
+      "lineage": "haematopoietic_and_lymphoid_tissue",
+      "disease": "lymphoma",
+      "subtype": "lymphoma"
+    },
+    "HBL1": {
+      "lineage": "haematopoietic_and_lymphoid_tissue",
+      "disease": "lymphoma",
+      "subtype": "lymphoma"
+    },
+    "OCILY10": {
+      "lineage": "placenta",
+      "disease": "lymphoma",
+      "subtype": "b-cell lymphoma"
+    },
+    "TMD8": {
+      "lineage": "haematopoietic_and_lymphoid_tissue",
+      "disease": "lymphoma",
+      "subtype": "lymphoma"
+    },
+    "TC32": {
+      "lineage": "bone",
+      "disease": "bone cancer",
+      "subtype": "ewing's sarcoma"
+    },
+    "H1299": {
+      "lineage": "lung",
+      "disease": "lung cancer",
+      "subtype": "non small cell carcinoma"
+    },
+    "H1975": {
+      "lineage": "lung",
+      "disease": "lung cancer",
+      "subtype": "carcinoma"
+    },
+    "HCC515": {
+      "lineage": "lung",
+      "disease": "lung cancer",
+      "subtype": "carcinoma"
+    },
+    "SALE": {
+      "lineage": "lung",
+      "disease": "lung cancer",
+      "subtype": "lung cancer"
+    },
+    "SHSY5Y": {
+      "lineage": "autonomic_ganglia",
+      "disease": "neuroblastoma",
+      "subtype": "neuroblastoma"
+    },
+    "22RV1": {
+      "lineage": "prostate",
+      "disease": "prostate cancer",
+      "subtype": "carcinoma"
+    },
+    "HEC1A": {
+      "lineage": "endometrium",
+      "disease": "endometrial cancer",
+      "subtype": "adenocarcinoma"
+    },
+    "NL20": {
+      "lineage": "lung",
+      "disease": "normal lung sample",
+      "subtype": "normal lung sample"
+    },
+    "PHH": {
+      "lineage": "haematopoietic_and_lymphoid_tissue",
+      "disease": "normal blood sample",
+      "subtype": "normal blood sample"
+    },
+    "HA1E": {
+      "lineage": "kidney",
+      "disease": "normal kidney sample",
+      "subtype": "normal kidney sample"
+    },
+    "HEK293": {
+      "lineage": "kidney",
+      "disease": "normal kidney sample",
+      "subtype": "normal embryonal kidney sample"
+    },
+    "HEKTE": {
+      "lineage": "kidney",
+      "disease": "normal kidney sample",
+      "subtype": "normal kidney sample"
+    },
+    "NEU": {
+      "lineage": "central_nervous_system",
+      "disease": "normal stem cell sample",
+      "subtype": "normal stem cell sample"
+    },
+    "NPC": {
+      "lineage": "central_nervous_system",
+      "disease": "normal stem cell sample",
+      "subtype": "normal stem cell sample"
+    },
+    "ASC": {
+      "lineage": "soft_tissue",
+      "disease": "normal soft tissue sample",
+      "subtype": "normal soft tissue sample"
+    },
+    "U266B1": {
+      "lineage": "haematopoietic_and_lymphoid_tissue",
+      "disease": "myeloma",
+      "subtype": "plasmacytoma"
+    },
+    "HL60": {
+      "lineage": "haematopoietic_and_lymphoid_tissue",
+      "disease": "leukemia",
+      "subtype": "acute myelogenous leukemia (aml)"
+    },
+    "K562": {
+      "lineage": "haematopoietic_and_lymphoid_tissue",
+      "disease": "leukemia",
+      "subtype": "chronic myelogenous leukemia (cml)"
+    },
+    "TF1": {
+      "lineage": "haematopoietic_and_lymphoid_tissue",
+      "disease": "leukemia",
+      "subtype": "acute myelogenous leukemia (aml)"
+    },
+    "THP1": {
+      "lineage": "haematopoietic_and_lymphoid_tissue",
+      "disease": "leukemia",
+      "subtype": "acute myelogenous leukemia (aml)"
+    },
+    "MINO": {
+      "lineage": "haematopoietic_and_lymphoid_tissue",
+      "disease": "lymphoma",
+      "subtype": "b-cell lymphoma"
+    },
+    "U937": {
+      "lineage": "haematopoietic_and_lymphoid_tissue",
+      "disease": "lymphoma",
+      "subtype": "b-cell lymphoma"
+    },
+    "A673": {
+      "lineage": "bone",
+      "disease": "bone cancer",
+      "subtype": "ewing's sarcoma"
+    },
+    "SKES1": {
+      "lineage": "bone",
+      "disease": "bone cancer",
+      "subtype": "ewing's sarcoma"
+    },
+    "U2OS": {
+      "lineage": "bone",
+      "disease": "bone cancer",
+      "subtype": "osteosarcoma"
+    },
+    "A549": {
+      "lineage": "lung",
+      "disease": "lung cancer",
+      "subtype": "non small cell carcinoma"
+    },
+    "HCC827": {
+      "lineage": "lung",
+      "disease": "lung cancer",
+      "subtype": "non small cell lung carcinoma"
+    },
+    "NCIH1437": {
+      "lineage": "lung",
+      "disease": "lung cancer",
+      "subtype": "non small cell lung carcinoma"
+    },
+    "NCIH1563": {
+      "lineage": "lung",
+      "disease": "lung cancer",
+      "subtype": "non small cell lung carcinoma"
+    },
+    "NCIH1573": {
+      "lineage": "lung",
+      "disease": "lung cancer",
+      "subtype": "non small cell lung carcinoma"
+    },
+    "NCIH1694": {
+      "lineage": "lung",
+      "disease": "lung cancer",
+      "subtype": "small cell lung carcinoma"
+    },
+    "NCIH1781": {
+      "lineage": "lung",
+      "disease": "lung cancer",
+      "subtype": "non small cell lung carcinoma"
+    },
+    "NCIH1836": {
+      "lineage": "lung",
+      "disease": "lung cancer",
+      "subtype": "small cell lung carcinoma"
+    },
+    "NCIH1975": {
+      "lineage": "lung",
+      "disease": "lung cancer",
+      "subtype": "non small cell lung carcinoma"
+    },
+    "NCIH2073": {
+      "lineage": "lung",
+      "disease": "lung cancer",
+      "subtype": "non small cell lung carcinoma"
+    },
+    "NCIH2110": {
+      "lineage": "lung",
+      "disease": "lung cancer",
+      "subtype": "non small cell lung carcinoma"
+    },
+    "NCIH2172": {
+      "lineage": "lung",
+      "disease": "lung cancer",
+      "subtype": "non small cell lung carcinoma"
+    },
+    "NCIH596": {
+      "lineage": "lung",
+      "disease": "lung cancer",
+      "subtype": "non small cell lung carcinoma"
+    },
+    "NCIH838": {
+      "lineage": "lung",
+      "disease": "lung cancer",
+      "subtype": "non small cell lung carcinoma"
+    },
+    "NCIH841": {
+      "lineage": "lung",
+      "disease": "lung cancer",
+      "subtype": "small cell lung carcinoma"
+    },
+    "SKLU1": {
+      "lineage": "lung",
+      "disease": "lung cancer",
+      "subtype": "adenocarcinoma"
+    },
+    "A375": {
+      "lineage": "skin",
+      "disease": "skin cancer",
+      "subtype": "melanoma"
+    },
+    "SH4": {
+      "lineage": "skin",
+      "disease": "skin cancer",
+      "subtype": "melanoma"
+    },
+    "SKMEL1": {
+      "lineage": "skin",
+      "disease": "skin cancer",
+      "subtype": "melanoma"
+    },
+    "SKMEL28": {
+      "lineage": "skin",
+      "disease": "skin cancer",
+      "subtype": "melanoma"
+    },
+    "SKMEL3": {
+      "lineage": "skin",
+      "disease": "skin cancer",
+      "subtype": "melanoma"
+    },
+    "SKMEL5": {
+      "lineage": "skin",
+      "disease": "skin cancer",
+      "subtype": "melanoma"
+    },
+    "LN229": {
+      "lineage": "central_nervous_system",
+      "disease": "brain cancer",
+      "subtype": "astrocytoma"
+    },
+    "DLD1": {
+      "lineage": "large_intestine",
+      "disease": "colon cancer",
+      "subtype": "adenocarcinoma"
+    },
+    "HCT116": {
+      "lineage": "large_intestine",
+      "disease": "colon cancer",
+      "subtype": "carcinoma"
+    },
+    "HT29": {
+      "lineage": "large_intestine",
+      "disease": "colon cancer",
+      "subtype": "adenocarcinoma"
+    },
+    "LOVO": {
+      "lineage": "large_intestine",
+      "disease": "colon cancer",
+      "subtype": "adenocarcinoma"
+    },
+    "NCIH508": {
+      "lineage": "large_intestine",
+      "disease": "colon cancer",
+      "subtype": "adenocarcinoma"
+    },
+    "NCIH716": {
+      "lineage": "large_intestine",
+      "disease": "colon cancer",
+      "subtype": "adenocarcinoma"
+    },
+    "RKO": {
+      "lineage": "large_intestine",
+      "disease": "colon cancer",
+      "subtype": "adenocarcinoma"
+    },
+    "SW480": {
+      "lineage": "large_intestine",
+      "disease": "colon cancer",
+      "subtype": "adenocarcinoma"
+    },
+    "SW620": {
+      "lineage": "large_intestine",
+      "disease": "colon cancer",
+      "subtype": "adenocarcinoma"
+    },
+    "SW948": {
+      "lineage": "large_intestine",
+      "disease": "colon cancer",
+      "subtype": "adenocarcinoma"
+    },
+    "HEPG2": {
+      "lineage": "liver",
+      "disease": "liver cancer",
+      "subtype": "carcinoma"
+    },
+    "BT20": {
+      "lineage": "breast",
+      "disease": "breast cancer",
+      "subtype": "carcinoma"
+    },
+    "BT474": {
+      "lineage": "breast",
+      "disease": "breast cancer",
+      "subtype": "carcinoma"
+    },
+    "HS578T": {
+      "lineage": "breast",
+      "disease": "breast cancer",
+      "subtype": "carcinoma"
+    },
+    "MCF10A": {
+      "lineage": "breast",
+      "disease": "breast cancer",
+      "subtype": "carcinoma"
+    },
+    "MCF7": {
+      "lineage": "breast",
+      "disease": "breast cancer",
+      "subtype": "adenocarcinoma"
+    },
+    "MDAMB231": {
+      "lineage": "breast",
+      "disease": "breast cancer",
+      "subtype": "adenocarcinoma"
+    },
+    "MDAMB468": {
+      "lineage": "breast",
+      "disease": "breast cancer",
+      "subtype": "adenocarcinoma"
+    },
+    "SKBR3": {
+      "lineage": "breast",
+      "disease": "breast cancer",
+      "subtype": "adenocarcinoma"
+    },
+    "T47D": {
+      "lineage": "breast",
+      "disease": "breast cancer",
+      "subtype": "carcinoma"
+    },
+    "ZR751": {
+      "lineage": "breast",
+      "disease": "breast cancer",
+      "subtype": "carcinoma"
+    },
+    "G401": {
+      "lineage": "soft_tissue",
+      "disease": "kidney cancer",
+      "subtype": "carcinoma"
+    },
+    "SKNSH": {
+      "lineage": "central_nervous_system",
+      "disease": "neuroblastoma",
+      "subtype": "neuroblastoma"
+    },
+    "5637": {
+      "lineage": "urinary_tract",
+      "disease": "bladder cancer",
+      "subtype": "carcinoma"
+    },
+    "J82": {
+      "lineage": "urinary_tract",
+      "disease": "bladder cancer",
+      "subtype": "carcinoma"
+    },
+    "AGS": {
+      "lineage": "stomach",
+      "disease": "gastric cancer",
+      "subtype": "adenocarcinoma"
+    },
+    "ES2": {
+      "lineage": "ovary",
+      "disease": "ovarian cancer",
+      "subtype": "carcinoma"
+    },
+    "HELA": {
+      "lineage": "cervix",
+      "disease": "cervical cancer",
+      "subtype": "adenocarcinoma"
+    },
+    "DU145": {
+      "lineage": "prostate",
+      "disease": "prostate cancer",
+      "subtype": "carcinoma"
+    },
+    "PC3": {
+      "lineage": "prostate",
+      "disease": "prostate cancer",
+      "subtype": "adenocarcinoma"
+    },
+    "RWPE1": {
+      "lineage": "prostate",
+      "disease": "prostate cancer",
+      "subtype": "carcinoma"
+    },
+    "VCAP": {
+      "lineage": "prostate",
+      "disease": "prostate cancer",
+      "subtype": "adenocarcinoma"
+    },
+    "A204": {
+      "lineage": "soft_tissue",
+      "disease": "embryonal cancer",
+      "subtype": "rhabdomyosarcoma"
+    },
+    "AN3CA": {
+      "lineage": "endometrium",
+      "disease": "endometrial cancer",
+      "subtype": "adenocarcinoma"
+    },
+    "TOV112D": {
+      "lineage": "ovary",
+      "disease": "endometrial cancer",
+      "subtype": "adenocarcinoma"
+    },
+    "WI38": {
+      "lineage": "lung",
+      "disease": "normal lung sample",
+      "subtype": "normal lung sample"
+    },
+    "JURKAT": {
+      "lineage": "haematopoietic_and_lymphoid_tissue",
+      "disease": "leukemia",
+      "subtype": "acute lymphoblastic leukemia (all)"
+    },
+    "NALM6": {
+      "lineage": "haematopoietic_and_lymphoid_tissue",
+      "disease": "leukemia",
+      "subtype": "acute lymphoblastic leukemia (all)"
+    },
+    "PL21": {
+      "lineage": "haematopoietic_and_lymphoid_tissue",
+      "disease": "leukemia",
+      "subtype": "acute myelogenous leukemia (aml)"
+    },
+    "OCILY19": {
+      "lineage": "haematopoietic_and_lymphoid_tissue",
+      "disease": "lymphoma",
+      "subtype": "b-cell lymphoma"
+    },
+    "SUDHL4": {
+      "lineage": "haematopoietic_and_lymphoid_tissue",
+      "disease": "lymphoma",
+      "subtype": "b-cell lymphoma"
+    },
+    "WSUDLCL2": {
+      "lineage": "haematopoietic_and_lymphoid_tissue",
+      "disease": "lymphoma",
+      "subtype": "b-cell lymphoma"
+    },
+    "BEN": {
+      "lineage": "lung",
+      "disease": "lung cancer",
+      "subtype": "non small cell lung cancer"
+    },
+    "DV90": {
+      "lineage": "lung",
+      "disease": "lung cancer",
+      "subtype": "adenocarcinoma"
+    },
+    "HCC15": {
+      "lineage": "lung",
+      "disease": "lung cancer",
+      "subtype": "non small cell lung carcinoma"
+    },
+    "HCC44": {
+      "lineage": "lung",
+      "disease": "lung cancer",
+      "subtype": "non small cell lung carcinoma"
+    },
+    "IGR37": {
+      "lineage": "skin",
+      "disease": "skin cancer",
+      "subtype": "melanoma"
+    },
+    "MELHO": {
+      "lineage": "skin",
+      "disease": "skin cancer",
+      "subtype": "melanoma"
+    },
+    "CL34": {
+      "lineage": "large_intestine",
+      "disease": "colon cancer",
+      "subtype": "adenocarcinoma"
+    },
+    "BC3C": {
+      "lineage": "urinary_tract",
+      "disease": "bladder cancer",
+      "subtype": "transitional cell carcinoma"
+    },
+    "CAL29": {
+      "lineage": "urinary_tract",
+      "disease": "bladder cancer",
+      "subtype": "transitional cell carcinoma"
+    },
+    "VMCUB1": {
+      "lineage": "urinary_tract",
+      "disease": "bladder cancer",
+      "subtype": "transitional cell carcinoma"
+    },
+    "EFO27": {
+      "lineage": "ovary",
+      "disease": "ovarian cancer",
+      "subtype": "carcinoma"
+    },
+    "LNCAP": {
+      "lineage": "prostate",
+      "disease": "prostate cancer",
+      "subtype": "carcinoma"
+    },
+    "YAPC": {
+      "lineage": "pancreas",
+      "disease": "pancreatic cancer",
+      "subtype": "carcinoma"
+    },
+    "MFE319": {
+      "lineage": "endometrium",
+      "disease": "endometrial cancer",
+      "subtype": "adenocarcinoma"
+    },
+    "OC314": {
+      "lineage": "ovary",
+      "disease": "ovarian cancer",
+      "subtype": "carcinoma"
+    },
+    "OC316": {
+      "lineage": "ovary",
+      "disease": "ovarian cancer",
+      "subtype": "adenocarcinoma"
+    },
+    "HFL1": {
+      "lineage": "lung",
+      "disease": "normal lung sample",
+      "subtype": "normal lung sample"
+    },
+    "IMR90": {
+      "lineage": "lung",
+      "disease": "normal lung sample",
+      "subtype": "normal lung sample"
+    },
+    "HCC1588": {
+      "lineage": "lung",
+      "disease": "lung cancer",
+      "subtype": "non small cell lung carcinoma"
+    },
+    "HCC95": {
+      "lineage": "lung",
+      "disease": "lung cancer",
+      "subtype": "non small cell lung carcinoma"
+    },
+    "SNU1040": {
+      "lineage": "large_intestine",
+      "disease": "colon cancer",
+      "subtype": "carcinoma"
+    },
+    "SNU407": {
+      "lineage": "large_intestine",
+      "disease": "colon cancer",
+      "subtype": "carcinoma"
+    },
+    "SNUC4": {
+      "lineage": "large_intestine",
+      "disease": "colon cancer",
+      "subtype": "adenocarcinoma"
+    },
+    "SNUC5": {
+      "lineage": "large_intestine",
+      "disease": "colon cancer",
+      "subtype": "adenocarcinoma"
+    },
+    "CORL23": {
+      "lineage": "lung",
+      "disease": "lung cancer",
+      "subtype": "non small cell lung cancer"
+    },
+    "GP2D": {
+      "lineage": "large_intestine",
+      "disease": "colon cancer",
+      "subtype": "adenocarcinoma"
+    },
+    "HT115": {
+      "lineage": "large_intestine",
+      "disease": "colon cancer",
+      "subtype": "carcinoma"
+    },
+    "MDST8": {
+      "lineage": "large_intestine",
+      "disease": "colon cancer",
+      "subtype": "carcinoma"
+    },
+    "COV434": {
+      "lineage": "ovary",
+      "disease": "ovarian cancer",
+      "subtype": "granulosa"
+    },
+    "COV644": {
+      "lineage": "ovary",
+      "disease": "ovarian cancer",
+      "subtype": "carcinoma"
+    },
+    "OAW28": {
+      "lineage": "ovary",
+      "disease": "ovarian cancer",
+      "subtype": "cystadenocarcinoma"
+    },
+    "OV7": {
+      "lineage": "ovary",
+      "disease": "ovarian cancer",
+      "subtype": "carcinoma"
+    },
+    "BICR6": {
+      "lineage": "upper_aerodigestive_tract",
+      "disease": "head and neck cancer",
+      "subtype": "carcinoma"
+    },
+    "KMS34": {
+      "lineage": "haematopoietic_and_lymphoid_tissue",
+      "disease": "myeloma",
+      "subtype": "myeloma"
+    },
+    "NOMO1": {
+      "lineage": "haematopoietic_and_lymphoid_tissue",
+      "disease": "leukemia",
+      "subtype": "acute myeloid leukemia (aml)"
+    },
+    "SKM1": {
+      "lineage": "haematopoietic_and_lymphoid_tissue",
+      "disease": "leukemia",
+      "subtype": "acute myeloid leukemia (aml)"
+    },
+    "U251MG": {
+      "lineage": "central_nervous_system",
+      "disease": "brain cancer",
+      "subtype": "astrocytoma"
+    },
+    "YH13": {
+      "lineage": "central_nervous_system",
+      "disease": "brain cancer",
+      "subtype": "astrocytoma"
+    },
+    "HUH7": {
+      "lineage": "liver",
+      "disease": "liver cancer",
+      "subtype": "carcinoma"
+    },
+    "JHH5": {
+      "lineage": "liver",
+      "disease": "liver cancer",
+      "subtype": "carcinoma"
+    },
+    "JHH7": {
+      "lineage": "liver",
+      "disease": "liver cancer",
+      "subtype": "carcinoma"
+    },
+    "IM95": {
+      "lineage": "stomach",
+      "disease": "gastric cancer",
+      "subtype": "adenocarcinoma"
+    },
+    "MKN45": {
+      "lineage": "stomach",
+      "disease": "gastric cancer",
+      "subtype": "adenocarcinoma"
+    },
+    "OVTOKO": {
+      "lineage": "ovary",
+      "disease": "ovarian cancer",
+      "subtype": "adenocarcinoma"
+    },
+    "RMGI": {
+      "lineage": "ovary",
+      "disease": "ovarian cancer",
+      "subtype": "carcinoma"
+    },
+    "RMUGS": {
+      "lineage": "ovary",
+      "disease": "ovarian cancer",
+      "subtype": "carcinoma"
+    },
+    "TYKNU": {
+      "lineage": "ovary",
+      "disease": "ovarian cancer",
+      "subtype": "carcinoma"
+    },
+    "HEC108": {
+      "lineage": "endometrium",
+      "disease": "endometrial cancer",
+      "subtype": "adenocarcinoma"
+    },
+    "HEC151": {
+      "lineage": "endometrium",
+      "disease": "endometrial cancer",
+      "subtype": "adenocarcinoma"
+    },
+    "HEC251": {
+      "lineage": "endometrium",
+      "disease": "endometrial cancer",
+      "subtype": "adenocarcinoma"
+    },
+    "HEC265": {
+      "lineage": "endometrium",
+      "disease": "endometrial cancer",
+      "subtype": "adenocarcinoma"
+    },
+    "SNGM": {
+      "lineage": "endometrium",
+      "disease": "endometrial cancer",
+      "subtype": "adenocarcinoma"
+    },
+    "SKL": {
+      "lineage": "soft_tissue",
+      "disease": "normal soft tissue sample",
+      "subtype": "normal soft tissue sample"
+    },
+    "T3M10": {
+      "lineage": "lung",
+      "disease": "lung cancer",
+      "subtype": "non small cell lung carcinoma"
+    },
+    "CJM": {
+      "lineage": "skin",
+      "disease": "skin cancer",
+      "subtype": "melanoma"
+    },
+    "GI1": {
+      "lineage": "central_nervous_system",
+      "disease": "brain cancer",
+      "subtype": "glioblastoma"
+    },
+    "CW2": {
+      "lineage": "large_intestine",
+      "disease": "colon cancer",
+      "subtype": "carcinoma"
+    },
+    "RCC10RGB": {
+      "lineage": "kidney",
+      "disease": "kidney cancer",
+      "subtype": "carcinoma"
+    },
+    "OVK18": {
+      "lineage": "ovary",
+      "disease": "ovarian cancer",
+      "subtype": "carcinoma"
+    },
+    "JHUEM2": {
+      "lineage": "endometrium",
+      "disease": "endometrial cancer",
+      "subtype": "carcinoma"
+    },
+    "OVCAR8": {
+      "lineage": "ovary",
+      "disease": "ovarian cancer",
+      "subtype": "carcinoma"
+    },
+    "OCILY3": {
+      "lineage": "haematopoietic_and_lymphoid_tissue",
+      "disease": "lymphoma",
+      "subtype": "b-cell lymphoma"
+    }
+  }
+}

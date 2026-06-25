@@ -1,0 +1,2 @@
+{"id": "N-core", "ts": "2026-06-25", "actor": "ui", "content": "Do not write implementation code. Produce route taxonomy, acceptance cases, metadata contract, and stress-test-oriented anchor assets. | Route behavior must include user-facing transfer/suggestion semantics, not just returning empty results.", "core": false}
+{"id": "N-1782405876132", "ts": "2026-06-26T00:44:36", "actor": "ui", "content": "证据路由锚点定义", "core": true}

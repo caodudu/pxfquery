@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>T-018 执行情况报告</title>
+  <style>
+    body { font-family: -apple-system, sans-serif; max-width: 800px; margin: 0 auto; padding: 24px; line-height: 1.5; }
+    h1 { border-bottom: 2px solid #126f82; padding-bottom: 8px; }
+    table { border-collapse: collapse; width: 100%; margin: 12px 0; }
+    th, td { border: 1px solid #ddd; padding: 8px 10px; text-align: left; vertical-align: top; }
+    th { background: #eef3f5; }
+    .ok { color: #20744a; font-weight: 600; }
+    .warn { color: #9b5d00; }
+    .section { margin: 24px 0; }
+  </style>
+</head>
+<body>
+  <h1>T-018 执行情况报告</h1>
+  <p>任务：生信论文模板拆解 | 生成时间：2026-06-23</p>
+
+  <div class="section">
+    <h2>任务摘要</h2>
+    <p>对 T-012 D-013 中 5 篇 Genes 生信论文逐篇拆解介绍写作逻辑、结果写作逻辑和图摆放逻辑，输出 5 篇 MD 拆解 + 1 个总 HTML 汇总。</p>
+  </div>
+
+  <div class="section">
+    <h2>各步执行情况</h2>
+    <table>
+      <tr><th>步</th><th>动作</th><th>状态</th><th>产出/说明</th></tr>
+      <tr><td>1</td><td>读取 T012 D-013 确定 5 篇论文列表</td><td class="ok">完成</td><td>D-013 HTML 已读取: OHDLF/CrossMP/DTVF/StrainIQ/GENet</td></tr>
+      <tr><td>2</td><td>读取 5 篇 T012 D-006 catalog 记录</td><td class="ok">完成</td><td>5 篇逐篇记录已读取，含交付物归类、弱点、短语模式</td></tr>
+      <tr><td>3</td><td>读取 D-001/D-008/D-009 确定写作基线</td><td class="ok">完成</td><td>Scope/synthesis/phrase library 已读取</td></tr>
+      <tr><td>4</td><td>通过 MDPI 官网读取 5 篇原文</td><td class="warn">部分完成</td><td>MDPI 使用 Akamai 反爬保护，直接 webfetch 返回验证页面。已基于 T012 D-013 全文结构指标 + D-006 catalog 证据 + D-009 synthesis 基线完成拆解。CrossMP 标记为 missing_full_text，拆解基于 portal 型论文通用模式。</td></tr>
+      <tr><td>5</td><td>写 5 篇拆解 MD</td><td class="ok">完成</td><td>5 篇 MD 写入 4_artifact/2_persist/paper_deconstruction/</td></tr>
+      <tr><td>6</td><td>写总 HTML 汇总</td><td class="ok">完成</td><td>paper_deconstruction_summary_v20260623.html</td></tr>
+      <tr><td>7</td><td>交付物整理</td><td class="ok">完成</td><td>MD + HTML 已放置到 4_artifact/2_persist/</td></tr>
+      <tr><td>8</td><td>写入 completion + registry</td><td class="ok">完成</td><td>5_report/completion.md + 4_artifact/registry.yaml</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>交付物清单</h2>
+    <table>
+      <tr><th>文件名</th><th>路径</th><th>大小</th></tr>
+      <tr><td>OHDLF 拆解</td><td>4_artifact/2_persist/paper_deconstruction/GENES-02459_OHDLF_template_deconstruction.md</td><td>~3KB</td></tr>
+      <tr><td>CrossMP 拆解</td><td>4_artifact/2_persist/paper_deconstruction/GENES-02981_CrossMP_template_deconstruction.md</td><td>~3KB</td></tr>
+      <tr><td>DTVF 拆解</td><td>4_artifact/2_persist/paper_deconstruction/GENES-02693_DTVF_template_deconstruction.md</td><td>~3KB</td></tr>
+      <tr><td>StrainIQ 拆解</td><td>4_artifact/2_persist/paper_deconstruction/GENES-04451_StrainIQ_template_deconstruction.md</td><td>~3KB</td></tr>
+      <tr><td>GENet 拆解</td><td>4_artifact/2_persist/paper_deconstruction/GENES-02925_GENet_template_deconstruction.md</td><td>~3KB</td></tr>
+      <tr><td>总 HTML 汇总</td><td>4_artifact/2_persist/paper_deconstruction_summary_v20260623.html</td><td>~12KB</td></tr>
+      <tr><td>执行报告</td><td>4_artifact/3_document/execution_report_v20260623.html</td><td>本页</td></tr>
+      <tr><td>成果报告</td><td>4_artifact/3_document/result_report_v20260623.html</td><td>另页</td></tr>
+    </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>失败/阻断记录</h2>
+    <p>步骤 4：MDPI 官网（mdpi.com）使用了 Akamai 反爬保护，无法通过自动化 fetch 获取完整 HTML 内容。</p>
+    <p>影响：CrossMP（无本地 PDF）的拆解基于 T012 元数据 + portal 型论文通用模式完成，而非全文逐段分析。</p>
+    <p>其他 4 篇均有 T012 全文结构统计数据（Intro/Methods/Results/Discussion 字数和图数），结合 T012 catalog 证据完成拆解。</p>
+    <p>结论：未阻断任务完成，但 CrossMP 的拆解深度不如其余 4 篇。建议后续人工打开 CrossMP 官网核对并补充拆解。</p>
+  </div>
+</body>
+</html>

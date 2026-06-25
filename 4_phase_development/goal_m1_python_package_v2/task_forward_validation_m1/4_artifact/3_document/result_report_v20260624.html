@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>T-050 Validation Results</title>
+<style>
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 960px; margin: 2em auto; padding: 0 1em; background: #fafafa; color: #222; }
+h1 { border-bottom: 2px solid #333; padding-bottom: 0.3em; }
+h2 { color: #444; margin-top: 1.5em; }
+.pass { color: #1a7f37; font-weight: bold; }
+.fail { color: #cf222e; font-weight: bold; }
+.verdict { font-size: 1.3em; padding: 0.5em 1em; border-radius: 4px; display: inline-block; }
+.verdict.pass { background: #dafbe1; border: 1px solid #1a7f37; }
+.verdict.fail { background: #ffebe9; border: 1px solid #cf222e; }
+table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+th, td { border: 1px solid #ccc; padding: 0.5em; text-align: left; }
+th { background: #e8e8e8; }
+tr:nth-child(even) { background: #f8f8f8; }
+tr.pass-row td:first-child { border-left: 4px solid #1a7f37; }
+tr.fail-row td:first-child { border-left: 4px solid #cf222e; }
+.summary { display: flex; gap: 1em; margin: 1em 0; }
+.summary-item { background: #fff; border: 1px solid #ddd; border-radius: 4px; padding: 1em; flex: 1; text-align: center; }
+.summary-item .count { font-size: 2em; font-weight: bold; }
+</style>
+</head>
+<body>
+<h1>T-050 Forward Validation M1 — Validation Results</h1>
+<p>生成日期：2026-06-24 | 任务：T-050 forward_validation_m1</p>
+
+<div class="verdict pass">总体：PASS</div>
+
+<div class="summary">
+  <div class="summary-item"><div class="count" style="color:#1a7f37;">11</div>PASS</div>
+  <div class="summary-item"><div class="count" style="color:#cf222e;">0</div>FAIL</div>
+  <div class="summary-item"><div class="count">11</div>总检查数</div>
+</div>
+
+<h2>Validation Results Table</h2>
+<table>
+<thead>
+<tr><th>Check ID</th><th>Requirement</th><th>Status</th><th>Evidence</th></tr>
+</thead>
+<tbody>
+<tr class="pass-row"><td>SMOKE-001</td><td>包导入成功</td><td class="pass">PASS</td><td>pxfquery v0.1.0 导入成功</td></tr>
+<tr class="pass-row"><td>SMOKE-002</td><td>T-046 兼容修复夹具加载</td><td class="pass">PASS</td><td>xpr 形状为 (5, 7)，符合预期</td></tr>
+<tr class="pass-row"><td>FORWARD-001</td><td>positive EGFR/A549/xpr found=true</td><td class="pass">PASS</td><td>发现：true，扰动：EGFR，细胞系：A549，观测数：1</td></tr>
+<tr class="pass-row"><td>FORWARD-002</td><td>top_activated 非空数值字典</td><td class="pass">PASS</td><td>4 entries, all numeric</td></tr>
+<tr class="pass-row"><td>FORWARD-003</td><td>顶级抑制的非空数字字典</td><td class="pass">PASS</td><td>3 entries, all numeric</td></tr>
+<tr class="pass-row"><td>FORWARD-004</td><td>输入回显与合约匹配</td><td class="pass">PASS</td><td>EGFR/A549 匹配请求的扰动/细胞系</td></tr>
+<tr class="pass-row"><td>NOHIT-001</td><td>未知扰动返回结构化无命中</td><td class="pass">PASS</td><td>错误：PerturbationNotFound，存在消息</td></tr>
+<tr class="pass-row"><td>NOHIT-002</td><td>输出中无原始 Python 回溯</td><td class="pass">PASS</td><td>输出为有效的 JSON 字典，无回溯</td></tr>
+<tr class="pass-row"><td>JSON-001</td><td>正向重新运行在结构上匹配参考</td><td class="pass">PASS</td><td>键匹配（无 _evidence），相同的 found/perturbation/cell_line</td></tr>
+<tr class="pass-row"><td>JSON-002</td><td>无命中重新运行在结构上匹配参考</td><td class="pass">PASS</td><td>键匹配（无 _evidence），相同的错误类型</td></tr>
+<tr class="pass-row"><td>CLI-001</td><td>CLI 返回退出码 0 并附带有效 JSON</td><td class="pass">PASS</td><td>退出码=0，stdout 为有效 JSON，found=true</td></tr>
+</tbody>
+</table>
+
+<h2>Traceability</h2>
+<table>
+<thead><tr><th>Attribute</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>包版本</td><td>0.1.0</td></tr>
+<tr><td>加载器类</td><td>pxfquery.data.m1_loader.M1FixtureLoader</td></tr>
+<tr><td>清单路径</td><td>1_asset/forward_repair_manifest_m1_1.yaml</td></tr>
+<tr><td>来源标签</td><td>synthetic_repair</td></tr>
+<tr><td>参考阳性</td><td>1_asset/forward_query_positive_demo_evidence.json</td></tr>
+<tr><td>参考无命中</td><td>1_asset/forward_query_no_hit_evidence.json</td></tr>
+</tbody>
+</table>
+</body>
+</html>

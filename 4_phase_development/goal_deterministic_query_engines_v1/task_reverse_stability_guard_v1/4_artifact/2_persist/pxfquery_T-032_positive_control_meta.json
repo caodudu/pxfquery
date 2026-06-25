@@ -1,0 +1,14 @@
+{
+  "activate": [
+    "HALLMARK_APOPTOSIS"
+  ],
+  "suppress": [
+    "HALLMARK_MYC_TARGETS_V1"
+  ],
+  "cell_line": "MCF7",
+  "guard_warning_count": 0,
+  "total_warnings": 0,
+  "n_candidates": 20,
+  "matrix": "cp_func_ad.h5ad",
+  "data_bundle": "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_deterministic_query_engines_v1/task_reverse_stability_guard_v1/1_asset/T-021 standard resources bundle (D-004)"
+}

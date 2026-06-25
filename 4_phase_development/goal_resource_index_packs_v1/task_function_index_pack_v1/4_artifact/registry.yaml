@@ -1,0 +1,202 @@
+artifacts:
+- id: D-001
+  name: pxfquery_T028_function_index_pack
+  path: 4_artifact/2_persist/pxfquery_T028_function_index/function_index.json
+  type: data
+  origin_step: 03_build_pack
+  purpose: Core T-028 deliverable — validated 91-function index JSON with var_names
+    from T-021 H5AD matrices and enriched aliases (self, lowercase, human-readable
+    label). Versioned as pxfquery-T-028.
+  usable_by: downstream query/resolver tasks in goal_resource_index_packs_v1 DAG
+  created: '2026-06-23'
+  identity: T-028/D-001
+  role: deliverable
+  core: true
+  lineage_anchor: true
+  stars: 5
+  notes: '7/7 validation checks pass. 91 function terms, 273 total alias entries.
+
+    Each term carries [uppercase, lowercase, label]. Upstream T-021
+
+    function_index.json is present and served as alias seed.
+
+    '
+- id: D-002
+  name: step1_var_names_evidence
+  path: 3_execution/01_verify/01_var_names.json
+  type: support
+  origin_step: 01_verify_matrix_var_source
+  purpose: Runtime observed var_names from all three T-021 H5AD matrices via anndata.read_h5ad.
+    Confirms 91 terms, identical across cp/sh/xpr.
+  usable_by: validation and reproducibility audits
+  created: '2026-06-23'
+  identity: T-028/D-002
+  role: support
+  stars: 3
+  core: false
+  lineage_anchor: false
+- id: D-003
+  name: step2_upstream_function_index_record
+  path: 3_execution/02_inspect/02_upstream_function_index.json
+  type: support
+  origin_step: 02_inspect_upstream_function_index
+  purpose: Record of the upstream T-021 function_index.json resolved path, top-level
+    keys, n_var_names, status, and match with observed matrix var_names.
+  usable_by: lineage tracking
+  created: '2026-06-23'
+  identity: T-028/D-003
+  role: support
+  stars: 3
+  core: false
+  lineage_anchor: false
+- id: D-004
+  name: validate_function_index_script
+  path: 3_execution/validate_function_index.py
+  type: script
+  origin_step: 05_validate
+  purpose: Python validation driver. Opens all three H5AD matrices, upstream JSON,
+    and T-028 pack; runs 7 structured checks. Executable inside pxfquery conda env.
+  usable_by: re-validation, reproducibility
+  created: '2026-06-23'
+  identity: T-028/D-004
+  role: support
+  stars: 3
+  core: false
+  lineage_anchor: false
+- id: D-005
+  name: validation_record
+  path: 3_execution/05_validate/03_validation.json
+  type: support
+  origin_step: 05_validate
+  purpose: Machine-readable structured validation record with per-check pass/fail,
+    evidence, and upstream inspection results.
+  usable_by: check AI, human review
+  created: '2026-06-23'
+  identity: T-028/D-005
+  role: support
+  stars: 4
+  core: false
+  lineage_anchor: false
+- id: D-006
+  name: validation_summary
+  path: 3_execution/05_validate/03_validation_summary.md
+  type: support
+  origin_step: 05_validate
+  purpose: Human-readable Markdown validation summary.
+  usable_by: human review
+  created: '2026-06-23'
+  identity: T-028/D-006
+  role: support
+  stars: 4
+  core: false
+  lineage_anchor: false
+- id: D-007
+  name: function_index_validation_table
+  path: 4_artifact/5_table/pxfquery_t028_function_index_validation.csv
+  type: table
+  origin_step: 04_build_validation_table
+  purpose: Per-term validation table — 91 rows covering all function terms with alias
+    counts, JSON, and status.
+  usable_by: human review, manuscript preparation
+  created: '2026-06-23'
+  identity: T-028/D-007
+  role: data
+  stars: 4
+  core: false
+  lineage_anchor: false
+- id: D-008
+  name: downstream_usage_notes_en
+  path: 4_artifact/2_persist/pxfquery_T028_downstream_usage_notes.md
+  type: document
+  origin_step: 06_write_downstream_usage_notes
+  purpose: English downstream usage notes for query/resolver tasks.
+  usable_by: developers, downstream task config
+  created: '2026-06-23'
+  identity: T-028/D-008
+  role: support
+  stars: 3
+  core: false
+  lineage_anchor: false
+- id: D-009
+  name: downstream_usage_notes_zh
+  path: 4_artifact/2_persist/pxfquery_T028_downstream_usage_notes_zh.md
+  type: document
+  origin_step: 06_write_downstream_usage_notes
+  purpose: Chinese downstream usage notes for query/resolver tasks.
+  usable_by: developers, downstream task config
+  created: '2026-06-23'
+  identity: T-028/D-009
+  role: support
+  stars: 3
+  core: false
+  lineage_anchor: false
+- id: D-010
+  name: execution_report_v20260623
+  path: 4_artifact/3_document/execution_report_v20260623.html
+  type: document
+  origin_step: 07_completion
+  purpose: CyHex-required Chinese execution report for the T-028 function-index pack.
+  usable_by: delivery QA and human acceptance review
+  created: '2026-06-23'
+  identity: T-028/D-010
+  role: report
+  stars: 5
+  core: false
+  lineage_anchor: false
+- id: D-011
+  name: result_report_v20260623
+  path: 4_artifact/3_document/result_report_v20260623.html
+  type: document
+  origin_step: 07_completion
+  purpose: CyHex-required Chinese result report summarizing the 91-term function index,
+    alias coverage, and validation outcome.
+  usable_by: delivery QA, human review, and downstream task configuration
+  created: '2026-06-23'
+  identity: T-028/D-011
+  role: report
+  stars: 5
+  core: false
+  lineage_anchor: false
+- id: D-012
+  name: completion_md
+  path: 5_report/completion.md
+  type: report
+  origin_step: 07_completion
+  purpose: Completion report replacing the previous pending stub and summarizing
+    validation, deliverables, and downstream use.
+  usable_by: delivery QA and downstream task configuration
+  created: '2026-06-24'
+  identity: T-028/D-012
+  role: support
+  stars: 4
+  core: false
+  lineage_anchor: false
+- id: D-013
+  name: handoff_check_before_exec
+  path: 5_report/handoff_check_before_exec.md
+  type: report
+  origin_step: cyhex_1_2_19_repair
+  purpose: Check-to-execute handoff reconstructed from existing task evidence for
+    newer CyHex prompt assembly.
+  usable_by: future CyHex prompts and delivery QA
+  created: '2026-06-24'
+  identity: T-028/D-013
+  role: support
+  stars: 3
+  core: false
+  lineage_anchor: false
+- id: D-014
+  name: cyhex_1_2_19_supplement
+  path: 5_report/cyhex_1_2_19_supplement.md
+  type: report
+  origin_step: cyhex_1_2_19_repair
+  purpose: Supplemental note describing usable reference status and compatibility
+    files for CyHex 1.2.19 prompt logic.
+  usable_by: future CyHex prompts and downstream task configuration
+  created: '2026-06-24'
+  identity: T-028/D-014
+  role: support
+  stars: 3
+  core: false
+  lineage_anchor: false
+core_artifact_id: D-001

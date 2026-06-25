@@ -1,0 +1,23 @@
+assets:
+  - id: A-001
+    name: T-040 package core deliverables
+    type: deliverable
+    source: linked
+    path: ../task_milestone_package_core_parallel_v1/4_artifact/
+    origin: T-040/4_artifact
+    location: local
+    description: Waiting input from T-040. Expected to contain package-core artifacts, forward/no-hit test evidence, handoff notes, lineage report, registry, and completion report.
+    sync_policy: metadata_only
+    stars: 5
+    notes: Verify T-040 is done and consume only registry, completion, handoff, lineage, and final JSON summaries.
+  - id: A-002
+    name: T-038 reverse demo reports deliverables
+    type: deliverable
+    source: linked
+    path: ../task_milestone_reverse_demo_reports_v1/4_artifact/
+    origin: T-038/4_artifact
+    location: local
+    description: Waiting input from T-038. Expected to contain reverse/demo evidence, reports, addenda, registry, and completion report.
+    sync_policy: metadata_only
+    stars: 5
+    notes: Verify T-038 is done before aggregation. Read-only input; do not implement new package code in T-039.

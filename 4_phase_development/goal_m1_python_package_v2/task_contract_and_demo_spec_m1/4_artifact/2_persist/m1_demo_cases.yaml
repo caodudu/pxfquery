@@ -1,0 +1,213 @@
+# M1 Demo Cases — Forward and Reverse Queries
+# Generated: 2026-06-24
+# Traceability: T-007/A-002 (development state report §Implemented Components, §Validation State)
+#              T-013/A-007 (run evidence bundle — forward_exact_EGFR_A549_xpr.json,
+#              reverse_apoptosis_myc_A549_xpr.json)
+
+---
+demo_cases:
+
+  - id: DEMO-001
+    type: forward
+    name: EGFR_knockdown_A549_transcriptome
+    description: >
+      Query the functional consequences of EGFR perturbation in A549 lung adenocarcinoma cells
+      using the xpr (transcriptome) matrix. This exact forward hit was validated in both T-007
+      development-state evidence and the T-013 MVP run-through (CAP-04 pass).
+    traceability:
+      - "T-007/A-002: forward query implemented in core.py; EGFR/A549/xpr is a known hit."
+      - "T-013/A-007: forward_exact_EGFR_A549_xpr.json confirmed found=true with top activated/suppressed lists."
+    input:
+      api_call: |
+        result = query.pert2func(
+            perturbation="EGFR",
+            cell_line="A549",
+            matrix_type="xpr",
+            top_k=20
+        )
+      cli_command: |
+        pxfquery forward \
+            --perturbation EGFR \
+            --cell-line A549 \
+            --matrix /path/to/functional_xpr_matrix.h5ad \
+            --matrix-type xpr \
+            --top-k 20
+    precondition:
+      - "functional xpr h5ad matrix is accessible as a valid AnnData object"
+      - "matrix.obs_names contains 'EGFR'"
+      - "matrix.var_names contains 'A549' and functional program names (Hallmark, MP modules)"
+    expected_output:
+      schema: "forward_result"
+      semantic_requirements:
+        - "top-level 'found' is true"
+        - "'perturbation' equals 'EGFR' (exact match)"
+        - "'cell_line' equals 'A549'"
+        - "'n_obs' is >= 1"
+        - "'cells_used' contains 'A549'"
+        - "'top_activated' is a non-empty object with string keys and numeric values"
+        - "'top_suppressed' is a non-empty object with string keys and numeric values"
+        - "activated values are mostly positive; suppressed values are mostly negative"
+        - "'note' is a string (may be empty)"
+      shape_example:
+        found: true
+        perturbation: "EGFR"
+        cell_line: "A549"
+        n_obs: 1
+        cells_used: ["A549"]
+        top_activated:
+          "HALLMARK_INTERFERON_ALPHA_RESPONSE": 4.03
+          "HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION": 2.47
+        top_suppressed:
+          "HALLMARK_MYC_TARGETS_V2": -6.68
+          "HALLMARK_E2F_TARGETS": -6.64
+        note: ""
+    pass_criteria:
+      - assertion: "found == true"
+      - assertion: "top_activated is a dict with at least 1 entry and all values are numbers"
+      - assertion: "top_suppressed is a dict with at least 1 entry and all values are numbers"
+      - assertion: "perturbation == 'EGFR' and cell_line == 'A549' (input echo)"
+      - assertion: "response is valid JSON matching forward_result schema"
+    fail_criteria:
+      - "found == false (missing matrix row or column)"
+      - "top_activated or top_suppressed is empty"
+      - "result is not valid JSON"
+      - "uncaught exception or traceback instead of error object"
+      - "returned object does not conform to forward_result schema"
+    no_hit_variants:
+      - variant: unknown_perturbation
+        input:
+          perturbation: "UNKNOWN_GENE_XYZ999"
+          cell_line: "A549"
+        expected_error: "PerturbationNotFound"
+        expected_properties:
+          error: "PerturbationNotFound"
+          perturbation: "UNKNOWN_GENE_XYZ999"
+          matrix_type: "xpr"
+          query_type: "forward"
+      - variant: unknown_cell_line
+        input:
+          perturbation: "EGFR"
+          cell_line: "UNKNOWN_CELL_LINE"
+        expected_error: "ContextNotFound"
+        expected_properties:
+          error: "ContextNotFound"
+          cell_line: "UNKNOWN_CELL_LINE"
+          matrix_type: "xpr"
+          query_type: "forward"
+      - variant: no_matrix_loaded
+        precondition: "PxFquery initialized without a matrix"
+        expected_error: "NoMatrixLoaded"
+
+  - id: DEMO-002
+    type: reverse
+    name: apoptosis_activation_MYC_suppression_A549
+    description: >
+      Find candidate perturbations that activate HALLMARK_APOPTOSIS and suppress
+      HALLMARK_MYC_TARGETS_V1 in A549 lung adenocarcinoma cells. This exact reverse
+      case was partially validated in the T-013 MVP run-through (CAP-06 partial);
+      candidates ranked with cosine similarity. Top similarity values should be finite.
+    traceability:
+      - "T-007/A-002: reverse query implemented in query/reverse.py; one reverse example in Act-1 report."
+      - "T-013/A-007: reverse_apoptosis_myc_A549_xpr.json confirmed found=true with ranked candidates."
+      - "T-013/A-005 (CAP-06): status partial; numerical warning observed, but top similarity values were finite."
+    input:
+      api_call: |
+        result = query.func2pert(
+            activate=["HALLMARK_APOPTOSIS"],
+            suppress=["HALLMARK_MYC_TARGETS_V1"],
+            cell_line="A549",
+            matrix_type="xpr",
+            top_n=10
+        )
+      cli_command: |
+        pxfquery reverse \
+            --activate HALLMARK_APOPTOSIS \
+            --suppress HALLMARK_MYC_TARGETS_V1 \
+            --cell-line A549 \
+            --matrix /path/to/functional_xpr_matrix.h5ad \
+            --matrix-type xpr \
+            --top-n 10
+    precondition:
+      - "functional xpr h5ad matrix is accessible as a valid AnnData object"
+      - "matrix.var_names contains 'A549', 'HALLMARK_APOPTOSIS', 'HALLMARK_MYC_TARGETS_V1'"
+      - "matrix has at least 10 perturbation rows"
+    expected_output:
+      schema: "reverse_result"
+      semantic_requirements:
+        - "top-level 'found' is true"
+        - "'activate' equals ['HALLMARK_APOPTOSIS']"
+        - "'suppress' equals ['HALLMARK_MYC_TARGETS_V1']"
+        - "'cell_line' equals 'A549'"
+        - "'candidate_columns' lists at least ['cmap_name', 'cell_iname', 'similarity', 'driving_terms']"
+        - "'top_candidates' is a list with length >= 1 and <= top_n"
+        - "each candidate has at least: cmap_name (string), similarity (number in [-1,1])"
+        - "similarity values are finite (not NaN, not inf)"
+        - "candidates are sorted by similarity descending"
+        - "'warnings' may contain numerical warning strings; this does not cause failure"
+      shape_example:
+        found: true
+        activate: ["HALLMARK_APOPTOSIS"]
+        suppress: ["HALLMARK_MYC_TARGETS_V1"]
+        cell_line: "A549"
+        candidate_columns: ["cmap_name", "cell_iname", "similarity", "driving_terms"]
+        top_candidates:
+          - cmap_name: "THTPA"
+            cell_iname: "A549"
+            similarity: 0.443
+            driving_terms: "HALLMARK_MYC_TARGETS_V1, HALLMARK_APOPTOSIS"
+          - cmap_name: "SCD"
+            cell_iname: "A549"
+            similarity: 0.428
+            driving_terms: "HALLMARK_MYC_TARGETS_V1, HALLMARK_APOPTOSIS"
+        warnings: []
+        note: ""
+    pass_criteria:
+      - assertion: "found == true"
+      - assertion: "len(top_candidates) >= 1 and <= top_n"
+      - assertion: "all(similarity) in top_candidates are finite (isFinite)"
+      - assertion: "top_candidates sorted by similarity descending"
+      - assertion: "response is valid JSON matching reverse_result schema"
+    fail_criteria:
+      - "found == false (no candidates)"
+      - "top_candidates is empty"
+      - "any similarity is NaN or inf"
+      - "result is not valid JSON"
+      - "uncaught exception or traceback instead of error object"
+      - "returned object does not conform to reverse_result schema"
+    no_hit_variants:
+      - variant: unknown_program
+        input:
+          activate: ["NONEXISTENT_PROGRAM_XXX"]
+          suppress: []
+          cell_line: "A549"
+        expected_error: "ProgramNotFound"
+        expected_properties:
+          error: "ProgramNotFound"
+          unknown_activate: ["NONEXISTENT_PROGRAM_XXX"]
+          unknown_suppress: []
+          query_type: "reverse"
+      - variant: unknown_cell_line
+        input:
+          activate: ["HALLMARK_APOPTOSIS"]
+          suppress: []
+          cell_line: "UNKNOWN_CELL_LINE"
+        expected_error: "ContextNotFound"
+        expected_properties:
+          error: "ContextNotFound"
+          cell_line: "UNKNOWN_CELL_LINE"
+          matrix_type: "xpr"
+          query_type: "reverse"
+      - variant: no_matrix_loaded
+        precondition: "PxFquery initialized without a matrix"
+        expected_error: "NoMatrixLoaded"
+      - variant: low_confidence
+        input:
+          activate: ["NON_DIFFERENTIALLY_SCORED_PROGRAM"]
+          suppress: []
+          cell_line: "A549"
+        description: "Program exists in matrix but all candidate similarity scores are near zero."
+        expected_properties:
+          error: "LowConfidenceResult"
+          query_type: "reverse"
+          warnings: []
+        validation_requirement: "M1 implementation MUST define a low-confidence similarity threshold (e.g. max(|s|) < 0.05) and classify such results as LowConfidenceResult."

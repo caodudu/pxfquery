@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>T-065 结果报告</title>
+  <style>
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.68; margin: 32px auto; max-width: 1080px; color: #202124; }
+h1, h2 { color: #12355b; }
+section { margin: 22px 0; }
+table { border-collapse: collapse; width: 100%; margin: 14px 0; }
+th, td { border: 1px solid #d0d7de; padding: 8px 10px; vertical-align: top; }
+th { background: #f2f5f8; }
+code { background: #f6f8fa; padding: 2px 4px; border-radius: 4px; }
+.note { background: #f8fafc; border-left: 4px solid #4776a8; padding: 12px 14px; }
+.warn { background: #fff8e6; border-left: 4px solid #d29922; padding: 12px 14px; }
+</style>
+</head>
+<body>
+
+<h1>T-065 M1 vs Delivery Anchor Review 结果报告</h1>
+<section><h2>一句话结论</h2><p class="note">M1 应被理解为 deterministic kernel/substrate，而不是完整 PxFquery algorithm package milestone；下一步应先做 M2 current-resource evidence-routing package，再做 M3 resolver/LLM user-facing milestone。</p></section>
+<section><h2>项目背景</h2><p>M1 完成后，项目需要判断它是否已经可以作为完整算法包基础。这个判断不能只看“有没有包、能不能跑 demo”，因为 T-062/T-063/T-064 已经把项目真实交付范围定义为 package capability、resolver/LLM capability 和 evidence-routing capability 的组合。T-065 用这些锚点回看 M1，给出可追踪的能力状态。</p></section>
+<section><h2>核心结果</h2><p>核心结果是 M1 被分类为 <strong>deterministic kernel/substrate</strong>。它部分支持 forward/reverse deterministic query、基础 context handling 和窄 no-hit behavior，但 resolver entry、LLM-assisted parsing、proxy routing、ambiguous/context-missing/transfer routes、route-aware metadata 和 standard resource compatibility 都没有充分证据。报告把每项能力标成 partial、downgraded、deferred-not-approved 或 evidence-insufficient，避免后续把缺口误读为完成。</p></section>
+<section><h2>项目价值</h2><p>这个 review 的价值是给项目止损和定向。它承认 M1 的真实贡献：建立了可复用的确定性内核和包化底座；同时阻止项目把 M1 过度包装成完整算法包。这样后续规划可以更诚实：M2 应补当前标准资源和 evidence routing，M3 再补 resolver/LLM 用户入口，而不是在 M1 基础上直接声称完整交付。</p></section>
+<section><h2>交付物导读</h2><table><tr><th>文件</th><th>用途</th></tr><tr><td><code>m1_vs_delivery_anchor_gap_review_v20260625.yaml</code></td><td>机器可读总评、能力状态和 downgrade flags。</td></tr><tr><td><code>m1_vs_delivery_anchor_capability_matrix_v20260625.csv</code></td><td>逐项查看 M1 对每个 anchor capability 的证据状态。</td></tr><tr><td><code>m1_vs_delivery_anchor_review_report_v20260625.md</code></td><td>人类阅读的完整中文评审逻辑。</td></tr><tr><td><code>m1_next_milestone_boundary_recommendations_v20260625.md</code></td><td>后续 M2/M3 边界和任务拆分建议。</td></tr></table></section>
+<section><h2>后续使用方式</h2><p>未来任务配置时，如果要引用 M1，应把它描述为 deterministic substrate，而不是 full algorithm package。M2 应聚焦 current-resource evidence routing 和标准资源兼容；M3 应聚焦 resolver/LLM user-facing behavior。任何声称 M1 已经覆盖 proxy/no-hit/transfer/LLM 的任务，都需要重新对照 T-065 的 capability matrix。</p></section>
+<section><h2>边界与风险</h2><p>T-065 没有重新运行 M1，也没有修代码或补 benchmark。它只审查已登记证据。若后续有新验证、修复或补实现，必须通过新的 task 产出新证据，再更新对 milestone 的判断。</p></section>
+
+</body>
+</html>

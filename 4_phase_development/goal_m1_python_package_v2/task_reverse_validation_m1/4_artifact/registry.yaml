@@ -1,0 +1,63 @@
+artifacts:
+  - id: D-001
+    name: reverse_validation_report
+    type: json_evidence
+    path: 2_persist/reverse_validation_report_v20260624_055812.json
+    generated: "2026-06-24"
+    task_id: T-051
+    checksum: null
+    description: Structured validation report with 42 pass/fail checks, explicit PASS verdict
+
+  - id: D-002
+    name: reverse_validation_comparison_csv
+    type: table
+    path: 5_table/reverse_validation_comparison_v20260624_055812.csv
+    generated: "2026-06-24"
+    task_id: T-051
+    checksum: null
+    description: Comparison table of all 42 validation checks with pass/fail per row
+
+  - id: D-003
+    name: reverse_validation_html_report
+    type: html_report
+    path: 3_document/validation_report_v20260624_055812.html
+    generated: "2026-06-24"
+    task_id: T-051
+    checksum: null
+    description: Rendered HTML summary of all validation checks, package provenance, verdict
+
+  - id: D-004
+    name: validation_smoke_log
+    type: log
+    path: ../3_execution/validation_smoke_log_v20260624_055812.json
+    generated: "2026-06-24"
+    task_id: T-051
+    checksum: null
+    description: Smoke log with stdout/stderr/exit codes/elapsed times for each step
+
+  - id: D-005
+    name: step3_positive_demo_output
+    type: log
+    path: ../3_execution/step3_positive_demo_output.json
+    generated: "2026-06-24"
+    task_id: T-051
+    checksum: null
+    description: Raw positive demo output including elapsed time and full result JSON
+
+  - id: D-006
+    name: step4_nohit_output
+    type: log
+    path: ../3_execution/step4_nohit_output.json
+    generated: "2026-06-24"
+    task_id: T-051
+    checksum: null
+    description: Raw no-hit/error case output for all 5 error conditions
+
+  - id: D-007
+    name: validation_script
+    type: code
+    path: ../3_execution/run_validation.py
+    generated: "2026-06-24"
+    task_id: T-051
+    checksum: null
+    description: Automated validation script executing all 8 protocol steps

@@ -1,0 +1,278 @@
+task_id: T-063
+artifact_id: T063-A-001
+name: pxfquery_llm_resolver_capability_anchor
+version: v20260625
+status: authoritative_task_level_anchor
+scope:
+  project: P-012
+  refines: T-062 pxfquery_algorithm_package_delivery_anchor
+  milestone_focus: M3-level user-facing resolver delivery
+  purpose: >
+    Define the required LLM/resolver behavior, routing semantics, fallback
+    rules, demo cases, and acceptance evidence for future PxFquery milestones
+    that include user-facing resolver capability.
+  not_current_evidence_of:
+    - resolver_code_working_in_current_workspace
+    - llm_service_tested_for_resolver_parse_or_summary
+    - missing_indexes_repaired
+    - package_runtime_tests_passing
+sources:
+  - asset_id: A-001
+    source_task: T-007
+    role: development source authority and resolver-related asset map
+  - asset_id: A-002
+    source_task: T-007
+    role: intended product scope and implemented/risk-bearing resolver interpretation
+  - asset_id: A-003
+    source_task: T-007
+    role: resolver, LLM, function-index, validation, and claim risks
+  - asset_id: A-004
+    source_task: T-013
+    role: MVP behavior boundary and gated resolver/LLM layer interpretation
+  - asset_id: A-005
+    source_task: T-013
+    role: capability status evidence, including resolver blocked and not-found failed
+  - asset_id: A-006
+    source_task: T-013
+    role: missing resolver, proxy, not-found, and reverse-query robustness capabilities
+  - asset_id: A-007
+    source_task: T-061
+    role: bounded source digest for resolver, index, LLM, and evidence-level behavior
+  - asset_id: A-008
+    source_task: T-061
+    role: downstream reference boundaries and reuse conditions
+  - asset_id: A-009
+    source_task: T-062
+    role: package-level capability anchor
+  - asset_id: A-010
+    source_task: T-062
+    role: package-level capability matrix
+  - asset_id: A-011
+    source_task: T-062
+    role: downgrade and fallback rules
+  - asset_id: A-012
+    source_task: T-062
+    role: milestone review rubric
+  - asset_id: A-013
+    source_task: T-062
+    role: classification vocabulary
+ai_service_requirement:
+  required_when: milestone_claims_llm_assisted_resolver_behavior
+  configured_route: CyHex-registered AI address
+  desired_model_route: deepseek-v4-pro
+  route_change_rule: >
+    Any replacement model, provider, or direct non-CyHex route must be explicitly
+    approved by a later task or user decision before it can satisfy LLM resolver
+    acceptance.
+  minimum_future_evidence:
+    - backend_route_configuration_showing_CyHex_registered_AI_address
+    - requested_model_or_approved_successor_route
+    - resolver_parse_or_summary_call_evidence
+    - structured_output_or_user_summary_result
+    - latency_failure_and_fallback_metadata
+  disallowed_substitutes:
+    - endpoint_connectivity_only
+    - static_example_prompt_without_resolver_dispatch
+    - deterministic_parser_counted_as_LLM_delivery_without_user_approved_fallback_only_scope
+    - LLM_generated_biological_claim_without_matrix_or_index_evidence
+resolver_delivery_definition:
+  m3_primary_paths:
+    - natural_language_entry_to_parse_to_dispatch_to_query_result
+    - semi_structured_entry_to_normalization_to_dispatch_to_query_result
+    - exact_first_evidence_routing
+    - proxy_routing_after_exact_miss_or_low_coverage_when_allowed
+    - controlled_not_found_or_no_hit_when evidence is absent or confidence is too low
+    - LLM_assisted_parse_normalize_or_summary_through_configured_route_when_claimed
+  minimum_user_visible_behavior:
+    - accepts_forward_query_with_biological_context_and_perturbation
+    - accepts_reverse_query_with_biological_context_and_desired_function
+    - reports parsed intent and normalized entities
+    - asks_for_or_records_ambiguity_when required fields are missing or conflicting
+    - returns ranked functional programs or ranked perturbation candidates when evidence is found
+    - returns no-hit or unsupported status without false-positive substitution
+    - exposes evidence metadata alongside any natural-language summary
+  semi_structured_supported_fields:
+    - mode
+    - perturbation
+    - perturbation_type
+    - biological_context
+    - function_target
+    - desired_direction
+    - data_source_or_modality
+    - proxy_allowed
+    - summary_requested
+  required_structured_parse_fields:
+    - query_id
+    - raw_input
+    - entry_type
+    - intent
+    - mode
+    - perturbation_raw
+    - perturbation_normalized
+    - perturbation_type
+    - biological_context_raw
+    - biological_context_normalized
+    - function_target_raw
+    - function_target_normalized
+    - desired_direction
+    - data_source_or_modality
+    - missing_required_fields
+    - ambiguity_flags
+    - parse_confidence
+    - parse_method
+    - ai_route_used
+    - fallback_used
+  required_result_metadata:
+    - query_id
+    - route_status
+    - evidence_level
+    - exact_match_attempted
+    - exact_match_status
+    - proxy_attempted
+    - proxy_basis
+    - proxy_similarity_or_hierarchy
+    - not_found_reason
+    - source_index_or_matrix_reference
+    - normalized_entity_ids_or_labels
+    - warnings
+    - limitations
+    - fallback_trigger
+    - llm_model_route
+    - deterministic_components_used
+    - timestamp_or_run_id
+routing_semantics:
+  exact:
+    definition: >
+      Exact perturbation, function, and biological-context matches must be tried
+      before proxy routes and labeled as exact in result metadata.
+    applies_to:
+      - forward
+      - reverse
+    required_metadata:
+      - exact_match_status
+      - source_index_or_matrix_reference
+      - matched_entity_labels
+      - evidence_level: EXACT
+    llm_allowed_roles:
+      - parse_user_text
+      - normalize_candidate_names
+      - summarize_exact_evidence
+    llm_forbidden_roles:
+      - fabricate_matrix_rows
+      - convert_uncertain_alias_to_found_without_threshold
+      - hide_missing_context_or_function_mapping
+  proxy:
+    definition: >
+      Proxy routing may be used only after exact miss, low coverage, or explicit
+      proxy request, and must report the source and limitation of the proxy basis.
+    allowed_proxy_bases:
+      - cell_line_hierarchy_or_neighbors
+      - disease_lineage_or_subtype_context
+      - gene_neighbors
+      - drug_neighbors
+      - function_aliases_or_approved_function_index_mapping
+    evidence_levels:
+      - PROXY_PERT
+      - PROXY_CELL
+      - PROXY_BOTH
+      - approved_function_alias_proxy
+    required_metadata:
+      - exact_miss_or_low_coverage_trigger
+      - proxy_candidate_source
+      - proxy_similarity_or_hierarchy_basis
+      - proxy_confidence
+      - proxy_limitations
+    disallowed:
+      - nearest_string_match_reported_as_found_without_threshold
+      - proxy_returned_as_exact
+      - LLM_suggested_proxy_without_index_or_metadata_basis
+  not_found:
+    definition: >
+      Unsupported or low-confidence inputs must produce controlled no-hit or
+      not-found states rather than crashes or invented substitutions.
+    applies_to:
+      - unsupported_perturbation
+      - unsupported_cell_line_or_context
+      - unsupported_function
+      - missing_index
+      - low_confidence_ambiguity
+      - proxy_route_below_threshold
+    required_metadata:
+      - route_status: NOT_FOUND
+      - not_found_reason
+      - attempted_exact_and_proxy_routes
+      - no_false_positive_substitution_confirmation
+    allowed_user_output:
+      - concise_no_hit_summary
+      - clearly_labeled_suggestions_below_acceptance_threshold
+fallback_semantics:
+  principle: >
+    Fallback is runtime behavior and review evidence. It is not proof that the
+    primary LLM, resolver, or proxy path was delivered unless the milestone
+    explicitly accepts fallback-only scope with user approval.
+  fallback_cases:
+    - trigger: llm_service_unavailable
+      expected_behavior: use deterministic parser or request structured fields
+      classification_without_primary_path_evidence: partial_or_blocked
+    - trigger: llm_parse_failure
+      expected_behavior: return parse failure with missing/ambiguous fields and no query dispatch unless safe
+      classification_without_primary_path_evidence: partial_or_failed_if_false_positive
+    - trigger: proxy_failure
+      expected_behavior: return exact-only no-hit or evidence-insufficient status with proxy failure metadata
+      classification_without_primary_path_evidence: blocked_when_proxy_required
+    - trigger: missing_indexes
+      expected_behavior: controlled blocked status naming missing index assets
+      classification_without_primary_path_evidence: blocked
+    - trigger: unsupported_cell_line
+      expected_behavior: try approved context proxy if allowed, otherwise not-found
+      classification_without_primary_path_evidence: not_delivered_for_context_proxy
+    - trigger: unsupported_perturbation
+      expected_behavior: no-hit unless approved synonym or neighbor route crosses threshold
+      classification_without_primary_path_evidence: failed_if_false_positive
+    - trigger: unsupported_function
+      expected_behavior: no-hit or blocked if function index is required but unavailable
+      classification_without_primary_path_evidence: blocked_or_not_found
+    - trigger: low_confidence_match
+      expected_behavior: expose ambiguity and do not dispatch as found without user confirmation or threshold pass
+      classification_without_primary_path_evidence: partial_or_failed_if_silent
+downgrade_rules:
+  inherits_from: T-062 pxfquery_algorithm_downgrade_rules_v20260625
+  explicit_user_approval_required_for:
+    - replacing_resolver_entry_with_direct_function_calls
+    - replacing_LLM_required_behavior_with_deterministic_parser_only
+    - accepting_endpoint_connectivity_as_full_LLM_resolver_delivery
+    - replacing_proxy_with_exact_only_lookup_when_proxy_is_required
+    - accepting_fallback_only_as_primary_delivery
+    - hiding_not_found_or_low_confidence_cases
+    - deferring_evidence_metadata
+  labels_for_unapproved_scope_reduction:
+    - downgraded
+    - deferred-not-approved
+acceptance_status_vocabulary:
+  - delivered
+  - partial
+  - blocked
+  - failed
+  - downgraded
+  - deferred-user-approved
+  - deferred-not-approved
+  - out-of-scope
+  - evidence-insufficient
+future_m3_required_demo_case_types:
+  - exact_forward_query
+  - exact_reverse_query
+  - proxy_forward_query
+  - proxy_reverse_query
+  - not_found_query
+  - ambiguous_natural_language_query
+  - semi_structured_query
+  - llm_service_unavailable_fallback
+  - evidence_metadata_inspection
+future_m3_review_minimum:
+  - all_in_scope_capabilities_have_classification_label
+  - all_delivered_labels_have_current_run_or_accepted_artifact_evidence
+  - every_result_exposes_machine_readable_metadata
+  - false_positive_negative_control_is_absent
+  - LLM_route_and_model_are_recorded_when_LLM_is_claimed
+  - every_fallback_records_trigger_and_limit
+  - any deferral_or_downgrade_has_explicit_user_approval_reference
