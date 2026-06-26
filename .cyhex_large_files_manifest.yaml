@@ -2652,10 +2652,12 @@ excluded_from_git:
 - path: 4_phase_development/goal_ms3_release_quality/task_ms3_functional_test_and_release_iteration/5_report/cli_sessions/execute/20260627_044154_opencode_cli_8dcbd62e91c1/stderr.log
   size_mb: 0.0
 - path: 4_phase_development/goal_ms3_release_quality/task_ms3_functional_test_and_release_iteration/5_report/cli_sessions/execute/20260627_044154_opencode_cli_8dcbd62e91c1/stdout.log
-  size_mb: 0.0
+  size_mb: 0.1
 - path: 4_phase_development/goal_ms3_release_quality/task_ms3_user_api_cli_surface/.DS_Store
   size_mb: 0.01
 - path: 4_phase_development/goal_ms3_release_quality/task_ms3_user_api_cli_surface/5_report/.DS_Store
+  size_mb: 0.01
+- path: 4_phase_development/goal_ms3_release_quality/task_ms3_user_api_cli_surface/5_report/cli_sessions/.DS_Store
   size_mb: 0.01
 - path: 4_phase_development/goal_ms3_release_quality/task_ms3_user_api_cli_surface/5_report/cli_sessions/check/20260626_213957_opencode_cli_283a913e311b/stderr.log
   size_mb: 0.0
@@ -2669,6 +2671,8 @@ excluded_from_git:
   size_mb: 0.0
 - path: 4_phase_development/goal_ms3_release_quality/task_ms3_user_api_cli_surface/5_report/cli_sessions/deliver/20260627_041241_opencode_cli_53601aef32f6/stdout.log
   size_mb: 0.0
+- path: 4_phase_development/goal_ms3_release_quality/task_ms3_user_api_cli_surface/5_report/cli_sessions/execute/.DS_Store
+  size_mb: 0.01
 - path: 4_phase_development/goal_ms3_release_quality/task_ms3_user_api_cli_surface/5_report/cli_sessions/execute/20260626_214531_opencode_cli_308f973bcd1c/stderr.log
   size_mb: 0.0
 - path: 4_phase_development/goal_ms3_release_quality/task_ms3_user_api_cli_surface/5_report/cli_sessions/execute/20260626_214531_opencode_cli_308f973bcd1c/stdout.log
