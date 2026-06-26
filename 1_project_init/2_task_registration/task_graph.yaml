@@ -1375,6 +1375,22 @@ edges:
   to: goal_m6_ms_anchors_and_stress_assets/task_ms4_usable_package_anchor
   dep_id: T-058
   gate: must
+- from: goal_legacy_stress_test_asset_digestion/task_01_legacy_stress_test_source_map
+  to: goal_m6_ms_anchors_and_stress_assets/task_ms4_stress_source_inventory
+  dep_id: T-055
+  gate: must
+- from: goal_legacy_stress_test_asset_digestion/task_02_stress_query_scenario_inventory
+  to: goal_m6_ms_anchors_and_stress_assets/task_ms4_stress_source_inventory
+  dep_id: T-056
+  gate: must
+- from: goal_legacy_stress_test_asset_digestion/task_03_legacy_stress_logic_reuse_boundary
+  to: goal_m6_ms_anchors_and_stress_assets/task_ms4_stress_source_inventory
+  dep_id: T-057
+  gate: must
+- from: goal_legacy_stress_test_asset_digestion/task_04_stress_test_development_handoff_pack
+  to: goal_m6_ms_anchors_and_stress_assets/task_ms4_stress_source_inventory
+  dep_id: T-058
+  gate: must
 labels:
 - id: label_mqpofuno
   phase: digestion
