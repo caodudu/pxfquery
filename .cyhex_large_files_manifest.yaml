@@ -996,6 +996,10 @@ excluded_from_git:
   size_mb: 0.0
 - path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms4_forward_nl_stress_set/5_report/cli_sessions/config/20260627_062849_opencode_cli_c0dba2121b5a/stdout.log
   size_mb: 0.03
+- path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms4_forward_nl_stress_set/5_report/cli_sessions/deliver/20260627_070549_opencode_cli_29110267d58c/stderr.log
+  size_mb: 0.0
+- path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms4_forward_nl_stress_set/5_report/cli_sessions/deliver/20260627_070549_opencode_cli_29110267d58c/stdout.log
+  size_mb: 0.05
 - path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms4_forward_nl_stress_set/5_report/cli_sessions/execute/20260627_063903_opencode_cli_fb34db5b32c1/stderr.log
   size_mb: 0.0
 - path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms4_forward_nl_stress_set/5_report/cli_sessions/execute/20260627_063903_opencode_cli_fb34db5b32c1/stdout.log
@@ -3189,17 +3193,29 @@ excluded_from_git:
   size_mb: 0.19
 - path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_algorithm_method_story/1_asset/ms6_evidence_claim_mapping.csv
   size_mb: 0.0
+- path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_algorithm_method_story/5_report/cli_sessions/check/20260627_070649_opencode_cli_b60d8415eaf4/stderr.log
+  size_mb: 0.0
+- path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_algorithm_method_story/5_report/cli_sessions/check/20260627_070649_opencode_cli_b60d8415eaf4/stdout.log
+  size_mb: 0.0
 - path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_algorithm_method_story/5_report/cli_sessions/config/20260627_065539_opencode_cli_9e8a893c7eab/stderr.log
   size_mb: 0.0
 - path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_algorithm_method_story/5_report/cli_sessions/config/20260627_065539_opencode_cli_9e8a893c7eab/stdout.log
   size_mb: 0.04
 - path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_internal_data_figure2_assets/1_asset/ms6_evidence_claim_mapping.csv
   size_mb: 0.0
+- path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_internal_data_figure2_assets/5_report/cli_sessions/check/20260627_070659_opencode_cli_fb0ed8d8352a/stderr.log
+  size_mb: 0.0
+- path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_internal_data_figure2_assets/5_report/cli_sessions/check/20260627_070659_opencode_cli_fb0ed8d8352a/stdout.log
+  size_mb: 0.0
 - path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_internal_data_figure2_assets/5_report/cli_sessions/config/20260627_065523_opencode_cli_395447bf406a/stderr.log
   size_mb: 0.0
 - path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_internal_data_figure2_assets/5_report/cli_sessions/config/20260627_065523_opencode_cli_395447bf406a/stdout.log
   size_mb: 0.1
 - path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_package_capability_narrative/1_asset/ms6_evidence_claim_mapping.csv
+  size_mb: 0.0
+- path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_package_capability_narrative/5_report/cli_sessions/check/20260627_070654_opencode_cli_b49e7b862596/stderr.log
+  size_mb: 0.0
+- path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_package_capability_narrative/5_report/cli_sessions/check/20260627_070654_opencode_cli_b49e7b862596/stdout.log
   size_mb: 0.0
 - path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_package_capability_narrative/5_report/cli_sessions/config/20260627_065542_opencode_cli_09de46ca0f54/stderr.log
   size_mb: 0.0
