@@ -1355,6 +1355,26 @@ edges:
   to: goal_m6_ms_anchors_and_stress_assets/task_ms3_quality_anchor
   dep_id: T-073
   gate: must
+- from: goal_project_delivery_anchor/task_algorithm_package_delivery_anchor
+  to: goal_m6_ms_anchors_and_stress_assets/task_ms4_usable_package_anchor
+  dep_id: T-062
+  gate: must
+- from: goal_project_delivery_anchor/task_llm_resolver_capability_anchor
+  to: goal_m6_ms_anchors_and_stress_assets/task_ms4_usable_package_anchor
+  dep_id: T-063
+  gate: must
+- from: goal_project_delivery_anchor/task_evidence_routing_anchor
+  to: goal_m6_ms_anchors_and_stress_assets/task_ms4_usable_package_anchor
+  dep_id: T-064
+  gate: must
+- from: goal_project_delivery_anchor/task_m1_vs_delivery_anchor_review
+  to: goal_m6_ms_anchors_and_stress_assets/task_ms4_usable_package_anchor
+  dep_id: T-065
+  gate: must
+- from: goal_legacy_stress_test_asset_digestion/task_04_stress_test_development_handoff_pack
+  to: goal_m6_ms_anchors_and_stress_assets/task_ms4_usable_package_anchor
+  dep_id: T-058
+  gate: must
 labels:
 - id: label_mqpofuno
   phase: digestion

@@ -1430,3 +1430,12 @@ tasks:
   executor: hybrid
   created: '2026-06-27'
   completed: null
+- id: T-082
+  name: ms4_stress_source_inventory
+  phase: digestion
+  goal: goal_m6_ms_anchors_and_stress_assets
+  path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms4_stress_source_inventory
+  status: pending
+  executor: hybrid
+  created: '2026-06-27'
+  completed: null
