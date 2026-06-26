@@ -1524,10 +1524,10 @@ tasks:
   phase: translation
   goal: goal_ms6_manuscript_foundation
   path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_package_capability_narrative
-  status: active
+  status: done
   executor: hybrid
   created: '2026-06-27'
-  completed: null
+  completed: '2026-06-27'
 - id: T-092
   name: ms6_algorithm_method_story
   phase: translation
@@ -1542,10 +1542,10 @@ tasks:
   phase: translation
   goal: goal_ms6_manuscript_foundation
   path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_internal_data_figure2_assets
-  status: active
+  status: done
   executor: hybrid
   created: '2026-06-27'
-  completed: null
+  completed: '2026-06-27'
 - id: T-094
   name: ms4_route_execution_matrix
   phase: development
