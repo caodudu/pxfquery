@@ -1466,3 +1466,12 @@ tasks:
   executor: hybrid
   created: '2026-06-27'
   completed: null
+- id: T-086
+  name: ms4_forward_nl_stress_set
+  phase: digestion
+  goal: goal_m6_ms_anchors_and_stress_assets
+  path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms4_forward_nl_stress_set
+  status: pending
+  executor: hybrid
+  created: '2026-06-27'
+  completed: null

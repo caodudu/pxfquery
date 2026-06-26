@@ -1423,6 +1423,14 @@ edges:
   to: goal_m6_ms_anchors_and_stress_assets/task_ms6_manuscript_figure_anchor
   dep_id: T-062
   gate: must
+- from: goal_m6_ms_anchors_and_stress_assets/task_ms4_usable_package_anchor
+  to: goal_m6_ms_anchors_and_stress_assets/task_ms4_ground_truth_scenario_builder
+  dep_id: T-081
+  gate: must
+- from: goal_m6_ms_anchors_and_stress_assets/task_ms4_stress_source_inventory
+  to: goal_m6_ms_anchors_and_stress_assets/task_ms4_ground_truth_scenario_builder
+  dep_id: T-082
+  gate: must
 labels:
 - id: label_mqpofuno
   phase: digestion
