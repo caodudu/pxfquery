@@ -2873,10 +2873,22 @@ excluded_from_git:
   size_mb: 0.0
 - path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms3_quality_digest_and_asset_map/5_report/cli_sessions/execute/20260627_054826_opencode_cli_1a66859701ae/stdout.log
   size_mb: 0.4
+- path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_route_execution_matrix/1_asset/ms4_forward_nl_stress_prompts_csv.csv
+  size_mb: 0.01
+- path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_route_execution_matrix/1_asset/ms4_ground_truth_scenario_index.csv
+  size_mb: 0.01
+- path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_route_execution_matrix/1_asset/ms4_reverse_nl_stress_set_csv.csv
+  size_mb: 0.01
+- path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_route_execution_matrix/1_asset/ms4_stress_source_inventory_index.csv
+  size_mb: 0.01
+- path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_route_execution_matrix/5_report/cli_sessions/check/20260627_072537_opencode_cli_dce87eae553d/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_route_execution_matrix/5_report/cli_sessions/check/20260627_072537_opencode_cli_dce87eae553d/stdout.log
+  size_mb: 0.0
 - path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_route_execution_matrix/5_report/cli_sessions/config/20260627_071019_opencode_cli_28493099b5ff/stderr.log
   size_mb: 0.0
 - path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_route_execution_matrix/5_report/cli_sessions/config/20260627_071019_opencode_cli_28493099b5ff/stdout.log
-  size_mb: 0.0
+  size_mb: 0.15
 - path: 4_phase_development/goal_ms3_release_quality/.DS_Store
   size_mb: 0.01
 - path: 4_phase_development/goal_ms3_release_quality/task_ms3_functional_test_and_release_iteration/5_report/cli_sessions/check/20260627_043205_opencode_cli_541abb10f6f2/stderr.log
@@ -3208,7 +3220,7 @@ excluded_from_git:
 - path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_algorithm_method_story/5_report/cli_sessions/execute/20260627_070805_opencode_cli_1d4d9c32bc68/stderr.log
   size_mb: 0.0
 - path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_algorithm_method_story/5_report/cli_sessions/execute/20260627_070805_opencode_cli_1d4d9c32bc68/stdout.log
-  size_mb: 0.07
+  size_mb: 0.15
 - path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_internal_data_figure2_assets/1_asset/ms6_evidence_claim_mapping.csv
   size_mb: 0.0
 - path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_internal_data_figure2_assets/4_artifact/5_table/ms6_fig2_resource_coverage_inventory_v20260627.csv
@@ -3221,10 +3233,14 @@ excluded_from_git:
   size_mb: 0.0
 - path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_internal_data_figure2_assets/5_report/cli_sessions/config/20260627_065523_opencode_cli_395447bf406a/stdout.log
   size_mb: 0.1
+- path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_internal_data_figure2_assets/5_report/cli_sessions/deliver/20260627_072242_opencode_cli_88b778d85272/stderr.log
+  size_mb: 0.0
+- path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_internal_data_figure2_assets/5_report/cli_sessions/deliver/20260627_072242_opencode_cli_88b778d85272/stdout.log
+  size_mb: 0.13
 - path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_internal_data_figure2_assets/5_report/cli_sessions/execute/20260627_070835_opencode_cli_9f923cdd11d5/stderr.log
   size_mb: 0.0
 - path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_internal_data_figure2_assets/5_report/cli_sessions/execute/20260627_070835_opencode_cli_9f923cdd11d5/stdout.log
-  size_mb: 0.06
+  size_mb: 0.11
 - path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_package_capability_narrative/1_asset/ms6_evidence_claim_mapping.csv
   size_mb: 0.0
 - path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_package_capability_narrative/5_report/cli_sessions/check/20260627_070654_opencode_cli_b49e7b862596/stderr.log
@@ -3235,10 +3251,14 @@ excluded_from_git:
   size_mb: 0.0
 - path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_package_capability_narrative/5_report/cli_sessions/config/20260627_065542_opencode_cli_09de46ca0f54/stdout.log
   size_mb: 0.04
+- path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_package_capability_narrative/5_report/cli_sessions/deliver/20260627_072246_opencode_cli_13e743b08aa1/stderr.log
+  size_mb: 0.0
+- path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_package_capability_narrative/5_report/cli_sessions/deliver/20260627_072246_opencode_cli_13e743b08aa1/stdout.log
+  size_mb: 0.11
 - path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_package_capability_narrative/5_report/cli_sessions/execute/20260627_070809_opencode_cli_04bf05ef9cc1/stderr.log
   size_mb: 0.0
 - path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_package_capability_narrative/5_report/cli_sessions/execute/20260627_070809_opencode_cli_04bf05ef9cc1/stdout.log
-  size_mb: 0.01
+  size_mb: 0.12
 - path: 5_phase_translation/goal_pending_g010/task_pending_t019/5_report/cli_sessions/check/20260623_034938_opencode_cli_859768c74307/stderr.log
   size_mb: 0.0
 - path: 5_phase_translation/goal_pending_g010/task_pending_t019/5_report/cli_sessions/check/20260623_034938_opencode_cli_859768c74307/stdout.log
