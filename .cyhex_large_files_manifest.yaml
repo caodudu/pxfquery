@@ -954,26 +954,32 @@ excluded_from_git:
   size_mb: 0.0
 - path: 3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_04_stress_test_development_handoff_pack/5_report/cli_sessions/execute/20260624_075238_opencode_cli_58a5e4920205/stdout.log
   size_mb: 0.02
+- path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms3_quality_anchor/1_asset/ms3_capability_matrix.csv
+  size_mb: 0.01
+- path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms3_quality_anchor/5_report/cli_sessions/check/20260627_054507_opencode_cli_d76a35438bdb/stderr.log
+  size_mb: 0.0
+- path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms3_quality_anchor/5_report/cli_sessions/check/20260627_054507_opencode_cli_d76a35438bdb/stdout.log
+  size_mb: 0.0
 - path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms3_quality_anchor/5_report/cli_sessions/config/20260627_053708_opencode_cli_b6099ee601ba/stderr.log
   size_mb: 0.0
 - path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms3_quality_anchor/5_report/cli_sessions/config/20260627_053708_opencode_cli_b6099ee601ba/stdout.log
-  size_mb: 0.0
+  size_mb: 0.14
 - path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms4_stress_source_inventory/5_report/cli_sessions/config/20260627_053711_opencode_cli_24d6b6ceb920/stderr.log
   size_mb: 0.0
 - path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms4_stress_source_inventory/5_report/cli_sessions/config/20260627_053711_opencode_cli_24d6b6ceb920/stdout.log
-  size_mb: 0.0
+  size_mb: 0.22
 - path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms4_usable_package_anchor/5_report/cli_sessions/config/20260627_053709_opencode_cli_3c00634af0c1/stderr.log
   size_mb: 0.0
 - path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms4_usable_package_anchor/5_report/cli_sessions/config/20260627_053709_opencode_cli_3c00634af0c1/stdout.log
-  size_mb: 0.0
+  size_mb: 0.29
 - path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms5_large_stress_and_case_anchor/5_report/cli_sessions/config/20260627_053712_opencode_cli_7d500fb46e91/stderr.log
   size_mb: 0.0
 - path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms5_large_stress_and_case_anchor/5_report/cli_sessions/config/20260627_053712_opencode_cli_7d500fb46e91/stdout.log
-  size_mb: 0.0
+  size_mb: 0.16
 - path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms6_manuscript_figure_anchor/5_report/cli_sessions/config/20260627_053714_opencode_cli_952ddb302769/stderr.log
   size_mb: 0.0
 - path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms6_manuscript_figure_anchor/5_report/cli_sessions/config/20260627_053714_opencode_cli_952ddb302769/stdout.log
-  size_mb: 0.0
+  size_mb: 0.15
 - path: 3_phase_digestion/goal_magazine_research/.DS_Store
   size_mb: 0.01
 - path: 3_phase_digestion/goal_magazine_research/task_design_genes_adjustment/.DS_Store
@@ -2662,7 +2668,7 @@ excluded_from_git:
 - path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms3_quality_digest_and_asset_map/5_report/cli_sessions/config/20260627_053718_opencode_cli_c21928ac9a13/stderr.log
   size_mb: 0.0
 - path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms3_quality_digest_and_asset_map/5_report/cli_sessions/config/20260627_053718_opencode_cli_c21928ac9a13/stdout.log
-  size_mb: 0.0
+  size_mb: 0.11
 - path: 4_phase_development/goal_ms3_release_quality/.DS_Store
   size_mb: 0.01
 - path: 4_phase_development/goal_ms3_release_quality/task_ms3_functional_test_and_release_iteration/5_report/cli_sessions/check/20260627_043205_opencode_cli_541abb10f6f2/stderr.log
