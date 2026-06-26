@@ -971,7 +971,7 @@ excluded_from_git:
 - path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms3_quality_anchor/5_report/cli_sessions/execute/20260627_060141_opencode_cli_f9322f1d9d0b/stderr.log
   size_mb: 0.0
 - path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms3_quality_anchor/5_report/cli_sessions/execute/20260627_060141_opencode_cli_f9322f1d9d0b/stdout.log
-  size_mb: 0.0
+  size_mb: 0.14
 - path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms4_stress_source_inventory/1_asset/stress_logic_reuse_decision_matrix.csv
   size_mb: 0.02
 - path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms4_stress_source_inventory/1_asset/stress_query_scenario_table.csv
@@ -1043,7 +1043,7 @@ excluded_from_git:
 - path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms6_manuscript_figure_anchor/5_report/cli_sessions/deliver/20260627_060117_opencode_cli_ecc652ca33e7/stderr.log
   size_mb: 0.0
 - path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms6_manuscript_figure_anchor/5_report/cli_sessions/deliver/20260627_060117_opencode_cli_ecc652ca33e7/stdout.log
-  size_mb: 0.0
+  size_mb: 0.1
 - path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms6_manuscript_figure_anchor/5_report/cli_sessions/execute/20260627_055445_opencode_cli_d3be5cc2ac33/stderr.log
   size_mb: 0.0
 - path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms6_manuscript_figure_anchor/5_report/cli_sessions/execute/20260627_055445_opencode_cli_d3be5cc2ac33/stdout.log
@@ -2767,10 +2767,18 @@ excluded_from_git:
   size_mb: 0.0
 - path: 4_phase_development/goal_ms3_release_quality/task_ms3_functional_test_and_release_iteration/5_report/cli_sessions/execute/20260627_044154_opencode_cli_8dcbd62e91c1/stdout.log
   size_mb: 0.1
+- path: 4_phase_development/goal_ms3_release_quality/task_ms3_no_downgrade_quality_gate/1_asset/m1_vs_delivery_anchor_capability_matrix.csv
+  size_mb: 0.01
+- path: 4_phase_development/goal_ms3_release_quality/task_ms3_no_downgrade_quality_gate/1_asset/ms3_capability_matrix.csv
+  size_mb: 0.01
+- path: 4_phase_development/goal_ms3_release_quality/task_ms3_no_downgrade_quality_gate/5_report/cli_sessions/check/20260627_060425_opencode_cli_91588fcd9ebe/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_release_quality/task_ms3_no_downgrade_quality_gate/5_report/cli_sessions/check/20260627_060425_opencode_cli_91588fcd9ebe/stdout.log
+  size_mb: 0.0
 - path: 4_phase_development/goal_ms3_release_quality/task_ms3_no_downgrade_quality_gate/5_report/cli_sessions/config/20260627_060107_opencode_cli_bb173d186459/stderr.log
   size_mb: 0.0
 - path: 4_phase_development/goal_ms3_release_quality/task_ms3_no_downgrade_quality_gate/5_report/cli_sessions/config/20260627_060107_opencode_cli_bb173d186459/stdout.log
-  size_mb: 0.05
+  size_mb: 0.15
 - path: 4_phase_development/goal_ms3_release_quality/task_ms3_user_api_cli_surface/.DS_Store
   size_mb: 0.01
 - path: 4_phase_development/goal_ms3_release_quality/task_ms3_user_api_cli_surface/5_report/.DS_Store
