@@ -1501,10 +1501,13 @@ tasks:
   phase: digestion
   goal: goal_m6_ms_anchors_and_stress_assets
   path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms5_large_nl_corpus_expansion
-  status: active
+  status: done
   executor: hybrid
   created: '2026-06-27'
   completed: null
+  notes: M6 supervisor repair completed T-089 after repeated check interruptions.
+    Existing corpus expanded from 36 to 44 entries to satisfy context-missing and
+    ambiguity depth acceptance criteria.
 - id: T-090
   name: ms3_entry_to_ms4_comparison_review
   phase: development
