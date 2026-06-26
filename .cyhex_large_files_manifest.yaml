@@ -2659,6 +2659,10 @@ excluded_from_git:
   size_mb: 0.0
 - path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_safe_resource_access_contract/5_report/cli_sessions/execute/20260626_175438_opencode_cli_3df6703b6780/stdout.log
   size_mb: 0.05
+- path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms3_quality_digest_and_asset_map/5_report/cli_sessions/config/20260627_053718_opencode_cli_c21928ac9a13/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms3_quality_digest_and_asset_map/5_report/cli_sessions/config/20260627_053718_opencode_cli_c21928ac9a13/stdout.log
+  size_mb: 0.0
 - path: 4_phase_development/goal_ms3_release_quality/.DS_Store
   size_mb: 0.01
 - path: 4_phase_development/goal_ms3_release_quality/task_ms3_functional_test_and_release_iteration/5_report/cli_sessions/check/20260627_043205_opencode_cli_541abb10f6f2/stderr.log
