@@ -1402,10 +1402,10 @@ tasks:
   phase: development
   goal: goal_ms3_release_quality
   path: 4_phase_development/goal_ms3_release_quality/task_ms3_no_downgrade_quality_gate
-  status: active
+  status: done
   executor: hybrid
   created: '2026-06-26'
-  completed: null
+  completed: '2026-06-27'
   objective: Review the ms3 release candidate against the no-downgrade acceptance
     contract, T-065 M1 critique, frozen resource/demo coverage, and integrated functional
     test evidence. Classify ms3 as pass/fail/partial using controlled labels. If any
@@ -1483,10 +1483,10 @@ tasks:
   phase: digestion
   goal: goal_m6_ms_anchors_and_stress_assets
   path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms4_reverse_nl_stress_set
-  status: active
+  status: done
   executor: hybrid
   created: '2026-06-27'
-  completed: null
+  completed: '2026-06-27'
 - id: T-088
   name: ms3_quality_digest_and_asset_map
   phase: development
