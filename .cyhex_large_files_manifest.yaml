@@ -970,6 +970,10 @@ excluded_from_git:
   size_mb: 0.0
 - path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms5_large_stress_and_case_anchor/5_report/cli_sessions/config/20260627_053712_opencode_cli_7d500fb46e91/stdout.log
   size_mb: 0.0
+- path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms6_manuscript_figure_anchor/5_report/cli_sessions/config/20260627_053714_opencode_cli_952ddb302769/stderr.log
+  size_mb: 0.0
+- path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms6_manuscript_figure_anchor/5_report/cli_sessions/config/20260627_053714_opencode_cli_952ddb302769/stdout.log
+  size_mb: 0.0
 - path: 3_phase_digestion/goal_magazine_research/.DS_Store
   size_mb: 0.01
 - path: 3_phase_digestion/goal_magazine_research/task_design_genes_adjustment/.DS_Store
