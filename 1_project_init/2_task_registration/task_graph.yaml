@@ -1487,6 +1487,10 @@ edges:
   to: goal_ms3_ms4_quality_and_repair/task_ms3_entry_to_ms4_comparison_review
   dep_id: T-078
   gate: may
+- from: goal_m6_ms_anchors_and_stress_assets/task_ms6_manuscript_figure_anchor
+  to: goal_ms6_manuscript_foundation/task_ms6_package_capability_narrative
+  dep_id: T-084
+  gate: must
 labels:
 - id: label_mqpofuno
   phase: digestion

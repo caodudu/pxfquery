@@ -1523,3 +1523,12 @@ tasks:
   executor: hybrid
   created: '2026-06-27'
   completed: null
+- id: T-092
+  name: ms6_algorithm_method_story
+  phase: translation
+  goal: goal_ms6_manuscript_foundation
+  path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_algorithm_method_story
+  status: pending
+  executor: hybrid
+  created: '2026-06-27'
+  completed: null
