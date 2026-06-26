@@ -1491,6 +1491,10 @@ edges:
   to: goal_ms6_manuscript_foundation/task_ms6_package_capability_narrative
   dep_id: T-084
   gate: must
+- from: goal_m6_ms_anchors_and_stress_assets/task_ms6_manuscript_figure_anchor
+  to: goal_ms6_manuscript_foundation/task_ms6_algorithm_method_story
+  dep_id: T-084
+  gate: must
 labels:
 - id: label_mqpofuno
   phase: digestion
