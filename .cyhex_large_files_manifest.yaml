@@ -3215,6 +3215,10 @@ excluded_from_git:
   size_mb: 0.0
 - path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_internal_data_figure2_assets/5_report/cli_sessions/config/20260627_065523_opencode_cli_395447bf406a/stdout.log
   size_mb: 0.1
+- path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_internal_data_figure2_assets/5_report/cli_sessions/execute/20260627_070835_opencode_cli_9f923cdd11d5/stderr.log
+  size_mb: 0.0
+- path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_internal_data_figure2_assets/5_report/cli_sessions/execute/20260627_070835_opencode_cli_9f923cdd11d5/stdout.log
+  size_mb: 0.0
 - path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_package_capability_narrative/1_asset/ms6_evidence_claim_mapping.csv
   size_mb: 0.0
 - path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_package_capability_narrative/5_report/cli_sessions/check/20260627_070654_opencode_cli_b49e7b862596/stderr.log
