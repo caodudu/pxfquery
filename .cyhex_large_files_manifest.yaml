@@ -985,7 +985,7 @@ excluded_from_git:
 - path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms4_forward_nl_stress_set/5_report/cli_sessions/check/20260627_063513_opencode_cli_84a851e268f7/stderr.log
   size_mb: 0.0
 - path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms4_forward_nl_stress_set/5_report/cli_sessions/check/20260627_063513_opencode_cli_84a851e268f7/stdout.log
-  size_mb: 0.0
+  size_mb: 0.01
 - path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms4_forward_nl_stress_set/5_report/cli_sessions/config/20260627_062849_opencode_cli_c0dba2121b5a/stderr.log
   size_mb: 0.0
 - path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms4_forward_nl_stress_set/5_report/cli_sessions/config/20260627_062849_opencode_cli_c0dba2121b5a/stdout.log

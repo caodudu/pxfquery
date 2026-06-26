@@ -1455,6 +1455,22 @@ edges:
   to: goal_ms3_ms4_quality_and_repair/task_ms3_quality_digest_and_asset_map
   dep_id: T-076
   gate: must
+- from: goal_m6_ms_anchors_and_stress_assets/task_ms5_large_stress_and_case_anchor
+  to: goal_m6_ms_anchors_and_stress_assets/task_ms5_large_nl_corpus_expansion
+  dep_id: T-083
+  gate: must
+- from: goal_m6_ms_anchors_and_stress_assets/task_ms4_ground_truth_scenario_builder
+  to: goal_m6_ms_anchors_and_stress_assets/task_ms5_large_nl_corpus_expansion
+  dep_id: T-085
+  gate: may
+- from: goal_m6_ms_anchors_and_stress_assets/task_ms4_forward_nl_stress_set
+  to: goal_m6_ms_anchors_and_stress_assets/task_ms5_large_nl_corpus_expansion
+  dep_id: T-086
+  gate: may
+- from: goal_m6_ms_anchors_and_stress_assets/task_ms4_reverse_nl_stress_set
+  to: goal_m6_ms_anchors_and_stress_assets/task_ms5_large_nl_corpus_expansion
+  dep_id: T-087
+  gate: may
 labels:
 - id: label_mqpofuno
   phase: digestion
