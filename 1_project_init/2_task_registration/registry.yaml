@@ -1474,10 +1474,10 @@ tasks:
   phase: digestion
   goal: goal_m6_ms_anchors_and_stress_assets
   path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms4_forward_nl_stress_set
-  status: active
+  status: done
   executor: hybrid
   created: '2026-06-27'
-  completed: null
+  completed: '2026-06-27'
 - id: T-087
   name: ms4_reverse_nl_stress_set
   phase: digestion
@@ -1543,6 +1543,15 @@ tasks:
   goal: goal_ms6_manuscript_foundation
   path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_internal_data_figure2_assets
   status: active
+  executor: hybrid
+  created: '2026-06-27'
+  completed: null
+- id: T-094
+  name: ms4_route_execution_matrix
+  phase: development
+  goal: goal_ms3_ms4_quality_and_repair
+  path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_route_execution_matrix
+  status: pending
   executor: hybrid
   created: '2026-06-27'
   completed: null
