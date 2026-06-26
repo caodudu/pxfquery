@@ -1412,3 +1412,12 @@ tasks:
     core MVP capability is missing or downgraded, ms3 must not pass and must recommend
     repair; do not write a cosmetic completion report.
   notes: Final ms3 quality gate. This is an audit task, not implementation.
+- id: T-080
+  name: ms3_quality_anchor
+  phase: digestion
+  goal: goal_m6_ms_anchors_and_stress_assets
+  path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms3_quality_anchor
+  status: pending
+  executor: hybrid
+  created: '2026-06-27'
+  completed: null
