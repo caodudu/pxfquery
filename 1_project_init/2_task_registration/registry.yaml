@@ -1385,10 +1385,10 @@ tasks:
   phase: development
   goal: goal_ms3_release_quality
   path: 4_phase_development/goal_ms3_release_quality/task_ms3_functional_test_and_release_iteration
-  status: active
+  status: done
   executor: hybrid
   created: '2026-06-26'
-  completed: null
+  completed: '2026-06-27'
   objective: Run ms3 functional tests at the API/CLI and user-visible package layer,
     then perform integration bugfix and internal package version iteration until a
     release candidate is produced or a real blocker is reported. Tests must cover
@@ -1489,7 +1489,7 @@ tasks:
   phase: development
   goal: goal_ms3_ms4_quality_and_repair
   path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms3_quality_digest_and_asset_map
-  status: active
+  status: done
   executor: hybrid
   created: '2026-06-27'
-  completed: null
+  completed: '2026-06-27'
