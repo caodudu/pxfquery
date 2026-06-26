@@ -993,12 +993,18 @@ excluded_from_git:
 - path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms4_ground_truth_scenario_builder/5_report/cli_sessions/check/20260627_063314_opencode_cli_274e569aba5a/stderr.log
   size_mb: 0.0
 - path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms4_ground_truth_scenario_builder/5_report/cli_sessions/check/20260627_063314_opencode_cli_274e569aba5a/stdout.log
-  size_mb: 0.0
+  size_mb: 0.02
 - path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms4_ground_truth_scenario_builder/5_report/cli_sessions/config/20260627_063009_opencode_cli_afc5c96b8dda/stderr.log
   size_mb: 0.0
 - path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms4_ground_truth_scenario_builder/5_report/cli_sessions/config/20260627_063009_opencode_cli_afc5c96b8dda/stdout.log
   size_mb: 0.04
+- path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms4_ground_truth_scenario_builder/5_report/cli_sessions/execute/20260627_063454_opencode_cli_114f7e141ce0/stderr.log
+  size_mb: 0.0
+- path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms4_ground_truth_scenario_builder/5_report/cli_sessions/execute/20260627_063454_opencode_cli_114f7e141ce0/stdout.log
+  size_mb: 0.0
 - path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms4_reverse_nl_stress_set/1_asset/ms4_stress_source_inventory_index.csv
+  size_mb: 0.01
+- path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms4_reverse_nl_stress_set/4_artifact/5_table/ms4_reverse_nl_stress_set_v20260627.csv
   size_mb: 0.01
 - path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms4_reverse_nl_stress_set/5_report/cli_sessions/check/20260627_063128_opencode_cli_bb2bfd92a98f/stderr.log
   size_mb: 0.0
@@ -1081,7 +1087,7 @@ excluded_from_git:
 - path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms5_large_stress_and_case_anchor/5_report/cli_sessions/deliver/20260627_063151_opencode_cli_8d2dc739ab7e/stderr.log
   size_mb: 0.0
 - path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms5_large_stress_and_case_anchor/5_report/cli_sessions/deliver/20260627_063151_opencode_cli_8d2dc739ab7e/stdout.log
-  size_mb: 0.11
+  size_mb: 0.16
 - path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms5_large_stress_and_case_anchor/5_report/cli_sessions/execute/20260627_055226_opencode_cli_7260134f3e69/stderr.log
   size_mb: 0.0
 - path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms5_large_stress_and_case_anchor/5_report/cli_sessions/execute/20260627_055226_opencode_cli_7260134f3e69/stdout.log
