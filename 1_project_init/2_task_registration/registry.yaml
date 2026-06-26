@@ -1465,10 +1465,10 @@ tasks:
   phase: digestion
   goal: goal_m6_ms_anchors_and_stress_assets
   path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms4_ground_truth_scenario_builder
-  status: active
+  status: done
   executor: hybrid
   created: '2026-06-27'
-  completed: null
+  completed: '2026-06-27'
 - id: T-086
   name: ms4_forward_nl_stress_set
   phase: digestion
@@ -1511,6 +1511,15 @@ tasks:
   goal: goal_ms3_ms4_quality_and_repair
   path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms3_entry_to_ms4_comparison_review
   status: active
+  executor: hybrid
+  created: '2026-06-27'
+  completed: null
+- id: T-091
+  name: ms6_package_capability_narrative
+  phase: translation
+  goal: goal_ms6_manuscript_foundation
+  path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_package_capability_narrative
+  status: pending
   executor: hybrid
   created: '2026-06-27'
   completed: null
