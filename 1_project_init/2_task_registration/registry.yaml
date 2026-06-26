@@ -1453,7 +1453,7 @@ tasks:
   phase: digestion
   goal: goal_m6_ms_anchors_and_stress_assets
   path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms6_manuscript_figure_anchor
-  status: pending
+  status: active
   executor: hybrid
   created: '2026-06-27'
   completed: null
