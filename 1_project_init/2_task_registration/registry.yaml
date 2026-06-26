@@ -1505,3 +1505,12 @@ tasks:
   executor: hybrid
   created: '2026-06-27'
   completed: null
+- id: T-090
+  name: ms3_entry_to_ms4_comparison_review
+  phase: development
+  goal: goal_ms3_ms4_quality_and_repair
+  path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms3_entry_to_ms4_comparison_review
+  status: pending
+  executor: hybrid
+  created: '2026-06-27'
+  completed: null
