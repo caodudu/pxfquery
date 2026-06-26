@@ -11,7 +11,8 @@ yellow_repair
 ## Repairs Made
 - Added this `5_report/delivery_qa.md`.
 - Added `5_report/handoff_ai_use.md`.
-- Added HTML delivery summaries under `4_artifact/3_document/`.
+- Added HTML delivery summaries under `4_artifact/3_document/` (originally v20260624).
+- Rewrote both HTML reports as `execution_report_v20260626.html` and `result_report_v20260626.html` with >900 Chinese characters each, structured per CyHex prompt requirements.
 - Did not modify upstream assets, previous task outputs, or the core contract YAML files.
 
 ## Remaining Issues

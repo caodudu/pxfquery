@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>T-061 执行报告 (2026-06-26)</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.7; margin: 32px; color: #222; max-width: 900px; }
+    h1, h2 { color: #15324a; }
+    h2 { border-bottom: 1px solid #d6dbe1; padding-bottom: 4px; margin-top: 28px; }
+    code { background: #f2f4f7; padding: 1px 4px; border-radius: 3px; font-size: 0.92em; }
+    .meta { color: #555; font-size: 0.93em; margin-bottom: 24px; }
+    .highlight { background: #fffbe6; padding: 12px 16px; border-left: 4px solid #f0c040; border-radius: 4px; margin: 16px 0; }
+  </style>
+</head>
+<body>
+
+<h1>T-061 执行报告：legacy_source_digest_repair_m1</h1>
+<p class="meta">生成日期：2026-06-26 | 任务归属：PxFquery (P-012) 第三阶段 digestion</p>
+
+<div class="highlight">
+  <strong>一句话定位：</strong>PxFquery 项目中，M1 里程碑需要一个干净的遗留包源代码消化摘要，以替代此前 T-041 失败且不可信的分析结果。T-061 并非重写实现代码或运行包工作流，而是通过有界的静态源代码审查，产生一份供 M1/M1.1 开发任务使用的模块复用指南与边界规则。
+</div>
+
+<h2>1. 任务意图</h2>
+<p>T-061 的起源是一个具体的历史问题：PxFquery 的 M1 Python 包里程碑需要知道自己继承了哪些遗留模块、哪些可以安全复用、哪些需要改造、哪些必须丢弃。此前的 T-041 尝试试图提供这个答案，但其输出被认定为不可信、不可作为权威依据。T-061 的任务就是以 T-007 开发状态源映射为唯一路径权威，对已注册的迁移包源码目录（A-002）进行一次全新的、有界的静态审查，产出一份源代码摘要、一份模块复用矩阵和一份机器可读的下游引用边界 YAML。本任务不编写实现代码、不修改遗留文件、不运行任何包工作流。</p>
+
+<h2>2. 输入资产与依据</h2>
+<p>本次执行仅依赖两个来源资产。A-001 是 T-007 产出的开发状态源映射（pxfquery_development_source_map_v20260617.md），它指明了迁移后的包源码路径为 <code>2_project_asset/1_raw_material/legacy_flat_asset_library_v20260614/code/pxfquery_package</code>，并记录了 <code>core.py</code> 是可用现代入口、<code>main.py</code> 是不完整历史草稿。A-002 是该路径下的实际遗留包源文件，通过任务本地符号链接 <code>1_asset/migrated_pxfquery_package_source</code> 访问。T-041 在本任务中仅作为被替代的失败上下文提及，其输出未被读取也未作为任何判断依据。</p>
+
+<h2>3. 实际执行过程</h2>
+<p>执行分五步推进。第一步，确认 A-001 和 A-002 的符号链接均正确解析至已注册路径，且 CyHex 本地 API 可用（应用版本 1.2.19）。第二步，使用 <code>find -H</code> 仅在 <code>1_asset/migrated_pxfquery_package_source</code> 范围内执行文件清单扫描，排除 <code>__pycache__</code>、笔记本、h5ad 矩阵和二进制文件；共记录 25 个文件，其中 22 个为 Python 源文件。第三步，在不导入任何包模块的前提下，对每个 Python 文件收集行数、符号定义、AST 类/函数结构和风险关键词命中，结果写入 <code>3_execution/</code> 下的五个证据文件。第四步，对关键行为文件（<code>core.py</code> 477 行、<code>query/resolver.py</code> 1072 行、<code>llm/client.py</code> 337 行、<code>llm/prompts.py</code> 386 行、<code>viz/plots.py</code> 300 行）打开额外目标窗口，审查入口点行为、查询引擎逻辑、索引加载模式、LLM 耦合度和不完整历史草图。第五步，根据审查结果撰写交付物，更新注册表并生成执行与结果报告。</p>
+
+<h2>4. 关键判断与证据</h2>
+<p>审查产生了三个层次的模块分类。第一层为可复用模块：<code>query/forward.py</code>、<code>query/reverse.py</code>、<code>utils.py</code>、<code>logging_utils.py</code> 和 <code>viz/plots.py</code> 被判定为确定性且适合 M1 直接复用。四个索引类（CellLineIndex、DrugIndex、FunctionIndex、GeneIndex）被判定为可复用，但前提是下游任务显式注册了对应的 JSON 索引文件。第二层为可适配但有风险的模块：<code>core.py</code> 是现代外观层，但其默认路径 <code>output/store/query_index</code> 对工作目录敏感；<code>query/resolver.py</code>（1072 行）功能完整但耦合了 LLM 客户端和 JSON 索引，建议推迟至 M1.1 使用；<code>llm/client.py</code> 和 <code>llm/prompts.py</code> 提供自然语言解析与摘要能力，但依赖 API 凭据且结果不可用作主要生物学证据。第三层为不完整或被禁止的模块：<code>main.py</code>（125 行）大多数方法仅含 <code>pass</code>，是早期历史草稿；<code>prompt/check_link.py</code>（83 行）是一个导入大量无关库的临时 API 连通性脚本，均不得在 M1 运行时中复用。</p>
+
+<h2>5. 交付物清单</h2>
+<p>本次执行共产生七项交付物。核心摘要位于 <code>4_artifact/2_persist/legacy_source_digest_repair_m1.md</code>（231 行），详细记录了每个被审查模块的入口点、风险、复用条件和 M1/M1.1 推荐行动。模块复用矩阵位于 <code>4_artifact/5_table/legacy_module_reuse_matrix_repair_m1.csv</code>（25 行 + 表头），以 CSV 格式列出每个文件/模块的复用状态、下游相关性、关键风险和推荐操作。下游引用边界 YAML 位于 <code>4_artifact/2_persist/legacy_reference_boundaries_repair_m1.yaml</code>（119 行），以机器可读格式规定了哪些模块可引用、可适配、必须避免，以及每个适配操作的条件。此外还生成了两份 HTML 报告、一份注册表更新和一份完成说明。所有中间证据文件保留于 <code>3_execution/</code> 目录下。</p>
+
+<h2>6. 边界与未完成事项</h2>
+<p>本任务严格遵守了有界审查的约束：未执行任何包工作流，未读取 h5ad 矩阵、笔记本、缓存或生成报告，未访问历史源码根目录 <code>/Users/dudu/Documents/3_Project/8_functional_query</code>，未扫描 <code>2_project_asset/</code> 下的其他原始资产，未使用网络搜索。需要明确的是，本任务未验证任何遗留模块在当前环境中的运行时行为，未检查实际 h5ad 矩阵的列名与 <code>.obs</code> 字段是否匹配，未确认 JSON 索引文件是否存在于预期路径。下游实现任务必须先注册运行时资产并运行确定性测试，才能将遗留逻辑视为可操作的。核心摘要和矩阵为 M1/M1.1 规划提供了可信的源解读，但不能替代集成测试或生物验证。</p>
+
+</body>
+</html>

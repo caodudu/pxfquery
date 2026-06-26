@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>T-042 结果报告 — contract_and_demo_spec_m1</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 32px; line-height: 1.7; color: #222; max-width: 800px; }
+    h1 { color: #111; border-bottom: 2px solid #ddd; padding-bottom: 8px; }
+    h2 { color: #333; margin-top: 28px; }
+    code { background: #f4f4f4; padding: 1px 5px; border-radius: 3px; font-size: 0.92em; }
+    ul { padding-left: 20px; }
+    li { margin-bottom: 4px; }
+    table { border-collapse: collapse; margin: 16px 0; width: 100%; }
+    th, td { border: 1px solid #ddd; padding: 8px 12px; text-align: left; }
+    th { background: #f8f8f8; }
+    hr { border: none; border-top: 1px solid #eee; margin: 24px 0; }
+  </style>
+</head>
+<body>
+
+<h1>T-042 contract_and_demo_spec_m1 — 结果报告</h1>
+<p><strong>生成日期：</strong>2026-06-26</p>
+
+<h2>1. 一句话结论</h2>
+<p>
+T-042 为 PxFquery Python 包交付了 M1 级别的 API 契约、CLI 契约和两个确定性查询演示案例，使下游的实现和验证任务可以按照明确定义的名称、参数形状、输出结构和通过标准开展工作，无需自行猜测或发明接口。
+</p>
+
+<h2>2. 项目背景</h2>
+<p>
+PxFquery 是一个以 LINCS 数据为基础、面向扰动-功能分析的生物信息学工具。它的核心查询方向有两个：正向查询（从扰动和生物上下文到功能响应）和反向查询（从功能目标和生物上下文到候选扰动）。在进入 M1 包的构建之前，项目需要一个明确的最小可行契约来约束第一个可工作版本的边界——既不包含自然语言解析器、也不包含 LLM 摘要、也不包含代理检索或模糊匹配。T-042 正是在这个位置切入，利用已经审核的 T-007（开发状态消化）和 T-013（MVP 能力审查）成果，将 M1 要做的事情精确锁定到一份可执行的 YAML 契约中。
+</p>
+
+<h2>3. 核心结果</h2>
+<p>
+本次任务交付了三个核心工件和一个注册记录。D-001（<code>m1_api_contract.yaml</code>，657 行）定义了 <code>PxFquery</code> 类、构造函数、<code>pert2func</code> 和 <code>func2pert</code> 方法的完整签名、正向结果和反向结果的 JSON 输出模式、10 种确定性错误输出结构，以及 <code>pxfquery forward</code>、<code>pxfquery reverse</code> 和 <code>pxfquery info</code> 三条 CLI 命令的完整标志集和退出码规范。D-002（<code>m1_demo_cases.yaml</code>，213 行）定义了 DEMO-001（EGFR 扰动 / A549 细胞系 / xpr 转录组矩阵 —— 来自 T-013 的 CAP-04 通过证据）和 DEMO-002（激活 HALLMARK_APOPTOSIS + 抑制 HALLMARK_MYC_TARGETS_V1 / A549 —— 来自 T-013 的 CAP-06 部分通过证据），每个案例都包含了精确的输入字段、预期 JSON 形状示例、5 项通过判定条件和 5 项失败判定条件，以及若干无命中变体（未知扰动、未知细胞系、未知程序、未加载矩阵、低置信度）。D-003（<code>m1_contract_summary.md</code>）提供了面向人类的三页摘要。
+</p>
+
+<h2>4. 项目价值</h2>
+<p>
+在项目层面，T-042 的价值在于锁定了 PxFquery 在 M1 阶段的交付边界。之前 T-024 到 T-040 阶段的尝试因为范围定义不清晰和实现跳跃而多次失败，而 T-042 通过严格的输入资产纪律（只使用已审核的 T-007 和 T-013 资产）、明确的规范范围声明（不做代码实现、不读原始资产、不引用失败任务）和极简的输出结构，提供了一个可供后续任务直接引用的单一权威来源。对于项目负责人而言，这意味着 M1 不再是一个模糊的"做点查询功能"的任务，而是一个精确的"实现 pxfquery.core.PxFquery.pert2func 和 func2pert、输出此处定义的 JSON、处理此处列出的 10 种错误情况、通过此处指定的 10+ 项判定条件"的工程任务。这种精确性可以直接降低 T-048/T-049/T-052 的执行风险。
+</p>
+
+<h2>5. 交付物导读</h2>
+<table>
+  <tr><th>ID</th><th>文件名</th><th>行数</th><th>用途</th><th>下游任务</th></tr>
+  <tr><td>D-001</td><td>m1_api_contract.yaml</td><td>657</td><td>API + CLI 契约权威定义</td><td>T-048, T-049, T-052</td></tr>
+  <tr><td>D-002</td><td>m1_demo_cases.yaml</td><td>213</td><td>正向/反向演示案例与通过标准</td><td>T-052</td></tr>
+  <tr><td>D-003</td><td>m1_contract_summary.md</td><td>61</td><td>人类可读的简要摘要</td><td>T-048, T-049, T-052</td></tr>
+</table>
+<p>
+建议的阅读顺序是：先读 <code>m1_contract_summary.md</code> 了解整体范围和约束，再读 <code>m1_api_contract.yaml</code> 获取准确的 API 和 CLI 定义，最后在读 <code>m1_demo_cases.yaml</code> 时用通过/失败判定条件来验证实现是否正确。注册表 <code>registry.yaml</code> 记录了所有三份交付物的元数据、状态和上下级关系。
+</p>
+
+<h2>6. 后续使用方式</h2>
+<p>
+T-048 和 T-049（M1 实现任务）应直接以 <code>m1_api_contract.yaml</code> 作为实现指南，精确实现 <code>PxFquery</code> 类、<code>pert2func</code> 和 <code>func2pert</code> 方法的参数签名和返回结构。这些实现任务不需要自行设计 API 外形或输出格式——契约已经定义好了。T-052（M1 验证任务）应使用 <code>m1_demo_cases.yaml</code> 中的 DEMO-001 和 DEMO-002 作为验收测试场景，逐一验证每个通过/失败判定条件。注意 M1 验证不应要求 LLM 解析器成功，也不应依赖代理检索或模糊匹配——这些能力都被明确声明为 M2+ 范围。如果实现过程中需要对某个字段名、类型或默认值进行变更，必须在本任务中记录兼容性说明，而非无声偏离。
+</p>
+
+<h2>7. 边界与风险</h2>
+<p>
+本任务是纯规范制定任务，不证明任何运行时行为的正确性——实际的查询正确性需要在 T-052 中通过加载真实功能矩阵来验证。<code>function_index.json</code> 在迁移后的查询索引中缺失，T-048 或 T-049 需要处理这一实现差距：要么在实现时重建该索引，要么调整矩阵加载流水线使其不依赖该文件。反向查询中已知存在数值警告风险（CAP-06），契约接受 <code>warnings</code> 字段中的警告信息，但实现必须确保所有 similarity 是有限数值。低置信度检测的阈值（例如 max(|similarity|) < 0.05）未在契约中硬编码，需要 M1 实现任务自行定义并实现。此外，本任务使用的所有输入资产均来自 T-007 和 T-013——如果这些上游资产的某些事实在未来被修订，本契约可能需要相应更新，但目前不存在此类变更信号。
+</p>
+
+<hr>
+<p><em>— 本报告由 T-042 执行会话自动生成，仅供人类项目负责人阅读。</em></p>
+
+</body>
+</html>

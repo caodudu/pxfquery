@@ -1182,3 +1182,233 @@ tasks:
   config_agent_id: AGT-001
   check_agent_id: AGT-001
   execute_agent_id: AGT-001
+- id: T-066
+  name: ms3_no_downgrade_acceptance_contract
+  phase: development
+  goal: goal_ms3_foundation_resources
+  path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_no_downgrade_acceptance_contract
+  status: done
+  executor: hybrid
+  created: '2026-06-26'
+  completed: '2026-06-26'
+  objective: Create the ms3 no-downgrade acceptance contract for the full PxFquery
+    MVP package. Convert T-062 package anchor, T-063 resolver/LLM anchor, T-064 routing
+    anchor, and T-065 M1 quality review into a hard ms3 capability matrix, acceptance
+    vocabulary, blocked-task exclusion rule, and pass/fail quality gate. This task
+    must explicitly state that ms3 cannot be accepted as exact lookup only and cannot
+    defer resolver, LLM provider registration, proxy/no-hit/context/transfer routing,
+    route metadata, or standard-resource compatibility without human-approved scope
+    change.
+  notes: ms3 L1 foundation. Green-light task. This is the hard no-downgrade contract
+    for all ms3 tasks.
+- id: T-067
+  name: ms3_safe_resource_access_contract
+  phase: development
+  goal: goal_ms3_foundation_resources
+  path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_safe_resource_access_contract
+  status: done
+  executor: hybrid
+  created: '2026-06-26'
+  completed: '2026-06-26'
+  objective: Create the ms3 safe resource access contract that repairs the data-use
+    gap between T-021 standard resources and downstream package development. Deliver
+    safe reading rules, resource schemas, loader usage contract, dev fixture rules,
+    demo-case resource coverage checks, and a gap map inherited from T-045/T-047.
+    This task must prevent future contract-vs-fixture mismatches and forbid dumping
+    large h5ad/json resources into agent context.
+  notes: ms3 data foundation. Hard precondition for resource-aware development; not
+    a pure documentation task.
+- id: T-068
+  name: ms3_runtime_resource_pack
+  phase: development
+  goal: goal_ms3_foundation_resources
+  path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_runtime_resource_pack
+  status: done
+  executor: hybrid
+  created: '2026-06-26'
+  completed: '2026-06-26'
+  objective: Build the ms3 runtime resource pack from approved standard resources.
+    Package or reference the T-021 standard resources through a safe runtime layout,
+    implement loader smoke checks, document full-resource versus fixture/dev-subset
+    usage, and prove that cp/sh/xpr matrices, metadata, indexes, and function_index
+    can be loaded by package code. Do not fall back to synthetic-only resources.
+  notes: ms3 resource pack. Use T-021/T-047 as hard resource-loading authority; T-053
+    is reference only.
+- id: T-069
+  name: ms3_package_core_workspace
+  phase: development
+  goal: goal_ms3_foundation_resources
+  path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_package_core_workspace
+  status: done
+  executor: hybrid
+  created: '2026-06-26'
+  completed: '2026-06-26'
+  objective: Create the ms3 package source workspace and version-iteration mechanism
+    from the accepted M1 package baseline. Establish module boundaries for data, routing,
+    query engines, resolver, LLM provider adapter, CLI/API, tests, and release artifacts.
+    Internal pxfquery version numbers may iterate freely; final accepted ms3 version
+    must be registered. Do not inherit M1 capability downgrades as limits.
+  notes: ms3 package foundation. Internal package versions may iterate; blocked predecessor
+    tasks are not valid inputs.
+- id: T-070
+  name: ms3_route_metadata_engine
+  phase: development
+  goal: goal_ms3_foundation_resources
+  path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_route_metadata_engine
+  status: done
+  executor: hybrid
+  created: '2026-06-26'
+  completed: '2026-06-26'
+  objective: Implement the ms3 evidence-route metadata primitives and T-064 eight-field
+    response contract. Deliver reusable route types and metadata helpers for exact,
+    proxy, no-hit, ambiguous, context-missing, and transfer/suggestion behavior. This
+    task defines shared route semantics but does not replace forward/reverse/resolver
+    implementation.
+  notes: ms3 routing foundation. Shared metadata contract for engines, resolver, API/CLI,
+    and tests.
+- id: T-071
+  name: ms3_demo_acceptance_corpus
+  phase: development
+  goal: goal_ms3_foundation_resources
+  path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_demo_acceptance_corpus
+  status: done
+  executor: hybrid
+  created: '2026-06-26'
+  completed: '2026-06-26'
+  objective: Create demo acceptance corpus v0 for ms3 full MVP package. Cover forward,
+    reverse, resolver, LLM provider route, exact, proxy, no-hit, context-missing,
+    ambiguous, transfer/suggestion, metadata inspection, and CLI/API use. This is
+    a candidate corpus; T-073 must later freeze only cases proven against runtime
+    resources and safe access rules.
+  notes: Candidate corpus only. T-073 owns final resource-verified freeze and may
+    modify/reject cases.
+- id: T-072
+  name: ms3_proxy_transfer_strategy_spike
+  phase: development
+  goal: goal_ms3_foundation_resources
+  path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_proxy_transfer_strategy_spike
+  status: done
+  executor: hybrid
+  created: '2026-06-26'
+  completed: '2026-06-26'
+  objective: 'Explore proxy and transfer/suggestion strategies for ms3 route behavior
+    using T-064 anchors and stress-handoff context. Deliver candidate rules, thresholds,
+    example explanations, and failure modes. This is a may input only: success can
+    improve downstream engines, but failure must not cancel the minimum proxy/transfer
+    implementation required by ms3.'
+  notes: Exploratory may branch. Failure must not downgrade the main ms3 MVP delivery.
+- id: T-073
+  name: ms3_resource_demo_coverage_freeze
+  phase: development
+  goal: goal_ms3_core_runtime
+  path: 4_phase_development/goal_ms3_core_runtime/task_ms3_resource_demo_coverage_freeze
+  status: done
+  executor: hybrid
+  created: '2026-06-26'
+  completed: '2026-06-26'
+  objective: Freeze the ms3 runnable demo cases by aligning safe resource access,
+    runtime resource pack, route metadata contract, and candidate demo corpus. Prove
+    each frozen case exists in full resources and/or approved dev fixture, record
+    exact resource coverage, and reject any case that would recreate the T-048/T-049
+    contract-vs-fixture mismatch. May incorporate successful proxy/transfer spike
+    results.
+  notes: Core convergence task. This is the resource/demo coverage freeze before engines
+    and API surface.
+- id: T-074
+  name: ms3_forward_query_engine
+  phase: development
+  goal: goal_ms3_core_runtime
+  path: 4_phase_development/goal_ms3_core_runtime/task_ms3_forward_query_engine
+  status: done
+  executor: hybrid
+  created: '2026-06-26'
+  completed: '2026-06-26'
+  objective: Implement the ms3 forward query engine against runtime resources and
+    frozen demo cases. Deliver perturbation/context-to-function behavior with exact,
+    minimum proxy, no-hit, context-missing, transfer/suggestion semantics and T-064
+    route metadata. T-072 may improve strategy, but this task must implement the minimum
+    proxy/transfer behavior even if T-072 fails. Include task-local engine smoke evidence.
+  notes: Forward engine task. Owns minimum runnable proxy/transfer behavior for forward
+    queries, independent of T-072 success.
+- id: T-075
+  name: ms3_reverse_query_engine
+  phase: development
+  goal: goal_ms3_core_runtime
+  path: 4_phase_development/goal_ms3_core_runtime/task_ms3_reverse_query_engine
+  status: done
+  executor: hybrid
+  created: '2026-06-26'
+  completed: '2026-06-26'
+  objective: Implement the ms3 reverse query engine against runtime resources and
+    frozen demo cases. Deliver function/context-to-perturbation ranking with confidence,
+    exact, minimum proxy, no- hit, ambiguous, context-missing, transfer/suggestion
+    semantics and T-064 route metadata. T-072 may improve strategy, but this task
+    must implement the minimum proxy/transfer/ambiguous behavior even if T-072 fails.
+    Include task-local engine smoke evidence.
+  notes: Reverse engine task. Owns minimum runnable proxy/transfer/ambiguous behavior
+    for reverse queries, independent of T-072 success.
+- id: T-076
+  name: ms3_resolver_llm_provider_layer
+  phase: development
+  goal: goal_ms3_core_runtime
+  path: 4_phase_development/goal_ms3_core_runtime/task_ms3_resolver_llm_provider_layer
+  status: done
+  executor: hybrid
+  created: '2026-06-26'
+  completed: '2026-06-26'
+  objective: Implement the ms3 resolver and LLM provider registration layer. Support
+    natural-language and semi-structured query entry, parse/normalize/dispatch, explanation/summary
+    metadata, deterministic fallback metadata, and user-facing handling of proxy/no-hit/ambiguous/transfer
+    routes. Test the current CyHex-registered polling deepseek-v4-flash provider route
+    as an adapter, not as an algorithm-internal model. Connection instability must
+    trigger retry/fallback evidence or task failure, never removal of LLM capability.
+  notes: Resolver/LLM layer. deepseek-v4-flash is a provider registration/adapter
+    route for testing integration, not embedded algorithm logic.
+- id: T-077
+  name: ms3_user_api_cli_surface
+  phase: development
+  goal: goal_ms3_release_quality
+  path: 4_phase_development/goal_ms3_release_quality/task_ms3_user_api_cli_surface
+  status: done
+  executor: hybrid
+  created: '2026-06-26'
+  completed: '2026-06-27'
+  objective: Create the user-facing ms3 API and CLI surface over the forward engine,
+    reverse engine, resolver/LLM provider layer, route metadata, and frozen demo cases.
+    Commands should include forward, reverse, resolve, explain, info, and demo-oriented
+    examples. Deliver JSON and human-readable outputs so a user can test core PxFquery
+    behavior directly.
+  notes: User-visible surface task. API/CLI must expose full MVP capabilities rather
+    than exact lookup only.
+- id: T-078
+  name: ms3_functional_test_and_release_iteration
+  phase: development
+  goal: goal_ms3_release_quality
+  path: 4_phase_development/goal_ms3_release_quality/task_ms3_functional_test_and_release_iteration
+  status: active
+  executor: hybrid
+  created: '2026-06-26'
+  completed: null
+  objective: Run ms3 functional tests at the API/CLI and user-visible package layer,
+    then perform integration bugfix and internal package version iteration until a
+    release candidate is produced or a real blocker is reported. Tests must cover
+    frozen demo cases, route metadata, standard resource loading, forward/reverse
+    engines, resolver/LLM provider route and fallback metadata. Do not loosen tests
+    or convert failures into known gaps to pass.
+  notes: Release iteration task. Test scope is API/CLI and user-visible package layer;
+    engine-local smoke belongs to T-074/T-075.
+- id: T-079
+  name: ms3_no_downgrade_quality_gate
+  phase: development
+  goal: goal_ms3_release_quality
+  path: 4_phase_development/goal_ms3_release_quality/task_ms3_no_downgrade_quality_gate
+  status: active
+  executor: hybrid
+  created: '2026-06-26'
+  completed: null
+  objective: Review the ms3 release candidate against the no-downgrade acceptance
+    contract, T-065 M1 critique, frozen resource/demo coverage, and integrated functional
+    test evidence. Classify ms3 as pass/fail/partial using controlled labels. If any
+    core MVP capability is missing or downgraded, ms3 must not pass and must recommend
+    repair; do not write a cosmetic completion report.
+  notes: Final ms3 quality gate. This is an audit task, not implementation.

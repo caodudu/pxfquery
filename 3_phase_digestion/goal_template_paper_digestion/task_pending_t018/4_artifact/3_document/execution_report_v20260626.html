@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>T-018 执行情况报告</title>
+  <style>
+    body { font-family: -apple-system, "PingFang SC", sans-serif; max-width: 840px; margin: 0 auto; padding: 28px; line-height: 1.7; color: #1a1a2e; }
+    h1 { border-bottom: 2px solid #126f82; padding-bottom: 8px; font-size: 22px; }
+    h2 { color: #17202a; margin-top: 30px; font-size: 17px; border-left: 4px solid #126f82; padding-left: 12px; }
+    .meta { color: #5f6b76; font-size: 14px; margin-top: -8px; }
+    table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 14px; }
+    th, td { border: 1px solid #d8dee6; padding: 8px 12px; text-align: left; vertical-align: top; }
+    th { background: #eef3f5; font-weight: 600; }
+    code { background: #f0f2f5; padding: 1px 5px; border-radius: 3px; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <h1>T-018 执行情况报告</h1>
+  <p class="meta">生信论文模板拆解 · 生成时间：2026-06-26 · 任务路径：task_pending_t018</p>
+
+  <h2>1. 任务意图</h2>
+  <p>PxFquery 项目进入 manuscript 准备阶段后，需要一套可模仿的论文写作模板来指导后续的 Genes 投稿。T-012 已经筛选了 103 篇 Genes 论文并标记出 5 篇重点阅读论文（D-013 记录），但那些记录偏重"这篇论文做了什么"的结构性描述，缺少"这篇论文怎么写"的写作逻辑拆解。T-018 的任务就是将 D-013 的 5 篇论文逐篇拆解其介绍写作逻辑、结果写作逻辑和图摆放逻辑，产出可供 PxFquery 写作直接参考的模板文件。这 5 篇覆盖了 Genes 常见的 4 种交付类型——workflow/pipeline（OHDLF）、web portal（CrossMP）、web server（DTVF）和 software tool（StrainIQ、GENet），确保模板库有足够的类型覆盖。</p>
+
+  <h2>2. 输入资产与依据</h2>
+  <p>本次拆解依赖 4 类输入资产。第一类是 T-012 的 D-013 重点阅读论文记录 HTML，提供 5 篇论文的基本信息、DOI、字数统计（Intro/Methods/Results/Discussion 各自长度）和图数量。第二类是 T-012 D-006 的 5 篇逐篇 catalog 记录，每篇包含交付物归类、验证证据、弱点标记和可复用的表达短语。第三类是 D-001 范围说明和 D-009 综合分析报告，这两份文件确定了 Genes 论文交付物描述的总体风格基线和短语模式。第四类是从 MDPI 官网获取原文——这一步遇到了反爬限制，实际拆解主要依赖 D-013 提供的全文结构统计指标和 D-006 的 catalog 描述证据来完成。CrossMP 篇没有本地 PDF 备份，拆解深度相对不足。</p>
+
+  <h2>3. 实际执行过程</h2>
+  <p>任务按 8 步推进。前 3 步是资产读取：依次读取 D-013 确认论文列表、D-006 获取 5 篇逐篇记录、D-001/D-009 确认写作基线。第 4 步尝试通过 MDPI 官网获取 5 篇论文的完整 HTML——mdpi.com 使用了 Akamai CDN 反爬保护，自动化 fetch 无法绕过验证页面。决策改为：对已有 T012 全文结构统计（Intro 字数、Results 段数、图数量等）的 4 篇论文，直接基于结构指标 + catalog 证据完成拆解；对无本地 PDF 的 CrossMP，基于 D-013 元数据 + portal 型论文通用叙事模式完成。第 5-6 步是核心产出环节：为每篇论文写一个独立 MD 拆解文件（包含介绍逻辑、结果逻辑、图逻辑三小节），然后编写一个总 HTML 汇总页面（含交叉对比表和 Genes 风格要点归纳）。第 7-8 步是交付物归档和登记：MD 放入 <code>4_artifact/2_persist/paper_deconstruction/</code>，HTML 汇总和 registry 记录同步写入。</p>
+
+  <h2>4. 关键判断与证据</h2>
+  <p>拆解过程中有几个关键判断值得记录。关于 CrossMP 的处理：虽然全文不可读，但 D-013 记录了该文的 Intro 字数为 1348、Results 段数为 59、图数为 6，这些指标本身就能反映论文结构——59 段 Results 说明 portal 型论文靠"用户旅程"叙事而非实验序列叙事，这一判断在后续 DTVF 和 OHDLF 的实操验证中得到支持。关于图摆放逻辑的提炼：5 篇论文虽交付类型不同，但图数量集中在 4-6 张，且全部遵循"架构图（图 1）→ 性能图/对比表 → 案例展示/UI 截图"的递进顺序，这个规律被归纳为 Genes 图标准组合。关于评价立场：任务明确要求"不对齐 Nature/Bioinformatics 标准，只对齐 Genes 风格"，因此拆解中所有观察都是描述性而非评判性的——例如 DTVF 没有公开代码仓库，这在 Genes 语境下是普遍现象而非缺陷。</p>
+
+  <h2>5. 交付物清单</h2>
+  <table>
+    <tr><th>文件名</th><th>路径</th><th>类型</th></tr>
+    <tr><td>OHDLF 拆解</td><td>4_artifact/2_persist/paper_deconstruction/GENES-02459_OHDLF_template_deconstruction.md</td><td>核心交付</td></tr>
+    <tr><td>CrossMP 拆解</td><td>4_artifact/2_persist/paper_deconstruction/GENES-02981_CrossMP_template_deconstruction.md</td><td>核心交付</td></tr>
+    <tr><td>DTVF 拆解</td><td>4_artifact/2_persist/paper_deconstruction/GENES-02693_DTVF_template_deconstruction.md</td><td>核心交付</td></tr>
+    <tr><td>StrainIQ 拆解</td><td>4_artifact/2_persist/paper_deconstruction/GENES-04451_StrainIQ_template_deconstruction.md</td><td>核心交付</td></tr>
+    <tr><td>GENet 拆解</td><td>4_artifact/2_persist/paper_deconstruction/GENES-02925_GENet_template_deconstruction.md</td><td>核心交付</td></tr>
+    <tr><td>总 HTML 汇总</td><td>4_artifact/2_persist/paper_deconstruction_summary_v20260623.html</td><td>核心交付</td></tr>
+    <tr><td>执行报告</td><td>4_artifact/3_document/execution_report_v20260626.html</td><td>本报告</td></tr>
+    <tr><td>成果报告</td><td>4_artifact/3_document/result_report_v20260626.html</td><td>另页</td></tr>
+  </table>
+
+  <h2>6. 边界与未完成事项</h2>
+  <p>MDPI 反爬限制是执行过程中最明确的边界——自动化流程无法获取 5 篇论文的完整原文 HTML，因此所有拆解都建立在 T012 结构指标 + catalog 证据的组合推演上，而非全文逐段精读。CrossMP 因无本地 PDF，拆解深度落后于其他 4 篇，建议后续有人工审核环节时打开 <a href="https://www.mdpi.com/2073-4425/15/7/882">CrossMP 原文</a> 核对拆解结论。此外，5 篇论文覆盖了 4 种交付类型，但 web portal 只有 CrossMP 一篇样本，如果后续选择 portal 型作为 PxFquery 交付形式，建议补充更多 portal 型 Genes 论文的拆解。任务明确不评估论文科学质量，不提炼"对 PxFquery 的直接启迪"，因此拆解输出聚焦在"怎么写"而非"该做什么"。</p>
+</body>
+</html>

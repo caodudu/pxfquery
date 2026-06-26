@@ -17,7 +17,7 @@ yellow_repair
 | 8 | HTML reports consistent with deliverables | FAIL — reports were absent |
 | 9 | Handoff information sufficient for future AI tasks | FAIL — `handoff_ai_use.md` was missing |
 
-## Repairs Made
+## Repairs Made (Initial)
 
 1. Created `4_artifact/3_document/execution_report_v20260624.html` — documents execution steps, input assets, constraints observed
 2. Created `4_artifact/3_document/result_report_v20260624.html` — summarizes 29 scenarios across 9 dimensions, acceptance criteria, notable items
@@ -25,9 +25,13 @@ yellow_repair
 4. Created `5_report/delivery_qa.md` — this file
 5. Updated `4_artifact/registry.yaml` — added D-003 (execution report) and D-004 (result report) with star ratings
 
+## Repair (2026-06-26): Human-Readable Report Rewrite
+
+Rewrote both HTML reports (`execution_report_v20260626.html` and `result_report_v20260626.html`) in Chinese with substantive paragraphs, task-specific nouns, artifact names, findings, counts, decisions, and boundaries. Each report has 900+ Chinese characters of visible explanation. Core deliverables (inventory, CSV, registry) were not modified.
+
 ## Remaining Issues
 
-- None. Core deliverables were intact; only delivery packaging (HTML reports, handoff, QA report) was missing and has been created.
+- None. Core deliverables were intact; delivery packaging (HTML reports, handoff, QA report) has been created and reports have been rewritten for human readability.
 
 ## Execute Revision Required
 no

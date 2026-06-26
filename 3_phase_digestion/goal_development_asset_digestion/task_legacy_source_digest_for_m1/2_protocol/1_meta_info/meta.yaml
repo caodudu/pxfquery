@@ -21,10 +21,7 @@ cyhex_version: 1.2.19
 created: '2026-06-24'
 started: null
 completed: '2026-06-24'
-notes: 'Constraint supplement for config AI: This digestion task is the only new DAG
-  task allowed to read the explicit legacy package-source path exposed through T-007
-  registered assets. Do not scan the whole project asset tree. Do not modify legacy
-  files or completed task artifacts. Deliver reusable source digest only.'
+notes: 分析遗留源码提取可复用摘要
 fast_pass_permission: green
 sub_status: ''
 fast_pass_last_auto_approved: check_review

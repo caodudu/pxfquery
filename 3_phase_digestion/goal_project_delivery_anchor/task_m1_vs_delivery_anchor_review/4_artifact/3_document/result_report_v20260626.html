@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>T-065 结果报告</title>
+  <style>
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.68; margin: 32px auto; max-width: 1080px; color: #202124; }
+h1, h2 { color: #12355b; }
+section { margin: 22px 0; }
+table { border-collapse: collapse; width: 100%; margin: 14px 0; }
+th, td { border: 1px solid #d0d7de; padding: 8px 10px; vertical-align: top; }
+th { background: #f2f5f8; }
+code { background: #f6f8fa; padding: 2px 4px; border-radius: 4px; }
+.note { background: #f8fafc; border-left: 4px solid #4776a8; padding: 12px 14px; }
+.warn { background: #fff8e6; border-left: 4px solid #d29922; padding: 12px 14px; }
+</style>
+</head>
+<body>
+
+<h1>T-065 M1 vs Delivery Anchor Review — 结果报告</h1>
+
+<section>
+<h2>一句话结论</h2>
+<p class="note">M1 milestone 应被视作 <strong>deterministic kernel/substrate（确定性内核/底座）</strong>，而非完整 PxFquery 算法包里程碑；项目不应在 M1 基础上直接声称交付全部锚点能力，而应先完成 M2 current-resource evidence-routing package，再推进 M3 resolver/LLM user-facing milestone。</p>
+</section>
+
+<section>
+<h2>项目背景</h2>
+<p>PxFquery 的 digestion 阶段通过 T-062、T-063、T-064 将项目交付范围拆解为三层：算法包必须提供 forward/reverse query 核心逻辑并兼容标准资源；用户入口要求通过 natural-language 或 semi-structured resolver 实现，并由 LLM 辅助解析和总结；所有查询结果必须记录 exact、proxy、no-hit、ambiguous、context-missing、transfer 六种路由的证据元数据。M1 作为第一个开发里程碑完成了包安装、CLI 和 fixture 级 deterministic 查询，但缺乏在这三层锚点体系下的正式定位。T-065 的任务就是填补这个定位缺口：以 16 份已注册资产为唯一依据，逐条审查 M1 证据是否满足三条锚线的 22 项能力要求，并在受控词汇下给出分类和状态标记。</p>
+</section>
+
+<section>
+<h2>核心结果</h2>
+<p>总体分类为 <strong>deterministic kernel/substrate</strong>。在 22 条锚点能力中，10 条被标为 partial（包括 forward/reverse 查询、context 处理、exact routing、no-hit routing 等），4 条被标为 downgraded（包括 proxy routing、resolver entry、semi-structured 入口），4 条被标为 deferred-not-approved（包括 LLM-assisted 解析、natural-language 入口、demo 覆盖、transfer/suggestion），4 条被标为 evidence-insufficient（包括 standard resource 兼容性、LLM route、ambiguous routing、八字段元数据契约）。SHRINK-001 至 SHRINK-003 明确识别了三类未经批准的范围收缩：用 synthetic exact-only fixture 代替 complete package delivery、用 CLI 参数代替 resolver、用 prompt template 存在代替 LLM 行为。M1 可以信任的部分是它已经建立了可安装的 pxfquery 0.1.0 包、CLI 入口和正的/fixture 级 reverse deterministic kernel，以及基础结构化错误处理。</p>
+</section>
+
+<section>
+<h2>项目价值</h2>
+<p>这份 review 的价值在于阻止项目错误定位 M1。如果没有 T-065，后续任务可能直接以 M1 为"完整算法包"来规划 M2，从而在标准资源兼容性、proxy routing、元数据契约和 LLM 行为上全部出现缺口。现在 M1 被诚实地标记为 deterministic kernel/substrate，意味着 M2 规划者必须明确写入"加载 T-021 标准资源"、"实现六条证据路由"、"输出八字段元数据契约"等前提条件才能声称完整包交付。M3 也得以与 M2 解耦，不要求 resolver/LLM 在标准资源就绪前启动。如果缺少这项审查，项目可能带着隐性缺口推进数个里程碑后再发现当前底座不能支撑上层设计，届时修复成本远高于现在调整规划。</p>
+</section>
+
+<section>
+<h2>交付物导读</h2>
+<table>
+<tr><th>文件</th><th>内容</th><th>使用场景</th></tr>
+<tr><td><code>m1_vs_delivery_anchor_gap_review_v20260625.yaml</code></td><td>机器可读总评、22 条能力状态、3 项 shrinkage 标志、M2/M3 边界信号</td><td>未来 task 配置时读取总体分类，判断 M1 是否可作完整引用</td></tr>
+<tr><td><code>m1_vs_delivery_anchor_capability_matrix_v20260625.csv</code></td><td>每条锚点能力的证据和缺口</td><td>M2/M3 scope 规划时作为起始 checklist，逐条对照是否修复</td></tr>
+<tr><td><code>m1_vs_delivery_anchor_review_report_v20260625.md</code></td><td>中文完整评审逻辑</td><td>人类阅读分类原因和证据基础</td></tr>
+<tr><td><code>m1_next_milestone_boundary_recommendations_v20260625.md</code></td><td>M2/M3 边界定义和前提条件</td><td>起草下一阶段任务协议或 task DAG</td></tr>
+</table>
+</section>
+
+<section>
+<h2>后续使用方式</h2>
+<p>未来配置涉及 M1 引用的任务时，必须把 M1 描述为 deterministic kernel/substrate，而非 full anchored algorithm package。M2 应聚焦于加载或继承 T-021 标准矩阵和索引、跑通 exact forward/reverse/no-hit/context-missing/至少一个 proxy route、并在每个结果中输出 T-064 要求的八字段元数据。M3 则应在 M2 路由契约稳定后，实现 natural-language 和 semi-structured resolver entry、接入 CyHex 配置的 LLM route 生成 parse/summary 证据、覆盖 T-063 demo catalog 的全部用例。任何声称 M1 已经覆盖 proxy/no-hit/ambiguous/transfer 或标准资源兼容性的任务提案，都需要重新对照 T-065 的 capability matrix 确认状态标签。</p>
+</section>
+
+<section>
+<h2>边界与风险</h2>
+<p>T-065 不执行 M1 的 runtime package validation、不修复已知缺口、不修改锚点文档。它的全部结论基于 A-001 至 A-016 十六份已注册资产的证据提取和分类，如果这些资产中遗漏了 M1 实际支持的能力，本次审查不会发现。后续如果通过新 task 补充了证据路由或 LLM 行为，必须新建 review 任务或更新本审查的产出物，不能依赖 T-065 的 missing 状态作为永久缺陷清单。本报告也不构成对 M1 代码质量的审计；包内是否含有隐患代码不在 T-065 的审查范围内。</p>
+</section>
+
+</body>
+</html>

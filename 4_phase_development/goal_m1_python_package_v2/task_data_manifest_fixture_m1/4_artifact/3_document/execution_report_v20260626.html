@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>T-043 执行报告 — 数据清单与夹具构建</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; margin: 32px; line-height: 1.7; color: #222; max-width: 820px; }
+    h1 { color: #111; border-bottom: 2px solid #ddd; padding-bottom: 8px; }
+    h2 { color: #333; margin-top: 28px; }
+    code { background: #f4f4f4; padding: 1px 4px; border-radius: 3px; font-size: 0.92em; }
+    table { border-collapse: collapse; margin: 14px 0; width: 100%; font-size: 0.92em; }
+    th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: left; vertical-align: top; }
+    th { background: #f7f7f7; }
+  </style>
+</head>
+<body>
+<h1>T-043 执行报告：数据清单与测试夹具构建</h1>
+
+<h2>1. 任务意图</h2>
+<p>
+PxFquery 项目需要一个稳定且可重复的 M1 数据基板，使下游的加载器、前向查询、反向查询和包组装任务有一个可靠的数据边界，不必反复读取大量项目原始资产或遗留代码目录。T-043 的任务就是在不发明数据、不依赖失败上游产出的前提下，从已有权威资产中整理出一份资源清单、一个最小真实数据夹具包以及对应的结构描述表。这项工作是整个 <code>goal_m1_python_package_v2</code> 开发的底层数据垫层，后续所有加载与查询代码都将以此处定义的路径和内容为起点。
+</p>
+
+<h2>2. 输入资产与依据</h2>
+<p>
+执行严格按照协议要求，仅读取 T-014 和 T-021 注册的六个资产（A-001 至 A-006）。A-001 提供了 T-021 产出的标准资源包，包含化合物（cp）、shRNA（sh）和过表达（xpr）三类功能性 H5AD 矩阵及其元数据 CSV 文件和查询索引 JSON 文件。A-002 是标准资源格式决策文档，A-003 是验证过程记录，A-004 至 A-006 来自 T-014，帮助划定数据范围、资源清单和矩阵模式覆盖。没有访问任何 <code>2_project_asset</code> 原始数据、T-024 至 T-040 的失败产出或网络下载数据。
+</p>
+
+<h2>3. 实际执行过程</h2>
+<p>
+执行的第一步是读取 A-001 标准资源包的全部文件，确认其目录结构、文件类型和实际行数。随后从三类 H5AD 矩阵中各选出 4 条真实扰动签名观测，并选取 7 个功能变量列（5 个 Hallmark 通路和 2 个 MP 模块）组成夹具矩阵，使夹具形状统一为 4×7。元数据 CSV 和查询索引 JSON 的夹具行则按照所选观测进行有界提取：选中 A375、BICR6、PC3、U251MG 四种细胞系；选中 afatinib、erlotinib、HMN-214、neratinib 四种化合物；选中 A2M、AATF、ABAT、ABCA1、CPVL、ORAI3、SLC19A3、STAC 八个基因。所有提取操作都是有界子集截取，不含任何合成或派生分数。
+</p>
+<p>
+产出物共 8 项：资源清单 YAML 标注了 36 个资源（18 个完整标准资源 + 18 个夹具资源），最小夹具包包含 3 个 H5AD 文件、5 个 CSV 文件和 10 个 JSON 文件，结构描述表涵盖所有资源，样本记录表列出 46 条可追溯行。验证环节重新加载了所有 H5AD 和 CSV 文件，确认文件可读、形状符合预期、分数范围合理。
+</p>
+
+<h2>4. 关键判断与证据</h2>
+<p>
+选择 7 个功能变量而非覆盖全部 91 个，是为了保持夹具小型化和确定性，同时覆盖 Hallmark 和 MP 两类函数来源。细胞系的选择涵盖了皮肤、前列腺、上呼吸道和中枢神经系统四个谱系，使细胞系邻居索引和树索引在夹具中具有代表性。化合物全选 EGFR 抑制剂家族，便于下游演示同类药物的功能对比。所有夹具记录的分数值均直接复制自 A-001 标准矩阵，例如 afatinib 在 A375 细胞上的 E2F_TARGETS 分数为 -10.0，erlotinib 的 TNFA_SIGNALING 分数为 4.366983。验证日志 <code>3_execution/validation_log_m1.json</code> 记录了每项检查的通过状态。
+</p>
+
+<h2>5. 交付物清单</h2>
+<table>
+  <tr><th>ID</th><th>名称</th><th>路径</th><th>类型</th></tr>
+  <tr><td>D-001</td><td>资源清单</td><td><code>4_artifact/2_persist/resource_manifest_m1.yaml</code></td><td>清单</td></tr>
+  <tr><td>D-002</td><td>夹具包</td><td><code>4_artifact/2_persist/fixture_package_m1/</code></td><td>数据包</td></tr>
+  <tr><td>D-003</td><td>结构描述表</td><td><code>4_artifact/5_table/expected_shapes_keys_columns_m1.csv</code></td><td>表格</td></tr>
+  <tr><td>D-004</td><td>样本记录表</td><td><code>4_artifact/5_table/sample_records_m1.csv</code></td><td>表格</td></tr>
+  <tr><td>D-005</td><td>README</td><td><code>4_artifact/2_persist/data_manifest_fixture_m1_readme.md</code></td><td>文档</td></tr>
+  <tr><td>D-006</td><td>执行报告</td><td><code>4_artifact/3_document/execution_report_v20260626.html</code></td><td>报告</td></tr>
+  <tr><td>D-007</td><td>结果报告</td><td><code>4_artifact/3_document/result_report_v20260626.html</code></td><td>报告</td></tr>
+  <tr><td>D-008</td><td>验证日志</td><td><code>3_execution/validation_log_m1.json</code></td><td>执行记录</td></tr>
+</table>
+
+<h2>6. 边界与未完成事项</h2>
+<p>
+夹具包的规模是刻意缩小的，仅用于测试加载器接线和查询方法演示，不足以替代完整标准资源的生物学排序验证。上游 T-021 报告的截断 CMAP H5AD 文件、历史 GSEA 产物和 GenePT 嵌入均被排除在外。任务没有修改任何前序任务的产出或项目协议状态。后续 T-046 加载器任务应首先读取资源清单，再决定使用完整标准资源还是夹具资源。
+</p>
+</body>
+</html>

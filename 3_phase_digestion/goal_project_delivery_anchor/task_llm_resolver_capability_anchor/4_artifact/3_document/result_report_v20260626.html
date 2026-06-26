@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>T-063 结果报告</title>
+  <style>
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.68; margin: 32px auto; max-width: 1080px; color: #202124; }
+h1, h2 { color: #12355b; }
+section { margin: 22px 0; }
+table { border-collapse: collapse; width: 100%; margin: 14px 0; }
+th, td { border: 1px solid #d0d7de; padding: 8px 10px; vertical-align: top; }
+th { background: #f2f5f8; }
+code { background: #f6f8fa; padding: 2px 4px; border-radius: 4px; }
+.note { background: #f8fafc; border-left: 4px solid #4776a8; padding: 12px 14px; }
+</style>
+</head>
+<body>
+
+<h1>T-063 LLM/Resolver 能力锚点 — 结果报告</h1>
+
+<section>
+<h2>一句话结论</h2>
+<p class="note">T-063 为 PxFquery 建立了可检查的 LLM/resolver 验收合同：未来任何声称提供 resolver/LLM 能力的里程碑必须支持自然语言或半结构化查询解析、CyHex 配置 AI 服务辅助 parsing 与 summarization、exact/proxy/not-found 三类结果带透明 metadata 路由，以及 LLM 不可用时确定性 fallback——不允许用 deterministic 查表或仅 LLM 调用替代完整能力交付。</p>
+</section>
+
+<section>
+<h2>项目背景</h2>
+<p>PxFquery 在项目协议中定义了 forward/reverse 两种查询模式，但 M1/M2 阶段的确定性算法包只能覆盖精确矩阵查找和简单代理匹配——这是底层 kernel 能力而非用户级查询体验。用户级 resolver 需要处理自然语言问题（例如"show me drugs that reverse the MCF7 TNF-alpha signature"）并把它翻译成可执行的字段级查询；当精确匹配不存在时，需要自动尝试代理匹配并标注可信度；当代理匹配也不存在时，需要返回结构化的 not-found 响应而非空列表。如果 resolver 层不被单独定义和约束，开发者在压力下很容易把 CLI demo 或 fixture lookup 包装后称为 resolver 交付。T-063 就是为阻止这种 scope 侵蚀而设立的专用锚点任务。</p>
+</section>
+
+<section>
+<h2>核心结果</h2>
+<p>本任务产出的四项核心工件构成了 resolver 验收的四层约束。第一层是机器可读能力锚点 YAML（T063-A-001），它用结构化字段定义了能力断言、约束条件、downgrade 规则和必经能力清单，供 CyHex 或 AI agent 在后续里程碑检查中直接对比。第二层是人类可读功能设计文档（T063-A-002），用自然语言描述了 resolver 在 PxFquery 中的位置和职责：输入阶段需要解析 NL 和半结构化文本，路由阶段需要按 exact/proxy/not-found 分流并附加 provenance，LLM 阶段只能用于 parsing、归一化和 summarization 而不能生成生物学证据，fallback 阶段需要保留所有 metadata 以便用户判断结果可信度。第三层是强制演示用例目录（T063-A-003），覆盖 exact forward/reverse、proxy forward/reverse、not-found、歧义 NL 输入、半结构化输入、LLM 不可用回退和 metadata 检查共八个场景。第四层是验收矩阵 CSV（T063-A-004），包含 14 行数据项，逐行列出了能力条目、最小可接受行为、禁止替代方案、期望证据类型和评审标签。当前配置的期望 AI 路由为 deepseek-v4-pro，任何路由更改必须显式批准。</p>
+</section>
+
+<section>
+<h2>项目价值</h2>
+<p>这个结果对 PxFquery 项目有三层直接影响。第一，它为 M3 resolver 里程碑提供了不可篡改的验收基线——未来 check agent 可以直接对照验收矩阵判断实现是 partial、downgraded、deferred 还是 passed，避免"看起来能跑就算交付"的管理风险。第二，它明确了 LLM 在 PxFquery 中的合理边界：LLM 是查询解析和结果润色工具，不是证据产生器，这一界定保护了项目在面对不准确 LLM 输出时的科学声誉。第三，它为 route 选择和平行比对预留了结构：验收矩阵中包含了 LLM 调用和 deterministic fallback 的对照接受条件，未来可以在同一个测试框架内比对他们各自的准确率和覆盖率。如果没有这个锚点，M3 完成后将无法客观回答"resolver 到底交付了没有"这个问题。</p>
+</section>
+
+<section>
+<h2>交付物导读</h2>
+<table>
+<tr><th>文件</th><th>用途</th><th>优先级</th></tr>
+<tr><td><code>pxfquery_llm_resolver_capability_anchor_v20260625.yaml</code></td><td>机器可读能力合同，供自动化检查直接解析对比</td><td>M3 里程碑必读</td></tr>
+<tr><td><code>pxfquery_llm_resolver_functional_design_v20260625.md</code></td><td>人类先读此文档，理解 resolver 该做什么及哪些替代不合格</td><td>M3 实施前必读</td></tr>
+<tr><td><code>pxfquery_llm_resolver_demo_case_catalog_v20260625.md</code></td><td>后续 demo/test 任务的用例来源，覆盖 8 个必需场景</td><td>M3 测试参考</td></tr>
+<tr><td><code>pxfquery_llm_resolver_acceptance_matrix_v20260625.csv</code></td><td>14 行逐项验收检查表，区分 partial/downgraded/passed</td><td>M3 评审必备</td></tr>
+</table>
+</section>
+
+<section>
+<h2>后续使用方式</h2>
+<p>未来 M3 resolver 实施任务应在启动前先阅读功能设计文档，确认实现方案与 T-063 规定的字段解析、路由分流和 metadata 要求一致。实施完成后，验收阶段应使用能力锚点 YAML 和验收矩阵 CSV 逐项对照，对每项能力标记 delivered/partial/blocked/downgraded/deferred/insufficient-evidence 状态，并在项目报告中说明偏离原因。若后续任务选择更换 AI 路由（例如从 deepseek-v4-pro 切换到其他模型），必须单独提交协议变更并获得批准，不能在不通知的情况下静默替换。T-063 的产出本身不需要版本更新——它是一份锚点合同而非软件代码。</p>
+</section>
+
+<section>
+<h2>边界与风险</h2>
+<p>需要明确指出：T-063 的产出是设计和验收锚点，不是实现证据。本任务没有调用 deepseek-v4-pro API，没有测试任何 resolver 代码是否存在，没有验证索引是否支持所需查询类型。如果未来发现 deepseek-v4-pro 的 API 延迟过高、token 限制过小或输出质量不符合 parsing 要求，这些是需要实施任务解决的工程问题，不属于锚点定义的错误。同样，如果项目数据库中没有足够的 proxy 映射数据来覆盖演示用例中的 proxy 场景，这属于数据准备缺口而非锚点设计缺陷。验收矩阵中已经为每种情况标注了"期望证据类型"，具体实施时应据此准备测试资产和预期输出。</p>
+</section>
+
+</body>
+</html>

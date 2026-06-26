@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>结果报告 — T-046 m1_fixture_loader</title>
+<style>
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 960px; margin: 2em auto; padding: 0 1em; color: #1a1a2e; background: #f8f9fa; line-height: 1.8; }
+h1, h2, h3 { color: #16213e; }
+table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+th, td { border: 1px solid #dee2e6; padding: 8px 12px; text-align: left; }
+th { background: #e9ecef; }
+.section { margin: 2em 0; padding: 1.5em; background: #fff; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+code { font-family: 'SFMono-Regular', Consolas, monospace; background: #f0f0f0; padding: 0.2em 0.4em; border-radius: 3px; }
+</style>
+</head>
+<body>
+<h1>结果报告 — T-046 m1_fixture_loader</h1>
+<p>生成日期：2026-06-26 | 版本：v20260626</p>
+
+<div class="section">
+<h2>1. 一句话结论</h2>
+<p>T-046 交付了一个小型、确定性的 M1 夹具装载器（M1FixtureLoader），24/24 项冒烟结构检查全部通过，所有观测形状、列名、键数均与 T-043 契约完全一致。下游 T-048 和 T-049 可直接调用该装载器获取 18 个夹具资源的矩阵/索引数据，无需自行解析夹具包。</p>
+</div>
+
+<div class="section">
+<h2>2. 项目背景</h2>
+<p>PxFquery 是一个基于 LINCS 扰动数据的生物信息学工作流，面向药物和基因诱导的功能程序查询。项目 M1 阶段聚焦于小型夹具数据的端到端验证，其中 T-043 提供了结构化的数据基板（manifest + fixture 包），T-046 则在这层基板之上构建通用的装载接口。在项目任务链中，T-046 的定位是"小且可靠"——它不解决生产级资源硬化、生物学排序或查询器智能问题，而是为后续的查询任务（T-048、T-049）铺平数据访问道路。这种分层策略保证了每项任务的责任边界清晰，减少了跨任务耦合风险，也使得 T-043 的数据契约能够得到统一贯彻。</p>
+</div>
+
+<div class="section">
+<h2>3. 核心结果</h2>
+<p>装载器成功读取了 T-043 资源清单中定义的 18 个夹具资源，并在冒烟脚本中执行了 24 项验证。矩阵方面，三种扰动类型（cp 化合物、sh 基因敲除、xpr 过表达）的 AnnData 矩阵均为 4×7 结构，各含四条 sig_id 和七个变量。元数据表方面，细胞系元数据表（cellline_meta）为 4×8，细胞系信息表（cellline_info）为 4×20，化合物元数据表（compound_meta）为 4×9，化合物信息表（compound_info）为 4×7，基因信息表（gene_info）为 8×7。JSON 索引方面，十个索引资源的键个数从 1（cellline_index）到 8（gene_index）不等，全部匹配预期。此外还验证了每个矩阵可通过 sig_id 进行稳定的行访问——例如 cp_matrix 中第一条 sig_id 为 "ABY001_A375_XH:BRD-K66175015:10:24"，七个变量的取值区间为 [-10.00, 2.11]。全部 24 项检查结果均为 PASS，无任何失败。</p>
+</div>
+
+<div class="section">
+<h2>4. 项目价值</h2>
+<p>T-046 对项目全局的价值体现在三个方面。第一，它为 M1 阶段的下游工作提供了统一的、经过验证的数据入口，避免了 T-048 和 T-049 各自重复编写夹具解析代码——这不仅节省开发时间，更重要的是保证了对 T-043 契约的一致遵守。第二，装载器的 API 设计体现了清晰的关注点分离：M1Manifest 负责资源发现和筛选，M1Fixture 负责数据访问和结构验证，M1FixtureLoader 作为唯一入口管理两者的生命周期。这种模式可以自然地扩展到未来的完整资源加载场景，届时只需要复用相同的接口模式即可。第三，24/24 的冒烟通过率为后续任务提供了可靠的质量基线——如果未来夹具结构发生任何意外变更，冒烟脚本能够在几秒内捕获到形状、列名或键数量的偏差。</p>
+</div>
+
+<div class="section">
+<h2>5. 交付物导读</h2>
+<table>
+<tr><th>文件</th><th>用途</th><th>建议先读</th></tr>
+<tr><td>4_artifact/1_package/pxfquery/data/m1_loader.py</td><td>装载器实现代码，包含 M1FixtureLoader、M1Fixture、M1Manifest 三个类</td><td>作为 API 参考</td></tr>
+<tr><td>4_artifact/2_persist/API_REFERENCE_v20260624.md</td><td>API 文档，详细说明构造参数、属性和矩阵操作方法</td><td>是——先读此文件了解如何使用</td></tr>
+<tr><td>4_artifact/5_table/smoke_evidence_observed_vs_expected_v20260624.csv</td><td>冒烟证据明细，逐项列出观测值与期望值的对照</td><td>验证 24/24 的详细数据</td></tr>
+<tr><td>3_execution/smoke_m1_loader.py</td><td>可复现的冒烟脚本，可在新环境中直接运行</td><td>运行以验证环境配置</td></tr>
+<tr><td>3_execution/smoke_output.txt</td><td>冒烟运行的完整控制台输出</td><td>查看原始运行详情</td></tr>
+</table>
+<p>装载器代码存放于任务本地的 4_artifact/1_package/ 路径下，同时也在 task_package_skeleton_m1 骨架包中有一份原始副本。如果下游任务需要快速验证装载器在自己环境下能否正常工作，直接运行 python 3_execution/smoke_m1_loader.py 即可，无须额外安装依赖。</p>
+</div>
+
+<div class="section">
+<h2>6. 后续使用方式</h2>
+<p>T-048 和 T-049 是装载器的主要消费者。典型用法为：从 pxfquery.data 包导入 M1FixtureLoader，提供 T-043 的 manifest 路径和夹具根目录，调用 loader = M1FixtureLoader("path/to/resource_manifest_m1.yaml", "path/to/fixture_package_m1/")。之后通过 loader.manifest 获取资源元信息（如调用 .fixture_resources() 列出所有夹具，或通过 .resource_by_id(id) 查询单个资源定义），通过 loader.fixture 访问具体的数据对象——.fixture.cp、.fixture.sh、.fixture.xpr 为 AnnData 矩阵，.fixture.cellline_meta 等为 DataFrame，.fixture.cellline_index 等为 dict。需要特别注意的是，当前装载器仅加载夹具资源，完整资源的加载功能尚未实现。如果下游任务发现需要加载完整资源，应在任务协议中明确记录需求变化，而不是绕过装载器直接读取原始文件。</p>
+</div>
+
+<div class="section">
+<h2>7. 边界与风险</h2>
+<p>本次任务的边界已在执行阶段明确定义。装载器不做生物学排序验证、不做查询器逻辑集成、不做完整资源的流式加载或内存优化，仅保证对 18 个夹具文件的结构完整访问。风险方面有两个要点需要注意。第一，当前装载器在 conda 环境中依赖可编辑安装的 pxfquery 包。如果后续骨架包路径或目录结构发生变动，需要同步更新可编辑安装指向（pip install -e），否则 import 可能失败。第二，装载器的验证深度停留在结构层面——它检查了形状、列名、键数量，但不检查矩阵数值的生物学合理性。例如，一个基因矩阵中是否包含了某个特定的基因集、数值范围是否符合已知的生物学分布，这属于下游查询任务的验证范畴，装载器不做判断。总体而言，T-046 的交付质量可靠，边界清晰，适合作为 M1 阶段下游开发的基础组件。</p>
+</div>
+</body>
+</html>

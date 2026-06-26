@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(curl -s http://localhost:47291/api/version)"
+      "Bash(curl -s http://localhost:47291/api/version)",
+      "Bash(python3 /tmp/rpm_roundrobin_test.py)",
+      "Bash(echo \"Exit code: $?\")"
     ]
   }
 }

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>T-063 执行报告</title>
+  <style>
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.68; margin: 32px auto; max-width: 1080px; color: #202124; }
+h1, h2 { color: #12355b; }
+section { margin: 22px 0; }
+table { border-collapse: collapse; width: 100%; margin: 14px 0; }
+th, td { border: 1px solid #d0d7de; padding: 8px 10px; vertical-align: top; }
+th { background: #f2f5f8; }
+code { background: #f6f8fa; padding: 2px 4px; border-radius: 4px; }
+.note { background: #f8fafc; border-left: 4px solid #4776a8; padding: 12px 14px; }
+</style>
+</head>
+<body>
+
+<h1>T-063 LLM/Resolver 能力锚点 — 执行报告</h1>
+
+<section>
+<h2>任务意图</h2>
+<p>PxFquery 的用户查询体验依赖一个能够理解自然语言和半结构化输入的 resolver 层，而不仅仅是直接调用底层矩阵函数。T-062 算法包交付锚点已经确立了包级能力范围，但 resolver 层是项目中最容易被低估的环节——开发人员容易把 deterministic CLI demo 或 fixture 查表等价于用户级查询系统。T-063 专门处理这一缺口，为未来 M3 及以后涉及 resolver 能力的里程碑建立不可模糊的验收合同。本任务不实现任何代码，只定义：自然语言和半结构化查询入口如何解析，CyHex 配置的 AI 服务（当前路线 deepseek-v4-pro）在 parsing 和 summarization 中的角色，exact/proxy/not-found 三类查询结果如何路由与标注，以及 LLM 不可用或代理路由失败时的确定性 fallback 语义。任务的核心产出是一套机器可读的能力锚点、一份人类可读的功能设计说明、一个强制性的演示用例目录，以及一张逐项对照的验收矩阵。</p>
+</section>
+
+<section>
+<h2>输入资产与依据</h2>
+<p>执行过程确认并完整读取了协议注册的 13 项输入资产。这些资产来自四个来源：T-007 开发资产消化任务提供的迁移后源码地图和风险清单（A-001 至 A-003），T-013 MVP 算法评审提供的合约边界和能力状态矩阵（A-004 至 A-006），T-061 遗留源码修复提供的模块摘要和引用边界规则（A-007 至 A-008），以及 T-062 包级交付锚点提供的能力锚点、能力矩阵、降级规则和里程碑路由信息（A-009 至 A-013）。输入资产为 resolver 锚点提供了三重依据：一是项目协议明确禁止将 resolver 能力降级为 deterministic 查表（A-011 降级规则清单）；二是 deepseek-v4-pro 和 CyHex 注册 AI 地址是当前经过配置验证的期望 AI 路由；三是 exact/proxy/not-found 三类命中情况的 provenance 和 evidence metadata 必须全程透明传递。</p>
+</section>
+
+<section>
+<h2>实际执行过程</h2>
+<p>执行过程分为五个连贯阶段。第一阶段，确认任务工作区完整可写，通过 CyHex API 确认本地环境版本为 1.2.20，验证 13 项输入资产路径可达且内容非空。第二阶段，逐份读取输入资产，从中提取与 resolver 直接相关的需求定义、能力缺口、降级约束、源码引用边界和关键术语表，形成执行提取笔记保存于 <code>3_execution/resolver_requirement_extraction_v20260625.md</code>，提取过程严格限定在注册资产范围内，未读取任何未授权目录。第三阶段，基于提取结果编写机器可读的 LLM/resolver 能力锚点 YAML 文件，定义输入解析规则、AI 服务引用方式、exact/proxy/not-found 路由语义、fallback 分层策略以及 disallowed substitute 清单。第四阶段，依次完成人类可读的功能设计说明、强制演示用例目录和验收矩阵 CSV，覆盖 forward/reverse 双向查询、自然语言和半结构化输入、AI parsing/summarization、消歧、LLM 不可用回退、证据 metadata 检查和 downgrade 标记共八个能力维度。第五阶段，对全部产出执行 YAML 和 CSV 解析验证，确认关键术语（deepseek-v4-pro、CyHex-registered AI address、exact/proxy/not-found 路由、fallback 语义、downgrade control、evidence metadata）均出现在对应产出中，最后登记注册并更新 registry.yaml。</p>
+</section>
+
+<section>
+<h2>关键判断与证据</h2>
+<p>执行过程中有三项判断对后续里程碑影响最大。第一，resolver 交付不可等价于实现一个 deterministic 包入口；只要里程碑声称包含 resolver/LLM 能力，就必须支持自然语言或半结构化查询输入解析，而不能把 CLI 参数透传或 fixture 查找算作用户级查询。第二，LLM 在 resolver 中的角色被严格限定为解析辅助、术语归一化、歧义解释和结果摘要——它不是一个独立的生物学证据来源；如果未来集成发现 LLM 产生了不准确的生物学描述，这属于预期风险而非 bug，前提是 metadata 正确标注了 LLM 参与范围。第三，LLM 不可用时的 fallback 路径（精确字符串匹配 + 确定性代理查找 + 带标注的 not-found 结果）属于运行韧性设计，不能当作 primary resolver 能力的替代交付——验收矩阵明确区分了 fallback-as-resilience 和 fallback-as-delivery 两种状态。这些判断的证据形态体现在能力锚点的字段约束、功能设计中的路由说明、验收矩阵中每一行的最小行为和 disallowed substitute 列中。</p>
+</section>
+
+<section>
+<h2>交付物清单</h2>
+<p>本任务产生六项已登记交付物：机器可读 resolver 能力锚点 <code>pxfquery_llm_resolver_capability_anchor_v20260625.yaml</code>（注册 ID T063-A-001，五颗星），人类可读功能设计 <code>pxfquery_llm_resolver_functional_design_v20260625.md</code>（T063-A-002，五颗星），强制演示用例目录 <code>pxfquery_llm_resolver_demo_case_catalog_v20260625.md</code>（T063-A-003，四颗星），逐项验收矩阵 <code>pxfquery_llm_resolver_acceptance_matrix_v20260625.csv</code>（T063-A-004，五颗星），以及本执行报告和结果报告。所有交付物均已登记在 <code>4_artifact/registry.yaml</code>，状态为 accepted 且 reusable，路径均指向实际存在的本地文件。</p>
+</section>
+
+<section>
+<h2>边界与未完成事项</h2>
+<p>本任务严格限定在设计和验收锚点的范围之内，未触及任何 resolver 或 AI gateway 的实现代码，未运行包工作流、单元测试或数据矩阵检查，未向 deepseek-v4-pro 或其他 AI 服务发送真实请求检测延迟或失败行为。任务产出虽然规定了 LLM parsing 行为、fallback 语义和证据 metadata 格式，但这些规定在未来实现时可能需要根据实际 AI 服务的 API 特征和延迟情况进行调整——验收矩阵的 evidence 列已经为此预留了弹性空间。本任务未修改已有的 YAML schema、registry 配置、protocol 文件或 project goal 定义。任何 runtime 通过性、AI service latency 或 resolver correctness 验证都留待后续开发任务完成。</p>
+</section>
+
+</body>
+</html>

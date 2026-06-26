@@ -1,7 +1,7 @@
 # Delivery QA: T-050 forward_validation_m1
 
 ## Verdict
-green_pass
+yellow_repair
 
 ## Checks Performed
 
@@ -18,12 +18,13 @@ green_pass
 
 ## Repairs Made
 
-- Created `5_report/handoff_ai_use.md` — was missing, required for future AI task handoff
-- Created `5_report/delivery_qa.md` — this file, was missing
+- Rewrote `4_artifact/3_document/execution_report_v20260626.html` — human-readable Chinese narrative with 6 sections, replacing the old audit-log-style HTML
+- Rewrote `4_artifact/3_document/result_report_v20260626.html` — human-readable Chinese narrative with 7 sections, replacing the old table-heavy HTML
+- Updated `5_report/delivery_qa.md` verdict from `green_pass` to `yellow_repair` — repair was report rewriting only, no core deliverables modified
 
 ## Remaining Issues
 
-None. All protocol deliverables exist, registry is consistent, HTML reports are substantive, and handoff document is now present.
+None. All protocol deliverables exist, registry is consistent, HTML reports are substantive and human-readable, handoff document is present. The repair was cosmetic/linguistic only.
 
 ## Execute Revision Required
 no

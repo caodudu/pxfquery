@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>T-017 执行情况报告 — MDPI 引用格式调查</title>
+<style>
+body { font-family: -apple-system, "PingFang SC", "Hiragino Sans GB", sans-serif; max-width: 820px; margin: 40px auto; padding: 0 24px; color: #1e293b; line-height: 1.8; font-size: 15px; }
+h1 { font-size: 24px; color: #0f172a; border-bottom: 2px solid #0ea5e9; padding-bottom: 10px; margin-top: 24px; }
+h2 { font-size: 18px; color: #0284c7; margin-top: 32px; margin-bottom: 10px; }
+p { margin: 10px 0; text-align: justify; }
+.meta { color: #64748b; font-size: 13px; margin-bottom: 20px; }
+.highlight-box { background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 10px; padding: 20px 24px; margin: 20px 0; }
+table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 14px; }
+th, td { border: 1px solid #e2e8f0; padding: 8px 14px; text-align: left; }
+th { background: #f1f5f9; font-weight: 600; color: #334155; }
+code { background: #f1f5f9; padding: 2px 6px; border-radius: 4px; font-size: 13px; }
+.verdict { background: #f0fdf4; border-left: 4px solid #22c55e; padding: 12px 18px; border-radius: 0 8px 8px 0; margin: 16px 0; }
+</style>
+</head>
+<body>
+
+<h1>T-017 执行情况报告</h1>
+<p class="meta">PxFquery 项目 · 引用格式调查 · 2026-06-26 · 编号 T-017</p>
+
+<div class="highlight-box">
+<p><strong>本项目的问题：</strong>PxFquery 以 MDPI Genes 期刊为投稿目标，但在稿件写作前，团队需要确切知道 MDPI 使用哪种引用格式、在 Zotero 中叫什么名字、是否可以直接安装。如果搞错格式，稿件中上百条参考文献的结构都会出错，修改代价极大。</p>
+<p><strong>本任务的角色：</strong>T-017 是整个稿件生产链条中第一个纯格式前置任务——在开始插入文献之前解决"用什么格式"的问题，使 Zotero 配置和写作模板可以一步到位。</p>
+<p><strong>具体成果：</strong>确定了 MDPI/Genes 使用 "Multidisciplinary Digital Publishing Institute" 样式（编号制 [1][2]），该样式已收录在 Zotero 官方仓库；同时下载了官方 CSL 文件作为离线备份。</p>
+</div>
+
+<h2>1. 任务意图</h2>
+<p>PxFquery 项目的稿件目标期刊是 MDPI 旗下的 Genes，而 MDPI 系列期刊有自己独立的引用格式规范。本任务不涉及任何数据处理、代码开发或科学分析，只做一件事：查明 MDPI 的引用格式是哪种、在 Zotero 里叫什么名字、怎么安装。这个判断必须在 Zotero 开始录入文献之前完成，否则已插入的引用需要全部替换重排。任务启动时，团队对格式名称并不确定——尽管隐约知道可能是某种编号格式，但不知道 Zotero 里的精确名称，也不知道能否直接安装。任务由 CyHex 执行，时间是 2026 年 6 月 23 日，用时约 30 分钟完成 6 个协议步骤。</p>
+
+<h2>2. 输入资产与依据</h2>
+<p>任务使用了四个来源的证据。首先是 MDPI 官网上的作者引用指南（A-003，<code>https://www.mdpi.com/authors/references</code>），这是格式的权威定义来源，内容涵盖在-text 引用格式、参考文献列表排列规则、以及 Zotero 推荐使用。其次是 WXY 团队已向 Genes 投稿的稿件 <code>manuscript_v8.docx</code>（A-002），这份 44MB 的 .docx 文件中包含完整参考文献列表，提供了实际出版环境中的 15 条文献样例。第三是 Zotero 官方样式仓库（A-005），用于查询样式是否存在。第四是 citation-style-language/styles 的 GitHub 仓库（A-004），其中维护了官方 CSL 定义文件。此外，通过网络搜索（A-006）对样式名称进行了交叉验证，确保没有歧义。</p>
+
+<h2>3. 实际执行过程</h2>
+<p>执行分六步完成，全部成功。第一步，通过 webfetch 工具读取 MDPI 官方引用指南页面，页面确认 MDPI 使用编号制引用（[1] [2]）并且官方推荐使用 Zotero 管理参考文献。第二步是工作量最大的步骤——WXY 的稿件体积大（44MB），python-docx 库在当前环境中不可用，因此退而使用 zipfile + XML 解析直接从 docx 内部 <code>document.xml</code> 中提取 References 段落，最终获得 15 条结构完整的参考文献样例。第三步，在 Zotero 样式仓库中搜索样式，确认名称为 "Multidisciplinary Digital Publishing Institute"，样式 ID 为 <code>multidisciplinary-digital-publishing-institute</code>。第四步，从 GitHub raw 地址下载官方 CSL 文件（263 行，9,534 字节），保存至 <code>4_artifact/6_archive/</code> 目录。第五步，记录两种 Zotero 安装方法（在线搜索安装和离线 CSL 导入）。第六步，生成本次调查的完整报告文件。</p>
+
+<h2>4. 关键判断与证据</h2>
+<p>需要做出的核心判断是：MDPI 引用格式是否属于 Zotero 可以直接使用的标准样式，还是需要手动编写。回答是肯定的——它是标准样式。证据来自三个独立渠道的一致性。第一，MDPI 官方指南中明确将 Zotero 列为推荐工具，且引用的样式名称与 Zotero 仓库中的名称一致。第二，WXY 投稿手稿的实际引用格式（[1] Claussnitzer, M.; Cho, J.H.; ... 作者分号分隔、期刊缩写、年份加粗、卷号斜体、页码依次排列）与 MDPI 官方指南中描述的格式完全吻合。第三，Zotero 样式仓库返回 200 OK，确认该样式可搜索到。三方面证据互相独立，不存在依赖偏差，可以确定答案。</p>
+
+<h2>5. 交付物清单</h2>
+<table>
+<tr><th>文件</th><th>路径</th><th>说明</th><th>状态</th></tr>
+<tr><td>调查结果报告（Markdown）</td><td><code>4_artifact/2_persist/mdpi_citation_format_findings_v20260623.md</code></td><td>完整调查发现，约 3.5 KB</td><td>✓</td></tr>
+<tr><td>CSL 样式文件</td><td><code>4_artifact/6_archive/multidisciplinary-digital-publishing-institute.csl</code></td><td>官方 CSL 文件，9,534 字节</td><td>✓</td></tr>
+<tr><td>本执行报告（HTML）</td><td><code>4_artifact/3_document/execution_report_v20260626.html</code></td><td>执行过程总览</td><td>✓ 本文</td></tr>
+<tr><td>结果报告（HTML）</td><td><code>4_artifact/3_document/result_report_v20260626.html</code></td><td>面向用户的结论和操作指南</td><td>✓</td></tr>
+</table>
+
+<h2>6. 边界与未完成事项</h2>
+<p>本任务覆盖的范围是：格式识别 + Zotero 安装确认 + CSL 下载。不在范围内的事情包括：Zotero 使用教学、实际文献导入、格式调试、修改 WXY 手稿、以及验证 CSL 文件在 Word/LibreOffice 中的实际输出是否与最终出版物完全一致（CSL 是官方维护的，但出版前的最终排版可能有微小差异）。WXY 手稿中的 15 条样例包含几篇 Genes 同系列期刊的论文（如 <code>Cells</code> 2020 文章），其格式与非 MDPI 期刊文章略有不同（含 DOI 链接）。此外，MDPI 官方指南页面在直接 HTTP 访问时返回 403，通过浏览器级别 webfetch 才获取成功——这一点不影响结果，但说明该页面对程序化访问有一定限制。对于后续使用，建议投稿前对照 Genes 最新作者指南完成最终校验。</p>
+
+</body>
+</html>

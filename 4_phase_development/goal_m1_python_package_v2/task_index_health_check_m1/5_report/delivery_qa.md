@@ -22,6 +22,11 @@ yellow_repair
 3. **handoff_ai_use.md** — Created with full downstream guidance for T-047/T-042
 4. **delivery_qa.md** — This file, documenting QA verdict and repairs
 
+## Report Rewrite (2026-06-26)
+1. **execution_report_v20260626.html** — Rewritten in Chinese with 6 sections, natural-language paragraphs, 900+ Chinese characters. Covers task intent, input assets, execution process, key judgments, deliverables, and boundaries.
+2. **result_report_v20260626.html** — Rewritten in Chinese with 7 sections, 900+ Chinese characters. Covers one-line conclusion, project background, core results, project value, deliverable guide, follow-up usage, and risks.
+3. Core deliverables (summary.json, report.md, gap_notes.md) — Unmodified.
+
 ## Remaining Issues
 - step4_coverage_gap.json intermediate checkpoint was not written to 3_execution/ (protocol step 4 expected this file). Not a deliverable — analysis incorporated into final outputs. Minor process gap.
 - T-042 not executed — entity coverage analysis used T-013 proxy. Documented in all reports.

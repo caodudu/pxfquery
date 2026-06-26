@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>T-047 结果报告 — M1 资源加载器加固</title>
+<style>
+body { font-family: -apple-system, sans-serif; max-width: 1200px; margin: 0 auto; padding: 20px; color: #333; }
+h1 { color: #2563eb; }
+h2 { color: #1e40af; border-bottom: 2px solid #dbeafe; padding-bottom: 4px; margin-top: 28px; }
+p { line-height: 1.7; margin: 12px 0; }
+table { border-collapse: collapse; width: 100%; margin: 12px 0; }
+th, td { border: 1px solid #e5e7eb; padding: 6px 10px; text-align: left; font-size: 13px; }
+th { background: #f3f4f6; font-weight: 600; }
+.verdict-pass { background: #d1fae5; color: #065f46; font-size: 18px; padding: 12px; border-radius: 6px; text-align: center; }
+.timestamp { color: #6b7280; font-size: 13px; }
+</style>
+</head>
+<body>
+<h1>T-047 结果报告 — M1 资源加载器加固</h1>
+<p class="timestamp">重写日期：2026-06-26 | 版本：v20260626</p>
+<div class="verdict-pass"><strong>结论：PASS — 36/36 资源加载成功，6 项已知间隙全部由标准化处理覆盖</strong></div>
+
+<h2>1. 一句话结论</h2>
+<p>T-047 成功实现了 M1 Python 包资源加载器的加固，涵盖 h5ad 矩阵、CSV 元数据和 JSON 索引三类资源，在完整标准和夹具两条路径上各加载 18 个文件，总计 36 条资源全部通过，加载器对 function_index 非标准结构、gene_index 字段命名差异、cellline_index 包裹结构等问题实施了显式标准化处理，M1 包可直接使用该加载器作为资源入口。</p>
+
+<h2>2. 项目背景</h2>
+<p>PxFquery 是一个基于 LINCS 的药物与基因功能程序查询工作流，其 M1 Python 包需要一组标准化的资源文件——功能矩阵（cp/sh/xpr 三种扰动类型的 h5ad）、细胞系元数据（cellline_meta、cellline_info）、化合物元数据（compound_meta、compound_info）、基因信息表（gene_info）以及多种 JSON 索引（基因、药物、细胞系、功能通路）。T-043 定义了这些资源的清单与约束，T-045 对索引进行了健康检查并发现了六个结构性问题。T-047 的目标不是重新发现这些问题，而是让加载器在这些真实数据的不规范结构之上仍能可靠工作，从而为后续的查询逻辑提供干净的输入层。</p>
+
+<h2>3. 核心结果</h2>
+<p>加载器在 6.74 秒内处理了全部 36 条资源。完整标准资源的三组 h5ad 矩阵形状为 201014×91（cp_func_ad）、189365×91（sh_func_ad）和 132464×91（xpr_func_ad），obs 列完整且 var 计数均为 91。夹具矩阵为 4×7，var_names 精确匹配 HALLMARK_E2F_TARGETS、HALLMARK_APOPTOSIS 等七项预期通路名。CSV 表全部通过行数和列存在性校验。JSON 索引方面，function_index.json 的 meta/var_names/aliases 三段结构被正确解包，生成的分类映射覆盖了 50 个 Hallmark 通路和 41 个 3CA MPS 程序；gene_index.json 的 symbol 字段被重映射为 gene_symbol；cellline_index.json 从 valid_cells 键下提取了全部细胞系名。四项标准化处理分别在完整标准和夹具路径上各应用两次，合计四次。</p>
+
+<h2>4. 项目价值</h2>
+<p>该加载器是 M1 Python 包的底层基础设施。它解除了下游代码对原始资源文件格式的依赖——无论真实数据文件使用 symbol 还是 gene_symbol、采用三段式还是标准 JSON 结构，加载器都会输出一致的规范化结果。这对于一个需要在夹具开发环境与完整生产环境之间切换的项目尤为重要。六项间隙虽然并未消除，但均已通过加载器层得到处理，使得 M1 包的目标代码不需要感知这些结构差异。此外，夹具路径的确定性（18 个文件，固定形状，固定内容）为 CI 流水线和演示环境提供了可靠的测试基础。</p>
+
+<h2>5. 交付物导读</h2>
+<p>核心交付物有三件：D-001（loader_hardening_m1.py）是加载器代码本身，可通过命令 python loader_hardening_m1.py --root &lt;路径&gt; 独立运行，也可作为模块被导入；D-002（loader_smoke_results_m1.json）是机器可读的 JSON 结果，每条资源的状态、形状、标准化情况和间隙信息均结构化记录，适合仪表盘或 CI 断言消费；D-004（loader_gap_list_m1.md）以 Markdown 表格形式列出了六项间隙的严重级别、夹具覆盖度和建议操作，是 M1 是否 go/no-go 的决策参考。D-003（loader_smoke_report_m1.md）提供了叙述性摘要和逐资源表格，适合快速阅读。D-007（fixture_package_m1 副本）是夹具文件的直接复制，被放置在加载器默认搜索路径下。</p>
+
+<h2>6. 后续使用方式</h2>
+<p>M1 Python 包的开发团队应将 loader_hardening_m1.py 作为标准的资源加载入口。在集成测试或 CI 环境中，优先使用夹具路径（--root 指向夹具包目录），该路径不依赖 t021_standard_resources_bundle，加载速度快且结果确定。在正式运行中，将 --root 设为完整标准资源包所在目录即可自动加载全部真实资源。如果后续需要对六项间隙进行根因修复——例如将 function_index.json 重构为标准结构、为 drug_index.json 添加 BRD 反向映射——gap 列表可以直接作为任务描述输入。加载器输出中的 normalization_applied 字段可用于监控标准化是否仍然适用。</p>
+
+<h2>7. 边界与风险</h2>
+<p>加载器对 function_index.json 分类信息的推导依赖于 source 字段中的命名约定（HALLMARK_ 前缀 vs MP 前缀），如果未来数据更新改变了这个约定，分类逻辑需要同步更新。gene_index.json 的标准化将 symbol 映射为 gene_symbol，但原始文件中没有 ensembl_id 字段，下游代码不应假设该字段存在。cellline_tree.json 被记录为扁平结构而非层级树，M1 包中如果涉及谱系层次查询，需要使用替代方法。全部间隙已被归类为非阻塞（4 warn + 2 cosmetic），且夹具路径均覆盖了相同类型的标准化处理，因此 M1 包的 fixture-only 路径不受影响。</p>
+</body>
+</html>

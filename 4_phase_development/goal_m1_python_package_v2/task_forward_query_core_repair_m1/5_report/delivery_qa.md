@@ -23,6 +23,7 @@ yellow_repair
 - Added downstream-use metadata to `4_artifact/registry.yaml`, including roles, identities, descriptions, reuse guidance, lineage anchors, core flags, and stars.
 - Created `5_report/handoff_ai_use.md` for future config/check/execute AI handoff.
 - Created this delivery QA report.
+- Rewrote `4_artifact/3_document/execution_report_v20260626.html` and `4_artifact/3_document/result_report_v20260626.html` as substantive Chinese human-readable reports (v20260626). Removed forbidden internal repair phrases from visible HTML body. Verdict remains yellow_repair: this was human-readable report rewriting only, not a core deliverable change.
 
 ## Remaining Issues
 

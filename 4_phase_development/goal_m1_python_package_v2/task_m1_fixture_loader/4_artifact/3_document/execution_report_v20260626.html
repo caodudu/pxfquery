@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>执行报告 — T-046 m1_fixture_loader</title>
+<style>
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 960px; margin: 2em auto; padding: 0 1em; color: #1a1a2e; background: #f8f9fa; line-height: 1.8; }
+h1, h2, h3 { color: #16213e; }
+table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+th, td { border: 1px solid #dee2e6; padding: 8px 12px; text-align: left; }
+th { background: #e9ecef; }
+.section { margin: 2em 0; padding: 1.5em; background: #fff; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+code { font-family: 'SFMono-Regular', Consolas, monospace; background: #f0f0f0; padding: 0.2em 0.4em; border-radius: 3px; }
+</style>
+</head>
+<body>
+<h1>执行报告 — T-046 m1_fixture_loader</h1>
+<p>生成日期：2026-06-26 | 版本：v20260626</p>
+
+<div class="section">
+<h2>1. 任务意图</h2>
+<p>T-046（m1_fixture_loader）是 PxFquery 项目 M1 阶段的一座小型开发桥梁，位于 T-043 数据基板与下游 M1 查询/演示任务（T-048、T-049）之间。项目的核心问题是：如何将 LINCS 扰动数据中的功能程序以可控的方式暴露给查询层，同时避免下游任务各自实现私有的夹具解析逻辑。T-046 的答案是一个轻量的装载器，它读取 T-043 注册的资源清单（resource_manifest_m1.yaml）和夹具包（fixture_package_m1/），将 18 个夹具文件以 AnnData 矩阵、pandas DataFrame 和 JSON 索引字典的形式提供出来，并对照 T-043 的期望形状表（A-003）完成结构验证。这种分层设计使得 T-043 的契约得到统一遵守，后续的查询器任务只需要调用 M1FixtureLoader 的公开 API，不必关心文件格式、路径解析或结构校验等细节。</p>
+</div>
+
+<div class="section">
+<h2>2. 输入资产与依据</h2>
+<p>执行严格依据三份 T-043 产出的注册资产。A-001（resource_manifest_m1.yaml）记录了 36 项资源定义，其中 18 个夹具资源、18 个完整资源，是装载器发现夹具路径和识别文件格式的唯一依据。A-002（fixture_package_m1/）包含 18 个实际夹具文件，覆盖三种 AnnData 矩阵（cp 化合物、sh 基因敲除、xpr 过表达）、五个元数据表（cellline_meta、cellline_info、compound_meta、compound_info、gene_info）、八种 JSON 索引以及两种近邻/树形结构。A-003（expected_shapes_keys_columns_m1.csv）提供了每项资源期望的行列数、列名和键数量，是冒烟验证的定量标尺。三项资产在协议阶段已注册，执行过程中逐个读取确认完整性，未发生缺失或不一致。</p>
+</div>
+
+<div class="section">
+<h2>3. 实际执行过程</h2>
+<p>执行分为八个步骤。第一步验证 T-043 资产的完整性——确认 manifest 可解析、夹具文件存在于预期路径、期望形状表格式正确。第二步检查项目 Python 包布局，在 task_package_skeleton_m1 骨架中找到 pxfquery.data 子包结构，确认适合插入新模块。第三步在 pxfquery.data.m1_loader 模块中实现三个公开类：M1FixtureLoader（入口装载器，负责接收 manifest 路径和夹具根目录）、M1Fixture（夹具容器，将各类文件统一为属性访问接口）、M1Manifest（资源清单模型，提供资源发现和筛选方法），并在 pxfquery.data.__init__ 中完成重新导出。第四步在 3_execution/smoke_m1_loader.py 中编写冒烟脚本，通过公开 API 加载夹具并执行全部 24 项结构检查。第五步将骨架包以可编辑模式安装到项目 conda 环境（pip install -e），同时清理了 T-024 和 T-032 遗留的过期 .pth 文件。第六步运行冒烟脚本，输出完整日志到 3_execution/smoke_output.txt。第七步和第八步分别撰写 API 文档、冒烟证据表、更新注册表和完成报告。</p>
+</div>
+
+<div class="section">
+<h2>4. 关键判断与证据</h2>
+<p>冒烟测试共 24 项检查全部通过，无任何失败。矩阵形状方面，三个 AnnData 矩阵（cp_matrix、sh_matrix、xpr_matrix）均为 4 观测 × 7 变量，与期望值精确吻合。元数据表方面，五个表分别是 cellline_meta（4×8）、cellline_info（4×20）、compound_meta（4×9）、compound_info（4×7）、gene_info（8×7），行列数与 A-003 完全一致。JSON 索引方面，十个索引资源中键个数最少的是 cellline_index（1 个键），最多的是 gene_index 和 gene_index_simple（各 8 个键），全部匹配预期值。稳定的 sig_id 行访问验证也通过——例如 cp_matrix 中四条 sig_id 的行均可通过 .get_matrix_row() 正确获取，首条 sig_id 为 "ABY001_A375_XH:BRD-K66175015:10:24"，七个变量的范围在 -10.00 至 2.11 之间。执行中一项重要的范围判断是不引入私有查询逻辑、不执行生物排序验证、不读取 2_project_asset/ 下的原始项目资产，确保装载器的职责边界清晰。</p>
+</div>
+
+<div class="section">
+<h2>5. 交付物清单</h2>
+<table>
+<tr><th>ID</th><th>名称</th><th>路径</th><th>状态</th></tr>
+<tr><td>D-001</td><td>M1FixtureLoader 代码</td><td>4_artifact/1_package/pxfquery/data/m1_loader.py</td><td>accepted</td></tr>
+<tr><td>D-002</td><td>API 文档</td><td>4_artifact/2_persist/API_REFERENCE_v20260624.md</td><td>accepted</td></tr>
+<tr><td>D-003</td><td>冒烟证据表</td><td>4_artifact/5_table/smoke_evidence_observed_vs_expected_v20260624.csv</td><td>accepted</td></tr>
+<tr><td>D-004</td><td>冒烟脚本</td><td>3_execution/smoke_m1_loader.py</td><td>accepted</td></tr>
+<tr><td>D-005</td><td>冒烟输出日志</td><td>3_execution/smoke_output.txt</td><td>accepted</td></tr>
+</table>
+<p>注册表 4_artifact/registry.yaml 记录了这五项交付物的完整元数据，全部标记为 accepted。核心交付物（代码、文档、证据表、脚本、日志）自执行完成后未做任何修改。</p>
+</div>
+
+<div class="section">
+<h2>6. 边界与未完成事项</h2>
+<p>本次执行有意保持范围收紧。装载器仅处理夹具数据（18 个文件），未涉及完整资源的性能硬化或大文件流式加载。所有验证仅覆盖结构完整性——形状、列名、键数量——不包含生物学排序质量的判定。下游 T-048 和 T-049 仍需自行实现查询器、解析器和排序逻辑，本装载器仅提供数据访问层。另外，原始执行曾修改 T-044 骨架包的路径指向以完成可编辑安装，任务目录中保留了一份独立的本地副本（4_artifact/1_package/）以保持交付自洽。环境方面，项目 conda 运行环境未安装新第三方包，仅将 pxfquery 包重新安装为可编辑模式并清理了过期的旧版安装残留。如果后续骨架包路径发生变动，需要同步更新可编辑安装的指向。</p>
+</div>
+</body>
+</html>

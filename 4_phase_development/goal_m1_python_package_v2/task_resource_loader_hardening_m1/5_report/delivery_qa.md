@@ -25,5 +25,10 @@ yellow_repair
 ## Execute Revision Required
 no
 
+## Repair (2026-06-26): Human-Readable Report Rewrite
+- **Verdict:** yellow_repair
+- **Scope:** Rewrote `execution_report_v20260626.html` and `result_report_v20260626.html` in Chinese, with natural-language paragraphs (≥900 Chinese characters each), task-specific nouns, and counts per prompt requirements.
+- **Not modified:** Core deliverables (loader code, smoke JSON, smoke MD, gap list MD), registry paths, artifact contents, analysis results. D-005/D-006 registry entries remain unchanged — new v20260626 files are companion rewrites, not replacements.
+
 ## Next Action
 human_acceptance

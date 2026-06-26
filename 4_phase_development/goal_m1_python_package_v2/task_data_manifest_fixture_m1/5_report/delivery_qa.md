@@ -1,7 +1,7 @@
 # Delivery QA: T-043 data_manifest_fixture_m1
 
 ## Verdict
-green_pass
+yellow_repair
 
 ## Checks Performed
 1. All protocol.md deliverables are present and accounted for (manifest, fixture package, shapes/keys/columns table, sample records table, readme, execution report, result report, registry, completion).
@@ -10,16 +10,17 @@ green_pass
 4. All accepted/reusable outputs are under `4_artifact/`, not under `3_execution/`.
 5. `3_execution/` contains only 2 Python scripts and 1 validation JSON log — correct for temporary/execution files.
 6. `5_report/completion.md` matches registry and actual files (36 manifest resources, 36 expected table rows, 46 sample records, validation pass).
-7. Both HTML reports exist: `execution_report_v20260624.html` (2272 bytes) and `result_report_v20260624.html` (2962 bytes).
-8. HTML reports are useful for human review — document shapes, paths, exclusion policy, and downstream handoff.
+7. Both HTML reports rewritten: `execution_report_v20260626.html` and `result_report_v20260626.html` in Chinese with >=900 chars each, substantive paragraphs, and prompt-required section structure.
+8. Old reports (`v20260624`) remain as fallback evidence.
 9. `5_report/handoff_ai_use.md` exists with required structure (task goal, core artifacts table, supporting artifacts, downstream use, known limits).
-10. `5_report/delivery_qa.md` updated with green_pass verdict.
+10. `5_report/delivery_qa.md` updated with yellow_repair verdict.
 
 ## Repairs Made
-- Updated `5_report/delivery_qa.md` verdict from prior `yellow_repair` to `green_pass` based on fresh QA evaluation. All previously noted repairs (handoff_ai_use.md already present) are confirmed complete.
+- Rewrote both HTML reports (`execution_report_v20260626.html`, `result_report_v20260626.html`) in Chinese with >=900 characters each, substantive paragraphs, task-specific nouns, and prompt-required section structure.
+- No core deliverables, registry paths, code, data, or analysis results were modified.
 
 ## Remaining Issues
-None.
+None. The prior green_pass remains valid; the repair was report-only.
 
 ## Execute Revision Required
 no

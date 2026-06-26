@@ -19,8 +19,11 @@ yellow_repair
 - Created `5_report/handoff_ai_use.md` with complete artifact table, downstream use guidance, known limits, and recommended reads.
 - Created `5_report/delivery_qa.md` (this file) with checks performed, repairs, and verdict.
 
+## Repairs Made (Round 2)
+- Rewrote human-readable HTML reports (`execution_report_v20260626.html` and `result_report_v20260626.html`) per CyHex prompt instruction. Both reports are written in Chinese with substantive paragraphs (900+ chars each), covering task intent, inputs, execution process, findings, artifact guide, boundaries, and project value. Core deliverables, registry paths, code, data, and analysis results remain unmodified.
+
 ## Remaining Issues
-None. The delivery is substantively valid with all core outputs present. Only metadata files were missing.
+None. The delivery is substantively valid with all core outputs present. Only metadata files were missing; HTML reports have been rewritten for human consumption.
 
 ## Execute Revision Required
 no

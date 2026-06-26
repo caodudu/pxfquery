@@ -12,8 +12,8 @@ yellow_repair
 - Confirmed `3_execution/` contains only `step_list_and_extraction_notes_v20260625.md`, a process/support note rather than a reusable final output.
 - Confirmed `5_report/completion.md` matches the registered deliverables and records validation evidence for YAML and CSV parsing.
 - Confirmed required Chinese HTML reports exist:
-  - `4_artifact/3_document/execution_report_v20260625.html`
-  - `4_artifact/3_document/result_report_v20260625.html`
+  - `4_artifact/3_document/execution_report_v20260626.html`
+  - `4_artifact/3_document/result_report_v20260626.html`
 - Confirmed the HTML reports are non-empty, Chinese-language, and consistent with the registered deliverables at the delivery-packaging level.
 - Confirmed there is enough downstream handoff information after adding `5_report/handoff_ai_use.md`.
 
@@ -25,6 +25,7 @@ yellow_repair
   - Execution and result HTML reports: `3`
 - Created `5_report/handoff_ai_use.md` with task goal, delivered outputs, core/supporting artifacts, downstream use guidance, limits, and recommended next reads.
 - Created this `5_report/delivery_qa.md` report.
+- Rewrote `execution_report_v20260626.html` and `result_report_v20260626.html` to meet human-readable report standards. Repair was report-rewriting only; no core deliverables, registry paths, code, data, or analysis results were modified.
 
 ## Remaining Issues
 

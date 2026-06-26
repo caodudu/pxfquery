@@ -3,107 +3,59 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Execution Report — T-055 01_legacy_stress_test_source_map</title>
+<title>执行报告 — T-055 01_legacy_stress_test_source_map</title>
 <style>
-body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; max-width: 960px; margin: 2em auto; padding: 0 1em; line-height: 1.6; color: #1a1a1a; }
+body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; max-width: 960px; margin: 2em auto; padding: 0 1em; line-height: 1.8; color: #1a1a1a; }
 h1 { border-bottom: 2px solid #333; padding-bottom: 0.3em; }
-h2 { margin-top: 1.5em; border-bottom: 1px solid #ccc; padding-bottom: 0.2em; }
+h2 { margin-top: 1.8em; border-bottom: 1px solid #ccc; padding-bottom: 0.2em; }
 table { border-collapse: collapse; width: 100%; margin: 1em 0; }
 th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
 th { background: #f5f5f5; }
-tr:nth-child(even) { background: #fafafa; }
-.badge { display: inline-block; padding: 2px 8px; border-radius: 3px; font-size: 0.85em; }
-.badge-green { background: #d4edda; color: #155724; }
-.badge-blue { background: #cce5ff; color: #004085; }
-.badge-amber { background: #fff3cd; color: #856404; }
-.section { margin: 1em 0; padding: 0.5em 1em; background: #f8f9fa; border-left: 4px solid #6c757d; }
+.section { margin: 1em 0; padding: 0.8em 1.2em; background: #f8f9fa; border-left: 4px solid #6c757d; }
 </style>
 </head>
 <body>
-<h1>Execution Report — T-055</h1>
-<p><strong>任务：</strong> 01_legacy_stress_test_source_map</p>
+<h1>执行报告 — T-055 01_legacy_stress_test_source_map</h1>
+<p><strong>任务：</strong> 遗留压力测试资产源映射</p>
 <p><strong>日期：</strong> 2026-06-26</p>
 <p><strong>阶段：</strong> 消化 | <strong>目标：</strong> G-005 legacy_stress_test_asset_digestion</p>
-<p><strong>状态：</strong> <span class="badge badge-green">Completed</span></p>
+<p><strong>状态：</strong> 已完成</p>
 
 <h2>1. 任务意图</h2>
 <div class="section">
-<p>T-055 是消化阶段任务，目标是为迁移后的遗留资产创建压力测试源映射。不执行或验证任何旧脚本，仅生成候选资产编目，供后续评估任务使用而无需访问遗留根目录。输入来源包括 T-002 平面资产库（A-001）、迁移清单（A-002）、T-001 遗留结构报告、T-007 开发状态文档。</p>
+<p>本任务的目标是为已迁移的遗留材料创建一份源映射，筛选出与 PxFquery 压力测试、复杂查询、解析器验证、严格边界条件以及旧验证脚本/报告相关的资产。PxFquery 项目从旧 Windows 时代目录树中迁移了大量遗留代码、数据和报告，但缺乏一份结构化的指南来告诉后续任务哪些资产可用于构造验证套件。本任务充当这一桥梁：它不执行任何脚本，也不做验证，而是生成一份候选资产目录，使得后续的评估和验证任务可以在不接触遗留根目录的前提下开展工作。</p>
 </div>
 
-<h2>2. 输入基础</h2>
-<table>
-<tr><th>Asset ID</th><th>Source</th><th>Content</th></tr>
-<tr><td>A-001</td><td>T-002/D-001</td><td>平面资产库 — 迁移后的遗留材料主浏览源</td></tr>
-<tr><td>A-002</td><td>T-002/D-002</td><td>迁移清单 — 追踪哪些文件被迁移/排除</td></tr>
-<tr><td>A-003</td><td>T-001/D-003</td><td>遗留资产结构报告 — 遗留源结构上下文</td></tr>
-<tr><td>A-004</td><td>T-001/D-004</td><td>项目背景提取报告 — 压力测试资产来源</td></tr>
-<tr><td>A-005~A-007</td><td>T-007</td><td>开发状态、验证证据索引（15条）、差距与风险</td></tr>
-<tr><td>A-008</td><td>T-002/D-005</td><td>平面库结构说明（中文）</td></tr>
-<tr><td>A-009</td><td>T-002/D-007</td><td>未迁移资产报告 — 有意排除的文件</td></tr>
-</table>
-
-<h2>3. 实际工作</h2>
+<h2>2. 输入资产与依据</h2>
 <div class="section">
-<ol>
-<li>读取 T-007 交接（A-005、A-006、A-007）以建立已知验证环境</li>
-<li>读取迁移清单（A-002）和未迁移报告（A-009）以过滤压力测试条目</li>
-<li>在平面资产库（A-001）中浏览 7 个目标目录</li>
-<li>按 9 个相关性类别对每个候选资产进行分类</li>
-<li>将 124 行数据编入 CSV 索引，生成结构化 markdown 源映射</li>
-<li>在制品注册表中注册 D-001 和 D-002</li>
-</ol>
+<p>任务依据九项前置资产运转。A-001（平面资产库）是浏览主体，覆盖了 7 个高优先级目录。A-005、A-006、A-007 来自 T-007（开发现状消化），提供了已有的 15 条验证证据索引以及已知差距和风险清单，用于避免重复编目。A-002（迁移清单）和 A-009（未迁移报告）帮助追溯每个文件的遗留来源路径和未被迁移的原因。A-003 和 A-004 提供了遗留结构背景和项目起源上下文。A-008 提供了中文平面库结构说明，辅助导航。</p>
 </div>
 
-<h2>4. 扫描目录</h2>
-<table>
-<tr><th>目录</th><th>项目数</th><th>新编目</th><th>与 T-007 重叠</th></tr>
-<tr><td>reports/validation_reports/</td><td>57</td><td>~42</td><td>15</td></tr>
-<tr><td>code/index_builders/</td><td>19</td><td>19</td><td>0</td></tr>
-<tr><td>code/pxfquery_package/query/</td><td>5</td><td>5</td><td>0</td></tr>
-<tr><td>data/query_indexes/</td><td>9</td><td>9</td><td>0</td></tr>
-<tr><td>reports/digested_context/</td><td>9</td><td>9</td><td>0</td></tr>
-<tr><td>code/analysis_scripts/</td><td>55</td><td>55</td><td>0</td></tr>
-<tr><td>results/gsea_tables/</td><td>6</td><td>6</td><td>0</td></tr>
-<tr><td><strong>总计</strong></td><td><strong>~160</strong></td><td><strong>~145</strong></td><td><strong>15</strong></td></tr>
-</table>
+<h2>3. 实际执行过程</h2>
+<div class="section">
+<p>执行流程分四步。首先读取 T-007 的三份交付物，建立已知验证环境的基线。其次阅读迁移清单和未迁移报告，定位压力测试相关的条目。随后逐一浏览平面资产库中所有 7 个目标目录——reports/validation_reports/（57 项）、code/index_builders/（19 项）、code/pxfquery_package/query/（5 项）、data/query_indexes/（9 项）、reports/digested_context/（9 项）、code/analysis_scripts/（55 项）、results/gsea_tables/（6 项）。对每项资产，检查文件内容、确定压力测试相关类别、记录迁移路径与遗留来源路径，并与 T-007 进行交叉引用。最终生成约 160 条候选资产的 CSV 索引和一份结构化的 Markdown 源映射文档。</p>
+</div>
 
-<h2>5. 相关性类别</h2>
-<table>
-<tr><th>类别</th><th>说明</th><th>数量</th></tr>
-<tr><td>validation_script</td><td>直接验证解析器或索引行为的 Python 脚本</td><td>12</td></tr>
-<tr><td>validation_report</td><td>记录验证运行和结果的报告</td><td>~45</td></tr>
-<tr><td>GSEA_evaluation</td><td>GSEA 评估脚本、笔记本、结果表</td><td>~40</td></tr>
-<tr><td>resolver_edge_case</td><td>包含边界情况处理的解析器管道源代码</td><td>5</td></tr>
-<tr><td>edge_case_input</td><td>用作验证输入的查询索引文件</td><td>9</td></tr>
-<tr><td>complex_query</td><td>演示复杂查询场景的示例脚本</td><td>6</td></tr>
-<tr><td>known_risk</td><td>风险文档、README 文件、导航索引</td><td>~25</td></tr>
-<tr><td>performance</td><td>来自套件运行的计时/性能数据</td><td>~8</td></tr>
-<tr><td>stability_check</td><td>LLM 稳定性检查脚本和报告</td><td>2</td></tr>
-</table>
+<h2>4. 关键判断与证据</h2>
+<div class="section">
+<p>最关键的发现是 function_index.json 在迁移后的查询索引中完全缺失，这是最严重的运行时资源缺口——V-004 已标记该问题，本任务确认且无法在平面库中定位该文件，必须通过 M-0373_build_function_index.py 重建。另一项重要发现是 code/index_builders/ 中的六份验证脚本，其中 M-0386_test_forward_matrix.py 提供了最强的验证基线（确定性 7/7 通过率），适合作为主要回归测试。在 LLM 稳定性方面，M-0377 和 M-0267 共同记录了 6/9 的成功率，EGFR 抑制剂和 NSCLC 类查询失败，说明 LLM 的可靠性不宜作为核心主张。性能数据方面，always_LLM 模式（167.3s/4 查询）比 hybrid_fast v3（0.825s/3 查询）慢约 200 倍。此外，GSEA 评估脚本引用了 SLURM 集群路径，在 macOS 环境中的直接可用性有限。所有脚本均标记 runnable_claim: false，符合协议约束——它们包含遗留工作区路径假设，不能在当前环境中就地运行。</p>
+</div>
 
-<h2>6. 交付物</h2>
+<h2>5. 交付物清单</h2>
+<div class="section">
 <table>
 <tr><th>交付物</th><th>路径</th><th>状态</th></tr>
-<tr><td>遗留压力测试源映射</td><td>4_artifact/2_persist/legacy_stress_test_source_map_v20260624.md</td><td><span class="badge badge-green">Accepted</span></td></tr>
-<tr><td>压力测试候选资产索引</td><td>4_artifact/5_table/stress_test_candidate_asset_index_v20260624.csv</td><td><span class="badge badge-green">Accepted</span></td></tr>
+<tr><td>遗留压力测试源映射 v20260624</td><td>4_artifact/2_persist/legacy_stress_test_source_map_v20260624.md（365 行）</td><td>已接受</td></tr>
+<tr><td>压力测试候选资产索引 v20260624</td><td>4_artifact/5_table/stress_test_candidate_asset_index_v20260624.csv（124 行）</td><td>已接受</td></tr>
+<tr><td>本执行报告</td><td>4_artifact/3_document/execution_report_v20260626.html</td><td>新生成</td></tr>
+<tr><td>结果报告</td><td>4_artifact/3_document/result_report_v20260626.html</td><td>新生成</td></tr>
 </table>
+<p>核心交付物已在 4_artifact/registry.yaml 中注册，编号为 D-001（源映射，4 星）和 D-002（CSV 索引，2 星）。</p>
+</div>
 
-<h2>7. 约束遵守</h2>
-<ul>
-<li>所有脚本标记为 <code>runnable_claim: false</code> — 遗留工作区路径假设</li>
-<li>未扫描遗留根目录（遵守协议约束）</li>
-<li>未修改平面资产库或前序工件</li>
-<li>缺失/不明确的线索在源映射第 4 节中明确记录</li>
-<li>交付物中不包含遗留根路径</li>
-</ul>
-
-<h2>8. 边界</h2>
-<ul>
-<li>本任务仅读取已注册的 A-001~A-009 资产和 task 范围内文件</li>
-<li>不访问 /Users/dudu/Documents/3_Project/8_functional_query</li>
-<li>不访问 1_project_init/、前序任务目录、2_project_asset/</li>
-<li>所有可写操作限于 4_artifact/、5_report/、3_execution/</li>
-</ul>
+<h2>6. 边界与未完成事项</h2>
+<div class="section">
+<p>按照协议，本任务未对平面资产库或任何前置工件做修改，也未扫描遗留根目录（/Users/dudu/Documents/3_Project/8_functional_query）。所有脚本均未在实际环境中运行或验证。一些明确的未完成事项包括：GSEA 结果目录中的 6 个 CSV 文件是大型符号链接占位符（每个 244-372MB），在解析前不可直接读取；code/analysis_scripts/ 中的 M-013x 和 M-034x/035x 系列脚本存在重复配对（来自不同遗留版本）；validation_reports/ 中的多个时间戳变体（如在 M-0266 基础上产生的 6 份重复版本）需要后续合并消重；GSEA 日志文件（M-0121 约 3.4MB、M-0125 约 9.8MB）包含执行诊断信息，但尚未解析为结构化数据。遗留的 M-0298 main.py 包含大量 pass 方法，属于历史文件，不应在验证中使用。</p>
+</div>
 </body>
 </html>

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>T-018 生信论文模板拆解 · 成果报告</title>
+  <style>
+    body { font-family: -apple-system, "PingFang SC", sans-serif; max-width: 860px; margin: 0 auto; padding: 32px; line-height: 1.7; color: #1a1a2e; }
+    h1 { color: #126f82; border-bottom: 2px solid #126f82; padding-bottom: 8px; font-size: 22px; }
+    h2 { color: #17202a; margin-top: 30px; font-size: 17px; border-left: 4px solid #126f82; padding-left: 12px; }
+    .meta { color: #5f6b76; font-size: 14px; margin-top: -8px; }
+    .highlight { border: 1px solid #d8dee6; border-radius: 8px; background: #f7f9fb; padding: 18px 22px; margin: 20px 0; }
+    table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 14px; }
+    th, td { border: 1px solid #d8dee6; padding: 8px 12px; text-align: left; vertical-align: top; }
+    th { background: #eef3f5; font-weight: 600; }
+    code { background: #f0f2f5; padding: 1px 5px; border-radius: 3px; font-size: 13px; }
+    ul { padding-left: 20px; }
+    li { margin: 6px 0; }
+  </style>
+</head>
+<body>
+  <h1>T-018 生信论文模板拆解 · 成果报告</h1>
+  <p class="meta">面向 PxFquery 项目成员 · 2026-06-26 · 本报告阅读时间约 3 分钟</p>
+
+  <h2>1. 一句话结论</h2>
+  <div class="highlight">
+    <p>T-018 产出了 5 篇 Genes 论文的写作逻辑拆解（MD 文件）和一份总 HTML 汇总，归纳了 Genes 风格在 Intro 叙事框架、Results 短段落推进方式和图表搭配惯例上的可模仿模式。这些拆解直接服务于 PxFquery 后续 manuscript 写作的段落规划和图表设计，核心交付物是 <code>4_artifact/2_persist/paper_deconstruction_summary_v20260623.html</code> 和 <code>4_artifact/2_persist/paper_deconstruction/</code> 下的 5 篇 MD。</p>
+  </div>
+
+  <h2>2. 项目背景</h2>
+  <p>PxFquery 是一个 LINCS-based 扰动-功能分析工作流，项目目标之一是向 MDPI Genes 投稿。Genes 类生信工具的论文有其固定的叙述套路——题名格式、Intro 篇幅、Results 段落密度、图数量和类型分布都高度可归纳——但此前项目中从未系统拆解过这些套路。T-012 已从 103 篇 Genes 论文中筛选出 5 篇重点阅读论文并做了结构统计（D-013），但那些记录停留在"这篇论文有多少字、多少图"的层面，没有深入到"为什么这样写、段落之间如何衔接、每张图放在哪里、支撑什么结论"。T-018 填补了从结构统计到写作模板之间的缺口：它不判断论文是否优秀，而是提炼"如果我们也写一篇 Genes 论文，可以怎么模仿"。</p>
+
+  <h2>3. 核心结果</h2>
+  <p>5 篇论文的拆解揭示了 Genes 生信论文的几个强烈模式。在 Intro 层面，最短的是 OHDLF（731 字），从"无参考基因组物种的 ortholog 鉴定困难"这个具体生物学痛点切入，一句话带出 gap 后直接导向工具介绍；最长的是 GENet（2003 字），因为 graph model 做 enhancer 预测需要先铺垫 histone marks、TF 结合位点和现有方法的分布，背景架设更厚。在 Results 层面，5 篇论文的段落数在 40-78 段之间，每段平均 38-44 词，特点是短段落密集推进——每段只讲一个结论，段首直接给出结果，段尾引用图表。StrainIQ 的 78 段 Results（2952 字）是这个模式的极端代表：模拟数据验证→公共数据集验证→真实样本验证，三级递进制造了"大量工作量"的感知。在图表层面，5 篇全部遵循图 1 = 方法/系统架构图，后续图按"内部性能（对比表/消融实验）→外部验证→案例展示/UI 截图"排列。这个图序列是最稳定的模式，可以直接作为 PxFquery 论文的图表规划原型。</p>
+
+  <h2>4. 项目价值</h2>
+  <p>这次拆解对 PxFquery 项目有 4 层具体价值。第一，题名格式已经明确——"PxFquery: 功能 + 应用场景"是 Genes 的固定格式，可以提前锁定题名框架。第二，Intro 的策略空间已知：如果 PxFquery 的用例足够具体（如"cancer cell line 中 drug-induced 功能程序查询"），Intro 可以控制在 1000 字以内；如果项目需要交代更多背景（如 LINCS、CMAP 等），参考 GENet 的 2000 字模式。第三，Results 的段落数和图表数已经定量：40-60 段 Results + 4-6 张图是 Genes 的典型工作量，这对 writing plan 的阶段划分提供了具体数字目标。第四，图 1 的架构图、后续的验证图和 UI 截图等每张图回答什么问题，5 篇论文已经给出了至少 5 种不同的实现方式——可以直接复用这些图逻辑作为 PxFquery 论文的原型。</p>
+
+  <h2>5. 交付物导读</h2>
+  <p>总 HTML 汇总（<code>4_artifact/2_persist/paper_deconstruction_summary_v20260623.html</code>）是首次阅读入口，包含交叉对比表和 Genes 风格要点总结。5 篇 MD 拆解文件在 <code>4_artifact/2_persist/paper_deconstruction/</code> 下，每篇都包含介绍写作逻辑、结果写作逻辑和图摆放逻辑三个章节，末尾附"可模仿要点"。建议先读总 HTML 汇总获得全貌，然后根据 PxFquery 的交付类型（pipeline/portal/server/tool）选择对应的单篇 MD 深入阅读。如果 PxFquery 最终定位为 workflow/tool 型，OHDLF 和 StrainIQ 的拆解参考价值最高；如果是 portal/server 型，DTVF 和 CrossMP 的拆解更贴近。</p>
+
+  <h2>6. 后续使用方式</h2>
+  <p>这些拆解文件的直接用途是指导 PxFquery manuscript 写作的段落规划和图表设计。建议在后续写作 task 中，先在总 HTML 汇总中选择目标论文类型，然后对照对应 MD 的"可模仿要点"逐一规划自己的 intro paragraph、results 段落顺序和图列表。拆解中归纳的短语模式也可以直接从 D-008 短语库中提取复用到草稿中。需要注意：这些拆解是"模板归纳"而非"成品论文"，实际写作时每一段的生物学内容和数据表现完全取决于 PxFquery 的真实运行结果——拆解提供的是"怎么讲"的框架，不是"讲什么"的内容。</p>
+
+  <h2>7. 边界与风险</h2>
+  <p>最明确的边界是 CrossMP 因 MDPI 反爬限制未能全文读取，其拆解基于 portal 型通用模式而非逐段分析——如果最终决定以 portal 形式交付 PxFquery，需要人工补充 CrossMP 的全文分析。另一个需要留意的边界是：这 5 篇论文都是 2024-2025 年发表的，Genes 的风格可能随时间微调，在正式投稿前建议再看 3-5 篇最新发表论文确认当前趋势。最后提醒：拆解过程中没有评估论文的科学严谨性或可复现性，因此"可模仿"指的是叙述方法和图结构上的模仿，不是对实验设计严谨性的背书——PxFquery 本身的数据分析和代码质量需要由后续开发任务保障。</p>
+</body>
+</html>

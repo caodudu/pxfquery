@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>T-060 结果报告 — reverse_query_core_repair_m1</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.7; max-width: 960px; margin: 32px auto; padding: 0 20px; color: #1f2933; }
+    h1, h2 { color: #111827; }
+    h2 { margin-top: 36px; border-bottom: 1px solid #e5e7eb; padding-bottom: 8px; }
+    code { background: #f3f4f6; border-radius: 4px; padding: 1px 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 16px 0; }
+    th, td { border: 1px solid #d1d5db; padding: 8px; text-align: left; }
+    th { background: #f9fafb; }
+  </style>
+</head>
+<body>
+  <h1>T-060 结果报告 — reverse_query_core_repair_m1</h1>
+  <p><strong>生成时间:</strong> 2026-06-26</p>
+
+  <h2>一句话结论</h2>
+  <p>
+    T-060 为 PxFquery M1 里程碑交付了反向查询核心能力——包括确定性余弦排序、结构化错误处理、CLI 入口和可复现 JSON 证据——并通过一个任务本地合成修复矩阵解决了 T-049 因缺少 HALLMARK_MYC_TARGETS_V1 和 A549 数据而失败的根本问题，使 T-042 定义的反向正面演示用例能够通过验收。
+  </p>
+
+  <h2>项目背景</h2>
+  <p>
+    PxFquery 是一个基于 LINCS 数据的扰动-功能分析生物信息学工具，核心方向包括正向查询（从扰动到功能响应）和反向查询（从功能目标到候选扰动）。在 M1 里程碑中，T-042 制定了反向查询的 API 合同与演示用例，T-043/T-046 提供了夹具资产和加载器实现。然而前一任务 T-049 在尝试交付反向查询核心时受阻：所选夹具资产中缺少抑制术语 <code>HALLMARK_MYC_TARGETS_V1</code>（该术语在 T-042 反向正面演示中是必需的 <code>--suppress</code> 参数），且 xpr 夹具中没有包含 <code>A549</code> 细胞系的表达行，导致演示无法运行。T-060 作为同层替代任务，需要在不修改已完成工件的前提下同时解决基质缺失和反向核心交付两个问题。
+  </p>
+
+  <h2>核心结果</h2>
+  <p>
+    T-060 产出了两类核心结果。第一类是修复基质：在 <code>reverse_repair_fixture_m1_1/</code> 目录下创建了一个 15 个观测 × 9 个变量的合成 xpr 表达矩阵，以 h5ad 格式存储，同时配有一个符合 T-043 清单模式的修复清单文件。该矩阵同时包含了 <code>HALLMARK_MYC_TARGETS_V1</code> 抑制术语列和 <code>A549</code> 细胞系行，使 T-042 要求的 <code>--activate HALLMARK_APOPTOSIS --suppress HALLMARK_MYC_TARGETS_V1 --cell-line A549</code> 查询路径得以完整执行。第二类是反向查询核心实现：基于 T-044 包骨架扩展了 <code>func2pert</code> 函数，使用余弦相似度进行确定性排序，过滤非有限分数，对同分候选按 cmap_name、cell_iname、sig_id 升序稳定断平，并实现了五种结构化错误/无命中场景的 JSON 响应。
+  </p>
+  <p>
+    关键定量指标：正面演示查询返回 <code>found: true</code>，最佳候选为 THTPA（相似度 1.0），前 10 名候选排序结果可重复。无命中场景包括未加载矩阵、程序术语未找到、生物学上下文未找到、低置信度结果以及空目标列表，每种场景均按照 T-042 合同返回了对应的结构化 JSON 错误体。修复基质的来源说明文档明确区分了前驱夹具侧车复制部分和合成新增部分，确保透明度。
+  </p>
+
+  <h2>项目价值</h2>
+  <p>
+    T-060 对 PxFquery 项目的直接价值在于恢复了 M1 里程碑反向查询路径的可继续性。在此之前，T-049 的失败形成了一个阻塞点：下游任务没有可用的反向查询核心代码和可运行的演示数据来验证集成。T-060 通过提供合成合同桥接基质（而非等待真实的 LINCS 数据补充）解除了这个阻塞，使下游任务能够立即开始消费反向查询 API 和排序结果。同时，修复基质的合成性质被明确标注和归档，不会污染项目的数据来源链或误导后续的生物学分析。从项目风险管理角度看，T-060 的完成状态意味着 M1 里程碑的正向和反向两条查询路径均已具备可演示的原型，项目可以推进到集成和验证阶段。
+  </p>
+
+  <h2>交付物导读</h2>
+  <table>
+    <tr><th>文件</th><th>作用</th><th>打开顺序</th></tr>
+    <tr><td><code>reverse_demo_evidence_v20260624.json</code></td><td>正面演示的结构化输出，确认 <code>found: true</code> 和排序结果</td><td>1</td></tr>
+    <tr><td><code>reverse_error_no_hit_evidence_v20260624.json</code></td><td>五种错误/无命中场景的结构化 JSON 样本</td><td>2</td></tr>
+    <tr><td><code>reverse_ranking_evidence_v20260624.csv</code></td><td>确定性排序得分表，含相似度和候选元数据</td><td>3</td></tr>
+    <tr><td><code>reverse_repair_provenance_v20260624.md</code></td><td>修复基质来源说明，区分复制内容与合成内容</td><td>4</td></tr>
+  </table>
+
+  <h2>后续使用方式</h2>
+  <p>
+    下游任务（如 T-048 查询编排、T-051 集成测试）应将 T-060 作为反向查询核心的消费入口。具体使用方式包括：通过 <code>PxFquery.func2pert</code> 函数在 Python 代码中调用反向排序；通过 <code>pxfquery.cli reverse</code> 命令行在终端中执行查询；读取结构化 JSON 输出以获取候选扰动列表及其相似度得分。修复基质可通过 <code>M1FixtureLoader</code>（来自 T-046）加载，需指定 <code>fixture_root</code> 参数指向 <code>4_artifact/2_persist/reverse_repair_fixture_m1_1</code>。所有证据 JSON 文件可直接作为测试用例的预期输出参考。
+  </p>
+  <p>
+    需要注意：使用前应确认包代码已自包含于本任务目录中。当前 <code>4_artifact/1_package/pxfquery</code> 是指向上游 T-044 包骨架的外部符号链接，尚未物理复制到本任务内。执行修订轮次需要先将包源码复制到本地，然后重新运行 <code>run_reverse_evidence.py</code> 以生成从本地包出发的验收证据。
+  </p>
+
+  <h2>边界与风险</h2>
+  <p>
+    最重要的边界声明：修复基质是合成合同桥接支持，不是原始 LINCS/CMAP 实验数据，不能用于生物学解释或手稿证据。任何基于这些数据得出的功能推断都应标注其合成来源。第二个风险点：包代码的物理位置问题——当前符号链接方案在包代码未实际复制到任务目录之前，下游消费者无法确保独立性和可复现性。第三个已知限制：合成基质仅覆盖 9 个变量和 15 个观测，远小于真实 LINCS 数据集的规模，因此排序结果的生物多样性不代表真实场景。正面演示中使用 <code>HALLMARK_APOPTOSIS</code> 和 <code>HALLMARK_MYC_TARGETS_V1</code> 这两个术语是演示适用而非生物学发现。
+  </p>
+  <p>
+    本次 T-060 执行未修改任何上游工件，未访问项目级原始资产或旧有遗留目录，所有交付物均在任务边界内创建。下一步最适合的行动是由执行修订轮次修复包代码的物理独立性问题，然后重新运行验证以确认从任务本地包产出的证据一致性。
+  </p>
+</body>
+</html>

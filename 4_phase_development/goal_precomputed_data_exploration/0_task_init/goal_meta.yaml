@@ -9,5 +9,4 @@ status: pending
 tasks:
 - T-014
 created: '2026-06-18'
-notes: G-007. Reserved for precomputed data exploration, data-analysis planning, and
-  visualization-resource tasks.
+notes: 预计算数据探索与理解

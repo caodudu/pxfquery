@@ -1,6 +1,12 @@
 excluded_from_git:
 - path: .DS_Store
   size_mb: 0.01
+- path: .pytest_cache/CACHEDIR.TAG
+  size_mb: 0.0
+- path: .pytest_cache/v/cache/lastfailed
+  size_mb: 0.0
+- path: .pytest_cache/v/cache/nodeids
+  size_mb: 0.0
 - path: 1_project_init/.DS_Store
   size_mb: 0.01
 - path: 2_project_asset/.DS_Store
@@ -217,6 +223,14 @@ excluded_from_git:
   size_mb: 0.0
 - path: 3_phase_digestion/goal_citation_research/task_pending_t017/5_report/cli_sessions/config/20260623_031556_opencode_cli_4826c62ac6f4/stdout.log
   size_mb: 0.14
+- path: 3_phase_digestion/goal_citation_research/task_pending_t017/5_report/cli_sessions/deliver/20260626_030938_opencode_cli_418dd9c1f7ee/stderr.log
+  size_mb: 0.0
+- path: 3_phase_digestion/goal_citation_research/task_pending_t017/5_report/cli_sessions/deliver/20260626_030938_opencode_cli_418dd9c1f7ee/stdout.log
+  size_mb: 0.04
+- path: 3_phase_digestion/goal_citation_research/task_pending_t017/5_report/cli_sessions/deliver/20260626_031111_opencode_cli_5c7adf3b3771/stderr.log
+  size_mb: 0.0
+- path: 3_phase_digestion/goal_citation_research/task_pending_t017/5_report/cli_sessions/deliver/20260626_031111_opencode_cli_5c7adf3b3771/stdout.log
+  size_mb: 0.06
 - path: 3_phase_digestion/goal_citation_research/task_pending_t017/5_report/cli_sessions/execute/20260623_034346_opencode_cli_455ae9436a85/stderr.log
   size_mb: 0.0
 - path: 3_phase_digestion/goal_citation_research/task_pending_t017/5_report/cli_sessions/execute/20260623_034346_opencode_cli_455ae9436a85/stdout.log
@@ -227,6 +241,14 @@ excluded_from_git:
   size_mb: 0.01
 - path: 3_phase_digestion/goal_development_asset_digestion/task_digest_pxfquery_development_state/4_artifact/5_table/pxfquery_validation_evidence_index_v20260617.csv
   size_mb: 0.0
+- path: 3_phase_digestion/goal_development_asset_digestion/task_digest_pxfquery_development_state/5_report/cli_sessions/deliver/20260626_030940_opencode_cli_544564c2cbe8/stderr.log
+  size_mb: 0.0
+- path: 3_phase_digestion/goal_development_asset_digestion/task_digest_pxfquery_development_state/5_report/cli_sessions/deliver/20260626_030940_opencode_cli_544564c2cbe8/stdout.log
+  size_mb: 0.11
+- path: 3_phase_digestion/goal_development_asset_digestion/task_digest_pxfquery_development_state/5_report/cli_sessions/deliver/20260626_031113_opencode_cli_91d6d0942c3e/stderr.log
+  size_mb: 0.0
+- path: 3_phase_digestion/goal_development_asset_digestion/task_digest_pxfquery_development_state/5_report/cli_sessions/deliver/20260626_031113_opencode_cli_91d6d0942c3e/stdout.log
+  size_mb: 0.05
 - path: 3_phase_digestion/goal_development_asset_digestion/task_legacy_source_digest_for_m1/1_asset/T-007
     module asset status matrix.csv
   size_mb: 0.01
@@ -256,6 +278,14 @@ excluded_from_git:
   size_mb: 0.0
 - path: 3_phase_digestion/goal_development_asset_digestion/task_legacy_source_digest_for_m1/5_report/cli_sessions/deliver/20260624_173030_opencode_cli_3c1097644a22/stdout.log
   size_mb: 0.02
+- path: 3_phase_digestion/goal_development_asset_digestion/task_legacy_source_digest_for_m1/5_report/cli_sessions/deliver/20260626_030942_opencode_cli_9a73d674ae8a/stderr.log
+  size_mb: 0.0
+- path: 3_phase_digestion/goal_development_asset_digestion/task_legacy_source_digest_for_m1/5_report/cli_sessions/deliver/20260626_030942_opencode_cli_9a73d674ae8a/stdout.log
+  size_mb: 0.03
+- path: 3_phase_digestion/goal_development_asset_digestion/task_legacy_source_digest_for_m1/5_report/cli_sessions/deliver/20260626_031115_opencode_cli_adcbaf0a5bab/stderr.log
+  size_mb: 0.0
+- path: 3_phase_digestion/goal_development_asset_digestion/task_legacy_source_digest_for_m1/5_report/cli_sessions/deliver/20260626_031115_opencode_cli_adcbaf0a5bab/stdout.log
+  size_mb: 0.05
 - path: 3_phase_digestion/goal_development_asset_digestion/task_legacy_source_digest_for_m1/5_report/cli_sessions/execute/20260624_033509_opencode_cli_bb242c02598d/stderr.log
   size_mb: 0.0
 - path: 3_phase_digestion/goal_development_asset_digestion/task_legacy_source_digest_for_m1/5_report/cli_sessions/execute/20260624_033509_opencode_cli_bb242c02598d/stdout.log
@@ -378,6 +408,14 @@ excluded_from_git:
   size_mb: 0.0
 - path: 3_phase_digestion/goal_development_asset_digestion/task_legacy_source_digest_repair_m1/5_report/cli_sessions/deliver/20260624_173413_codex_cli_4edb1459f1a0/stdout.log
   size_mb: 0.03
+- path: 3_phase_digestion/goal_development_asset_digestion/task_legacy_source_digest_repair_m1/5_report/cli_sessions/deliver/20260626_030944_opencode_cli_a1ee373b8620/stderr.log
+  size_mb: 0.0
+- path: 3_phase_digestion/goal_development_asset_digestion/task_legacy_source_digest_repair_m1/5_report/cli_sessions/deliver/20260626_030944_opencode_cli_a1ee373b8620/stdout.log
+  size_mb: 0.07
+- path: 3_phase_digestion/goal_development_asset_digestion/task_legacy_source_digest_repair_m1/5_report/cli_sessions/deliver/20260626_031117_opencode_cli_b9137f347fe1/stderr.log
+  size_mb: 0.0
+- path: 3_phase_digestion/goal_development_asset_digestion/task_legacy_source_digest_repair_m1/5_report/cli_sessions/deliver/20260626_031117_opencode_cli_b9137f347fe1/stdout.log
+  size_mb: 0.12
 - path: 3_phase_digestion/goal_development_asset_digestion/task_legacy_source_digest_repair_m1/5_report/cli_sessions/execute/20260624_170613_codex_cli_dcacea2b0cc1/stderr.log
   size_mb: 0.0
 - path: 3_phase_digestion/goal_development_asset_digestion/task_legacy_source_digest_repair_m1/5_report/cli_sessions/execute/20260624_170613_codex_cli_dcacea2b0cc1/stdout.log
@@ -559,9 +597,6 @@ excluded_from_git:
 - path: 3_phase_digestion/goal_legacy_asset_migration/task_audit_legacy_assets/1_asset/genes_latest_100_timing.csv
   size_mb: 0.03
 - path: 3_phase_digestion/goal_legacy_asset_migration/task_audit_legacy_assets/1_asset/legacy
-    file inventory csv.csv
-  size_mb: 0.18
-- path: 3_phase_digestion/goal_legacy_asset_migration/task_audit_legacy_assets/1_asset/legacy
     semantic registry deepseek workbook.xlsx
   size_mb: 0.01
 - path: 3_phase_digestion/goal_legacy_asset_migration/task_audit_legacy_assets/1_asset/legacy
@@ -656,20 +691,26 @@ excluded_from_git:
   size_mb: 0.01
 - path: 3_phase_digestion/goal_legacy_asset_migration/task_audit_legacy_assets/4_artifact/.DS_Store
   size_mb: 0.01
-- path: 3_phase_digestion/goal_legacy_asset_migration/task_audit_legacy_assets/4_artifact/2_persist/legacy_file_inventory.csv
-  size_mb: 0.18
 - path: 3_phase_digestion/goal_legacy_asset_migration/task_audit_legacy_assets/4_artifact/5_table/legacy_semantic_registry_full_deepseek.xlsx
   size_mb: 0.23
 - path: 3_phase_digestion/goal_legacy_asset_migration/task_audit_legacy_assets/4_artifact/5_table/legacy_semantic_registry_sample.xlsx
   size_mb: 0.01
 - path: 3_phase_digestion/goal_legacy_asset_migration/task_audit_legacy_assets/4_artifact/5_table/legacy_semantic_registry_sample_deepseek.xlsx
   size_mb: 0.01
+- path: 3_phase_digestion/goal_legacy_asset_migration/task_audit_legacy_assets/5_report/cli_sessions/deliver/20260626_031121_opencode_cli_c5394ecb1271/stderr.log
+  size_mb: 0.0
+- path: 3_phase_digestion/goal_legacy_asset_migration/task_audit_legacy_assets/5_report/cli_sessions/deliver/20260626_031121_opencode_cli_c5394ecb1271/stdout.log
+  size_mb: 0.1
 - path: 3_phase_digestion/goal_legacy_asset_migration/task_normalize_project_protocol_from_migrated_context/.DS_Store
   size_mb: 0.01
 - path: 3_phase_digestion/goal_legacy_asset_migration/task_normalize_project_protocol_from_migrated_context/2_protocol/.DS_Store
   size_mb: 0.01
 - path: 3_phase_digestion/goal_legacy_asset_migration/task_normalize_project_protocol_from_migrated_context/4_artifact/.DS_Store
   size_mb: 0.01
+- path: 3_phase_digestion/goal_legacy_asset_migration/task_normalize_project_protocol_from_migrated_context/5_report/cli_sessions/deliver/20260626_031122_opencode_cli_d3fed862317e/stderr.log
+  size_mb: 0.0
+- path: 3_phase_digestion/goal_legacy_asset_migration/task_normalize_project_protocol_from_migrated_context/5_report/cli_sessions/deliver/20260626_031122_opencode_cli_d3fed862317e/stdout.log
+  size_mb: 0.16
 - path: 3_phase_digestion/goal_legacy_asset_migration/task_plan_migration_map/.DS_Store
   size_mb: 0.01
 - path: 3_phase_digestion/goal_legacy_asset_migration/task_plan_migration_map/1_asset/t001
@@ -695,6 +736,10 @@ excluded_from_git:
   size_mb: 0.01
 - path: 3_phase_digestion/goal_legacy_asset_migration/task_plan_migration_map/4_artifact/5_table/migration_manifest_v20260614.xlsx
   size_mb: 0.06
+- path: 3_phase_digestion/goal_legacy_asset_migration/task_plan_migration_map/5_report/cli_sessions/deliver/20260626_031125_opencode_cli_cfb066ab5bf4/stderr.log
+  size_mb: 0.0
+- path: 3_phase_digestion/goal_legacy_asset_migration/task_plan_migration_map/5_report/cli_sessions/deliver/20260626_031125_opencode_cli_cfb066ab5bf4/stdout.log
+  size_mb: 0.11
 - path: 3_phase_digestion/goal_legacy_stress_test_asset_digestion/.DS_Store
   size_mb: 0.01
 - path: 3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_01_legacy_stress_test_source_map/1_asset/pxfquery_validation_evidence_index.csv
@@ -725,6 +770,26 @@ excluded_from_git:
   size_mb: 0.0
 - path: 3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_01_legacy_stress_test_source_map/5_report/cli_sessions/deliver/20260626_012730_opencode_cli_6b266ab8adda/stdout.log
   size_mb: 0.1
+- path: 3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_01_legacy_stress_test_source_map/5_report/cli_sessions/deliver/20260626_014248_opencode_cli_19ae0ab6d3eb/stderr.log
+  size_mb: 0.0
+- path: 3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_01_legacy_stress_test_source_map/5_report/cli_sessions/deliver/20260626_014248_opencode_cli_19ae0ab6d3eb/stdout.log
+  size_mb: 0.06
+- path: 3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_01_legacy_stress_test_source_map/5_report/cli_sessions/deliver/20260626_014908_opencode_cli_662c5ea16e42/stderr.log
+  size_mb: 0.0
+- path: 3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_01_legacy_stress_test_source_map/5_report/cli_sessions/deliver/20260626_014908_opencode_cli_662c5ea16e42/stdout.log
+  size_mb: 0.05
+- path: 3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_01_legacy_stress_test_source_map/5_report/cli_sessions/deliver/20260626_015736_opencode_cli_80b32fd00019/stderr.log
+  size_mb: 0.0
+- path: 3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_01_legacy_stress_test_source_map/5_report/cli_sessions/deliver/20260626_015736_opencode_cli_80b32fd00019/stdout.log
+  size_mb: 0.01
+- path: 3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_01_legacy_stress_test_source_map/5_report/cli_sessions/deliver/20260626_020835_opencode_cli_e35b30b648b7/stderr.log
+  size_mb: 0.0
+- path: 3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_01_legacy_stress_test_source_map/5_report/cli_sessions/deliver/20260626_020835_opencode_cli_e35b30b648b7/stdout.log
+  size_mb: 0.0
+- path: 3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_01_legacy_stress_test_source_map/5_report/cli_sessions/deliver/20260626_021004_opencode_cli_fbaca44e2f05/stderr.log
+  size_mb: 0.0
+- path: 3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_01_legacy_stress_test_source_map/5_report/cli_sessions/deliver/20260626_021004_opencode_cli_fbaca44e2f05/stdout.log
+  size_mb: 0.0
 - path: 3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_01_legacy_stress_test_source_map/5_report/cli_sessions/execute/20260624_052030_opencode_cli_debaa6e5037f/stderr.log
   size_mb: 0.0
 - path: 3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_01_legacy_stress_test_source_map/5_report/cli_sessions/execute/20260624_052030_opencode_cli_debaa6e5037f/stdout.log
@@ -759,6 +824,14 @@ excluded_from_git:
   size_mb: 0.0
 - path: 3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_02_stress_query_scenario_inventory/5_report/cli_sessions/deliver/20260624_051146_opencode_cli_98536cb13a22/stdout.log
   size_mb: 0.09
+- path: 3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_02_stress_query_scenario_inventory/5_report/cli_sessions/deliver/20260626_021907_opencode_cli_1be2564274c7/stderr.log
+  size_mb: 0.0
+- path: 3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_02_stress_query_scenario_inventory/5_report/cli_sessions/deliver/20260626_021907_opencode_cli_1be2564274c7/stdout.log
+  size_mb: 0.11
+- path: 3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_02_stress_query_scenario_inventory/5_report/cli_sessions/deliver/20260626_033203_opencode_cli_ced8ec17d3fc/stderr.log
+  size_mb: 0.0
+- path: 3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_02_stress_query_scenario_inventory/5_report/cli_sessions/deliver/20260626_033203_opencode_cli_ced8ec17d3fc/stdout.log
+  size_mb: 0.09
 - path: 3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_02_stress_query_scenario_inventory/5_report/cli_sessions/execute/20260624_050949_opencode_cli_81645864c225/stderr.log
   size_mb: 0.0
 - path: 3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_02_stress_query_scenario_inventory/5_report/cli_sessions/execute/20260624_050949_opencode_cli_81645864c225/stdout.log
@@ -781,6 +854,10 @@ excluded_from_git:
   size_mb: 0.0
 - path: 3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_03_legacy_stress_logic_reuse_boundary/5_report/cli_sessions/deliver/20260624_070212_opencode_cli_a74a9bb5a14a/stdout.log
   size_mb: 0.02
+- path: 3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_03_legacy_stress_logic_reuse_boundary/5_report/cli_sessions/deliver/20260626_021908_opencode_cli_ad3fe0d9be7d/stderr.log
+  size_mb: 0.0
+- path: 3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_03_legacy_stress_logic_reuse_boundary/5_report/cli_sessions/deliver/20260626_021908_opencode_cli_ad3fe0d9be7d/stdout.log
+  size_mb: 0.13
 - path: 3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_03_legacy_stress_logic_reuse_boundary/5_report/cli_sessions/execute/20260624_051144_opencode_cli_50af59f49aab/stderr.log
   size_mb: 0.0
 - path: 3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_03_legacy_stress_logic_reuse_boundary/5_report/cli_sessions/execute/20260624_051144_opencode_cli_50af59f49aab/stdout.log
@@ -857,6 +934,14 @@ excluded_from_git:
   size_mb: 0.0
 - path: 3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_04_stress_test_development_handoff_pack/5_report/cli_sessions/deliver/20260624_080613_opencode_cli_fee9ea862c44/stdout.log
   size_mb: 0.11
+- path: 3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_04_stress_test_development_handoff_pack/5_report/cli_sessions/deliver/20260626_021909_opencode_cli_3d26d1f75f14/stderr.log
+  size_mb: 0.0
+- path: 3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_04_stress_test_development_handoff_pack/5_report/cli_sessions/deliver/20260626_021909_opencode_cli_3d26d1f75f14/stdout.log
+  size_mb: 0.08
+- path: 3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_04_stress_test_development_handoff_pack/5_report/cli_sessions/deliver/20260626_033202_opencode_cli_6a8934059fd1/stderr.log
+  size_mb: 0.0
+- path: 3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_04_stress_test_development_handoff_pack/5_report/cli_sessions/deliver/20260626_033202_opencode_cli_6a8934059fd1/stdout.log
+  size_mb: 0.04
 - path: 3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_04_stress_test_development_handoff_pack/5_report/cli_sessions/execute/20260624_072300_opencode_cli_9c722234e19b/stderr.log
   size_mb: 0.0
 - path: 3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_04_stress_test_development_handoff_pack/5_report/cli_sessions/execute/20260624_072300_opencode_cli_9c722234e19b/stdout.log
@@ -889,8 +974,6 @@ excluded_from_git:
   size_mb: 0.01
 - path: 3_phase_digestion/goal_magazine_research/task_design_genes_adjustment/4_artifact/.DS_Store
   size_mb: 0.01
-- path: 3_phase_digestion/goal_magazine_research/task_design_genes_adjustment/4_artifact/2_persist/.DS_Store
-  size_mb: 0.01
 - path: 3_phase_digestion/goal_magazine_research/task_design_genes_adjustment/4_artifact/4_picture/genes_bioinformatics_visuals_v20260617/candidate_counts.png
   size_mb: 0.06
 - path: 3_phase_digestion/goal_magazine_research/task_design_genes_adjustment/4_artifact/4_picture/genes_bioinformatics_visuals_v20260617/candidate_flow.png
@@ -913,6 +996,10 @@ excluded_from_git:
   size_mb: 8.39
 - path: 3_phase_digestion/goal_magazine_research/task_design_genes_adjustment/4_artifact/5_table/genes_bioinformatics_three_category_evidence_v20260617.xlsx
   size_mb: 0.22
+- path: 3_phase_digestion/goal_magazine_research/task_design_genes_adjustment/5_report/cli_sessions/deliver/20260626_031127_opencode_cli_50954c9f391d/stderr.log
+  size_mb: 0.0
+- path: 3_phase_digestion/goal_magazine_research/task_design_genes_adjustment/5_report/cli_sessions/deliver/20260626_031127_opencode_cli_50954c9f391d/stdout.log
+  size_mb: 0.16
 - path: 3_phase_digestion/goal_magazine_research/task_frontiers_in_genetics_affiliation_landscape/1_asset/T006
     Genes PUMCH related publication records.xlsx
   size_mb: 0.01
@@ -933,6 +1020,10 @@ excluded_from_git:
   size_mb: 0.29
 - path: 3_phase_digestion/goal_magazine_research/task_frontiers_in_genetics_affiliation_landscape/4_artifact/5_table/frontiers_genetics_policy_discussion_sources_v20260618.csv
   size_mb: 0.01
+- path: 3_phase_digestion/goal_magazine_research/task_frontiers_in_genetics_affiliation_landscape/5_report/cli_sessions/deliver/20260626_031129_opencode_cli_e21a1e35efeb/stderr.log
+  size_mb: 0.0
+- path: 3_phase_digestion/goal_magazine_research/task_frontiers_in_genetics_affiliation_landscape/5_report/cli_sessions/deliver/20260626_031129_opencode_cli_e21a1e35efeb/stdout.log
+  size_mb: 0.13
 - path: 3_phase_digestion/goal_magazine_research/task_frontiers_in_genetics_publication_timing/4_artifact/1_tmp/pubmed_efetch_batch_001.xml
   size_mb: 5.46
 - path: 3_phase_digestion/goal_magazine_research/task_frontiers_in_genetics_publication_timing/4_artifact/1_tmp/pubmed_efetch_batch_002.xml
@@ -953,6 +1044,10 @@ excluded_from_git:
   size_mb: 0.06
 - path: 3_phase_digestion/goal_magazine_research/task_frontiers_in_genetics_publication_timing/4_artifact/5_table/frontiers_genetics_publication_timing_trends_v20260618.csv
   size_mb: 0.0
+- path: 3_phase_digestion/goal_magazine_research/task_frontiers_in_genetics_publication_timing/5_report/cli_sessions/deliver/20260626_031132_opencode_cli_4a4cffcf82ff/stderr.log
+  size_mb: 0.0
+- path: 3_phase_digestion/goal_magazine_research/task_frontiers_in_genetics_publication_timing/5_report/cli_sessions/deliver/20260626_031132_opencode_cli_4a4cffcf82ff/stdout.log
+  size_mb: 0.11
 - path: 3_phase_digestion/goal_magazine_research/task_genes_affiliation_bias_analysis/.DS_Store
   size_mb: 0.01
 - path: 3_phase_digestion/goal_magazine_research/task_genes_affiliation_bias_analysis/1_asset/MDPI
@@ -996,6 +1091,10 @@ excluded_from_git:
   size_mb: 0.01
 - path: 3_phase_digestion/goal_magazine_research/task_genes_affiliation_bias_analysis/4_artifact/5_table/mdpi_policy_news_discussion_sources_v20260617.csv
   size_mb: 0.0
+- path: 3_phase_digestion/goal_magazine_research/task_genes_affiliation_bias_analysis/5_report/cli_sessions/deliver/20260626_031337_opencode_cli_8d6b839c3125/stderr.log
+  size_mb: 0.0
+- path: 3_phase_digestion/goal_magazine_research/task_genes_affiliation_bias_analysis/5_report/cli_sessions/deliver/20260626_031337_opencode_cli_8d6b839c3125/stdout.log
+  size_mb: 0.1
 - path: 3_phase_digestion/goal_magazine_research/task_genes_bioinformatics_deliverable_catalog/1_asset/T004
     Genes article type topic workload labels.csv
   size_mb: 5.52
@@ -1029,6 +1128,10 @@ excluded_from_git:
   size_mb: 4.4
 - path: 3_phase_digestion/goal_magazine_research/task_genes_bioinformatics_deliverable_catalog/4_artifact/5_table/genes_bioinformatics_artifact_deliverable_screening_manifest_v20260618.xlsx
   size_mb: 2.87
+- path: 3_phase_digestion/goal_magazine_research/task_genes_bioinformatics_deliverable_catalog/5_report/cli_sessions/deliver/20260626_031338_opencode_cli_61d9e1f09cc6/stderr.log
+  size_mb: 0.0
+- path: 3_phase_digestion/goal_magazine_research/task_genes_bioinformatics_deliverable_catalog/5_report/cli_sessions/deliver/20260626_031338_opencode_cli_61d9e1f09cc6/stdout.log
+  size_mb: 0.16
 - path: 3_phase_digestion/goal_magazine_research/task_mdpi_cross_journal_affiliation_landscape/1_asset/T004
     Genes metadata and timing corpus.xlsx
   size_mb: 5.37
@@ -1071,6 +1174,10 @@ excluded_from_git:
   size_mb: 0.08
 - path: 3_phase_digestion/goal_magazine_research/task_mdpi_cross_journal_affiliation_landscape/4_artifact/6_archive/crossref_member1968_biomed_relevant_raw_v20260618.jsonl.gz
   size_mb: 216.17
+- path: 3_phase_digestion/goal_magazine_research/task_mdpi_cross_journal_affiliation_landscape/5_report/cli_sessions/deliver/20260626_031447_opencode_cli_fd2fa897d4ff/stderr.log
+  size_mb: 0.0
+- path: 3_phase_digestion/goal_magazine_research/task_mdpi_cross_journal_affiliation_landscape/5_report/cli_sessions/deliver/20260626_031447_opencode_cli_fd2fa897d4ff/stdout.log
+  size_mb: 0.11
 - path: 3_phase_digestion/goal_magazine_research/task_systematic_genes_literature_survey/.DS_Store
   size_mb: 0.01
 - path: 3_phase_digestion/goal_magazine_research/task_systematic_genes_literature_survey/1_asset/genes_2023-06-16_to_2026-06-16_metadata_and_timing_v20260616.xlsx
@@ -1141,8 +1248,6 @@ excluded_from_git:
   size_mb: 28.66
 - path: 3_phase_digestion/goal_magazine_research/task_systematic_genes_literature_survey/4_artifact/1_tmp/genes_2023-06-16_to_2026-06-16_raw_records_v20260616.jsonl.gz
   size_mb: 28.65
-- path: 3_phase_digestion/goal_magazine_research/task_systematic_genes_literature_survey/4_artifact/2_persist/.DS_Store
-  size_mb: 0.01
 - path: 3_phase_digestion/goal_magazine_research/task_systematic_genes_literature_survey/4_artifact/5_table/genes_2023-06-16_to_2026-06-16_metadata_and_timing_v20260616.xlsx
   size_mb: 5.37
 - path: 3_phase_digestion/goal_magazine_research/task_systematic_genes_literature_survey/4_artifact/5_table/genes_2023-06-16_to_2026-06-16_metadata_v20260616.csv
@@ -1365,6 +1470,10 @@ excluded_from_git:
   size_mb: 1.5
 - path: 3_phase_digestion/goal_magazine_research/task_systematic_genes_literature_survey/4_artifact/6_archive/genes_step4_representative_type_topic_pdf_v20260617/GENES-02158_genes16010049.pdf
   size_mb: 12.22
+- path: 3_phase_digestion/goal_magazine_research/task_systematic_genes_literature_survey/5_report/cli_sessions/deliver/20260626_031457_opencode_cli_641937ad0a3b/stderr.log
+  size_mb: 0.0
+- path: 3_phase_digestion/goal_magazine_research/task_systematic_genes_literature_survey/5_report/cli_sessions/deliver/20260626_031457_opencode_cli_641937ad0a3b/stdout.log
+  size_mb: 0.17
 - path: 3_phase_digestion/goal_project_delivery_anchor/task_algorithm_package_delivery_anchor/1_asset/capability_status_matrix.csv
   size_mb: 0.0
 - path: 3_phase_digestion/goal_project_delivery_anchor/task_algorithm_package_delivery_anchor/4_artifact/5_table/pxfquery_algorithm_capability_matrix_v20260625.csv
@@ -1381,6 +1490,10 @@ excluded_from_git:
   size_mb: 0.0
 - path: 3_phase_digestion/goal_project_delivery_anchor/task_algorithm_package_delivery_anchor/5_report/cli_sessions/deliver/20260625_124217_codex_cli_dfadffe33b6f/stdout.log
   size_mb: 0.04
+- path: 3_phase_digestion/goal_project_delivery_anchor/task_algorithm_package_delivery_anchor/5_report/cli_sessions/deliver/20260626_031520_opencode_cli_0689ff764c63/stderr.log
+  size_mb: 0.0
+- path: 3_phase_digestion/goal_project_delivery_anchor/task_algorithm_package_delivery_anchor/5_report/cli_sessions/deliver/20260626_031520_opencode_cli_0689ff764c63/stdout.log
+  size_mb: 0.16
 - path: 3_phase_digestion/goal_project_delivery_anchor/task_algorithm_package_delivery_anchor/5_report/cli_sessions/execute/20260625_121958_codex_cli_eafa615e6e9d/stderr.log
   size_mb: 0.0
 - path: 3_phase_digestion/goal_project_delivery_anchor/task_algorithm_package_delivery_anchor/5_report/cli_sessions/execute/20260625_121958_codex_cli_eafa615e6e9d/stdout.log
@@ -1403,6 +1516,10 @@ excluded_from_git:
   size_mb: 0.0
 - path: 3_phase_digestion/goal_project_delivery_anchor/task_evidence_routing_anchor/5_report/cli_sessions/deliver/20260625_131103_codex_cli_3479d18d5f7c/stdout.log
   size_mb: 0.03
+- path: 3_phase_digestion/goal_project_delivery_anchor/task_evidence_routing_anchor/5_report/cli_sessions/deliver/20260626_031521_opencode_cli_3d0454723f4e/stderr.log
+  size_mb: 0.0
+- path: 3_phase_digestion/goal_project_delivery_anchor/task_evidence_routing_anchor/5_report/cli_sessions/deliver/20260626_031521_opencode_cli_3d0454723f4e/stdout.log
+  size_mb: 0.08
 - path: 3_phase_digestion/goal_project_delivery_anchor/task_evidence_routing_anchor/5_report/cli_sessions/execute/20260625_122002_opencode_cli_310e961ca3ca/stderr.log
   size_mb: 0.0
 - path: 3_phase_digestion/goal_project_delivery_anchor/task_evidence_routing_anchor/5_report/cli_sessions/execute/20260625_122002_opencode_cli_310e961ca3ca/stdout.log
@@ -1429,6 +1546,10 @@ excluded_from_git:
   size_mb: 0.0
 - path: 3_phase_digestion/goal_project_delivery_anchor/task_llm_resolver_capability_anchor/5_report/cli_sessions/deliver/20260625_132008_codex_cli_d4147b530bb5/stdout.log
   size_mb: 0.04
+- path: 3_phase_digestion/goal_project_delivery_anchor/task_llm_resolver_capability_anchor/5_report/cli_sessions/deliver/20260626_031608_opencode_cli_c33e833c7421/stderr.log
+  size_mb: 0.0
+- path: 3_phase_digestion/goal_project_delivery_anchor/task_llm_resolver_capability_anchor/5_report/cli_sessions/deliver/20260626_031608_opencode_cli_c33e833c7421/stdout.log
+  size_mb: 0.07
 - path: 3_phase_digestion/goal_project_delivery_anchor/task_llm_resolver_capability_anchor/5_report/cli_sessions/execute/20260625_131001_codex_cli_07f43d2b8377/stderr.log
   size_mb: 0.0
 - path: 3_phase_digestion/goal_project_delivery_anchor/task_llm_resolver_capability_anchor/5_report/cli_sessions/execute/20260625_131001_codex_cli_07f43d2b8377/stdout.log
@@ -1455,6 +1576,10 @@ excluded_from_git:
   size_mb: 0.0
 - path: 3_phase_digestion/goal_project_delivery_anchor/task_m1_vs_delivery_anchor_review/5_report/cli_sessions/deliver/20260625_135954_codex_cli_17b934f76bdf/stdout.log
   size_mb: 0.04
+- path: 3_phase_digestion/goal_project_delivery_anchor/task_m1_vs_delivery_anchor_review/5_report/cli_sessions/deliver/20260626_031632_opencode_cli_dd46e5056d87/stderr.log
+  size_mb: 0.0
+- path: 3_phase_digestion/goal_project_delivery_anchor/task_m1_vs_delivery_anchor_review/5_report/cli_sessions/deliver/20260626_031632_opencode_cli_dd46e5056d87/stdout.log
+  size_mb: 0.15
 - path: 3_phase_digestion/goal_project_delivery_anchor/task_m1_vs_delivery_anchor_review/5_report/cli_sessions/execute/20260625_135004_codex_cli_210ae7f19bf2/stderr.log
   size_mb: 0.0
 - path: 3_phase_digestion/goal_project_delivery_anchor/task_m1_vs_delivery_anchor_review/5_report/cli_sessions/execute/20260625_135004_codex_cli_210ae7f19bf2/stdout.log
@@ -1535,6 +1660,10 @@ excluded_from_git:
   size_mb: 0.63
 - path: 3_phase_digestion/goal_submission_rules/task_mdpi_submission_package_and_guide/4_artifact/6_archive/mdpi_official_templates_v20260619/genes-template.dot
   size_mb: 0.08
+- path: 3_phase_digestion/goal_submission_rules/task_mdpi_submission_package_and_guide/5_report/cli_sessions/deliver/20260626_031657_opencode_cli_aa63797abbeb/stderr.log
+  size_mb: 0.0
+- path: 3_phase_digestion/goal_submission_rules/task_mdpi_submission_package_and_guide/5_report/cli_sessions/deliver/20260626_031657_opencode_cli_aa63797abbeb/stdout.log
+  size_mb: 0.08
 - path: 3_phase_digestion/goal_template_paper_digestion/task_digest_wxy_genes_template_paper/1_asset/Figures.zip
   size_mb: 7.27
 - path: 3_phase_digestion/goal_template_paper_digestion/task_digest_wxy_genes_template_paper/1_asset/Supplementary
@@ -1562,6 +1691,14 @@ excluded_from_git:
   size_mb: 0.01
 - path: 3_phase_digestion/goal_template_paper_digestion/task_digest_wxy_genes_template_paper/4_artifact/5_table/wxy_submission_package_inventory_v20260619.xlsx
   size_mb: 0.01
+- path: 3_phase_digestion/goal_template_paper_digestion/task_digest_wxy_genes_template_paper/5_report/cli_sessions/deliver/20260626_031658_opencode_cli_8c02b3873033/stderr.log
+  size_mb: 0.0
+- path: 3_phase_digestion/goal_template_paper_digestion/task_digest_wxy_genes_template_paper/5_report/cli_sessions/deliver/20260626_031658_opencode_cli_8c02b3873033/stdout.log
+  size_mb: 0.05
+- path: 3_phase_digestion/goal_template_paper_digestion/task_digest_wxy_genes_template_paper/5_report/cli_sessions/deliver/20260626_033200_opencode_cli_3490df96030b/stderr.log
+  size_mb: 0.0
+- path: 3_phase_digestion/goal_template_paper_digestion/task_digest_wxy_genes_template_paper/5_report/cli_sessions/deliver/20260626_033200_opencode_cli_3490df96030b/stdout.log
+  size_mb: 0.13
 - path: 3_phase_digestion/goal_template_paper_digestion/task_pending_t018/5_report/cli_sessions/check/20260623_031456_opencode_cli_aa3b637b6535/stderr.log
   size_mb: 0.0
 - path: 3_phase_digestion/goal_template_paper_digestion/task_pending_t018/5_report/cli_sessions/check/20260623_031456_opencode_cli_aa3b637b6535/stdout.log
@@ -1574,6 +1711,10 @@ excluded_from_git:
   size_mb: 0.0
 - path: 3_phase_digestion/goal_template_paper_digestion/task_pending_t018/5_report/cli_sessions/config/20260623_012936_opencode_cli_b4442880ee32/stdout.log
   size_mb: 0.33
+- path: 3_phase_digestion/goal_template_paper_digestion/task_pending_t018/5_report/cli_sessions/deliver/20260626_031700_opencode_cli_261106699afb/stderr.log
+  size_mb: 0.0
+- path: 3_phase_digestion/goal_template_paper_digestion/task_pending_t018/5_report/cli_sessions/deliver/20260626_031700_opencode_cli_261106699afb/stdout.log
+  size_mb: 0.06
 - path: 3_phase_digestion/goal_template_paper_digestion/task_pending_t018/5_report/cli_sessions/execute/20260623_034348_opencode_cli_8075f3e8b91a/stderr.log
   size_mb: 0.0
 - path: 3_phase_digestion/goal_template_paper_digestion/task_pending_t018/5_report/cli_sessions/execute/20260623_034348_opencode_cli_8075f3e8b91a/stdout.log
@@ -1596,6 +1737,10 @@ excluded_from_git:
   size_mb: 21.76
 - path: 4_phase_development/goal_algorithm_function_review/task_mvp_algorithm_run-through_review/4_artifact/6_archive/pxfquery_t013_run_evidence_bundle_v20260618/index_name_staging/gene_neighbors_simple.json
   size_mb: 19.5
+- path: 4_phase_development/goal_algorithm_function_review/task_mvp_algorithm_run-through_review/5_report/cli_sessions/deliver/20260626_031722_opencode_cli_5383e09d9642/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_algorithm_function_review/task_mvp_algorithm_run-through_review/5_report/cli_sessions/deliver/20260626_031722_opencode_cli_5383e09d9642/stdout.log
+  size_mb: 0.09
 - path: 4_phase_development/goal_algorithm_version_development/task_gap_repair_stage_planning/1_asset/T-013
     capability status matrix.csv
   size_mb: 0.0
@@ -1648,6 +1793,10 @@ excluded_from_git:
   size_mb: 0.0
 - path: 4_phase_development/goal_deterministic_query_engines_v1/task_no_hit_guard_v1/5_report/cli_sessions/config/20260623_130049_opencode_cli_25ebdc576250/stdout.log
   size_mb: 0.3
+- path: 4_phase_development/goal_deterministic_query_engines_v1/task_no_hit_guard_v1/5_report/cli_sessions/deliver/20260626_032645_opencode_cli_d61d8f11a047/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_deterministic_query_engines_v1/task_no_hit_guard_v1/5_report/cli_sessions/deliver/20260626_032645_opencode_cli_d61d8f11a047/stdout.log
+  size_mb: 0.07
 - path: 4_phase_development/goal_deterministic_query_engines_v1/task_no_hit_guard_v1/5_report/cli_sessions/execute/20260623_134434_opencode_cli_62dc423a8814/stderr.log
   size_mb: 0.0
 - path: 4_phase_development/goal_deterministic_query_engines_v1/task_no_hit_guard_v1/5_report/cli_sessions/execute/20260623_134434_opencode_cli_62dc423a8814/stdout.log
@@ -1708,6 +1857,10 @@ excluded_from_git:
   size_mb: 0.0
 - path: 4_phase_development/goal_m1_python_package_v2/task_contract_and_demo_spec_m1/5_report/cli_sessions/deliver/20260624_041900_opencode_cli_da7a00ed8d89/stdout.log
   size_mb: 0.05
+- path: 4_phase_development/goal_m1_python_package_v2/task_contract_and_demo_spec_m1/5_report/cli_sessions/deliver/20260626_022713_opencode_cli_5fe34bd80aef/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_m1_python_package_v2/task_contract_and_demo_spec_m1/5_report/cli_sessions/deliver/20260626_022713_opencode_cli_5fe34bd80aef/stdout.log
+  size_mb: 0.13
 - path: 4_phase_development/goal_m1_python_package_v2/task_contract_and_demo_spec_m1/5_report/cli_sessions/execute/20260624_033814_codex_cli_a9db947c7bec/stderr.log
   size_mb: 0.0
 - path: 4_phase_development/goal_m1_python_package_v2/task_contract_and_demo_spec_m1/5_report/cli_sessions/execute/20260624_033814_codex_cli_a9db947c7bec/stdout.log
@@ -1720,22 +1873,6 @@ excluded_from_git:
   size_mb: 0.03
 - path: 4_phase_development/goal_m1_python_package_v2/task_data_manifest_fixture_m1/1_asset/t014_matrix_schema_coverage.csv
   size_mb: 0.01
-- path: 4_phase_development/goal_m1_python_package_v2/task_data_manifest_fixture_m1/4_artifact/2_persist/fixture_package_m1/cellline_info_fixture_m1.csv
-  size_mb: 0.0
-- path: 4_phase_development/goal_m1_python_package_v2/task_data_manifest_fixture_m1/4_artifact/2_persist/fixture_package_m1/cellline_meta_fixture_m1.csv
-  size_mb: 0.0
-- path: 4_phase_development/goal_m1_python_package_v2/task_data_manifest_fixture_m1/4_artifact/2_persist/fixture_package_m1/compound_info_fixture_m1.csv
-  size_mb: 0.0
-- path: 4_phase_development/goal_m1_python_package_v2/task_data_manifest_fixture_m1/4_artifact/2_persist/fixture_package_m1/compound_meta_fixture_m1.csv
-  size_mb: 0.0
-- path: 4_phase_development/goal_m1_python_package_v2/task_data_manifest_fixture_m1/4_artifact/2_persist/fixture_package_m1/cp_func_fixture_m1.h5ad
-  size_mb: 0.04
-- path: 4_phase_development/goal_m1_python_package_v2/task_data_manifest_fixture_m1/4_artifact/2_persist/fixture_package_m1/gene_info_fixture_m1.csv
-  size_mb: 0.0
-- path: 4_phase_development/goal_m1_python_package_v2/task_data_manifest_fixture_m1/4_artifact/2_persist/fixture_package_m1/sh_func_fixture_m1.h5ad
-  size_mb: 0.04
-- path: 4_phase_development/goal_m1_python_package_v2/task_data_manifest_fixture_m1/4_artifact/2_persist/fixture_package_m1/xpr_func_fixture_m1.h5ad
-  size_mb: 0.04
 - path: 4_phase_development/goal_m1_python_package_v2/task_data_manifest_fixture_m1/4_artifact/5_table/expected_shapes_keys_columns_m1.csv
   size_mb: 0.02
 - path: 4_phase_development/goal_m1_python_package_v2/task_data_manifest_fixture_m1/4_artifact/5_table/sample_records_m1.csv
@@ -1756,6 +1893,14 @@ excluded_from_git:
   size_mb: 0.0
 - path: 4_phase_development/goal_m1_python_package_v2/task_data_manifest_fixture_m1/5_report/cli_sessions/deliver/20260624_035950_opencode_cli_7ba26ddfdd2f/stdout.log
   size_mb: 0.06
+- path: 4_phase_development/goal_m1_python_package_v2/task_data_manifest_fixture_m1/5_report/cli_sessions/deliver/20260626_022715_opencode_cli_8103328af4ac/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_m1_python_package_v2/task_data_manifest_fixture_m1/5_report/cli_sessions/deliver/20260626_022715_opencode_cli_8103328af4ac/stdout.log
+  size_mb: 0.13
+- path: 4_phase_development/goal_m1_python_package_v2/task_data_manifest_fixture_m1/5_report/cli_sessions/deliver/20260626_033153_opencode_cli_684c922292fe/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_m1_python_package_v2/task_data_manifest_fixture_m1/5_report/cli_sessions/deliver/20260626_033153_opencode_cli_684c922292fe/stdout.log
+  size_mb: 0.08
 - path: 4_phase_development/goal_m1_python_package_v2/task_data_manifest_fixture_m1/5_report/cli_sessions/execute/20260624_032509_codex_cli_b5e91b3d4aed/stderr.log
   size_mb: 0.0
 - path: 4_phase_development/goal_m1_python_package_v2/task_data_manifest_fixture_m1/5_report/cli_sessions/execute/20260624_032509_codex_cli_b5e91b3d4aed/stdout.log
@@ -1786,22 +1931,6 @@ excluded_from_git:
   size_mb: 0.03
 - path: 4_phase_development/goal_m1_python_package_v2/task_forward_query_core_repair_m1/1_asset/smoke_evidence_table.csv
   size_mb: 0.0
-- path: 4_phase_development/goal_m1_python_package_v2/task_forward_query_core_repair_m1/4_artifact/2_persist/forward_repair_fixture_m1_1/cellline_info_fixture_m1.csv
-  size_mb: 0.0
-- path: 4_phase_development/goal_m1_python_package_v2/task_forward_query_core_repair_m1/4_artifact/2_persist/forward_repair_fixture_m1_1/cellline_meta_fixture_m1.csv
-  size_mb: 0.0
-- path: 4_phase_development/goal_m1_python_package_v2/task_forward_query_core_repair_m1/4_artifact/2_persist/forward_repair_fixture_m1_1/compound_info_fixture_m1.csv
-  size_mb: 0.0
-- path: 4_phase_development/goal_m1_python_package_v2/task_forward_query_core_repair_m1/4_artifact/2_persist/forward_repair_fixture_m1_1/compound_meta_fixture_m1.csv
-  size_mb: 0.0
-- path: 4_phase_development/goal_m1_python_package_v2/task_forward_query_core_repair_m1/4_artifact/2_persist/forward_repair_fixture_m1_1/cp_func_fixture_m1.h5ad
-  size_mb: 0.04
-- path: 4_phase_development/goal_m1_python_package_v2/task_forward_query_core_repair_m1/4_artifact/2_persist/forward_repair_fixture_m1_1/gene_info_fixture_m1.csv
-  size_mb: 0.0
-- path: 4_phase_development/goal_m1_python_package_v2/task_forward_query_core_repair_m1/4_artifact/2_persist/forward_repair_fixture_m1_1/sh_func_fixture_m1.h5ad
-  size_mb: 0.04
-- path: 4_phase_development/goal_m1_python_package_v2/task_forward_query_core_repair_m1/4_artifact/2_persist/forward_repair_fixture_m1_1/xpr_func_fixture_m1.h5ad
-  size_mb: 0.04
 - path: 4_phase_development/goal_m1_python_package_v2/task_forward_query_core_repair_m1/4_artifact/5_table/forward_query_contract_assertions_v20260624.csv
   size_mb: 0.0
 - path: 4_phase_development/goal_m1_python_package_v2/task_forward_query_core_repair_m1/5_report/cli_sessions/check/20260624_052756_codex_cli_38402a669085/stderr.log
@@ -1820,13 +1949,19 @@ excluded_from_git:
   size_mb: 0.0
 - path: 4_phase_development/goal_m1_python_package_v2/task_forward_query_core_repair_m1/5_report/cli_sessions/deliver/20260624_054524_codex_cli_ecbd42748bee/stdout.log
   size_mb: 0.03
+- path: 4_phase_development/goal_m1_python_package_v2/task_forward_query_core_repair_m1/5_report/cli_sessions/deliver/20260626_024124_opencode_cli_801382f98043/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_m1_python_package_v2/task_forward_query_core_repair_m1/5_report/cli_sessions/deliver/20260626_024124_opencode_cli_801382f98043/stdout.log
+  size_mb: 0.05
+- path: 4_phase_development/goal_m1_python_package_v2/task_forward_query_core_repair_m1/5_report/cli_sessions/deliver/20260626_033152_opencode_cli_35bbc8c49eb0/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_m1_python_package_v2/task_forward_query_core_repair_m1/5_report/cli_sessions/deliver/20260626_033152_opencode_cli_35bbc8c49eb0/stdout.log
+  size_mb: 0.1
 - path: 4_phase_development/goal_m1_python_package_v2/task_forward_query_core_repair_m1/5_report/cli_sessions/execute/20260624_053105_codex_cli_9247fd26ec2b/stderr.log
   size_mb: 0.0
 - path: 4_phase_development/goal_m1_python_package_v2/task_forward_query_core_repair_m1/5_report/cli_sessions/execute/20260624_053105_codex_cli_9247fd26ec2b/stdout.log
   size_mb: 0.19
 - path: 4_phase_development/goal_m1_python_package_v2/task_forward_validation_m1/1_asset/forward_query_contract_assertions.csv
-  size_mb: 0.0
-- path: 4_phase_development/goal_m1_python_package_v2/task_forward_validation_m1/4_artifact/2_persist/forward_validation_smoke_v20260624.log
   size_mb: 0.0
 - path: 4_phase_development/goal_m1_python_package_v2/task_forward_validation_m1/4_artifact/5_table/forward_validation_results_v20260624.csv
   size_mb: 0.0
@@ -1842,16 +1977,14 @@ excluded_from_git:
   size_mb: 0.0
 - path: 4_phase_development/goal_m1_python_package_v2/task_forward_validation_m1/5_report/cli_sessions/deliver/20260624_055423_opencode_cli_549ecc79a2d2/stdout.log
   size_mb: 0.05
+- path: 4_phase_development/goal_m1_python_package_v2/task_forward_validation_m1/5_report/cli_sessions/deliver/20260626_023350_opencode_cli_6fd1a86a441e/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_m1_python_package_v2/task_forward_validation_m1/5_report/cli_sessions/deliver/20260626_023350_opencode_cli_6fd1a86a441e/stdout.log
+  size_mb: 0.06
 - path: 4_phase_development/goal_m1_python_package_v2/task_forward_validation_m1/5_report/cli_sessions/execute/20260624_054945_opencode_cli_570c64fc109b/stderr.log
   size_mb: 0.0
 - path: 4_phase_development/goal_m1_python_package_v2/task_forward_validation_m1/5_report/cli_sessions/execute/20260624_054945_opencode_cli_570c64fc109b/stdout.log
   size_mb: 0.22
-- path: 4_phase_development/goal_m1_python_package_v2/task_index_health_check_m1/1_asset/gene_index.json
-  size_mb: 6.12
-- path: 4_phase_development/goal_m1_python_package_v2/task_index_health_check_m1/1_asset/gene_neighbors.json
-  size_mb: 21.76
-- path: 4_phase_development/goal_m1_python_package_v2/task_index_health_check_m1/1_asset/gene_neighbors_simple.json
-  size_mb: 19.5
 - path: 4_phase_development/goal_m1_python_package_v2/task_index_health_check_m1/5_report/cli_sessions/check/20260624_031910_opencode_cli_fdef83013bb6/stderr.log
   size_mb: 0.0
 - path: 4_phase_development/goal_m1_python_package_v2/task_index_health_check_m1/5_report/cli_sessions/check/20260624_031910_opencode_cli_fdef83013bb6/stdout.log
@@ -1864,6 +1997,10 @@ excluded_from_git:
   size_mb: 0.0
 - path: 4_phase_development/goal_m1_python_package_v2/task_index_health_check_m1/5_report/cli_sessions/deliver/20260624_034824_opencode_cli_0196ba226542/stdout.log
   size_mb: 0.16
+- path: 4_phase_development/goal_m1_python_package_v2/task_index_health_check_m1/5_report/cli_sessions/deliver/20260626_022722_opencode_cli_62c2e7d146ce/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_m1_python_package_v2/task_index_health_check_m1/5_report/cli_sessions/deliver/20260626_022722_opencode_cli_62c2e7d146ce/stdout.log
+  size_mb: 0.09
 - path: 4_phase_development/goal_m1_python_package_v2/task_index_health_check_m1/5_report/cli_sessions/execute/20260624_033342_opencode_cli_e96129c3d8c3/stderr.log
   size_mb: 0.0
 - path: 4_phase_development/goal_m1_python_package_v2/task_index_health_check_m1/5_report/cli_sessions/execute/20260624_033342_opencode_cli_e96129c3d8c3/stdout.log
@@ -1888,6 +2025,14 @@ excluded_from_git:
   size_mb: 0.0
 - path: 4_phase_development/goal_m1_python_package_v2/task_m1_fixture_loader/5_report/cli_sessions/deliver/20260624_044625_opencode_cli_49806aa3b655/stdout.log
   size_mb: 0.08
+- path: 4_phase_development/goal_m1_python_package_v2/task_m1_fixture_loader/5_report/cli_sessions/deliver/20260626_023345_opencode_cli_52441b8addbe/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_m1_python_package_v2/task_m1_fixture_loader/5_report/cli_sessions/deliver/20260626_023345_opencode_cli_52441b8addbe/stdout.log
+  size_mb: 0.06
+- path: 4_phase_development/goal_m1_python_package_v2/task_m1_fixture_loader/5_report/cli_sessions/deliver/20260626_033156_opencode_cli_9b67d9a7d259/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_m1_python_package_v2/task_m1_fixture_loader/5_report/cli_sessions/deliver/20260626_033156_opencode_cli_9b67d9a7d259/stdout.log
+  size_mb: 0.09
 - path: 4_phase_development/goal_m1_python_package_v2/task_m1_fixture_loader/5_report/cli_sessions/execute/20260624_040740_codex_cli_b89802dc1daf/stderr.log
   size_mb: 0.0
 - path: 4_phase_development/goal_m1_python_package_v2/task_m1_fixture_loader/5_report/cli_sessions/execute/20260624_040740_codex_cli_b89802dc1daf/stdout.log
@@ -1914,6 +2059,10 @@ excluded_from_git:
   size_mb: 0.0
 - path: 4_phase_development/goal_m1_python_package_v2/task_m1_python_package_milestone/5_report/cli_sessions/deliver/20260624_061307_opencode_cli_ceb64a8d4468/stdout.log
   size_mb: 0.08
+- path: 4_phase_development/goal_m1_python_package_v2/task_m1_python_package_milestone/5_report/cli_sessions/deliver/20260626_024121_opencode_cli_dfcf8d7eabc8/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_m1_python_package_v2/task_m1_python_package_milestone/5_report/cli_sessions/deliver/20260626_024121_opencode_cli_dfcf8d7eabc8/stdout.log
+  size_mb: 0.04
 - path: 4_phase_development/goal_m1_python_package_v2/task_m1_python_package_milestone/5_report/cli_sessions/execute/20260624_061117_opencode_cli_eb2ff9fc7585/stderr.log
   size_mb: 0.0
 - path: 4_phase_development/goal_m1_python_package_v2/task_m1_python_package_milestone/5_report/cli_sessions/execute/20260624_061117_opencode_cli_eb2ff9fc7585/stdout.log
@@ -1930,6 +2079,14 @@ excluded_from_git:
   size_mb: 0.0
 - path: 4_phase_development/goal_m1_python_package_v2/task_package_assembly_m1/5_report/cli_sessions/deliver/20260624_060719_opencode_cli_088df4432c4f/stdout.log
   size_mb: 0.05
+- path: 4_phase_development/goal_m1_python_package_v2/task_package_assembly_m1/5_report/cli_sessions/deliver/20260626_024118_opencode_cli_6c189de61490/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_m1_python_package_v2/task_package_assembly_m1/5_report/cli_sessions/deliver/20260626_024118_opencode_cli_6c189de61490/stdout.log
+  size_mb: 0.09
+- path: 4_phase_development/goal_m1_python_package_v2/task_package_assembly_m1/5_report/cli_sessions/deliver/20260626_033157_opencode_cli_8a13dd47cb9a/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_m1_python_package_v2/task_package_assembly_m1/5_report/cli_sessions/deliver/20260626_033157_opencode_cli_8a13dd47cb9a/stdout.log
+  size_mb: 0.11
 - path: 4_phase_development/goal_m1_python_package_v2/task_package_assembly_m1/5_report/cli_sessions/execute/20260624_055754_opencode_cli_eb72c7b0e3de/stderr.log
   size_mb: 0.0
 - path: 4_phase_development/goal_m1_python_package_v2/task_package_assembly_m1/5_report/cli_sessions/execute/20260624_055754_opencode_cli_eb72c7b0e3de/stdout.log
@@ -1948,6 +2105,14 @@ excluded_from_git:
   size_mb: 0.0
 - path: 4_phase_development/goal_m1_python_package_v2/task_package_skeleton_m1/5_report/cli_sessions/deliver/20260624_033856_opencode_cli_d0c6121c6255/stdout.log
   size_mb: 0.03
+- path: 4_phase_development/goal_m1_python_package_v2/task_package_skeleton_m1/5_report/cli_sessions/deliver/20260626_022719_opencode_cli_4354c3f2b1ff/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_m1_python_package_v2/task_package_skeleton_m1/5_report/cli_sessions/deliver/20260626_022719_opencode_cli_4354c3f2b1ff/stdout.log
+  size_mb: 0.07
+- path: 4_phase_development/goal_m1_python_package_v2/task_package_skeleton_m1/5_report/cli_sessions/deliver/20260626_033154_opencode_cli_cc87d59a6b49/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_m1_python_package_v2/task_package_skeleton_m1/5_report/cli_sessions/deliver/20260626_033154_opencode_cli_cc87d59a6b49/stdout.log
+  size_mb: 0.09
 - path: 4_phase_development/goal_m1_python_package_v2/task_package_skeleton_m1/5_report/cli_sessions/execute/20260624_032617_opencode_cli_1a188e322853/stderr.log
   size_mb: 0.0
 - path: 4_phase_development/goal_m1_python_package_v2/task_package_skeleton_m1/5_report/cli_sessions/execute/20260624_032617_opencode_cli_1a188e322853/stdout.log
@@ -1956,22 +2121,6 @@ excluded_from_git:
   size_mb: 0.02
 - path: 4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/1_asset/sample_records_m1.csv
   size_mb: 0.03
-- path: 4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/4_artifact/2_persist/fixture_package_m1/cellline_info_fixture_m1.csv
-  size_mb: 0.0
-- path: 4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/4_artifact/2_persist/fixture_package_m1/cellline_meta_fixture_m1.csv
-  size_mb: 0.0
-- path: 4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/4_artifact/2_persist/fixture_package_m1/compound_info_fixture_m1.csv
-  size_mb: 0.0
-- path: 4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/4_artifact/2_persist/fixture_package_m1/compound_meta_fixture_m1.csv
-  size_mb: 0.0
-- path: 4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/4_artifact/2_persist/fixture_package_m1/cp_func_fixture_m1.h5ad
-  size_mb: 0.04
-- path: 4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/4_artifact/2_persist/fixture_package_m1/gene_info_fixture_m1.csv
-  size_mb: 0.0
-- path: 4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/4_artifact/2_persist/fixture_package_m1/sh_func_fixture_m1.h5ad
-  size_mb: 0.04
-- path: 4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/4_artifact/2_persist/fixture_package_m1/xpr_func_fixture_m1.h5ad
-  size_mb: 0.04
 - path: 4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/5_report/cli_sessions/check/20260624_040508_opencode_cli_d2684fc69f1d/stderr.log
   size_mb: 0.0
 - path: 4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/5_report/cli_sessions/check/20260624_040508_opencode_cli_d2684fc69f1d/stdout.log
@@ -1987,6 +2136,10 @@ excluded_from_git:
 - path: 4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/5_report/cli_sessions/deliver/20260624_050625_opencode_cli_6a450243b5df/stderr.log
   size_mb: 0.0
 - path: 4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/5_report/cli_sessions/deliver/20260624_050625_opencode_cli_6a450243b5df/stdout.log
+  size_mb: 0.05
+- path: 4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/5_report/cli_sessions/deliver/20260626_023348_opencode_cli_087a70375ae0/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/5_report/cli_sessions/deliver/20260626_023348_opencode_cli_087a70375ae0/stdout.log
   size_mb: 0.05
 - path: 4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1/5_report/cli_sessions/execute/20260624_041834_opencode_cli_070791e5f30d/stderr.log
   size_mb: 0.0
@@ -2032,22 +2185,6 @@ excluded_from_git:
   size_mb: 0.0
 - path: 4_phase_development/goal_m1_python_package_v2/task_reverse_query_core_repair_m1/1_asset/sample_records_m1.csv
   size_mb: 0.03
-- path: 4_phase_development/goal_m1_python_package_v2/task_reverse_query_core_repair_m1/4_artifact/2_persist/reverse_repair_fixture_m1_1/cellline_info_fixture_m1.csv
-  size_mb: 0.0
-- path: 4_phase_development/goal_m1_python_package_v2/task_reverse_query_core_repair_m1/4_artifact/2_persist/reverse_repair_fixture_m1_1/cellline_meta_fixture_m1.csv
-  size_mb: 0.0
-- path: 4_phase_development/goal_m1_python_package_v2/task_reverse_query_core_repair_m1/4_artifact/2_persist/reverse_repair_fixture_m1_1/compound_info_fixture_m1.csv
-  size_mb: 0.0
-- path: 4_phase_development/goal_m1_python_package_v2/task_reverse_query_core_repair_m1/4_artifact/2_persist/reverse_repair_fixture_m1_1/compound_meta_fixture_m1.csv
-  size_mb: 0.0
-- path: 4_phase_development/goal_m1_python_package_v2/task_reverse_query_core_repair_m1/4_artifact/2_persist/reverse_repair_fixture_m1_1/cp_func_fixture_m1.h5ad
-  size_mb: 0.04
-- path: 4_phase_development/goal_m1_python_package_v2/task_reverse_query_core_repair_m1/4_artifact/2_persist/reverse_repair_fixture_m1_1/gene_info_fixture_m1.csv
-  size_mb: 0.0
-- path: 4_phase_development/goal_m1_python_package_v2/task_reverse_query_core_repair_m1/4_artifact/2_persist/reverse_repair_fixture_m1_1/sh_func_fixture_m1.h5ad
-  size_mb: 0.04
-- path: 4_phase_development/goal_m1_python_package_v2/task_reverse_query_core_repair_m1/4_artifact/2_persist/reverse_repair_fixture_m1_1/xpr_func_fixture_m1.h5ad
-  size_mb: 0.03
 - path: 4_phase_development/goal_m1_python_package_v2/task_reverse_query_core_repair_m1/4_artifact/5_table/reverse_ranking_evidence_v20260624.csv
   size_mb: 0.0
 - path: 4_phase_development/goal_m1_python_package_v2/task_reverse_query_core_repair_m1/5_report/cli_sessions/check/20260624_052715_codex_cli_7384bff5f304/stderr.log
@@ -2062,6 +2199,14 @@ excluded_from_git:
   size_mb: 0.0
 - path: 4_phase_development/goal_m1_python_package_v2/task_reverse_query_core_repair_m1/5_report/cli_sessions/deliver/20260624_054557_codex_cli_0d98720f6cef/stdout.log
   size_mb: 0.04
+- path: 4_phase_development/goal_m1_python_package_v2/task_reverse_query_core_repair_m1/5_report/cli_sessions/deliver/20260626_024127_opencode_cli_a84a2e2fb923/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_m1_python_package_v2/task_reverse_query_core_repair_m1/5_report/cli_sessions/deliver/20260626_024127_opencode_cli_a84a2e2fb923/stdout.log
+  size_mb: 0.14
+- path: 4_phase_development/goal_m1_python_package_v2/task_reverse_query_core_repair_m1/5_report/cli_sessions/deliver/20260626_033158_opencode_cli_23cb78ddfb4c/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_m1_python_package_v2/task_reverse_query_core_repair_m1/5_report/cli_sessions/deliver/20260626_033158_opencode_cli_23cb78ddfb4c/stdout.log
+  size_mb: 0.08
 - path: 4_phase_development/goal_m1_python_package_v2/task_reverse_query_core_repair_m1/5_report/cli_sessions/execute/20260624_053029_codex_cli_cc502b8001ee/stderr.log
   size_mb: 0.0
 - path: 4_phase_development/goal_m1_python_package_v2/task_reverse_query_core_repair_m1/5_report/cli_sessions/execute/20260624_053029_codex_cli_cc502b8001ee/stdout.log
@@ -2084,12 +2229,446 @@ excluded_from_git:
   size_mb: 0.0
 - path: 4_phase_development/goal_m1_python_package_v2/task_reverse_validation_m1/5_report/cli_sessions/deliver/20260624_055854_opencode_cli_420d0fbe8345/stdout.log
   size_mb: 0.06
+- path: 4_phase_development/goal_m1_python_package_v2/task_reverse_validation_m1/5_report/cli_sessions/deliver/20260626_023353_opencode_cli_f6dacae4855b/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_m1_python_package_v2/task_reverse_validation_m1/5_report/cli_sessions/deliver/20260626_023353_opencode_cli_f6dacae4855b/stdout.log
+  size_mb: 0.07
 - path: 4_phase_development/goal_m1_python_package_v2/task_reverse_validation_m1/5_report/cli_sessions/execute/20260624_055608_opencode_cli_ae54f8108de3/stderr.log
   size_mb: 0.0
 - path: 4_phase_development/goal_m1_python_package_v2/task_reverse_validation_m1/5_report/cli_sessions/execute/20260624_055608_opencode_cli_ae54f8108de3/stdout.log
   size_mb: 0.18
-- path: 4_phase_development/goal_package_foundation_v1/task_workspace_package_v1/4_artifact/2_persist/workspace/src/pxfquery_T_024.egg-info/PKG-INFO
+- path: 4_phase_development/goal_ms3_core_runtime/task_ms3_forward_query_engine/5_report/cli_sessions/check/20260626_202804_opencode_cli_0ca326605c3b/stderr.log
   size_mb: 0.0
+- path: 4_phase_development/goal_ms3_core_runtime/task_ms3_forward_query_engine/5_report/cli_sessions/check/20260626_202804_opencode_cli_0ca326605c3b/stdout.log
+  size_mb: 0.16
+- path: 4_phase_development/goal_ms3_core_runtime/task_ms3_forward_query_engine/5_report/cli_sessions/config/20260626_201800_opencode_cli_83df9ed21d0a/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_core_runtime/task_ms3_forward_query_engine/5_report/cli_sessions/config/20260626_201800_opencode_cli_83df9ed21d0a/stdout.log
+  size_mb: 0.25
+- path: 4_phase_development/goal_ms3_core_runtime/task_ms3_forward_query_engine/5_report/cli_sessions/deliver/20260626_211928_opencode_cli_c4abfce34e75/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_core_runtime/task_ms3_forward_query_engine/5_report/cli_sessions/deliver/20260626_211928_opencode_cli_c4abfce34e75/stdout.log
+  size_mb: 0.14
+- path: 4_phase_development/goal_ms3_core_runtime/task_ms3_forward_query_engine/5_report/cli_sessions/execute/20260626_204304_opencode_cli_0cc779064305/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_core_runtime/task_ms3_forward_query_engine/5_report/cli_sessions/execute/20260626_204304_opencode_cli_0cc779064305/stdout.log
+  size_mb: 0.75
+- path: 4_phase_development/goal_ms3_core_runtime/task_ms3_resolver_llm_provider_layer/.ruff_cache/CACHEDIR.TAG
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_core_runtime/task_ms3_resolver_llm_provider_layer/4_artifact/1_package/.pytest_cache/CACHEDIR.TAG
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_core_runtime/task_ms3_resolver_llm_provider_layer/4_artifact/1_package/.pytest_cache/v/cache/lastfailed
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_core_runtime/task_ms3_resolver_llm_provider_layer/4_artifact/1_package/.pytest_cache/v/cache/nodeids
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_core_runtime/task_ms3_resolver_llm_provider_layer/4_artifact/1_package/.ruff_cache/0.15.20/1903811536450666072
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_core_runtime/task_ms3_resolver_llm_provider_layer/4_artifact/1_package/.ruff_cache/0.15.20/2860574708026491280
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_core_runtime/task_ms3_resolver_llm_provider_layer/4_artifact/1_package/.ruff_cache/CACHEDIR.TAG
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_core_runtime/task_ms3_resolver_llm_provider_layer/5_report/cli_sessions/check/20260626_202809_opencode_cli_a00e0176fc93/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_core_runtime/task_ms3_resolver_llm_provider_layer/5_report/cli_sessions/check/20260626_202809_opencode_cli_a00e0176fc93/stdout.log
+  size_mb: 0.05
+- path: 4_phase_development/goal_ms3_core_runtime/task_ms3_resolver_llm_provider_layer/5_report/cli_sessions/config/20260626_201805_opencode_cli_2044025b1b82/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_core_runtime/task_ms3_resolver_llm_provider_layer/5_report/cli_sessions/config/20260626_201805_opencode_cli_2044025b1b82/stdout.log
+  size_mb: 0.25
+- path: 4_phase_development/goal_ms3_core_runtime/task_ms3_resolver_llm_provider_layer/5_report/cli_sessions/deliver/20260626_211930_opencode_cli_8e50ebc6eb55/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_core_runtime/task_ms3_resolver_llm_provider_layer/5_report/cli_sessions/deliver/20260626_211930_opencode_cli_8e50ebc6eb55/stdout.log
+  size_mb: 0.11
+- path: 4_phase_development/goal_ms3_core_runtime/task_ms3_resolver_llm_provider_layer/5_report/cli_sessions/execute/20260626_203259_opencode_cli_8c2afa17f50a/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_core_runtime/task_ms3_resolver_llm_provider_layer/5_report/cli_sessions/execute/20260626_203259_opencode_cli_8c2afa17f50a/stdout.log
+  size_mb: 0.11
+- path: 4_phase_development/goal_ms3_core_runtime/task_ms3_resolver_llm_provider_layer/5_report/cli_sessions/execute/20260626_211544_opencode_cli_69c48d6b5623/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_core_runtime/task_ms3_resolver_llm_provider_layer/5_report/cli_sessions/execute/20260626_211544_opencode_cli_69c48d6b5623/stdout.log
+  size_mb: 0.03
+- path: 4_phase_development/goal_ms3_core_runtime/task_ms3_resource_demo_coverage_freeze/5_report/cli_sessions/check/20260626_195628_opencode_cli_3beb6b5eb8cc/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_core_runtime/task_ms3_resource_demo_coverage_freeze/5_report/cli_sessions/check/20260626_195628_opencode_cli_3beb6b5eb8cc/stdout.log
+  size_mb: 0.07
+- path: 4_phase_development/goal_ms3_core_runtime/task_ms3_resource_demo_coverage_freeze/5_report/cli_sessions/check/20260626_200245_opencode_cli_4b6a5d702d5c/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_core_runtime/task_ms3_resource_demo_coverage_freeze/5_report/cli_sessions/check/20260626_200245_opencode_cli_4b6a5d702d5c/stdout.log
+  size_mb: 0.12
+- path: 4_phase_development/goal_ms3_core_runtime/task_ms3_resource_demo_coverage_freeze/5_report/cli_sessions/config/20260626_193302_opencode_cli_b0de8d059525/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_core_runtime/task_ms3_resource_demo_coverage_freeze/5_report/cli_sessions/config/20260626_193302_opencode_cli_b0de8d059525/stdout.log
+  size_mb: 0.07
+- path: 4_phase_development/goal_ms3_core_runtime/task_ms3_resource_demo_coverage_freeze/5_report/cli_sessions/config/20260626_194345_opencode_cli_b510efa3a606/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_core_runtime/task_ms3_resource_demo_coverage_freeze/5_report/cli_sessions/config/20260626_194345_opencode_cli_b510efa3a606/stdout.log
+  size_mb: 0.1
+- path: 4_phase_development/goal_ms3_core_runtime/task_ms3_resource_demo_coverage_freeze/5_report/cli_sessions/config/20260626_195232_opencode_cli_495eb27ce8b8/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_core_runtime/task_ms3_resource_demo_coverage_freeze/5_report/cli_sessions/config/20260626_195232_opencode_cli_495eb27ce8b8/stdout.log
+  size_mb: 0.19
+- path: 4_phase_development/goal_ms3_core_runtime/task_ms3_resource_demo_coverage_freeze/5_report/cli_sessions/deliver/20260626_201240_opencode_cli_07b61dfa8983/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_core_runtime/task_ms3_resource_demo_coverage_freeze/5_report/cli_sessions/deliver/20260626_201240_opencode_cli_07b61dfa8983/stdout.log
+  size_mb: 0.08
+- path: 4_phase_development/goal_ms3_core_runtime/task_ms3_resource_demo_coverage_freeze/5_report/cli_sessions/execute/20260626_200657_opencode_cli_c9e417b7586b/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_core_runtime/task_ms3_resource_demo_coverage_freeze/5_report/cli_sessions/execute/20260626_200657_opencode_cli_c9e417b7586b/stdout.log
+  size_mb: 0.01
+- path: 4_phase_development/goal_ms3_core_runtime/task_ms3_reverse_query_engine/5_report/cli_sessions/check/20260626_203759_opencode_cli_b6d8e75bd84a/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_core_runtime/task_ms3_reverse_query_engine/5_report/cli_sessions/check/20260626_203759_opencode_cli_b6d8e75bd84a/stdout.log
+  size_mb: 0.02
+- path: 4_phase_development/goal_ms3_core_runtime/task_ms3_reverse_query_engine/5_report/cli_sessions/config/20260626_201802_opencode_cli_a028d44118f4/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_core_runtime/task_ms3_reverse_query_engine/5_report/cli_sessions/config/20260626_201802_opencode_cli_a028d44118f4/stdout.log
+  size_mb: 0.41
+- path: 4_phase_development/goal_ms3_core_runtime/task_ms3_reverse_query_engine/5_report/cli_sessions/deliver/20260626_211403_opencode_cli_68e2ee3266cd/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_core_runtime/task_ms3_reverse_query_engine/5_report/cli_sessions/deliver/20260626_211403_opencode_cli_68e2ee3266cd/stdout.log
+  size_mb: 0.16
+- path: 4_phase_development/goal_ms3_core_runtime/task_ms3_reverse_query_engine/5_report/cli_sessions/execute/20260626_204310_opencode_cli_606e080a6432/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_core_runtime/task_ms3_reverse_query_engine/5_report/cli_sessions/execute/20260626_204310_opencode_cli_606e080a6432/stdout.log
+  size_mb: 0.69
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_demo_acceptance_corpus/1_asset/evidence_routing_stress_test_mapping.csv
+  size_mb: 0.02
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_demo_acceptance_corpus/1_asset/m1_vs_delivery_anchor_capability_matrix.csv
+  size_mb: 0.01
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_demo_acceptance_corpus/5_report/cli_sessions/check/20260626_173736_opencode_cli_1f52be4acb85/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_demo_acceptance_corpus/5_report/cli_sessions/check/20260626_173736_opencode_cli_1f52be4acb85/stdout.log
+  size_mb: 0.01
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_demo_acceptance_corpus/5_report/cli_sessions/config/20260626_163423_codex_cli_bc823b607313/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_demo_acceptance_corpus/5_report/cli_sessions/config/20260626_163423_codex_cli_bc823b607313/stdout.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_demo_acceptance_corpus/5_report/cli_sessions/config/20260626_163718_opencode_cli_9b47b4bff99d/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_demo_acceptance_corpus/5_report/cli_sessions/config/20260626_163718_opencode_cli_9b47b4bff99d/stdout.log
+  size_mb: 0.12
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_demo_acceptance_corpus/5_report/cli_sessions/config/20260626_165229_opencode_cli_5a3128c26a1c/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_demo_acceptance_corpus/5_report/cli_sessions/config/20260626_165229_opencode_cli_5a3128c26a1c/stdout.log
+  size_mb: 0.1
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_demo_acceptance_corpus/5_report/cli_sessions/config/20260626_165748_opencode_cli_fcec114811b6/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_demo_acceptance_corpus/5_report/cli_sessions/config/20260626_165748_opencode_cli_fcec114811b6/stdout.log
+  size_mb: 0.1
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_demo_acceptance_corpus/5_report/cli_sessions/config/20260626_172512_opencode_cli_e19eea190083/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_demo_acceptance_corpus/5_report/cli_sessions/config/20260626_172512_opencode_cli_e19eea190083/stdout.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_demo_acceptance_corpus/5_report/cli_sessions/deliver/20260626_181917_opencode_cli_da5cd4eebdc0/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_demo_acceptance_corpus/5_report/cli_sessions/deliver/20260626_181917_opencode_cli_da5cd4eebdc0/stdout.log
+  size_mb: 0.11
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_demo_acceptance_corpus/5_report/cli_sessions/execute/20260626_173927_opencode_cli_90ac9cc5fdd9/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_demo_acceptance_corpus/5_report/cli_sessions/execute/20260626_173927_opencode_cli_90ac9cc5fdd9/stdout.log
+  size_mb: 0.02
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_demo_acceptance_corpus/5_report/cli_sessions/execute/20260626_175439_opencode_cli_5ede249c2f36/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_demo_acceptance_corpus/5_report/cli_sessions/execute/20260626_175439_opencode_cli_5ede249c2f36/stdout.log
+  size_mb: 0.02
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_demo_acceptance_corpus/5_report/cli_sessions/execute/20260626_180730_opencode_cli_ad66ecc002df/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_demo_acceptance_corpus/5_report/cli_sessions/execute/20260626_180730_opencode_cli_ad66ecc002df/stdout.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_demo_acceptance_corpus/5_report/cli_sessions/execute/20260626_181012_opencode_cli_1cd6c2b2167d/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_demo_acceptance_corpus/5_report/cli_sessions/execute/20260626_181012_opencode_cli_1cd6c2b2167d/stdout.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_demo_acceptance_corpus/5_report/cli_sessions/execute/20260626_181429_opencode_cli_022ce06156c2/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_demo_acceptance_corpus/5_report/cli_sessions/execute/20260626_181429_opencode_cli_022ce06156c2/stdout.log
+  size_mb: 0.01
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_no_downgrade_acceptance_contract/1_asset/m1_vs_delivery_anchor_capability_matrix.csv
+  size_mb: 0.01
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_no_downgrade_acceptance_contract/1_asset/pxfquery_algorithm_capability_matrix.csv
+  size_mb: 0.01
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_no_downgrade_acceptance_contract/1_asset/pxfquery_llm_resolver_acceptance_matrix.csv
+  size_mb: 0.01
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_no_downgrade_acceptance_contract/4_artifact/5_table/ms3_capability_matrix_v20260626.csv
+  size_mb: 0.01
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_no_downgrade_acceptance_contract/5_report/cli_sessions/check/20260626_173721_opencode_cli_baefe72208c9/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_no_downgrade_acceptance_contract/5_report/cli_sessions/check/20260626_173721_opencode_cli_baefe72208c9/stdout.log
+  size_mb: 0.08
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_no_downgrade_acceptance_contract/5_report/cli_sessions/check/20260626_173932_opencode_cli_f2558ec042ee/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_no_downgrade_acceptance_contract/5_report/cli_sessions/check/20260626_173932_opencode_cli_f2558ec042ee/stdout.log
+  size_mb: 0.06
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_no_downgrade_acceptance_contract/5_report/cli_sessions/config/20260626_163420_codex_cli_2232892f7d03/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_no_downgrade_acceptance_contract/5_report/cli_sessions/config/20260626_163420_codex_cli_2232892f7d03/stdout.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_no_downgrade_acceptance_contract/5_report/cli_sessions/config/20260626_163714_opencode_cli_c7144a495f41/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_no_downgrade_acceptance_contract/5_report/cli_sessions/config/20260626_163714_opencode_cli_c7144a495f41/stdout.log
+  size_mb: 0.17
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_no_downgrade_acceptance_contract/5_report/cli_sessions/config/20260626_165228_opencode_cli_95503c86fdf3/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_no_downgrade_acceptance_contract/5_report/cli_sessions/config/20260626_165228_opencode_cli_95503c86fdf3/stdout.log
+  size_mb: 0.17
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_no_downgrade_acceptance_contract/5_report/cli_sessions/config/20260626_165747_opencode_cli_b4863490d0e3/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_no_downgrade_acceptance_contract/5_report/cli_sessions/config/20260626_165747_opencode_cli_b4863490d0e3/stdout.log
+  size_mb: 0.25
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_no_downgrade_acceptance_contract/5_report/cli_sessions/config/20260626_172512_opencode_cli_3b56cd87238a/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_no_downgrade_acceptance_contract/5_report/cli_sessions/config/20260626_172512_opencode_cli_3b56cd87238a/stdout.log
+  size_mb: 0.12
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_no_downgrade_acceptance_contract/5_report/cli_sessions/deliver/20260626_175852_opencode_cli_3d1412843ddf/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_no_downgrade_acceptance_contract/5_report/cli_sessions/deliver/20260626_175852_opencode_cli_3d1412843ddf/stdout.log
+  size_mb: 0.18
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_no_downgrade_acceptance_contract/5_report/cli_sessions/execute/20260626_174255_opencode_cli_5e8c265d12f7/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_no_downgrade_acceptance_contract/5_report/cli_sessions/execute/20260626_174255_opencode_cli_5e8c265d12f7/stdout.log
+  size_mb: 0.11
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_no_downgrade_acceptance_contract/5_report/cli_sessions/execute/20260626_175457_opencode_cli_14b36656d840/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_no_downgrade_acceptance_contract/5_report/cli_sessions/execute/20260626_175457_opencode_cli_14b36656d840/stdout.log
+  size_mb: 0.12
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_package_core_workspace/1_asset/m1_vs_delivery_anchor_capability_matrix.csv
+  size_mb: 0.01
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_package_core_workspace/4_artifact/1_package/.pytest_cache/CACHEDIR.TAG
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_package_core_workspace/4_artifact/1_package/.pytest_cache/v/cache/lastfailed
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_package_core_workspace/4_artifact/1_package/.pytest_cache/v/cache/nodeids
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_package_core_workspace/5_report/cli_sessions/check/20260626_165457_opencode_cli_008bfe3e8a6d/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_package_core_workspace/5_report/cli_sessions/check/20260626_165457_opencode_cli_008bfe3e8a6d/stdout.log
+  size_mb: 0.16
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_package_core_workspace/5_report/cli_sessions/config/20260626_163421_codex_cli_f1eb44f6c5d7/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_package_core_workspace/5_report/cli_sessions/config/20260626_163421_codex_cli_f1eb44f6c5d7/stdout.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_package_core_workspace/5_report/cli_sessions/config/20260626_163716_opencode_cli_d9db2e8576d5/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_package_core_workspace/5_report/cli_sessions/config/20260626_163716_opencode_cli_d9db2e8576d5/stdout.log
+  size_mb: 0.17
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_package_core_workspace/5_report/cli_sessions/deliver/20260626_174521_opencode_cli_339cc44a5249/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_package_core_workspace/5_report/cli_sessions/deliver/20260626_174521_opencode_cli_339cc44a5249/stdout.log
+  size_mb: 0.12
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_package_core_workspace/5_report/cli_sessions/deliver/20260626_174543_opencode_cli_6287adc12a2b/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_package_core_workspace/5_report/cli_sessions/deliver/20260626_174543_opencode_cli_6287adc12a2b/stdout.log
+  size_mb: 0.08
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_package_core_workspace/5_report/cli_sessions/execute/20260626_173732_opencode_cli_5994715becb9/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_package_core_workspace/5_report/cli_sessions/execute/20260626_173732_opencode_cli_5994715becb9/stdout.log
+  size_mb: 0.23
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_proxy_transfer_strategy_spike/1_asset/evidence_routing_stress_test_mapping.csv
+  size_mb: 0.02
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_proxy_transfer_strategy_spike/1_asset/m1_vs_delivery_anchor_capability_matrix.csv
+  size_mb: 0.01
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_proxy_transfer_strategy_spike/5_report/cli_sessions/check/20260626_174041_opencode_cli_7115775891f8/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_proxy_transfer_strategy_spike/5_report/cli_sessions/check/20260626_174041_opencode_cli_7115775891f8/stdout.log
+  size_mb: 0.01
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_proxy_transfer_strategy_spike/5_report/cli_sessions/config/20260626_163424_codex_cli_f73df486b85c/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_proxy_transfer_strategy_spike/5_report/cli_sessions/config/20260626_163424_codex_cli_f73df486b85c/stdout.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_proxy_transfer_strategy_spike/5_report/cli_sessions/config/20260626_163720_opencode_cli_f03b223b462e/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_proxy_transfer_strategy_spike/5_report/cli_sessions/config/20260626_163720_opencode_cli_f03b223b462e/stdout.log
+  size_mb: 0.19
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_proxy_transfer_strategy_spike/5_report/cli_sessions/config/20260626_165229_opencode_cli_048edc3b597d/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_proxy_transfer_strategy_spike/5_report/cli_sessions/config/20260626_165229_opencode_cli_048edc3b597d/stdout.log
+  size_mb: 0.08
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_proxy_transfer_strategy_spike/5_report/cli_sessions/config/20260626_165648_opencode_cli_d87cd5b8b289/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_proxy_transfer_strategy_spike/5_report/cli_sessions/config/20260626_165648_opencode_cli_d87cd5b8b289/stdout.log
+  size_mb: 0.15
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_proxy_transfer_strategy_spike/5_report/cli_sessions/config/20260626_173740_opencode_cli_3005b3212adf/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_proxy_transfer_strategy_spike/5_report/cli_sessions/config/20260626_173740_opencode_cli_3005b3212adf/stdout.log
+  size_mb: 0.09
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_proxy_transfer_strategy_spike/5_report/cli_sessions/deliver/20260626_175857_opencode_cli_0415f81b0a3f/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_proxy_transfer_strategy_spike/5_report/cli_sessions/deliver/20260626_175857_opencode_cli_0415f81b0a3f/stdout.log
+  size_mb: 0.11
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_proxy_transfer_strategy_spike/5_report/cli_sessions/execute/20260626_174523_opencode_cli_654eb461a860/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_proxy_transfer_strategy_spike/5_report/cli_sessions/execute/20260626_174523_opencode_cli_654eb461a860/stdout.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_proxy_transfer_strategy_spike/5_report/cli_sessions/execute/20260626_175440_opencode_cli_1b49828e616c/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_proxy_transfer_strategy_spike/5_report/cli_sessions/execute/20260626_175440_opencode_cli_1b49828e616c/stdout.log
+  size_mb: 0.13
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_route_metadata_engine/5_report/cli_sessions/check/20260626_165006_opencode_cli_77da7263c520/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_route_metadata_engine/5_report/cli_sessions/check/20260626_165006_opencode_cli_77da7263c520/stdout.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_route_metadata_engine/5_report/cli_sessions/check/20260626_165748_opencode_cli_f42f60692e83/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_route_metadata_engine/5_report/cli_sessions/check/20260626_165748_opencode_cli_f42f60692e83/stdout.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_route_metadata_engine/5_report/cli_sessions/check/20260626_173739_opencode_cli_6fcb0d691c24/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_route_metadata_engine/5_report/cli_sessions/check/20260626_173739_opencode_cli_6fcb0d691c24/stdout.log
+  size_mb: 0.06
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_route_metadata_engine/5_report/cli_sessions/check/20260626_174149_opencode_cli_96d68778be65/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_route_metadata_engine/5_report/cli_sessions/check/20260626_174149_opencode_cli_96d68778be65/stdout.log
+  size_mb: 0.06
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_route_metadata_engine/5_report/cli_sessions/check/20260626_175438_opencode_cli_bac441eea611/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_route_metadata_engine/5_report/cli_sessions/check/20260626_175438_opencode_cli_bac441eea611/stdout.log
+  size_mb: 0.06
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_route_metadata_engine/5_report/cli_sessions/check/20260626_180729_opencode_cli_33fe12560659/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_route_metadata_engine/5_report/cli_sessions/check/20260626_180729_opencode_cli_33fe12560659/stdout.log
+  size_mb: 0.06
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_route_metadata_engine/5_report/cli_sessions/check/20260626_181012_opencode_cli_6890b24fb942/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_route_metadata_engine/5_report/cli_sessions/check/20260626_181012_opencode_cli_6890b24fb942/stdout.log
+  size_mb: 0.08
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_route_metadata_engine/5_report/cli_sessions/check/20260626_181429_opencode_cli_14e24123a224/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_route_metadata_engine/5_report/cli_sessions/check/20260626_181429_opencode_cli_14e24123a224/stdout.log
+  size_mb: 0.06
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_route_metadata_engine/5_report/cli_sessions/check/20260626_181948_opencode_cli_467097244917/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_route_metadata_engine/5_report/cli_sessions/check/20260626_181948_opencode_cli_467097244917/stdout.log
+  size_mb: 0.06
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_route_metadata_engine/5_report/cli_sessions/check/20260626_182449_opencode_cli_c47c7928a534/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_route_metadata_engine/5_report/cli_sessions/check/20260626_182449_opencode_cli_c47c7928a534/stdout.log
+  size_mb: 0.06
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_route_metadata_engine/5_report/cli_sessions/check/20260626_182929_opencode_cli_9a0944f9c1fd/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_route_metadata_engine/5_report/cli_sessions/check/20260626_182929_opencode_cli_9a0944f9c1fd/stdout.log
+  size_mb: 0.06
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_route_metadata_engine/5_report/cli_sessions/check/20260626_183423_opencode_cli_9a878ec07389/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_route_metadata_engine/5_report/cli_sessions/check/20260626_183423_opencode_cli_9a878ec07389/stdout.log
+  size_mb: 0.06
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_route_metadata_engine/5_report/cli_sessions/check/20260626_183931_opencode_cli_24a78ae84db1/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_route_metadata_engine/5_report/cli_sessions/check/20260626_183931_opencode_cli_24a78ae84db1/stdout.log
+  size_mb: 0.06
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_route_metadata_engine/5_report/cli_sessions/check/20260626_184430_opencode_cli_a513e10264d6/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_route_metadata_engine/5_report/cli_sessions/check/20260626_184430_opencode_cli_a513e10264d6/stdout.log
+  size_mb: 0.06
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_route_metadata_engine/5_report/cli_sessions/check/20260626_184929_opencode_cli_890b12f61cf5/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_route_metadata_engine/5_report/cli_sessions/check/20260626_184929_opencode_cli_890b12f61cf5/stdout.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_route_metadata_engine/5_report/cli_sessions/check/20260626_185432_opencode_cli_1167250d478b/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_route_metadata_engine/5_report/cli_sessions/check/20260626_185432_opencode_cli_1167250d478b/stdout.log
+  size_mb: 0.06
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_route_metadata_engine/5_report/cli_sessions/check/20260626_190110_opencode_cli_1e56de2a2744/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_route_metadata_engine/5_report/cli_sessions/check/20260626_190110_opencode_cli_1e56de2a2744/stdout.log
+  size_mb: 0.19
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_route_metadata_engine/5_report/cli_sessions/config/20260626_163422_codex_cli_1e1e6a947b0c/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_route_metadata_engine/5_report/cli_sessions/config/20260626_163422_codex_cli_1e1e6a947b0c/stdout.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_route_metadata_engine/5_report/cli_sessions/config/20260626_163716_opencode_cli_5f5737ebe4ad/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_route_metadata_engine/5_report/cli_sessions/config/20260626_163716_opencode_cli_5f5737ebe4ad/stdout.log
+  size_mb: 0.15
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_route_metadata_engine/5_report/cli_sessions/deliver/20260626_192255_opencode_cli_cad36e73595d/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_route_metadata_engine/5_report/cli_sessions/deliver/20260626_192255_opencode_cli_cad36e73595d/stdout.log
+  size_mb: 0.17
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_route_metadata_engine/5_report/cli_sessions/execute/20260626_190727_opencode_cli_bdc391da199f/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_route_metadata_engine/5_report/cli_sessions/execute/20260626_190727_opencode_cli_bdc391da199f/stdout.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_route_metadata_engine/5_report/cli_sessions/execute/20260626_191808_opencode_cli_fa59859c2a9c/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_route_metadata_engine/5_report/cli_sessions/execute/20260626_191808_opencode_cli_fa59859c2a9c/stdout.log
+  size_mb: 0.03
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_runtime_resource_pack/5_report/cli_sessions/check/20260626_165002_opencode_cli_c0810e43d992/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_runtime_resource_pack/5_report/cli_sessions/check/20260626_165002_opencode_cli_c0810e43d992/stdout.log
+  size_mb: 0.03
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_runtime_resource_pack/5_report/cli_sessions/config/20260626_163420_codex_cli_512ef9ba9680/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_runtime_resource_pack/5_report/cli_sessions/config/20260626_163420_codex_cli_512ef9ba9680/stdout.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_runtime_resource_pack/5_report/cli_sessions/config/20260626_163715_opencode_cli_164099b7c617/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_runtime_resource_pack/5_report/cli_sessions/config/20260626_163715_opencode_cli_164099b7c617/stdout.log
+  size_mb: 0.2
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_runtime_resource_pack/5_report/cli_sessions/deliver/20260626_173729_opencode_cli_5d125386616c/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_runtime_resource_pack/5_report/cli_sessions/deliver/20260626_173729_opencode_cli_5d125386616c/stdout.log
+  size_mb: 0.15
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_runtime_resource_pack/5_report/cli_sessions/execute/20260626_165746_opencode_cli_6170dd499b60/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_runtime_resource_pack/5_report/cli_sessions/execute/20260626_165746_opencode_cli_6170dd499b60/stdout.log
+  size_mb: 0.31
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_safe_resource_access_contract/5_report/cli_sessions/check/20260626_165646_opencode_cli_300360ed1526/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_safe_resource_access_contract/5_report/cli_sessions/check/20260626_165646_opencode_cli_300360ed1526/stdout.log
+  size_mb: 0.13
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_safe_resource_access_contract/5_report/cli_sessions/config/20260626_163420_codex_cli_e6fbd7658679/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_safe_resource_access_contract/5_report/cli_sessions/config/20260626_163420_codex_cli_e6fbd7658679/stdout.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_safe_resource_access_contract/5_report/cli_sessions/config/20260626_163714_opencode_cli_dd7b074acf3b/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_safe_resource_access_contract/5_report/cli_sessions/config/20260626_163714_opencode_cli_dd7b074acf3b/stdout.log
+  size_mb: 0.16
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_safe_resource_access_contract/5_report/cli_sessions/config/20260626_165229_opencode_cli_dc3c0a1ef8f9/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_safe_resource_access_contract/5_report/cli_sessions/config/20260626_165229_opencode_cli_dc3c0a1ef8f9/stdout.log
+  size_mb: 0.23
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_safe_resource_access_contract/5_report/cli_sessions/deliver/20260626_175855_opencode_cli_eb6454194bbf/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_safe_resource_access_contract/5_report/cli_sessions/deliver/20260626_175855_opencode_cli_eb6454194bbf/stdout.log
+  size_mb: 0.1
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_safe_resource_access_contract/5_report/cli_sessions/execute/20260626_173725_opencode_cli_4fa8da6499a7/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_safe_resource_access_contract/5_report/cli_sessions/execute/20260626_173725_opencode_cli_4fa8da6499a7/stdout.log
+  size_mb: 0.09
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_safe_resource_access_contract/5_report/cli_sessions/execute/20260626_175438_opencode_cli_3df6703b6780/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_safe_resource_access_contract/5_report/cli_sessions/execute/20260626_175438_opencode_cli_3df6703b6780/stdout.log
+  size_mb: 0.05
+- path: 4_phase_development/goal_ms3_release_quality/.DS_Store
+  size_mb: 0.01
+- path: 4_phase_development/goal_ms3_release_quality/task_ms3_functional_test_and_release_iteration/5_report/cli_sessions/config/20260627_042048_opencode_cli_4e671953c8b1/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_release_quality/task_ms3_functional_test_and_release_iteration/5_report/cli_sessions/config/20260627_042048_opencode_cli_4e671953c8b1/stdout.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_release_quality/task_ms3_user_api_cli_surface/.DS_Store
+  size_mb: 0.01
+- path: 4_phase_development/goal_ms3_release_quality/task_ms3_user_api_cli_surface/5_report/.DS_Store
+  size_mb: 0.01
+- path: 4_phase_development/goal_ms3_release_quality/task_ms3_user_api_cli_surface/5_report/cli_sessions/check/20260626_213957_opencode_cli_283a913e311b/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_release_quality/task_ms3_user_api_cli_surface/5_report/cli_sessions/check/20260626_213957_opencode_cli_283a913e311b/stdout.log
+  size_mb: 0.05
+- path: 4_phase_development/goal_ms3_release_quality/task_ms3_user_api_cli_surface/5_report/cli_sessions/config/20260626_212928_opencode_cli_3d53a7a359a5/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_release_quality/task_ms3_user_api_cli_surface/5_report/cli_sessions/config/20260626_212928_opencode_cli_3d53a7a359a5/stdout.log
+  size_mb: 0.23
+- path: 4_phase_development/goal_ms3_release_quality/task_ms3_user_api_cli_surface/5_report/cli_sessions/deliver/20260627_041241_opencode_cli_53601aef32f6/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_release_quality/task_ms3_user_api_cli_surface/5_report/cli_sessions/deliver/20260627_041241_opencode_cli_53601aef32f6/stdout.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_release_quality/task_ms3_user_api_cli_surface/5_report/cli_sessions/execute/20260626_214531_opencode_cli_308f973bcd1c/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_release_quality/task_ms3_user_api_cli_surface/5_report/cli_sessions/execute/20260626_214531_opencode_cli_308f973bcd1c/stdout.log
+  size_mb: 0.83
+- path: 4_phase_development/goal_ms3_release_quality/task_ms3_user_api_cli_surface/5_report/cli_sessions/execute/20260627_030243_opencode_cli_5fdb8ff9b429/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_release_quality/task_ms3_user_api_cli_surface/5_report/cli_sessions/execute/20260627_030243_opencode_cli_5fdb8ff9b429/stdout.log
+  size_mb: 0.06
 - path: 4_phase_development/goal_package_foundation_v1/task_workspace_package_v1/5_report/cli_sessions/check/20260623_065014_opencode_cli_41565b6bab9c/stderr.log
   size_mb: 0.0
 - path: 4_phase_development/goal_package_foundation_v1/task_workspace_package_v1/5_report/cli_sessions/check/20260623_065014_opencode_cli_41565b6bab9c/stdout.log
@@ -2214,28 +2793,6 @@ excluded_from_git:
   size_mb: 0.0
 - path: 4_phase_development/goal_package_milestone_merge_v1/task_smoke_tests_v1/5_report/cli_sessions/execute/20260623_145806_opencode_cli_6b94e0147661/stdout.log
   size_mb: 0.22
-- path: 4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/2_persist/standard_resources/cellline_info_standard.csv
-  size_mb: 0.03
-- path: 4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/2_persist/standard_resources/cellline_meta_standard.csv
-  size_mb: 0.01
-- path: 4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/2_persist/standard_resources/compound_info_standard.csv
-  size_mb: 4.19
-- path: 4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/2_persist/standard_resources/compound_meta_standard.csv
-  size_mb: 0.93
-- path: 4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/2_persist/standard_resources/cp_func_ad.h5ad
-  size_mb: 105.11
-- path: 4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/2_persist/standard_resources/gene_index.json
-  size_mb: 6.12
-- path: 4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/2_persist/standard_resources/gene_info_standard.csv
-  size_mb: 1.09
-- path: 4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/2_persist/standard_resources/gene_neighbors.json
-  size_mb: 21.76
-- path: 4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/2_persist/standard_resources/gene_neighbors_simple.json
-  size_mb: 19.5
-- path: 4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/2_persist/standard_resources/sh_func_ad.h5ad
-  size_mb: 95.52
-- path: 4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/2_persist/standard_resources/xpr_func_ad.h5ad
-  size_mb: 64.22
 - path: 4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats/5_report/cli_sessions/check/20260623_042324_opencode_cli_fdeea4a56ade/stderr.log
   size_mb: 0.0
 - path: 4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats/5_report/cli_sessions/check/20260623_042324_opencode_cli_fdeea4a56ade/stdout.log
@@ -2248,6 +2805,10 @@ excluded_from_git:
   size_mb: 0.0
 - path: 4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats/5_report/cli_sessions/config/20260623_040136_opencode_cli_8f22ae3cb6b2/stdout.log
   size_mb: 0.13
+- path: 4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats/5_report/cli_sessions/deliver/20260626_031812_opencode_cli_47f7aaab853f/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats/5_report/cli_sessions/deliver/20260626_031812_opencode_cli_47f7aaab853f/stdout.log
+  size_mb: 0.1
 - path: 4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats/5_report/cli_sessions/execute/20260623_044243_opencode_cli_fc9f2706601c/stderr.log
   size_mb: 0.0
 - path: 4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats/5_report/cli_sessions/execute/20260623_044243_opencode_cli_fc9f2706601c/stdout.log
@@ -2257,6 +2818,10 @@ excluded_from_git:
 - path: 4_phase_development/goal_precomputed_data_exploration/task_understand_pxfquery_precomputed_data/4_artifact/5_table/pxfquery_t014_figure_resource_candidates_v20260618.csv
   size_mb: 0.0
 - path: 4_phase_development/goal_precomputed_data_exploration/task_understand_pxfquery_precomputed_data/4_artifact/5_table/pxfquery_t014_matrix_schema_coverage_v20260618.csv
+  size_mb: 0.01
+- path: 4_phase_development/goal_precomputed_data_exploration/task_understand_pxfquery_precomputed_data/5_report/cli_sessions/deliver/20260626_031835_opencode_cli_1b7c7eaf76c2/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_precomputed_data_exploration/task_understand_pxfquery_precomputed_data/5_report/cli_sessions/deliver/20260626_031835_opencode_cli_1b7c7eaf76c2/stdout.log
   size_mb: 0.01
 - path: 4_phase_development/goal_resolver_optional_layer_v1/task_hybrid_fast_resolver_v1/5_report/cli_sessions/check/20260623_150822_opencode_cli_197e678096f7/stderr.log
   size_mb: 0.0
@@ -2300,16 +2865,14 @@ excluded_from_git:
   size_mb: 0.0
 - path: 4_phase_development/goal_resource_index_packs_v1/task_function_index_pack_v1/5_report/cli_sessions/config/20260623_085054_opencode_cli_596c83df95ae/stdout.log
   size_mb: 0.39
+- path: 4_phase_development/goal_resource_index_packs_v1/task_function_index_pack_v1/5_report/cli_sessions/deliver/20260626_032645_opencode_cli_363fba9f7ef2/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_resource_index_packs_v1/task_function_index_pack_v1/5_report/cli_sessions/deliver/20260626_032645_opencode_cli_363fba9f7ef2/stdout.log
+  size_mb: 0.09
 - path: 4_phase_development/goal_resource_index_packs_v1/task_function_index_pack_v1/5_report/cli_sessions/execute/20260623_091810_opencode_cli_2dcd7ab0d802/stderr.log
   size_mb: 0.0
 - path: 4_phase_development/goal_resource_index_packs_v1/task_function_index_pack_v1/5_report/cli_sessions/execute/20260623_091810_opencode_cli_2dcd7ab0d802/stdout.log
   size_mb: 0.2
-- path: 4_phase_development/goal_resource_index_packs_v1/task_index_name_normalizer_v1/4_artifact/2_persist/pxfquery_T027_runtime_query_index/gene_index.json
-  size_mb: 6.12
-- path: 4_phase_development/goal_resource_index_packs_v1/task_index_name_normalizer_v1/4_artifact/2_persist/pxfquery_T027_runtime_query_index/gene_neighbors.json
-  size_mb: 21.76
-- path: 4_phase_development/goal_resource_index_packs_v1/task_index_name_normalizer_v1/4_artifact/2_persist/pxfquery_T027_runtime_query_index/gene_neighbors_simple.json
-  size_mb: 19.5
 - path: 4_phase_development/goal_resource_index_packs_v1/task_index_name_normalizer_v1/5_report/cli_sessions/check/20260623_080411_opencode_cli_a8d78b4c9033/stderr.log
   size_mb: 0.0
 - path: 4_phase_development/goal_resource_index_packs_v1/task_index_name_normalizer_v1/5_report/cli_sessions/check/20260623_080411_opencode_cli_a8d78b4c9033/stdout.log
@@ -2350,6 +2913,10 @@ excluded_from_git:
   size_mb: 0.0
 - path: 4_phase_development/goal_resource_index_packs_v1/task_resource_manifest_v1/5_report/cli_sessions/config/20260623_065105_opencode_cli_b1769e756694/stdout.log
   size_mb: 0.01
+- path: 4_phase_development/goal_resource_index_packs_v1/task_resource_manifest_v1/5_report/cli_sessions/deliver/20260626_031836_opencode_cli_59b6b4af8217/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_resource_index_packs_v1/task_resource_manifest_v1/5_report/cli_sessions/deliver/20260626_031836_opencode_cli_59b6b4af8217/stdout.log
+  size_mb: 0.1
 - path: 4_phase_development/goal_resource_index_packs_v1/task_resource_manifest_v1/5_report/cli_sessions/execute/20260623_065804_opencode_cli_1cdb8899fe5e/stderr.log
   size_mb: 0.0
 - path: 4_phase_development/goal_resource_index_packs_v1/task_resource_manifest_v1/5_report/cli_sessions/execute/20260623_065804_opencode_cli_1cdb8899fe5e/stdout.log
@@ -2370,3 +2937,5 @@ excluded_from_git:
   size_mb: 0.0
 - path: 5_phase_translation/goal_pending_g010/task_pending_t019/5_report/cli_sessions/execute/20260623_035250_opencode_cli_d881b0479d59/stdout.log
   size_mb: 0.17
+- path: src/pxfquery.egg-info/PKG-INFO
+  size_mb: 0.0

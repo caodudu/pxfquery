@@ -20,11 +20,7 @@ cyhex_version: 1.2.19
 created: '2026-06-24'
 started: null
 completed: '2026-06-24'
-notes: 'Constraint supplement for config AI: This is independent validation, not implementation
-  repair. Re-run the T-042 forward demo against the T-048 implementation and record
-  traceability to package version, loader, fixture/manifest, and output JSON. Do not
-  relax acceptance criteria and do not repair core logic here except for task-local
-  validation harness files. Failure should produce evidence for same-layer repair/retry.'
+notes: 独立验证M1前向查询
 fast_pass_permission: green
 sub_status: ''
 fast_pass_last_auto_approved: check_review

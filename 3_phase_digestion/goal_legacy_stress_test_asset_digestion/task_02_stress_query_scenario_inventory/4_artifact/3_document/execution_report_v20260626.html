@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>执行报告 — T-056 02_stress_query_scenario_inventory (2026-06-26)</title>
+<style>
+body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; max-width: 960px; margin: 2em auto; padding: 0 1.5em; line-height: 1.7; }
+h1 { border-bottom: 2px solid #222; padding-bottom: .3em; }
+h2 { margin-top: 2em; color: #333; border-left: 4px solid #666; padding-left: .6em; }
+table { border-collapse: collapse; width: 100%; margin: 1em 0; font-size: .95em; }
+th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+th { background: #f5f5f5; font-weight: 600; }
+</style>
+</head>
+<body>
+
+<h1>执行报告：T-056 02_stress_query_scenario_inventory</h1>
+<p><strong>日期：</strong> 2026-06-26 | <strong>原始执行：</strong> 2026-06-24 | <strong>代理：</strong> opencode (AGT-002) | <strong>阶段：</strong> digestion</p>
+
+<h2>任务意图</h2>
+<p>T-056 是 PxFquery 项目消化阶段的关键一环，位于 goal_legacy_stress_test_asset_digestion 子目标之下。项目此时已完成 T-007 的开发状态评估，掌握了前向/反向查询机制、解析器三种模式（always_llm、hybrid_fast、deterministic）、以及各索引模块的就绪情况。T-056 的任务是从这些已有评估材料中抽象出一套面向未来的压力测试场景清单，覆盖 9 个维度：复杂查询、严格查询、边界查询、无命中行为、结果过于宽泛、代理/精确匹配、困难组合、LLM 模式差异、以及索引缺失场景。核心交付物是一份叙述性文档（419 行、29 个场景）和一份结构化 CSV（29 行），两者均已注册到 <code>4_artifact/registry.yaml</code>。本任务不运行任何查询、不编写测试代码、不修改前序工件，纯粹从已有证据推导场景分类和预期行为。</p>
+
+<h2>输入资产与依据</h2>
+<p>全部输入限定为 T-007 的 8 份注册交付物（A-001 至 A-008），依据任务协议完全排除 T-041（legacy source digest）和其他外部材料。A-001（development state report，2026-06-17 版本）提供了前向/反向查询机制、解析器模式、索引状态（基因 78,061 条、药物 5,945 条、细胞系 978 条）和 notable gap（function_index.json 缺失）。A-002（gap and risk list）识别了未验证的可运行状态、LLM 路径不稳定、通用药物行为不一致等风险。A-003（phase handoff）提供了具体的反向查询示例（apoptosis + MYC + A549）和 do-not-do 边界。A-004（module asset status matrix）以表格验证了各模块的覆盖情况，记录了解析器状态为"已实现但有风险"。A-005（validation evidence index）汇总了 V-004 至 V-011 的历史通过/失败数据。A-006（M-0257 forward matrix report）包含了 7/7 全部通过的确定性测试用例，涵盖 EXACT、PROXY_PERT、PROXY_CELL、PROXY_BOTH 四种命中级别。A-007（M-0243 known risks）记录了 LLM 稳定性 6/9 通过率、161.3 秒延迟等性能数据。A-008（M-0239 latest reports index）制定了验证冲突时的权威裁决规则，即最新报告优先于早期报告。这 8 份资产构成了全部场景推导的证据基础。</p>
+
+<h2>实际执行过程</h2>
+<p>原始执行（2026-06-24）的第一步是并行读取全部 8 份资产，提取查询语义特征、解析器行为模式、已知边界条件、和历史验证证据。第二步是按 9 个维度逐一推导场景，每个维度至少 2 个场景，部分维度如边界查询和代理/精确匹配各分配到 4 个。第三步是为每个场景记录唯一 ID、分类标签、前向/反向类型、扰动物参数、context 参数、函数意图、预期命中级别、预期结果、以及引用具体源证据的推理说明。第四步是同时输出叙述性 Markdown 文档和结构化 CSV 表格。第五步是将 D-001（inventory）和 D-002（CSV table）注册到 artifact registry。本次版本（2026-06-26）在原始执行数据未变的前提下，对 HTML 执行报告和结果报告的文本进行了人工可读改写，使其更适合项目负责人快速阅读和理解，不涉及任何核心交付物的内容修改。</p>
+
+<h2>关键判断与证据</h2>
+<p>执行过程中有三项关键证据判断值得注意。第一，A-006 中 7 个确定性通过的测试用例（如 CASE_EXACT_GENE、CASE_PROXY_BOTH_GENE）被直接用作代理/精确匹配维度的场景模板，形成 SC-017 至 SC-020 四个场景。第二，V-009（LLM stability 6/9）和 V-010（always-LLM 167.3s latency）被用作 LLM 模式交叉检查维度（SC-024 至 SC-026）的核心数据来源，其中 SC-024 明确预期 always_llm 和 hybrid_fast 对同一查询产生不同命中级别。第三，A-001 中标记的 notable gap——function_index.json 缺失——直接支撑了 SC-027（反向查询在 function_index.json 缺失情况下的行为），预期命中级别为 NOT_FOUND。对于无直接 T-007 先例但可从已有缺口合理推导的场景（如 SC-009 空扰动字符串），执行标记中明确标注了其推理性来源和不确定性。最终 29 个场景中有 4 个标注为 speculative（SC-014、SC-015、SC-016、SC-029），因为 T-007 报告的数据不足以精确预测其行为；2 个标注为 mode-dependent（SC-011、SC-012），因为不同 LLM 模式会导致不同的预期结果。</p>
+
+<h2>交付物清单</h2>
+<p>核心交付物两条：D-001 叙述性清单位于 <code>4_artifact/2_persist/stress_query_scenario_inventory_v20260624.md</code>，共 419 行，包含 29 个场景的完整叙述和证据回溯链，每个场景涵盖 ID、category、query_type、perturbation、context、function_intent、expected_hit_level、expected_result、rationale、source_evidence 十个字段。D-002 表格化 CSV 位于 <code>4_artifact/5_table/stress_query_scenario_table_v20260624.csv</code>，29 行数据加表头，10 列，可直接被测试框架解析。辅助交付物为两份 HTML 报告（本执行报告和结果报告），位于 <code>4_artifact/3_document/</code>，版本标记 v20260626。全部四条交付物已注册在 <code>4_artifact/registry.yaml</code> 中，D-001 与 D-002 评级 5 星，D-003（执行报告）与 D-004（结果报告）评级 2-3 星。</p>
+
+<h2>边界与未完成事项</h2>
+<p>本任务严格执行了协议约束：不包含任何测试代码或查询运行，未修改任何前序工件或项目资产，未创建包代码或测试脚本，未读取或引用 T-041 输出，未运行旧版 legacy 根目录脚本，所有推导仅基于已注册的 T-007 证据。对于 4 个 speculative 场景，已在其记录中明确标注预期行为存在不确定性。对于 SC-009（空扰动字符串），由于缺少直接的 T-007 先例，仅基于缺口衍生推断。2 个 mode-dependent 场景（SC-011、SC-012）的预期结果在不同 LLM 模式下可能翻转。所有场景基于 T-007 在 2026-06-17 的开发状态，后续代码变更可能影响预期行为。本次交付不涉及任何测试基础设施的搭建或运行。</p>
+
+</body>
+</html>

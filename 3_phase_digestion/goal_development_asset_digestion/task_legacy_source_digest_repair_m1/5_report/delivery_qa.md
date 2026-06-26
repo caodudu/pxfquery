@@ -17,6 +17,7 @@ yellow_repair
 - Added downstream-use metadata to `4_artifact/registry.yaml`, including role, producer, usability, core flag, descriptions, and star ratings.
 - Created `5_report/handoff_ai_use.md` for future AI configuration/check/execution reuse.
 - Created this `5_report/delivery_qa.md` record.
+- 2026-06-26: Rewrote execution and result HTML reports for human readability. Replaced `execution_report_v20260624.html` and `result_report_v20260624.html` with Chinese-language narrative versions (`v20260626`). Delivery QA verdict remains yellow_repair; no core deliverables, registry paths, code, data, or analysis results were modified.
 
 ## Remaining Issues
 None requiring execution revision. This remains a source-digestion delivery only and does not validate runtime behavior.

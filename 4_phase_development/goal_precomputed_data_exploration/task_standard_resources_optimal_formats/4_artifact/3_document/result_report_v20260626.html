@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>T-021 结果报告 — PxFquery 标准资源</title>
+<style>
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 1100px; margin: 30px auto; padding: 0 20px; color: #222; line-height: 1.7; background: #fafafa; }
+h1, h2, h3 { color: #1a3c5e; }
+h1 { border-bottom: 3px solid #1a3c5e; padding-bottom: 10px; font-size: 1.6em; }
+h2 { border-bottom: 1px solid #ccc; padding-bottom: 5px; margin-top: 35px; font-size: 1.25em; }
+.banner { background: linear-gradient(135deg, #1a3c5e, #2a5c8e); color: white; padding: 25px; border-radius: 8px; margin-bottom: 25px; }
+.banner h1 { color: white; border: none; margin: 0 0 8px 0; font-size: 1.4em; }
+.banner p { margin: 5px 0; opacity: 0.93; }
+.banner .conclusion { font-size: 1.1em; font-weight: bold; margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.3); }
+.card { background: white; border: 1px solid #e0e0e0; border-radius: 8px; padding: 20px; margin: 18px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.04); }
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin: 20px 0; }
+.stat-box { background: #e8eef5; border-radius: 8px; padding: 15px; text-align: center; }
+.stat-box .value { font-size: 1.8em; font-weight: bold; color: #1a3c5e; }
+.stat-box .label { font-size: 0.85em; color: #666; margin-top: 4px; }
+.savings-box { background: #e8f5e8; }
+.savings-box .value { color: #2a8a2a; }
+p { margin: 12px 0; }
+ul, ol { margin: 10px 0; padding-left: 22px; }
+li { margin: 5px 0; }
+code { background: #f0f0f0; padding: 2px 6px; border-radius: 3px; font-size: 0.9em; }
+.highlight { background: #fdf0d5; border-left: 5px solid #c79100; padding: 12px 18px; border-radius: 4px; margin: 15px 0; }
+</style>
+</head>
+<body>
+
+<div class="banner">
+  <h1>PxFquery 标准内置资源 — 最优格式结果报告</h1>
+  <p><strong>T-021：</strong> standard_resources_optimal_formats | <strong>日期：</strong> 2026-06-26</p>
+  <p><strong>项目：</strong> PxFquery (P-012) — LINCS 扰动-功能分析工作流</p>
+  <div class="conclusion">一句话结论：基于 T-014 梳理的遗留预计算数据，本次任务识别、优化并验证了 19 个 PxFquery 标准内置资源，将原始 1,473 MB 的 float64 矩阵压缩为 323 MB 的 float32 资源包（压缩率 78%），所有文件均通过 Python 验证，可直接供下游开发和测试使用。</div>
+</div>
+
+<h2>一、项目背景</h2>
+
+<p>PxFquery 项目的核心能力是通过 forward query（扰动→功能响应）和 reverse query（功能靶标→候选扰动）两种模式，查询药物和基因诱导的细胞功能程序。这一能力的运行时基础是一套预计算的功能矩阵和查询索引，它们来自 CMAP/LINCS 项目的公开数据。然而，遗留资产经历了多轮迁移和格式变更，存在重复版本、缺失文件、精度冗余等问题——例如三套功能矩阵各有两套字节完全相同的副本，而 function_index.json 从 T-007 阶段起就一直缺失。</p>
+
+<p>此前的 T-014 任务完成了预计算数据的系统清查（66 个文件）、矩阵模式评估（11 个 H5AD）、以及六项后续任务提案。T-021 是这六项提案中优先级最高的数据基础任务：它需要从 "已梳理但尚未最优化的数据" 中，提炼出 PxFquery 包实际使用的标准资源集，并为每个资源确定最佳存储格式。这一任务的产出将直接决定后续所有开发任务（包括查询引擎、Web 界面、安装打包）所使用的数据基础。</p>
+
+<h2>二、核心结果</h2>
+
+<div class="stat-grid">
+  <div class="stat-box">
+    <div class="value">19</div>
+    <div class="label">标准资源文件</div>
+  </div>
+  <div class="stat-box">
+    <div class="value">323 MB</div>
+    <div class="label">总占用空间</div>
+  </div>
+  <div class="stat-box savings-box">
+    <div class="value">−78%</div>
+    <div class="label">相比原始版本</div>
+  </div>
+  <div class="stat-box">
+    <div class="value">18/18</div>
+    <div class="label">Python 验证通过</div>
+  </div>
+</div>
+
+<div class="card">
+  <h3>功能矩阵 — 压缩效果</h3>
+  <p>三个功能矩阵从原始 float64 格式（共 1,473 MB）转换为 float32 h5ad 后仅占 265 MB，缩水 82%。所有 273 列（91 个功能术语 × 3 种扰动类型）的秩相关系数均为 1.000000，最大绝对误差仅 0.00025（评分范围 -10 到 +10）。这意味着压缩完全没有影响查询结果的排序质量。</p>
+  <ul>
+    <li><strong>cp_func_ad.h5ad：</strong> 201,014 × 91，105 MB（原 569 MB，−82%）</li>
+    <li><strong>sh_func_ad.h5ad：</strong> 189,365 × 91，96 MB（原 533 MB，−82%）</li>
+    <li><strong>xpr_func_ad.h5ad：</strong> 132,464 × 91，64 MB（原 370 MB，−83%）</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>查询索引 — 标准补齐</h3>
+  <p>10 个查询索引 JSON 文件共 56 MB，覆盖细胞系（index + neighbors + tree）、药物（index + neighbors）、基因（simple 版 + 完整版）、以及功能术语共五大域。其中 <strong>function_index.json</strong> 是本次任务从矩阵 var 中重新构建的，补齐了从 T-007 起持续存在的索引缺口。重建后的索引包含 91 个术语（50 个 HALLMARK + 41 个 3CA MPS）及其来源、标签和别名信息，结构与 pxfquery FunctionIndex 类完全匹配。</p>
+</div>
+
+<div class="card">
+  <h3>元数据 — 去重整合</h3>
+  <p>五张 CSV 元数据表共 6.25 MB，覆盖 240 个细胞系、6,647 种化合物（含 SMILES/InChIKey）、39,321 条化合物详细注释、12,328 个基因注释条目。在遗留资产的两套重复版本中，选择了 Cellosaurus 和 PubChem 注释更丰富的版本。</p>
+</div>
+
+<h2>三、项目价值</h2>
+
+<p>本次任务对 PxFquery 项目的推进体现在三个层面。在数据层面，标准资源包的体积缩减到原始的三分之一以下，使后续的安装包分發、测试环境搭建和 CI/CD 流程的负担显著降低。一个开发者从一个空环境搭建 PxFquery 现在只需要下载 323 MB 的数据资源，而不是原来的近 1.5 GB。在可靠性层面，所有标准资源都经过了 Python 加载验证和数据完整性检查，18 个文件全部通过；这意味着后续开发中遇到的数据相关 Bug 几乎不可能来自标准资源本身，减少了调试时的排查范围。</p>
+
+<p>在任务链层面，function_index.json 的补齐消除了一个持续了两个任务（T-007、T-014）的技术债务。现在 PxFquery 包的所有 index 类（CellLineIndex、DrugIndex、GeneIndex、FunctionIndex）都能正确加载对应的 JSON 文件。此外，格式评估的记录——包括 float32 的秩相关性证据、parquet/feather 的兼容性测试、拆分方案的可行性分析——为项目后续可能需要的存储优化决策提供了可复用的实验数据。特别是 float32 无精度损失这一结论，如果写在最终论文的方法部分，也是一个有说服力的技术点。</p>
+
+<h2>四、交付物导读</h2>
+
+<p>如果只打开一个交付物，请先看 <code>4_artifact/2_persist/pxfquery_standard_resource_guide_v20260623.md</code>，它列出了全部 19 个标准资源的文件名、格式、大小、模式和使用方式，并逐项说明了每个格式决策的理由。如果发现数据异常需要排查，可查看 <code>4_artifact/2_persist/process_records/</code> 下的过程记录文件，特别是 step5_verification_results.json 中的每项检查详情。</p>
+
+<p>实际的标准资源文件位于 <code>4_artifact/2_persist/standard_resources/</code>。如果后续开发或测试任务需要引用这些文件，应直接使用此路径。对于安装打包任务，需要额外处理路径映射——将标准资源从 artifact 路径复制到包的 data/ 目录下——但这不属于本任务范围。</p>
+
+<h2>五、后续使用方式</h2>
+
+<p>面向 PxFquery 开发者的标准工作流是：通过 DataLoader.load_all_local() 加载三个 H5AD 矩阵，这一步需要将 standard_resources/ 下的 cp/sh/xpr_func_ad.h5ad 放置于包可访问的 data 路径。加载后，obs 中的 sig_id、cell_iname、pert_id 等字段可直接用于查询过滤，var 的 91 个功能术语可直接用于评分索引。</p>
+
+<p>查询索引的使用方式更为直接：各 index 类（CellLineIndex、DrugIndex、GeneIndex、FunctionIndex）接收对应 JSON 文件的路径即完成初始化。在标准资源包中，所有 JSON 文件的格式都与这些类的构造函数完全匹配。后续的 Web API、CLI 交互、以及 Resolver 层都将在此基础上构建。元数据表主要用于查询结果的注释增强，可在 pandas 中以 DataFrame 形式按 pert_id 或 cell_iname 联接到查询结果上。</p>
+
+<h2>六、边界与风险</h2>
+
+<div class="highlight">
+  <strong>已知风险：</strong> 五个 CMAP 上游 H5AD 文件在遗留迁移时已截断损坏，无法恢复。这些文件不是 pxfquery 包运行的必要输入，但它们是某些 CMAP 原始管线的中间产物，如果未来需要完整复现 CMAP 处理流程，这五个文件需要从源头重新获取。
+</div>
+
+<p>另一个需要注意的边界是标准资源的生命周期管理。当前 19 个文件是在 2026-06-23 锁定的版本，如果后续更新了上游预计算数据（例如 LINCS 发布新一期处理结果），标准资源需要重新执行 T-021 流程来更新。目前没有自动化的版本更新机制。此外，CSV 元数据表中的 "beta" 注释字段来源于遗留资产的直接迁移，未经独立的生物学审核——在正式发表前建议交叉验证关键细胞系和化合物的注释准确性。路径映射问题（artifact 路径 vs 包内 data 路径）需要在后续的安装打包任务中解决，当前不做处理。</p>
+
+</body>
+</html>

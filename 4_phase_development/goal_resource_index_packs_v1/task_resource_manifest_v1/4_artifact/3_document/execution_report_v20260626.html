@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>T-025 执行情况报告 — pxfquery 标准资源清单</title>
+<style>
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; max-width: 960px; margin: 2rem auto; padding: 0 1rem; color: #1a1a1a; line-height: 1.6; }
+h1 { border-bottom: 2px solid #2563eb; padding-bottom: 0.5rem; }
+h2 { margin-top: 2rem; color: #1e40af; }
+table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+th, td { border: 1px solid #d1d5db; padding: 0.5rem 0.75rem; text-align: left; }
+th { background: #f3f4f6; font-weight: 600; }
+.info { color: #6b7280; font-size: 0.9rem; }
+.box { background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 6px; padding: 1rem; margin: 1rem 0; }
+.summary { background: #ecfdf5; border: 1px solid #6ee7b7; padding: 0.75rem 1rem; border-radius: 6px; }
+code { background: #f3f4f6; padding: 0.15rem 0.4rem; border-radius: 3px; font-size: 0.9em; }
+</style>
+</head>
+<body>
+<h1>T-025 resource_manifest_v1 — 执行情况报告</h1>
+<p class="info">生成时间: 2026-06-26 | 任务 ID: T-025 | 状态: 执行报告更新</p>
+
+<h2>1. 任务意图</h2>
+<p>PxFquery 项目在 T-021 <code>standard_resources</code> 任务中已经整理出一套包含 19 个文件的标准化资源包，涵盖三种扰动类型的功能矩阵（H5AD）、十种查询索引（JSON）、五种元数据表（CSV）和一份数据描述文件（YAML）。但这套资源包缺乏一个正式的机器可读索引——下游开发人员在对接测试、打包发布时，需要逐一翻阅 T-021 的验证记录才能搞清楚每个文件的格式、列结构、用途和校验规则。T-025 的任务就是填补这个缺口：为 T-021/D-004 资源包构建一份标准的资源清单（manifest），同时配套写出面向人类的 schema 摘要和使用手册。这份清单需要做到三点：一是被 CyHex 任务图识别为正式输出资产，二是被后续开发和测试任务直接引用，三是为未来打包发布任务提供完整文件索引。</p>
+
+<h2>2. 输入资产与依据</h2>
+<p>本任务的全部工作基于 T-021 标准资源任务的六项资产：核心资产是 A-001（D-004 资源包本体，包含 19 个文件），A-002（T-021 标准资源说明文档）用于推导每个文件的角色描述，A-003/A-004（T-021 HTML 报告）和 A-005（T-021 执行记录）作为格式决策的历史参考，A-006（T-021 制品注册表）用于确认 D-004 的身份和 core 状态。其中资源包本体存放在 <code>goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/2_persist/standard_resources/</code>，清单的路径配置以此为基础。所有资产均来自已完成的前置任务，T-025 本身不产生任何新的数据字节，只对已有资源进行枚举、分类和描述。</p>
+
+<h2>3. 实际执行过程</h2>
+<p>执行按协议规定的七个步骤依次推进。第一步枚举资源包全部 19 个文件：3 个 H5AD 功能矩阵（cp_func_ad.h5ad、sh_func_ad.h5ad、xpr_func_ad.h5ad，分别对应药物化合物、shRNA 敲低、CRISPR/ORF 扰动，总容量 264.86 MB）、10 个 JSON 索引文件（56.49 MB，涵盖细胞系、药物、基因的查找与近邻关系，以及功能基因集索引和细胞系谱系树）、5 个 CSV 元数据表（6.25 MB，细胞系约 240 行、化合物约 39,321 行、基因约 12,328 行）、1 个 YAML 数据描述文件（5 KB）。第二步逐文件推导 schema：对三个 H5AD 矩阵提取了共享的 obs 列名（sig_id、project_code、cell_iname、pert_id、cmap_name、pert_dose、pert_time）和 var 列数量（91 个功能基因集）；对 JSON 索引记录了每个文件的顶层键结构（如 cellline_index.json 为 <code>{valid_cells: [...]}</code>、cellline_tree.json 为三层嵌套谱系树）；对 CSV 表记录了列名和行数。第三步构建了 19 条目的 manifest YAML，每条包含 id、filename、category、format、role 和 notes，矩阵条目额外带 obs_columns 和 var_count，索引条目带 top_level_keys，元数据条目带 row_count_estimate 和 key_columns。第四步和第五步分别输出 markdown 格式的 schema 摘要和使用手册。第六步执行 Python 验证脚本，对 manifest 与磁盘上的实际文件做五项检查：文件数量（19/19）、文件名精确匹配（无差异）、文件存在性（全部存在）、data_description.yaml 引用状态（已引用）、总大小偏差（0.00%）。第七步在 registry.yaml 中登记了 D-006 至 D-011 六项制品。</p>
+
+<h2>4. 关键判断与证据</h2>
+<p>执行过程中有一个配置阶段路径错误需要修复：最初填写的 bundle 路径 <code>../../../task_standard_resources_optimal_formats/...</code> 在项目目录结构中向上解析到了不存在的目录。在 check 阶段将此路径修正为 <code>../../goal_precomputed_data_exploration/task_standard_resources_optimal_formats/...</code>，同时检查了 registration.yaml 中全部六条资产路径并在 protocol.md 和 asset_rule.yaml 中同步修正。修正后所有路径可正确解析，目标文件均存在且非空。本任务的验证证据（step6_validation.json）记录了五项检查全部通过的结果，可作为后续任务引用清单准确性的依据。</p>
+
+<h2>5. 交付物清单</h2>
+<table>
+<tr><th>制品 ID</th><th>文件</th><th>路径</th><th>角色</th></tr>
+<tr><td>D-006</td><td>pxfquery_T025_standard_resource_manifest_v20260623.yaml</td><td>4_artifact/2_persist/</td><td>核心交付 — 资源清单 YAML</td></tr>
+<tr><td>D-007</td><td>pxfquery_T025_schema_summary_v20260623.md</td><td>4_artifact/2_persist/</td><td>支撑文档 — schema 摘要</td></tr>
+<tr><td>D-008</td><td>pxfquery_T025_usage_notes_v20260623.md</td><td>4_artifact/2_persist/</td><td>支撑文档 — 使用手册</td></tr>
+<tr><td>D-009</td><td>step6_validation.json</td><td>3_execution/</td><td>验证证据</td></tr>
+<tr><td>D-010</td><td>execution_report_v20260623.html</td><td>4_artifact/3_document/</td><td>报告 — 执行情况</td></tr>
+<tr><td>D-011</td><td>result_report_v20260623.html</td><td>4_artifact/3_document/</td><td>报告 — 成果展示</td></tr>
+</table>
+
+<h2>6. 边界与未完成事项</h2>
+<p>本任务的范围限定在清单编制，不涉及任何数据生产或格式转换。T-021/D-004 资源包中的 19 个文件原样保留在 T-021 任务目录下，T-025 不做字节级复制。五个在 T-021 阶段已被确认不可读的 CMAP 上游 H5AD 文件不在标准资源范围内，也未进入清单。对于 function_index.json 中的 91 个功能基因集具体名称，清单不重复列出——这些名称应引用到 function_index.json 本身。本报告于 2026-06-26 生成，是对 2026-06-23 原始报告的格式整理，所有数据事实和验证结果未作更改。</p>
+
+</body>
+</html>

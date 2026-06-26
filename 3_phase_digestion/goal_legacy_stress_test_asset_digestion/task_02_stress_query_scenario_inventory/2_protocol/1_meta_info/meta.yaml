@@ -32,7 +32,7 @@ cyhex_version: 1.2.19
 created: '2026-06-24'
 started: null
 completed: '2026-06-24'
-notes: ''
+notes: 抽象压力测试场景清单
 fast_pass_permission: green
 sub_status: ''
 fast_pass_last_auto_approved: check_review

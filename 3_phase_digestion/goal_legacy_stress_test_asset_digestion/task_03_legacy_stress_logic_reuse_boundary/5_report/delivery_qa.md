@@ -37,3 +37,11 @@ Checked: 2026-06-24
 ## Verdict
 
 **QA PASS** — Both deliverables are present, complete, and meet all acceptance criteria.
+
+---
+
+### 2026-06-26 后处理记录
+
+**Verdict: yellow_repair**
+
+修复内容：仅重写了面向人类的 HTML 报告（execution_report_v20260626.html 和 result_report_v20260626.html），使用中文自然语言段落替代审计检查表风格。核心交付物（复用边界分析文档、决策矩阵 CSV、registry.yaml）和代码/数据均未修改。

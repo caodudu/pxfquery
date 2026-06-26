@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>T-021 执行报告 — PxFquery 标准资源优化</title>
+<style>
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 1100px; margin: 30px auto; padding: 0 20px; color: #222; line-height: 1.7; }
+h1, h2, h3 { color: #1a3c5e; }
+h1 { border-bottom: 3px solid #1a3c5e; padding-bottom: 10px; font-size: 1.8em; }
+h2 { border-bottom: 1px solid #ccc; padding-bottom: 5px; margin-top: 35px; font-size: 1.3em; }
+h3 { font-size: 1.1em; margin-top: 25px; }
+.banner { background: linear-gradient(135deg, #1a3c5e, #2a5c8e); color: white; padding: 25px; border-radius: 8px; margin-bottom: 25px; }
+.banner h1 { color: white; border: none; margin: 0 0 8px 0; font-size: 1.5em; }
+.banner p { margin: 5px 0; opacity: 0.93; font-size: 0.95em; }
+table { border-collapse: collapse; width: 100%; margin: 15px 0 25px 0; font-size: 0.93em; }
+th, td { border: 1px solid #ccc; padding: 8px 12px; text-align: left; vertical-align: top; }
+th { background: #e8eef5; }
+p { margin: 12px 0; }
+ul, ol { margin: 10px 0; padding-left: 22px; }
+li { margin: 5px 0; }
+code { background: #f0f0f0; padding: 2px 6px; border-radius: 3px; font-size: 0.9em; }
+.pass { color: #2a8a2a; font-weight: bold; }
+.highlight { background: #fdf0d5; border-left: 5px solid #c79100; padding: 12px 18px; border-radius: 4px; margin: 15px 0; }
+</style>
+</head>
+<body>
+
+<div class="banner">
+  <h1>T-021 执行报告：PxFquery 标准内置资源与最佳格式</h1>
+  <p><strong>任务：</strong> standard_resources_optimal_formats | <strong>生成时间：</strong> 2026-06-26</p>
+  <p><strong>项目：</strong> PxFquery (P-012) — LINCS 扰动-功能分析工作流 | <strong>阶段：</strong> development</p>
+</div>
+
+<h2>一、任务意图</h2>
+
+<p>PxFquery 项目在前期任务 T-014 中完成了预计算数据的系统梳理，发现遗留资产中存在大量重复、格式不统一、精度冗余的问题。本任务（T-021）的直接目标是从梳理后的预计算数据中，提取 PxFquery 包运行所需的"标准内置资源"，为每一项资源确定最优存储格式，并实际产出经过 Python 验证的生产级文件。这 19 个标准资源将作为后续所有 PxFquery 开发、测试、打包和交付的底层数据基础。</p>
+
+<p>更具体地，T-021 需要回答三个核心问题：功能矩阵应当保持 float64 还是可以降到 float32？h5ad 是否是最合适的存储格式，或者 parquet、feather、表格拆分更优？遗留的查询索引（尤其是缺失的 function_index.json）能否完整重建？这些问题的答案直接决定了 PxFquery 后续安装包的大小、加载速度，以及下游查询的可靠程度。在 T-014 提出的六项后续任务中，本任务是排在最前面的数据基础任务。</p>
+
+<h2>二、输入资产与依据</h2>
+
+<p>本次任务共引用 8 组资产（A-001 至 A-008），涵盖三方面输入：</p>
+
+<p><strong>T-014 前驱成果（A-001~A-003, A-007）</strong>：数据资源清单记录了 66 个遗留文件及其角色与就绪状态；矩阵模式覆盖报告检查了 11 个 H5AD 文件（其中 6 个可读、5 个截断不可用）；预计算数据理解报告提供了中文叙述背景；六项后续任务提案则明确了 T-021 在任务链中的位置。</p>
+
+<p><strong>遗留源数据（A-004~A-006）</strong>：三个功能矩阵（cp_func_ad.h5ad、sh_func_ad.h5ad、xpr_func_ad.h5ad）各有两套版本（M-0105~M-0107 与 M-0199~M-0201），需要确认是否重复；元数据表包含细胞系、化合物、基因三个领域的 9 个 CSV/YAML/XLSX 文件；查询索引包括 9 个 JSON 文件，其中 function_index.json 已在 T-007 阶段被发现缺失。</p>
+
+<p><strong>包代码参考（A-008）</strong>：pxfquery 包的 data_loader.py、index/ 模块直接规定了标准资源的文件名、格式和结构——这是判断格式兼容性的唯一标准。任何格式变更如果导致 anndata.read_h5ad 或 JSON 解析失败，均不可接受。</p>
+
+<h2>三、实际执行过程</h2>
+
+<p>执行过程按照七步协议依次推进。第一步是审计 pxfquery 包代码，逐文件梳理 data_loader.py 和各 index 类的读取逻辑，建立了完整的"包预期格式清单"，明确了三类矩阵的 obs 七字段模式、var 91 功能术语、以及 10 个 JSON 索引的结构约束。</p>
+
+<p>第二步对规范数据集进行验证。通过 MD5 哈希比对确认 M-0105~M-0107 与 M-0199~M-0201 是字节完全相同的副本，选定较早的 M-0105~M-0107 为规范集。对每套矩阵加载了 H5AD，提取了 obs 模式、var 名称列表、X 矩阵的维度与 dtype，记录了文件大小、内存占用和浮点精度基线。矩阵维度分别为：cp 201,014×91、sh 189,365×91、xpr 132,464×91，原始均为 float64。</p>
+
+<p>第三步是最关键的格式评估。对比了 h5ad float64、h5ad float32、parquet float32、feather float32、表格拆分（CSV+NPY）五种方案的文件大小和加载速度。同时计算了 float64 到 float32 转换后的秩相关性、最大绝对误差和 Top/Bottom 5% 排名重叠率。结果确认 float32 在查询意义上完全无损（三个矩阵所有 273 列的秩相关系数均为 1.000000）。</p>
+
+<p>第四步生产了全部 19 个标准资源文件，包括三个 float32 H5AD 矩阵、10 个 JSON 查询索引（含重建的 function_index.json）、5 个 CSV 元数据表和 data_description.yaml。第五步对所有 18 个可验证文件（data_description.yaml 为描述性文件不参与）执行了 Python 加载、模式检查、索引键验证和值范围测试，结果 18/18 通过。</p>
+
+<h2>四、关键判断与证据</h2>
+
+<div class="highlight">
+  <strong>格式决策的核心依据：</strong> pxfgquery 包的 DataLoader 使用 anndata.read_h5ad() 加载矩阵，这是不可改变的接口约束。因此 h5ad 之外的任何格式（即使文件更小）都会破坏兼容性，不被采用。
+</div>
+
+<p><strong>float64→float32：</strong> 在 cp、sh、xpr 三个矩阵上，float32 转换后的每列秩相关系数均为 1.000000，最大绝对值误差约 0.00025（评分范围 -10 到 +10），相当于全量程的 0.00125%。Top 5% 和 Bottom 5% 排名重叠率均为 100%。结论：对查询场景而言，float32 是无损的。</p>
+
+<p><strong>h5ad 保留而非拆分：</strong> 虽然将矩阵拆分为独立表格（perturbation 元数据 + function 元数据 + 稀疏分数表）理论上可再节省约 15% 空间，但包代码期望的是完整的 AnnData 对象。拆分意味着重写 DataLoader 和所有下游查询路径，在当前阶段不具可行性。</p>
+
+<p><strong>function_index.json 重建：</strong> 从三个矩阵的 var 名称中提取了全部 91 个功能术语（50 个 MSigDB HALLMARK + 41 个 3CA MPS 程序），按 pxfquery FunctionIndex 类的预期格式组织了 var_names、meta 和 aliases 三个字段。重建后的文件通过了包代码加载测试。</p>
+
+<p><strong>M-0234/M-0235 选择：</strong> 在细胞系和化合物的元数据重复对中，选择了 Cellosaurus 注释更丰富的版本而非简单版本，这与下游需要完整生物学标注的使用场景一致。</p>
+
+<h2>五、交付物清单</h2>
+
+<p>核心交付物位于 <code>4_artifact/2_persist/standard_resources/</code> 目录，共 19 个文件合计 323.46 MB。三大功能矩阵 <code>cp_func_ad.h5ad</code>（105 MB）、<code>sh_func_ad.h5ad</code>（96 MB）、<code>xpr_func_ad.h5ad</code>（64 MB）占总大小的 82%，以 float32 h5ad 格式存储。10 个 JSON 查询索引共 56.49 MB，其中 <code>gene_neighbors.json</code>（21.76 MB）和 <code>gene_neighbors_simple.json</code>（19.50 MB）是最大的索引文件。5 个 CSV 元数据表共 6.25 MB，<code>compound_info_standard.csv</code>（4.19 MB）包含 39,321 行化合物注释。</p>
+
+<p>支撑性过程记录存放在 <code>4_artifact/2_persist/process_records/</code>，包括包格式审计结果（step1）、矩阵分析（step2）、格式评估（step3）、生产记录（step4）和验证结果（step5）。综合资源指南 <code>pxfquery_standard_resource_guide_v20260623.md</code> 提供每个资源的格式、模式、决策理由和使用方式。与 T-014 前驱任务一致，所有交付物均注册在 <code>1_asset/registration.yaml</code> 中。</p>
+
+<h2>六、边界与未完成事项</h2>
+
+<p>本次任务有若干范围边界需要明确。第一，五个 CMAP 上游 H5AD（M-0108~M-0112）被 T-014 确认截断不可恢复，这些文件在遗留迁移时已经损坏，且不构成 pxfquery 包运行的必要输入，因此不纳入标准资源集。第二，标准资源的文件路径当前位于 <code>4_artifact/2_persist/standard_resources/</code>，但 pxfquery 包在运行时预期在 <code>data/</code> 目录下按特定子目录结构查找这些文件——路径映射和安装脚本属于后续打包任务的范畴，不在本任务范围内。</p>
+
+<p>第三，虽然本任务完成了 float32 精度验证，但未评估 float16 或 bfloat16 的可行性——因为包代码和 anndata 在 float16 上的兼容性未经测试，且 float16 在评分计算中可能产生可感知的累积误差。第四，元数据表中的 "beta" 注释字段（compound_info、cellline_info、gene_info）来自遗留资产的迁移，本任务未对其内容进行独立的生物学审核。第五，CSV 元数据目前未建立统一的主键约束和外键关联，这在后续数据库化集成时可能需要处理。</p>
+
+</body>
+</html>

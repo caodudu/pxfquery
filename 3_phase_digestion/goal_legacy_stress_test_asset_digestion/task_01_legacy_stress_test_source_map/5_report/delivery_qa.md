@@ -3,6 +3,9 @@
 ## Verdict
 yellow_repair
 
+## Repair Note
+Human-readable report rewriting only. No core deliverables, registry paths, code, data, or analysis results were modified.
+
 ## Checks Performed
 1. ✅ Protocol deliverables present: `legacy_stress_test_source_map_v20260624.md` and `stress_test_candidate_asset_index_v20260624.csv`
 2. ✅ `4_artifact/registry.yaml` exists, registers D-001 and D-002 (both accepted)
@@ -19,6 +22,8 @@ yellow_repair
 - Created `4_artifact/3_document/result_report_v20260624.html` — result summary for human review
 - Created `5_report/handoff_ai_use.md` — structured handoff for future AI tasks
 - Created `5_report/delivery_qa.md` — this file
+- Rewrote `4_artifact/3_document/execution_report_v20260626.html` — Chinese human-readable process report (replace old v20260624 English version)
+- Rewrote `4_artifact/3_document/result_report_v20260626.html` — Chinese human-readable result briefing (replace old v20260624 English version)
 
 ## Remaining Issues
 None. All packaging gaps have been filled. Core deliverables were already complete and correct.

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>T-064 结果报告</title>
+  <style>
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.68; margin: 32px auto; max-width: 1080px; color: #202124; }
+h1, h2 { color: #12355b; }
+section { margin: 22px 0; }
+table { border-collapse: collapse; width: 100%; margin: 14px 0; }
+th, td { border: 1px solid #d0d7de; padding: 8px 10px; vertical-align: top; }
+th { background: #f2f5f8; }
+code { background: #f6f8fa; padding: 2px 4px; border-radius: 4px; }
+.note { background: #f8fafc; border-left: 4px solid #4776a8; padding: 12px 14px; }
+.warn { background: #fff8e6; border-left: 4px solid #d29922; padding: 12px 14px; }
+</style>
+</head>
+<body>
+
+<h1>T-064 证据路由锚点结果报告</h1>
+
+<section>
+<h2>一句话结论</h2>
+<p class="note">T-064 为 PxFquery 建立了六类证据路由的行为合同——exact-hit、proxy-hit、no-hit、ambiguous-hit、context-missing、transfer/suggestion——要求每次查询响应都必须携带 route_type、query_context、perturbation_resolution、function_response、confidence、proxy_chain、diagnostics 和 suggestions 等透明元数据，并规定了相似度阈值守卫和 LLM 角色的硬性边界，将前序任务暴露的假阳性命中、代理不透明和 LLM 不稳定等风险转化为可检查的验收标准。</p>
+</section>
+
+<section>
+<h2>项目背景</h2>
+<p>PxFquery 是一个基于 LINCS 数据的扰动-功能分析工作流，项目不仅需要返回数值查询结果，还需要让用户理解查询的质量和局限。在 T-064 之前，T-007 的 resolver 测试虽然通过 7/7 的 deterministic matrix 验证，但其 LLM 辅助模式在 6/9 次运行中表现不稳定；T-013 的 MVP 评审明确记录了两个关键缺失：no-hit 查询无阈值保护导致假阳性结果（CAP-05），以及 resolver 因功能索引命名不匹配被完全阻塞（CAP-07）；T-058 的 stress-test 手写包提供了 29 个详细场景但缺少与之配套的路由定义。T-064 锚定在 T-007/T-013/T-021/T-058 这条上游链之后，目的是把散落在这四份资产中的路由约束、失败证据、标准资源和测试场景整合成一份统一的 behavior contract，使后续 M3 开发有一个稳固的 specification 基础。</p>
+</section>
+
+<section>
+<h2>核心结果</h2>
+<p>本次任务的交付物包含三层结果。第一层是路由分类法文档（D-001），定义了六类路由的决议路径、置信度规则和 21 个结构化验收案例。exact-hit 依赖 deterministic matrix 查找（已验证 7/7 通过），proxy-hit 使用扰动代理或细胞系代理并暴露代理链，no-hit 在低于阈值时必须返回结构化 NO_HIT 而非模糊回退，ambiguous-hit 返回排名候选加消歧引导，context-missing 返回缺失字段检验规则，transfer/suggestion 在无命中或歧义时提供查询改写或替代方案建议。第二层是证据元数据合同（D-002），以 YAML 定义了 8 个必需响应字段的精确架构、枚举值和路由类型约束，其中 threshold_policy 设定了药物 Tanimoto ≥0.40 和基因余弦 ≥0.50 的硬阈值，llm_fields 限定 LLM 只能担当解析、摘要和建议的辅助角色。第三层是 stress-test 锚点映射表（D-003），将 T-058 的全部 29 个场景映射到路由类型，每个场景标注主/次路由、预期行为和验收标准。</p>
+</section>
+
+<section>
+<h2>项目价值</h2>
+<p>T-064 把"查询失败、代理命中、上下文缺失、模糊候选、用户建议"这五种边缘情况从模糊体验变成了可检查的交付标准。对 PxFquery 的工程管理而言，这份路由合同的一个直接作用就是防止后续实现把 false match 包装成成功——任何执行都要先确定 route_type 再返回结果，而不是无约束地走一遍相似度回退。对项目规划而言，T-064 明确了 ambiguous-hit 和 transfer/suggestion 两类路由在现有 stress-test 场景中覆盖不足，这是个需要在 M3 阶段专门补测试的已知缺口，而不是一个意外的发现。对人类决策者来说，T-064 提供了判断后续 deliverable 是否真的实现了 evidence routing 的关键依据：如果一个实现不能区分 no-hit 和 exact-hit，不能返回 proxy_chain，或者让 LLM 替代 matrix 证据，那它就不符合 T-064 定义的验收标准。</p>
+</section>
+
+<section>
+<h2>交付物导读</h2>
+<table>
+<tr><th>交付物</th><th>路径</th><th>用途</th></tr>
+<tr><td>路由分类法与验收案例</td><td>4_artifact/2_persist/evidence_routing_route_taxonomy_v20260625.md</td><td>建议最先阅读，理解六类路由的行为定义和每个路段的通过条件。</td></tr>
+<tr><td>证据元数据合同</td><td>4_artifact/2_persist/evidence_routing_metadata_contract_v20260625.yaml</td><td>实现和测试时对照使用，固定 response schema、枚举值、相似度阈值和 LLM 边界。</td></tr>
+<tr><td>Stress-test 锚点映射</td><td>4_artifact/5_table/evidence_routing_stress_test_mapping_v20260625.csv</td><td>未来 stress-test task 可以直接把每一行变成测试用例或验收条目，无需重新分析 T-058 场景。</td></tr>
+</table>
+</section>
+
+<section>
+<h2>后续使用方式</h2>
+<p>后续 M3 实现任务或 stress-test milestone 在启动前应将 T-064 的三份交付物作为 must-reference 输入读入。实现团队需要逐项证明六类路由各自是否被实际支持，并检查返回结果是否满足元数据合同中每个字段的约束——特别是 no-hit 的相似度阈值守卫、proxy-hit 的 proxy_chain 暴露要求、以及 LLM 字段辅助角色的声明。若后续工作在运行时发现 function_index.json 路径对齐问题或 ambiguous-hit 场景的额外边界，应在实现报告中记录偏差并反馈到 T-064 的锚点更新。对于 stress-test 阶段，建议直接使用 D-003 映射表中的验收标准作为测试通过依据，并新建专门的 ambiguous-hit 和 transfer/suggestion 测试场景来补足 T-058 的覆盖缺口。</p>
+</section>
+
+<section>
+<h2>边界与风险</h2>
+<p>T-064 结果的使用者需要注意三个风险。第一，本任务是 specification-only 锚点，它不证明任何代码运行路径已经可用，不证明 resolver 能实际执行这些路由——验收通过的唯一证据是后续实现任务中针对每个路由类型的实际测试结果。第二，ambiguous-hit 和 transfer/suggestion 路由虽然在 taxonomy 中有完整的验收案例定义（AC-012 至 AC-021），但这些案例是间接从 no-hit 和 context-missing 场景推导的，T-058 的 29 个场景中没有专门的场景来覆盖这两类路由的完整行为空间，建议后续创建 dedicated stress cases。第三，T-021 重建的 function_index.json 在生产环境下的对齐性未在本任务验证，这是一个已知的运行时风险点，需要 M3 阶段在 package integration testing 中确认。</p>
+</section>
+
+</body>
+</html>

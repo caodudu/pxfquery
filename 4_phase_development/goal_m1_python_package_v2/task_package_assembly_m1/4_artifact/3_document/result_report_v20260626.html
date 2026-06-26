@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>结果报告 — T-052 package_assembly_m1</title>
+<style>
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; max-width: 960px; margin: 2em auto; padding: 0 1em; line-height: 1.8; }
+h1, h2, h3 { color: #1a1a2e; }
+h2 { border-bottom: 2px solid #e8e8f0; padding-bottom: 0.3em; margin-top: 2em; }
+p { text-indent: 2em; }
+pre { background: #f4f4f8; padding: 1em; border-radius: 6px; overflow-x: auto; font-size: 0.9em; }
+code { background: #f0f0f5; padding: 0.2em 0.4em; border-radius: 3px; font-size: 0.9em; }
+table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+th { background: #e8e8f0; }
+</style>
+</head>
+<body>
+<h1>结果报告 — T-052 package_assembly_m1</h1>
+<p>报告生成日期：2026-06-26 | 原始执行日期：2026-06-24</p>
+
+<h2>1. 一句话结论</h2>
+<p>T-052 成功将前序任务中分散的包骨架、前向查询逻辑和逆向查询逻辑组装为一个可通过 pip 安装的完整 pxfquery 包，提供了可工作的前向查询（perturbation→function）和逆向查询（function→perturbation）CLI 命令，所有 9 项验收标准全部通过。</p>
+
+<h2>2. 项目背景</h2>
+<p>PxFquery 是一个基于 LINCS 的扰动-功能分析工作流工具，其核心使用场景包括：从药物或基因扰动出发查询功能响应（前向查询），以及从功能目标出发反查候选扰动（逆向查询）。在 M1 里程碑中，项目需要将修复后的查询逻辑与 CLI 界面组装为一个可交付的 Python 包，以供后续验证和演示任务使用。T-052 正是在这个阶段承担集成角色的任务——它不是创造新算法，而是将已验证的组件连接成最终用户可触及的软件产品。本任务依赖的前置条件包括 T-044 包骨架、T-059 前向查询修复和 T-060 逆向查询修复，三者缺一不可。</p>
+
+<h2>3. 核心结果</h2>
+<p>组装后的 pxfquery 包在三个层面验证了其功能完整性。包层面：<code>pip install -e .</code> 成功安装，<code>import pxfquery</code> 正常工作，<code>__version__</code> 返回 0.1.0，<code>pxfquery info</code> 返回包含包名、版本和支持矩阵类型（xpr/sh/cp）的有效 JSON。前向查询层面：以 EGFR 为扰动、A549 为细胞背景、xpr 矩阵类型执行查询，返回 <code>"found": true</code>，top_activated 包括 HALLMARK_ADIPOGENESIS（4.03）和 HALLMARK_APOPTOSIS（2.47），top_suppressed 包括 MP40 PDAC-related（-6.68）和 HALLMARK_E2F_TARGETS（-6.64）。逆向查询层面：以激活 HALLMARK_APOPTOSIS、抑制 HALLMARK_MYC_TARGETS_V1、A549 为背景执行查询，返回 <code>"found": true</code> 和 10 个候选扰动，首位 THTPA 相似度 1.0，其后依次为 SCD、TP53、BCL2L1、CDK2 等。两个演示输出均符合 T-042 定义的契约 JSON 格式。</p>
+
+<h2>4. 项目价值</h2>
+<p>本任务的完成标志着 PxFquery 项目首次拥有了一个端到端可安装、可调用的软件包表面。此前，前向查询和逆向查询虽然已有独立实现，但只能通过直接运行 Python 模块来访问。T-052 通过组装 pyproject.toml、CLI 入口、core.py 接线层，使得最终用户能够通过 <code>pxfquery forward</code> 和 <code>pxfquery reverse</code> 两条简洁的子命令完成完整的查询工作流。对于项目而言，这意味交付物从"可运行的代码片段"升级为"可安装的软件产品"。对于后续的 T-053 M1 验证和 T-054 resolver 集成来说，本包提供了稳定的测试基线。func2pert() 从 <code>NotImplemented</code> 到 <code>reverse_query()</code> 的接线修复是本次组装中最关键的单行变更，它直接决定了逆向查询功能是否可用。</p>
+
+<h2>5. 交付物导读</h2>
+<table>
+<tr><th>编号</th><th>名称</th><th>查看建议</th></tr>
+<tr><td>D-001</td><td>组装的包源码</td><td>查看 <code>4_artifact/1_package/</code> 目录结构以了解包组织方式；<code>core.py</code> 的 pert2func/func2pert 方法是主要接线点</td></tr>
+<tr><td>D-002</td><td>导入冒烟证据</td><td>查看 <code>smoke_test_v20260624.txt</code> 验证包安装与 CLI 入口是否正常</td></tr>
+<tr><td>D-003</td><td>前向演示 JSON</td><td>查看 <code>forward_demo_v20260624.json</code> 了解前向查询的输出契约与数值范围</td></tr>
+<tr><td>D-004</td><td>逆向演示 JSON</td><td>查看 <code>reverse_demo_v20260624.json</code> 了解逆向查询的输出结构与候选排序方式</td></tr>
+<tr><td>D-005</td><td>CLI 帮助文本</td><td>查看 <code>cli_help_v20260624.txt</code> 了解所有子命令的可用参数</td></tr>
+<tr><td>D-006</td><td>执行报告（旧版）</td><td>查看原始执行步骤与关键决策记录</td></tr>
+<tr><td>D-007</td><td>结果报告（旧版）</td><td>查看原始演示输出与验证结果</td></tr>
+</table>
+<p>建议首先阅读 D-001 的 pyproject.toml 了解包配置，然后查看 D-003 和 D-004 理解查询功能的具体输出形式。</p>
+
+<h2>6. 后续使用方式</h2>
+<p>下游任务可以基于本包展开三类工作。验证类任务（如 T-053）应安装本包后运行批量查询测试，检查索引完整性，并验证不同扰动/细胞组合下的查询行为。集成类任务（如 T-054 resolver）需要在此基础上连接 LLM 解析层，使自然语言查询路径成为可能。演示类任务可直接使用 <code>pxfquery forward</code> 和 <code>pxfquery reverse</code> 命令进行交互式探索。对于开发者而言，包目录源码直接可读，<code>query/forward.py</code> 和 <code>query/reverse.py</code> 中的核心函数注释提供了算法细节。建议在继续开发前在干净环境中运行 <code>pip install -e .[dev]</code> 确认所有依赖正确解析。</p>
+
+<h2>7. 边界与风险</h2>
+<p>本包存在几项已知边界。当前使用的演示数据全部为 synthetic_repair 合成数据，查询结果中的富集分数和相似度值不代表真实生物学信号——仅用于验证管线连接正确性。CLI 目前支持的矩阵类型为 xpr（表达谱）、sh（shRNA）和 cp（化合物），若需要扩展矩阵类型需在数据加载层增加对应索引。LLM 解析模块虽然已在包中占位，但未经端到端验证，其 API 密钥配置和使用流程将在后续任务中处理。包版本 0.1.0 为快速迭代版本，尚未进行安全审计或性能优化。跨平台兼容性方面，本包当前仅在 macOS 上测试。使用 <code>pxfquery reverse</code> 时，--activate 和 --suppress 参数目前支持 Hallmark 基因集名称，尚未开放自定义基因列表输入。</p>
+
+</body>
+</html>

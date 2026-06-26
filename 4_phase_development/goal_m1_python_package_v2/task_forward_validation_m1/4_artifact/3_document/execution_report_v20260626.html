@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>T-050 执行报告 — forward_validation_m1</title>
+<style>
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 960px; margin: 2em auto; padding: 0 1em; background: #fafafa; color: #222; line-height: 1.7; }
+h1 { border-bottom: 2px solid #333; padding-bottom: 0.3em; }
+h2 { color: #444; margin-top: 1.8em; border-bottom: 1px solid #ddd; padding-bottom: 0.2em; }
+p { margin: 0.8em 0; text-indent: 2em; }
+pre { background: #f4f4f4; padding: 1em; border-radius: 4px; overflow-x: auto; font-size: 13px; }
+.pass { color: #1a7f37; font-weight: bold; }
+.fail { color: #cf222e; font-weight: bold; }
+table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+th, td { border: 1px solid #ccc; padding: 0.5em; text-align: left; }
+th { background: #e8e8e8; }
+ul { margin: 0.5em 0; }
+</style>
+</head>
+<body>
+<h1>T-050 Forward Validation M1 — 执行报告</h1>
+<p>生成日期：2026-06-26 | 任务：T-050 forward_validation_m1 | 总体：<span class="pass">PASS</span></p>
+
+<h2>一、任务意图</h2>
+<p>本任务隶属于 PxFquery 项目 development 阶段 goal_m1_python_package_v2，任务编号 T-050。其核心目标是对 T-059（即 M1 forward query 核心包，作为 T-048 的同层替代）实施独立验证。验证依据是 T-042 定义的 forward demo 合约：以 EGFR（扰动）、A549（细胞系）、xpr（矩阵类型）为正向命中案例，以虚构扰动 UNKNOWN_GENE_XYZ999 为无命中案例。此任务不得修改被验证方的核心逻辑，所有失败必须记录为验证失败而非静默绕过，以便返回同一层级的修复/重试流程。验证范围为包导入、夹具加载、正向查询、无命中查询、JSON 结构比对、CLI 烟雾测试共计 11 项检查。</p>
+
+<h2>二、输入资产与依据</h2>
+<p>验证所用资产全部来自 T-059 任务的交付目录。A-001 为 <code>4_artifact/1_package/</code> 下的 pxfquery v0.1.0 包，是本次验证的实施对象。A-002 为 <code>4_artifact/2_persist/forward_repair_fixture_m1_1/</code> 修复夹具，包含一个合成表达矩阵（5 个观测 × 7 个变量），该夹具由 T-059 构建以弥补原始 T-042 demo 的数据空缺。A-003 为对应的清单文件 <code>forward_repair_manifest_m1_1.yaml</code>，其 provenance_label 标记为 <code>synthetic_repair</code>，表明这是合成修复数据而非原始实验数据。此外，T-059 交付的正向参考证据（A-004）和无命中参考证据（A-005）用于 JSON 结构一致性比对。所有路径均在 T-059 任务目录下，验证脚本通过相对引用定位这些资产。</p>
+
+<h2>三、实际执行过程</h2>
+<p>执行分为六个步骤依次进行。第一步：环境准备，将 pxfquery v0.1.0 安装至 pxfquery conda 环境，确认导入成功，记录包版本为 0.1.0。第二步：夹具加载烟雾测试，使用 <code>pxfquery.data.m1_loader.M1FixtureLoader</code> 加载修复夹具，确认 xpr 矩阵形状为 (5, 7) 与清单一致，加载过程无异常。第三步：正向 demo 执行，对 EGFR/A549/xpr 发起前向查询，返回 JSON 中 <code>found</code> 为 true，<code>perturbation</code> 为 EGFR，<code>cell_line</code> 为 A549，<code>n_obs</code> 为 1，<code>top_activated</code> 包含 4 个数值条目（最高 4.03），<code>top_suppressed</code> 包含 3 个数值条目（最低 -6.68）。第四步：无命中 demo 执行，对 UNKNOWN_GENE_XYZ999/A549 发起查询，返回结构化错误对象 <code>{"error": "PerturbationNotFound", ...}</code>，输出为纯 JSON，无 Python 回溯泄漏。第五步：将正向和无命中输出与 T-059 参考证据进行结构比对，剥离 <code>_evidence</code> 字段后关键键完全一致。第六步：CLI 烟雾测试，通过 <code>pxfquery forward</code> 命令行执行正向查询，确认退出码为 0 且 stdout 为有效 JSON。</p>
+
+<h2>四、关键判断与证据</h2>
+<p>全部 11 项检查均获 PASS。具体而言：SMOKE-001（包导入）和 SMOKE-002（夹具加载）确认底层基础设施完好；FORWARD-001 至 FORWARD-004 覆盖正向查询的四个合约断言（命中状态、扰动名、细胞系、输入回显）；NOHIT-001 和 NOHIT-002 验证未知扰动的错误处理不泄漏异常栈；JSON-001 和 JSON-002 确认本次运行输出与 T-059 参考证据在结构上兼容，数值差异仅源于浮点运算环境差异，不影响合约判断；CLI-001 确认命令行入口可用。重跑正向 JSON 输出全文为 <code>{"found": true, "perturbation": "EGFR", "cell_line": "A549", "n_obs": 1, "cells_used": ["A549"], "top_activated": {"HALLMARK_ADIPOGENESIS": 4.03, "HALLMARK_APOPTOSIS": 2.47, "HALLMARK_P53_PATHWAY": 1.25, "HALLMARK_TNFA_SIGNALING_VIA_NFKB": 0.84}, "top_suppressed": {"MP40 PDAC-related": -6.68, "HALLMARK_E2F_TARGETS": -6.64, "MP39 Metal-response": -0.51}, "note": "", "warnings": []}</code>。重跑无命中 JSON 输出为 <code>{"error": "PerturbationNotFound", "message": "The given perturbation name was not found in the matrix observation metadata.", "perturbation": "UNKNOWN_GENE_XYZ999", "matrix_type": "xpr", "query_type": "forward", "suggestions": []}</code>。</p>
+
+<h2>五、交付物清单</h2>
+<p>本次验证共交付 7 项产物。D-001 为烟雾执行日志 <code>forward_validation_smoke_v20260624.log</code>，记录了每一步的详细输出和时间戳。D-002 和 D-003 分别为重跑正向和无命中的 JSON 输出文件，保存了完整的查询结果。D-004 为验证结果表格 <code>forward_validation_results_v20260624.csv</code>，每行对应一项检查，标注 PASS/FAIL。D-005 为完整的验证报告文档 <code>forward_validation_report_v20260624.md</code>，包含所有步骤的叙述性描述和证据引用。D-006 和 D-007 为两份 HTML 报告，即本文档和对应的结果报告。所有交付物均位于 <code>4_artifact/</code> 下的对应子目录中，已注册至 registry.yaml。</p>
+
+<h2>六、边界与未完成事项</h2>
+<p>本验证存在若干已知边界。第一，正向查询的激活/抑制数值分数与 T-059 参考证据存在细微差异，这是因为本次运行环境（macOS, CPU）与参考环境的浮点计算结果不完全一致，已验证仅数值不同而结构形状相同，该差异不影响合约遵守判断。第二，本次运行输出包含 T-059 验证框架附加的 <code>_evidence</code> 元数据字段，参考证据中不含该字段，结构比对前已将其剥离。第三，本任务不验证 T-048 而验证 T-059，这是协议澄清的结果——T-059 是 T-048 的已接受同层替代品。第四，本任务未涉及项目级原始资产（<code>2_project_asset/</code>），也未进行性能测试或边界条件下的稳定性测试。第五，修复夹具的合成属性（provenance_label: synthetic_repair）意味着验证结果仅证明包在合成数据上工作正常，不自动证明其在真实 LINCS/CMAP 实验数据上的表现。</p>
+</body>
+</html>

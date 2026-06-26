@@ -4,9 +4,15 @@
 .ipynb_checkpoints/
 .venv/
 __pycache__/
+build/
+dist/
 env/
 node_modules/
 venv/
+*.app/
+4_phase_development/goal_app_packaging/task_tauri_desktop/3_execution/build/
+4_phase_development/goal_app_packaging/task_tauri_desktop/3_execution/dist/
+4_phase_development/goal_app_packaging/task_tauri_desktop/4_artifact/2_persist/
 !.gitignore
 !*.cfg
 !*.css

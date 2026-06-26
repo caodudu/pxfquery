@@ -22,11 +22,12 @@ config_agent_id: null
 check_agent_id: null
 execute_agent_id: null
 server_id: null
-status: pending
+status: blocked
 cyhex_version: 1.2.19
 created: '2026-06-24'
 started: null
-completed: null
+completed: '2026-06-26'
 notes: 旁路实验任务：其他目标与 T047 resource_loader_hardening_m1 类似，但必须在 protocol/steps/acceptance
   中增加大文件读取限制规则，用来测试是否能避免 T047 的全文读取/subagent 过量上下文问题。pending，不激活，不接入当前主链。
 fast_pass_permission: green
+sub_status: null

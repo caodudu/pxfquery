@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>T-062 执行报告</title>
+  <style>
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.68; margin: 32px auto; max-width: 1080px; color: #202124; }
+h1, h2 { color: #12355b; }
+section { margin: 22px 0; }
+table { border-collapse: collapse; width: 100%; margin: 14px 0; }
+th, td { border: 1px solid #d0d7de; padding: 8px 10px; vertical-align: top; }
+th { background: #f2f5f8; }
+code { background: #f6f8fa; padding: 2px 4px; border-radius: 4px; }
+.note { background: #f8fafc; border-left: 4px solid #4776a8; padding: 12px 14px; }
+.warn { background: #fff8e6; border-left: 4px solid #d29922; padding: 12px 14px; }
+</style>
+</head>
+<body>
+
+<h1>T-062 算法包交付锚点执行报告</h1>
+
+<section>
+<h2>任务意图</h2>
+<p>PxFquery 项目正处于从历史资产消化向可控开发过渡的关键阶段。前序任务（T-003、T-007、T-013、T-021）分别完成了协议规范化、开发状态评估、MVP 能力审查和标准资源定义，但项目缺失一个权威的交付边界定义——即未来算法包到底必须包含什么、什么情况下算完成、什么情况下只能算部分交付或降级。</p>
+<p>T-062 的任务就是填补这个空缺。它不是写算法代码，也不是运行测试，而是建立一套可被后续执行 AI 和人类验收者共同引用的交付锚点。核心输出是一份 YAML 锚点文件（定义 11 项必需能力）、一张能力证据矩阵 CSV、一份降级规则文档、一份里程碑评审量规和一份受控分类词汇表。这组产物的作用是在后续每个包里程碑开始前就固定交付标准，不让 PxFquery 在无人注意时悄悄缩水成纯粹的 deterministic 矩阵查询。</p>
+</section>
+
+<section>
+<h2>输入资产与依据</h2>
+<p>本 task 的推理基于 8 份已注册前序资产，全部通过 task 本地 <code>1_asset/</code> 的符号链接访问。T-003（项目协议规范化）提供了协议历史边界和源工作区隔离规则；T-007（开发状态消化）提供了 PxFquery 原始包意图、ForwardQuery/ReverseQuery 实现证据、LLM 路径风险和不完整能力缺口清单；T-013（MVP 算法通查）提供了当前能力合同、CAP-01 到 CAP-08 的状态矩阵以及 5 项失败/阻塞/缺失能力的具体案例分析。T-021（标准资源优化格式）提供了 19 个已验证标准文件的格式、路径和兼容性要求。</p>
+<p>这些输入中没有一个是直接可执行的代码报告。每份都是消化或审查性质的文本产出。T-062 的工作就是从中提炼出通用的能力定义、验收阈值和降级触发条件，供未来所有包里程碑统一使用。</p>
+</section>
+
+<section>
+<h2>实际执行过程</h2>
+<p>执行的第一步是确认 task 本地目录结构完整，8 份已注册输入资产均已通过 <code>1_asset/</code> 符号链接可用。随后逐个精读这 8 份资产，但只抽取与能力定义、证据要求、风险管理、降级逻辑和标准资源基准相关的段落，不复制完整前置报告内容。抽取过程被记录在 <code>3_execution/step_list_and_extraction_notes_v20260625.md</code> 中，以便后续溯源。</p>
+<p>基于抽取结果，依次构造了六项核心产物：首先编写机器可读的 YAML 锚点文件 <code>pxfquery_algorithm_package_delivery_anchor_v20260625.yaml</code>，逐一定义 11 项必需能力的能力 ID、描述、触发条件、必需证据、前序证据、允许 fallback、验收阈值、常见失败模式、缺失处理方式和降级触发条件。接着产出 CSV 格式的能力矩阵，将同样 11 项能力以表格形式呈现，方便人类和工具快速交叉比对。</p>
+<p>之后编写降级规则文档，明确区分 runtime fallback（运行时主路径失败后的安全替代行为）和 scope downgrade（里程碑级别的能力删除/可选化/弱化）。核心规则是：fallback 可以是有效的运行策略，但不能冒充主路径能力的交付。还编写了里程碑评审量规，提供逐项能力的评审问题、可接受证据和分类标签使用规则。最后产出一份 YAML 格式的分类词汇表，定义 <code>delivered</code>、<code>partial</code>、<code>blocked</code>、<code>failed</code>、<code>downgraded</code>、<code>deferred-user-approved</code>、<code>deferred-not-approved</code>、<code>out-of-scope</code> 和 <code>evidence-insufficient</code> 共 9 个受控状态。</p>
+<p>全部产物产出后，执行了一次轻量解析验证：两个 YAML 文件通过 Python <code>yaml.safe_load</code> 解析为字典，能力矩阵 CSV 通过 <code>csv.DictReader</code> 读取并确认包含 11 行能力记录和 9 个字段。验证命令的输出已记录到 completion 报告中。最后将所有可复用产物登记到 <code>4_artifact/registry.yaml</code>，标注星标等级和溯源关系。</p>
+</section>
+
+<section>
+<h2>关键判断与证据</h2>
+<p>执行中最重要的判断是：PxFquery 的算法包验收标准不能只检查确定性 forward/reverse 查询是否能跑通。从 T-007 的意图证据和 T-013 的失败能力清单中可以明确看到，项目真实的查询体验包含 resolver-mediated 自然语言入口、LLM 辅助解析与摘要、proxy evidence routing、not-found/no-hit 安全路由、deterministic fallback 和透明证据元数据。如果后续里程碑只交付核心查询内核而丢弃这些用户层能力，PxFquery 就会从"生物信息学查询工作流"退化成"一个能查几个 fixture 的脚本集合"。</p>
+<p>另一个关键判断来自 T-021 的标准资源结论：后续包里程碑必须证明自己能加载和使用 T-021 验证的 19 个标准文件（h5ad 矩阵、JSON 索引、元数据 CSV 等），除非显式注册了更新的资源集。这个判断确保了能力锚点不会脱离实际数据基础。</p>
+<p>此外，来自 T-003 的协议规范要求所有降级或延期必须获得用户显式批准。因此锚点中为每项能力都设置了 <code>user_approval_required_for_deferral: true</code>，并在降级规则中列出了 10 项需要明确用户书面同意的操作。</p>
+</section>
+
+<section>
+<h2>交付物清单</h2>
+<ul>
+<li><strong>pxfquery_algorithm_package_delivery_anchor_v20260625.yaml</strong>：机器可读的能力锚点，11 项能力的定义、证据、阈值、降级触发条件和用户批准要求。后续 task 配置和检查时应首先读取此文件。</li>
+<li><strong>pxfquery_algorithm_capability_matrix_v20260625.csv</strong>：11 行 × 9 列的能力证据矩阵，逐项列出 required_when、required_evidence、predecessor_evidence、acceptance_threshold、failure_modes、absence_treatment 和 deferral_approval。</li>
+<li><strong>pxfquery_algorithm_downgrade_rules_v20260625.md</strong>：区分 runtime fallback 与 scope downgrade 的规则，明确 10 项必填审批的降级操作和 manuscript claim restraint 的边界。</li>
+<li><strong>pxfquery_milestone_review_rubric_v20260625.md</strong>：量规表格和分类规则，供后续里程碑检查/验收阶段使用。</li>
+<li><strong>pxfquery_milestone_classification_vocabulary_v20260625.yaml</strong>：9 个受控状态标签的机器可读定义，含 use_when、do_not_use_when 和必填字段。</li>
+<li><strong>pxfquery_algorithm_package_delivery_anchor_summary_v20260625.md/html</strong>：中文摘要供人类快速浏览。</li>
+<li><strong>execution_report / result_report</strong>：本文件及对应的结果报告。</li>
+<li><strong>4_artifact/registry.yaml</strong>：所有可复用产物的登记和星标评级。</li>
+</ul>
+</section>
+
+<section>
+<h2>边界与未完成事项</h2>
+<p>T-062 是严格的 digestion/governance 任务。它没有修改任何算法包源码，没有运行任何算法测试或集成测试，没有重建查询索引或功能矩阵，也没有将任何产物提升到最终项目交付目录。它的输出不是运行时证据，而是验收规则和边界定义。后续执行 task 仍然需要为它们声称交付的每项能力提供当前跑通或产物级别的证据。锚点本身不能替代这些证据。</p>
+<p>此外，锚点目前基于 T-021 的标准资源集。如果未来项目注册了更新的资源集，锚点中的 <code>standard_resource_basis</code> 需要相应更新以保持引用的一致性。</p>
+</section>
+
+</body>
+</html>

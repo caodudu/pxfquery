@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>T-031 无命中守卫结果报告</title>
+  <style>
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;max-width:1100px;margin:32px auto;padding:0 20px;line-height:1.6;color:#1f2933}
+    h1{border-bottom:2px solid #e5e7eb;padding-bottom:8px}
+    h2{margin-top:28px;color:#374151}
+    table{border-collapse:collapse;width:100%;font-size:13px;margin:16px 0}
+    th,td{border:1px solid #d8dee4;padding:6px 10px;text-align:left}
+    th{background:#f3f4f6;font-weight:600}
+    .pass{color:#16a34a;font-weight:600}
+    .fail{color:#dc2626;font-weight:600}
+    code{background:#f3f4f6;padding:1px 4px;border-radius:3px;font-size:12px}
+    .card{border:1px solid #e5e7eb;border-radius:6px;padding:16px;margin:16px 0;background:#fafbfc}
+  </style>
+</head>
+<body>
+
+<h1>T-031 no_hit_guard_v1 结果报告</h1>
+<p><strong>生成时间</strong>: 2026-06-26 | <strong>守卫版本</strong>: pxfquery-T-031 | <strong>关联任务</strong>: T-013 (CAP-05)</p>
+
+<h2>1. 一句话结论</h2>
+<p>T-031 为 PxFquery 的 ForwardQuery 创建了一个可调阈值的无命中安全守卫，在 11/11 个无意义扰动名上成功返回 NOT_FOUND，同时保持 2/2 个真实基因查询（EGFR/A549、TP53/MCF7）的正常结果不受影响，解决了 T-013 能力合同 CAP-05 中登记的模糊匹配假阳性风险。</p>
+
+<h2>2. 项目背景</h2>
+<p>PxFquery 是一个 LINCS 驱动的扰动-功能生物信息学工作流。它的核心查询引擎 ForwardQuery 在收到用户输入的扰动名时，会依次尝试精确匹配、子串匹配、token-overlap 回退三个层级。问题出在第三个层级的回退策略上：只要发现任意一个 token 重叠（哪怕只有一个字符级 token），即接受为匹配，不设任何质量门槛。这意味着恶意或无意的无意义输入（如 <code>egr</code> 被误认为 EGR1、<code>egfr_random</code> 被误认为 EGFR）会产生看似可信但完全错误的查询结果。T-013 在 MVP 能力合同中明确记录此为 CAP-05 失败项，并将修复任务分配给本任务 T-031。</p>
+
+<h2>3. 核心结果</h2>
+<p>守卫的核心机制是两个可调参数。<code>min_query_length_for_substring=4</code> 要求子串匹配的查询名至少 4 个字符，在测试中阻断了 <code>egr</code>、<code>bra</code>、<code>rab</code>、<code>akt</code> 这 4 个假阳性来源。<code>min_overlap_for_token_fallback=2</code> 要求 token 回退时至少共享 2 个 token，阻断了 <code>egfr_random</code>、<code>totally_egfr</code>、<code>something_braf</code>、<code>whatever-egfr</code> 这 4 个假阳性来源。完全随机的输入（如 <code>NONSENSE_ZZZ999</code>、<code>QWERTYASDFG</code>）因在精确匹配和子串匹配两层均无命中且 token 重叠为零，被自然阻断。</p>
+<p>正向控制方面，EGFR/A549 返回 found=True，含 20 个激活项和 20 个抑制项，匹配到 5 个观测；TP53/MCF7 返回 found=True，同样返回 20 个激活和 20 个抑制项，匹配到 2 个观测。结果与 T-029 基线一致，说明守卫的查询拦截仅发生在模糊回退阶段，对已确认的精确匹配路径无任何干扰。</p>
+
+<h2>4. 项目价值</h2>
+<p>对本项目而言，T-031 解决的不只是一个函数调用问题。CAP-05 的失败意味着整个 forward query 管线的结果可靠性缺乏基础保证——任何一个误输入的扰动名都可能生成一条看起来有效但实质错误的证据链，污染下游的 resolver 摘要、LLM 解释和最终的科学结论。守卫的存在将这类错误从"罕见但可能"变为"被机制阻断"。对后续任务而言，T-031-D-001（<code>NoHitGuardForwardQuery</code>）可以直接替换 T-024 的 <code>ForwardQuery</code>，无需等待 workflow 级重构。如果要做一个类比，这个守卫相当于 API 层的输入校验：它不增加新功能，但在所有用到 ForwardQuery 的地方自动提供了一层安全垫。</p>
+
+<h2>5. 交付物导读</h2>
+<div class="card">
+  <table>
+    <tr><th>文件</th><th>作用</th><th>谁需要看</th></tr>
+    <tr><td><code>4_artifact/2_persist/pxfquery_T031_forward_no_hit_guard.py</code></td><td>守卫实现，继承 ForwardQuery 并覆盖 query()</td><td>集成者、后续任务开发者</td></tr>
+    <tr><td><code>3_execution/test_no_hit_guard.py</code></td><td>11 个无意义名的负向验证脚本</td><td>QA、审核者</td></tr>
+    <tr><td><code>3_execution/test_positive_control.py</code></td><td>2 个真实基因的正向控制验证脚本</td><td>QA、审核者</td></tr>
+    <tr><td><code>4_artifact/5_table/*.json</code></td><td>三个证据文件（假阳性复现、无命中、正向控制）</td><td>审计、证据追溯</td></tr>
+    <tr><td><code>5_report/completion.md</code></td><td>完成总结，含使用示例</td><td>任务管理者、后续任务规划者</td></tr>
+  </table>
+</div>
+
+<h2>6. 后续使用方式</h2>
+<p>下游任务只需将 <code>from pxfquery.forward import ForwardQuery</code> 替换为 <code>from pxfquery_T031_forward_no_hit_guard import NoHitGuardForwardQuery</code>，然后 <code>guard = NoHitGuardForwardQuery(adata)</code> 即可。若需要更严格的匹配（例如接受更少的 token 重叠风险），可调高 <code>min_overlap_for_token_fallback</code> 至 3 或更高。若以后引入了一批真正以短字符命名的扰动（例如 2 字符基因符号），可将 <code>min_query_length_for_substring</code> 下调至 3 或 2，但建议同时评估假阳性风险。</p>
+
+<h2>7. 边界与风险</h2>
+<p>守卫不处理以下场景：细胞系名称的模糊匹配（与扰动名类似的问题，需独立评估）、resolver 层的语义歧义、LLM 摘要的准确性、以及 function_index 缺失导致的空结果（属于矩阵覆盖问题）。此外，当前阈值基于 A-005 矩阵的扰动名分布，若后续数据源 <code>xpr_func_ad.h5ad</code> 被替换或扩展，建议运行本任务的测试脚本验证阈值是否仍然合适。守卫未修改任何上游资产（T-024、T-026、T-029、T-021 均保持原状），因此不会引入版本冲突。</p>
+
+</body>
+</html>

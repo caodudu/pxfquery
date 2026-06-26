@@ -1,40 +1,57 @@
 artifacts:
-  - id: D-001
-    name: m1_api_contract
-    type: yaml
-    task_id: T-042
-    path: 2_persist/m1_api_contract.yaml
-    description: >
-      Structured M1 API and CLI contract. Specifies PxFquery class, pert2func/func2pert
-      signatures, parameter schemas, return JSON shapes, error/no-hit output objects, CLI
-      commands and flags, exit codes, and M1 scope assertions.
-    status: accepted
-    generated: "2026-06-24"
-    authority: T-007 + T-013
-    downstream_task: T-048, T-049, T-052
+- id: D-001
+  name: m1_api_contract
+  type: yaml
+  task_id: T-042
+  path: 2_persist/m1_api_contract.yaml
+  description: 'Structured M1 API and CLI contract. Specifies PxFquery class, pert2func/func2pert
+    signatures, parameter schemas, return JSON shapes, error/no-hit output objects,
+    CLI commands and flags, exit codes, and M1 scope assertions.
 
-  - id: D-002
-    name: m1_demo_cases
-    type: yaml
-    task_id: T-042
-    path: 2_persist/m1_demo_cases.yaml
-    description: >
-      Exact forward demo case (DEMO-001: EGFR/A549/xpr) and reverse demo case
-      (DEMO-002: HALLMARK_APOPTOSIS activation + MYC suppression in A549) with
-      input fields, expected output JSON shape, pass/fail assertions, and no-hit variants.
-    status: accepted
-    generated: "2026-06-24"
-    authority: T-007 + T-013
-    downstream_task: T-052
+    '
+  status: accepted
+  generated: '2026-06-24'
+  authority: T-007 + T-013
+  downstream_task: T-048, T-049, T-052
+  identity: T-042/D-001
+  role: support
+  core: false
+  lineage_anchor: false
+  stars: 1
+- id: D-002
+  name: m1_demo_cases
+  type: yaml
+  task_id: T-042
+  path: 2_persist/m1_demo_cases.yaml
+  description: 'Exact forward demo case (DEMO-001: EGFR/A549/xpr) and reverse demo
+    case (DEMO-002: HALLMARK_APOPTOSIS activation + MYC suppression in A549) with
+    input fields, expected output JSON shape, pass/fail assertions, and no-hit variants.
 
-  - id: D-003
-    name: m1_contract_summary
-    type: markdown
-    task_id: T-042
-    path: 3_document/m1_contract_summary.md
-    description: >
-      Short human-readable summary of M1 API, CLI, demo cases, scope, and constraints.
-    status: accepted
-    generated: "2026-06-24"
-    authority: T-007 + T-013
-    downstream_task: T-048, T-049, T-052
+    '
+  status: accepted
+  generated: '2026-06-24'
+  authority: T-007 + T-013
+  downstream_task: T-052
+  identity: T-042/D-002
+  role: support
+  core: false
+  lineage_anchor: false
+  stars: 1
+- id: D-003
+  name: m1_contract_summary
+  type: markdown
+  task_id: T-042
+  path: 3_document/m1_contract_summary.md
+  description: 'Short human-readable summary of M1 API, CLI, demo cases, scope, and
+    constraints.
+
+    '
+  status: accepted
+  generated: '2026-06-24'
+  authority: T-007 + T-013
+  downstream_task: T-048, T-049, T-052
+  identity: T-042/D-003
+  role: support
+  core: false
+  lineage_anchor: false
+  stars: 4

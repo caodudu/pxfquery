@@ -1,5 +1,5 @@
 cyhex_version: 1.0.28
-updated: '2026-06-24'
+updated: '2026-06-26'
 notes: Task dependency and artifact lineage backfilled from existing P-012 asset registrations,
   artifact registries, and completion reports. Task outputs are unchanged.
 nodes:
@@ -43,11 +43,26 @@ nodes:
   color: '#3b82f6'
   locked: true
   tasks_collapsed: true
-- id: goal:goal_m1_python_package_v2
-  x: 622
-  color: '#3b82f6'
+- id: goal:goal_ms3_release_quality
+  x: 525
+  color: '#84cc16'
   locked: false
   tasks_collapsed: false
+- id: goal:goal_ms3_core_runtime
+  x: 605
+  color: '#06b6d4'
+  locked: false
+  tasks_collapsed: false
+- id: goal:goal_ms3_foundation_resources
+  x: 557
+  color: '#ec4899'
+  locked: false
+  tasks_collapsed: false
+- id: goal:goal_m1_python_package_v2
+  x: 425
+  color: '#3b82f6'
+  locked: false
+  tasks_collapsed: true
 - id: goal:goal_package_milestone_merge_v1
   x: 455
   color: '#10b981'
@@ -106,7 +121,6 @@ nodes:
 edges:
 - from: goal_legacy_asset_migration/task_audit_legacy_assets
   to: goal_legacy_asset_migration/task_plan_migration_map
-  type: dependency
   dep_id: T-001
   relation: extract
   relation_label: 旧资产审计生成迁移图
@@ -124,7 +138,6 @@ edges:
   gate: must
 - from: goal_legacy_asset_migration/task_audit_legacy_assets
   to: goal_legacy_asset_migration/task_normalize_project_protocol_from_migrated_context
-  type: dependency
   dep_id: T-001
   relation: extract
   relation_label: 旧项目背景进入当前协议
@@ -143,7 +156,6 @@ edges:
   gate: must
 - from: goal_legacy_asset_migration/task_plan_migration_map
   to: goal_legacy_asset_migration/task_normalize_project_protocol_from_migrated_context
-  type: dependency
   dep_id: T-002
   relation: integrate
   relation_label: 迁移资产库进入当前协议
@@ -162,7 +174,6 @@ edges:
   gate: must
 - from: goal_legacy_asset_migration/task_audit_legacy_assets
   to: goal_development_asset_digestion/task_digest_pxfquery_development_state
-  type: dependency
   dep_id: T-001
   relation: extract
   relation_label: 旧开发状态来源
@@ -180,7 +191,6 @@ edges:
   gate: must
 - from: goal_legacy_asset_migration/task_plan_migration_map
   to: goal_development_asset_digestion/task_digest_pxfquery_development_state
-  type: dependency
   dep_id: T-002
   relation: integrate
   relation_label: 迁移代码数据进入开发状态
@@ -198,7 +208,6 @@ edges:
   gate: must
 - from: goal_legacy_asset_migration/task_normalize_project_protocol_from_migrated_context
   to: goal_development_asset_digestion/task_digest_pxfquery_development_state
-  type: dependency
   dep_id: T-003
   relation: integrate
   relation_label: 项目定位约束开发消化
@@ -216,7 +225,6 @@ edges:
   gate: must
 - from: goal_legacy_asset_migration/task_normalize_project_protocol_from_migrated_context
   to: goal_magazine_research/task_systematic_genes_literature_survey
-  type: dependency
   dep_id: T-003
   relation: integrate
   relation_label: 项目投稿定位约束 Genes 调研
@@ -234,7 +242,6 @@ edges:
   gate: must
 - from: goal_legacy_asset_migration/task_plan_migration_map
   to: goal_magazine_research/task_systematic_genes_literature_survey
-  type: dependency
   dep_id: T-002
   relation: extract
   relation_label: 旧 Genes 策略进入调研
@@ -252,7 +259,6 @@ edges:
   gate: must
 - from: goal_magazine_research/task_systematic_genes_literature_survey
   to: goal_magazine_research/task_design_genes_adjustment
-  type: dependency
   dep_id: T-004
   relation: refine
   relation_label: Genes 调研细化生信参考
@@ -271,7 +277,6 @@ edges:
   gate: must
 - from: goal_magazine_research/task_systematic_genes_literature_survey
   to: goal_magazine_research/task_genes_affiliation_bias_analysis
-  type: dependency
   dep_id: T-004
   relation: extract
   relation_label: Genes 语料进入机构时间分析
@@ -289,7 +294,6 @@ edges:
   gate: must
 - from: goal_magazine_research/task_genes_affiliation_bias_analysis
   to: goal_magazine_research/task_mdpi_cross_journal_affiliation_landscape
-  type: dependency
   dep_id: T-006
   relation: transform
   relation_label: Genes 机构分析扩展到 MDPI 横向景观
@@ -308,7 +312,6 @@ edges:
   gate: must
 - from: goal_magazine_research/task_systematic_genes_literature_survey
   to: goal_magazine_research/task_mdpi_cross_journal_affiliation_landscape
-  type: dependency
   dep_id: T-004
   relation: extract
   relation_label: Genes 语料支撑 MDPI 横向比较
@@ -326,7 +329,6 @@ edges:
   gate: must
 - from: goal_magazine_research/task_genes_affiliation_bias_analysis
   to: goal_magazine_research/task_frontiers_in_genetics_affiliation_landscape
-  type: dependency
   dep_id: T-006
   relation: transform
   relation_label: Genes 机构分析迁移到 Frontiers
@@ -344,7 +346,6 @@ edges:
   gate: must
 - from: goal_magazine_research/task_frontiers_in_genetics_affiliation_landscape
   to: goal_magazine_research/task_frontiers_in_genetics_publication_timing
-  type: dependency
   dep_id: T-009
   relation: refine
   relation_label: Frontiers 机构景观细化为发表周期
@@ -362,7 +363,6 @@ edges:
   gate: must
 - from: goal_magazine_research/task_systematic_genes_literature_survey
   to: goal_magazine_research/task_frontiers_in_genetics_publication_timing
-  type: dependency
   dep_id: T-004
   relation: extract
   relation_label: Genes 发表周期作为 Frontiers 对照
@@ -380,7 +380,6 @@ edges:
   gate: must
 - from: goal_magazine_research/task_systematic_genes_literature_survey
   to: goal_magazine_research/task_genes_bioinformatics_deliverable_catalog
-  type: dependency
   dep_id: T-004
   relation: extract
   relation_label: Genes 语料进入交付物目录
@@ -398,7 +397,6 @@ edges:
   gate: must
 - from: goal_magazine_research/task_design_genes_adjustment
   to: goal_magazine_research/task_genes_bioinformatics_deliverable_catalog
-  type: dependency
   dep_id: T-005
   relation: refine
   relation_label: 生信参考细化为交付物目录
@@ -417,7 +415,6 @@ edges:
   gate: must
 - from: goal_magazine_research/task_systematic_genes_literature_survey
   to: goal_submission_rules/task_mdpi_submission_package_and_guide
-  type: dependency
   dep_id: T-004
   relation: extract
   relation_label: Genes/MDPI 调研支撑投稿规则
@@ -436,7 +433,6 @@ edges:
   gate: must
 - from: goal_magazine_research/task_genes_bioinformatics_deliverable_catalog
   to: goal_submission_rules/task_mdpi_submission_package_and_guide
-  type: dependency
   dep_id: T-012
   relation: integrate
   relation_label: 生信论文目录支撑投稿准备
@@ -455,7 +451,6 @@ edges:
   gate: must
 - from: goal_development_asset_digestion/task_digest_pxfquery_development_state
   to: goal_algorithm_function_review/task_mvp_algorithm_run-through_review
-  type: dependency
   dep_id: T-007
   relation: extract
   relation_label: 开发状态进入 MVP 审查
@@ -473,7 +468,6 @@ edges:
   gate: must
 - from: goal_development_asset_digestion/task_digest_pxfquery_development_state
   to: goal_precomputed_data_exploration/task_understand_pxfquery_precomputed_data
-  type: dependency
   dep_id: T-007
   relation: extract
   relation_label: 开发状态进入预计算数据理解
@@ -492,7 +486,6 @@ edges:
   gate: must
 - from: goal_precomputed_data_exploration/task_understand_pxfquery_precomputed_data
   to: goal_algorithm_function_review/task_mvp_algorithm_run-through_review
-  type: dependency
   dep_id: T-014
   relation: integrate
   relation_label: 数据理解支撑 MVP 审查解释
@@ -511,427 +504,346 @@ edges:
   gate: must
 - from: goal_submission_rules/task_mdpi_submission_package_and_guide
   to: goal_citation_research/task_pending_t017
-  type: dependency
   dep_id: T-015
   gate: must
 - from: goal_magazine_research/task_mdpi_cross_journal_affiliation_landscape
   to: goal_citation_research/task_pending_t017
-  type: dependency
   dep_id: T-008
   gate: must
 - from: goal_template_paper_digestion/task_digest_wxy_genes_template_paper
   to: goal_citation_research/task_pending_t017
-  type: dependency
   dep_id: T-016
   gate: must
 - from: goal_magazine_research/task_genes_bioinformatics_deliverable_catalog
   to: goal_template_paper_digestion/task_pending_t018
-  type: dependency
   dep_id: T-012
   gate: must
 - from: goal_development_asset_digestion/task_digest_pxfquery_development_state
   to: goal_pending_g010/task_pending_t019
-  type: dependency
   dep_id: T-007
   gate: must
 - from: goal_algorithm_function_review/task_mvp_algorithm_run-through_review
   to: goal_algorithm_version_development/task_gap_repair_stage_planning
-  type: dependency
   dep_id: T-013
   gate: must
 - from: goal_development_asset_digestion/task_digest_pxfquery_development_state
   to: goal_algorithm_version_development/task_gap_repair_stage_planning
-  type: dependency
   dep_id: T-007
   gate: must
 - from: goal_magazine_research/task_genes_bioinformatics_deliverable_catalog
   to: goal_algorithm_version_development/task_gap_repair_stage_planning
-  type: dependency
   dep_id: T-012
   gate: must
 - from: goal_development_asset_digestion/task_digest_pxfquery_development_state
   to: goal_package_foundation_v1/task_workspace_package_v1
-  type: dependency
   dep_id: T-007
   gate: must
 - from: goal_algorithm_function_review/task_mvp_algorithm_run-through_review
   to: goal_package_foundation_v1/task_workspace_package_v1
-  type: dependency
   dep_id: T-013
   gate: must
 - from: goal_precomputed_data_exploration/task_standard_resources_optimal_formats
   to: goal_resource_index_packs_v1/task_resource_manifest_v1
-  type: dependency
   dep_id: T-021
   gate: must
 - from: goal_resource_index_packs_v1/task_resource_manifest_v1
   to: goal_resource_index_packs_v1/task_matrix_loader_v1
-  type: dependency
   dep_id: T-025
   gate: must
 - from: goal_precomputed_data_exploration/task_standard_resources_optimal_formats
   to: goal_resource_index_packs_v1/task_matrix_loader_v1
-  type: dependency
   dep_id: T-021
   gate: must
 - from: goal_resource_index_packs_v1/task_resource_manifest_v1
   to: goal_resource_index_packs_v1/task_index_name_normalizer_v1
-  type: dependency
   dep_id: T-025
   gate: must
 - from: goal_precomputed_data_exploration/task_standard_resources_optimal_formats
   to: goal_resource_index_packs_v1/task_index_name_normalizer_v1
-  type: dependency
   dep_id: T-021
   gate: must
 - from: goal_resource_index_packs_v1/task_matrix_loader_v1
   to: goal_resource_index_packs_v1/task_function_index_pack_v1
-  type: dependency
   dep_id: T-026
   gate: must
 - from: goal_resource_index_packs_v1/task_index_name_normalizer_v1
   to: goal_resource_index_packs_v1/task_function_index_pack_v1
-  type: dependency
   dep_id: T-027
   gate: must
 - from: goal_algorithm_function_review/task_mvp_algorithm_run-through_review
   to: goal_resource_index_packs_v1/task_function_index_pack_v1
-  type: dependency
   dep_id: T-013
   gate: must
 - from: goal_package_foundation_v1/task_workspace_package_v1
   to: goal_deterministic_query_engines_v1/task_forward_query_engine_v1
-  type: dependency
   dep_id: T-024
   gate: must
 - from: goal_resource_index_packs_v1/task_matrix_loader_v1
   to: goal_deterministic_query_engines_v1/task_forward_query_engine_v1
-  type: dependency
   dep_id: T-026
   gate: must
 - from: goal_algorithm_function_review/task_mvp_algorithm_run-through_review
   to: goal_deterministic_query_engines_v1/task_forward_query_engine_v1
-  type: dependency
   dep_id: T-013
   gate: must
 - from: goal_package_foundation_v1/task_workspace_package_v1
   to: goal_deterministic_query_engines_v1/task_reverse_query_engine_v1
-  type: dependency
   dep_id: T-024
   gate: must
 - from: goal_resource_index_packs_v1/task_matrix_loader_v1
   to: goal_deterministic_query_engines_v1/task_reverse_query_engine_v1
-  type: dependency
   dep_id: T-026
   gate: must
 - from: goal_algorithm_function_review/task_mvp_algorithm_run-through_review
   to: goal_deterministic_query_engines_v1/task_reverse_query_engine_v1
-  type: dependency
   dep_id: T-013
   gate: must
 - from: goal_deterministic_query_engines_v1/task_forward_query_engine_v1
   to: goal_deterministic_query_engines_v1/task_no_hit_guard_v1
-  type: dependency
   dep_id: T-029
   gate: must
 - from: goal_algorithm_function_review/task_mvp_algorithm_run-through_review
   to: goal_deterministic_query_engines_v1/task_no_hit_guard_v1
-  type: dependency
   dep_id: T-013
   gate: must
 - from: goal_deterministic_query_engines_v1/task_reverse_query_engine_v1
   to: goal_deterministic_query_engines_v1/task_reverse_stability_guard_v1
-  type: dependency
   dep_id: T-030
   gate: must
 - from: goal_algorithm_function_review/task_mvp_algorithm_run-through_review
   to: goal_deterministic_query_engines_v1/task_reverse_stability_guard_v1
-  type: dependency
   dep_id: T-013
   gate: must
 - from: goal_resource_index_packs_v1/task_index_name_normalizer_v1
   to: goal_resolver_optional_layer_v1/task_hybrid_fast_resolver_v1
-  type: dependency
   dep_id: T-027
   gate: must
 - from: goal_resource_index_packs_v1/task_function_index_pack_v1
   to: goal_resolver_optional_layer_v1/task_hybrid_fast_resolver_v1
-  type: dependency
   dep_id: T-028
   gate: must
 - from: goal_deterministic_query_engines_v1/task_no_hit_guard_v1
   to: goal_resolver_optional_layer_v1/task_hybrid_fast_resolver_v1
-  type: dependency
   dep_id: T-031
   gate: must
 - from: goal_deterministic_query_engines_v1/task_reverse_stability_guard_v1
   to: goal_resolver_optional_layer_v1/task_hybrid_fast_resolver_v1
-  type: dependency
   dep_id: T-032
   gate: must
 - from: goal_package_foundation_v1/task_workspace_package_v1
   to: goal_resolver_optional_layer_v1/task_llm_flash_adapter_v1
-  type: dependency
   dep_id: T-024
   gate: must
 - from: goal_algorithm_function_review/task_mvp_algorithm_run-through_review
   to: goal_resolver_optional_layer_v1/task_llm_flash_adapter_v1
-  type: dependency
   dep_id: T-013
   gate: must
 - from: goal_deterministic_query_engines_v1/task_forward_query_engine_v1
   to: goal_package_milestone_merge_v1/task_smoke_tests_v1
-  type: dependency
   dep_id: T-029
   gate: must
 - from: goal_deterministic_query_engines_v1/task_reverse_query_engine_v1
   to: goal_package_milestone_merge_v1/task_smoke_tests_v1
-  type: dependency
   dep_id: T-030
   gate: must
 - from: goal_deterministic_query_engines_v1/task_no_hit_guard_v1
   to: goal_package_milestone_merge_v1/task_smoke_tests_v1
-  type: dependency
   dep_id: T-031
   gate: must
 - from: goal_deterministic_query_engines_v1/task_reverse_stability_guard_v1
   to: goal_package_milestone_merge_v1/task_smoke_tests_v1
-  type: dependency
   dep_id: T-032
   gate: must
 - from: goal_deterministic_query_engines_v1/task_forward_query_engine_v1
   to: goal_package_milestone_merge_v1/task_demo_cli_v1
-  type: dependency
   dep_id: T-029
   gate: must
 - from: goal_deterministic_query_engines_v1/task_reverse_query_engine_v1
   to: goal_package_milestone_merge_v1/task_demo_cli_v1
-  type: dependency
   dep_id: T-030
   gate: must
 - from: goal_package_milestone_merge_v1/task_smoke_tests_v1
   to: goal_package_milestone_merge_v1/task_demo_cli_v1
-  type: dependency
   dep_id: T-035
   gate: must
 - from: goal_package_foundation_v1/task_workspace_package_v1
   to: goal_package_milestone_merge_v1/task_milestone_merge_v1
-  type: dependency
   dep_id: T-024
+  gate: must
 - from: goal_resource_index_packs_v1/task_matrix_loader_v1
   to: goal_package_milestone_merge_v1/task_milestone_merge_v1
-  type: dependency
   dep_id: T-026
+  gate: must
 - from: goal_deterministic_query_engines_v1/task_forward_query_engine_v1
   to: goal_package_milestone_merge_v1/task_milestone_merge_v1
-  type: dependency
   dep_id: T-029
+  gate: must
 - from: goal_deterministic_query_engines_v1/task_no_hit_guard_v1
   to: goal_package_milestone_merge_v1/task_milestone_merge_v1
-  type: dependency
   dep_id: T-031
+  gate: must
 - from: goal_package_foundation_v1/task_workspace_package_v1
   to: goal_package_milestone_merge_v1/task_milestone_package_core_parallel_v1
-  type: dependency
   dep_id: T-024
   gate: must
 - from: goal_resource_index_packs_v1/task_matrix_loader_v1
   to: goal_package_milestone_merge_v1/task_milestone_package_core_parallel_v1
-  type: dependency
   dep_id: T-026
   gate: must
 - from: goal_deterministic_query_engines_v1/task_forward_query_engine_v1
   to: goal_package_milestone_merge_v1/task_milestone_package_core_parallel_v1
-  type: dependency
   dep_id: T-029
   gate: must
 - from: goal_deterministic_query_engines_v1/task_no_hit_guard_v1
   to: goal_package_milestone_merge_v1/task_milestone_package_core_parallel_v1
-  type: dependency
   dep_id: T-031
   gate: must
 - from: goal_package_milestone_merge_v1/task_milestone_package_core_parallel_v1
   to: goal_package_milestone_merge_v1/task_milestone_final_aggregation_v1
-  type: dependency
   dep_id: T-040
   gate: must
 - from: goal_package_milestone_merge_v1/task_milestone_reverse_demo_reports_v1
   to: goal_package_milestone_merge_v1/task_milestone_final_aggregation_v1
-  type: dependency
   dep_id: T-038
   gate: must
 - from: goal_deterministic_query_engines_v1/task_reverse_query_engine_v1
   to: goal_package_milestone_merge_v1/task_milestone_reverse_demo_reports_v1
-  type: dependency
   dep_id: T-030
   gate: must
 - from: goal_deterministic_query_engines_v1/task_reverse_stability_guard_v1
   to: goal_package_milestone_merge_v1/task_milestone_reverse_demo_reports_v1
-  type: dependency
   dep_id: T-032
   gate: must
 - from: goal_package_milestone_merge_v1/task_smoke_tests_v1
   to: goal_package_milestone_merge_v1/task_milestone_reverse_demo_reports_v1
-  type: dependency
   dep_id: T-035
   gate: must
 - from: goal_package_milestone_merge_v1/task_demo_cli_v1
   to: goal_package_milestone_merge_v1/task_milestone_reverse_demo_reports_v1
-  type: dependency
   dep_id: T-036
   gate: must
 - from: goal_development_asset_digestion/task_digest_pxfquery_development_state
   to: goal_development_asset_digestion/task_legacy_source_digest_for_m1
-  type: dependency
   dep_id: T-007
   gate: must
 - from: goal_development_asset_digestion/task_digest_pxfquery_development_state
   to: goal_m1_python_package_v2/task_contract_and_demo_spec_m1
-  type: dependency
   dep_id: T-007
   gate: must
 - from: goal_algorithm_function_review/task_mvp_algorithm_run-through_review
   to: goal_m1_python_package_v2/task_contract_and_demo_spec_m1
-  type: dependency
   dep_id: T-013
   gate: must
 - from: goal_precomputed_data_exploration/task_understand_pxfquery_precomputed_data
   to: goal_m1_python_package_v2/task_data_manifest_fixture_m1
-  type: dependency
   dep_id: T-014
   gate: must
 - from: goal_precomputed_data_exploration/task_standard_resources_optimal_formats
   to: goal_m1_python_package_v2/task_data_manifest_fixture_m1
-  type: dependency
   dep_id: T-021
   gate: must
 - from: goal_development_asset_digestion/task_digest_pxfquery_development_state
   to: goal_m1_python_package_v2/task_package_skeleton_m1
-  type: dependency
   dep_id: T-007
   gate: must
 - from: goal_precomputed_data_exploration/task_standard_resources_optimal_formats
   to: goal_m1_python_package_v2/task_index_health_check_m1
-  type: dependency
   dep_id: T-021
   gate: must
 - from: goal_m1_python_package_v2/task_data_manifest_fixture_m1
   to: goal_m1_python_package_v2/task_m1_fixture_loader
-  type: dependency
   dep_id: T-043
   gate: must
 - from: goal_m1_python_package_v2/task_data_manifest_fixture_m1
   to: goal_m1_python_package_v2/task_resource_loader_hardening_m1
-  type: dependency
   dep_id: T-043
   gate: must
 - from: goal_m1_python_package_v2/task_index_health_check_m1
   to: goal_m1_python_package_v2/task_resource_loader_hardening_m1
-  type: dependency
   dep_id: T-045
   gate: must
 - from: goal_development_asset_digestion/task_legacy_source_digest_for_m1
   to: goal_m1_python_package_v2/task_resource_loader_hardening_m1
-  type: dependency
   dep_id: T-041
   gate: may
 - from: goal_m1_python_package_v2/task_contract_and_demo_spec_m1
   to: goal_m1_python_package_v2/task_forward_query_core_m1
-  type: dependency
   dep_id: T-042
   gate: must
 - from: goal_m1_python_package_v2/task_m1_fixture_loader
   to: goal_m1_python_package_v2/task_forward_query_core_m1
-  type: dependency
   dep_id: T-046
   gate: must
 - from: goal_m1_python_package_v2/task_resource_loader_hardening_m1
   to: goal_m1_python_package_v2/task_forward_query_core_m1
-  type: dependency
   dep_id: T-047
   gate: may
 - from: goal_development_asset_digestion/task_legacy_source_digest_for_m1
   to: goal_m1_python_package_v2/task_forward_query_core_m1
-  type: dependency
   dep_id: T-041
   gate: may
 - from: goal_m1_python_package_v2/task_contract_and_demo_spec_m1
   to: goal_m1_python_package_v2/task_reverse_query_core_m1
-  type: dependency
   dep_id: T-042
   gate: must
 - from: goal_m1_python_package_v2/task_m1_fixture_loader
   to: goal_m1_python_package_v2/task_reverse_query_core_m1
-  type: dependency
   dep_id: T-046
   gate: must
 - from: goal_m1_python_package_v2/task_resource_loader_hardening_m1
   to: goal_m1_python_package_v2/task_reverse_query_core_m1
-  type: dependency
   dep_id: T-047
   gate: may
 - from: goal_development_asset_digestion/task_legacy_source_digest_for_m1
   to: goal_m1_python_package_v2/task_reverse_query_core_m1
-  type: dependency
   dep_id: T-041
   gate: may
 - from: goal_m1_python_package_v2/task_forward_query_core_m1
   to: goal_m1_python_package_v2/task_forward_validation_m1
-  type: dependency
   dep_id: T-048
   gate: may
   note: Demoted after T-048 execute_config_mismatch; T-059 is the must replacement.
 - from: goal_m1_python_package_v2/task_reverse_query_core_m1
   to: goal_m1_python_package_v2/task_reverse_validation_m1
-  type: dependency
   dep_id: T-049
   gate: may
   note: Demoted after T-049 execute_config_mismatch; T-060 is the must replacement.
 - from: goal_m1_python_package_v2/task_package_skeleton_m1
   to: goal_m1_python_package_v2/task_package_assembly_m1
-  type: dependency
   dep_id: T-044
   gate: must
 - from: goal_m1_python_package_v2/task_forward_query_core_m1
   to: goal_m1_python_package_v2/task_package_assembly_m1
-  type: dependency
   dep_id: T-048
   gate: may
   note: Demoted after T-048 execute_config_mismatch; T-059 is the must replacement.
 - from: goal_m1_python_package_v2/task_reverse_query_core_m1
   to: goal_m1_python_package_v2/task_package_assembly_m1
-  type: dependency
   dep_id: T-049
   gate: may
   note: Demoted after T-049 execute_config_mismatch; T-060 is the must replacement.
 - from: goal_m1_python_package_v2/task_forward_validation_m1
   to: goal_m1_python_package_v2/task_m1_python_package_milestone
-  type: dependency
   dep_id: T-050
   gate: must
 - from: goal_m1_python_package_v2/task_reverse_validation_m1
   to: goal_m1_python_package_v2/task_m1_python_package_milestone
-  type: dependency
   dep_id: T-051
   gate: must
 - from: goal_m1_python_package_v2/task_package_assembly_m1
   to: goal_m1_python_package_v2/task_m1_python_package_milestone
-  type: dependency
   dep_id: T-052
   gate: must
 - from: goal_m1_python_package_v2/task_data_manifest_fixture_m1
   to: goal_m1_python_package_v2/task_large_asset_reading_rules_probe
-  type: dependency
   dep_id: T-043
   gate: must
 - from: goal_m1_python_package_v2/task_index_health_check_m1
   to: goal_m1_python_package_v2/task_large_asset_reading_rules_probe
-  type: dependency
   dep_id: T-045
   gate: must
 - from: goal_m1_python_package_v2/task_resource_loader_hardening_m1
   to: goal_m1_python_package_v2/task_large_asset_reading_rules_probe
-  type: reference
   dep_id: T-047
   gate: reference
   relation: refine
@@ -942,142 +854,114 @@ edges:
     avoid; this edge must not block T054 or include T047 as required input.
 - from: goal_legacy_asset_migration/task_audit_legacy_assets
   to: goal_legacy_stress_test_asset_digestion/task_01_legacy_stress_test_source_map
-  type: dependency
   dep_id: T-001
   gate: must
 - from: goal_legacy_asset_migration/task_plan_migration_map
   to: goal_legacy_stress_test_asset_digestion/task_01_legacy_stress_test_source_map
-  type: dependency
   dep_id: T-002
   gate: must
 - from: goal_development_asset_digestion/task_digest_pxfquery_development_state
   to: goal_legacy_stress_test_asset_digestion/task_01_legacy_stress_test_source_map
-  type: dependency
   dep_id: T-007
   gate: must
 - from: goal_development_asset_digestion/task_digest_pxfquery_development_state
   to: goal_legacy_stress_test_asset_digestion/task_02_stress_query_scenario_inventory
-  type: dependency
   dep_id: T-007
   gate: must
 - from: goal_development_asset_digestion/task_legacy_source_digest_for_m1
   to: goal_legacy_stress_test_asset_digestion/task_02_stress_query_scenario_inventory
-  type: dependency
   dep_id: T-041
   gate: may
 - from: goal_legacy_asset_migration/task_audit_legacy_assets
   to: goal_legacy_stress_test_asset_digestion/task_03_legacy_stress_logic_reuse_boundary
-  type: dependency
   dep_id: T-001
   gate: must
 - from: goal_legacy_asset_migration/task_plan_migration_map
   to: goal_legacy_stress_test_asset_digestion/task_03_legacy_stress_logic_reuse_boundary
-  type: dependency
   dep_id: T-002
   gate: must
 - from: goal_development_asset_digestion/task_digest_pxfquery_development_state
   to: goal_legacy_stress_test_asset_digestion/task_03_legacy_stress_logic_reuse_boundary
-  type: dependency
   dep_id: T-007
   gate: must
 - from: goal_development_asset_digestion/task_legacy_source_digest_for_m1
   to: goal_legacy_stress_test_asset_digestion/task_03_legacy_stress_logic_reuse_boundary
-  type: dependency
   dep_id: T-041
   gate: may
 - from: goal_legacy_stress_test_asset_digestion/task_01_legacy_stress_test_source_map
   to: goal_legacy_stress_test_asset_digestion/task_04_stress_test_development_handoff_pack
-  type: dependency
   dep_id: T-055
   gate: must
 - from: goal_legacy_stress_test_asset_digestion/task_02_stress_query_scenario_inventory
   to: goal_legacy_stress_test_asset_digestion/task_04_stress_test_development_handoff_pack
-  type: dependency
   dep_id: T-056
   gate: must
 - from: goal_legacy_stress_test_asset_digestion/task_03_legacy_stress_logic_reuse_boundary
   to: goal_legacy_stress_test_asset_digestion/task_04_stress_test_development_handoff_pack
-  type: dependency
   dep_id: T-057
   gate: must
 - from: goal_development_asset_digestion/task_digest_pxfquery_development_state
   to: goal_legacy_stress_test_asset_digestion/task_04_stress_test_development_handoff_pack
-  type: dependency
   dep_id: T-007
   gate: must
 - from: goal_m1_python_package_v2/task_contract_and_demo_spec_m1
   to: goal_m1_python_package_v2/task_forward_query_core_repair_m1
-  type: dependency
   dep_id: T-042
   gate: must
 - from: goal_m1_python_package_v2/task_data_manifest_fixture_m1
   to: goal_m1_python_package_v2/task_forward_query_core_repair_m1
-  type: dependency
   dep_id: T-043
   gate: must
 - from: goal_m1_python_package_v2/task_package_skeleton_m1
   to: goal_m1_python_package_v2/task_forward_query_core_repair_m1
-  type: dependency
   dep_id: T-044
   gate: must
 - from: goal_m1_python_package_v2/task_m1_fixture_loader
   to: goal_m1_python_package_v2/task_forward_query_core_repair_m1
-  type: dependency
   dep_id: T-046
   gate: must
 - from: goal_m1_python_package_v2/task_index_health_check_m1
   to: goal_m1_python_package_v2/task_forward_query_core_repair_m1
-  type: dependency
   dep_id: T-045
   gate: may
 - from: goal_m1_python_package_v2/task_resource_loader_hardening_m1
   to: goal_m1_python_package_v2/task_forward_query_core_repair_m1
-  type: dependency
   dep_id: T-047
   gate: may
 - from: goal_development_asset_digestion/task_legacy_source_digest_for_m1
   to: goal_m1_python_package_v2/task_forward_query_core_repair_m1
-  type: dependency
   dep_id: T-041
   gate: may
 - from: goal_m1_python_package_v2/task_contract_and_demo_spec_m1
   to: goal_m1_python_package_v2/task_reverse_query_core_repair_m1
-  type: dependency
   dep_id: T-042
   gate: must
 - from: goal_m1_python_package_v2/task_data_manifest_fixture_m1
   to: goal_m1_python_package_v2/task_reverse_query_core_repair_m1
-  type: dependency
   dep_id: T-043
   gate: must
 - from: goal_m1_python_package_v2/task_package_skeleton_m1
   to: goal_m1_python_package_v2/task_reverse_query_core_repair_m1
-  type: dependency
   dep_id: T-044
   gate: must
 - from: goal_m1_python_package_v2/task_m1_fixture_loader
   to: goal_m1_python_package_v2/task_reverse_query_core_repair_m1
-  type: dependency
   dep_id: T-046
   gate: must
 - from: goal_m1_python_package_v2/task_index_health_check_m1
   to: goal_m1_python_package_v2/task_reverse_query_core_repair_m1
-  type: dependency
   dep_id: T-045
   gate: may
 - from: goal_m1_python_package_v2/task_resource_loader_hardening_m1
   to: goal_m1_python_package_v2/task_reverse_query_core_repair_m1
-  type: dependency
   dep_id: T-047
   gate: may
 - from: goal_development_asset_digestion/task_legacy_source_digest_for_m1
   to: goal_m1_python_package_v2/task_reverse_query_core_repair_m1
-  type: dependency
   dep_id: T-041
   gate: may
 - from: goal_m1_python_package_v2/task_forward_query_core_repair_m1
   to: goal_m1_python_package_v2/task_forward_validation_m1
-  type: dependency
   dep_id: T-059
   relation: repair
   relation_label: 旁路修复
@@ -1087,7 +971,6 @@ edges:
   gate: must
 - from: goal_m1_python_package_v2/task_forward_query_core_repair_m1
   to: goal_m1_python_package_v2/task_package_assembly_m1
-  type: dependency
   dep_id: T-059
   relation: repair
   relation_label: 旁路修复
@@ -1098,7 +981,6 @@ edges:
   gate: must
 - from: goal_m1_python_package_v2/task_reverse_query_core_repair_m1
   to: goal_m1_python_package_v2/task_reverse_validation_m1
-  type: dependency
   dep_id: T-060
   relation: repair
   relation_label: 旁路修复
@@ -1108,7 +990,6 @@ edges:
   gate: must
 - from: goal_m1_python_package_v2/task_reverse_query_core_repair_m1
   to: goal_m1_python_package_v2/task_package_assembly_m1
-  type: dependency
   dep_id: T-060
   relation: repair
   relation_label: 旁路修复
@@ -1119,7 +1000,6 @@ edges:
   gate: must
 - from: goal_m1_python_package_v2/task_forward_query_core_m1
   to: goal_m1_python_package_v2/task_forward_query_core_repair_m1
-  type: reference
   dep_id: T-048
   relation: reference
   relation_label: 错误参考
@@ -1130,7 +1010,6 @@ edges:
   gate: reference
 - from: goal_m1_python_package_v2/task_reverse_query_core_m1
   to: goal_m1_python_package_v2/task_reverse_query_core_repair_m1
-  type: reference
   dep_id: T-049
   relation: reference
   relation_label: 错误参考
@@ -1141,12 +1020,10 @@ edges:
   gate: reference
 - from: goal_development_asset_digestion/task_digest_pxfquery_development_state
   to: goal_development_asset_digestion/task_legacy_source_digest_repair_m1
-  type: dependency
   dep_id: T-007
   gate: must
 - from: goal_development_asset_digestion/task_legacy_source_digest_for_m1
   to: goal_development_asset_digestion/task_legacy_source_digest_repair_m1
-  type: reference
   dep_id: T-041
   relation: refine
   relation_label: T041异常历史供旁路修复参考
@@ -1159,83 +1036,316 @@ edges:
     and must not block or provide authoritative assets.
 - from: goal_legacy_asset_migration/task_normalize_project_protocol_from_migrated_context
   to: goal_project_delivery_anchor/task_algorithm_package_delivery_anchor
-  type: dependency
   dep_id: T-003
   gate: must
 - from: goal_development_asset_digestion/task_digest_pxfquery_development_state
   to: goal_project_delivery_anchor/task_algorithm_package_delivery_anchor
-  type: dependency
   dep_id: T-007
   gate: must
 - from: goal_algorithm_function_review/task_mvp_algorithm_run-through_review
   to: goal_project_delivery_anchor/task_algorithm_package_delivery_anchor
-  type: dependency
   dep_id: T-013
   gate: must
 - from: goal_precomputed_data_exploration/task_standard_resources_optimal_formats
   to: goal_project_delivery_anchor/task_algorithm_package_delivery_anchor
-  type: dependency
   dep_id: T-021
   gate: must
 - from: goal_development_asset_digestion/task_digest_pxfquery_development_state
   to: goal_project_delivery_anchor/task_llm_resolver_capability_anchor
-  type: dependency
   dep_id: T-007
   gate: must
 - from: goal_algorithm_function_review/task_mvp_algorithm_run-through_review
   to: goal_project_delivery_anchor/task_llm_resolver_capability_anchor
-  type: dependency
   dep_id: T-013
   gate: must
 - from: goal_development_asset_digestion/task_legacy_source_digest_repair_m1
   to: goal_project_delivery_anchor/task_llm_resolver_capability_anchor
-  type: dependency
   dep_id: T-061
   gate: must
 - from: goal_project_delivery_anchor/task_algorithm_package_delivery_anchor
   to: goal_project_delivery_anchor/task_llm_resolver_capability_anchor
-  type: dependency
   dep_id: T-062
   gate: must
 - from: goal_development_asset_digestion/task_digest_pxfquery_development_state
   to: goal_project_delivery_anchor/task_evidence_routing_anchor
-  type: dependency
   dep_id: T-007
   gate: must
 - from: goal_algorithm_function_review/task_mvp_algorithm_run-through_review
   to: goal_project_delivery_anchor/task_evidence_routing_anchor
-  type: dependency
   dep_id: T-013
   gate: must
 - from: goal_precomputed_data_exploration/task_standard_resources_optimal_formats
   to: goal_project_delivery_anchor/task_evidence_routing_anchor
-  type: dependency
   dep_id: T-021
   gate: must
 - from: goal_legacy_stress_test_asset_digestion/task_04_stress_test_development_handoff_pack
   to: goal_project_delivery_anchor/task_evidence_routing_anchor
-  type: dependency
   dep_id: T-058
   gate: must
 - from: goal_m1_python_package_v2/task_m1_python_package_milestone
   to: goal_project_delivery_anchor/task_m1_vs_delivery_anchor_review
-  type: dependency
   dep_id: T-053
   gate: must
 - from: goal_project_delivery_anchor/task_algorithm_package_delivery_anchor
   to: goal_project_delivery_anchor/task_m1_vs_delivery_anchor_review
-  type: dependency
   dep_id: T-062
   gate: must
 - from: goal_project_delivery_anchor/task_llm_resolver_capability_anchor
   to: goal_project_delivery_anchor/task_m1_vs_delivery_anchor_review
-  type: dependency
   dep_id: T-063
   gate: must
 - from: goal_project_delivery_anchor/task_evidence_routing_anchor
   to: goal_project_delivery_anchor/task_m1_vs_delivery_anchor_review
-  type: dependency
   dep_id: T-064
+  gate: must
+- from: goal_project_delivery_anchor/task_algorithm_package_delivery_anchor
+  to: goal_ms3_foundation_resources/task_ms3_no_downgrade_acceptance_contract
+  dep_id: T-062
+  gate: must
+- from: goal_project_delivery_anchor/task_llm_resolver_capability_anchor
+  to: goal_ms3_foundation_resources/task_ms3_no_downgrade_acceptance_contract
+  dep_id: T-063
+  gate: must
+- from: goal_project_delivery_anchor/task_evidence_routing_anchor
+  to: goal_ms3_foundation_resources/task_ms3_no_downgrade_acceptance_contract
+  dep_id: T-064
+  gate: must
+- from: goal_project_delivery_anchor/task_m1_vs_delivery_anchor_review
+  to: goal_ms3_foundation_resources/task_ms3_no_downgrade_acceptance_contract
+  dep_id: T-065
+  gate: must
+- from: goal_precomputed_data_exploration/task_understand_pxfquery_precomputed_data
+  to: goal_ms3_foundation_resources/task_ms3_safe_resource_access_contract
+  dep_id: T-014
+  gate: must
+- from: goal_precomputed_data_exploration/task_standard_resources_optimal_formats
+  to: goal_ms3_foundation_resources/task_ms3_safe_resource_access_contract
+  dep_id: T-021
+  gate: must
+- from: goal_m1_python_package_v2/task_index_health_check_m1
+  to: goal_ms3_foundation_resources/task_ms3_safe_resource_access_contract
+  dep_id: T-045
+  gate: must
+- from: goal_m1_python_package_v2/task_resource_loader_hardening_m1
+  to: goal_ms3_foundation_resources/task_ms3_safe_resource_access_contract
+  dep_id: T-047
+  gate: must
+- from: goal_project_delivery_anchor/task_m1_vs_delivery_anchor_review
+  to: goal_ms3_foundation_resources/task_ms3_safe_resource_access_contract
+  dep_id: T-065
+  gate: must
+- from: goal_precomputed_data_exploration/task_standard_resources_optimal_formats
+  to: goal_ms3_foundation_resources/task_ms3_runtime_resource_pack
+  dep_id: T-021
+  gate: must
+- from: goal_m1_python_package_v2/task_resource_loader_hardening_m1
+  to: goal_ms3_foundation_resources/task_ms3_runtime_resource_pack
+  dep_id: T-047
+  gate: must
+- from: goal_project_delivery_anchor/task_m1_vs_delivery_anchor_review
+  to: goal_ms3_foundation_resources/task_ms3_runtime_resource_pack
+  dep_id: T-065
+  gate: must
+- from: goal_m1_python_package_v2/task_m1_python_package_milestone
+  to: goal_ms3_foundation_resources/task_ms3_runtime_resource_pack
+  dep_id: T-053
+  gate: reference
+  reason: M1 package is context only; standard resources and T-047 loader evidence
+    remain authoritative.
+- from: goal_m1_python_package_v2/task_m1_python_package_milestone
+  to: goal_ms3_foundation_resources/task_ms3_package_core_workspace
+  dep_id: T-053
+  gate: must
+- from: goal_project_delivery_anchor/task_m1_vs_delivery_anchor_review
+  to: goal_ms3_foundation_resources/task_ms3_package_core_workspace
+  dep_id: T-065
+  gate: must
+- from: goal_development_asset_digestion/task_legacy_source_digest_repair_m1
+  to: goal_ms3_foundation_resources/task_ms3_package_core_workspace
+  dep_id: T-061
+  gate: reference
+  reason: Clean legacy source digest is background context for workspace design only.
+- from: goal_project_delivery_anchor/task_evidence_routing_anchor
+  to: goal_ms3_foundation_resources/task_ms3_route_metadata_engine
+  dep_id: T-064
+  gate: must
+- from: goal_project_delivery_anchor/task_m1_vs_delivery_anchor_review
+  to: goal_ms3_foundation_resources/task_ms3_route_metadata_engine
+  dep_id: T-065
+  gate: must
+- from: goal_legacy_stress_test_asset_digestion/task_04_stress_test_development_handoff_pack
+  to: goal_ms3_foundation_resources/task_ms3_route_metadata_engine
+  dep_id: T-058
+  gate: reference
+  reason: Stress handoff informs edge-case route semantics without blocking metadata
+    implementation.
+- from: goal_project_delivery_anchor/task_llm_resolver_capability_anchor
+  to: goal_ms3_foundation_resources/task_ms3_demo_acceptance_corpus
+  dep_id: T-063
+  gate: must
+- from: goal_project_delivery_anchor/task_evidence_routing_anchor
+  to: goal_ms3_foundation_resources/task_ms3_demo_acceptance_corpus
+  dep_id: T-064
+  gate: must
+- from: goal_project_delivery_anchor/task_m1_vs_delivery_anchor_review
+  to: goal_ms3_foundation_resources/task_ms3_demo_acceptance_corpus
+  dep_id: T-065
+  gate: must
+- from: goal_legacy_stress_test_asset_digestion/task_04_stress_test_development_handoff_pack
+  to: goal_ms3_foundation_resources/task_ms3_demo_acceptance_corpus
+  dep_id: T-058
+  gate: reference
+  reason: Stress scenarios inform candidate corpus coverage only.
+- from: goal_project_delivery_anchor/task_evidence_routing_anchor
+  to: goal_ms3_foundation_resources/task_ms3_proxy_transfer_strategy_spike
+  dep_id: T-064
+  gate: must
+- from: goal_project_delivery_anchor/task_m1_vs_delivery_anchor_review
+  to: goal_ms3_foundation_resources/task_ms3_proxy_transfer_strategy_spike
+  dep_id: T-065
+  gate: must
+- from: goal_legacy_stress_test_asset_digestion/task_04_stress_test_development_handoff_pack
+  to: goal_ms3_foundation_resources/task_ms3_proxy_transfer_strategy_spike
+  dep_id: T-058
+  gate: reference
+  reason: Stress handoff is exploratory context for proxy/transfer spike.
+- from: goal_ms3_foundation_resources/task_ms3_safe_resource_access_contract
+  to: goal_ms3_core_runtime/task_ms3_resource_demo_coverage_freeze
+  dep_id: T-067
+  gate: must
+- from: goal_ms3_foundation_resources/task_ms3_runtime_resource_pack
+  to: goal_ms3_core_runtime/task_ms3_resource_demo_coverage_freeze
+  dep_id: T-068
+  gate: must
+- from: goal_ms3_foundation_resources/task_ms3_route_metadata_engine
+  to: goal_ms3_core_runtime/task_ms3_resource_demo_coverage_freeze
+  dep_id: T-070
+  gate: must
+- from: goal_ms3_foundation_resources/task_ms3_demo_acceptance_corpus
+  to: goal_ms3_core_runtime/task_ms3_resource_demo_coverage_freeze
+  dep_id: T-071
+  gate: must
+- from: goal_ms3_foundation_resources/task_ms3_proxy_transfer_strategy_spike
+  to: goal_ms3_core_runtime/task_ms3_resource_demo_coverage_freeze
+  dep_id: T-072
+  gate: may
+  reason: Successful spike output may improve final frozen cases; failure must not
+    block freeze.
+- from: goal_ms3_foundation_resources/task_ms3_runtime_resource_pack
+  to: goal_ms3_core_runtime/task_ms3_forward_query_engine
+  dep_id: T-068
+  gate: must
+- from: goal_ms3_foundation_resources/task_ms3_package_core_workspace
+  to: goal_ms3_core_runtime/task_ms3_forward_query_engine
+  dep_id: T-069
+  gate: must
+- from: goal_ms3_foundation_resources/task_ms3_route_metadata_engine
+  to: goal_ms3_core_runtime/task_ms3_forward_query_engine
+  dep_id: T-070
+  gate: must
+- from: goal_ms3_core_runtime/task_ms3_resource_demo_coverage_freeze
+  to: goal_ms3_core_runtime/task_ms3_forward_query_engine
+  dep_id: T-073
+  gate: must
+- from: goal_ms3_foundation_resources/task_ms3_proxy_transfer_strategy_spike
+  to: goal_ms3_core_runtime/task_ms3_forward_query_engine
+  dep_id: T-072
+  gate: may
+  reason: Successful spike output may improve strategy; T-074 still owns minimum proxy/transfer
+    implementation.
+- from: goal_ms3_foundation_resources/task_ms3_runtime_resource_pack
+  to: goal_ms3_core_runtime/task_ms3_reverse_query_engine
+  dep_id: T-068
+  gate: must
+- from: goal_ms3_foundation_resources/task_ms3_package_core_workspace
+  to: goal_ms3_core_runtime/task_ms3_reverse_query_engine
+  dep_id: T-069
+  gate: must
+- from: goal_ms3_foundation_resources/task_ms3_route_metadata_engine
+  to: goal_ms3_core_runtime/task_ms3_reverse_query_engine
+  dep_id: T-070
+  gate: must
+- from: goal_ms3_core_runtime/task_ms3_resource_demo_coverage_freeze
+  to: goal_ms3_core_runtime/task_ms3_reverse_query_engine
+  dep_id: T-073
+  gate: must
+- from: goal_ms3_foundation_resources/task_ms3_proxy_transfer_strategy_spike
+  to: goal_ms3_core_runtime/task_ms3_reverse_query_engine
+  dep_id: T-072
+  gate: may
+  reason: Successful spike output may improve strategy; T-075 still owns minimum proxy/transfer/ambiguous
+    implementation.
+- from: goal_ms3_foundation_resources/task_ms3_package_core_workspace
+  to: goal_ms3_core_runtime/task_ms3_resolver_llm_provider_layer
+  dep_id: T-069
+  gate: must
+- from: goal_ms3_foundation_resources/task_ms3_route_metadata_engine
+  to: goal_ms3_core_runtime/task_ms3_resolver_llm_provider_layer
+  dep_id: T-070
+  gate: must
+- from: goal_ms3_foundation_resources/task_ms3_demo_acceptance_corpus
+  to: goal_ms3_core_runtime/task_ms3_resolver_llm_provider_layer
+  dep_id: T-071
+  gate: must
+- from: goal_ms3_core_runtime/task_ms3_resource_demo_coverage_freeze
+  to: goal_ms3_core_runtime/task_ms3_resolver_llm_provider_layer
+  dep_id: T-073
+  gate: must
+- from: goal_ms3_foundation_resources/task_ms3_proxy_transfer_strategy_spike
+  to: goal_ms3_core_runtime/task_ms3_resolver_llm_provider_layer
+  dep_id: T-072
+  gate: may
+  reason: Successful spike output may improve explanation strategy; resolver/LLM route
+    remains required.
+- from: goal_ms3_core_runtime/task_ms3_resource_demo_coverage_freeze
+  to: goal_ms3_release_quality/task_ms3_user_api_cli_surface
+  dep_id: T-073
+  gate: must
+- from: goal_ms3_core_runtime/task_ms3_forward_query_engine
+  to: goal_ms3_release_quality/task_ms3_user_api_cli_surface
+  dep_id: T-074
+  gate: must
+- from: goal_ms3_core_runtime/task_ms3_reverse_query_engine
+  to: goal_ms3_release_quality/task_ms3_user_api_cli_surface
+  dep_id: T-075
+  gate: must
+- from: goal_ms3_core_runtime/task_ms3_resolver_llm_provider_layer
+  to: goal_ms3_release_quality/task_ms3_user_api_cli_surface
+  dep_id: T-076
+  gate: must
+- from: goal_ms3_foundation_resources/task_ms3_route_metadata_engine
+  to: goal_ms3_release_quality/task_ms3_user_api_cli_surface
+  dep_id: T-070
+  gate: must
+- from: goal_ms3_release_quality/task_ms3_user_api_cli_surface
+  to: goal_ms3_release_quality/task_ms3_functional_test_and_release_iteration
+  dep_id: T-077
+  gate: must
+- from: goal_ms3_core_runtime/task_ms3_resource_demo_coverage_freeze
+  to: goal_ms3_release_quality/task_ms3_functional_test_and_release_iteration
+  dep_id: T-073
+  gate: must
+- from: goal_ms3_foundation_resources/task_ms3_proxy_transfer_strategy_spike
+  to: goal_ms3_release_quality/task_ms3_functional_test_and_release_iteration
+  dep_id: T-072
+  gate: may
+  reason: If spike succeeded, include those cases in functional tests; otherwise test
+    minimum mainline proxy/transfer behavior.
+- from: goal_ms3_foundation_resources/task_ms3_no_downgrade_acceptance_contract
+  to: goal_ms3_release_quality/task_ms3_no_downgrade_quality_gate
+  dep_id: T-066
+  gate: must
+- from: goal_ms3_core_runtime/task_ms3_resource_demo_coverage_freeze
+  to: goal_ms3_release_quality/task_ms3_no_downgrade_quality_gate
+  dep_id: T-073
+  gate: must
+- from: goal_ms3_release_quality/task_ms3_functional_test_and_release_iteration
+  to: goal_ms3_release_quality/task_ms3_no_downgrade_quality_gate
+  dep_id: T-078
+  gate: must
+- from: goal_project_delivery_anchor/task_m1_vs_delivery_anchor_review
+  to: goal_ms3_release_quality/task_ms3_no_downgrade_quality_gate
+  dep_id: T-065
   gate: must
 labels:
 - id: label_mqpofuno
@@ -1256,30 +1366,24 @@ labels:
   x: 261
   width: 142
   row: 1
-- id: label_mqpseofv
-  phase: development
-  text: 里程碑开发
-  x: 550
-  width: 157
-  row: 0
 - id: label_mqqdbw2w
   phase: development
   text: 代码包交付
-  x: 807
-  width: 150
-  row: 1
+  x: 850
+  width: 140
+  row: 0
 - id: label_mqqdcacn
   phase: development
   text: 压力测试
-  x: 393
+  x: 643
   width: 140
   row: 0
 - id: label_mqqdgdcd
   phase: development
   text: 可视化功能拓展
-  x: 949
-  width: 151
-  row: 0
+  x: 960
+  width: 140
+  row: 1
 - id: label_mqqdwcpa
   phase: translation
   text: 交付与demo
@@ -1309,4 +1413,22 @@ labels:
   text: 项目锚点
   x: 571
   width: 182
+  row: 1
+- id: label_mqv0cpqj
+  phase: development
+  text: ms1
+  x: 413
+  width: 140
+  row: 0
+- id: label_mqv0djqo
+  phase: development
+  text: ms3
+  x: 535
+  width: 140
+  row: 1
+- id: label_mqv0dz5a
+  phase: development
+  text: ms4
+  x: 746
+  width: 140
   row: 1

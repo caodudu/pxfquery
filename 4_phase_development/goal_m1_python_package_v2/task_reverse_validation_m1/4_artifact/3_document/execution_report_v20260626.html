@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><title>执行报告 — T-051 reverse_validation_m1</title>
+<style>
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; max-width: 900px; margin: 2em auto; line-height: 1.7; color: #222; padding: 0 1em; }
+h1 { color: #1a1a2e; border-bottom: 2px solid #e94560; padding-bottom: 0.3em; }
+h2 { color: #16213e; margin-top: 2em; }
+.section { margin: 1.5em 0; }
+.verdict { background: #d4edda; border-left: 5px solid #28a745; padding: 1em; margin: 1em 0; }
+.meta { color: #666; font-size: 0.9em; }
+table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+th { background-color: #f5f5f5; }
+</style></head>
+<body>
+
+<h1>执行报告：T-051 reverse_validation_m1</h1>
+<p class="meta">生成日期：2026-06-26 | 任务路径：goal_m1_python_package_v2/task_reverse_validation_m1</p>
+
+<div class="section">
+<h2>1. 任务意图</h2>
+<p>T-051 是一道独立验证任务，目标是对 M1 里程碑的反向查询实现（reverse query）进行独立的功能正确性验证。该实现由前驱任务 T-060（针对 T-049 的修复替换）交付，但 T-060 在交付验收中被标记为 <code>red_return</code>，原因在于其注册的包代码工件是一个指向 T-044（task_package_skeleton_m1）的符号链接，而非自包含的任务本地代码。本任务不负责修复 T-060 的结构缺陷，而是以该符号链接指向的代码作为被测实现（implementation under test），严格按照 T-042 合同中的反向查询演示用例重新运行，记录通过/失败的客观证据，并输出完整的资产追溯信息。本任务的核心原则是：不通过放宽验收标准来掩盖不稳定性，失败应当产生可操作的修复依据。</p>
+</div>
+
+<div class="section">
+<h2>2. 输入资产与依据</h2>
+<p>本任务共引用六项输入资产，全部来自前驱任务 T-060 的交付物。A-001 为被测包代码，路径 <code>4_artifact/1_package/pxfquery</code>，实际解析后指向 T-044 的包骨架；这一符号链接来源已在 T-060 的 delivery_qa 中记录，本任务将其作为追溯性观察而非阻断性缺陷。A-002 和 A-003 分别为修复夹具（reverse_repair_fixture_m1_1，xpr 矩阵 15×9）和对应的加载清单（reverse_repair_manifest_m1_1.yaml），用于通过 T-046 的 M1FixtureLoader API 加载测试数据。A-004、A-005 和 A-006 为参考输出：正向演示 JSON（reverse_demo_evidence）、无命中/错误 JSON（reverse_error_no_hit_evidence）和排名证据 CSV（reverse_ranking_evidence），用于对比验证的可重复性。所有输入资产均位于 <code>4_artifact/2_persist/</code> 与 <code>4_artifact/5_table/</code> 下，均为只读引用，本任务不进行任何修改。</p>
+</div>
+
+<div class="section">
+<h2>3. 实际执行过程</h2>
+<p>验证共分为八个步骤，全部通过自动化脚本 <code>3_execution/run_validation.py</code> 驱动，运行环境为 pxfquery conda 环境。步骤一检查包代码的符号链接可解析性，确认其指向 T-044 的 pxfquery 包目录，并读取 package version 为 0.1.0。步骤二通过 M1FixtureLoader 加载修复夹具与清单，确认 xpr 矩阵形状为 (15, 9)，包含 HALLMARK_MYC_TARGETS_V1 等 9 个变量列，以及 A549 等 5 个细胞系。步骤三为正向演示：执行 <code>reverse_query(activate=HALLMARK_APOPTOSIS, suppress=HALLMARK_MYC_TARGETS_V1, cell=A549, top_n=3)</code>，记录退出码 0、found=True、候选数量 3，并将输出与参考 JSON（A-004）逐字段对比。步骤四依次测试五种无命中/错误情况：NoMatrixLoaded、ProgramNotFound、ContextNotFound、LowConfidenceResult 和空目标无命中，每种情况均捕获了预期错误类型与上下文信息。步骤五将前三名排名结果与参考 CSV（A-006）进行排序一致性对比，候选 sig_id、相似度、化合物名和细胞系均完全匹配。步骤六执行 CLI 接口的 info 与 reverse 命令，确认退出码 0、输出格式正确。步骤七生成结构化 JSON 验证报告。步骤八将交付物注册到 <code>4_artifact/registry.yaml</code>。</p>
+<p>完整执行日志、正向演示原始输出、错误情况输出均保存在 <code>3_execution/</code> 目录下，时间戳为 2026-06-24 05:58。</p>
+</div>
+
+<div class="section">
+<h2>4. 关键判断与证据</h2>
+<p>验证报告共包含 42 项独立检查，全部通过（42/42），整体判定为 <strong>PASS</strong>。关键判断包括：正向演示的 top-3 候选的 sig_id、相似度、化合物名和细胞系与参考完全一致（候选一：T060_XPR_A549_SYN_001，相似度 1.0，THTPA，A549；候选二：T060_XPR_A549_SYN_002，相似度 0.999959，SCD，A549；候选三：T060_XPR_A549_SYN_005，相似度 0.999541，TP53，A549）。排名排序键（相似度降序、cmap_name 升序、cell_iname 升序、sig_id 升序）与参考一致。排名/评分方法为余弦相似度，目标向量构造方式为激活程序 +1、抑制程序 -1。五种错误情况的错误类型与上下文信息均符合预期。符号链接追溯信息已如实记录：包代码解析路径指向 T-044，而非自包含的任务本地副本，这一观察属于已知结构性问题，不影响功能正确性。</p>
+</div>
+
+<div class="section">
+<h2>5. 交付物清单</h2>
+<table>
+<tr><th>ID</th><th>名称</th><th>路径</th><th>类型</th></tr>
+<tr><td>D-001</td><td>reverse_validation_report</td><td>4_artifact/2_persist/reverse_validation_report_v20260624_055812.json</td><td>JSON 验证报告</td></tr>
+<tr><td>D-002</td><td>reverse_validation_comparison_csv</td><td>4_artifact/5_table/reverse_validation_comparison_v20260624_055812.csv</td><td>CSV 对比表</td></tr>
+<tr><td>D-003</td><td>reverse_validation_html_report</td><td>4_artifact/3_document/validation_report_v20260624_055812.html</td><td>HTML 摘要报告</td></tr>
+<tr><td>D-004</td><td>validation_smoke_log</td><td>3_execution/validation_smoke_log_v20260624_055812.json</td><td>Smoke 日志</td></tr>
+<tr><td>D-005</td><td>step3_positive_demo_output</td><td>3_execution/step3_positive_demo_output.json</td><td>正向演示原始输出</td></tr>
+<tr><td>D-006</td><td>step4_nohit_output</td><td>3_execution/step4_nohit_output.json</td><td>错误情况输出</td></tr>
+<tr><td>D-007</td><td>validation_script</td><td>3_execution/run_validation.py</td><td>自动化验证脚本</td></tr>
+</table>
+</div>
+
+<div class="section">
+<h2>6. 边界与未完成事项</h2>
+<p>本次验证未对完整的 10 名参考候选结果进行全量对比，仅验证了 top-3（与协议参数 top_n=3 一致），其余 7 名候选的排序正确性未纳入检查范围。验证所用的夹具是合成数据（15 行 × 9 列的 xpr 矩阵），而非真实生物实验数据，因此验证结论仅限于代码功能正确性，不代表生物学准确性。包代码的结构性缺陷——即符号链接指向 T-044 而非自包含代码——已被记录为追溯性观察，未在本任务中修复，因为这属于 T-060 的交付范围。本任务不读取任何项目级原始资产（2_project_asset/），也未访问 T-042 至 T-060 的前驱任务目录。所有操作均严格限定在当前任务结构内。</p>
+</div>
+
+</body></html>

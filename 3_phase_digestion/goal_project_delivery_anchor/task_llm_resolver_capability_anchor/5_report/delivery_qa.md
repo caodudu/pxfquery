@@ -21,6 +21,7 @@ yellow_repair
 - Created `5_report/handoff_ai_use.md` in the required downstream AI handoff structure.
 - Rewrote `5_report/delivery_qa.md` into the required delivery QA structure.
 - Added `stars` ratings to registered artifacts in `4_artifact/registry.yaml` to clarify downstream importance.
+- Rewrote `4_artifact/3_document/execution_report_v20260626.html` and `4_artifact/3_document/result_report_v20260626.html` as substantive human-readable project briefings in Chinese, each with 900+ visible characters and natural-language paragraphs per the prompt specification. This repair addresses report readability only; no core deliverables, registry paths, code, data, or analysis results were modified.
 
 ## Remaining Issues
 

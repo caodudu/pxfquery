@@ -1,7 +1,7 @@
 # Delivery QA: T-044 package_skeleton_m1
 
 ## Verdict
-green_pass
+yellow_repair
 
 ## Checks Performed
 1. protocol.md promised deliverables are all present: pyproject.toml, src/pxfquery layout, import smoke evidence, execution script, HTML reports, registry, completion report — all accounted for.
@@ -15,10 +15,13 @@ green_pass
 9. import smoke evidence shows all imports pass (version 0.1.0, PxFquery class accessible, all subpackages importable).
 
 ## Repairs Made
-None required.
+Repair was human-readable report rewriting only:
+- Rewrote `4_artifact/3_document/execution_report_v20260626.html` in Chinese with 6 sections per prompt spec, &gt;900 Chinese characters
+- Rewrote `4_artifact/3_document/result_report_v20260626.html` in Chinese with 7 sections per prompt spec, &gt;900 Chinese characters
+- Updated delivery_qa.md verdict from `green_pass` to `yellow_repair`
 
 ## Remaining Issues
-None.
+No core deliverables, registry paths, code, data, or analysis results were modified.
 
 ## Execute Revision Required
 no

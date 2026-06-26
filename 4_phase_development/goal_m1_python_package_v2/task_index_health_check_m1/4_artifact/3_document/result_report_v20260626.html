@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>结果报告 — T-045 Index Health Check M1 (2026-06-26)</title>
+<style>
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 960px; margin: 40px auto; padding: 0 20px; line-height: 1.8; color: #1a1a1a; }
+h1 { border-bottom: 2px solid #333; padding-bottom: 8px; }
+h2 { margin-top: 32px; border-bottom: 1px solid #ddd; padding-bottom: 4px; }
+table { border-collapse: collapse; width: 100%; margin: 16px 0; }
+th, td { border: 1px solid #ccc; padding: 8px 12px; text-align: left; }
+th { background: #f5f5f5; }
+.pass { color: #1a7f37; font-weight: bold; }
+.warn { color: #9a6700; font-weight: bold; }
+.block { color: #cf222e; font-weight: bold; }
+.code { font-family: 'SF Mono', 'Cascadia Code', monospace; background: #f0f0f0; padding: 2px 6px; border-radius: 3px; font-size: 0.9em; }
+</style>
+</head>
+<body>
+<h1>结果报告 — T-045 Index Health Check M1</h1>
+<p><strong>生成时间：</strong> 2026-06-26<br>
+<strong>任务标识：</strong> T-045 index_health_check_m1</p>
+
+<h2>一、一句话结论</h2>
+<p>所有 10 个 M1 相关查询索引均为有效 JSON，数据完整，无阻塞项；4 个非阻塞性警告在 T-047 加载器硬化阶段可解决；真实索引已可用于 M1 演示，无需仅依赖 fixture 路径。</p>
+
+<h2>二、项目背景</h2>
+<p>PxFquery 是一个基于 LINCS 的扰动-功能分析工作流，核心能力包括 forward query（从扰动+生物上下文到功能响应）和 reverse query（从功能靶标+上下文到候选扰动）。这些查询操作的基础是 T-021 标准资源集提供的预构建索引：细胞系名录、药物别名映射、基因注释、功能术语集，以及用于近似匹配的邻居图。在 M1 里程碑中，这些索引将首次被加载器（T-047）正式接入查询管道。本任务在加载器硬化之前对索引做全面健康检查，确保后续工作不会因为底层数据问题而返工。</p>
+
+<h2>三、核心结果</h2>
+<p>四枚核心索引全部通过 JSON 解析。细胞系索引包含 240 个名称，药物索引包含 5958 条别名→BRD 映射（98% 以上值为 BRD 前缀），基因索引包含 78061 条基因记录（字段为 symbol、gene_type、in_matrix），功能索引包含 91 个术语（50 个 Hallmark + 41 个 3CA MPS）。六枚可选索引中，药物邻居图（5312 条目）和两个基因邻居图（33791 和 30319 条目）均具有统一的 50 边基数，适合代理匹配；细胞系邻居图含 19 个谱系组。四条警告集中出现在：function_index 的非标准 dict 结构（加载器须先解包 meta）、同索引缺少 category 字段、gene_index 字段名非规范（symbol 而非 gene_symbol，无 ensembl_id）、cellline_tree 为扁平结构而非层级树。T-013 历史演示实体（EGFR、A549、HALLMARK_APOPTOSIS、HALLMARK_MYC_TARGETS_V1）全部在各索引中存在，未发现实体级覆盖缺口。</p>
+
+<h2>四、项目价值</h2>
+<p>本任务的价值在于提供了 M1 查询管道的第一道数据质量门禁。它用量化数据回答了"真实索引能不能用"这一关键问题——答案是"能用，但加载器需要做适配"。如果没有这次审计，T-047 可能在编码过程中才意外发现 function_index 不是扁平列表、gene_index 字段名不匹配，导致返工或运行时错误。另外，<span class="code">index_health_summary.json</span> 可以直接作为 T-047 的加载器配置文件输入，减少人工解读成本。<span class="code">gap_notes.md</span> 则为后续决策提供了清晰的严重性分级和解决路径建议，帮助项目负责人区分哪些缺口需要立即修复、哪些可以推迟。</p>
+
+<h2>五、交付物导读</h2>
+<table>
+<tr><th>交付物</th><th>用途</th><th>谁该读</th></tr>
+<tr><td>index_health_summary.json</td><td>逐索引的模式状态、键完整性分数、大小、缺口列表、补丁建议</td><td>T-047 开发人员（程序化输入）</td></tr>
+<tr><td>index_health_report.md</td><td>人类可读的健康总览，含通过/警告/阻塞判定和 T-047 交接建议</td><td>T-047 开发人员、项目负责人</td></tr>
+<tr><td>gap_notes.md</td><td>每个缺口的叙事描述、严重性等级、影响的演示场景、建议的解决路径</td><td>项目负责人（决策缺口修复优先级）</td></tr>
+</table>
+
+<h2>六、后续使用方式</h2>
+<p>T-047（resource_loader_hardening_m1）是本任务的主要消费者。开发人员应当将 <span class="code">index_health_summary.json</span> 用作加载器配置的依据：function_index 需要在加载器中实现 meta 解包逻辑；gene_index 的字段名需在查询代码中映射为内部规范形式；cellline_tree 的扁平结构如果无法满足代理扩展需求，则应在加载器中增加 fallback 机制。T-042 执行后，应回到本任务的覆盖率分析，验证正式演示用例是否仍被全部覆盖。本报告本身（及 gap_notes.md）也可作为 M1 里程碑检查点的参考文档。</p>
+
+<h2>七、边界与风险</h2>
+<p>本任务不修改任何索引文件，所有建议均为非强制性。主要风险是 T-042 尚未产生正式演示用例，当前覆盖率检查基于 T-013 历史证据，可能会遗漏某些新引入实体类型的覆盖缺口。另外，cellline_tree 的层级化缺失意味着基于组织的代理扩展不可用，如果 M1 正向查询需要"同一谱系的其他细胞系"这种近似匹配，则需要额外处理。function_index 中 category 字段的缺失是一个可用性问题而非数据完整性问题，代码中需要从 source 字段推导类别（hallmark 或 3ca_mps），多一步逻辑但不会报错。</p>
+</body>
+</html>

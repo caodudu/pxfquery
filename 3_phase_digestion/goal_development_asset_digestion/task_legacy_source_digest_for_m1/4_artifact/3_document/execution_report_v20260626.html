@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>执行报告 — T-041 legacy_source_digest_for_m1</title>
+<style>
+body { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Noto Sans CJK SC", sans-serif; max-width: 800px; margin: 2em auto; padding: 0 1em; line-height: 1.8; color: #222; }
+h1 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 0.3em; }
+h2 { color: #34495e; margin-top: 2em; border-left: 4px solid #3498db; padding-left: 0.6em; }
+p { margin: 1em 0; text-indent: 2em; }
+p.no-indent { text-indent: 0; }
+table { border-collapse: collapse; width: 100%; margin: 1em 0; font-size: 0.95em; }
+th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+th { background-color: #f5f6fa; }
+</style>
+</head>
+<body>
+<h1>执行报告 — T-041 遗留源码消化任务</h1>
+<p>报告日期：2026-06-26 | 任务路径：task_legacy_source_digest_for_m1</p>
+
+<h2>一、任务意图</h2>
+<p>PxFquery 项目在启动 M1 Python 包里程碑时，面临一个关键前置问题：项目中存在一批来自旧 Windows 时代且经过迁移整理的遗留包源码（位于 <code>legacy_flat_asset_library_v20260614/code/pxfquery_package/</code>），这些源码包含 DataLoader、ForwardQuery、ReverseQuery、索引层、LLM 客户端、可视化工具等多个模块，但它们与当前项目结构完全脱节。项目团队需要一个受控的、基于权威资产映射（A-001/T-007）的源码消化过程，从中提取出可供后续 M1 开发任务直接引用的模块清单和安全边界，而不是让每个开发任务各自去猜测哪些代码可以用、哪些应该避开。</p>
+<p>本任务的核心产出不是新代码，而是一份结构化知识资产：一份源码消化文档、一份模块复用矩阵、以及一份机器可读的引用边界 YAML——这三者共同锁定后续 T046（包脚手架）、T048（数据加载与正向查询）、T049（反向查询）和 T052（索引层）四个开发任务的合法引用范围。</p>
+
+<h2>二、输入资产与依据</h2>
+<p>本次消化严格限定在五个已注册的资产范围内，没有扫描 <code>2_project_asset/</code> 的全局目录树。权威资产 A-001（T-007 开发源映射）确认了遗留包源码的唯一路径 A-003。A-002（T-007 开发状态报告）提供了包组件状态的上下文参考。A-004（模块资产状态矩阵）和 A-005（差距与风险列表）分别用于交叉验证模块状态和识别已知危险组件。T024-T040 的输出在本任务中不作为权威依据使用，确保信息来源集中在 T-007 及其关联资产上。</p>
+
+<h2>三、实际执行过程</h2>
+<p>执行的第一步是验证 A-003 的符号链接解析正确，确认它指向 <code>legacy_flat_asset_library_v20260614/code/pxfquery_package/</code> 目录。随后对包目录进行了完整的顶层扫描，共发现 15 个顶层条目，包括 <code>core.py</code>、<code>main.py</code>、<code>data/</code>、<code>query/</code>、<code>index/</code>、<code>llm/</code>、<code>viz/</code>、<code>utils.py</code>、<code>logging_utils.py</code>、<code>pyproject.toml</code>、<code>README.md</code>、<code>prompt/</code> 和 <code>__init__.py</code>。在此基础上，逐层读取了 20 余个子模块的源文件，记录了每个模块的导入依赖、对外暴露的类和函数、以及内部使用的路径和资源引用模式。</p>
+<p>在每个源文件的阅读过程中，执行者做出了两类关键判断：第一，该模块是否包含可复用的逻辑结构（API 设计、查询算法、索引封装、工具函数），第二，该模块是否包含在当前项目中不可使用的遗留耦合（硬编码路径、pass 桩代码、已废弃的外部依赖）。这一判断过程没有依赖自动化分析工具，而是通过人工阅读和与 A-005 风险列表的交叉比对完成。</p>
+<p>最终发现的可复用模块包括 DataLoader、ForwardQuery、ReverseQuery、四个索引类（CellLineIndex、DrugIndex、GeneIndex、FunctionIndex）、工具函数和日志配置模块。明确禁止使用的模块包括 <code>main.py</code>（全部为 pass 空实现，导入已过时的栈）、<code>prompt/check_link.py</code>（功能已被 <code>LLMClient.health_check</code> 取代）和 <code>README.md</code>（仅包含旧的 Windows 路径指引）。Resolver 模块被列为「有风险参考」，其 L1-L4 分层代理概念值得保存，但具体的硬编码路径和 LLM 耦合实现需要重写。</p>
+
+<h2>四、关键判断与证据</h2>
+<p>本任务最重要的发现是一个缺失的运行期资产：<code>function_index.json</code>。该文件被 <code>index/function_index.py</code> 在其 <code>load()</code> 方法中引用，预期路径为 <code>data/query_indexes/function_index.json</code>，但迁移后的包源中该目录下不存在此文件。这一缺失意味着 T052 索引层开发任务必须在开发前使用遗留构建脚本 M-0373_build_function_index.py 重建此索引文件，否则 FunctionIndex 类无法通过初始化验证。此问题在交付物中被记录为 GAP-001。</p>
+<p>第二项关键判断涉及硬编码路径。在 <code>resolver.py</code>、<code>core.py</code> 和 <code>logging_utils.py</code> 中，残留了指向旧工作目录结构的硬编码字符串（<code>output/store/query_index</code>、<code>report/04_management/logs</code>），这些路径在 macOS 下的当前项目结构中完全不可用，且不应直接复制到 M1 代码中。此问题被记录为 GAP-002。</p>
+<p>第三项判断是 LLM 模块的处理策略。<code>llm/client.py</code> 和 <code>llm/prompts.py</code> 依赖外部网络和 API 密钥，供应商锁定于 MiniMax，且 <code>health_check</code> 方法在测试中返回 6/9 的可用率。这些模块在 M1 范围内不应作为核心功能引入，但可以作为可选功能在后续里程碑（M2 解析器层）中参考。</p>
+
+<h2>五、交付物清单</h2>
+<p>本任务共产生 7 项交付物，全部注册在 <code>4_artifact/registry.yaml</code> 中：<code>legacy_source_digest_m1.md</code>（源码消化文档，A-041-001）、<code>legacy_module_reuse_matrix_m1.csv</code>（模块复用矩阵，A-041-002）、<code>legacy_reference_boundaries_m1.yaml</code>（引用边界 YAML，A-041-003）、<code>execution_report_v20260626.html</code>（执行报告，A-041-004）、<code>result_report_v20260626.html</code>（结果报告，A-041-005），以及 <code>registry.yaml</code> 和 <code>5_report/completion.md</code>。所有交付物都位于 <code>4_artifact/</code> 或 <code>5_report/</code> 目录内，没有修改任何遗留源码或已完成任务的产出。</p>
+
+<h2>六、边界与未完成事项</h2>
+<p>本次消化的扫描范围明确限制在 A-003 指向的单一目录。如果项目有其他有用的遗留源码路径（例如 <code>8_functional_query</code> 目录下的其他包），本任务没有扫描它们，仅在风险记录中作为未来消化需求提及。M1 的实现代码没有被编写——T046、T048、T049、T052 的开发应在本任务的引用边界指导下独立进行。FunctionIndex 重建所需的构建脚本位于遗留库中，本任务未调用或修改它，仅做了提醒。</p>
+
+<p><em>— 执行报告完毕 —</em></p>
+</body>
+</html>
