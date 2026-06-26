@@ -1391,6 +1391,22 @@ edges:
   to: goal_m6_ms_anchors_and_stress_assets/task_ms4_stress_source_inventory
   dep_id: T-058
   gate: must
+- from: goal_magazine_research/task_genes_bioinformatics_deliverable_catalog
+  to: goal_m6_ms_anchors_and_stress_assets/task_ms5_large_stress_and_case_anchor
+  dep_id: T-012
+  gate: must
+- from: goal_project_delivery_anchor/task_algorithm_package_delivery_anchor
+  to: goal_m6_ms_anchors_and_stress_assets/task_ms5_large_stress_and_case_anchor
+  dep_id: T-062
+  gate: must
+- from: goal_project_delivery_anchor/task_llm_resolver_capability_anchor
+  to: goal_m6_ms_anchors_and_stress_assets/task_ms5_large_stress_and_case_anchor
+  dep_id: T-063
+  gate: must
+- from: goal_project_delivery_anchor/task_evidence_routing_anchor
+  to: goal_m6_ms_anchors_and_stress_assets/task_ms5_large_stress_and_case_anchor
+  dep_id: T-064
+  gate: must
 labels:
 - id: label_mqpofuno
   phase: digestion
