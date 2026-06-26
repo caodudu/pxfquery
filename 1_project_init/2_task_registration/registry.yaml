@@ -1510,10 +1510,12 @@ tasks:
   phase: development
   goal: goal_ms3_ms4_quality_and_repair
   path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms3_entry_to_ms4_comparison_review
-  status: active
+  status: done
   executor: hybrid
   created: '2026-06-27'
   completed: null
+  notes: M6 supervisor repair completed T-090 after repeated config session interruptions.
+    Outputs are task-local and record conditional_go, not full MS3 acceptance.
 - id: T-091
   name: ms6_package_capability_narrative
   phase: translation

@@ -1104,6 +1104,14 @@ excluded_from_git:
   size_mb: 0.0
 - path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms5_large_nl_corpus_expansion/5_report/cli_sessions/check/20260627_064515_opencode_cli_fc10d0835296/stdout.log
   size_mb: 0.04
+- path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms5_large_nl_corpus_expansion/5_report/cli_sessions/check/20260627_065633_opencode_cli_635ce94bcbbd/stderr.log
+  size_mb: 0.0
+- path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms5_large_nl_corpus_expansion/5_report/cli_sessions/check/20260627_065633_opencode_cli_635ce94bcbbd/stdout.log
+  size_mb: 0.02
+- path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms5_large_nl_corpus_expansion/5_report/cli_sessions/check/20260627_065834_opencode_cli_66fd35703803/stderr.log
+  size_mb: 0.0
+- path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms5_large_nl_corpus_expansion/5_report/cli_sessions/check/20260627_065834_opencode_cli_66fd35703803/stdout.log
+  size_mb: 0.06
 - path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms5_large_nl_corpus_expansion/5_report/cli_sessions/config/20260627_063552_opencode_cli_cdb2f8d5dd39/stderr.log
   size_mb: 0.0
 - path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms5_large_nl_corpus_expansion/5_report/cli_sessions/config/20260627_063552_opencode_cli_cdb2f8d5dd39/stdout.log
@@ -2844,7 +2852,7 @@ excluded_from_git:
 - path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms3_entry_to_ms4_comparison_review/5_report/cli_sessions/config/20260627_065432_opencode_cli_28eba6ead77a/stderr.log
   size_mb: 0.0
 - path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms3_entry_to_ms4_comparison_review/5_report/cli_sessions/config/20260627_065432_opencode_cli_28eba6ead77a/stdout.log
-  size_mb: 0.01
+  size_mb: 0.02
 - path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms3_quality_digest_and_asset_map/5_report/cli_sessions/check/20260627_054512_opencode_cli_9ac352596245/stderr.log
   size_mb: 0.0
 - path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms3_quality_digest_and_asset_map/5_report/cli_sessions/check/20260627_054512_opencode_cli_9ac352596245/stdout.log
@@ -3179,18 +3187,24 @@ excluded_from_git:
   size_mb: 0.0
 - path: 4_phase_development/goal_resource_index_packs_v1/task_resource_manifest_v1/5_report/cli_sessions/execute/20260623_065804_opencode_cli_1cdb8899fe5e/stdout.log
   size_mb: 0.19
+- path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_algorithm_method_story/1_asset/ms6_evidence_claim_mapping.csv
+  size_mb: 0.0
 - path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_algorithm_method_story/5_report/cli_sessions/config/20260627_065539_opencode_cli_9e8a893c7eab/stderr.log
   size_mb: 0.0
 - path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_algorithm_method_story/5_report/cli_sessions/config/20260627_065539_opencode_cli_9e8a893c7eab/stdout.log
+  size_mb: 0.04
+- path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_internal_data_figure2_assets/1_asset/ms6_evidence_claim_mapping.csv
   size_mb: 0.0
 - path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_internal_data_figure2_assets/5_report/cli_sessions/config/20260627_065523_opencode_cli_395447bf406a/stderr.log
   size_mb: 0.0
 - path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_internal_data_figure2_assets/5_report/cli_sessions/config/20260627_065523_opencode_cli_395447bf406a/stdout.log
+  size_mb: 0.1
+- path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_package_capability_narrative/1_asset/ms6_evidence_claim_mapping.csv
   size_mb: 0.0
 - path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_package_capability_narrative/5_report/cli_sessions/config/20260627_065542_opencode_cli_09de46ca0f54/stderr.log
   size_mb: 0.0
 - path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_package_capability_narrative/5_report/cli_sessions/config/20260627_065542_opencode_cli_09de46ca0f54/stdout.log
-  size_mb: 0.0
+  size_mb: 0.04
 - path: 5_phase_translation/goal_pending_g010/task_pending_t019/5_report/cli_sessions/check/20260623_034938_opencode_cli_859768c74307/stderr.log
   size_mb: 0.0
 - path: 5_phase_translation/goal_pending_g010/task_pending_t019/5_report/cli_sessions/check/20260623_034938_opencode_cli_859768c74307/stdout.log
