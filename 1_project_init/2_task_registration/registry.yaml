@@ -1417,19 +1417,22 @@ tasks:
   phase: digestion
   goal: goal_m6_ms_anchors_and_stress_assets
   path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms3_quality_anchor
-  status: active
+  status: done
   executor: hybrid
   created: '2026-06-27'
-  completed: null
+  completed: '2026-06-27'
 - id: T-081
   name: ms4_usable_package_anchor
   phase: digestion
   goal: goal_m6_ms_anchors_and_stress_assets
   path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms4_usable_package_anchor
-  status: active
+  status: done
   executor: hybrid
   created: '2026-06-27'
   completed: null
+  notes: 'M6 delegated acceptance: delivery QA PASS after yellow repair; deliver scope
+    false positive reviewed as no_violation and quarantine restored. Accepted to release
+    MS4 downstream dependencies.'
 - id: T-082
   name: ms4_stress_source_inventory
   phase: digestion
