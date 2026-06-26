@@ -1347,6 +1347,14 @@ edges:
   to: goal_ms3_release_quality/task_ms3_no_downgrade_quality_gate
   dep_id: T-065
   gate: must
+- from: goal_ms3_foundation_resources/task_ms3_no_downgrade_acceptance_contract
+  to: goal_m6_ms_anchors_and_stress_assets/task_ms3_quality_anchor
+  dep_id: T-066
+  gate: must
+- from: goal_ms3_core_runtime/task_ms3_resource_demo_coverage_freeze
+  to: goal_m6_ms_anchors_and_stress_assets/task_ms3_quality_anchor
+  dep_id: T-073
+  gate: must
 labels:
 - id: label_mqpofuno
   phase: digestion
