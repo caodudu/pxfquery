@@ -1438,10 +1438,10 @@ tasks:
   phase: digestion
   goal: goal_m6_ms_anchors_and_stress_assets
   path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms4_stress_source_inventory
-  status: active
+  status: done
   executor: hybrid
   created: '2026-06-27'
-  completed: null
+  completed: '2026-06-27'
 - id: T-083
   name: ms5_large_stress_and_case_anchor
   phase: digestion
