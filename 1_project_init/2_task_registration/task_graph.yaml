@@ -1431,6 +1431,10 @@ edges:
   to: goal_m6_ms_anchors_and_stress_assets/task_ms4_ground_truth_scenario_builder
   dep_id: T-082
   gate: must
+- from: goal_m6_ms_anchors_and_stress_assets/task_ms4_usable_package_anchor
+  to: goal_m6_ms_anchors_and_stress_assets/task_ms4_forward_nl_stress_set
+  dep_id: T-081
+  gate: must
 labels:
 - id: label_mqpofuno
   phase: digestion
