@@ -1457,3 +1457,12 @@ tasks:
   executor: hybrid
   created: '2026-06-27'
   completed: null
+- id: T-085
+  name: ms4_ground_truth_scenario_builder
+  phase: digestion
+  goal: goal_m6_ms_anchors_and_stress_assets
+  path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms4_ground_truth_scenario_builder
+  status: pending
+  executor: hybrid
+  created: '2026-06-27'
+  completed: null
