@@ -3,8 +3,8 @@ from pxfquery import PxFQuery
 
 
 def test_version_is_public():
-    assert pxfquery.__version__ == "0.2.0"
-    assert PxFQuery().version == "0.2.0"
+    assert pxfquery.__version__ == "0.2.1"
+    assert PxFQuery().version == "0.2.1"
 
 
 def test_only_class_is_exported_at_top_level():

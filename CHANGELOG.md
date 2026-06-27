@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.1 - 2026-06-27
+
+- Added GitHub-previewable demo notebooks for four biomedical use scenarios: drug forward, drug reverse, genetic forward, and genetic reverse.
+- Added `demo/README.md` as the current human observation surface for MS8 package behavior.
+- Added lightweight test coverage to keep the demo notebooks valid and scenario-complete.
+- Kept the resource-pack-backed query kernel limitation explicit while showing the intended `PxFQuery().ask(...)` output shape.
+
 ## 0.2.0 - 2026-06-27
 
 - Refactored the public package surface around the MS8 input-kernel-output product model.

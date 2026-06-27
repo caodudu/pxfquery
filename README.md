@@ -50,6 +50,17 @@ structured = answer.structured_result
 diagnostics = answer.diagnostics
 ```
 
+## Demo Notebooks
+
+The `demo/` folder is the current GitHub-facing observation surface for MS8 package behavior:
+
+- `demo/01_drug_forward.ipynb`: drug perturbation -> function response
+- `demo/02_drug_reverse.ipynb`: desired function -> ranked drugs
+- `demo/03_genetic_forward.ipynb`: genetic perturbation -> function response
+- `demo/04_genetic_reverse.ipynb`: desired function -> ranked genetic perturbations
+
+These notebooks are designed to evolve into the paper application scenes for later figures.
+
 ## Resource Pack
 
 PxFquery uses a local resource pack containing perturbation matrices, indexes, and metadata. Normal users should think about this as one PxFquery resource pack, not as individual matrix/index files.
@@ -71,7 +82,7 @@ pxf = PxFQuery()
 pxf.resources.download()
 ```
 
-The download/cache implementation is not active yet in `0.2.0`; `resources.download()` reports that official resource-pack download is planned and asks users to provide a local pack for now.
+The download/cache implementation is not active yet in `0.2.1`; `resources.download()` reports that official resource-pack download is planned and asks users to provide a local pack for now.
 
 For compatibility, the older registration API remains available:
 
@@ -97,7 +108,7 @@ Internal route status, JSON payloads, trace events, and matrix filenames are kep
 
 ## Current Status
 
-Version `0.2.0` introduces the layered product skeleton:
+Version `0.2.1` provides the layered product skeleton plus GitHub-previewable demo notebooks:
 
 - `PxFQuery.ask(...)` returns a human-readable `PxFQueryAnswer`.
 - `PxFQuery.query(...)` keeps the structured dictionary interface for tests and integrations.
@@ -115,7 +126,7 @@ python -m pytest -q tests
 Current source test target:
 
 ```text
-61 passed
+62 passed
 ```
 
 ## Version
@@ -128,5 +139,5 @@ print(pxfquery.__version__)
 Current version:
 
 ```text
-0.2.0
+0.2.1
 ```
