@@ -64,7 +64,7 @@ nodes:
   locked: false
   tasks_collapsed: false
 - id: goal:goal_ms3_foundation_resources
-  x: 557
+  x: 560
   color: '#ec4899'
   locked: false
   tasks_collapsed: false
