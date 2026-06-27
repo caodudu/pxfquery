@@ -33,48 +33,73 @@ PxFquery is source-install first. Wheel installation is not the project workflow
 
 PxFquery does not hard-code one machine's data path. Register your local assets before querying.
 
-Use a manifest when files can move:
+The expected standard resource folder is flat:
+
+```text
+standard_resources/
+  cp_func_ad.h5ad
+  sh_func_ad.h5ad
+  xpr_func_ad.h5ad
+  cellline_index.json
+  cellline_neighbors.json
+  cellline_tree.json
+  drug_index.json
+  drug_neighbors.json
+  function_index.json
+  gene_index.json
+  gene_index_simple.json
+  gene_neighbors.json
+  gene_neighbors_simple.json
+  cellline_info_standard.csv
+  cellline_meta_standard.csv
+  compound_info_standard.csv
+  compound_meta_standard.csv
+  gene_info_standard.csv
+  data_description.yaml
+```
+
+Register that folder:
+
+```python
+from pxfquery import PxFQuery
+
+pxf = PxFQuery()
+pxf.register_assets(root="/path/to/standard_resources")
+```
+
+Use a manifest if files move away from that flat folder:
 
 ```yaml
 # assets.yaml
-root: /path/to/pxfquery_assets
+root: /path/to/standard_resources
 assets:
   matrix.cp_func_ad:
-    path: matrices/cp_func_ad.h5ad
+    path: cp_func_ad.h5ad
     role: compound perturbation function matrix
   matrix.sh_func_ad:
-    path: matrices/sh_func_ad.h5ad
+    path: sh_func_ad.h5ad
     role: shRNA perturbation function matrix
   matrix.xpr_func_ad:
-    path: matrices/xpr_func_ad.h5ad
+    path: xpr_func_ad.h5ad
     role: overexpression perturbation function matrix
   index.drug_index:
-    path: indexes/drug_index.json
+    path: drug_index.json
     role: drug lookup index
   index.gene_index:
-    path: indexes/gene_index.json
+    path: gene_index.json
     role: gene lookup index
   index.cellline_index:
-    path: indexes/cellline_index.json
+    path: cellline_index.json
     role: cell line lookup index
   index.function_index:
-    path: indexes/function_index.json
+    path: function_index.json
     role: function lookup index
 ```
 
 Then register it:
 
 ```python
-from pxfquery import PxFQuery
-
-pxf = PxFQuery()
 pxf.register_assets(manifest="assets.yaml")
-```
-
-You can also register a folder that contains the standard filenames:
-
-```python
-pxf.register_assets(root="/path/to/standard_resources")
 ```
 
 ## Register LLM
@@ -189,7 +214,7 @@ Current abridged output:
 
 ## Current Limitation
 
-Version `0.1.4` registers data assets and includes them in query output metadata. The remaining runtime work is to replace the current deterministic resolver internals with direct reads from the registered indexes and matrices.
+Version `0.1.5` registers the real 19-file `standard_resources/` input contract and includes registered assets in query output metadata. The remaining runtime work is to replace the current deterministic resolver internals with direct reads from the registered indexes and matrices.
 
 In plain terms: the package now has the right public setup and output contract, but the next implementation step must make every route and score come from the registered data files rather than resolver placeholders.
 
@@ -215,5 +240,5 @@ print(pxfquery.__version__)
 Current version:
 
 ```text
-0.1.4
+0.1.5
 ```

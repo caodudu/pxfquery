@@ -3,8 +3,8 @@ from pxfquery import PxFQuery
 
 
 def test_version_is_public():
-    assert pxfquery.__version__ == "0.1.4"
-    assert PxFQuery().version == "0.1.4"
+    assert pxfquery.__version__ == "0.1.5"
+    assert PxFQuery().version == "0.1.5"
 
 
 def test_only_class_is_exported_at_top_level():
@@ -75,13 +75,22 @@ def test_asset_registry_is_registered_before_query(tmp_path):
         "cp_func_ad.h5ad",
         "sh_func_ad.h5ad",
         "xpr_func_ad.h5ad",
+        "cellline_info_standard.csv",
+        "cellline_meta_standard.csv",
+        "compound_info_standard.csv",
+        "compound_meta_standard.csv",
+        "gene_info_standard.csv",
         "drug_index.json",
         "gene_index.json",
+        "gene_index_simple.json",
         "cellline_index.json",
         "drug_neighbors.json",
         "gene_neighbors.json",
+        "gene_neighbors_simple.json",
         "cellline_neighbors.json",
+        "cellline_tree.json",
         "function_index.json",
+        "data_description.yaml",
     ]:
         (data_root / filename).write_text("{}", encoding="utf-8")
 
@@ -93,6 +102,8 @@ def test_asset_registry_is_registered_before_query(tmp_path):
     result = client.get.result(qdata)
 
     assert "matrix.cp_func_ad" in registry.keys()
+    assert "metadata.compound_info" in registry.keys()
+    assert "provenance.data_description" in registry.keys()
     assert qdata.uns["assets"]["registered_before_parse"] is True
     assert result["asset_registry"]["registered_before_query"] is True
     assert result["assets"]["index.drug_index"]["path"].endswith("drug_index.json")

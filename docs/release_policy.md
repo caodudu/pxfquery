@@ -19,4 +19,5 @@ PxFquery versions are source releases.
 | 0.1.1 | v0.1.1 | preserved |
 | 0.1.2 | v0.1.2 | preserved |
 | 0.1.3 | v0.1.3 | preserved |
-| 0.1.4 | v0.1.4 | current |
+| 0.1.4 | v0.1.4 | preserved |
+| 0.1.5 | v0.1.5 | current |

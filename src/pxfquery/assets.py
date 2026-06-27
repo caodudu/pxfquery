@@ -11,13 +11,22 @@ DEFAULT_ASSET_FILES = {
     "matrix.cp_func_ad": ("cp_func_ad.h5ad", "compound perturbation function matrix"),
     "matrix.sh_func_ad": ("sh_func_ad.h5ad", "shRNA perturbation function matrix"),
     "matrix.xpr_func_ad": ("xpr_func_ad.h5ad", "overexpression perturbation function matrix"),
+    "metadata.cellline_info": ("cellline_info_standard.csv", "extended cell line metadata"),
+    "metadata.cellline_meta": ("cellline_meta_standard.csv", "standard cell line metadata"),
+    "metadata.compound_info": ("compound_info_standard.csv", "compound target/MOA metadata"),
+    "metadata.compound_meta": ("compound_meta_standard.csv", "standard compound metadata"),
+    "metadata.gene_info": ("gene_info_standard.csv", "gene metadata"),
     "index.drug_index": ("drug_index.json", "drug lookup index"),
     "index.gene_index": ("gene_index.json", "gene lookup index"),
+    "index.gene_index_simple": ("gene_index_simple.json", "simple gene lookup index"),
     "index.cellline_index": ("cellline_index.json", "cell line lookup index"),
     "index.drug_neighbors": ("drug_neighbors.json", "drug proxy neighbor index"),
     "index.gene_neighbors": ("gene_neighbors.json", "gene proxy neighbor index"),
+    "index.gene_neighbors_simple": ("gene_neighbors_simple.json", "simple gene proxy neighbor index"),
     "index.cellline_neighbors": ("cellline_neighbors.json", "cell line proxy neighbor index"),
+    "index.cellline_tree": ("cellline_tree.json", "cell line lineage tree"),
     "index.function_index": ("function_index.json", "function alias/index file"),
+    "provenance.data_description": ("data_description.yaml", "data provenance description"),
 }
 
 

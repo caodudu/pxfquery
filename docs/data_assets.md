@@ -23,44 +23,94 @@ The manifest path is the stable contract when files move.
 
 PxFquery accepts either a standard resource root or a manifest. Prefer a manifest for portable projects, because it survives file moves and arbitrary directory layouts.
 
-Minimum manifest example:
+Standard resource folder shape:
 
-```yaml
-root: /path/to/pxfquery_assets
-assets:
-  matrix.cp_func_ad:
-    path: matrices/cp_func_ad.h5ad
-    role: compound perturbation function matrix
-  matrix.sh_func_ad:
-    path: matrices/sh_func_ad.h5ad
-    role: shRNA perturbation function matrix
-  matrix.xpr_func_ad:
-    path: matrices/xpr_func_ad.h5ad
-    role: overexpression perturbation function matrix
-  index.drug_index:
-    path: indexes/drug_index.json
-    role: drug lookup index
-  index.gene_index:
-    path: indexes/gene_index.json
-    role: gene lookup index
-  index.cellline_index:
-    path: indexes/cellline_index.json
-    role: cell line lookup index
-  index.function_index:
-    path: indexes/function_index.json
-    role: function lookup index
+```text
+standard_resources/
+  cp_func_ad.h5ad
+  sh_func_ad.h5ad
+  xpr_func_ad.h5ad
+  cellline_index.json
+  cellline_neighbors.json
+  cellline_tree.json
+  drug_index.json
+  drug_neighbors.json
+  function_index.json
+  gene_index.json
+  gene_index_simple.json
+  gene_neighbors.json
+  gene_neighbors_simple.json
+  cellline_info_standard.csv
+  cellline_meta_standard.csv
+  compound_info_standard.csv
+  compound_meta_standard.csv
+  gene_info_standard.csv
+  data_description.yaml
 ```
 
-Important asset families:
+Minimum manifest example for that flat folder:
 
-| Asset family | Local examples | Purpose |
-| --- | --- | --- |
-| Functional matrices | `functional_matrices/*_func_ad.h5ad` | Function-level perturbation response matrices |
-| CMAP/LINCS matrices | `cmap_ad_matrices/cmap_*_ad*.h5ad` | Underlying perturbation expression matrices |
-| Query indexes | `query_indexes/*_index.json`, `*_neighbors.json` | Cell line, drug, and gene lookup/proxy routing |
-| Metadata tables | `metadata_tables/*.csv` | Cell line, compound, and gene metadata |
-| Gene embeddings | `genept_embeddings/*.npz`, `*.csv` | Gene similarity/proxy support |
-| GSEA tables | `results/gsea_tables/*.csv` | Function enrichment tables |
+```yaml
+root: /path/to/standard_resources
+assets:
+  matrix.cp_func_ad:
+    path: cp_func_ad.h5ad
+    role: compound perturbation function matrix
+  matrix.sh_func_ad:
+    path: sh_func_ad.h5ad
+    role: shRNA perturbation function matrix
+  matrix.xpr_func_ad:
+    path: xpr_func_ad.h5ad
+    role: overexpression perturbation function matrix
+  metadata.cellline_info:
+    path: cellline_info_standard.csv
+    role: extended cell line metadata
+  metadata.cellline_meta:
+    path: cellline_meta_standard.csv
+    role: standard cell line metadata
+  metadata.compound_info:
+    path: compound_info_standard.csv
+    role: compound target/MOA metadata
+  metadata.compound_meta:
+    path: compound_meta_standard.csv
+    role: standard compound metadata
+  metadata.gene_info:
+    path: gene_info_standard.csv
+    role: gene metadata
+  index.drug_index:
+    path: drug_index.json
+    role: drug lookup index
+  index.gene_index:
+    path: gene_index.json
+    role: gene lookup index
+  index.gene_index_simple:
+    path: gene_index_simple.json
+    role: simple gene lookup index
+  index.cellline_index:
+    path: cellline_index.json
+    role: cell line lookup index
+  index.drug_neighbors:
+    path: drug_neighbors.json
+    role: drug proxy neighbor index
+  index.gene_neighbors:
+    path: gene_neighbors.json
+    role: gene proxy neighbor index
+  index.gene_neighbors_simple:
+    path: gene_neighbors_simple.json
+    role: simple gene proxy neighbor index
+  index.cellline_neighbors:
+    path: cellline_neighbors.json
+    role: cell line proxy neighbor index
+  index.cellline_tree:
+    path: cellline_tree.json
+    role: cell line lineage tree
+  index.function_index:
+    path: function_index.json
+    role: function lookup index
+  provenance.data_description:
+    path: data_description.yaml
+    role: data provenance description
+```
 
 ## Expected Runtime Assets
 
@@ -71,10 +121,22 @@ The package should prefer curated runtime assets over raw working directories wh
 | `matrix.cp_func_ad` | `cp_func_ad.h5ad` | compound perturbation function matrix |
 | `matrix.sh_func_ad` | `sh_func_ad.h5ad` | shRNA perturbation function matrix |
 | `matrix.xpr_func_ad` | `xpr_func_ad.h5ad` | overexpression perturbation function matrix |
+| `metadata.cellline_info` | `cellline_info_standard.csv` | extended cell line metadata |
+| `metadata.cellline_meta` | `cellline_meta_standard.csv` | standard cell line metadata |
+| `metadata.compound_info` | `compound_info_standard.csv` | compound target/MOA metadata |
+| `metadata.compound_meta` | `compound_meta_standard.csv` | standard compound metadata |
+| `metadata.gene_info` | `gene_info_standard.csv` | gene metadata |
 | `index.drug_index` | `drug_index.json` | drug lookup |
 | `index.gene_index` | `gene_index.json` | gene lookup |
+| `index.gene_index_simple` | `gene_index_simple.json` | simple gene lookup |
 | `index.cellline_index` | `cellline_index.json` | cell line lookup |
+| `index.drug_neighbors` | `drug_neighbors.json` | drug proxy neighbors |
+| `index.gene_neighbors` | `gene_neighbors.json` | gene proxy neighbors |
+| `index.gene_neighbors_simple` | `gene_neighbors_simple.json` | simple gene proxy neighbors |
+| `index.cellline_neighbors` | `cellline_neighbors.json` | cell line proxy neighbors |
+| `index.cellline_tree` | `cellline_tree.json` | cell line lineage tree |
 | `index.function_index` | `function_index.json` | function term lookup |
+| `provenance.data_description` | `data_description.yaml` | data provenance description |
 
 Observed development matrix validation:
 

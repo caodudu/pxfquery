@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.5 - 2026-06-27
+
+- Corrected the data input contract to the real flat 19-file `standard_resources/` layout.
+- Expanded default asset registration to include matrices, query indexes, metadata tables, and provenance.
+- Updated README and data asset docs so examples no longer use invented `matrices/` or `indexes/` subfolders.
+
 ## 0.1.4 - 2026-06-27
 
 - Reworked the recommended public workflow around a single `PxFQuery` client.
