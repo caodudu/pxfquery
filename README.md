@@ -29,7 +29,7 @@ PxFquery is source-install first.
 from pxfquery import PxFQuery
 
 pxf = PxFQuery()
-pxf.settings.use_diygateway(token="...", timeout=60)
+pxf.settings.use_deepseek(token="...", timeout=60)
 pxf.load_data_dir("/path/to/functional_matrices")
 pxf.enable_resolver(index_dir="/path/to/query_indexes", api_key="...")
 answer = pxf.ask("Which perturbations increase a requested biological function in a disease model?")
@@ -57,7 +57,7 @@ Stepwise use follows a scanpy-style interface. This is the user interface; the f
 
 ```python
 pxf = PxFQuery()
-pxf.settings.use_diygateway(token="...", timeout=60)
+pxf.settings.use_deepseek(token="...", timeout=60)
 pxf.load_data_dir("/path/to/functional_matrices")
 pxf.enable_resolver(index_dir="/path/to/query_indexes", api_key="...")
 q = pxf.read.query("Which perturbations increase a requested biological function in a disease model?")
@@ -102,7 +102,7 @@ pxf = PxFQuery()
 pxf.resources.download()
 ```
 
-The download/cache implementation is not active in `0.5.0`; `resources.download()` reports that official resource-pack download is not configured and asks users to provide a local pack for now.
+The download/cache implementation is not active in `0.5.1`; `resources.download()` reports that official resource-pack download is not configured and asks users to provide a local pack for now.
 
 ## Interface Layers
 
@@ -110,20 +110,20 @@ PxFquery source is organized into explicit layers.
 
 ```text
 User biomedical question
-  -> pxfquery.l1_nlu
+  -> pxfquery.l1_intent
   -> pxfquery.l2_routing
   -> pxfquery.l3_execution
   -> pxfquery.l4_evidence
   -> pxfquery.l5_presentation
 ```
 
-The current `0.5.0` implementation restores the original matrix-backed forward/reverse query core and resolver architecture. L1 natural-language intent parsing requires a configured OpenAI-compatible LLM backend. Biological hits come from loaded functional matrices and query indexes.
+The current `0.5.1` implementation restores the original matrix-backed forward/reverse query core and resolver architecture. `l1_intent` parsing requires a configured OpenAI-compatible LLM provider. Biological hits come from loaded functional matrices and query indexes.
 
 ## Current Status
 
-Version `0.5.0` restores the original package capabilities inside the layered source architecture:
+Version `0.5.1` keeps the restored package capabilities inside the layered source architecture and repairs the L1 intent provider boundary:
 
-- `pxfquery.l1_nlu` parses the user's biomedical question into resolver-compatible intent through the configured LLM backend.
+- `pxfquery.l1_intent` parses the user's biomedical question into resolver-compatible intent through the configured LLM provider.
 - `pxfquery.l2_routing` performs index-backed entity resolution and exact/proxy evidence routing.
 - `pxfquery.l3_execution` loads functional matrices and runs forward/reverse perturbation-function queries.
 - `pxfquery.l4_evidence` assembles route metadata, function scores, candidates, and diagnostics.
@@ -134,7 +134,7 @@ The package root is intentionally thin. Product code lives inside the five visib
 ## Test
 
 ```bash
-export PXFQUERY_L1_API_KEY="..."
+export PXFQUERY_LLM_API_KEY="..."
 python -m pytest -q tests
 ```
 
@@ -156,5 +156,5 @@ print(pxfquery.__version__)
 Current version:
 
 ```text
-0.5.0
+0.5.1
 ```

@@ -10,7 +10,7 @@ def test_source_root_contains_only_thin_entrypoints_and_layer_folders():
         "__main__.py",
         "cli.py",
         "client.py",
-        "l1_nlu",
+        "l1_intent",
         "l2_routing",
         "l3_execution",
         "l4_evidence",

@@ -3,7 +3,7 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Optional
 
-from pxfquery.l1_nlu import backend_from_env
+from pxfquery.l1_intent import ProviderRegistry, provider_from_env
 from pxfquery.l2_routing import QueryResolver, ResolverConfig
 from pxfquery.l3_execution import DataLoader, ForwardQuery, ReverseQuery
 from pxfquery.l3_execution.assets import AssetRegistry
@@ -23,9 +23,15 @@ from pxfquery.workflow import (
 class PxFQuery:
     """Main user-facing PxFquery client."""
 
-    def __init__(self, *, nlu_backend=None) -> None:
+    def __init__(self, *, llm_provider=None) -> None:
         self.assets: AssetRegistry | None = None
-        self.nlu_backend = nlu_backend if nlu_backend is not None else backend_from_env(required=False)
+        self.llm_providers = ProviderRegistry()
+        initial_provider = llm_provider if llm_provider is not None else provider_from_env(required=False)
+        if initial_provider is not None:
+            if hasattr(initial_provider, "config"):
+                self.llm_providers.register(initial_provider.config, default=True)
+            else:
+                self.llm_providers.register_provider("injected", initial_provider, default=True)
         self._loader = DataLoader()
         self._forward_engines: dict[str, ForwardQuery] = {}
         self._reverse_engines: dict[str, ReverseQuery] = {}

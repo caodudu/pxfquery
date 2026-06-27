@@ -4,7 +4,7 @@ from dataclasses import dataclass, field
 from typing import Any
 
 from pxfquery.l4_evidence import assemble_evidence
-from pxfquery.l1_nlu import parse_query
+from pxfquery.l1_intent import parse_intent
 from pxfquery.l2_routing import route_intent
 from pxfquery.l5_presentation.answer import build_answer
 
@@ -29,7 +29,7 @@ class PreprocessingNamespace:
 
     def parse(self, qdata: PxFQueryData, *, copy: bool = False) -> PxFQueryData | None:
         target = _copy_qdata(qdata) if copy else qdata
-        intent = parse_query(target.text, backend=self._client.nlu_backend)
+        intent = parse_intent(target.text, provider=self._client.llm_providers.get())
         target.uns["intent"] = intent.to_dict()
         target.uns["_intent"] = intent
         return target if copy else None
@@ -106,7 +106,7 @@ def _copy_qdata(qdata: PxFQueryData) -> PxFQueryData:
 
 def _require_intent(qdata: PxFQueryData):
     if "_intent" not in qdata.uns:
-        raise RuntimeError("qdata has no L1 intent; call pxf.pp.parse(qdata) before downstream tools")
+        raise RuntimeError("qdata has no l1_intent result; call pxf.pp.parse(qdata) before downstream tools")
     return qdata.uns["_intent"]
 
 

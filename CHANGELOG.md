@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.5.1 - 2026-06-28
+
+- Renamed the first business layer from `l1_nlu` to `l1_intent`; no compatibility alias is kept.
+- Added a session-local LLM provider registry exposed through settings, with DiyGateway and official DeepSeek registration helpers.
+- Added a small non-secret event logging system under `pxfquery.utils.events`; L1 now emits stage, warning, and error events for provider calls.
+- Added spaced network retries, schema repair attempts, and chat restart attempts for L1 intent parsing.
+- Added provider evidence capture for L1 calls: provider name, base URL, model, timestamps, attempts, response hash/excerpt, schema repair count, restart count, and final status.
+- Kept L1 scope strict: provider output containing candidates, scores, route plans, citations, evidence, or biological answers is rejected.
+
 ## 0.5.0 - 2026-06-27
 
 - Restored the original PxFquery functional core into the GitHub package: data loading, forward query, reverse query, resolver, index wrappers, and plotting.
@@ -19,7 +28,7 @@
 
 ## 0.4.0 - 2026-06-27
 
-- Current package source is organized as five inspectable internal folders: `l1_nlu`, `l2_routing`, `l3_execution`, `l4_evidence`, and `l5_presentation`.
+- Current package source is organized as five inspectable internal folders: `l1_intent`, `l2_routing`, `l3_execution`, `l4_evidence`, and `l5_presentation`.
 - `src/pxfquery/` root contains only thin entrypoints: `__init__.py` and `__main__.py`.
 - `PxFQuery` is the only public top-level class.
 - `PxFQuery` exposes a scanpy-style user interface: `read.query`, `pp.parse`, `tl.route`, `tl.execute`, `tl.assemble`, `get.result`, and `get.answer`.

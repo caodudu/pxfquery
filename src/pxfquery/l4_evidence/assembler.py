@@ -42,7 +42,7 @@ def _assemble_forward(result: ForwardResult) -> dict:
             "missing_fields": [],
         },
         "layer_chain": [
-            "l1_nlu.parse_query",
+            "l1_intent.parse_intent",
             "l2_routing.route_intent",
             "l3_execution.forward_or_reverse_query",
             "l4_evidence.assemble_evidence",
@@ -77,7 +77,7 @@ def _assemble_reverse(result: ReverseResult) -> dict:
             "missing_fields": [],
         },
         "layer_chain": [
-            "l1_nlu.parse_query",
+            "l1_intent.parse_intent",
             "l2_routing.route_intent",
             "l3_execution.forward_or_reverse_query",
             "l4_evidence.assemble_evidence",

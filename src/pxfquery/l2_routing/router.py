@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from pxfquery.l1_nlu import QueryIntent
+from pxfquery.l1_intent import QueryIntent
 
 
 @dataclass

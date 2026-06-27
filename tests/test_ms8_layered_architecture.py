@@ -48,7 +48,7 @@ def test_user_visible_artifacts_do_not_show_unsupported_biological_outputs():
 
 
 def test_product_source_has_five_visible_layers():
-    expected = ["l1_nlu", "l2_routing", "l3_execution", "l4_evidence", "l5_presentation"]
+    expected = ["l1_intent", "l2_routing", "l3_execution", "l4_evidence", "l5_presentation"]
     for name in expected:
         assert (SRC / name / "__init__.py").exists()
 

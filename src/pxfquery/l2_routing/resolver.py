@@ -749,15 +749,15 @@ class QueryResolver:
     def _resolve_model(config: ResolverConfig) -> str:
         if config.model:
             return config.model
-        return os.getenv("PXFQUERY_LLM_MODEL") or os.getenv("PXFQUERY_L1_MODEL") or "deepseek-ai/deepseek-v4-flash"
+        return os.getenv("PXFQUERY_LLM_MODEL") or "deepseek-ai/deepseek-v4-flash"
 
     @staticmethod
     def _build_client(config: ResolverConfig):
         api_key = config.api_key
         base_url = config.base_url
-        api_key = api_key or os.getenv("PXFQUERY_LLM_API_KEY") or os.getenv("PXFQUERY_L1_API_KEY") or os.getenv("OPENAI_API_KEY")
-        base_url = base_url or os.getenv("PXFQUERY_LLM_BASE_URL") or os.getenv("PXFQUERY_L1_BASE_URL") or "http://localhost:3000/v1"
+        api_key = api_key or os.getenv("PXFQUERY_LLM_API_KEY") or os.getenv("OPENAI_API_KEY")
+        base_url = base_url or os.getenv("PXFQUERY_LLM_BASE_URL") or "http://localhost:3000/v1"
 
         if not api_key:
-            raise ValueError("Resolver API key missing. Set PXFQUERY_LLM_API_KEY or PXFQUERY_L1_API_KEY.")
+            raise ValueError("Resolver API key missing. Set PXFQUERY_LLM_API_KEY.")
         return OpenAI(api_key=api_key, base_url=base_url)
