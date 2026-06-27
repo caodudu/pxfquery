@@ -1551,6 +1551,26 @@ edges:
   to: goal_ms3_ms4_quality_and_repair/task_ms4_reverse_engine_output_repair_version
   dep_id: T-097
   gate: must
+- from: goal_m6_ms_anchors_and_stress_assets/task_ms5_large_stress_and_case_anchor
+  to: goal_ms3_ms4_quality_and_repair/task_ms5_demo_case_selection_and_repro_plan
+  dep_id: T-083
+  gate: must
+- from: goal_m6_ms_anchors_and_stress_assets/task_ms5_large_nl_corpus_expansion
+  to: goal_ms3_ms4_quality_and_repair/task_ms5_demo_case_selection_and_repro_plan
+  dep_id: T-089
+  gate: must
+- from: goal_ms3_ms4_quality_and_repair/task_ms4_route_execution_matrix
+  to: goal_ms3_ms4_quality_and_repair/task_ms5_demo_case_selection_and_repro_plan
+  dep_id: T-094
+  gate: must
+- from: goal_ms3_ms4_quality_and_repair/task_ms4_parser_llm_failure_diagnosis
+  to: goal_ms3_ms4_quality_and_repair/task_ms5_demo_case_selection_and_repro_plan
+  dep_id: T-095
+  gate: must
+- from: goal_ms3_ms4_quality_and_repair/task_ms4_engine_output_failure_diagnosis
+  to: goal_ms3_ms4_quality_and_repair/task_ms5_demo_case_selection_and_repro_plan
+  dep_id: T-097
+  gate: must
 labels:
 - id: label_mqpofuno
   phase: digestion
