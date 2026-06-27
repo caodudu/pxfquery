@@ -3287,6 +3287,16 @@ excluded_from_git:
   size_mb: 0.0
 - path: 4_phase_development/goal_ms7_recovery_package/task_ms7_manual_build_repair_package_2/4_artifact/5_table/ms7_manual_build_command_evidence_v20260627.csv
   size_mb: 0.0
+- path: 4_phase_development/goal_ms7_recovery_package/task_ms7_public_api_single_class_v012/3_execution/logs/01_pytest_v012.exit
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms7_recovery_package/task_ms7_public_api_single_class_v012/3_execution/logs/01_pytest_v012.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms7_recovery_package/task_ms7_public_api_single_class_v012/3_execution/logs/02_public_api_smoke.exit
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms7_recovery_package/task_ms7_public_api_single_class_v012/3_execution/logs/02_public_api_smoke.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms7_recovery_package/task_ms7_public_api_single_class_v012/4_artifact/5_table/ms7_public_api_single_class_v012_commands.csv
+  size_mb: 0.0
 - path: 4_phase_development/goal_ms7_recovery_package/task_ms7_release_candidate_pack_2/3_execution/logs/01_python_m_build.exit
   size_mb: 0.0
 - path: 4_phase_development/goal_ms7_recovery_package/task_ms7_release_candidate_pack_2/3_execution/logs/01_python_m_build.log
