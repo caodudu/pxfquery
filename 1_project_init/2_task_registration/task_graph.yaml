@@ -4,7 +4,7 @@ notes: Task dependency and artifact lineage backfilled from existing P-012 asset
   artifact registries, and completion reports. Task outputs are unchanged.
 nodes:
 - id: goal:goal_m6_ms_anchors_and_stress_assets
-  x: 78
+  x: 738
   color: '#f97316'
   locked: false
   tasks_collapsed: false
