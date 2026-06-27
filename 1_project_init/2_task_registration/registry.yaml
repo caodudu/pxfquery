@@ -1672,7 +1672,7 @@ tasks:
   phase: development
   goal: goal_ms3_ms4_quality_and_repair
   path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms5_large_nl_pressure_execution
-  status: pending
+  status: active
   executor: human
   created: '2026-06-27'
   completed: null
