@@ -46,7 +46,7 @@ nodes:
 - id: goal:goal_legacy_asset_migration
   x: 135
   color: '#3b82f6'
-  locked: false
+  locked: true
   tasks_collapsed: true
 - id: goal:goal_goal_ms8_human_usable_package
   x: 929
