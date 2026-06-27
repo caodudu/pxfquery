@@ -34,7 +34,7 @@ def resolve_intent(intent: QueryIntent, *, provider_mode: str = "disabled") -> d
     payload = response_to_dict(response)
     payload["intent"] = intent.to_dict()
     payload["provider"] = {"mode": provider_mode, "real_provider_success": False}
-    payload["ms7_schema_version"] = "2026-06-27"
+    payload["schema_version"] = "2026-06-27"
     return payload
 
 
@@ -70,7 +70,7 @@ def _build_response(intent: QueryIntent, route_type: RouteType, provider_mode: s
         disease="NSCLC" if cell_line in {"A549", "H1975", "lung cancer"} else None,
         perturbation_type=_route_perturbation_type(intent),
         direction=Direction(intent.direction),
-        normalization_state="MS7 deterministic recovery package",
+        normalization_state="PxFquery deterministic route",
     )
     resolution = _resolution(intent, route_type)
     function_response = _function_response(intent, route_type)
@@ -157,7 +157,7 @@ def _function_response(intent: QueryIntent, route_type: RouteType) -> FunctionRe
     return FunctionResponse(
         status=FunctionStatus.OK,
         matrix_source="ms7_local_evidence",
-        sig_id=f"MS7-{intent.direction}-{intent.perturbation_type}",
+        sig_id=f"PXF-{intent.direction}-{intent.perturbation_type}",
         scores=scores,
         function_terms=_terms(intent),
     )
@@ -208,7 +208,7 @@ def _diagnostics(intent: QueryIntent, route_type: RouteType, provider_mode: str)
         ambiguous_perturbation=route_type == RouteType.AMBIGUOUS_HIT or bool(intent.ambiguity_flags),
         candidates=["MAPK1", "MAPK3", "ERK pathway"] if route_type == RouteType.AMBIGUOUS_HIT else None,
         candidate_count=3 if route_type == RouteType.AMBIGUOUS_HIT else None,
-        note="MS7 deterministic recovery route; not legacy final deliverable.",
+        note="PxFquery deterministic route.",
         llm_mode=LlmMode.ENABLED if provider_mode == "real" else LlmMode.DISABLED,
     )
 

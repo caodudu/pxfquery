@@ -4,6 +4,7 @@ from pathlib import Path
 from typing import Iterable
 
 from pxfquery._version import __version__
+from pxfquery.assets import AssetRegistry
 from pxfquery.llm import ProviderCheckResult, get_llm_provider, list_llm_providers, register_llm_provider, provider_check
 from pxfquery.query import load_corpus, run_corpus, summarize_records
 from pxfquery.workflow import (
@@ -18,11 +19,12 @@ from pxfquery.workflow import (
 
 
 class PxFQuery:
-    """Main user-facing PxFquery client with scverse-style namespaces."""
+    """Main user-facing PxFquery client."""
 
     def __init__(self, *, provider: str | None = None, provider_mode: str = "disabled") -> None:
         self.provider = provider
         self.provider_mode = provider_mode
+        self.assets: AssetRegistry | None = None
         self.settings = SettingsNamespace(self)
         self.read = ReadNamespace(self)
         self.pp = PreprocessingNamespace(self)
@@ -57,6 +59,18 @@ class PxFQuery:
 
     def query(self, text: str) -> dict:
         return one_shot_query(self, text)
+
+    def ask(self, text: str) -> dict:
+        return self.query(text)
+
+    def register_assets(
+        self,
+        *,
+        root: str | Path | None = None,
+        manifest: str | Path | dict | None = None,
+        strict: bool = True,
+    ) -> AssetRegistry:
+        return self.settings.register_assets(root=root, manifest=manifest, strict=strict)
 
     def run_corpus(self, corpus_path: str | Path, *, families: Iterable[str] | None = None) -> list[dict]:
         return self.tl.run_corpus(corpus_path, families=families)

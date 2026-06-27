@@ -1,21 +1,54 @@
 # Data Assets
 
-PxFquery is a data-query package. The current private GitHub repository contains package source, API docs, and tests; the large digital assets live in the local PxFquery workspace and are referenced by task/version lineage.
+PxFquery is a data-query package. The current private GitHub repository contains package source, API docs, and tests; large digital assets are registered at runtime from a user-provided root or manifest.
 
 The package must not invent demo data when local digital assets already exist.
+It must also not hard-code one developer's workspace path.
 
-## Current Local Asset Sources
+User code should register data assets before parsing or routing:
 
-Primary local workspace:
-
-```text
-/Users/dudu/Documents/3_Project/12_PxFquery
+```python
+pxf.register_assets(root="/path/to/standard_resources")
 ```
 
-Legacy migrated asset library:
+or:
 
-```text
-2_project_asset/1_raw_material/legacy_flat_asset_library_v20260614/data/
+```python
+pxf.register_assets(manifest="assets.yaml")
+```
+
+The manifest path is the stable contract when files move.
+
+## Asset Registration Contract
+
+PxFquery accepts either a standard resource root or a manifest. Prefer a manifest for portable projects, because it survives file moves and arbitrary directory layouts.
+
+Minimum manifest example:
+
+```yaml
+root: /path/to/pxfquery_assets
+assets:
+  matrix.cp_func_ad:
+    path: matrices/cp_func_ad.h5ad
+    role: compound perturbation function matrix
+  matrix.sh_func_ad:
+    path: matrices/sh_func_ad.h5ad
+    role: shRNA perturbation function matrix
+  matrix.xpr_func_ad:
+    path: matrices/xpr_func_ad.h5ad
+    role: overexpression perturbation function matrix
+  index.drug_index:
+    path: indexes/drug_index.json
+    role: drug lookup index
+  index.gene_index:
+    path: indexes/gene_index.json
+    role: gene lookup index
+  index.cellline_index:
+    path: indexes/cellline_index.json
+    role: cell line lookup index
+  index.function_index:
+    path: indexes/function_index.json
+    role: function lookup index
 ```
 
 Important asset families:
@@ -29,18 +62,21 @@ Important asset families:
 | Gene embeddings | `genept_embeddings/*.npz`, `*.csv` | Gene similarity/proxy support |
 | GSEA tables | `results/gsea_tables/*.csv` | Function enrichment tables |
 
-## Task-Digested Runtime Assets
+## Expected Runtime Assets
 
-The package should prefer task-digested assets over raw legacy paths when available.
+The package should prefer curated runtime assets over raw working directories when available.
 
-| CyHex task | Asset | Purpose |
+| Registry key | Asset | Purpose |
 | --- | --- | --- |
-| T-025 | `pxfquery_T025_standard_resource_manifest_v20260623.yaml` | Manifest for the standard resource bundle |
-| T-026 | matrix loader validation | Confirms matrix loading and shapes |
-| T-027 | `pxfquery_T027_runtime_query_index/` | Normalized runtime query indexes |
-| T-028 | `pxfquery_T028_function_index/function_index.json` | Validated 91-function index |
+| `matrix.cp_func_ad` | `cp_func_ad.h5ad` | compound perturbation function matrix |
+| `matrix.sh_func_ad` | `sh_func_ad.h5ad` | shRNA perturbation function matrix |
+| `matrix.xpr_func_ad` | `xpr_func_ad.h5ad` | overexpression perturbation function matrix |
+| `index.drug_index` | `drug_index.json` | drug lookup |
+| `index.gene_index` | `gene_index.json` | gene lookup |
+| `index.cellline_index` | `cellline_index.json` | cell line lookup |
+| `index.function_index` | `function_index.json` | function term lookup |
 
-Observed T-026 matrix validation:
+Observed development matrix validation:
 
 | Matrix | Shape | Role |
 | --- | --- | --- |
@@ -48,23 +84,23 @@ Observed T-026 matrix validation:
 | `sh_func_ad.h5ad` | `189365 x 91` | shRNA perturbation function matrix |
 | `xpr_func_ad.h5ad` | `132464 x 91` | overexpression perturbation function matrix |
 
-Observed T-028 function index:
+Observed development function index:
 
 - 91 function terms
 - includes Hallmark functions and MP1-MP41 programs
-- validated against all three T-021 H5AD matrix `var_names`
+- validated against all three H5AD matrix `var_names`
 
 ## Required Runtime Direction
 
 Future query execution must expose which assets were touched, for example:
 
 ```text
-index.drug_index      source=T-027/runtime_query_index/drug_index.json
-index.cellline_index  source=T-027/runtime_query_index/cellline_index.json
-index.function_index  source=T-028/function_index.json
-matrix.cp_func_ad     source=T-021/cp_func_ad.h5ad shape=201014x91
-matrix.sh_func_ad     source=T-021/sh_func_ad.h5ad shape=189365x91
-matrix.xpr_func_ad    source=T-021/xpr_func_ad.h5ad shape=132464x91
+index.drug_index      source=assets:index.drug_index
+index.cellline_index  source=assets:index.cellline_index
+index.function_index  source=assets:index.function_index
+matrix.cp_func_ad     source=assets:matrix.cp_func_ad
+matrix.sh_func_ad     source=assets:matrix.sh_func_ad
+matrix.xpr_func_ad    source=assets:matrix.xpr_func_ad
 ```
 
 The GitHub repository should document these asset dependencies, but should not commit large local `.h5ad` matrices unless a separate packaging/data-distribution task explicitly approves that policy.

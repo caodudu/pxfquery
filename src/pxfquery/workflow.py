@@ -4,6 +4,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Iterable
 
+from pxfquery.assets import AssetRegistry
 from pxfquery.llm import ProviderCheckResult, get_llm_provider, list_llm_providers, provider_check, register_llm_provider
 from pxfquery.parser import parse_query
 from pxfquery.query import load_corpus, query as run_query, run_corpus, summarize_records
@@ -75,6 +76,29 @@ class SettingsNamespace:
     def list_llm_providers(self) -> list[str]:
         return list_llm_providers()
 
+    def register_assets(
+        self,
+        *,
+        root: str | Path | None = None,
+        manifest: str | Path | dict | None = None,
+        strict: bool = True,
+    ) -> AssetRegistry:
+        if (root is None) == (manifest is None):
+            raise ValueError("pass exactly one of root=... or manifest=...")
+        registry = AssetRegistry.from_manifest(manifest, strict=strict) if manifest is not None else AssetRegistry.from_root(root, strict=strict)
+        self._client.assets = registry
+        return registry
+
+    def get_asset(self, key: str):
+        if self._client.assets is None:
+            raise ValueError("register assets before accessing runtime data assets")
+        return self._client.assets.get(key)
+
+    def list_assets(self) -> list[str]:
+        if self._client.assets is None:
+            return []
+        return self._client.assets.keys()
+
 
 class ReadNamespace:
     def __init__(self, client) -> None:
@@ -105,6 +129,10 @@ class PreprocessingNamespace:
             "mode": self._client.provider_mode,
             "registered_before_parse": self._client.provider is not None,
         }
+        target.uns["assets"] = {
+            "registered_before_parse": self._client.assets is not None,
+            "keys": self._client.assets.keys() if self._client.assets is not None else [],
+        }
         return target if copy else None
 
 
@@ -132,6 +160,14 @@ class ToolsNamespace:
         if self._client.provider is not None:
             result["provider"]["name"] = self._client.provider
             result["provider"]["registered_before_query"] = True
+        if self._client.assets is not None:
+            if isinstance(result.get("function_response"), dict):
+                result["function_response"]["matrix_source"] = "registered_assets"
+            result["assets"] = self._client.assets.to_dict()
+            result["asset_registry"] = {
+                "registered_before_query": True,
+                "keys": self._client.assets.keys(),
+            }
         target.uns["result"] = result
         target.uns["route_type"] = result["route_type"]
         return target if copy else None

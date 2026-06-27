@@ -1,26 +1,22 @@
 # Release Policy
 
-PxFquery versions are task-scoped.
+PxFquery versions are source releases.
 
 ## Rules
 
-1. One CyHex task owns one package version.
-2. One task should change one direction only.
+1. One release should change one direction clearly.
+2. Public behavior changes must be documented in `README.md` and `CHANGELOG.md`.
 3. Every public package change must bump `src/pxfquery/_version.py`.
-4. Every version must have:
-   - a GitHub commit
-   - a Git tag
-   - a `CHANGELOG.md` entry
-   - a `docs/releases/vX.Y.Z-*.md` note
-   - test output
+4. Every version must have a GitHub commit, a Git tag, and test output.
 5. Old versions are never overwritten or relabeled.
-6. GitHub is the primary review window for source changes.
+6. Source installation is the project workflow.
 
-## Version Owner Map
+## Version Map
 
-| Version | CyHex task | Git tag | Status |
-| --- | --- | --- | --- |
-| 0.1.0 | T-117 through T-123 | v0.1.0 | preserved |
-| 0.1.1 | T-124 | v0.1.1 | preserved |
-| 0.1.2 | T-125 | v0.1.2 | preserved |
-| 0.1.3 | T-126 | v0.1.3 | current |
+| Version | Git tag | Status |
+| --- | --- | --- |
+| 0.1.0 | v0.1.0 | preserved |
+| 0.1.1 | v0.1.1 | preserved |
+| 0.1.2 | v0.1.2 | preserved |
+| 0.1.3 | v0.1.3 | preserved |
+| 0.1.4 | v0.1.4 | current |

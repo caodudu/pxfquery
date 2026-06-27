@@ -1,31 +1,24 @@
 # PxFquery
 
-PxFquery is a Python package for natural-language perturbation queries over local PxFquery digital assets. The intended runtime path is:
+PxFquery asks natural-language questions against local perturbation data assets.
+
+Example question:
 
 ```text
-natural-language query
-  -> LLM/rule-assisted parse
-  -> entity and context routing
-  -> local index lookup
-  -> local functional matrix query
-  -> structured route result, trace events, and warnings
+Which drugs activate apoptosis in A549 cells?
 ```
 
-The public Python entry point is:
+Expected answer shape:
 
-```python
-from pxfquery import PxFQuery
+```text
+route type -> exact-hit / proxy-hit / no-hit / ambiguous-hit / context-missing
+context    -> cell line, disease, direction, perturbation type
+evidence   -> matrix/index sources used by the query
+result     -> ranked perturbations or function scores
+warnings   -> missing fields, disabled provider, ambiguous entities, fallback routes
 ```
 
-The README documents one primary interface: the `PxFQuery` namespace workflow. Other internal modules are not public user entry points.
-
-## Current Status
-
-Version `0.1.3` establishes the public client shape and source-first package layout. It does not yet complete the full data-backed runtime query path. The next tasks must connect the workflow to the existing local digital assets and make the internal route trace/warning system real.
-
-Do not read the current repository as a finished data-query engine yet. Read it as the source package under active convergence toward that engine.
-
-## Install From Source
+## Install
 
 ```bash
 git clone git@github.com:caodudu/pxfquery.git
@@ -34,38 +27,62 @@ python -m pip install -e .
 python -m pip install pytest PyYAML
 ```
 
-Wheel installation is not the project workflow.
+PxFquery is source-install first. Wheel installation is not the project workflow.
 
-## Local Data Assets
+## Register Data
 
-PxFquery should query the existing local assets, not invented demo data. The large matrices and indexes live in the local project workspace and are tracked through CyHex task lineage:
+PxFquery does not hard-code one machine's data path. Register your local assets before querying.
 
-```text
-/Users/dudu/Documents/3_Project/12_PxFquery
+Use a manifest when files can move:
+
+```yaml
+# assets.yaml
+root: /path/to/pxfquery_assets
+assets:
+  matrix.cp_func_ad:
+    path: matrices/cp_func_ad.h5ad
+    role: compound perturbation function matrix
+  matrix.sh_func_ad:
+    path: matrices/sh_func_ad.h5ad
+    role: shRNA perturbation function matrix
+  matrix.xpr_func_ad:
+    path: matrices/xpr_func_ad.h5ad
+    role: overexpression perturbation function matrix
+  index.drug_index:
+    path: indexes/drug_index.json
+    role: drug lookup index
+  index.gene_index:
+    path: indexes/gene_index.json
+    role: gene lookup index
+  index.cellline_index:
+    path: indexes/cellline_index.json
+    role: cell line lookup index
+  index.function_index:
+    path: indexes/function_index.json
+    role: function lookup index
 ```
 
-Core runtime asset lineage:
-
-| CyHex source | Asset | Runtime role |
-| --- | --- | --- |
-| T-021/T-026 | `cp_func_ad.h5ad` | compound perturbation function matrix, `201014 x 91` |
-| T-021/T-026 | `sh_func_ad.h5ad` | shRNA perturbation function matrix, `189365 x 91` |
-| T-021/T-026 | `xpr_func_ad.h5ad` | overexpression perturbation function matrix, `132464 x 91` |
-| T-027 | runtime query indexes | drug, gene, cell line, and neighbor lookup |
-| T-028 | `function_index.json` | validated 91-function index |
-
-See `docs/data_assets.md` for the current asset map. A later task must add the runtime data loader/configuration entry point; until then, route outputs are not sufficient evidence of real matrix querying.
-
-## LLM Provider
-
-Register the provider before provider-dependent parsing, routing, or checks:
+Then register it:
 
 ```python
 from pxfquery import PxFQuery
 
 pxf = PxFQuery()
+pxf.register_assets(manifest="assets.yaml")
+```
 
-pxf.settings.register_llm(
+You can also register a folder that contains the standard filenames:
+
+```python
+pxf.register_assets(root="/path/to/standard_resources")
+```
+
+## Register LLM
+
+Register an OpenAI-compatible provider before LLM-assisted parsing or route checks:
+
+```python
+pxf.register_llm_provider(
     "llm_gateway/deepseek-ai/deepseek-v4-flash",
     base_url="http://localhost:3000/v1",
     api_key_env="LLM_GATEWAY_API_KEY",
@@ -80,23 +97,14 @@ Set the key outside Python:
 export LLM_GATEWAY_API_KEY="<your-local-gateway-key>"
 ```
 
-Provider check:
-
-```python
-check = pxf.settings.provider_check(timeout=30)
-print(check.to_dict())
-```
-
-## Standard Workflow
-
-The standard Python workflow is stepwise:
+## Ask A Query
 
 ```python
 from pxfquery import PxFQuery
 
 pxf = PxFQuery()
-
-pxf.settings.register_llm(
+pxf.register_assets(manifest="assets.yaml")
+pxf.register_llm_provider(
     "llm_gateway/deepseek-ai/deepseek-v4-flash",
     base_url="http://localhost:3000/v1",
     api_key_env="LLM_GATEWAY_API_KEY",
@@ -104,48 +112,88 @@ pxf.settings.register_llm(
     mode="real",
 )
 
-q = pxf.read.query("Which drugs activate apoptosis in A549 cells?")
-pxf.pp.parse(q)
-pxf.tl.resolve(q)
-
-result = pxf.get.result(q)
-print(result["route_type"])
-print(result["diagnostics"])
+result = pxf.ask("Which drugs activate apoptosis in A549 cells?")
 ```
 
-Namespace roles:
+## Example Output
 
-| Namespace | Role |
-| --- | --- |
-| `pxf.settings` | runtime/provider configuration |
-| `pxf.read` | create query inputs |
-| `pxf.pp` | parse and normalize inputs |
-| `pxf.tl` | route and resolve queries |
-| `pxf.get` | retrieve structured outputs |
+Current abridged output:
 
-`q` is a lightweight work object with `text`, `obs`, and `uns` fields.
-
-## Internal Route Trace Target
-
-T-127 will formalize structured parse and route events. The intended trace target is:
-
-```text
-[pxfquery] settings.provider  name=llm_gateway/deepseek-ai/deepseek-v4-flash mode=real registered=true
-[pxfquery] read.query         text="Which drugs activate apoptosis in A549 cells?"
-[pxfquery] pp.normalize       language=en biomedical_terms=3
-[pxfquery] pp.parse           direction=reverse perturbation_type=compound context=A549
-[pxfquery] route.index        drug_index=T-027/runtime_query_index/drug_index.json
-[pxfquery] route.index        cellline_index=T-027/runtime_query_index/cellline_index.json
-[pxfquery] route.index        function_index=T-028/function_index.json terms=91
-[pxfquery] tl.route           route_type=exact-hit confidence=high
-[pxfquery] tl.resolve         matrix=T-021/cp_func_ad.h5ad shape=201014x91 candidates=2
-[pxfquery] warning            code=provider.real_check_required level=info message="real provider route should be checked for LLM-dependent runs"
-[pxfquery] get.result         route_type=exact-hit schema=2026-06-27
+```json
+{
+  "route_type": "exact-hit",
+  "query_context": {
+    "cell_line": "A549",
+    "cell_line_source": "exact",
+    "tissue_lineage": "lung",
+    "disease": "NSCLC",
+    "perturbation_type": "compound",
+    "direction": "reverse",
+    "normalization_state": "PxFquery deterministic route"
+  },
+  "function_response": {
+    "status": "OK",
+    "matrix_source": "registered_assets",
+    "scores": [
+      {
+        "pert_id": "BRD-K70401845",
+        "cmap_name": "erlotinib",
+        "score": 1.31,
+        "rank": 1
+      },
+      {
+        "pert_id": "BRD-K68045993",
+        "cmap_name": "gefitinib",
+        "score": 1.07,
+        "rank": 2
+      }
+    ],
+    "function_terms": [
+      "activate apoptosis",
+      "apoptosis",
+      "MYC targets",
+      "EGFR signaling",
+      "KRAS signaling"
+    ]
+  },
+  "confidence": "high",
+  "diagnostics": {
+    "warnings": [],
+    "indexes_searched": [
+      "drug_index.json",
+      "gene_index.json",
+      "function_index.json"
+    ],
+    "matrices_searched": [
+      "cp_func_ad.h5ad",
+      "sh_func_ad.h5ad",
+      "xpr_func_ad.h5ad"
+    ],
+    "free_text_query": true
+  },
+  "asset_registry": {
+    "registered_before_query": true,
+    "keys": [
+      "index.cellline_index",
+      "index.drug_index",
+      "index.function_index",
+      "index.gene_index",
+      "matrix.cp_func_ad",
+      "matrix.sh_func_ad",
+      "matrix.xpr_func_ad"
+    ]
+  },
+  "schema_version": "2026-06-27"
+}
 ```
 
-This is a design target, not a saved execution log.
+## Current Limitation
 
-## Tests
+Version `0.1.4` registers data assets and includes them in query output metadata. The remaining runtime work is to replace the current deterministic resolver internals with direct reads from the registered indexes and matrices.
+
+In plain terms: the package now has the right public setup and output contract, but the next implementation step must make every route and score come from the registered data files rather than resolver placeholders.
+
+## Test
 
 ```bash
 python -m pytest -q tests
@@ -154,34 +202,18 @@ python -m pytest -q tests
 Current source test target:
 
 ```text
-56 passed
+59 passed
 ```
 
 ## Version
 
 ```python
 import pxfquery
-from pxfquery import PxFQuery
-
-pxf = PxFQuery()
-
 print(pxfquery.__version__)
-print(pxf.version)
 ```
 
 Current version:
 
 ```text
-0.1.3
+0.1.4
 ```
-
-## Release Notes
-
-Each public version is tied to a CyHex task and an immutable Git tag.
-
-- `v0.1.0`: MS7 recovery package baseline
-- `v0.1.1`: version governance
-- `v0.1.2`: single-class API baseline
-- `v0.1.3`: namespace workflow baseline
-
-See `CHANGELOG.md`, `docs/release_policy.md`, `docs/development_task_policy.md`, and `docs/data_assets.md`.

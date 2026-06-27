@@ -1,18 +1,21 @@
 # Changelog
 
+## 0.1.4 - 2026-06-27
+
+- Reworked the recommended public workflow around a single `PxFQuery` client.
+- Added runtime data asset registration by root or manifest.
+- Added `PxFQuery.ask(...)` as the README query entry point.
+- Updated README to show concrete query output instead of interface concepts.
+- Added asset-registration test coverage.
+
 ## 0.1.3 - 2026-06-27
 
-CyHex task: `T-126 task_ms7_scverse_style_api_workflow_v013`
-
-- Reworked the recommended public workflow into scverse/Scanpy-inspired namespaces: `settings`, `read`, `pp`, `tl`, and `get`.
 - Added a lightweight query work object for stepwise parse/route/resolve execution.
 - Corrected README ordering so LLM/provider registration happens before provider-dependent checks or query execution.
 - Added provider-first workflow test coverage.
 - Kept `PxFQuery` as the only top-level public class while preserving one-step convenience methods for scripts.
 
 ## 0.1.2 - 2026-06-27
-
-CyHex task: `T-125 task_ms7_public_api_single_class_v012`
 
 - Narrowed the public top-level API contract to one class: `PxFQuery`.
 - Enforced `pxfquery.__all__ == ["PxFQuery"]`.
@@ -22,18 +25,14 @@ CyHex task: `T-125 task_ms7_public_api_single_class_v012`
 
 ## 0.1.1 - 2026-06-27
 
-CyHex task: `T-124 task_ms7_version_governance_v011`
-
 - Added explicit version governance for the public package.
 - Published `pxfquery.__version__`.
-- Established a one-version-per-CyHex-task release rule.
-- Added release documentation under `docs/releases/`.
+- Established a one-version-per-release discipline.
+- Added release documentation.
 - Preserved `v0.1.0` as a Git tag before this version bump.
 
 ## 0.1.0 - 2026-06-27
 
-CyHex task range: `T-117` through `T-123`
-
 - Initial private GitHub package export.
-- Added package source, route contract, parser, resolver, deterministic engines, CLI, API, provider check, MS7 corpus fixture, and tests.
-- Validated with the MS7 recovery package evidence set.
+- Added package source, route contract, parser, resolver, deterministic engines, CLI, API, provider check, corpus fixture, and tests.
+- Validated with the initial recovery package evidence set.
