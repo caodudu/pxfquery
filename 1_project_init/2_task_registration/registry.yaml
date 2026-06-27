@@ -1924,7 +1924,7 @@ tasks:
   phase: development
   goal: goal_goal_ms8_human_usable_package
   path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_02_layered_interface_kernel_refactor
-  status: pending
+  status: active
   executor: hybrid
   created: '2026-06-27'
   completed: null
