@@ -47,7 +47,7 @@ nodes:
   x: 135
   color: '#3b82f6'
   locked: true
-  tasks_collapsed: true
+  tasks_collapsed: false
 - id: goal:goal_goal_ms8_human_usable_package
   x: 929
   color: '#38bdf8'
