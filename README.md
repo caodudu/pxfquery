@@ -122,13 +122,26 @@ T-127 will formalize the internal parse pipeline and event/warning system. The i
 [pxfquery] settings.provider  name=llm_gateway/deepseek-ai/deepseek-v4-flash mode=real registered=true
 [pxfquery] pp.normalize       language=en biomedical_terms=3
 [pxfquery] pp.parse           direction=reverse perturbation_type=compound context=A549
+[pxfquery] route.index        drug_index=T-027/runtime_query_index/drug_index.json
+[pxfquery] route.index        cellline_index=T-027/runtime_query_index/cellline_index.json
+[pxfquery] route.index        function_index=T-028/function_index.json terms=91
 [pxfquery] tl.route           route_type=exact-hit confidence=high
-[pxfquery] tl.resolve         matrix=ms7_local_evidence candidates=2
+[pxfquery] tl.resolve         matrix=T-021/cp_func_ad.h5ad shape=201014x91 candidates=2
 [pxfquery] warning            code=provider.real_check_required level=info message="real provider route should be checked for LLM-dependent runs"
 [pxfquery] get.result         route_type=exact-hit schema=2026-06-27
 ```
 
 This block is a design preview, not a saved execution log. The implementation task will make these events structured and testable.
+
+## Data Assets
+
+PxFquery is intended to query the local PxFquery digital assets, not invented demo data. The large matrices and indexes are kept in the local project workspace and tracked through CyHex task lineage.
+
+See `docs/data_assets.md` for the current local asset map, including:
+
+- T-021/T-026 functional matrices: `cp_func_ad.h5ad`, `sh_func_ad.h5ad`, `xpr_func_ad.h5ad`
+- T-027 runtime query indexes: drug, gene, cell line, and neighbor indexes
+- T-028 function index: 91 validated function terms
 
 ## CLI Demo
 
