@@ -1643,3 +1643,12 @@ tasks:
   notes: 'M6 rescue acceptance: AGT-002 config stalled with no substantive output;
     supervisor completed MS5 application-scene candidate map from T-089/T-091/T-092/T-093
     evidence. This is prep only, not final paper figure selection.'
+- id: T-102
+  name: ms4_repaired_package_verification_gate
+  phase: development
+  goal: goal_ms3_ms4_quality_and_repair
+  path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_repaired_package_verification_gate
+  status: pending
+  executor: human
+  created: '2026-06-27'
+  completed: null
