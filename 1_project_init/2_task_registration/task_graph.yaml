@@ -102,7 +102,7 @@ nodes:
   x: 438
   color: '#34d399'
   locked: false
-  tasks_collapsed: false
+  tasks_collapsed: true
 - id: goal:goal_package_foundation_v1
   x: 457
   color: '#a78bfa'
