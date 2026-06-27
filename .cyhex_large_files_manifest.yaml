@@ -3367,6 +3367,8 @@ excluded_from_git:
   size_mb: 0.0
 - path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_package_capability_narrative/5_report/cli_sessions/execute/20260627_070809_opencode_cli_04bf05ef9cc1/stdout.log
   size_mb: 0.12
+- path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_writing_figure_resource_pack/4_artifact/5_table/ms6_figure_story_map_v20260627.csv
+  size_mb: 0.0
 - path: 5_phase_translation/goal_pending_g010/task_pending_t019/5_report/cli_sessions/check/20260623_034938_opencode_cli_859768c74307/stderr.log
   size_mb: 0.0
 - path: 5_phase_translation/goal_pending_g010/task_pending_t019/5_report/cli_sessions/check/20260623_034938_opencode_cli_859768c74307/stdout.log
