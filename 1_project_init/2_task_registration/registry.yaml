@@ -1901,3 +1901,12 @@ tasks:
   executor: human
   created: '2026-06-27'
   completed: null
+- id: T-128
+  name: ms8_00_external_context_digest
+  phase: development
+  goal: goal_goal_ms8_human_usable_package
+  path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_00_external_context_digest
+  status: pending
+  executor: hybrid
+  created: '2026-06-27'
+  completed: null
