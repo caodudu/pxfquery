@@ -3,8 +3,8 @@ from pxfquery import PxFQuery
 
 
 def test_version_is_public():
-    assert pxfquery.__version__ == "0.1.5"
-    assert PxFQuery().version == "0.1.5"
+    assert pxfquery.__version__ == "0.2.0"
+    assert PxFQuery().version == "0.2.0"
 
 
 def test_only_class_is_exported_at_top_level():
@@ -20,9 +20,12 @@ def test_client_query_api():
 
 def test_client_ask_api():
     client = PxFQuery()
-    result = client.ask("Which drugs activate apoptosis in A549 cells?")
-    assert result["route_type"] == "exact-hit"
-    assert result["intent"]["direction"] == "reverse"
+    answer = client.ask("Which drugs activate apoptosis in A549 cells?")
+    assert "find compound perturbations" in answer.interpreted_question
+    assert answer.biological_results
+    assert answer.structured_result["route_type"] == "exact-hit"
+    assert answer.structured_result["intent"]["direction"] == "reverse"
+    assert "Biological results:" in str(answer)
 
 
 def test_register_llm_provider():
@@ -129,3 +132,43 @@ def test_asset_manifest_allows_moved_files(tmp_path):
 
     assert registry.get("index.drug_index").exists is True
     assert registry.get("index.drug_index").metadata["version"] == "local-test"
+
+
+def test_resource_pack_status_and_use(tmp_path):
+    data_root = tmp_path / "standard_resources"
+    data_root.mkdir()
+    for filename in [
+        "cp_func_ad.h5ad",
+        "sh_func_ad.h5ad",
+        "xpr_func_ad.h5ad",
+        "cellline_info_standard.csv",
+        "cellline_meta_standard.csv",
+        "compound_info_standard.csv",
+        "compound_meta_standard.csv",
+        "gene_info_standard.csv",
+        "drug_index.json",
+        "gene_index.json",
+        "gene_index_simple.json",
+        "cellline_index.json",
+        "drug_neighbors.json",
+        "gene_neighbors.json",
+        "gene_neighbors_simple.json",
+        "cellline_neighbors.json",
+        "cellline_tree.json",
+        "function_index.json",
+        "data_description.yaml",
+    ]:
+        (data_root / filename).write_text("{}", encoding="utf-8")
+
+    client = PxFQuery()
+    assert client.resources.status().configured is False
+    status = client.resources.use(data_root, version="local-test")
+    assert status.configured is True
+    assert status.asset_count == 19
+    assert client.resources.manifest()["index.drug_index"]["exists"] is True
+
+
+def test_download_is_explicitly_planned_not_silent():
+    status = PxFQuery().resources.download()
+    assert status.available is False
+    assert status.source == "download_not_configured"

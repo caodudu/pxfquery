@@ -4,9 +4,12 @@ from pathlib import Path
 from typing import Iterable
 
 from pxfquery._version import __version__
+from pxfquery.answer import PxFQueryAnswer
 from pxfquery.assets import AssetRegistry
+from pxfquery.layers import build_layered_answer
 from pxfquery.llm import ProviderCheckResult, get_llm_provider, list_llm_providers, register_llm_provider, provider_check
 from pxfquery.query import load_corpus, run_corpus, summarize_records
+from pxfquery.resources import ResourceManager
 from pxfquery.workflow import (
     GetNamespace,
     PreprocessingNamespace,
@@ -25,6 +28,7 @@ class PxFQuery:
         self.provider = provider
         self.provider_mode = provider_mode
         self.assets: AssetRegistry | None = None
+        self.resources = ResourceManager(self)
         self.settings = SettingsNamespace(self)
         self.read = ReadNamespace(self)
         self.pp = PreprocessingNamespace(self)
@@ -60,8 +64,9 @@ class PxFQuery:
     def query(self, text: str) -> dict:
         return one_shot_query(self, text)
 
-    def ask(self, text: str) -> dict:
-        return self.query(text)
+    def ask(self, text: str) -> PxFQueryAnswer:
+        structured = self.query(text)
+        return build_layered_answer(text, structured, resources_status=self.resources.status().to_dict())
 
     def register_assets(
         self,

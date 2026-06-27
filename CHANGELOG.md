@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.2.0 - 2026-06-27
+
+- Refactored the public package surface around the MS8 input-kernel-output product model.
+- Added `PxFQueryAnswer` as the human-readable answer object returned by `PxFQuery.ask(...)`.
+- Kept `PxFQuery.query(...)` as the structured dictionary compatibility layer.
+- Added `pxf.resources.status()`, `pxf.resources.use(...)`, `pxf.resources.use_manifest(...)`, and `pxf.resources.download(...)` as the resource-pack management surface.
+- Updated CLI `pxfquery query` to print a readable answer by default, with `--json` for structured output.
+- Rewrote README and data asset docs around biomedical natural-language questions, resource packs, evidence, and limitations.
+- Documented that the real resource-pack-backed query kernel remains a later MS8 implementation layer.
+
 ## 0.1.5 - 2026-06-27
 
 - Corrected the data input contract to the real flat 19-file `standard_resources/` layout.

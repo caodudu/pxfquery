@@ -5,6 +5,7 @@ import json
 import sys
 from pathlib import Path
 
+from pxfquery import PxFQuery
 from pxfquery.llm import DEFAULT_PROVIDER, provider_check
 from pxfquery.query import parse, query, run_corpus, summarize_records, write_jsonl
 
@@ -55,8 +56,12 @@ def main(argv: list[str] | None = None) -> int:
         print(json.dumps(parse(args.text, provider_mode=args.provider_mode), ensure_ascii=False, indent=2))
         return 0
     if args.command == "query":
-        payload = query(args.text, provider_mode=args.provider_mode)
-        print(json.dumps(payload, ensure_ascii=False, indent=2 if args.json else None))
+        if args.json:
+            payload = query(args.text, provider_mode=args.provider_mode)
+            print(json.dumps(payload, ensure_ascii=False, indent=2))
+        else:
+            client = PxFQuery(provider_mode=args.provider_mode)
+            print(client.ask(args.text))
         return 0
     if args.command == "run-corpus":
         records = run_corpus(args.corpus, families=args.family, provider_mode=args.provider_mode)

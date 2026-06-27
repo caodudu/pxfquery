@@ -5,6 +5,7 @@ from pathlib import Path
 from typing import Iterable
 
 from pxfquery.assets import AssetRegistry
+from pxfquery.layers import build_layered_answer
 from pxfquery.llm import ProviderCheckResult, get_llm_provider, list_llm_providers, provider_check, register_llm_provider
 from pxfquery.parser import parse_query
 from pxfquery.query import load_corpus, query as run_query, run_corpus, summarize_records
@@ -169,6 +170,7 @@ class ToolsNamespace:
                 "keys": self._client.assets.keys(),
             }
         target.uns["result"] = result
+        target.uns["answer"] = build_layered_answer(target.text, result, resources_status=self._client.resources.status().to_dict())
         target.uns["route_type"] = result["route_type"]
         return target if copy else None
 
@@ -189,6 +191,11 @@ class GetNamespace:
         if "result" not in qdata.uns:
             self._client.tl.resolve(qdata)
         return qdata.uns["result"]
+
+    def answer(self, qdata: PxFQueryData):
+        if "answer" not in qdata.uns:
+            self._client.tl.resolve(qdata)
+        return qdata.uns["answer"]
 
     def summary(self, records: list[dict]) -> dict:
         return summarize_records(records)
