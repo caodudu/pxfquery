@@ -2932,7 +2932,7 @@ excluded_from_git:
 - path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_reverse_engine_output_repair_version/5_report/cli_sessions/config/20260627_091617_opencode_cli_969fad195864/stderr.log
   size_mb: 0.0
 - path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_reverse_engine_output_repair_version/5_report/cli_sessions/config/20260627_091617_opencode_cli_969fad195864/stdout.log
-  size_mb: 0.0
+  size_mb: 0.03
 - path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_route_execution_matrix/1_asset/ms4_forward_nl_stress_prompts_csv.csv
   size_mb: 0.01
 - path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_route_execution_matrix/1_asset/ms4_ground_truth_scenario_index.csv
