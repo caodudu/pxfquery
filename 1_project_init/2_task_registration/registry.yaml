@@ -1621,10 +1621,13 @@ tasks:
   phase: development
   goal: goal_ms3_ms4_quality_and_repair
   path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms5_demo_case_selection_and_repro_plan
-  status: active
+  status: done
   executor: human
   created: '2026-06-27'
   completed: null
+  notes: 'M6 rescue acceptance: AGT-002 config stalled with no substantive output;
+    supervisor completed MS5 demo case selection prep from T-089/T-094/T-095/T-097
+    evidence. This is prep only, not MS5 large stress execution.'
 - id: T-101
   name: ms5_application_scene_candidate_map
   phase: development
