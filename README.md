@@ -1,66 +1,135 @@
 # PxFquery
 
-PxFquery is a Python package for natural-language perturbation queries. It turns biomedical questions such as "Which drugs activate apoptosis in A549 cells?" into structured route metadata, perturbation resolution, function-response records, diagnostics, and suggestions.
+PxFquery asks natural-language questions against local perturbation data assets.
 
-The public Python entry point is intentionally small:
+Example question:
 
-```python
-from pxfquery import PxFQuery
+```text
+Which drugs activate apoptosis in A549 cells?
 ```
 
-The client follows a scverse-style workflow: configure runtime settings, read a query into a small work object, preprocess it, run tools, then retrieve results.
+Expected answer shape:
+
+```text
+route type -> exact-hit / proxy-hit / no-hit / ambiguous-hit / context-missing
+context    -> cell line, disease, direction, perturbation type
+evidence   -> matrix/index sources used by the query
+result     -> ranked perturbations or function scores
+warnings   -> missing fields, disabled provider, ambiguous entities, fallback routes
+```
 
 ## Install
-
-Install from source during development:
 
 ```bash
 git clone git@github.com:caodudu/pxfquery.git
 cd pxfquery
 python -m pip install -e .
-```
-
-Install test dependencies:
-
-```bash
 python -m pip install pytest PyYAML
 ```
 
-## Quick Start
+PxFquery is source-install first. Wheel installation is not the project workflow.
+
+## Register Data
+
+PxFquery does not hard-code one machine's data path. Register your local assets before querying.
+
+The expected standard resource folder is flat:
+
+```text
+standard_resources/
+  cp_func_ad.h5ad
+  sh_func_ad.h5ad
+  xpr_func_ad.h5ad
+  cellline_index.json
+  cellline_neighbors.json
+  cellline_tree.json
+  drug_index.json
+  drug_neighbors.json
+  function_index.json
+  gene_index.json
+  gene_index_simple.json
+  gene_neighbors.json
+  gene_neighbors_simple.json
+  cellline_info_standard.csv
+  cellline_meta_standard.csv
+  compound_info_standard.csv
+  compound_meta_standard.csv
+  gene_info_standard.csv
+  data_description.yaml
+```
+
+Register that folder:
 
 ```python
 from pxfquery import PxFQuery
 
 pxf = PxFQuery()
-
-q = pxf.read.query("Which drugs activate apoptosis in A549 cells?")
-pxf.pp.parse(q)
-pxf.tl.resolve(q)
-
-result = pxf.get.result(q)
-print(result["route_type"])
-print(result["function_response"])
+pxf.register_assets(root="/path/to/standard_resources")
 ```
 
-For scripts, the client also provides one-step convenience methods:
+Use a manifest if files move away from that flat folder:
+
+```yaml
+# assets.yaml
+root: /path/to/standard_resources
+assets:
+  matrix.cp_func_ad:
+    path: cp_func_ad.h5ad
+    role: compound perturbation function matrix
+  matrix.sh_func_ad:
+    path: sh_func_ad.h5ad
+    role: shRNA perturbation function matrix
+  matrix.xpr_func_ad:
+    path: xpr_func_ad.h5ad
+    role: overexpression perturbation function matrix
+  index.drug_index:
+    path: drug_index.json
+    role: drug lookup index
+  index.gene_index:
+    path: gene_index.json
+    role: gene lookup index
+  index.cellline_index:
+    path: cellline_index.json
+    role: cell line lookup index
+  index.function_index:
+    path: function_index.json
+    role: function lookup index
+```
+
+Then register it:
 
 ```python
-result = pxf.query("What happens to KRAS knockdown in A549?")
-intent = pxf.parse("What happens to KRAS knockdown in A549?")
+pxf.register_assets(manifest="assets.yaml")
 ```
 
-Those methods use the same `read -> pp -> tl -> get` workflow internally.
+## Register LLM
 
-## Real LLM Route Check
+Register an OpenAI-compatible provider before LLM-assisted parsing or route checks:
 
-Register the provider before running provider-dependent checks or queries:
+```python
+pxf.register_llm_provider(
+    "llm_gateway/deepseek-ai/deepseek-v4-flash",
+    base_url="http://localhost:3000/v1",
+    api_key_env="LLM_GATEWAY_API_KEY",
+    model="deepseek-ai/deepseek-v4-flash",
+    mode="real",
+)
+```
+
+Set the key outside Python:
+
+```bash
+export LLM_GATEWAY_API_KEY="<your-local-gateway-key>"
+```
+
+## Ask A Query
 
 ```python
 from pxfquery import PxFQuery
 
 pxf = PxFQuery()
-
-pxf.settings.register_llm(
+pxf.register_assets(manifest="assets.yaml")
+pxf.register_llm_provider(
     "llm_gateway/deepseek-ai/deepseek-v4-flash",
     base_url="http://localhost:3000/v1",
     api_key_env="LLM_GATEWAY_API_KEY",
@@ -68,131 +137,108 @@ pxf.settings.register_llm(
     mode="real",
 )
 
-check = pxf.settings.provider_check(timeout=30)
-print(check.to_dict())
-
-q = pxf.read.query(
-    "Run with registered llm_gateway/deepseek-ai/deepseek-v4-flash and record the route."
-)
-pxf.pp.parse(q)
-pxf.tl.resolve(q)
-print(pxf.get.result(q)["provider"])
+result = pxf.ask("Which drugs activate apoptosis in A549 cells?")
 ```
 
-Set the API key outside Python:
+## Example Output
 
-```bash
-export LLM_GATEWAY_API_KEY="<your-local-gateway-key>"
+Current abridged output:
+
+```json
+{
+  "route_type": "exact-hit",
+  "query_context": {
+    "cell_line": "A549",
+    "cell_line_source": "exact",
+    "tissue_lineage": "lung",
+    "disease": "NSCLC",
+    "perturbation_type": "compound",
+    "direction": "reverse",
+    "normalization_state": "PxFquery deterministic route"
+  },
+  "function_response": {
+    "status": "OK",
+    "matrix_source": "registered_assets",
+    "scores": [
+      {
+        "pert_id": "BRD-K70401845",
+        "cmap_name": "erlotinib",
+        "score": 1.31,
+        "rank": 1
+      },
+      {
+        "pert_id": "BRD-K68045993",
+        "cmap_name": "gefitinib",
+        "score": 1.07,
+        "rank": 2
+      }
+    ],
+    "function_terms": [
+      "activate apoptosis",
+      "apoptosis",
+      "MYC targets",
+      "EGFR signaling",
+      "KRAS signaling"
+    ]
+  },
+  "confidence": "high",
+  "diagnostics": {
+    "warnings": [],
+    "indexes_searched": [
+      "drug_index.json",
+      "gene_index.json",
+      "function_index.json"
+    ],
+    "matrices_searched": [
+      "cp_func_ad.h5ad",
+      "sh_func_ad.h5ad",
+      "xpr_func_ad.h5ad"
+    ],
+    "free_text_query": true
+  },
+  "asset_registry": {
+    "registered_before_query": true,
+    "keys": [
+      "index.cellline_index",
+      "index.drug_index",
+      "index.function_index",
+      "index.gene_index",
+      "matrix.cp_func_ad",
+      "matrix.sh_func_ad",
+      "matrix.xpr_func_ad"
+    ]
+  },
+  "schema_version": "2026-06-27"
+}
 ```
 
-Use disabled mode only as an explicit negative control:
+## Current Limitation
 
-```python
-pxf = PxFQuery(provider_mode="disabled")
-q = pxf.read.query("What happens to KRAS knockdown in A549?")
-pxf.pp.parse(q)
-pxf.tl.resolve(q)
-print(pxf.get.result(q)["diagnostics"]["warnings"])
-```
+Version `0.1.5` registers the real 19-file `standard_resources/` input contract and includes registered assets in query output metadata. The remaining runtime work is to replace the current deterministic resolver internals with direct reads from the registered indexes and matrices.
 
-## Workflow API
+In plain terms: the package now has the right public setup and output contract, but the next implementation step must make every route and score come from the registered data files rather than resolver placeholders.
 
-The main namespaces are:
-
-| Namespace | Role | Example |
-| --- | --- | --- |
-| `pxf.settings` | runtime/provider configuration | `pxf.settings.register_llm(...)` |
-| `pxf.read` | create query or corpus inputs | `q = pxf.read.query(text)` |
-| `pxf.pp` | parse and normalize inputs | `pxf.pp.parse(q)` |
-| `pxf.tl` | route and resolve queries | `pxf.tl.resolve(q)` |
-| `pxf.get` | retrieve structured outputs | `pxf.get.result(q)` |
-
-`q` is a lightweight `PxFQueryData` object with:
-
-- `q.text`: original query text
-- `q.obs`: per-query observations
-- `q.uns`: parsed intent, route, result, provider metadata, and diagnostics
-
-## Internal Trace Preview
-
-T-127 will formalize the internal parse pipeline and event/warning system. The intended developer-facing trace shape is:
-
-```text
-[pxfquery] read.query         text="Which drugs activate apoptosis in A549 cells?"
-[pxfquery] settings.provider  name=llm_gateway/deepseek-ai/deepseek-v4-flash mode=real registered=true
-[pxfquery] pp.normalize       language=en biomedical_terms=3
-[pxfquery] pp.parse           direction=reverse perturbation_type=compound context=A549
-[pxfquery] tl.route           route_type=exact-hit confidence=high
-[pxfquery] tl.resolve         matrix=ms7_local_evidence candidates=2
-[pxfquery] warning            code=provider.real_check_required level=info message="real provider route should be checked for LLM-dependent runs"
-[pxfquery] get.result         route_type=exact-hit schema=2026-06-27
-```
-
-This block is a design preview, not a saved execution log. The implementation task will make these events structured and testable.
-
-## CLI Demo
-
-```bash
-pxfquery parse "What happens to KRAS knockdown in A549?"
-pxfquery query "Which drugs activate apoptosis in A549 cells?" --json
-```
-
-Run the MS7 corpus:
-
-```bash
-pxfquery run-corpus \
-  --corpus tests/fixtures/ms7_execution_corpus_v20260627.yaml \
-  --jsonl /tmp/pxfquery_ms7.jsonl \
-  --summary /tmp/pxfquery_ms7_summary.json
-```
-
-Provider route check:
-
-```bash
-export LLM_GATEWAY_API_KEY="<your-local-gateway-key>"
-pxfquery provider-check \
-  --provider llm_gateway/deepseek-ai/deepseek-v4-flash \
-  --mode real \
-  --json
-```
-
-## Tests
+## Test
 
 ```bash
 python -m pytest -q tests
 ```
 
-The current release target is:
+Current source test target:
 
 ```text
-56 passed
+59 passed
 ```
 
 ## Version
 
 ```python
 import pxfquery
-from pxfquery import PxFQuery
-
-pxf = PxFQuery()
-
 print(pxfquery.__version__)
-print(pxf.version)
 ```
 
 Current version:
 
 ```text
-0.1.3
+0.1.5
 ```
-
-## Release Notes
-
-Each public version is tied to a CyHex task and an immutable Git tag.
-
-- `v0.1.0`: MS7 recovery package baseline
-- `v0.1.1`: version governance
-- `v0.1.2`: single-class API baseline
-- `v0.1.3`: scverse-style workflow API and corrected provider-first README
-
-See `CHANGELOG.md`, `docs/release_policy.md`, and `docs/development_task_policy.md` for task-linked release discipline.

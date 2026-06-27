@@ -1970,6 +1970,10 @@ edges:
   to: goal_ms7_recovery_package/task_ms7_scverse_style_api_workflow_v013
   dep_id: T-125
   gate: must
+- from: goal_ms7_recovery_package/task_ms7_scverse_style_api_workflow_v013
+  to: goal_ms7_recovery_package/task_ms7_internal_parse_pipeline_events_warnings_v014
+  dep_id: T-126
+  gate: must
 labels:
 - id: label_mqpofuno
   phase: digestion
