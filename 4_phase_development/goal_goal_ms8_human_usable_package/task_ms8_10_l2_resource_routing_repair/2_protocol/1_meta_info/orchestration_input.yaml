@@ -1,0 +1,21 @@
+task_id: T-138
+dependencies:
+  - task_id: T-135
+    gate: must
+  - task_id: T-136
+    gate: must
+task_focus: L2 only - evidence routing and resource-aware resolution
+do_not_touch:
+  - T-137 L1 task
+  - L3 matrix execution except interface contract checks
+  - demo or fake parser paths
+hard_constraints:
+  - No local rules, fixtures, or mock LLM output may count as LLM/NLU success.
+  - No demo dictionaries or hardcoded biomedical outcomes in product source.
+  - Route tests must use real registered index files, or explicit minimal test fixtures that stay outside product source and are labeled as fixtures.
+  - L2 must not call matrix execution to hide missing routing metadata.
+source_review_required:
+  - T-135 recovered package and completion claims
+  - T-136 original logic/layer target anchor
+  - Current PxFquery source and tests
+  - T007/T130 context only as needed for regression comparison

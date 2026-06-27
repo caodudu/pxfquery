@@ -1,0 +1,26 @@
+task_id: T-138
+name: ms8_10_l2_resource_routing_repair
+phase: development
+goal: goal_goal_ms8_human_usable_package
+project: P-012
+objective: Repair and verify PxFquery L2 evidence routing/resource-aware resolution as
+  a scanpy-style layer that consumes QueryIntent plus real registered indexes, resolves
+  cell/drug/gene/function entities, produces exact/proxy/no-hit route plans with evidence
+  metadata, and never uses demo dictionaries, hardcoded biomedical outcomes, fake LLM
+  success, or matrix execution as a substitute for routing.
+executor: hybrid
+agent_id: null
+config_agent_id: null
+check_agent_id: null
+execute_agent_id: null
+deliver_agent_id: null
+server_id: null
+status: pending
+cyhex_version: 1.3.33
+milestone_id: ''
+milestone_final: false
+created: '2026-06-28'
+started: null
+completed: null
+notes: ''
+fast_pass_permission: red
