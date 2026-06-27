@@ -1604,3 +1604,12 @@ tasks:
   executor: human
   created: '2026-06-27'
   completed: null
+- id: T-099
+  name: ms4_reverse_engine_output_repair_version
+  phase: development
+  goal: goal_ms3_ms4_quality_and_repair
+  path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_reverse_engine_output_repair_version
+  status: pending
+  executor: human
+  created: '2026-06-27'
+  completed: null
