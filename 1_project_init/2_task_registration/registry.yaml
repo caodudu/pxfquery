@@ -1732,7 +1732,10 @@ tasks:
   phase: development
   goal: goal_ms3_release_quality
   path: 4_phase_development/goal_ms3_release_quality/task_ms3_corrected_final_review_after_m6
-  status: active
+  status: done
   executor: human
   created: '2026-06-27'
   completed: null
+  notes: 'M6 corrected final review: MS3 failed full acceptance but is closed as conditional
+    handoff with explicit corrective/deferred evidence. Downstream MS4-MS6 artifacts
+    are retained only with caveats.'
