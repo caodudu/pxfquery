@@ -1724,3 +1724,12 @@ tasks:
   executor: human
   created: '2026-06-27'
   completed: null
+- id: T-109
+  name: ms3_corrected_final_review_after_m6
+  phase: development
+  goal: goal_ms3_release_quality
+  path: 4_phase_development/goal_ms3_release_quality/task_ms3_corrected_final_review_after_m6
+  status: pending
+  executor: human
+  created: '2026-06-27'
+  completed: null
