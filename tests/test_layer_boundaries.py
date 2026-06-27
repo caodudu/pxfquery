@@ -1,8 +1,8 @@
-from pxfquery.evidence import assemble_evidence
-from pxfquery.execution import execute_route
-from pxfquery.nlu import parse_query
-from pxfquery.presentation import build_answer
-from pxfquery.routing import route_intent
+from pxfquery.l4_evidence import assemble_evidence
+from pxfquery.l3_execution import execute_route
+from pxfquery.l1_nlu import parse_query
+from pxfquery.l5_presentation import build_answer
+from pxfquery.l2_routing import route_intent
 
 
 def test_nlu_only_parses_surface_intent():

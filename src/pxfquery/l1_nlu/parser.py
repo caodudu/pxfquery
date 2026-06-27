@@ -1,6 +1,6 @@
 import re
 
-from pxfquery.nlu.schema import QueryIntent
+from pxfquery.l1_nlu.schema import QueryIntent
 
 
 def parse_query(text: str) -> QueryIntent:

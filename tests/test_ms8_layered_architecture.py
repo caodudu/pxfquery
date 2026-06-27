@@ -51,18 +51,18 @@ def test_user_visible_artifacts_do_not_show_unsupported_biological_outputs():
 
 
 def test_product_source_has_five_visible_layers():
-    expected = ["nlu", "routing", "execution", "evidence", "presentation"]
+    expected = ["l1_nlu", "l2_routing", "l3_execution", "l4_evidence", "l5_presentation"]
     for name in expected:
         assert (SRC / name / "__init__.py").exists()
 
 
 def test_package_root_is_only_thin_entrypoints():
-    expected = {"__init__.py", "__main__.py", "_version.py"}
+    expected = {"__init__.py", "__main__.py"}
     actual = {path.name for path in SRC.iterdir() if path.is_file()}
     assert actual == expected
 
 
 def test_presentation_layer_contains_only_current_files():
-    allowed = {"__init__.py", "answer.py", "cli.py", "client.py", "model.py"}
-    actual = {path.name for path in (SRC / "presentation").iterdir() if path.is_file()}
+    allowed = {"__init__.py", "answer.py", "cli.py", "client.py", "model.py", "version.py", "workflow.py"}
+    actual = {path.name for path in (SRC / "l5_presentation").iterdir() if path.is_file()}
     assert actual == allowed

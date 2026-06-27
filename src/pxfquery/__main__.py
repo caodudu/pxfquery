@@ -1,3 +1,3 @@
-from pxfquery.presentation.cli import main
+from pxfquery.l5_presentation.cli import main
 
 raise SystemExit(main())

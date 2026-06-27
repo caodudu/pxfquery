@@ -4,7 +4,7 @@ from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any
 
-from pxfquery.execution.assets import AssetRegistry
+from pxfquery.l3_execution.assets import AssetRegistry
 
 
 @dataclass

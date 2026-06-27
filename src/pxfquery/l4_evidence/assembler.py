@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from pxfquery.execution import QueryExecution
+from pxfquery.l3_execution import QueryExecution
 
 
 def assemble_evidence(execution: QueryExecution) -> dict:
@@ -38,10 +38,10 @@ def assemble_evidence(execution: QueryExecution) -> dict:
         "diagnostics": diagnostics,
         "suggestions": _suggestions(intent, route_plan.route_status),
         "layer_chain": [
-            "nlu.parse_query",
-            "routing.route_intent",
-            "execution.execute_route",
-            "evidence.assemble_evidence",
+            "l1_nlu.parse_query",
+            "l2_routing.route_intent",
+            "l3_execution.execute_route",
+            "l4_evidence.assemble_evidence",
         ],
         "execution_note": execution.execution_note,
     }

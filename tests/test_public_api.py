@@ -4,7 +4,7 @@ from pxfquery import PxFQuery
 
 def test_public_entrypoint_is_single_client():
     assert pxfquery.__all__ == ["PxFQuery"]
-    assert PxFQuery().version == "0.3.2"
+    assert PxFQuery().version == "0.4.0"
 
 
 def test_ask_returns_no_biological_claim_before_resource_backed_retrieval():
@@ -25,8 +25,21 @@ def test_ask_returns_no_biological_claim_before_resource_backed_retrieval():
 def test_query_exposes_layer_chain():
     result = PxFQuery().query("How does a perturbation change functional programs in a disease model?")
     assert result["layer_chain"] == [
-        "nlu.parse_query",
-        "routing.route_intent",
-        "execution.execute_route",
-        "evidence.assemble_evidence",
+        "l1_nlu.parse_query",
+        "l2_routing.route_intent",
+        "l3_execution.execute_route",
+        "l4_evidence.assemble_evidence",
     ]
+
+
+def test_scanpy_style_interface_drives_internal_layers():
+    pxf = PxFQuery()
+    q = pxf.read.query("Find perturbations that increase a requested biological function in a disease model.")
+    pxf.pp.parse(q)
+    pxf.tl.route(q)
+    pxf.tl.execute(q)
+    pxf.tl.assemble(q)
+
+    assert q.uns["route_status"] == "requires-resource-routing"
+    assert q.uns["execution"]["query_status"] == "no-retrieval"
+    assert pxf.get.result(q)["function_response"]["candidates"] == []

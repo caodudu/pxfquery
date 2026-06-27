@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from pxfquery.routing import RoutePlan
+from pxfquery.l2_routing import RoutePlan
 
 
 @dataclass
