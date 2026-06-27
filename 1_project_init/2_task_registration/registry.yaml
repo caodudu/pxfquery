@@ -1720,10 +1720,13 @@ tasks:
   phase: development
   goal: goal_ms3_release_quality
   path: 4_phase_development/goal_ms3_release_quality/task_ms3_m6_corrective_gap_closure
-  status: active
+  status: done
   executor: human
   created: '2026-06-27'
   completed: null
+  notes: 'M6 corrective closure: MS3 did not pass full acceptance. Failed capabilities
+    mapped to downstream repair/deferred status without rewriting T-079. MS4-MS6 assets
+    are conditional downstream evidence, not retroactive MS3 proof.'
 - id: T-109
   name: ms3_corrected_final_review_after_m6
   phase: development
