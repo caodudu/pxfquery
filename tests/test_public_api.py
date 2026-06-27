@@ -4,7 +4,7 @@ from pxfquery import PxFQuery
 
 def test_public_entrypoint_is_single_client():
     assert pxfquery.__all__ == ["PxFQuery"]
-    assert PxFQuery().version == "0.3.0"
+    assert PxFQuery().version == "0.3.1"
 
 
 def test_ask_returns_no_biological_claim_before_resource_backed_retrieval():

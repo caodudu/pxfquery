@@ -71,7 +71,7 @@ pxf = PxFQuery()
 pxf.resources.download()
 ```
 
-The download/cache implementation is not active in `0.3.0`; `resources.download()` reports that official resource-pack download is not configured and asks users to provide a local pack for now.
+The download/cache implementation is not active in `0.3.1`; `resources.download()` reports that official resource-pack download is not configured and asks users to provide a local pack for now.
 
 Local resource registration is available for development and later resource-pack work:
 
@@ -93,11 +93,11 @@ User biomedical question
   -> pxfquery.presentation
 ```
 
-The current `0.3.0` implementation does not hard-code demo entities, scores, ranked candidates, or matrix hits. Natural-language intent parsing is present; biological hits require later resource-backed routing and query execution.
+The current `0.3.1` implementation does not hard-code demo entities, scores, ranked candidates, or matrix hits. Natural-language intent parsing is present; biological hits require later resource-backed routing and query execution.
 
 ## Current Status
 
-Version `0.3.0` corrects the source architecture:
+Version `0.3.1` corrects the source architecture:
 
 - `pxfquery.nlu` parses the user's biomedical question into surface intent.
 - `pxfquery.routing` decides what downstream evidence capabilities are required.
@@ -129,5 +129,5 @@ print(pxfquery.__version__)
 Current version:
 
 ```text
-0.3.0
+0.3.1
 ```

@@ -1,5 +1,5 @@
 from pxfquery.nlu import parse_query
-from pxfquery.pipeline import run_query_pipeline
+from pxfquery.evidence.pipeline import run_query_pipeline
 
 
 def query(text: str) -> dict:

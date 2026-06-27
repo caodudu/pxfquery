@@ -1,12 +1,21 @@
 # Changelog
 
+## 0.3.1 - 2026-06-27
+
+- Tightened the source tree so `src/pxfquery/` root contains only thin package entrypoints: `__init__.py`, `__main__.py`, and `_version.py`.
+- Moved resource-pack registration code into `pxfquery.execution`.
+- Moved query client, CLI, answer model, and workflow helpers into `pxfquery.presentation`.
+- Moved the query pipeline into `pxfquery.evidence`.
+- Removed the unused top-level LLM/provider-check module from the package.
+- Added a test gate that fails if new top-level product scripts appear outside the five-layer source layout.
+
 ## 0.3.0 - 2026-06-27
 
 - Corrected the previous wrapper-only layering by moving product source into visible layer packages: `nlu`, `routing`, `execution`, `evidence`, and `presentation`.
 - Removed old `parser.py`, `resolver.py`, `layers.py`, and directional `engines/` scripts from the product source.
 - Removed hard-coded demo entities, fake IDs, fake scores, fake ranked candidates, and old placeholder-kernel outputs from product code.
 - Updated tests so the package no longer passes by fabricating historical MS7 route outcomes.
-- Regenerated demo notebooks so they show natural-language intent and explicitly avoid claiming biological hits before resource-backed routing/query execution.
+- Removed demo notebooks from the current product source until the notebook goal is handled separately.
 
 ## 0.2.1 - 2026-06-27
 

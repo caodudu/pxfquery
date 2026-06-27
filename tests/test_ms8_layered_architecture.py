@@ -59,3 +59,9 @@ def test_product_source_has_five_visible_layers():
     expected = ["nlu", "routing", "execution", "evidence", "presentation"]
     for name in expected:
         assert (SRC / name / "__init__.py").exists()
+
+
+def test_package_root_is_only_thin_entrypoints():
+    expected = {"__init__.py", "__main__.py", "_version.py"}
+    actual = {path.name for path in SRC.iterdir() if path.is_file()}
+    assert actual == expected

@@ -14,6 +14,6 @@ setup(
     packages=find_packages(where="src"),
     package_dir={"": "src"},
     install_requires=["PyYAML>=6"],
-    entry_points={"console_scripts": ["pxfquery=pxfquery.cli:main"]},
+    entry_points={"console_scripts": ["pxfquery=pxfquery.presentation.cli:main"]},
     python_requires=">=3.10",
 )

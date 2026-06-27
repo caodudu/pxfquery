@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Any
 
-from pxfquery.answer import PxFQueryAnswer
+from pxfquery.presentation.model import PxFQueryAnswer
 
 
 def build_answer(question: str, structured: dict[str, Any], *, resources_status: dict[str, Any] | None = None) -> PxFQueryAnswer:

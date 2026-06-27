@@ -3,10 +3,9 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from pathlib import Path
 
-from pxfquery.assets import AssetRegistry
-from pxfquery.llm import ProviderCheckResult, get_llm_provider, list_llm_providers, provider_check, register_llm_provider
+from pxfquery.execution.assets import AssetRegistry
+from pxfquery.evidence.pipeline import run_query_pipeline
 from pxfquery.nlu import parse_query
-from pxfquery.pipeline import run_query_pipeline
 from pxfquery.presentation import build_answer
 from pxfquery.routing import route_intent
 
@@ -23,58 +22,6 @@ class PxFQueryData:
 class SettingsNamespace:
     def __init__(self, client) -> None:
         self._client = client
-
-    @property
-    def provider(self) -> str | None:
-        return self._client.provider
-
-    @property
-    def provider_mode(self) -> str:
-        return self._client.provider_mode
-
-    def register_llm(
-        self,
-        name: str,
-        *,
-        base_url: str,
-        api_key: str | None = None,
-        api_key_env: str = "LLM_GATEWAY_API_KEY",
-        model: str | None = None,
-        mode: str = "real",
-    ) -> None:
-        register_llm_provider(
-            name,
-            base_url=base_url,
-            api_key=api_key,
-            api_key_env=api_key_env,
-            model=model,
-        )
-        self._client.provider = name
-        self._client.provider_mode = mode
-
-    def provider_check(
-        self,
-        *,
-        provider: str | None = None,
-        prompt: str = "Return JSON with key pxfquery_provider_check and value ok.",
-        mode: str | None = None,
-        timeout: float = 20.0,
-    ) -> ProviderCheckResult:
-        selected = provider or self._client.provider
-        if selected is None:
-            raise ValueError("register an LLM provider before provider_check")
-        return provider_check(
-            provider=selected,
-            prompt=prompt,
-            mode=mode or self._client.provider_mode,
-            timeout=timeout,
-        )
-
-    def get_llm_provider(self, name: str):
-        return get_llm_provider(name)
-
-    def list_llm_providers(self) -> list[str]:
-        return list_llm_providers()
 
     def register_assets(
         self,
@@ -117,11 +64,6 @@ class PreprocessingNamespace:
         intent = parse_query(target.text)
         target.uns["intent"] = intent.to_dict()
         target.uns["_intent_obj"] = intent
-        target.uns["provider"] = {
-            "name": self._client.provider,
-            "mode": self._client.provider_mode,
-            "registered_before_parse": self._client.provider is not None,
-        }
         target.uns["assets"] = {
             "registered_before_parse": self._client.assets is not None,
             "keys": self._client.assets.keys() if self._client.assets is not None else [],
@@ -152,9 +94,6 @@ class ToolsNamespace:
             self._client.pp.parse(target)
             intent = target.uns["_intent_obj"]
         result = run_query_pipeline(target.text)
-        if self._client.provider is not None:
-            result["provider"]["name"] = self._client.provider
-            result["provider"]["registered_before_query"] = True
         if self._client.assets is not None:
             if isinstance(result.get("function_response"), dict):
                 result["function_response"]["matrix_source"] = "registered_assets"
