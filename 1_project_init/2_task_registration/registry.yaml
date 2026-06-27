@@ -1708,7 +1708,7 @@ tasks:
   phase: translation
   goal: goal_ms6_manuscript_foundation
   path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_anchor_comparison_writing_handoff
-  status: pending
+  status: active
   executor: human
   created: '2026-06-27'
   completed: null

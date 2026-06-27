@@ -1679,6 +1679,26 @@ edges:
   to: goal_ms6_manuscript_foundation/task_ms6_writing_figure_resource_pack
   dep_id: T-105
   gate: must
+- from: goal_m6_ms_anchors_and_stress_assets/task_ms6_manuscript_figure_anchor
+  to: goal_ms6_manuscript_foundation/task_ms6_anchor_comparison_writing_handoff
+  dep_id: T-084
+  gate: must
+- from: goal_ms6_manuscript_foundation/task_ms6_package_capability_narrative
+  to: goal_ms6_manuscript_foundation/task_ms6_anchor_comparison_writing_handoff
+  dep_id: T-091
+  gate: must
+- from: goal_ms6_manuscript_foundation/task_ms6_algorithm_method_story
+  to: goal_ms6_manuscript_foundation/task_ms6_anchor_comparison_writing_handoff
+  dep_id: T-092
+  gate: must
+- from: goal_ms6_manuscript_foundation/task_ms6_internal_data_figure2_assets
+  to: goal_ms6_manuscript_foundation/task_ms6_anchor_comparison_writing_handoff
+  dep_id: T-093
+  gate: must
+- from: goal_ms6_manuscript_foundation/task_ms6_writing_figure_resource_pack
+  to: goal_ms6_manuscript_foundation/task_ms6_anchor_comparison_writing_handoff
+  dep_id: T-106
+  gate: must
 labels:
 - id: label_mqpofuno
   phase: digestion
