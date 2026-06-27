@@ -2876,15 +2876,17 @@ excluded_from_git:
 - path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_engine_output_failure_diagnosis/5_report/cli_sessions/config/20260627_083528_opencode_cli_beef63664ab8/stderr.log
   size_mb: 0.0
 - path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_engine_output_failure_diagnosis/5_report/cli_sessions/config/20260627_083528_opencode_cli_beef63664ab8/stdout.log
-  size_mb: 0.0
+  size_mb: 0.03
+- path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_parser_llm_failure_diagnosis/1_asset/ms4_route_execution_matrix_csv.csv
+  size_mb: 0.02
 - path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_parser_llm_failure_diagnosis/5_report/cli_sessions/config/20260627_083516_opencode_cli_d16336fc9784/stderr.log
   size_mb: 0.0
 - path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_parser_llm_failure_diagnosis/5_report/cli_sessions/config/20260627_083516_opencode_cli_d16336fc9784/stdout.log
-  size_mb: 0.0
+  size_mb: 0.04
 - path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_resolver_route_failure_diagnosis/5_report/cli_sessions/config/20260627_083531_opencode_cli_f8bb79989daf/stderr.log
   size_mb: 0.0
 - path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_resolver_route_failure_diagnosis/5_report/cli_sessions/config/20260627_083531_opencode_cli_f8bb79989daf/stdout.log
-  size_mb: 0.0
+  size_mb: 0.03
 - path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_route_execution_matrix/1_asset/ms4_forward_nl_stress_prompts_csv.csv
   size_mb: 0.01
 - path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_route_execution_matrix/1_asset/ms4_ground_truth_scenario_index.csv
