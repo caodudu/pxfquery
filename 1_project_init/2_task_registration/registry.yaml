@@ -1784,3 +1784,12 @@ tasks:
   executor: hybrid
   created: '2026-06-27'
   completed: null
+- id: T-115
+  name: ms7_acceptance_matrix_spec_2
+  phase: development
+  goal: goal_ms7_recovery_package
+  path: 4_phase_development/goal_ms7_recovery_package/task_ms7_acceptance_matrix_spec_2
+  status: pending
+  executor: hybrid
+  created: '2026-06-27'
+  completed: null
