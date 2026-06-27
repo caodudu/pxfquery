@@ -3319,6 +3319,14 @@ excluded_from_git:
   size_mb: 0.02
 - path: 4_phase_development/goal_ms7_recovery_package/task_ms7_release_candidate_pack_2/4_artifact/6_archive/pxfquery-0.1.0.tar.gz
   size_mb: 0.01
+- path: 4_phase_development/goal_ms7_recovery_package/task_ms7_scverse_style_api_workflow_v013/3_execution/logs/01_pytest_v013.exit
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms7_recovery_package/task_ms7_scverse_style_api_workflow_v013/3_execution/logs/01_pytest_v013.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms7_recovery_package/task_ms7_scverse_style_api_workflow_v013/3_execution/logs/02_readme_workflow_smoke.exit
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms7_recovery_package/task_ms7_scverse_style_api_workflow_v013/3_execution/logs/02_readme_workflow_smoke.log
+  size_mb: 0.0
 - path: 4_phase_development/goal_ms7_recovery_package/task_ms7_version_governance_v011/3_execution/logs/pxfquery_v011_build.exit
   size_mb: 0.0
 - path: 4_phase_development/goal_ms7_recovery_package/task_ms7_version_governance_v011/3_execution/logs/pxfquery_v011_build.log
@@ -3659,5 +3667,3 @@ excluded_from_git:
   size_mb: 0.0
 - path: 5_phase_translation/goal_pending_g010/task_pending_t019/5_report/cli_sessions/execute/20260623_035250_opencode_cli_d881b0479d59/stdout.log
   size_mb: 0.17
-- path: src/pxfquery.egg-info/PKG-INFO
-  size_mb: 0.0

@@ -1966,6 +1966,10 @@ edges:
   to: goal_ms7_recovery_package/task_ms7_public_api_single_class_v012
   dep_id: T-124
   gate: must
+- from: goal_ms7_recovery_package/task_ms7_public_api_single_class_v012
+  to: goal_ms7_recovery_package/task_ms7_scverse_style_api_workflow_v013
+  dep_id: T-125
+  gate: must
 labels:
 - id: label_mqpofuno
   phase: digestion
