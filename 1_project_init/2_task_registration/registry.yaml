@@ -1720,7 +1720,7 @@ tasks:
   phase: development
   goal: goal_ms3_release_quality
   path: 4_phase_development/goal_ms3_release_quality/task_ms3_m6_corrective_gap_closure
-  status: pending
+  status: active
   executor: human
   created: '2026-06-27'
   completed: null

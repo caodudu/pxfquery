@@ -2995,6 +2995,8 @@ excluded_from_git:
   size_mb: 0.02
 - path: 4_phase_development/goal_ms3_release_quality/.DS_Store
   size_mb: 0.01
+- path: 4_phase_development/goal_ms3_release_quality/task_ms3_corrected_final_review_after_m6/4_artifact/5_table/ms3_corrected_verdict_matrix_v20260627.csv
+  size_mb: 0.0
 - path: 4_phase_development/goal_ms3_release_quality/task_ms3_functional_test_and_release_iteration/5_report/cli_sessions/check/20260627_043205_opencode_cli_541abb10f6f2/stderr.log
   size_mb: 0.0
 - path: 4_phase_development/goal_ms3_release_quality/task_ms3_functional_test_and_release_iteration/5_report/cli_sessions/check/20260627_043205_opencode_cli_541abb10f6f2/stdout.log
@@ -3011,6 +3013,8 @@ excluded_from_git:
   size_mb: 0.0
 - path: 4_phase_development/goal_ms3_release_quality/task_ms3_functional_test_and_release_iteration/5_report/cli_sessions/execute/20260627_044154_opencode_cli_8dcbd62e91c1/stdout.log
   size_mb: 0.1
+- path: 4_phase_development/goal_ms3_release_quality/task_ms3_m6_corrective_gap_closure/4_artifact/5_table/ms3_failed_capability_closure_matrix_v20260627.csv
+  size_mb: 0.0
 - path: 4_phase_development/goal_ms3_release_quality/task_ms3_no_downgrade_quality_gate/1_asset/m1_vs_delivery_anchor_capability_matrix.csv
   size_mb: 0.01
 - path: 4_phase_development/goal_ms3_release_quality/task_ms3_no_downgrade_quality_gate/1_asset/ms3_capability_matrix.csv

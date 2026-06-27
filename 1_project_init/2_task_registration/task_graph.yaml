@@ -1719,6 +1719,18 @@ edges:
   to: goal_ms3_release_quality/task_ms3_m6_corrective_gap_closure
   dep_id: T-105
   gate: must
+- from: goal_ms3_release_quality/task_ms3_no_downgrade_quality_gate
+  to: goal_ms3_release_quality/task_ms3_corrected_final_review_after_m6
+  dep_id: T-079
+  gate: must
+- from: goal_ms3_ms4_quality_and_repair/task_ms3_entry_to_ms4_comparison_review
+  to: goal_ms3_release_quality/task_ms3_corrected_final_review_after_m6
+  dep_id: T-090
+  gate: must
+- from: goal_ms3_ms4_quality_and_repair/task_ms4_anchor_comparison_and_release_pack
+  to: goal_ms3_release_quality/task_ms3_corrected_final_review_after_m6
+  dep_id: T-103
+  gate: must
 labels:
 - id: label_mqpofuno
   phase: digestion
