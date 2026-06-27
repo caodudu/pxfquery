@@ -2,14 +2,13 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Iterable
 
 from pxfquery.assets import AssetRegistry
-from pxfquery.layers import build_layered_answer
 from pxfquery.llm import ProviderCheckResult, get_llm_provider, list_llm_providers, provider_check, register_llm_provider
-from pxfquery.parser import parse_query
-from pxfquery.query import load_corpus, query as run_query, run_corpus, summarize_records
-from pxfquery.resolver import classify_route, resolve_intent
+from pxfquery.nlu import parse_query
+from pxfquery.pipeline import run_query_pipeline
+from pxfquery.presentation import build_answer
+from pxfquery.routing import route_intent
 
 
 @dataclass
@@ -57,7 +56,7 @@ class SettingsNamespace:
         self,
         *,
         provider: str | None = None,
-        prompt: str = "Return JSON with key ms7_provider_check and value ok.",
+        prompt: str = "Return JSON with key pxfquery_provider_check and value ok.",
         mode: str | None = None,
         timeout: float = 20.0,
     ) -> ProviderCheckResult:
@@ -108,9 +107,6 @@ class ReadNamespace:
     def query(self, text: str) -> PxFQueryData:
         return PxFQueryData(text=text.strip())
 
-    def corpus(self, path: str | Path) -> list[dict]:
-        return load_corpus(path)
-
 
 class PreprocessingNamespace:
     def __init__(self, client) -> None:
@@ -118,11 +114,7 @@ class PreprocessingNamespace:
 
     def parse(self, qdata: PxFQueryData, *, copy: bool = False) -> PxFQueryData | None:
         target = PxFQueryData(text=qdata.text, obs=dict(qdata.obs), uns=dict(qdata.uns)) if copy else qdata
-        intent = parse_query(
-            target.text,
-            ai_route_used=self._client.provider_mode == "real",
-            fallback_used=self._client.provider_mode != "real",
-        )
+        intent = parse_query(target.text)
         target.uns["intent"] = intent.to_dict()
         target.uns["_intent_obj"] = intent
         target.uns["provider"] = {
@@ -147,8 +139,10 @@ class ToolsNamespace:
         if intent is None:
             self._client.pp.parse(target)
             intent = target.uns["_intent_obj"]
-        route_type = classify_route(intent, provider_mode=self._client.provider_mode)
-        target.uns["route_type"] = route_type.value
+        route_plan = route_intent(intent)
+        target.uns["route_plan"] = route_plan.to_dict()
+        target.uns["_route_plan_obj"] = route_plan
+        target.uns["route_status"] = route_plan.route_status
         return target if copy else None
 
     def resolve(self, qdata: PxFQueryData, *, copy: bool = False) -> PxFQueryData | None:
@@ -157,7 +151,7 @@ class ToolsNamespace:
         if intent is None:
             self._client.pp.parse(target)
             intent = target.uns["_intent_obj"]
-        result = resolve_intent(intent, provider_mode=self._client.provider_mode)
+        result = run_query_pipeline(target.text)
         if self._client.provider is not None:
             result["provider"]["name"] = self._client.provider
             result["provider"]["registered_before_query"] = True
@@ -170,12 +164,9 @@ class ToolsNamespace:
                 "keys": self._client.assets.keys(),
             }
         target.uns["result"] = result
-        target.uns["answer"] = build_layered_answer(target.text, result, resources_status=self._client.resources.status().to_dict())
-        target.uns["route_type"] = result["route_type"]
+        target.uns["answer"] = build_answer(target.text, result, resources_status=self._client.resources.status().to_dict())
+        target.uns["route_status"] = result["route_status"]
         return target if copy else None
-
-    def run_corpus(self, corpus_path: str | Path, *, families: Iterable[str] | None = None) -> list[dict]:
-        return run_corpus(corpus_path, families=families, provider_mode=self._client.provider_mode)
 
 
 class GetNamespace:
@@ -196,9 +187,6 @@ class GetNamespace:
         if "answer" not in qdata.uns:
             self._client.tl.resolve(qdata)
         return qdata.uns["answer"]
-
-    def summary(self, records: list[dict]) -> dict:
-        return summarize_records(records)
 
 
 def one_shot_query(client, text: str) -> dict:

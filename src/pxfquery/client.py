@@ -1,14 +1,12 @@
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Iterable
 
 from pxfquery._version import __version__
 from pxfquery.answer import PxFQueryAnswer
 from pxfquery.assets import AssetRegistry
-from pxfquery.layers import build_layered_answer
 from pxfquery.llm import ProviderCheckResult, get_llm_provider, list_llm_providers, register_llm_provider, provider_check
-from pxfquery.query import load_corpus, run_corpus, summarize_records
+from pxfquery.presentation import build_answer
 from pxfquery.resources import ResourceManager
 from pxfquery.workflow import (
     GetNamespace,
@@ -66,7 +64,7 @@ class PxFQuery:
 
     def ask(self, text: str) -> PxFQueryAnswer:
         structured = self.query(text)
-        return build_layered_answer(text, structured, resources_status=self.resources.status().to_dict())
+        return build_answer(text, structured, resources_status=self.resources.status().to_dict())
 
     def register_assets(
         self,
@@ -77,20 +75,11 @@ class PxFQuery:
     ) -> AssetRegistry:
         return self.settings.register_assets(root=root, manifest=manifest, strict=strict)
 
-    def run_corpus(self, corpus_path: str | Path, *, families: Iterable[str] | None = None) -> list[dict]:
-        return self.tl.run_corpus(corpus_path, families=families)
-
-    def summarize_records(self, records: list[dict]) -> dict:
-        return summarize_records(records)
-
-    def load_corpus(self, path: str | Path) -> list[dict]:
-        return load_corpus(path)
-
     def provider_check(
         self,
         *,
         provider: str | None = None,
-        prompt: str = "Return JSON with key ms7_provider_check and value ok.",
+        prompt: str = "Return JSON with key pxfquery_provider_check and value ok.",
         mode: str = "real",
         timeout: float = 20.0,
     ) -> ProviderCheckResult:

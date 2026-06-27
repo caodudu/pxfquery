@@ -5,7 +5,7 @@ from typing import Any
 from pxfquery.answer import PxFQueryAnswer
 
 
-def build_layered_answer(question: str, structured: dict[str, Any], *, resources_status: dict[str, Any] | None = None) -> PxFQueryAnswer:
+def build_answer(question: str, structured: dict[str, Any], *, resources_status: dict[str, Any] | None = None) -> PxFQueryAnswer:
     intent = structured.get("intent", {})
     context = structured.get("query_context", {})
     function_response = structured.get("function_response", {})
@@ -26,7 +26,7 @@ def build_layered_answer(question: str, structured: dict[str, Any], *, resources
         structured_result=structured,
         engineering={
             "diagnostics": diagnostics,
-            "route_type": structured.get("route_type"),
+            "route_status": structured.get("route_status"),
             "trace": _trace(structured),
         },
     )
@@ -75,8 +75,8 @@ def _evidence(structured: dict[str, Any], resources_status: dict[str, Any] | Non
     function_response = structured.get("function_response", {})
     diagnostics = structured.get("diagnostics", {})
     evidence = {
-        "biological_context": context.get("cell_line") or "not resolved",
-        "context_source": context.get("cell_line_source") or "not resolved",
+        "biological_context": context.get("biological_context") or "not resolved",
+        "context_source": context.get("context_source") or "not resolved",
         "perturbation_type": context.get("perturbation_type") or "unknown",
         "direction": context.get("direction") or "unknown",
         "data_source": _readable_data_source(function_response.get("matrix_source")),
@@ -90,16 +90,16 @@ def _evidence(structured: dict[str, Any], resources_status: dict[str, Any] | Non
 
 
 def _readable_data_source(matrix_source: str | None) -> str:
-    if matrix_source == "ms7_local_evidence":
-        return "placeholder query kernel; real resource-pack query is not connected yet"
+    if matrix_source == "resource_pack_pending":
+        return "resource-pack query execution pending"
     if matrix_source == "registered_assets":
-        return "registered resource pack metadata; real matrix query is not connected yet"
+        return "registered resource pack metadata; no matrix retrieval was produced"
     return matrix_source or "not retrieved"
 
 
 def _limitations(structured: dict[str, Any], resources_status: dict[str, Any] | None) -> list[str]:
     limitations = [
-        "This version uses the new layered product interface but still relies on the existing placeholder query kernel for biological scores.",
+        "This version exposes the source-layer architecture. Biological hits require later resource-backed routing and query execution.",
     ]
     diagnostics = structured.get("diagnostics", {})
     if diagnostics.get("missing_fields"):
@@ -113,16 +113,17 @@ def _limitations(structured: dict[str, Any], resources_status: dict[str, Any] | 
 
 def _interpretation(intent: dict[str, Any], results: list[dict[str, Any]]) -> str:
     if not results:
-        return "PxFquery could not produce a biological result for this question with the current kernel."
+        return "PxFquery parsed the question intent, but no biological result is claimed before resource-backed routing and query execution."
     if intent.get("direction") == "reverse":
-        return "The ranked perturbations are presented as candidates for the requested biological function. Treat them as resource-backed leads once the real query kernel is connected."
+        return "Ranked perturbations require resource-backed query execution."
     return "The function scores summarize the current estimated functional response for the requested perturbation."
 
 
 def _trace(structured: dict[str, Any]) -> list[dict[str, Any]]:
     return [
-        {"layer": "natural_language", "event": "question_received"},
-        {"layer": "routing", "event": "structured_route_available", "status": structured.get("route_type")},
-        {"layer": "query", "event": "legacy_kernel_result_wrapped"},
-        {"layer": "output", "event": "biological_answer_built"},
+        {"layer": "natural_language_understanding", "event": "intent_parsed"},
+        {"layer": "evidence_routing", "event": "route_selected", "status": structured.get("route_status")},
+        {"layer": "resource_pack_query_execution", "event": "execution_result_available"},
+        {"layer": "evidence_assembly", "event": "evidence_payload_built"},
+        {"layer": "biological_result_presentation", "event": "answer_built"},
     ]

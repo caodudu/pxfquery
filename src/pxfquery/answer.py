@@ -50,7 +50,7 @@ class PxFQueryAnswer:
                 suffix = f" (score={score})" if score is not None else ""
                 lines.append(f"{prefix}{label}{suffix}")
         else:
-            lines.append("- No ranked biological result was produced.")
+            lines.append("- No biological result is claimed yet.")
         if self.evidence:
             lines.extend(["", "Evidence:"])
             for key, value in self.evidence.items():

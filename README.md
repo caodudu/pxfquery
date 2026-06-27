@@ -7,9 +7,9 @@ It is designed for evidence routing over a local PxFquery resource pack: a user 
 Example questions:
 
 ```text
-Which drugs may activate apoptosis in lung cancer?
-What does EGFR inhibition do to functional programs in A549?
-Are there perturbations that suppress MYC targets in breast cancer models?
+Which perturbations increase a requested biological function in a disease model?
+How does a perturbation change functional programs in a disease model?
+Find perturbations associated with a requested phenotype in available models.
 ```
 
 ## Install
@@ -29,7 +29,7 @@ PxFquery is source-install first.
 from pxfquery import PxFQuery
 
 pxf = PxFQuery()
-answer = pxf.ask("Which drugs may activate apoptosis in lung cancer?")
+answer = pxf.ask("Which perturbations increase a requested biological function in a disease model?")
 
 print(answer)
 ```
@@ -50,17 +50,6 @@ structured = answer.structured_result
 diagnostics = answer.diagnostics
 ```
 
-## Demo Notebooks
-
-The `demo/` folder is the current GitHub-facing observation surface for MS8 package behavior:
-
-- `demo/01_drug_forward.ipynb`: drug perturbation -> function response
-- `demo/02_drug_reverse.ipynb`: desired function -> ranked drugs
-- `demo/03_genetic_forward.ipynb`: genetic perturbation -> function response
-- `demo/04_genetic_reverse.ipynb`: desired function -> ranked genetic perturbations
-
-These notebooks are designed to evolve into the paper application scenes for later figures.
-
 ## Resource Pack
 
 PxFquery uses a local resource pack containing perturbation matrices, indexes, and metadata. Normal users should think about this as one PxFquery resource pack, not as individual matrix/index files.
@@ -75,16 +64,16 @@ pxf.resources.use("/path/to/pxfquery_resource_pack")
 print(pxf.resources.status())
 ```
 
-Planned default flow:
+Download flow:
 
 ```python
 pxf = PxFQuery()
 pxf.resources.download()
 ```
 
-The download/cache implementation is not active yet in `0.2.1`; `resources.download()` reports that official resource-pack download is planned and asks users to provide a local pack for now.
+The download/cache implementation is not active in `0.3.0`; `resources.download()` reports that official resource-pack download is not configured and asks users to provide a local pack for now.
 
-For compatibility, the older registration API remains available:
+Local resource registration is available for development and later resource-pack work:
 
 ```python
 pxf.register_assets(root="/path/to/standard_resources")
@@ -93,29 +82,30 @@ pxf.register_assets(manifest="assets.yaml")
 
 ## Interface Layers
 
-PxFquery separates the user-facing interface from the internal kernel.
+PxFquery source is organized into explicit layers.
 
 ```text
 User biomedical question
-  -> natural-language interpretation
-  -> evidence routing
-  -> resource-pack query execution
-  -> evidence assembly
-  -> biological result presentation
+  -> pxfquery.nlu
+  -> pxfquery.routing
+  -> pxfquery.execution
+  -> pxfquery.evidence
+  -> pxfquery.presentation
 ```
 
-Internal route status, JSON payloads, trace events, and matrix filenames are kept as structured/debug surfaces. They should not be the primary user experience.
+The current `0.3.0` implementation does not hard-code demo entities, scores, ranked candidates, or matrix hits. Natural-language intent parsing is present; biological hits require later resource-backed routing and query execution.
 
 ## Current Status
 
-Version `0.2.1` provides the layered product skeleton plus GitHub-previewable demo notebooks:
+Version `0.3.0` corrects the source architecture:
 
-- `PxFQuery.ask(...)` returns a human-readable `PxFQueryAnswer`.
-- `PxFQuery.query(...)` keeps the structured dictionary interface for tests and integrations.
-- `pxf.resources.status()`, `pxf.resources.use(...)`, and `pxf.resources.download(...)` provide the resource-pack management surface.
-- CLI `pxfquery query "..."` prints a readable answer by default; `--json` prints the structured payload.
+- `pxfquery.nlu` parses the user's biomedical question into surface intent.
+- `pxfquery.routing` decides what downstream evidence capabilities are required.
+- `pxfquery.execution` is the resource-pack query layer and does not fabricate results before implementation.
+- `pxfquery.evidence` assembles structured evidence from actual layer outputs.
+- `pxfquery.presentation` renders the biomedical answer.
 
-Important limitation: the biological query kernel still uses the earlier placeholder resolver internals. The new interface is the product skeleton for later MS8 work; real resource-pack-backed query execution is the next implementation layer.
+The old wrapper files `parser.py`, `resolver.py`, `layers.py`, and directional `engines/` scripts are removed from the product source.
 
 ## Test
 
@@ -126,7 +116,7 @@ python -m pytest -q tests
 Current source test target:
 
 ```text
-62 passed
+12 passed
 ```
 
 ## Version
@@ -139,5 +129,5 @@ print(pxfquery.__version__)
 Current version:
 
 ```text
-0.2.1
+0.3.0
 ```

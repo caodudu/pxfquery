@@ -22,12 +22,7 @@ class ResourceStatus:
 
 
 class ResourceManager:
-    """User-facing resource-pack manager.
-
-    The current implementation wraps local standard_resources registration. A later
-    MS8 task will add official archive download, cache verification, and resource
-    pack version manifests.
-    """
+    """User-facing resource-pack manager."""
 
     def __init__(self, client) -> None:
         self._client = client
@@ -77,8 +72,8 @@ class ResourceManager:
         return ResourceStatus(
             configured=False,
             available=False,
-            source="download_planned",
-            message=f"Download support is planned for a later MS8 task; requested URL was {url}.",
+            source="download_not_implemented",
+            message=f"Resource-pack download is not implemented in this version; requested URL was {url}.",
         )
 
     def manifest(self) -> dict[str, dict[str, Any]]:

@@ -1,3 +1,3 @@
-from pxfquery.query import load_corpus, parse, query, run_corpus, summarize_records
+from pxfquery.query import parse, query
 
-__all__ = ["query", "parse", "run_corpus", "load_corpus", "summarize_records"]
+__all__ = ["query", "parse"]

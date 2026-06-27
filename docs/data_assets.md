@@ -16,17 +16,17 @@ pxf.resources.use("/path/to/pxfquery_resource_pack")
 status = pxf.resources.status()
 ```
 
-Planned download/cache use:
+Download/cache use:
 
 ```python
 pxf.resources.download()
 ```
 
-In `0.2.0`, download is a product-interface placeholder: it reports that official download is not configured yet. A later MS8 task will add archive download, cache location, manifest verification, and version checks.
+In `0.3.0`, download/cache is not implemented. Users provide a local resource pack with `pxf.resources.use(...)`.
 
-## Compatibility API
+## Local Registration API
 
-The older registration API remains available:
+Local registration remains available:
 
 ```python
 pxf.register_assets(root="/path/to/standard_resources")
@@ -37,30 +37,7 @@ This is useful for local development, tests, and offline environments.
 
 ## Internal Pack Layout
 
-The current resource pack content is the flat `standard_resources/` layout:
-
-```text
-standard_resources/
-  cp_func_ad.h5ad
-  sh_func_ad.h5ad
-  xpr_func_ad.h5ad
-  cellline_index.json
-  cellline_neighbors.json
-  cellline_tree.json
-  drug_index.json
-  drug_neighbors.json
-  function_index.json
-  gene_index.json
-  gene_index_simple.json
-  gene_neighbors.json
-  gene_neighbors_simple.json
-  cellline_info_standard.csv
-  cellline_meta_standard.csv
-  compound_info_standard.csv
-  compound_meta_standard.csv
-  gene_info_standard.csv
-  data_description.yaml
-```
+The resource pack currently uses the `standard_resources/` layout produced by the project preprocessing pipeline. That file layout is an internal validation concern, not a user-facing setup contract.
 
 Observed development matrix shapes:
 
@@ -74,13 +51,4 @@ The package source must not hard-code a developer's local resource path.
 
 ## Runtime Direction
 
-Future resource-pack tasks should add:
-
-- default cache directory
-- official archive URL configuration
-- manifest and hash verification
-- resource-pack version reporting
-- schema checks for JSON, CSV, and H5AD files
-- readable missing-resource messages
-
-The query engine should eventually report resource-pack evidence in biological terms first, with file-level diagnostics available only in structured output.
+The query engine should report resource-pack evidence in biological terms first, with file-level diagnostics available only in structured output.

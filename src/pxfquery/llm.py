@@ -81,7 +81,7 @@ def list_llm_providers() -> list[str]:
 def provider_check(
     *,
     provider: str = DEFAULT_PROVIDER,
-    prompt: str = "Return JSON with key ms7_provider_check and value ok.",
+    prompt: str = "Return JSON with key pxfquery_provider_check and value ok.",
     mode: str = "real",
     timeout: float = 20.0,
     base_url: str | None = None,

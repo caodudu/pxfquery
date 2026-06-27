@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.3.0 - 2026-06-27
+
+- Corrected the previous wrapper-only layering by moving product source into visible layer packages: `nlu`, `routing`, `execution`, `evidence`, and `presentation`.
+- Removed old `parser.py`, `resolver.py`, `layers.py`, and directional `engines/` scripts from the product source.
+- Removed hard-coded demo entities, fake IDs, fake scores, fake ranked candidates, and old placeholder-kernel outputs from product code.
+- Updated tests so the package no longer passes by fabricating historical MS7 route outcomes.
+- Regenerated demo notebooks so they show natural-language intent and explicitly avoid claiming biological hits before resource-backed routing/query execution.
+
 ## 0.2.1 - 2026-06-27
 
 - Added GitHub-previewable demo notebooks for four biomedical use scenarios: drug forward, drug reverse, genetic forward, and genetic reverse.
