@@ -1639,6 +1639,26 @@ edges:
   to: goal_ms3_ms4_quality_and_repair/task_ms5_large_nl_pressure_execution
   dep_id: T-101
   gate: must
+- from: goal_m6_ms_anchors_and_stress_assets/task_ms5_large_stress_and_case_anchor
+  to: goal_ms3_ms4_quality_and_repair/task_ms5_anchor_comparison_demo_aggregate
+  dep_id: T-083
+  gate: must
+- from: goal_ms3_ms4_quality_and_repair/task_ms5_demo_case_selection_and_repro_plan
+  to: goal_ms3_ms4_quality_and_repair/task_ms5_anchor_comparison_demo_aggregate
+  dep_id: T-100
+  gate: must
+- from: goal_ms3_ms4_quality_and_repair/task_ms5_application_scene_candidate_map
+  to: goal_ms3_ms4_quality_and_repair/task_ms5_anchor_comparison_demo_aggregate
+  dep_id: T-101
+  gate: must
+- from: goal_ms3_ms4_quality_and_repair/task_ms4_anchor_comparison_and_release_pack
+  to: goal_ms3_ms4_quality_and_repair/task_ms5_anchor_comparison_demo_aggregate
+  dep_id: T-103
+  gate: must
+- from: goal_ms3_ms4_quality_and_repair/task_ms5_large_nl_pressure_execution
+  to: goal_ms3_ms4_quality_and_repair/task_ms5_anchor_comparison_demo_aggregate
+  dep_id: T-104
+  gate: must
 labels:
 - id: label_mqpofuno
   phase: digestion
