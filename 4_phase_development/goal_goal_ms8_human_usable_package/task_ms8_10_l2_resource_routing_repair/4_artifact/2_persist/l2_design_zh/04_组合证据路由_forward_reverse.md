@@ -71,7 +71,7 @@ T007 的 reverse query 已经有从 activate/suppress 到 target vector 的基�
 
 ## T007 没有完整给出的部分
 
-T007 把 route 和 execute 混在 resolver/query 里。它有组合证据优先级，但不是独立 `tl.route` 结果。
+T007 把 route 和 execute 混在 resolver/query 里。它有组合证据优先级，但不是独立 `pp.route` 结果。
 
 T007 没有要求 route 阶段必须输出所有被检查但失败的候选。T138 应该补这个，否则用户无法知道为什么最后用了 proxy。
 
@@ -88,4 +88,3 @@ T007 的 `must_answer` 和 fast path 风险很高，因为它可能为了回答�
 - 被拒绝候选的拒绝原因。
 - 进入 L3 的 route id。
 - 如果没有 route，明确 unresolved/no-hit。
-

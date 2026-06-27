@@ -64,3 +64,23 @@ artifacts:
     path: 2_persist/l2_real_llm_validation/l2_real_llm_validation_report_zh.md
     status: active
     description: "Chinese real DeepSeek L2 routing validation report covering exact, fuzzy, function, reverse, and combination route outputs."
+  - id: A-T138-DOC-001
+    kind: validation_report
+    path: 3_document/t137_60_l2_validation_latest.html
+    status: active
+    description: "HTML report for replaying the T137 60 real-L1 intents through T138 L2 route with real DeepSeek where routing needs LLM."
+  - id: A-T138-TABLE-001
+    kind: validation_report
+    path: 5_table/t137_60_l2_validation_latest.json
+    status: active
+    description: "Machine-readable latest T137 60-question L2 validation report; latest successful run passed 60/60."
+  - id: A-T138-DOC-002
+    kind: validation_report
+    path: 3_document/generalization_50_l1_l2_validation_latest.html
+    status: active
+    description: "HTML report for a separate 50-question high-difficulty L1+L2 generalization validation with real DeepSeek."
+  - id: A-T138-TABLE-002
+    kind: validation_report
+    path: 5_table/generalization_50_l1_l2_validation_latest.json
+    status: active
+    description: "Machine-readable latest 50-question L1+L2 generalization validation report; latest successful run passed 50/50."
