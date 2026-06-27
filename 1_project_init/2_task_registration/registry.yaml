@@ -1703,3 +1703,12 @@ tasks:
   notes: 'M6 acceptance: MS6 writing and Figure 1-6 resource pack delivered using
     actual MS4/MS5 evidence. Not a final manuscript or final figure claim; ready for
     MS6 anchor comparison.'
+- id: T-107
+  name: ms6_anchor_comparison_writing_handoff
+  phase: translation
+  goal: goal_ms6_manuscript_foundation
+  path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_anchor_comparison_writing_handoff
+  status: pending
+  executor: human
+  created: '2026-06-27'
+  completed: null
