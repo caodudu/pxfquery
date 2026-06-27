@@ -2,7 +2,7 @@ from pxfquery import PxFQuery, __version__, get_llm_provider, list_llm_providers
 
 
 def test_version_is_public():
-    assert __version__ == "0.1.0"
+    assert __version__ == "0.1.1"
 
 
 def test_client_query_api():

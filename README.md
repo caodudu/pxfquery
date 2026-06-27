@@ -26,7 +26,7 @@ print(pxfquery.__version__)
 Current version:
 
 ```text
-0.1.0
+0.1.1
 ```
 
 ## Install From Source
@@ -42,7 +42,7 @@ python -m pip install -e .
 The editable source install is the recommended development path. Wheel install is only for release candidate reproduction:
 
 ```bash
-python -m pip install dist/pxfquery-0.1.0-py3-none-any.whl
+python -m pip install dist/pxfquery-0.1.1-py3-none-any.whl
 ```
 
 ## Python Usage
@@ -203,3 +203,21 @@ python setup.py sdist bdist_wheel
 ```
 
 The package exposes a console script named `pxfquery`.
+
+## Release Discipline
+
+Each package version is tied to a specific CyHex task and Git tag. New versions must not overwrite old versions.
+
+- Current version: `0.1.1`
+- Current CyHex task: `T-124 task_ms7_version_governance_v011`
+- Current Git tag: `v0.1.1`
+- Previous preserved tag: `v0.1.0`
+
+For future changes:
+
+1. Create or use one CyHex task for one change direction.
+2. Bump `src/pxfquery/_version.py`.
+3. Update `CHANGELOG.md` and `docs/releases/`.
+4. Run tests.
+5. Commit and push to GitHub.
+6. Tag the exact commit as `vX.Y.Z` and push the tag.
