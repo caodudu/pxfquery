@@ -1794,6 +1794,164 @@ edges:
   to: goal_ms7_recovery_package/task_ms7_cleanroom_reproduction_2
   dep_id: T-110
   gate: must
+- from: goal_ms7_recovery_package/task_ms7_anti_loophole_rule_lock_2
+  to: goal_ms7_recovery_package/task_ms7_anchor_comparison_final_gate_2
+  dep_id: T-110
+  gate: must
+- from: goal_ms7_recovery_package/task_ms7_recovery_anchor_2
+  to: goal_ms7_recovery_package/task_ms7_legacy_quarantine_audit_2
+  dep_id: T-111
+  gate: must
+  relation: refine
+  relation_label: anchor_defines_legacy_quarantine_scope
+  note: Legacy quarantine must classify old assets against the binding MS7 recovery anchor.
+- from: goal_ms7_recovery_package/task_ms7_recovery_anchor_2
+  to: goal_ms7_recovery_package/task_ms7_current_package_baseline_2
+  dep_id: T-111
+  gate: must
+  relation: refine
+  relation_label: anchor_defines_current_baseline_gap_scope
+  note: Current package baseline must compare root package state against the binding MS7 recovery anchor.
+- from: goal_ms7_recovery_package/task_ms7_recovery_anchor_2
+  to: goal_ms7_recovery_package/task_ms7_execution_corpus_build_2
+  dep_id: T-111
+  gate: must
+  relation: refine
+  relation_label: anchor_defines_corpus_scope
+  note: Corpus build must preserve NL, route, forward/reverse, fallback, negative, and provider coverage from the anchor.
+- from: goal_ms7_recovery_package/task_ms7_legacy_quarantine_audit_2
+  to: goal_ms7_recovery_package/task_ms7_execution_corpus_build_2
+  dep_id: T-112
+  gate: must
+  relation: extract
+  relation_label: quarantined_legacy_seeds_feed_corpus
+  note: Corpus may only consume legacy stress seeds after T-112 quarantine classification.
+- from: goal_ms7_recovery_package/task_ms7_recovery_anchor_2
+  to: goal_ms7_recovery_package/task_ms7_acceptance_matrix_spec_2
+  dep_id: T-111
+  gate: must
+  relation: refine
+  relation_label: anchor_to_acceptance_matrix
+  note: Acceptance matrix must directly prove the binding MS7 anchor.
+- from: goal_ms7_recovery_package/task_ms7_current_package_baseline_2
+  to: goal_ms7_recovery_package/task_ms7_acceptance_matrix_spec_2
+  dep_id: T-113
+  gate: may
+  relation: extract
+  relation_label: baseline_gaps_inform_acceptance_commands
+  note: Baseline gaps should inform command-level acceptance without reducing anchor scope.
+- from: goal_ms7_recovery_package/task_ms7_execution_corpus_build_2
+  to: goal_ms7_recovery_package/task_ms7_acceptance_matrix_spec_2
+  dep_id: T-114
+  gate: may
+  relation: integrate
+  relation_label: corpus_manifest_informs_acceptance_matrix
+  note: Audited corpus cases can populate acceptance commands once available.
+- from: goal_ms7_recovery_package/task_ms7_recovery_anchor_2
+  to: goal_ms7_recovery_package/task_ms7_acceptance_gate_prebuild_2
+  dep_id: T-111
+  gate: must
+  relation: refine
+  relation_label: anchor_to_prebuild_gate
+  note: Prebuild gate must prove rules, anchor, baseline, corpus, and acceptance spec are coherent before build/repair.
+- from: goal_ms7_recovery_package/task_ms7_current_package_baseline_2
+  to: goal_ms7_recovery_package/task_ms7_acceptance_gate_prebuild_2
+  dep_id: T-113
+  gate: must
+  relation: integrate
+  relation_label: baseline_gap_matrix_to_prebuild_gate
+  note: Build/repair cannot start until current root package gaps are known.
+- from: goal_ms7_recovery_package/task_ms7_acceptance_matrix_spec_2
+  to: goal_ms7_recovery_package/task_ms7_acceptance_gate_prebuild_2
+  dep_id: T-115
+  gate: must
+  relation: integrate
+  relation_label: acceptance_spec_to_prebuild_gate
+  note: Prebuild gate requires command-level acceptance spec.
+- from: goal_ms7_recovery_package/task_ms7_acceptance_gate_prebuild_2
+  to: goal_ms7_recovery_package/task_ms7_manual_build_repair_package_2
+  dep_id: T-116
+  gate: must
+  relation: refine
+  relation_label: trust_gate_to_build_repair
+  note: Package build/repair starts only after prebuild trust gate.
+- from: goal_ms7_recovery_package/task_ms7_acceptance_matrix_spec_2
+  to: goal_ms7_recovery_package/task_ms7_manual_build_repair_package_2
+  dep_id: T-115
+  gate: must
+  relation: refine
+  relation_label: acceptance_spec_drives_build
+  note: Build/repair must target the command-level acceptance matrix.
+- from: goal_ms7_recovery_package/task_ms7_manual_build_repair_package_2
+  to: goal_ms7_recovery_package/task_ms7_build_verification_2
+  dep_id: T-117
+  gate: must
+  relation: refine
+  relation_label: build_to_verification
+  note: Build verification checks package produced by T-117.
+- from: goal_ms7_recovery_package/task_ms7_manual_build_repair_package_2
+  to: goal_ms7_recovery_package/task_ms7_llm_provider_route_verification_2
+  dep_id: T-117
+  gate: must
+  relation: refine
+  relation_label: build_to_provider_verification
+  note: Provider route verification runs against repaired package/provider interface.
+- from: goal_ms7_recovery_package/task_ms7_build_verification_2
+  to: goal_ms7_recovery_package/task_ms7_integrated_recovery_matrix_2
+  dep_id: T-118
+  gate: must
+  relation: integrate
+  relation_label: build_verification_to_integrated_matrix
+  note: Integrated matrix requires verified build.
+- from: goal_ms7_recovery_package/task_ms7_llm_provider_route_verification_2
+  to: goal_ms7_recovery_package/task_ms7_integrated_recovery_matrix_2
+  dep_id: T-119
+  gate: must
+  relation: integrate
+  relation_label: provider_verification_to_integrated_matrix
+  note: Integrated matrix must include real provider route or documented human-decision path.
+- from: goal_ms7_recovery_package/task_ms7_execution_corpus_build_2
+  to: goal_ms7_recovery_package/task_ms7_integrated_recovery_matrix_2
+  dep_id: T-114
+  gate: must
+  relation: integrate
+  relation_label: corpus_to_integrated_matrix
+  note: Integrated matrix must run the audited MS7 corpus.
+- from: goal_ms7_recovery_package/task_ms7_integrated_recovery_matrix_2
+  to: goal_ms7_recovery_package/task_ms7_release_candidate_pack_2
+  dep_id: T-120
+  gate: must
+  relation: refine
+  relation_label: integrated_matrix_to_release_candidate
+  note: Release candidate can be packed only after integrated matrix evidence exists.
+- from: goal_ms7_recovery_package/task_ms7_release_candidate_pack_2
+  to: goal_ms7_recovery_package/task_ms7_cleanroom_reproduction_2
+  dep_id: T-121
+  gate: must
+  relation: refine
+  relation_label: release_candidate_to_cleanroom
+  note: Cleanroom reproduction runs from the release candidate package.
+- from: goal_ms7_recovery_package/task_ms7_cleanroom_reproduction_2
+  to: goal_ms7_recovery_package/task_ms7_anchor_comparison_final_gate_2
+  dep_id: T-122
+  gate: must
+  relation: integrate
+  relation_label: cleanroom_to_final_gate
+  note: Final gate requires clean-command reproduction evidence.
+- from: goal_ms7_recovery_package/task_ms7_release_candidate_pack_2
+  to: goal_ms7_recovery_package/task_ms7_anchor_comparison_final_gate_2
+  dep_id: T-121
+  gate: must
+  relation: integrate
+  relation_label: release_candidate_to_final_gate
+  note: Final gate compares the release candidate package against the MS7 anchor.
+- from: goal_ms7_recovery_package/task_ms7_recovery_anchor_2
+  to: goal_ms7_recovery_package/task_ms7_anchor_comparison_final_gate_2
+  dep_id: T-111
+  gate: must
+  relation: refine
+  relation_label: anchor_to_final_gate
+  note: Final gate must compare evidence to the binding MS7 anchor.
 labels:
 - id: label_mqpofuno
   phase: digestion

@@ -1865,3 +1865,12 @@ tasks:
   executor: hybrid
   created: '2026-06-27'
   completed: null
+- id: T-124
+  name: ms7_version_governance_v011
+  phase: development
+  goal: goal_ms7_recovery_package
+  path: 4_phase_development/goal_ms7_recovery_package/task_ms7_version_governance_v011
+  status: pending
+  executor: human
+  created: '2026-06-27'
+  completed: null
