@@ -1667,3 +1667,12 @@ tasks:
   notes: 'M6 yellow-gate acceptance: MS4 anchor comparison completed. Decision: MS4
     conditionally released for MS5 pressure testing. Not a perfect/full release; full
     MS5 stress and ambiguous/transfer cases remain required.'
+- id: T-104
+  name: ms5_large_nl_pressure_execution
+  phase: development
+  goal: goal_ms3_ms4_quality_and_repair
+  path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms5_large_nl_pressure_execution
+  status: pending
+  executor: human
+  created: '2026-06-27'
+  completed: null
