@@ -11,11 +11,6 @@ UNSUPPORTED_OUTPUT_MARKERS = [
 ]
 
 
-def test_product_source_does_not_keep_old_wrapper_scripts():
-    for old_script in ["parser.py", "resolver.py", "layers.py"]:
-        assert not (SRC / old_script).exists()
-
-
 def test_product_source_has_no_hardcoded_demo_answers():
     text = "\n".join(path.read_text(encoding="utf-8") for path in SRC.rglob("*.py"))
     for marker in UNSUPPORTED_OUTPUT_MARKERS:
@@ -65,3 +60,9 @@ def test_package_root_is_only_thin_entrypoints():
     expected = {"__init__.py", "__main__.py", "_version.py"}
     actual = {path.name for path in SRC.iterdir() if path.is_file()}
     assert actual == expected
+
+
+def test_presentation_layer_contains_only_current_files():
+    allowed = {"__init__.py", "answer.py", "cli.py", "client.py", "model.py"}
+    actual = {path.name for path in (SRC / "presentation").iterdir() if path.is_file()}
+    assert actual == allowed

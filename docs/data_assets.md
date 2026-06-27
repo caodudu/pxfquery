@@ -22,18 +22,7 @@ Download/cache use:
 pxf.resources.download()
 ```
 
-In `0.3.1`, download/cache is not implemented. Users provide a local resource pack with `pxf.resources.use(...)`.
-
-## Local Registration API
-
-Local registration remains available:
-
-```python
-pxf.register_assets(root="/path/to/standard_resources")
-pxf.register_assets(manifest="assets.yaml")
-```
-
-This is useful for local development, tests, and offline environments.
+In `0.3.2`, download/cache is not implemented. Users provide a local resource pack with `pxf.resources.use(...)`.
 
 ## Internal Pack Layout
 

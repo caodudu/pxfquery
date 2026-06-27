@@ -5,7 +5,6 @@ import json
 import sys
 
 from pxfquery import PxFQuery
-from pxfquery.presentation.query import parse, query
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -23,11 +22,11 @@ def main(argv: list[str] | None = None) -> int:
     if args.command == "parse":
         if not args.text:
             parser.error("parse requires text")
-        print(json.dumps(parse(args.text), ensure_ascii=False, indent=2))
+        print(json.dumps(PxFQuery().parse(args.text), ensure_ascii=False, indent=2))
         return 0
     if args.command == "query":
         if args.json:
-            payload = query(args.text)
+            payload = PxFQuery().query(args.text)
             print(json.dumps(payload, ensure_ascii=False, indent=2))
         else:
             client = PxFQuery()

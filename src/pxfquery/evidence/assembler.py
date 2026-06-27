@@ -37,7 +37,6 @@ def assemble_evidence(execution: QueryExecution) -> dict:
         "evidence_records": [],
         "diagnostics": diagnostics,
         "suggestions": _suggestions(intent, route_plan.route_status),
-        "provider": {"used_by_query": False},
         "layer_chain": [
             "nlu.parse_query",
             "routing.route_intent",

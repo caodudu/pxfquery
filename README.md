@@ -71,14 +71,7 @@ pxf = PxFQuery()
 pxf.resources.download()
 ```
 
-The download/cache implementation is not active in `0.3.1`; `resources.download()` reports that official resource-pack download is not configured and asks users to provide a local pack for now.
-
-Local resource registration is available for development and later resource-pack work:
-
-```python
-pxf.register_assets(root="/path/to/standard_resources")
-pxf.register_assets(manifest="assets.yaml")
-```
+The download/cache implementation is not active in `0.3.2`; `resources.download()` reports that official resource-pack download is not configured and asks users to provide a local pack for now.
 
 ## Interface Layers
 
@@ -93,11 +86,11 @@ User biomedical question
   -> pxfquery.presentation
 ```
 
-The current `0.3.1` implementation does not hard-code demo entities, scores, ranked candidates, or matrix hits. Natural-language intent parsing is present; biological hits require later resource-backed routing and query execution.
+The current `0.3.2` implementation does not hard-code demo entities, scores, ranked candidates, or matrix hits. Natural-language intent parsing is present; biological hits require later resource-backed routing and query execution.
 
 ## Current Status
 
-Version `0.3.1` corrects the source architecture:
+Version `0.3.2` corrects the source architecture:
 
 - `pxfquery.nlu` parses the user's biomedical question into surface intent.
 - `pxfquery.routing` decides what downstream evidence capabilities are required.
@@ -105,7 +98,7 @@ Version `0.3.1` corrects the source architecture:
 - `pxfquery.evidence` assembles structured evidence from actual layer outputs.
 - `pxfquery.presentation` renders the biomedical answer.
 
-The old wrapper files `parser.py`, `resolver.py`, `layers.py`, and directional `engines/` scripts are removed from the product source.
+The package root is intentionally thin. Product code lives inside the five visible layer directories.
 
 ## Test
 
@@ -129,5 +122,5 @@ print(pxfquery.__version__)
 Current version:
 
 ```text
-0.3.1
+0.3.2
 ```
