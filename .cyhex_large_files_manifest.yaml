@@ -2873,6 +2873,8 @@ excluded_from_git:
   size_mb: 0.0
 - path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms3_quality_digest_and_asset_map/5_report/cli_sessions/execute/20260627_054826_opencode_cli_1a66859701ae/stdout.log
   size_mb: 0.4
+- path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_anchor_comparison_and_release_pack/4_artifact/5_table/ms4_capability_release_verdicts_v20260627.csv
+  size_mb: 0.0
 - path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_engine_output_failure_diagnosis/1_asset/ms4_route_execution_matrix_csv.csv
   size_mb: 0.02
 - path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_engine_output_failure_diagnosis/4_artifact/5_table/ms4_engine_output_failure_cases_v20260627.csv
