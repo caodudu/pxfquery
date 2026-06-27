@@ -1955,3 +1955,12 @@ tasks:
   executor: human
   created: '2026-06-27'
   completed: null
+- id: T-137
+  name: ms8_09_l1_real_llm_gate_repair
+  phase: development
+  goal: goal_goal_ms8_human_usable_package
+  path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_09_l1_real_llm_gate_repair
+  status: pending
+  executor: hybrid
+  created: '2026-06-28'
+  completed: null

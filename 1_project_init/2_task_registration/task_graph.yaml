@@ -1984,6 +1984,14 @@ edges:
   to: goal_ms7_recovery_package/task_ms7_internal_parse_pipeline_events_warnings_v014
   dep_id: T-126
   gate: must
+- from: goal_goal_ms8_human_usable_package/task_ms8_00_external_context_digest
+  to: goal_goal_ms8_human_usable_package/task_ms8_01_human_acceptable_delivery_anchor
+  dep_id: T-128
+  gate: must
+- from: goal_goal_ms8_human_usable_package/task_ms8_01_human_acceptable_delivery_anchor
+  to: goal_goal_ms8_human_usable_package/task_ms8_02_layered_interface_kernel_refactor
+  dep_id: T-129
+  gate: must
 - from: goal_goal_ms8_human_usable_package/task_ms8_02_layered_interface_kernel_refactor
   to: goal_goal_ms8_human_usable_package/task_ms8_03_demo_notebooks_and_github_observation
   dep_id: T-130
@@ -2000,9 +2008,17 @@ edges:
   to: goal_goal_ms8_human_usable_package/task_ms8_05_code_honesty_discipline_anchor
   dep_id: T-132
   gate: must
+- from: goal_goal_ms8_human_usable_package/task_ms8_05_code_honesty_discipline_anchor
+  to: goal_goal_ms8_human_usable_package/task_ms8_06_l1_nlu_alignment
+  dep_id: T-133
+  gate: must
 - from: goal_goal_ms8_human_usable_package/task_ms8_02_layered_interface_kernel_refactor
   to: goal_goal_ms8_human_usable_package/task_ms8_07_legacy_core_layered_recovery
   dep_id: T-130
+  gate: reference
+- from: goal_goal_ms8_human_usable_package/task_ms8_06_l1_nlu_alignment
+  to: goal_goal_ms8_human_usable_package/task_ms8_07_legacy_core_layered_recovery
+  dep_id: T-134
   gate: reference
 - from: goal_goal_ms8_human_usable_package/task_ms8_05_code_honesty_discipline_anchor
   to: goal_goal_ms8_human_usable_package/task_ms8_07_legacy_core_layered_recovery
