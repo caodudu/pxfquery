@@ -1564,10 +1564,13 @@ tasks:
   phase: development
   goal: goal_ms3_ms4_quality_and_repair
   path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_parser_llm_failure_diagnosis
-  status: active
+  status: done
   executor: human
   created: '2026-06-27'
   completed: null
+  notes: 'M6 rescue acceptance: execute failed without artifacts after long runtime;
+    task-local diagnostic artifacts generated from completed T-094 execution matrix.
+    Repair required before MS4 release gate.'
 - id: T-096
   name: ms4_resolver_route_failure_diagnosis
   phase: development
