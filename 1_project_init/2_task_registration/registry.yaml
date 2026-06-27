@@ -1600,10 +1600,13 @@ tasks:
   phase: development
   goal: goal_ms3_ms4_quality_and_repair
   path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_parser_resolver_route_repair_version
-  status: active
+  status: done
   executor: human
   created: '2026-06-27'
   completed: null
+  notes: 'M6 rescue acceptance: AGT-002 config stalled with no substantive output;
+    supervisor completed task-local parser/resolver route repair package, patch, and
+    smoke evidence. T-098 smoke passed 3/3.'
 - id: T-099
   name: ms4_reverse_engine_output_repair_version
   phase: development
