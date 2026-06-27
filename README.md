@@ -1,16 +1,18 @@
 # PxFquery
 
-PxFquery is a Python package for natural-language perturbation queries. It parses biomedical query text, resolves route types, runs deterministic forward/reverse query engines, and returns machine-readable evidence routing metadata.
+PxFquery is a Python package for natural-language perturbation queries. It turns biomedical questions such as "Which drugs activate apoptosis in A549 cells?" into structured route metadata, perturbation resolution, function-response records, diagnostics, and suggestions.
 
-The public Python interface is intentionally narrow:
+The public Python entry point is intentionally small:
 
 ```python
 from pxfquery import PxFQuery
 ```
 
-Everything users need is available from a `PxFQuery` instance.
+The client follows a scverse-style workflow: configure runtime settings, read a query into a small work object, preprocess it, run tools, then retrieve results.
 
-## Install From Source
+## Install
+
+Install from source during development:
 
 ```bash
 git clone git@github.com:caodudu/pxfquery.git
@@ -18,10 +20,10 @@ cd pxfquery
 python -m pip install -e .
 ```
 
-Editable source install is the default development workflow. Wheel install is for release reproduction:
+Install test dependencies:
 
 ```bash
-python -m pip install dist/pxfquery-0.1.2-py3-none-any.whl
+python -m pip install pytest PyYAML
 ```
 
 ## Quick Start
@@ -31,75 +33,111 @@ from pxfquery import PxFQuery
 
 pxf = PxFQuery()
 
-intent = pxf.parse("What happens to KRAS knockdown in A549?")
-print(intent["direction"])
-print(intent["perturbation_identity"])
+q = pxf.read.query("Which drugs activate apoptosis in A549 cells?")
+pxf.pp.parse(q)
+pxf.tl.resolve(q)
 
-result = pxf.query("Which drugs activate apoptosis in A549 cells?")
+result = pxf.get.result(q)
 print(result["route_type"])
 print(result["function_response"])
 ```
 
-## Version
+For scripts, the client also provides one-step convenience methods:
 
 ```python
-import pxfquery
-from pxfquery import PxFQuery
-
-pxf = PxFQuery()
-
-print(pxfquery.__version__)
-print(pxf.version)
+result = pxf.query("What happens to KRAS knockdown in A549?")
+intent = pxf.parse("What happens to KRAS knockdown in A549?")
 ```
 
-Current version:
+Those methods use the same `read -> pp -> tl -> get` workflow internally.
 
-```text
-0.1.2
-```
+## Real LLM Route Check
 
-## LLM Provider
-
-PxFquery does not hard-code secrets. Register an OpenAI-compatible provider on the client:
+Register the provider before running provider-dependent checks or queries:
 
 ```python
 from pxfquery import PxFQuery
 
 pxf = PxFQuery()
-pxf.register_llm_provider(
+
+pxf.settings.register_llm(
     "llm_gateway/deepseek-ai/deepseek-v4-flash",
     base_url="http://localhost:3000/v1",
     api_key_env="LLM_GATEWAY_API_KEY",
     model="deepseek-ai/deepseek-v4-flash",
+    mode="real",
 )
 
-check = pxf.provider_check(mode="real", timeout=30)
+check = pxf.settings.provider_check(timeout=30)
 print(check.to_dict())
+
+q = pxf.read.query(
+    "Run with registered llm_gateway/deepseek-ai/deepseek-v4-flash and record the route."
+)
+pxf.pp.parse(q)
+pxf.tl.resolve(q)
+print(pxf.get.result(q)["provider"])
 ```
 
-Set the key outside Python:
+Set the API key outside Python:
 
 ```bash
 export LLM_GATEWAY_API_KEY="<your-local-gateway-key>"
 ```
 
-Provider inspection also stays on the client:
+Use disabled mode only as an explicit negative control:
 
 ```python
-print(pxf.get_llm_provider("llm_gateway/deepseek-ai/deepseek-v4-flash"))
-print(pxf.list_llm_providers())
+pxf = PxFQuery(provider_mode="disabled")
+q = pxf.read.query("What happens to KRAS knockdown in A549?")
+pxf.pp.parse(q)
+pxf.tl.resolve(q)
+print(pxf.get.result(q)["diagnostics"]["warnings"])
 ```
 
-## CLI
+## Workflow API
 
-The CLI mirrors the client methods for smoke tests and demos.
+The main namespaces are:
+
+| Namespace | Role | Example |
+| --- | --- | --- |
+| `pxf.settings` | runtime/provider configuration | `pxf.settings.register_llm(...)` |
+| `pxf.read` | create query or corpus inputs | `q = pxf.read.query(text)` |
+| `pxf.pp` | parse and normalize inputs | `pxf.pp.parse(q)` |
+| `pxf.tl` | route and resolve queries | `pxf.tl.resolve(q)` |
+| `pxf.get` | retrieve structured outputs | `pxf.get.result(q)` |
+
+`q` is a lightweight `PxFQueryData` object with:
+
+- `q.text`: original query text
+- `q.obs`: per-query observations
+- `q.uns`: parsed intent, route, result, provider metadata, and diagnostics
+
+## Internal Trace Preview
+
+T-127 will formalize the internal parse pipeline and event/warning system. The intended developer-facing trace shape is:
+
+```text
+[pxfquery] read.query         text="Which drugs activate apoptosis in A549 cells?"
+[pxfquery] settings.provider  name=llm_gateway/deepseek-ai/deepseek-v4-flash mode=real registered=true
+[pxfquery] pp.normalize       language=en biomedical_terms=3
+[pxfquery] pp.parse           direction=reverse perturbation_type=compound context=A549
+[pxfquery] tl.route           route_type=exact-hit confidence=high
+[pxfquery] tl.resolve         matrix=ms7_local_evidence candidates=2
+[pxfquery] warning            code=provider.real_check_required level=info message="real provider route should be checked for LLM-dependent runs"
+[pxfquery] get.result         route_type=exact-hit schema=2026-06-27
+```
+
+This block is a design preview, not a saved execution log. The implementation task will make these events structured and testable.
+
+## CLI Demo
 
 ```bash
 pxfquery parse "What happens to KRAS knockdown in A549?"
 pxfquery query "Which drugs activate apoptosis in A549 cells?" --json
 ```
 
-Run the bundled MS7 corpus:
+Run the MS7 corpus:
 
 ```bash
 pxfquery run-corpus \
@@ -118,65 +156,43 @@ pxfquery provider-check \
   --json
 ```
 
-Disabled provider negative control:
-
-```bash
-pxfquery provider-check \
-  --provider llm_gateway/deepseek-ai/deepseek-v4-flash \
-  --mode disabled \
-  --json
-```
-
 ## Tests
 
 ```bash
-python -m pip install -e .
-python -m pip install pytest PyYAML
 python -m pytest -q tests
 ```
 
-Expected current result:
+The current release target is:
 
 ```text
-55 passed
+56 passed
 ```
 
-Run the MS7 corpus test only:
-
-```bash
-python -m pytest -q tests/test_ms7/test_corpus.py
-```
-
-## Build
-
-```bash
-python setup.py sdist bdist_wheel
-```
-
-## Public API Contract
-
-The intended user-facing Python import is:
+## Version
 
 ```python
+import pxfquery
 from pxfquery import PxFQuery
+
+pxf = PxFQuery()
+
+print(pxfquery.__version__)
+print(pxf.version)
 ```
 
-Top-level function imports are not part of the public API contract. Internal modules remain available for package implementation and tests, but downstream user code should use the `PxFQuery` class.
+Current version:
 
-## Release Discipline
+```text
+0.1.3
+```
 
-Each package version is tied to a specific CyHex task and Git tag. New versions must not overwrite old versions.
+## Release Notes
 
-- Current version: `0.1.2`
-- Current CyHex task: `T-125 task_ms7_public_api_single_class_v012`
-- Current Git tag: `v0.1.2`
-- Preserved tags: `v0.1.0`, `v0.1.1`
+Each public version is tied to a CyHex task and an immutable Git tag.
 
-For future changes:
+- `v0.1.0`: MS7 recovery package baseline
+- `v0.1.1`: version governance
+- `v0.1.2`: single-class API baseline
+- `v0.1.3`: scverse-style workflow API and corrected provider-first README
 
-1. Create or use one CyHex task for one change direction.
-2. Bump `src/pxfquery/_version.py`.
-3. Update `CHANGELOG.md` and `docs/releases/`.
-4. Run tests.
-5. Commit and push to GitHub.
-6. Tag the exact commit as `vX.Y.Z` and push the tag.
+See `CHANGELOG.md`, `docs/release_policy.md`, and `docs/development_task_policy.md` for task-linked release discipline.

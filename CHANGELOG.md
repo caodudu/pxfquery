@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.3 - 2026-06-27
+
+CyHex task: `T-126 task_ms7_scverse_style_api_workflow_v013`
+
+- Reworked the recommended public workflow into scverse/Scanpy-inspired namespaces: `settings`, `read`, `pp`, `tl`, and `get`.
+- Added a lightweight query work object for stepwise parse/route/resolve execution.
+- Corrected README ordering so LLM/provider registration happens before provider-dependent checks or query execution.
+- Added provider-first workflow test coverage.
+- Kept `PxFQuery` as the only top-level public class while preserving one-step convenience methods for scripts.
+
 ## 0.1.2 - 2026-06-27
 
 CyHex task: `T-125 task_ms7_public_api_single_class_v012`

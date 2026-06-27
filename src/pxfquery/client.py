@@ -5,20 +5,29 @@ from typing import Iterable
 
 from pxfquery._version import __version__
 from pxfquery.llm import ProviderCheckResult, get_llm_provider, list_llm_providers, register_llm_provider, provider_check
-from pxfquery.query import load_corpus, parse, query, run_corpus, summarize_records
+from pxfquery.query import load_corpus, run_corpus, summarize_records
+from pxfquery.workflow import (
+    GetNamespace,
+    PreprocessingNamespace,
+    ReadNamespace,
+    SettingsNamespace,
+    ToolsNamespace,
+    one_shot_parse,
+    one_shot_query,
+)
 
 
 class PxFQuery:
-    """Main user-facing PxFquery client.
-
-    The module-level functions remain available for lightweight scripts, but
-    application code should generally instantiate this class so provider
-    configuration and default runtime behavior are explicit.
-    """
+    """Main user-facing PxFquery client with scverse-style namespaces."""
 
     def __init__(self, *, provider: str | None = None, provider_mode: str = "disabled") -> None:
         self.provider = provider
         self.provider_mode = provider_mode
+        self.settings = SettingsNamespace(self)
+        self.read = ReadNamespace(self)
+        self.pp = PreprocessingNamespace(self)
+        self.tl = ToolsNamespace(self)
+        self.get = GetNamespace(self)
 
     @property
     def version(self) -> str:
@@ -32,25 +41,25 @@ class PxFQuery:
         api_key: str | None = None,
         api_key_env: str = "LLM_GATEWAY_API_KEY",
         model: str | None = None,
+        mode: str = "real",
     ) -> None:
-        register_llm_provider(
+        self.settings.register_llm(
             name,
             base_url=base_url,
             api_key=api_key,
             api_key_env=api_key_env,
             model=model,
+            mode=mode,
         )
-        if self.provider is None:
-            self.provider = name
 
     def parse(self, text: str) -> dict:
-        return parse(text, provider_mode=self.provider_mode)
+        return one_shot_parse(self, text)
 
     def query(self, text: str) -> dict:
-        return query(text, provider_mode=self.provider_mode)
+        return one_shot_query(self, text)
 
     def run_corpus(self, corpus_path: str | Path, *, families: Iterable[str] | None = None) -> list[dict]:
-        return run_corpus(corpus_path, families=families, provider_mode=self.provider_mode)
+        return self.tl.run_corpus(corpus_path, families=families)
 
     def summarize_records(self, records: list[dict]) -> dict:
         return summarize_records(records)
@@ -69,7 +78,7 @@ class PxFQuery:
         selected = provider or self.provider
         if selected is None:
             raise ValueError("provider is required; pass provider=... or call register_llm_provider(...) first")
-        return provider_check(provider=selected, prompt=prompt, mode=mode, timeout=timeout)
+        return self.settings.provider_check(provider=selected, prompt=prompt, mode=mode, timeout=timeout)
 
     def get_llm_provider(self, name: str):
         return get_llm_provider(name)
