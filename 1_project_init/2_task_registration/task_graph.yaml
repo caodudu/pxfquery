@@ -1519,6 +1519,10 @@ edges:
   to: goal_ms3_ms4_quality_and_repair/task_ms4_parser_llm_failure_diagnosis
   dep_id: T-094
   gate: must
+- from: goal_ms3_ms4_quality_and_repair/task_ms4_route_execution_matrix
+  to: goal_ms3_ms4_quality_and_repair/task_ms4_resolver_route_failure_diagnosis
+  dep_id: T-094
+  gate: must
 labels:
 - id: label_mqpofuno
   phase: digestion

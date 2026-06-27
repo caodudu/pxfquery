@@ -1573,3 +1573,12 @@ tasks:
   executor: human
   created: '2026-06-27'
   completed: null
+- id: T-097
+  name: ms4_engine_output_failure_diagnosis
+  phase: development
+  goal: goal_ms3_ms4_quality_and_repair
+  path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_engine_output_failure_diagnosis
+  status: pending
+  executor: human
+  created: '2026-06-27'
+  completed: null
