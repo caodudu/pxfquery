@@ -1937,3 +1937,12 @@ tasks:
   executor: human
   created: '2026-06-27'
   completed: '2026-06-27'
+- id: T-132
+  name: ms8_04_real_layered_source_refactor
+  phase: development
+  goal: goal_goal_ms8_human_usable_package
+  path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_04_real_layered_source_refactor
+  status: pending
+  executor: human
+  created: '2026-06-27'
+  completed: null
