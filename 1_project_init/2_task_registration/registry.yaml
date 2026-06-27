@@ -1739,3 +1739,12 @@ tasks:
   notes: 'M6 corrected final review: MS3 failed full acceptance but is closed as conditional
     handoff with explicit corrective/deferred evidence. Downstream MS4-MS6 artifacts
     are retained only with caveats.'
+- id: T-110
+  name: ms7_anti_loophole_rule_lock_2
+  phase: development
+  goal: goal_ms7_recovery_package
+  path: 4_phase_development/goal_ms7_recovery_package/task_ms7_anti_loophole_rule_lock_2
+  status: pending
+  executor: hybrid
+  created: '2026-06-27'
+  completed: null
