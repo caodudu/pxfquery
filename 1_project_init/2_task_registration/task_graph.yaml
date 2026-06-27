@@ -1790,6 +1790,10 @@ edges:
   to: goal_ms7_recovery_package/task_ms7_release_candidate_pack_2
   dep_id: T-110
   gate: must
+- from: goal_ms7_recovery_package/task_ms7_anti_loophole_rule_lock_2
+  to: goal_ms7_recovery_package/task_ms7_cleanroom_reproduction_2
+  dep_id: T-110
+  gate: must
 labels:
 - id: label_mqpofuno
   phase: digestion
