@@ -2989,6 +2989,8 @@ excluded_from_git:
   size_mb: 0.0
 - path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms5_demo_case_selection_and_repro_plan/5_report/cli_sessions/config/20260627_091837_opencode_cli_3e8366a4ceb4/stdout.log
   size_mb: 0.0
+- path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms5_large_nl_pressure_execution/4_artifact/5_table/ms5_large_nl_pressure_matrix_v20260627.csv
+  size_mb: 0.02
 - path: 4_phase_development/goal_ms3_release_quality/.DS_Store
   size_mb: 0.01
 - path: 4_phase_development/goal_ms3_release_quality/task_ms3_functional_test_and_release_iteration/5_report/cli_sessions/check/20260627_043205_opencode_cli_541abb10f6f2/stderr.log

@@ -1672,7 +1672,10 @@ tasks:
   phase: development
   goal: goal_ms3_ms4_quality_and_repair
   path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms5_large_nl_pressure_execution
-  status: active
+  status: done
   executor: human
   created: '2026-06-27'
   completed: null
+  notes: 'M6 acceptance: executed full T-089 44-entry MS5 natural-language pressure
+    corpus against MS4 conditional candidate. Route-family matched 32/44; demo candidates
+    23; diagnostic-only 4. Aggregation still required for MS5 final.'
