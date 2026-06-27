@@ -2977,6 +2977,8 @@ excluded_from_git:
   size_mb: 0.0
 - path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_route_execution_matrix/5_report/cli_sessions/execute/20260627_072850_opencode_cli_1e2904d2e664/stdout.log
   size_mb: 0.0
+- path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms5_anchor_comparison_demo_aggregate/4_artifact/5_table/ms5_demo_and_application_candidates_v20260627.csv
+  size_mb: 0.0
 - path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms5_application_scene_candidate_map/4_artifact/5_table/ms5_application_scene_candidates_v20260627.csv
   size_mb: 0.0
 - path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms5_application_scene_candidate_map/5_report/cli_sessions/config/20260627_091838_opencode_cli_57627cc56a37/stderr.log
