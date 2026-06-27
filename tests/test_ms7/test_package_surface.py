@@ -20,9 +20,9 @@ def test_ms7_required_modules_import_from_root_src():
 
 
 def test_ms7_query_has_anchor_metadata():
-    from pxfquery import query
+    from pxfquery import PxFQuery
 
-    payload = query("What happens to the functional programs if I knock down KRAS in A549?")
+    payload = PxFQuery().query("What happens to the functional programs if I knock down KRAS in A549?")
     assert payload["route_type"] == "exact-hit"
     for key in [
         "query_context",
@@ -40,9 +40,9 @@ def test_ms7_query_has_anchor_metadata():
 
 
 def test_ms7_context_missing_not_fabricated():
-    from pxfquery import query
+    from pxfquery import PxFQuery
 
-    payload = query("How does erlotinib change cancer cell function if I do not know the cell line yet?")
+    payload = PxFQuery().query("How does erlotinib change cancer cell function if I do not know the cell line yet?")
     assert payload["route_type"] == "context-missing"
     assert "context" in payload["intent"]["missing_fields"]
     assert payload["suggestions"]

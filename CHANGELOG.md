@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.2 - 2026-06-27
+
+CyHex task: `T-125 task_ms7_public_api_single_class_v012`
+
+- Narrowed the public top-level API contract to one class: `PxFQuery`.
+- Enforced `pxfquery.__all__ == ["PxFQuery"]`.
+- Moved provider registration and provider inspection behind `PxFQuery` methods in public docs.
+- Rewrote README around the single class entrypoint.
+- Preserved `v0.1.0` and `v0.1.1` as historical tags.
+
 ## 0.1.1 - 2026-06-27
 
 CyHex task: `T-124 task_ms7_version_governance_v011`

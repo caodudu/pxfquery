@@ -1,8 +1,14 @@
-from pxfquery import PxFQuery, __version__, get_llm_provider, list_llm_providers, register_llm_provider
+import pxfquery
+from pxfquery import PxFQuery
 
 
 def test_version_is_public():
-    assert __version__ == "0.1.1"
+    assert pxfquery.__version__ == "0.1.2"
+    assert PxFQuery().version == "0.1.2"
+
+
+def test_only_class_is_exported_at_top_level():
+    assert pxfquery.__all__ == ["PxFQuery"]
 
 
 def test_client_query_api():
@@ -13,16 +19,17 @@ def test_client_query_api():
 
 
 def test_register_llm_provider():
-    register_llm_provider(
+    client = PxFQuery()
+    client.register_llm_provider(
         "local/test-model",
         base_url="http://localhost:3000/v1",
         api_key_env="PXFQUERY_TEST_KEY",
         model="test-model",
     )
-    provider = get_llm_provider("local/test-model")
+    provider = client.get_llm_provider("local/test-model")
     assert provider.base_url == "http://localhost:3000/v1"
     assert provider.api_key_env == "PXFQUERY_TEST_KEY"
-    assert "local/test-model" in list_llm_providers()
+    assert "local/test-model" in client.list_llm_providers()
 
 
 def test_client_registers_default_provider_when_unset():

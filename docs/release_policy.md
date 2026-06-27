@@ -21,4 +21,5 @@ PxFquery versions are task-scoped.
 | Version | CyHex task | Git tag | Status |
 | --- | --- | --- | --- |
 | 0.1.0 | T-117 through T-123 | v0.1.0 | preserved |
-| 0.1.1 | T-124 | v0.1.1 | current |
+| 0.1.1 | T-124 | v0.1.1 | preserved |
+| 0.1.2 | T-125 | v0.1.2 | current |

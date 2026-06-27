@@ -3,7 +3,8 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Iterable
 
-from pxfquery.llm import ProviderCheckResult, register_llm_provider, provider_check
+from pxfquery._version import __version__
+from pxfquery.llm import ProviderCheckResult, get_llm_provider, list_llm_providers, register_llm_provider, provider_check
 from pxfquery.query import load_corpus, parse, query, run_corpus, summarize_records
 
 
@@ -18,6 +19,10 @@ class PxFQuery:
     def __init__(self, *, provider: str | None = None, provider_mode: str = "disabled") -> None:
         self.provider = provider
         self.provider_mode = provider_mode
+
+    @property
+    def version(self) -> str:
+        return __version__
 
     def register_llm_provider(
         self,
@@ -65,3 +70,9 @@ class PxFQuery:
         if selected is None:
             raise ValueError("provider is required; pass provider=... or call register_llm_provider(...) first")
         return provider_check(provider=selected, prompt=prompt, mode=mode, timeout=timeout)
+
+    def get_llm_provider(self, name: str):
+        return get_llm_provider(name)
+
+    def list_llm_providers(self) -> list[str]:
+        return list_llm_providers()

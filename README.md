@@ -1,37 +1,16 @@
 # PxFquery
 
-PxFquery is a Python package for natural-language and semi-structured perturbation query routing. It parses user queries into structured intents, resolves route types, executes deterministic forward/reverse query engines, and exposes both Python API and CLI surfaces.
+PxFquery is a Python package for natural-language perturbation queries. It parses biomedical query text, resolves route types, runs deterministic forward/reverse query engines, and returns machine-readable evidence routing metadata.
 
-## Features
-
-- Natural-language parser for forward and reverse biological perturbation queries
-- Route classification: `exact-hit`, `proxy-hit`, `no-hit`, `ambiguous-hit`, `context-missing`, `transfer/suggestion`
-- Four engine entry points:
-  - forward drug
-  - forward genetic
-  - reverse drug
-  - reverse genetic
-- Python API and command-line interface
-- Provider honesty check for `llm_gateway/deepseek-ai/deepseek-v4-flash`
-- MS7 regression corpus fixture and tests
-
-## Version
+The public Python interface is intentionally narrow:
 
 ```python
-import pxfquery
-
-print(pxfquery.__version__)
+from pxfquery import PxFQuery
 ```
 
-Current version:
-
-```text
-0.1.1
-```
+Everything users need is available from a `PxFQuery` instance.
 
 ## Install From Source
-
-From a local checkout:
 
 ```bash
 git clone git@github.com:caodudu/pxfquery.git
@@ -39,90 +18,84 @@ cd pxfquery
 python -m pip install -e .
 ```
 
-The editable source install is the recommended development path. Wheel install is only for release candidate reproduction:
+Editable source install is the default development workflow. Wheel install is for release reproduction:
 
 ```bash
-python -m pip install dist/pxfquery-0.1.1-py3-none-any.whl
+python -m pip install dist/pxfquery-0.1.2-py3-none-any.whl
 ```
 
-## Python Usage
-
-Use the `PxFQuery` class as the main API:
+## Quick Start
 
 ```python
 from pxfquery import PxFQuery
 
-client = PxFQuery()
+pxf = PxFQuery()
 
-intent = client.parse("What happens to KRAS knockdown in A549?")
+intent = pxf.parse("What happens to KRAS knockdown in A549?")
 print(intent["direction"])
+print(intent["perturbation_identity"])
 
-result = client.query("Which drugs activate apoptosis in A549 cells?")
+result = pxf.query("Which drugs activate apoptosis in A549 cells?")
 print(result["route_type"])
 print(result["function_response"])
 ```
 
-The module-level functions are still available for short scripts:
+## Version
 
 ```python
-from pxfquery import query
+import pxfquery
+from pxfquery import PxFQuery
 
-result = query("Which drugs activate apoptosis in A549 cells?")
-print(result["route_type"])
+pxf = PxFQuery()
+
+print(pxfquery.__version__)
+print(pxf.version)
 ```
 
-## LLM Provider Registration
+Current version:
 
-PxFquery does not hard-code secrets. Register an OpenAI-compatible provider route, then run a provider check:
+```text
+0.1.2
+```
+
+## LLM Provider
+
+PxFquery does not hard-code secrets. Register an OpenAI-compatible provider on the client:
 
 ```python
 from pxfquery import PxFQuery
 
-client = PxFQuery()
-client.register_llm_provider(
+pxf = PxFQuery()
+pxf.register_llm_provider(
     "llm_gateway/deepseek-ai/deepseek-v4-flash",
     base_url="http://localhost:3000/v1",
     api_key_env="LLM_GATEWAY_API_KEY",
     model="deepseek-ai/deepseek-v4-flash",
 )
 
-check = client.provider_check(mode="real", timeout=30)
+check = pxf.provider_check(mode="real", timeout=30)
 print(check.to_dict())
 ```
 
-Or register globally:
-
-```python
-from pxfquery import register_llm_provider, get_llm_provider, list_llm_providers
-
-register_llm_provider(
-    "llm_gateway/deepseek-ai/deepseek-v4-flash",
-    base_url="http://localhost:3000/v1",
-    api_key_env="LLM_GATEWAY_API_KEY",
-    model="deepseek-ai/deepseek-v4-flash",
-)
-
-print(get_llm_provider("llm_gateway/deepseek-ai/deepseek-v4-flash"))
-print(list_llm_providers())
-```
-
-Set the key outside the code:
+Set the key outside Python:
 
 ```bash
 export LLM_GATEWAY_API_KEY="<your-local-gateway-key>"
 ```
 
-## CLI Usage
+Provider inspection also stays on the client:
 
-Parse a query:
+```python
+print(pxf.get_llm_provider("llm_gateway/deepseek-ai/deepseek-v4-flash"))
+print(pxf.list_llm_providers())
+```
+
+## CLI
+
+The CLI mirrors the client methods for smoke tests and demos.
 
 ```bash
 pxfquery parse "What happens to KRAS knockdown in A549?"
-```
-
-Run a query:
-
-```bash
 pxfquery query "Which drugs activate apoptosis in A549 cells?" --json
 ```
 
@@ -135,7 +108,7 @@ pxfquery run-corpus \
   --summary /tmp/pxfquery_ms7_summary.json
 ```
 
-Provider route check with local llm_gateway. The CLI uses the built-in default registration for `llm_gateway/deepseek-ai/deepseek-v4-flash`, and the key comes from `LLM_GATEWAY_API_KEY`:
+Provider route check:
 
 ```bash
 export LLM_GATEWAY_API_KEY="<your-local-gateway-key>"
@@ -154,47 +127,25 @@ pxfquery provider-check \
   --json
 ```
 
-## Demo Tests
-
-Install test dependencies:
+## Tests
 
 ```bash
 python -m pip install -e .
 python -m pip install pytest PyYAML
-```
-
-Run all tests:
-
-```bash
 python -m pytest -q tests
 ```
 
 Expected current result:
 
 ```text
-54 passed
+55 passed
 ```
 
-Run only the MS7 corpus test:
+Run the MS7 corpus test only:
 
 ```bash
 python -m pytest -q tests/test_ms7/test_corpus.py
 ```
-
-Run a quick CLI smoke test:
-
-```bash
-pxfquery query "What happens to KRAS knockdown in A549?" --json
-```
-
-Expected fields include:
-
-- `route_type`
-- `query_context`
-- `perturbation_resolution`
-- `function_response`
-- `diagnostics`
-- `intent`
 
 ## Build
 
@@ -202,16 +153,24 @@ Expected fields include:
 python setup.py sdist bdist_wheel
 ```
 
-The package exposes a console script named `pxfquery`.
+## Public API Contract
+
+The intended user-facing Python import is:
+
+```python
+from pxfquery import PxFQuery
+```
+
+Top-level function imports are not part of the public API contract. Internal modules remain available for package implementation and tests, but downstream user code should use the `PxFQuery` class.
 
 ## Release Discipline
 
 Each package version is tied to a specific CyHex task and Git tag. New versions must not overwrite old versions.
 
-- Current version: `0.1.1`
-- Current CyHex task: `T-124 task_ms7_version_governance_v011`
-- Current Git tag: `v0.1.1`
-- Previous preserved tag: `v0.1.0`
+- Current version: `0.1.2`
+- Current CyHex task: `T-125 task_ms7_public_api_single_class_v012`
+- Current Git tag: `v0.1.2`
+- Preserved tags: `v0.1.0`, `v0.1.1`
 
 For future changes:
 
