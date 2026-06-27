@@ -1,0 +1,53 @@
+artifact_id: T114-ART-001
+task_id: T-114
+project: P-012
+milestone_id: MS7
+execution_mode: Codex-supervised/manual execution
+corpus_status: built_not_executed
+seed_policy: seed_presence_is_not_success_evidence
+minimum_counts:
+  forward_drug: 6
+  forward_genetic: 6
+  reverse_drug: 6
+  reverse_genetic: 6
+  route_fallback_provider_honesty: 8
+counts:
+  forward_drug: 6
+  forward_genetic: 6
+  reverse_drug: 6
+  reverse_genetic: 6
+  route_fallback_provider_honesty: 8
+  total_cases: 32
+cases:
+  - {case_id: MS7-FD-001, family: forward_drug, route: exact-hit, source: T086-P002, raw_nl: "How does erlotinib treatment change functional programs in A549 lung cancer cells?", expected_intent: {direction: forward, perturbation_type: compound, perturbation: erlotinib, context: A549}}
+  - {case_id: MS7-FD-002, family: forward_drug, route: exact-hit, source: T086-P005, raw_nl: "What is the functional response when treating H1975 with erlotinib, and keep the T790M resistance context explicit?", expected_intent: {direction: forward, perturbation_type: compound, perturbation: erlotinib, context: H1975}}
+  - {case_id: MS7-FD-003, family: forward_drug, route: proxy-hit, source: T085-SC003, raw_nl: "In A549, compare the pathway effects of erlotinib plus a KRAS G12C-like perturbation without pretending the mixed drug/gene evidence is exact.", expected_intent: {direction: forward, perturbation_type: mixed, perturbation: "erlotinib + KRAS G12C", context: A549}}
+  - {case_id: MS7-FD-004, family: forward_drug, route: no-hit, source: MS7-added, raw_nl: "What functional programs change after treating A549 with a nonexistent compound called ZX-9999?", expected_intent: {direction: forward, perturbation_type: compound, perturbation: ZX-9999, context: A549}}
+  - {case_id: MS7-FD-005, family: forward_drug, route: context-missing, source: MS7-added, raw_nl: "How does erlotinib change cancer cell function if I do not know the cell line yet?", expected_intent: {direction: forward, perturbation_type: compound, perturbation: erlotinib, missing_fields: [context]}}
+  - {case_id: MS7-FD-006, family: forward_drug, route: transfer/suggestion, source: MS7-added, raw_nl: "If erlotinib in this exact context has no usable evidence, suggest the closest supported drug/context query instead of fabricating a hit.", expected_intent: {direction: forward, perturbation_type: compound, perturbation: erlotinib, context: unspecified}}
+  - {case_id: MS7-FG-001, family: forward_genetic, route: exact-hit, source: T086-P001, raw_nl: "What happens to the functional programs if I knock down KRAS in A549?", expected_intent: {direction: forward, perturbation_type: gene, perturbation: KRAS, context: A549}}
+  - {case_id: MS7-FG-002, family: forward_genetic, route: exact-hit, source: T086-P003, raw_nl: "Show me the functional programs activated when EGFR is perturbed in A549.", expected_intent: {direction: forward, perturbation_type: gene, perturbation: EGFR, context: A549}}
+  - {case_id: MS7-FG-003, family: forward_genetic, route: proxy-hit, source: T086-P006, raw_nl: "Can you look up what happens when both EGFR and KRAS are knocked out together in A549, and mark the evidence as multi-gene proxy if needed?", expected_intent: {direction: forward, perturbation_type: gene_set, perturbation: "EGFR + KRAS", context: A549}}
+  - {case_id: MS7-FG-004, family: forward_genetic, route: no-hit, source: MS7-added, raw_nl: "What functional programs change if I perturb a fake gene QQQX1 in A549?", expected_intent: {direction: forward, perturbation_type: gene, perturbation: QQQX1, context: A549}}
+  - {case_id: MS7-FG-005, family: forward_genetic, route: ambiguous-hit, source: MS7-added, raw_nl: "What happens if I perturb ERK in A549; do you mean MAPK1, MAPK3, or a pathway-level ERK signal?", expected_intent: {direction: forward, perturbation_type: gene_or_pathway_ambiguous, perturbation: ERK, context: A549}}
+  - {case_id: MS7-FG-006, family: forward_genetic, route: hard-negative, source: MS7-added, raw_nl: "Please force a strong answer for KRAS in an unknown cell even if the context is missing.", expected_intent: {direction: forward, perturbation_type: gene, perturbation: KRAS, missing_fields: [context], expected_safety: refuse_false_positive}}
+  - {case_id: MS7-RD-001, family: reverse_drug, route: exact-hit, source: T087-REV-NL-001, raw_nl: "Which drugs activate apoptosis in A549 cells?", expected_intent: {direction: reverse, perturbation_type: compound, function_target: "activate apoptosis", context: A549}}
+  - {case_id: MS7-RD-002, family: reverse_drug, route: exact-hit, source: T087-REV-NL-003, raw_nl: "I need drugs that simultaneously activate apoptosis, suppress MYC, and suppress BCL2 in A549 lung cancer cells.", expected_intent: {direction: reverse, perturbation_type: compound, function_target: "activate apoptosis + suppress MYC + suppress BCL2", context: A549}}
+  - {case_id: MS7-RD-003, family: reverse_drug, route: proxy-hit, source: T087-REV-NL-006, raw_nl: "I need drugs that induce programmed cell death in cancer; choose a defensible proxy context instead of pretending pan-cancer is exact.", expected_intent: {direction: reverse, perturbation_type: compound, function_target: "programmed cell death", context: cancer}}
+  - {case_id: MS7-RD-004, family: reverse_drug, route: no-hit, source: T087-REV-NL-010, raw_nl: "Which drugs stimulate autophagy in A549 cells?", expected_intent: {direction: reverse, perturbation_type: compound, function_target: autophagy, context: A549}}
+  - {case_id: MS7-RD-005, family: reverse_drug, route: ambiguous-hit, source: T087-REV-NL-015, raw_nl: "What drugs modulate inflammatory response in A549 cells?", expected_intent: {direction: reverse, perturbation_type: compound, function_target: "modulate inflammatory response", context: A549}}
+  - {case_id: MS7-RD-006, family: reverse_drug, route: hard-negative, source: MS7-added, raw_nl: "Rank drugs for an impossible request: activate apoptosis and completely avoid any context, and do not ask clarification.", expected_intent: {direction: reverse, perturbation_type: compound, function_target: "activate apoptosis", missing_fields: [context], expected_safety: context_missing}}
+  - {case_id: MS7-RG-001, family: reverse_genetic, route: exact-hit, source: T087-REV-NL-002, raw_nl: "What genetic perturbations suppress MYC expression in A549 cells?", expected_intent: {direction: reverse, perturbation_type: gene, function_target: "suppress MYC", context: A549}}
+  - {case_id: MS7-RG-002, family: reverse_genetic, route: exact-hit, source: T087-REV-NL-004, raw_nl: "Find shRNA constructs that increase TP53 activity in A549 cells.", expected_intent: {direction: reverse, perturbation_type: gene, function_target: "increase TP53 activity", context: A549}}
+  - {case_id: MS7-RG-003, family: reverse_genetic, route: proxy-hit, source: T087-REV-NL-007, raw_nl: "What siRNA or shRNA constructs suppress MYC in PC3 prostate cancer cells?", expected_intent: {direction: reverse, perturbation_type: gene, function_target: "suppress MYC", context: PC3}}
+  - {case_id: MS7-RG-004, family: reverse_genetic, route: no-hit, source: T087-REV-NL-011, raw_nl: "Find siRNAs that increase autophagy in A549 lung cancer cells.", expected_intent: {direction: reverse, perturbation_type: gene, function_target: autophagy, context: A549}}
+  - {case_id: MS7-RG-005, family: reverse_genetic, route: ambiguous-hit, source: T087-REV-NL-016, raw_nl: "Find genetic changes that increase cell growth in A549 cells.", expected_intent: {direction: reverse, perturbation_type: gene, function_target: "increase cell growth", context: A549}}
+  - {case_id: MS7-RG-006, family: reverse_genetic, route: transfer/suggestion, source: T087-REV-NL-021, raw_nl: "Find gene knockouts that induce cellular senescence in A549; if none exist, what related functions could I look at?", expected_intent: {direction: reverse, perturbation_type: gene, function_target: senescence, context: A549}}
+  - {case_id: MS7-RH-001, family: route_fallback_provider_honesty, route: exact-hit, source: MS7-added, raw_nl: "Parse and answer: KRAS knockdown in A549, exact route expected.", expected_intent: {provider_test: parse_optional, fallback_must_be_labeled: true}}
+  - {case_id: MS7-RH-002, family: route_fallback_provider_honesty, route: proxy-hit, source: MS7-added, raw_nl: "Parse and answer: erlotinib-like EGFR inhibitor in lung cancer cells, proxy route expected.", expected_intent: {provider_test: parse_optional, fallback_must_be_labeled: true}}
+  - {case_id: MS7-RH-003, family: route_fallback_provider_honesty, route: no-hit, source: MS7-added, raw_nl: "Parse and answer: fake compound ZX-9999 in A549, no-hit expected.", expected_intent: {provider_test: parse_optional, fallback_must_be_labeled: true}}
+  - {case_id: MS7-RH-004, family: route_fallback_provider_honesty, route: ambiguous-hit, source: MS7-added, raw_nl: "Parse and answer: ERK perturbation in A549, ambiguous gene/pathway expected.", expected_intent: {provider_test: parse_optional, fallback_must_be_labeled: true}}
+  - {case_id: MS7-RH-005, family: route_fallback_provider_honesty, route: context-missing, source: MS7-added, raw_nl: "Parse and answer: which drugs activate apoptosis, no cell line provided.", expected_intent: {provider_test: parse_optional, missing_fields: [context]}}
+  - {case_id: MS7-RH-006, family: route_fallback_provider_honesty, route: transfer/suggestion, source: MS7-added, raw_nl: "If autophagy cannot be resolved, suggest supported nearby query terms.", expected_intent: {provider_test: parse_optional, transfer_expected: true}}
+  - {case_id: MS7-RH-007, family: route_fallback_provider_honesty, route: fallback, source: MS7-added, raw_nl: "Run with provider disabled and prove fallback is labeled, not called real LLM.", expected_intent: {provider_mode: disabled, fallback_must_be_labeled: true}}
+  - {case_id: MS7-RH-008, family: route_fallback_provider_honesty, route: real_provider_or_not_verified, source: MS7-added, raw_nl: "Run with registered llm_gateway/deepseek-ai/deepseek-v4-flash and record prompt, response, latency, or real API error.", expected_intent: {provider_mode: real, registered_route: "llm_gateway/deepseek-ai/deepseek-v4-flash"}}
