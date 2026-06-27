@@ -2041,6 +2041,10 @@ excluded_from_git:
   size_mb: 0.0
 - path: 4_phase_development/goal_deterministic_query_engines_v1/task_reverse_stability_guard_v1/5_report/cli_sessions/execute/20260623_124457_opencode_cli_c77e1d74119d/stdout.log
   size_mb: 0.05
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_00_external_context_digest/4_artifact/5_table/ms8_cleanup_candidates_v20260627.csv
+  size_mb: 0.0
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_00_external_context_digest/4_artifact/5_table/ms8_durable_asset_index_v20260627.csv
+  size_mb: 0.0
 - path: 4_phase_development/goal_m1_python_package_v2/task_contract_and_demo_spec_m1/1_asset/t013_capability_status_matrix.csv
   size_mb: 0.0
 - path: 4_phase_development/goal_m1_python_package_v2/task_contract_and_demo_spec_m1/5_report/cli_sessions/check/20260624_032828_codex_cli_ced0408076a2/stderr.log

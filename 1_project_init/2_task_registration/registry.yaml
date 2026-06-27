@@ -1910,3 +1910,12 @@ tasks:
   executor: hybrid
   created: '2026-06-27'
   completed: null
+- id: T-129
+  name: ms8_01_human_acceptable_delivery_anchor
+  phase: development
+  goal: goal_goal_ms8_human_usable_package
+  path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_01_human_acceptable_delivery_anchor
+  status: pending
+  executor: hybrid
+  created: '2026-06-27'
+  completed: null
