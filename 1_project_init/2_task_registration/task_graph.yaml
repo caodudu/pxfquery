@@ -62,7 +62,7 @@ nodes:
   x: 737
   color: '#a78bfa'
   locked: false
-  tasks_collapsed: false
+  tasks_collapsed: true
 - id: goal:goal_ms3_release_quality
   x: 525
   color: '#84cc16'
