@@ -1829,3 +1829,12 @@ tasks:
   executor: hybrid
   created: '2026-06-27'
   completed: null
+- id: T-120
+  name: ms7_integrated_recovery_matrix_2
+  phase: development
+  goal: goal_ms7_recovery_package
+  path: 4_phase_development/goal_ms7_recovery_package/task_ms7_integrated_recovery_matrix_2
+  status: pending
+  executor: hybrid
+  created: '2026-06-27'
+  completed: null
