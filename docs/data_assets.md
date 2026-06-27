@@ -22,7 +22,7 @@ Download/cache use:
 pxf.resources.download()
 ```
 
-In `0.4.0`, download/cache is not implemented. Users provide a local resource pack with `pxf.resources.use(...)`.
+In `0.5.0`, download/cache is not implemented. Users provide a local resource pack with `pxf.resources.use(...)`.
 
 ## Internal Pack Layout
 

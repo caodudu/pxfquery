@@ -4,10 +4,9 @@ from dataclasses import dataclass, field
 from typing import Any
 
 from pxfquery.l4_evidence import assemble_evidence
-from pxfquery.l3_execution import execute_route
 from pxfquery.l1_nlu import parse_query
-from pxfquery.l5_presentation.answer import build_answer
 from pxfquery.l2_routing import route_intent
+from pxfquery.l5_presentation.answer import build_answer
 
 
 @dataclass
@@ -25,15 +24,21 @@ class ReadNamespace:
 
 
 class PreprocessingNamespace:
+    def __init__(self, client) -> None:
+        self._client = client
+
     def parse(self, qdata: PxFQueryData, *, copy: bool = False) -> PxFQueryData | None:
         target = _copy_qdata(qdata) if copy else qdata
-        intent = parse_query(target.text)
+        intent = parse_query(target.text, backend=self._client.nlu_backend)
         target.uns["intent"] = intent.to_dict()
         target.uns["_intent"] = intent
         return target if copy else None
 
 
 class ToolsNamespace:
+    def __init__(self, client) -> None:
+        self._client = client
+
     def route(self, qdata: PxFQueryData, *, copy: bool = False) -> PxFQueryData | None:
         target = _copy_qdata(qdata) if copy else qdata
         intent = _require_intent(target)
@@ -46,11 +51,18 @@ class ToolsNamespace:
     def execute(self, qdata: PxFQueryData, *, copy: bool = False) -> PxFQueryData | None:
         target = _copy_qdata(qdata) if copy else qdata
         route_plan = _require_route_plan(target)
-        execution = execute_route(route_plan)
+        if self._client._resolver is None:
+            raise RuntimeError("Resolver is not enabled. Call pxf.enable_resolver(index_dir=...) before pxf.tl.execute(qdata).")
+        execution = self._client._resolver.execute_intent(
+            route_plan.intent.to_resolver_intent(),
+            user_input=target.text,
+            top_n=route_plan.intent.top_n,
+            summarize=False,
+        )
         target.uns["execution"] = {
-            "query_status": execution.query_status,
-            "result": execution.result,
-            "execution_note": execution.execution_note,
+            "query_status": "found" if getattr(execution, "found", False) else "not-found",
+            "result": execution,
+            "resolver_meta": getattr(execution, "resolver_meta", {}),
         }
         target.uns["_execution"] = execution
         return target if copy else None
@@ -58,7 +70,10 @@ class ToolsNamespace:
     def assemble(self, qdata: PxFQueryData, *, copy: bool = False) -> PxFQueryData | None:
         target = _copy_qdata(qdata) if copy else qdata
         execution = _require_execution(target)
-        target.uns["result"] = assemble_evidence(execution)
+        result = assemble_evidence(execution)
+        result["intent"] = target.uns["intent"]
+        result["route_plan"] = target.uns["route_plan"]
+        target.uns["result"] = result
         return target if copy else None
 
 
@@ -91,9 +106,7 @@ def _copy_qdata(qdata: PxFQueryData) -> PxFQueryData:
 
 def _require_intent(qdata: PxFQueryData):
     if "_intent" not in qdata.uns:
-        intent = parse_query(qdata.text)
-        qdata.uns["intent"] = intent.to_dict()
-        qdata.uns["_intent"] = intent
+        raise RuntimeError("qdata has no L1 intent; call pxf.pp.parse(qdata) before downstream tools")
     return qdata.uns["_intent"]
 
 
@@ -109,12 +122,5 @@ def _require_route_plan(qdata: PxFQueryData):
 
 def _require_execution(qdata: PxFQueryData):
     if "_execution" not in qdata.uns:
-        route_plan = _require_route_plan(qdata)
-        execution = execute_route(route_plan)
-        qdata.uns["execution"] = {
-            "query_status": execution.query_status,
-            "result": execution.result,
-            "execution_note": execution.execution_note,
-        }
-        qdata.uns["_execution"] = execution
+        raise RuntimeError("qdata has no execution result; call pxf.tl.execute(qdata) before assembly")
     return qdata.uns["_execution"]

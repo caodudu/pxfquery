@@ -33,17 +33,23 @@ def build_answer(question: str, structured: dict[str, Any], *, resources_status:
 
 
 def _interpreted_question(intent: dict[str, Any], context: dict[str, Any]) -> str:
-    direction = intent.get("direction") or "query"
-    perturbation_type = intent.get("perturbation_type") or "perturbation"
-    function = intent.get("function_target") or "functional programs"
-    biological_context = intent.get("biological_context") or context.get("cell_line") or "available biological models"
-    if direction == "reverse":
-        return f"find {perturbation_type} perturbations associated with {function} in {biological_context}"
-    perturbation = intent.get("perturbation_identity") or "the requested perturbation"
+    query_type = intent.get("query_type") or "query"
+    biological_context = intent.get("bio_context") or context.get("biological_context") or "available biological models"
+    if query_type == "reverse":
+        function = intent.get("function_desc") or ", ".join((intent.get("activate") or []) + (intent.get("suppress") or [])) or "the requested functional state"
+        return f"find perturbations associated with {function} in {biological_context}"
+    perturbation = intent.get("pert_desc") or context.get("perturbation") or "the requested perturbation"
     return f"estimate functional effects of {perturbation} in {biological_context}"
 
 
 def _biological_results(function_response: dict[str, Any]) -> list[dict[str, Any]]:
+    candidates = function_response.get("candidates")
+    if isinstance(candidates, list) and candidates:
+        return candidates
+    activated = function_response.get("activated") or []
+    suppressed = function_response.get("suppressed") or []
+    if activated or suppressed:
+        return activated + suppressed
     scores = function_response.get("scores")
     if isinstance(scores, list):
         return [
@@ -76,10 +82,10 @@ def _evidence(structured: dict[str, Any], resources_status: dict[str, Any] | Non
     diagnostics = structured.get("diagnostics", {})
     evidence = {
         "biological_context": context.get("biological_context") or "not resolved",
-        "context_source": context.get("context_source") or "not resolved",
-        "perturbation_type": context.get("perturbation_type") or "unknown",
-        "direction": context.get("direction") or "unknown",
-        "data_source": _readable_data_source(function_response.get("matrix_source")),
+        "perturbation": context.get("perturbation"),
+        "query_type": structured.get("query_type"),
+        "route_status": structured.get("route_status"),
+        "result_status": function_response.get("status"),
     }
     if resources_status:
         evidence["resource_pack"] = resources_status.get("message") or resources_status.get("source")
@@ -98,9 +104,7 @@ def _readable_data_source(matrix_source: str | None) -> str:
 
 
 def _limitations(structured: dict[str, Any], resources_status: dict[str, Any] | None) -> list[str]:
-    limitations = [
-        "This version exposes the source-layer architecture. Biological hits require later resource-backed routing and query execution.",
-    ]
+    limitations = []
     diagnostics = structured.get("diagnostics", {})
     if diagnostics.get("missing_fields"):
         limitations.append(f"Missing fields: {', '.join(diagnostics['missing_fields'])}.")
@@ -113,10 +117,10 @@ def _limitations(structured: dict[str, Any], resources_status: dict[str, Any] | 
 
 def _interpretation(intent: dict[str, Any], results: list[dict[str, Any]]) -> str:
     if not results:
-        return "PxFquery parsed the question intent, but no biological result is claimed before resource-backed routing and query execution."
-    if intent.get("direction") == "reverse":
-        return "Ranked perturbations require resource-backed query execution."
-    return "The function scores summarize the current estimated functional response for the requested perturbation."
+        return "No matrix-backed biological result was found for this query and resource configuration."
+    if intent.get("query_type") == "reverse":
+        return "Candidates are ranked by similarity between their functional score vector and the requested functional target."
+    return "Functional programs are ordered by matrix-derived perturbation scores for the resolved evidence context."
 
 
 def _trace(structured: dict[str, Any]) -> list[dict[str, Any]]:

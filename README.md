@@ -29,6 +29,9 @@ PxFquery is source-install first.
 from pxfquery import PxFQuery
 
 pxf = PxFQuery()
+pxf.settings.use_diygateway(token="...", timeout=60)
+pxf.load_data_dir("/path/to/functional_matrices")
+pxf.enable_resolver(index_dir="/path/to/query_indexes", api_key="...")
 answer = pxf.ask("Which perturbations increase a requested biological function in a disease model?")
 
 print(answer)
@@ -54,6 +57,9 @@ Stepwise use follows a scanpy-style interface. This is the user interface; the f
 
 ```python
 pxf = PxFQuery()
+pxf.settings.use_diygateway(token="...", timeout=60)
+pxf.load_data_dir("/path/to/functional_matrices")
+pxf.enable_resolver(index_dir="/path/to/query_indexes", api_key="...")
 q = pxf.read.query("Which perturbations increase a requested biological function in a disease model?")
 pxf.pp.parse(q)
 pxf.tl.route(q)
@@ -61,6 +67,18 @@ pxf.tl.execute(q)
 pxf.tl.assemble(q)
 result = pxf.get.result(q)
 answer = pxf.get.answer(q)
+```
+
+Direct matrix queries are also available:
+
+```python
+forward = pxf.pert2func("EGFR", pert_type="xpr", cell_line="A549")
+reverse = pxf.func2pert(
+    activate=["HALLMARK_APOPTOSIS"],
+    suppress=["HALLMARK_MYC_TARGETS_V1"],
+    pert_type="cp",
+    cell_line="A549",
+)
 ```
 
 ## Resource Pack
@@ -84,7 +102,7 @@ pxf = PxFQuery()
 pxf.resources.download()
 ```
 
-The download/cache implementation is not active in `0.4.0`; `resources.download()` reports that official resource-pack download is not configured and asks users to provide a local pack for now.
+The download/cache implementation is not active in `0.5.0`; `resources.download()` reports that official resource-pack download is not configured and asks users to provide a local pack for now.
 
 ## Interface Layers
 
@@ -99,30 +117,33 @@ User biomedical question
   -> pxfquery.l5_presentation
 ```
 
-The current `0.4.0` implementation does not hard-code demo entities, scores, ranked candidates, or matrix hits. Natural-language intent parsing is present; biological hits require later resource-backed routing and query execution.
+The current `0.5.0` implementation restores the original matrix-backed forward/reverse query core and resolver architecture. L1 natural-language intent parsing requires a configured OpenAI-compatible LLM backend. Biological hits come from loaded functional matrices and query indexes.
 
 ## Current Status
 
-Version `0.4.0` corrects the source architecture:
+Version `0.5.0` restores the original package capabilities inside the layered source architecture:
 
-- `pxfquery.l1_nlu` parses the user's biomedical question into surface intent.
-- `pxfquery.l2_routing` decides what downstream evidence capabilities are required.
-- `pxfquery.l3_execution` is the resource-pack query layer and does not fabricate results before implementation.
-- `pxfquery.l4_evidence` assembles structured evidence from actual layer outputs.
-- `pxfquery.l5_presentation` renders the biomedical answer.
+- `pxfquery.l1_nlu` parses the user's biomedical question into resolver-compatible intent through the configured LLM backend.
+- `pxfquery.l2_routing` performs index-backed entity resolution and exact/proxy evidence routing.
+- `pxfquery.l3_execution` loads functional matrices and runs forward/reverse perturbation-function queries.
+- `pxfquery.l4_evidence` assembles route metadata, function scores, candidates, and diagnostics.
+- `pxfquery.l5_presentation` renders biomedical answers and plots.
 
 The package root is intentionally thin. Product code lives inside the five visible layer directories.
 
 ## Test
 
 ```bash
+export PXFQUERY_L1_API_KEY="..."
 python -m pytest -q tests
 ```
+
+The L1 contract test makes one real DiyGateway request. If the gateway is unavailable or the token is missing, the test fails.
 
 Current source test target:
 
 ```text
-14 passed
+10 passed
 ```
 
 ## Version
@@ -135,5 +156,5 @@ print(pxfquery.__version__)
 Current version:
 
 ```text
-0.4.0
+0.5.0
 ```

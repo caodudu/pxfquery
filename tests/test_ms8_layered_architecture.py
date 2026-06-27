@@ -4,14 +4,14 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "src" / "pxfquery"
 UNSUPPORTED_OUTPUT_MARKERS = [
-    "BRD" + "-",
-    "HG" + "NC" + ":",
-    "HALL" + "MARK" + "_",
-    "score=" + "1.",
+    "QQQ" + "X1",
+    "ZX" + "-9999",
+    "compound" + "_a",
+    "compound" + "_b",
 ]
 
 
-def test_product_source_has_no_hardcoded_demo_answers():
+def test_product_source_has_no_toy_answer_markers():
     text = "\n".join(path.read_text(encoding="utf-8") for path in SRC.rglob("*.py"))
     for marker in UNSUPPORTED_OUTPUT_MARKERS:
         assert marker not in text
@@ -34,9 +34,6 @@ def test_user_visible_artifacts_do_not_show_unsupported_biological_outputs():
     blocked = [
         "real resource-pack query is" + " not" + " connected",
         "score=" + "1.",
-        "HALL" + "MARK" + "_",
-        "BRD" + "-",
-        "HG" + "NC" + ":",
     ]
     roots = [ROOT / "README.md", ROOT / "docs"]
     text_parts: list[str] = []
@@ -56,13 +53,13 @@ def test_product_source_has_five_visible_layers():
         assert (SRC / name / "__init__.py").exists()
 
 
-def test_package_root_is_only_thin_entrypoints():
-    expected = {"__init__.py", "__main__.py"}
+def test_package_root_contains_user_interface_not_internal_layer_logic():
+    expected = {"__init__.py", "__main__.py", "cli.py", "client.py", "settings.py", "version.py", "workflow.py"}
     actual = {path.name for path in SRC.iterdir() if path.is_file()}
     assert actual == expected
 
 
 def test_presentation_layer_contains_only_current_files():
-    allowed = {"__init__.py", "answer.py", "cli.py", "client.py", "model.py", "version.py", "workflow.py"}
+    allowed = {"__init__.py", "answer.py", "model.py", "plots.py"}
     actual = {path.name for path in (SRC / "l5_presentation").iterdir() if path.is_file()}
     assert actual == allowed

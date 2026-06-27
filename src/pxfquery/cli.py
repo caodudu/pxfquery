@@ -22,7 +22,10 @@ def main(argv: list[str] | None = None) -> int:
     if args.command == "parse":
         if not args.text:
             parser.error("parse requires text")
-        print(json.dumps(PxFQuery().parse(args.text), ensure_ascii=False, indent=2))
+        client = PxFQuery()
+        qdata = client.read.query(args.text)
+        client.pp.parse(qdata)
+        print(json.dumps(client.get.intent(qdata), ensure_ascii=False, indent=2))
         return 0
     if args.command == "query":
         if args.json:
