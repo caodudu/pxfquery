@@ -15,15 +15,31 @@ PxFquery is a Python package for natural-language and semi-structured perturbati
 - Provider honesty check for `llm_gateway/deepseek-ai/deepseek-v4-flash`
 - MS7 regression corpus fixture and tests
 
-## Install
+## Version
+
+```python
+import pxfquery
+
+print(pxfquery.__version__)
+```
+
+Current version:
+
+```text
+0.1.0
+```
+
+## Install From Source
 
 From a local checkout:
 
 ```bash
+git clone git@github.com:caodudu/pxfquery.git
+cd pxfquery
 python -m pip install -e .
 ```
 
-Or install from a built wheel:
+The editable source install is the recommended development path. Wheel install is only for release candidate reproduction:
 
 ```bash
 python -m pip install dist/pxfquery-0.1.0-py3-none-any.whl
@@ -31,15 +47,69 @@ python -m pip install dist/pxfquery-0.1.0-py3-none-any.whl
 
 ## Python Usage
 
-```python
-from pxfquery import parse, query, run_corpus, summarize_records
+Use the `PxFQuery` class as the main API:
 
-intent = parse("What happens to KRAS knockdown in A549?")
+```python
+from pxfquery import PxFQuery
+
+client = PxFQuery()
+
+intent = client.parse("What happens to KRAS knockdown in A549?")
 print(intent["direction"])
+
+result = client.query("Which drugs activate apoptosis in A549 cells?")
+print(result["route_type"])
+print(result["function_response"])
+```
+
+The module-level functions are still available for short scripts:
+
+```python
+from pxfquery import query
 
 result = query("Which drugs activate apoptosis in A549 cells?")
 print(result["route_type"])
-print(result["function_response"])
+```
+
+## LLM Provider Registration
+
+PxFquery does not hard-code secrets. Register an OpenAI-compatible provider route, then run a provider check:
+
+```python
+from pxfquery import PxFQuery
+
+client = PxFQuery()
+client.register_llm_provider(
+    "llm_gateway/deepseek-ai/deepseek-v4-flash",
+    base_url="http://localhost:3000/v1",
+    api_key_env="LLM_GATEWAY_API_KEY",
+    model="deepseek-ai/deepseek-v4-flash",
+)
+
+check = client.provider_check(mode="real", timeout=30)
+print(check.to_dict())
+```
+
+Or register globally:
+
+```python
+from pxfquery import register_llm_provider, get_llm_provider, list_llm_providers
+
+register_llm_provider(
+    "llm_gateway/deepseek-ai/deepseek-v4-flash",
+    base_url="http://localhost:3000/v1",
+    api_key_env="LLM_GATEWAY_API_KEY",
+    model="deepseek-ai/deepseek-v4-flash",
+)
+
+print(get_llm_provider("llm_gateway/deepseek-ai/deepseek-v4-flash"))
+print(list_llm_providers())
+```
+
+Set the key outside the code:
+
+```bash
+export LLM_GATEWAY_API_KEY="<your-local-gateway-key>"
 ```
 
 ## CLI Usage
@@ -65,7 +135,7 @@ pxfquery run-corpus \
   --summary /tmp/pxfquery_ms7_summary.json
 ```
 
-Provider route check with local llm_gateway:
+Provider route check with local llm_gateway. The CLI uses the built-in default registration for `llm_gateway/deepseek-ai/deepseek-v4-flash`, and the key comes from `LLM_GATEWAY_API_KEY`:
 
 ```bash
 export LLM_GATEWAY_API_KEY="<your-local-gateway-key>"
@@ -102,7 +172,7 @@ python -m pytest -q tests
 Expected current result:
 
 ```text
-50 passed
+54 passed
 ```
 
 Run only the MS7 corpus test:

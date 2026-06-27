@@ -15,6 +15,15 @@ DEFAULT_BASE_URL = "http://localhost:3000/v1"
 
 
 @dataclass
+class ProviderConfig:
+    name: str
+    base_url: str
+    api_key: str | None = None
+    api_key_env: str = "LLM_GATEWAY_API_KEY"
+    model: str | None = None
+
+
+@dataclass
 class ProviderCheckResult:
     provider: str
     mode: str
@@ -29,6 +38,46 @@ class ProviderCheckResult:
         return asdict(self)
 
 
+_PROVIDER_REGISTRY: dict[str, ProviderConfig] = {
+    DEFAULT_PROVIDER: ProviderConfig(
+        name=DEFAULT_PROVIDER,
+        base_url=DEFAULT_BASE_URL,
+        api_key_env="LLM_GATEWAY_API_KEY",
+        model="deepseek-ai/deepseek-v4-flash",
+    )
+}
+
+
+def register_llm_provider(
+    name: str,
+    *,
+    base_url: str,
+    api_key: str | None = None,
+    api_key_env: str = "LLM_GATEWAY_API_KEY",
+    model: str | None = None,
+) -> None:
+    """Register an OpenAI-compatible LLM provider route for runtime checks."""
+
+    _PROVIDER_REGISTRY[name] = ProviderConfig(
+        name=name,
+        base_url=base_url.rstrip("/"),
+        api_key=api_key,
+        api_key_env=api_key_env,
+        model=model,
+    )
+
+
+def get_llm_provider(name: str) -> ProviderConfig:
+    try:
+        return _PROVIDER_REGISTRY[name]
+    except KeyError as exc:
+        raise KeyError(f"LLM provider is not registered: {name}") from exc
+
+
+def list_llm_providers() -> list[str]:
+    return sorted(_PROVIDER_REGISTRY)
+
+
 def provider_check(
     *,
     provider: str = DEFAULT_PROVIDER,
@@ -37,7 +86,11 @@ def provider_check(
     timeout: float = 20.0,
     base_url: str | None = None,
 ) -> ProviderCheckResult:
-    base = (base_url or os.environ.get("LLM_GATEWAY_BASE_URL") or DEFAULT_BASE_URL).rstrip("/")
+    config = _PROVIDER_REGISTRY.get(provider)
+    base = (base_url or os.environ.get("LLM_GATEWAY_BASE_URL") or (config.base_url if config else DEFAULT_BASE_URL)).rstrip("/")
+    api_key_env = config.api_key_env if config else "LLM_GATEWAY_API_KEY"
+    api_key = (config.api_key if config else None) or os.environ.get(api_key_env)
+    model = (config.model if config and config.model else provider.replace("llm_gateway/", "", 1))
     started = time.time()
     if mode != "real":
         return ProviderCheckResult(
@@ -52,12 +105,12 @@ def provider_check(
         )
 
     payload = {
-        "model": provider.replace("llm_gateway/", "", 1),
+        "model": model,
         "messages": [{"role": "user", "content": prompt}],
         "temperature": 0,
         "max_tokens": 80,
     }
-    curl_result = _curl_fallback(base, payload, provider, prompt, timeout, started)
+    curl_result = _curl_fallback(base, payload, provider, prompt, timeout, started, api_key=api_key)
     if curl_result is not None:
         return curl_result
     request = urllib.request.Request(
@@ -65,7 +118,7 @@ def provider_check(
         data=json.dumps(payload).encode("utf-8"),
         headers={
             "Content-Type": "application/json",
-            "Authorization": f"Bearer {os.environ.get('LLM_GATEWAY_API_KEY', 'local-llm-gateway')}",
+            "Authorization": f"Bearer {api_key or 'local-llm-gateway'}",
         },
         method="POST",
     )
@@ -108,10 +161,10 @@ def _curl_fallback(
     prompt: str,
     timeout: float,
     started: float,
+    api_key: str | None,
 ) -> ProviderCheckResult | None:
     curl = shutil.which("curl")
-    key = os.environ.get("LLM_GATEWAY_API_KEY")
-    if curl is None or not key:
+    if curl is None or not api_key:
         return None
     proc = subprocess.run(
         [
@@ -121,7 +174,7 @@ def _curl_fallback(
             str(int(timeout)),
             f"{base}/chat/completions",
             "-H",
-            f"Authorization: Bearer {key}",
+            f"Authorization: Bearer {api_key}",
             "-H",
             "Content-Type: application/json",
             "-d",

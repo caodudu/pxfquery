@@ -1,8 +1,16 @@
-from setuptools import setup, find_packages
+from pathlib import Path
+
+from setuptools import find_packages, setup
+
+
+def read_version() -> str:
+    ns = {}
+    exec((Path(__file__).parent / "src" / "pxfquery" / "_version.py").read_text(), ns)
+    return ns["__version__"]
 
 setup(
     name="pxfquery",
-    version="0.1.0",
+    version=read_version(),
     packages=find_packages(where="src"),
     package_dir={"": "src"},
     install_requires=["PyYAML>=6"],
