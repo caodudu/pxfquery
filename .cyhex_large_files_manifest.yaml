@@ -2917,6 +2917,14 @@ excluded_from_git:
   size_mb: 0.0
 - path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_parser_resolver_route_repair_version/5_report/cli_sessions/config/20260627_091616_opencode_cli_e248333eda0b/stdout.log
   size_mb: 0.0
+- path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_repaired_package_verification_gate/3_execution/verification_workspace/ms3_package_source/.pytest_cache/CACHEDIR.TAG
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_repaired_package_verification_gate/3_execution/verification_workspace/ms3_package_source/.pytest_cache/v/cache/lastfailed
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_repaired_package_verification_gate/3_execution/verification_workspace/ms3_package_source/.pytest_cache/v/cache/nodeids
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_repaired_package_verification_gate/4_artifact/5_table/ms4_repaired_package_verification_matrix_v20260627.csv
+  size_mb: 0.0
 - path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_resolver_route_failure_diagnosis/1_asset/ms4_route_execution_matrix_csv.csv
   size_mb: 0.02
 - path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_resolver_route_failure_diagnosis/4_artifact/5_table/ms4_resolver_route_failure_cases_v20260627.csv
