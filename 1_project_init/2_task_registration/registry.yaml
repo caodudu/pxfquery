@@ -1964,3 +1964,12 @@ tasks:
   executor: hybrid
   created: '2026-06-28'
   completed: null
+- id: T-138
+  name: ms8_10_l2_resource_routing_repair
+  phase: development
+  goal: goal_goal_ms8_human_usable_package
+  path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_10_l2_resource_routing_repair
+  status: pending
+  executor: hybrid
+  created: '2026-06-28'
+  completed: null
