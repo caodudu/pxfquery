@@ -49,7 +49,7 @@ nodes:
   locked: true
   tasks_collapsed: true
 - id: goal:goal_ms3_ms4_quality_and_repair
-  x: 78
+  x: 737
   color: '#a78bfa'
   locked: false
   tasks_collapsed: false
