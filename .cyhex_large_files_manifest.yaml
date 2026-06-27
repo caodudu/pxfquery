@@ -4,9 +4,9 @@ excluded_from_git:
 - path: .pytest_cache/CACHEDIR.TAG
   size_mb: 0.0
 - path: .pytest_cache/v/cache/lastfailed
-  size_mb: 0.0
+  size_mb: 0.01
 - path: .pytest_cache/v/cache/nodeids
-  size_mb: 0.0
+  size_mb: 0.13
 - path: 1_project_init/.DS_Store
   size_mb: 0.01
 - path: 2_project_asset/.DS_Store
