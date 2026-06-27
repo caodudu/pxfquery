@@ -1551,10 +1551,14 @@ tasks:
   phase: development
   goal: goal_ms3_ms4_quality_and_repair
   path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_route_execution_matrix
-  status: active
+  status: done
   executor: hybrid
   created: '2026-06-27'
   completed: null
+  notes: 'M6 delegated acceptance: T-094 delivered 88-query MS4 execution matrix,
+    failure inventory, rewritten human-readable HTML reports, delivery_qa.md with
+    no remaining issues, and handoff_ai_use.md. Downstream MS4 diagnostics must use
+    these evidence assets.'
 - id: T-095
   name: ms4_parser_llm_failure_diagnosis
   phase: development
