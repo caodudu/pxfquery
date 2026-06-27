@@ -1533,10 +1533,10 @@ tasks:
   phase: translation
   goal: goal_ms6_manuscript_foundation
   path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_algorithm_method_story
-  status: active
+  status: done
   executor: hybrid
   created: '2026-06-27'
-  completed: null
+  completed: '2026-06-27'
 - id: T-093
   name: ms6_internal_data_figure2_assets
   phase: translation
@@ -1553,5 +1553,14 @@ tasks:
   path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_route_execution_matrix
   status: active
   executor: hybrid
+  created: '2026-06-27'
+  completed: null
+- id: T-095
+  name: ms4_parser_llm_failure_diagnosis
+  phase: development
+  goal: goal_ms3_ms4_quality_and_repair
+  path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_parser_llm_failure_diagnosis
+  status: pending
+  executor: human
   created: '2026-06-27'
   completed: null
