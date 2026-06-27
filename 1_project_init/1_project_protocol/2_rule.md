@@ -31,6 +31,8 @@
 ## Development Posture
 
 - Functional delivery expectations take priority over convenience-driven scope reduction. If the user defines a milestone as requiring resolver, LLM, proxy routing, natural-language entry, or transfer/fallback behavior, those capabilities remain in scope until the user explicitly approves a change.
+- Natural-language parsing or resolver tasks must use a real configured LLM/provider when they claim LLM/NLU behavior. Local keyword rules, regex rules, templates, deterministic parsers, mock backends, fixture payloads, hand-built intent objects, or demo data must never be presented as successful LLM/NLU parsing.
+- Tests or demos must not fake LLM/provider success. If the real LLM connection, configured provider, gateway route, or schema validation fails, the task must report failure or blocked status with evidence; it must not substitute local rules, mocks, fixtures, cached outputs, or hand-constructed objects to pass the test.
 - Keep scope pragmatic in implementation method: prioritize working code, traceable evidence, manuscript-grade results, and clear provenance over broad platform claims. Pragmatism does not authorize removing required user-facing capabilities from a milestone.
 - Do not overstate LLM or agent capabilities in manuscript claims or external positioning. This claim-control rule does not mean LLM/resolver functions are optional in development deliverables when they are part of the project or milestone goal.
 - Deterministic indexes and evidence retrieval are an important scientific foundation, but they do not replace resolver, LLM-assisted parsing/summarization, exact/proxy/not-found routing, or user-facing query transfer behavior when those are expected capabilities.

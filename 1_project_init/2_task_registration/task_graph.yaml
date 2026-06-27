@@ -48,6 +48,16 @@ nodes:
   color: '#3b82f6'
   locked: true
   tasks_collapsed: true
+- id: goal:goal_goal_ms8_human_usable_package
+  x: 78
+  color: '#38bdf8'
+  locked: false
+  tasks_collapsed: false
+- id: goal:goal_ms7_recovery_package
+  x: 382
+  color: '#fb923c'
+  locked: false
+  tasks_collapsed: true
 - id: goal:goal_ms3_ms4_quality_and_repair
   x: 737
   color: '#a78bfa'
@@ -1986,6 +1996,26 @@ edges:
   to: goal_goal_ms8_human_usable_package/task_ms8_04_real_layered_source_refactor
   dep_id: T-131
   gate: must
+- from: goal_goal_ms8_human_usable_package/task_ms8_04_real_layered_source_refactor
+  to: goal_goal_ms8_human_usable_package/task_ms8_05_code_honesty_discipline_anchor
+  dep_id: T-132
+  gate: must
+- from: goal_goal_ms8_human_usable_package/task_ms8_02_layered_interface_kernel_refactor
+  to: goal_goal_ms8_human_usable_package/task_ms8_07_legacy_core_layered_recovery
+  dep_id: T-130
+  gate: reference
+- from: goal_goal_ms8_human_usable_package/task_ms8_05_code_honesty_discipline_anchor
+  to: goal_goal_ms8_human_usable_package/task_ms8_07_legacy_core_layered_recovery
+  dep_id: T-133
+  gate: reference
+- from: goal_goal_ms8_human_usable_package/task_ms8_07_legacy_core_layered_recovery
+  to: goal_goal_ms8_human_usable_package/task_ms8_08_original_logic_and_layer_target_anchor
+  dep_id: T-135
+  gate: must
+- from: goal_goal_ms8_human_usable_package/task_ms8_02_layered_interface_kernel_refactor
+  to: goal_goal_ms8_human_usable_package/task_ms8_08_original_logic_and_layer_target_anchor
+  dep_id: T-130
+  gate: reference
 labels:
 - id: label_mqpofuno
   phase: digestion
