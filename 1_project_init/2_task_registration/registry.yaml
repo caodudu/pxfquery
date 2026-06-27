@@ -1820,3 +1820,12 @@ tasks:
   executor: hybrid
   created: '2026-06-27'
   completed: null
+- id: T-119
+  name: ms7_llm_provider_route_verification_2
+  phase: development
+  goal: goal_ms7_recovery_package
+  path: 4_phase_development/goal_ms7_recovery_package/task_ms7_llm_provider_route_verification_2
+  status: pending
+  executor: hybrid
+  created: '2026-06-27'
+  completed: null
