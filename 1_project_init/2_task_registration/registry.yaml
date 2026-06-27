@@ -1691,3 +1691,12 @@ tasks:
   notes: 'M6 yellow-gate acceptance: MS5 final aggregate delivered. T-104 ran 44 prompts;
     T-105 produced 12 demo/control candidates and 4 application scenes. MS5 is not
     perfect but sufficient to enter MS6 writing/resource organization.'
+- id: T-106
+  name: ms6_writing_figure_resource_pack
+  phase: translation
+  goal: goal_ms6_manuscript_foundation
+  path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_writing_figure_resource_pack
+  status: pending
+  executor: human
+  created: '2026-06-27'
+  completed: null
