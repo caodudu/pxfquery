@@ -1915,10 +1915,10 @@ tasks:
   phase: development
   goal: goal_goal_ms8_human_usable_package
   path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_01_human_acceptable_delivery_anchor
-  status: active
+  status: done
   executor: hybrid
   created: '2026-06-27'
-  completed: null
+  completed: '2026-06-27'
 - id: T-130
   name: ms8_02_layered_interface_kernel_refactor
   phase: development
