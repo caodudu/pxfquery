@@ -1978,6 +1978,14 @@ edges:
   to: goal_goal_ms8_human_usable_package/task_ms8_03_demo_notebooks_and_github_observation
   dep_id: T-130
   gate: must
+- from: goal_goal_ms8_human_usable_package/task_ms8_02_layered_interface_kernel_refactor
+  to: goal_goal_ms8_human_usable_package/task_ms8_04_real_layered_source_refactor
+  dep_id: T-130
+  gate: must
+- from: goal_goal_ms8_human_usable_package/task_ms8_03_demo_notebooks_and_github_observation
+  to: goal_goal_ms8_human_usable_package/task_ms8_04_real_layered_source_refactor
+  dep_id: T-131
+  gate: must
 labels:
 - id: label_mqpofuno
   phase: digestion

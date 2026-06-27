@@ -1946,3 +1946,12 @@ tasks:
   executor: human
   created: '2026-06-27'
   completed: null
+- id: T-133
+  name: ms8_05_code_honesty_discipline_anchor
+  phase: development
+  goal: goal_goal_ms8_human_usable_package
+  path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_05_code_honesty_discipline_anchor
+  status: pending
+  executor: human
+  created: '2026-06-27'
+  completed: null
