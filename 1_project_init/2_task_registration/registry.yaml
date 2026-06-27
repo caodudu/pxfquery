@@ -1708,7 +1708,10 @@ tasks:
   phase: translation
   goal: goal_ms6_manuscript_foundation
   path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_anchor_comparison_writing_handoff
-  status: active
+  status: done
   executor: human
   created: '2026-06-27'
   completed: null
+  notes: 'M6 yellow-gate acceptance: MS6 final writing/figure handoff delivered. Foundation
+    ready for manuscript drafting and figure polishing, with claims allowed/claims
+    to avoid explicitly recorded.'

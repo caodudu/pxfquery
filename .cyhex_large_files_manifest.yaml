@@ -3329,6 +3329,8 @@ excluded_from_git:
   size_mb: 0.0
 - path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_algorithm_method_story/5_report/cli_sessions/execute/20260627_070805_opencode_cli_1d4d9c32bc68/stdout.log
   size_mb: 0.18
+- path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_anchor_comparison_writing_handoff/4_artifact/5_table/ms6_figure_readiness_v20260627.csv
+  size_mb: 0.0
 - path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_internal_data_figure2_assets/1_asset/ms6_evidence_claim_mapping.csv
   size_mb: 0.0
 - path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_internal_data_figure2_assets/4_artifact/5_table/ms6_fig2_resource_coverage_inventory_v20260627.csv
