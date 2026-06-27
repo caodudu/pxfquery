@@ -1804,21 +1804,24 @@ edges:
   gate: must
   relation: refine
   relation_label: anchor_defines_legacy_quarantine_scope
-  note: Legacy quarantine must classify old assets against the binding MS7 recovery anchor.
+  note: Legacy quarantine must classify old assets against the binding MS7 recovery
+    anchor.
 - from: goal_ms7_recovery_package/task_ms7_recovery_anchor_2
   to: goal_ms7_recovery_package/task_ms7_current_package_baseline_2
   dep_id: T-111
   gate: must
   relation: refine
   relation_label: anchor_defines_current_baseline_gap_scope
-  note: Current package baseline must compare root package state against the binding MS7 recovery anchor.
+  note: Current package baseline must compare root package state against the binding
+    MS7 recovery anchor.
 - from: goal_ms7_recovery_package/task_ms7_recovery_anchor_2
   to: goal_ms7_recovery_package/task_ms7_execution_corpus_build_2
   dep_id: T-111
   gate: must
   relation: refine
   relation_label: anchor_defines_corpus_scope
-  note: Corpus build must preserve NL, route, forward/reverse, fallback, negative, and provider coverage from the anchor.
+  note: Corpus build must preserve NL, route, forward/reverse, fallback, negative,
+    and provider coverage from the anchor.
 - from: goal_ms7_recovery_package/task_ms7_legacy_quarantine_audit_2
   to: goal_ms7_recovery_package/task_ms7_execution_corpus_build_2
   dep_id: T-112
@@ -1839,7 +1842,8 @@ edges:
   gate: may
   relation: extract
   relation_label: baseline_gaps_inform_acceptance_commands
-  note: Baseline gaps should inform command-level acceptance without reducing anchor scope.
+  note: Baseline gaps should inform command-level acceptance without reducing anchor
+    scope.
 - from: goal_ms7_recovery_package/task_ms7_execution_corpus_build_2
   to: goal_ms7_recovery_package/task_ms7_acceptance_matrix_spec_2
   dep_id: T-114
@@ -1853,7 +1857,8 @@ edges:
   gate: must
   relation: refine
   relation_label: anchor_to_prebuild_gate
-  note: Prebuild gate must prove rules, anchor, baseline, corpus, and acceptance spec are coherent before build/repair.
+  note: Prebuild gate must prove rules, anchor, baseline, corpus, and acceptance spec
+    are coherent before build/repair.
 - from: goal_ms7_recovery_package/task_ms7_current_package_baseline_2
   to: goal_ms7_recovery_package/task_ms7_acceptance_gate_prebuild_2
   dep_id: T-113
@@ -1909,7 +1914,8 @@ edges:
   gate: must
   relation: integrate
   relation_label: provider_verification_to_integrated_matrix
-  note: Integrated matrix must include real provider route or documented human-decision path.
+  note: Integrated matrix must include real provider route or documented human-decision
+    path.
 - from: goal_ms7_recovery_package/task_ms7_execution_corpus_build_2
   to: goal_ms7_recovery_package/task_ms7_integrated_recovery_matrix_2
   dep_id: T-114
@@ -1952,6 +1958,10 @@ edges:
   relation: refine
   relation_label: anchor_to_final_gate
   note: Final gate must compare evidence to the binding MS7 anchor.
+- from: goal_ms7_recovery_package/task_ms7_anchor_comparison_final_gate_2
+  to: goal_ms7_recovery_package/task_ms7_version_governance_v011
+  dep_id: T-123
+  gate: must
 labels:
 - id: label_mqpofuno
   phase: digestion

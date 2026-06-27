@@ -3309,6 +3309,18 @@ excluded_from_git:
   size_mb: 0.02
 - path: 4_phase_development/goal_ms7_recovery_package/task_ms7_release_candidate_pack_2/4_artifact/6_archive/pxfquery-0.1.0.tar.gz
   size_mb: 0.01
+- path: 4_phase_development/goal_ms7_recovery_package/task_ms7_version_governance_v011/3_execution/logs/pxfquery_v011_build.exit
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms7_recovery_package/task_ms7_version_governance_v011/3_execution/logs/pxfquery_v011_build.log
+  size_mb: 0.01
+- path: 4_phase_development/goal_ms7_recovery_package/task_ms7_version_governance_v011/3_execution/logs/pxfquery_v011_pytest.exit
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms7_recovery_package/task_ms7_version_governance_v011/3_execution/logs/pxfquery_v011_pytest.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms7_recovery_package/task_ms7_version_governance_v011/3_execution/logs/pxfquery_v011_version_smoke.exit
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms7_recovery_package/task_ms7_version_governance_v011/3_execution/logs/pxfquery_v011_version_smoke.log
+  size_mb: 0.0
 - path: 4_phase_development/goal_package_foundation_v1/task_workspace_package_v1/5_report/cli_sessions/check/20260623_065014_opencode_cli_41565b6bab9c/stderr.log
   size_mb: 0.0
 - path: 4_phase_development/goal_package_foundation_v1/task_workspace_package_v1/5_report/cli_sessions/check/20260623_065014_opencode_cli_41565b6bab9c/stdout.log
