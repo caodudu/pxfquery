@@ -2909,6 +2909,10 @@ excluded_from_git:
   size_mb: 0.0
 - path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_parser_llm_failure_diagnosis/5_report/cli_sessions/execute/20260627_084859_opencode_cli_3f6496dcb466/stdout.log
   size_mb: 0.0
+- path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_parser_resolver_route_repair_version/5_report/cli_sessions/config/20260627_091616_opencode_cli_e248333eda0b/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_parser_resolver_route_repair_version/5_report/cli_sessions/config/20260627_091616_opencode_cli_e248333eda0b/stdout.log
+  size_mb: 0.0
 - path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_resolver_route_failure_diagnosis/1_asset/ms4_route_execution_matrix_csv.csv
   size_mb: 0.02
 - path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_resolver_route_failure_diagnosis/4_artifact/5_table/ms4_resolver_route_failure_cases_v20260627.csv
@@ -2925,6 +2929,10 @@ excluded_from_git:
   size_mb: 0.0
 - path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_resolver_route_failure_diagnosis/5_report/cli_sessions/execute/20260627_084822_opencode_cli_f23ee6d0b52a/stdout.log
   size_mb: 0.06
+- path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_reverse_engine_output_repair_version/5_report/cli_sessions/config/20260627_091617_opencode_cli_969fad195864/stderr.log
+  size_mb: 0.0
+- path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_reverse_engine_output_repair_version/5_report/cli_sessions/config/20260627_091617_opencode_cli_969fad195864/stdout.log
+  size_mb: 0.0
 - path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_route_execution_matrix/1_asset/ms4_forward_nl_stress_prompts_csv.csv
   size_mb: 0.01
 - path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_route_execution_matrix/1_asset/ms4_ground_truth_scenario_index.csv
