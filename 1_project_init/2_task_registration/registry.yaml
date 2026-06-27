@@ -1655,3 +1655,12 @@ tasks:
   notes: 'M6 yellow-gate acceptance: merged T-098/T-099 repaired candidate verified
     in T-102 workspace. Smoke passed 8/8; decision go_to_ms4_anchor_comparison. This
     is smoke-level verification, not full MS5 pressure execution.'
+- id: T-103
+  name: ms4_anchor_comparison_and_release_pack
+  phase: development
+  goal: goal_ms3_ms4_quality_and_repair
+  path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_anchor_comparison_and_release_pack
+  status: pending
+  executor: human
+  created: '2026-06-27'
+  completed: null
