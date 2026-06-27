@@ -1933,7 +1933,7 @@ tasks:
   phase: development
   goal: goal_goal_ms8_human_usable_package
   path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_03_demo_notebooks_and_github_observation
-  status: pending
+  status: active
   executor: human
   created: '2026-06-27'
   completed: null

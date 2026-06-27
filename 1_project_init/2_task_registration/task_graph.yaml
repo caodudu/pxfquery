@@ -1974,6 +1974,10 @@ edges:
   to: goal_ms7_recovery_package/task_ms7_internal_parse_pipeline_events_warnings_v014
   dep_id: T-126
   gate: must
+- from: goal_goal_ms8_human_usable_package/task_ms8_02_layered_interface_kernel_refactor
+  to: goal_goal_ms8_human_usable_package/task_ms8_03_demo_notebooks_and_github_observation
+  dep_id: T-130
+  gate: must
 labels:
 - id: label_mqpofuno
   phase: digestion
