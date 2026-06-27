@@ -1906,10 +1906,10 @@ tasks:
   phase: development
   goal: goal_goal_ms8_human_usable_package
   path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_00_external_context_digest
-  status: active
+  status: done
   executor: hybrid
   created: '2026-06-27'
-  completed: null
+  completed: '2026-06-27'
 - id: T-129
   name: ms8_01_human_acceptable_delivery_anchor
   phase: development
