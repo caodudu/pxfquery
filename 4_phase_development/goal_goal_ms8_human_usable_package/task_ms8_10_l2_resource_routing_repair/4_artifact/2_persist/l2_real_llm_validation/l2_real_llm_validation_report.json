@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-27T20:32:02.439708+00:00",
+  "generated_at": "2026-06-27T22:08:04.470272+00:00",
   "provider": {
     "base_url": "https://api.deepseek.com/v1",
     "model": "deepseek-v4-flash"
@@ -2021,7 +2021,7 @@
               {
                 "attempt": 1,
                 "ok": true,
-                "elapsed_ms": 1504,
+                "elapsed_ms": 806,
                 "response_hash": "303552cd44f87e204becd8da6e9711b195dd5c48710908cee2c36e02c39b0f04",
                 "response_excerpt": "{\"selected_option\": \"lung\"}"
               }
@@ -2063,7 +2063,7 @@
               {
                 "attempt": 1,
                 "ok": true,
-                "elapsed_ms": 1255,
+                "elapsed_ms": 1108,
                 "response_hash": "fcb240861ec4b84bbbc9f81aba75c4ea9f75c5c193e6ed36c2d52f2bd49580c3",
                 "response_excerpt": "{\"selected_option\": \"lung cancer\"}"
               }
@@ -2097,7 +2097,7 @@
               {
                 "attempt": 1,
                 "ok": true,
-                "elapsed_ms": 1154,
+                "elapsed_ms": 1013,
                 "response_hash": "2d274c6ca55924665a102dee293753b2a42859b24eeb3607c7af1c82612697b0",
                 "response_excerpt": "{\"selected_option\": \"non small cell lung cancer\"}"
               }
@@ -2907,6 +2907,7 @@
               "rank": 5
             }
           ],
+          "input_is_mechanism_class": false,
           "proxies": [
             {
               "id": "BRD-K26603252",
@@ -3465,9 +3466,9 @@
               {
                 "attempt": 1,
                 "ok": true,
-                "elapsed_ms": 1051,
-                "response_hash": "78999554acfca894b7a65e857683c1cc05e9144019fb6a7f4e4a3b557c31b038",
-                "response_excerpt": "{\n  \"selected_alias\": \"erlotinib\",\n  \"hypothesis_names\": []\n}"
+                "elapsed_ms": 967,
+                "response_hash": "a4700678cd276aaeed1f492be6114e4dae625c7d8b902a06673b872caf38d577",
+                "response_excerpt": "{\"selected_alias\": \"erlotinib\", \"hypothesis_names\": []}"
               }
             ],
             "parsed_json_hash": "7f166aa27a77c43880c1c75183b8905fb3f5c2744a374f8e9339a2a295ffaca6",
@@ -3477,6 +3478,7 @@
             },
             "input_payload": {
               "user_drug": "erlotnib",
+              "input_is_mechanism_class": false,
               "candidate_aliases": [
                 "erlotinib",
                 "momelotinib",
@@ -5060,19 +5062,19 @@
               {
                 "attempt": 1,
                 "ok": true,
-                "elapsed_ms": 1266,
-                "response_hash": "2a5765b67f76f15ce3adfce36419aac452830ca54c96b4a1171aeb2e4088a54e",
-                "response_excerpt": "{\n  \"selected_symbol\": null,\n  \"hypothesis_symbols\": [\"TP53\", \"TP53TG1\", \"TP53I3\", \"TP53INP1\", \"TP53AIP1\"]\n}"
+                "elapsed_ms": 1633,
+                "response_hash": "e5a5bf0e0362ddb59be1934f2340f5f519c3f1b14c30963d2cf09ed53c72a139",
+                "response_excerpt": "{\n  \"selected_symbol\": null,\n  \"hypothesis_symbols\": [\"TP53\", \"TP53TG1\", \"TP53I3\", \"TP53BP1\", \"TP53AIP1\"]\n}"
               }
             ],
-            "parsed_json_hash": "1ff7bfa91c22f047fede512afdf44a6c3c48be443e513f31e083dfc8a4939b00",
+            "parsed_json_hash": "57cc7d0ca8fdbebf3a652d763688f26ec0925b69f2dc1e407f4c7309b78afa2b",
             "raw_output": {
               "selected_symbol": null,
               "hypothesis_symbols": [
                 "TP53",
                 "TP53TG1",
                 "TP53I3",
-                "TP53INP1",
+                "TP53BP1",
                 "TP53AIP1"
               ]
             },
@@ -5089,7 +5091,7 @@
             },
             "validated": true,
             "discard_reason": null,
-            "response_excerpt": "{\"hypothesis_symbols\": [\"TP53\", \"TP53TG1\", \"TP53I3\", \"TP53INP1\", \"TP53AIP1\"], \"selected_symbol\": null}"
+            "response_excerpt": "{\"hypothesis_symbols\": [\"TP53\", \"TP53TG1\", \"TP53I3\", \"TP53BP1\", \"TP53AIP1\"], \"selected_symbol\": null}"
           }
         ],
         "selected_route": {
@@ -6678,7 +6680,7 @@
               {
                 "attempt": 1,
                 "ok": true,
-                "elapsed_ms": 1665,
+                "elapsed_ms": 1645,
                 "response_hash": "212a942f28f6b901d43e13e19363dc8ee36c2bfd7cffe320f9e40f5b17d06b81",
                 "response_excerpt": "{\"selected_var_names\": [\"HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION\", \"MP12 EMT-I\", \"MP13 EMT-II\", \"MP14 EMT-III\", \"MP15 EMT IV\"]}"
               }
@@ -7892,17 +7894,17 @@
                   "rank": 1
                 },
                 {
-                  "var_name": "MP12 EMT-I",
-                  "label": "EMT-I",
-                  "source": "3ca_mps",
+                  "var_name": "HALLMARK_E2F_TARGETS",
+                  "label": "E2F Targets",
+                  "source": "hallmark",
                   "direction": "target",
                   "input": "llm-mapped",
                   "rank": 2
                 },
                 {
-                  "var_name": "MP13 EMT-II",
-                  "label": "EMT-II",
-                  "source": "3ca_mps",
+                  "var_name": "HALLMARK_G2M_CHECKPOINT",
+                  "label": "G2M Checkpoint",
+                  "source": "hallmark",
                   "direction": "target",
                   "input": "llm-mapped",
                   "rank": 3
@@ -7912,18 +7914,13 @@
           ],
           "reverse_mapping_convergence": {
             "llm_nonempty_set_count": 3,
-            "unique_llm_set_count": 2,
-            "converged": false,
+            "unique_llm_set_count": 1,
+            "converged": true,
             "unique_sets": [
               [
                 "HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION",
                 "HALLMARK_E2F_TARGETS",
                 "HALLMARK_G2M_CHECKPOINT"
-              ],
-              [
-                "HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION",
-                "MP12 EMT-I",
-                "MP13 EMT-II"
               ]
             ]
           },
@@ -8363,17 +8360,17 @@
                   "rank": 1
                 },
                 {
-                  "var_name": "MP12 EMT-I",
-                  "label": "EMT-I",
-                  "source": "3ca_mps",
+                  "var_name": "HALLMARK_E2F_TARGETS",
+                  "label": "E2F Targets",
+                  "source": "hallmark",
                   "direction": "target",
                   "input": "llm-mapped",
                   "rank": 2
                 },
                 {
-                  "var_name": "MP13 EMT-II",
-                  "label": "EMT-II",
-                  "source": "3ca_mps",
+                  "var_name": "HALLMARK_G2M_CHECKPOINT",
+                  "label": "G2M Checkpoint",
+                  "source": "hallmark",
                   "direction": "target",
                   "input": "llm-mapped",
                   "rank": 3
@@ -8397,17 +8394,17 @@
                   "rank": 1
                 },
                 {
-                  "var_name": "MP12 EMT-I",
-                  "label": "EMT-I",
-                  "source": "3ca_mps",
+                  "var_name": "HALLMARK_E2F_TARGETS",
+                  "label": "E2F Targets",
+                  "source": "hallmark",
                   "direction": "target",
                   "input": "llm-mapped",
                   "rank": 2
                 },
                 {
-                  "var_name": "MP13 EMT-II",
-                  "label": "EMT-II",
-                  "source": "3ca_mps",
+                  "var_name": "HALLMARK_G2M_CHECKPOINT",
+                  "label": "G2M Checkpoint",
+                  "source": "hallmark",
                   "direction": "target",
                   "input": "llm-mapped",
                   "rank": 3
@@ -8431,17 +8428,17 @@
                   "rank": 1
                 },
                 {
-                  "var_name": "MP12 EMT-I",
-                  "label": "EMT-I",
-                  "source": "3ca_mps",
+                  "var_name": "HALLMARK_E2F_TARGETS",
+                  "label": "E2F Targets",
+                  "source": "hallmark",
                   "direction": "target",
                   "input": "llm-mapped",
                   "rank": 2
                 },
                 {
-                  "var_name": "MP13 EMT-II",
-                  "label": "EMT-II",
-                  "source": "3ca_mps",
+                  "var_name": "HALLMARK_G2M_CHECKPOINT",
+                  "label": "G2M Checkpoint",
+                  "source": "hallmark",
                   "direction": "target",
                   "input": "llm-mapped",
                   "rank": 3
@@ -8465,17 +8462,17 @@
                   "rank": 1
                 },
                 {
-                  "var_name": "MP12 EMT-I",
-                  "label": "EMT-I",
-                  "source": "3ca_mps",
+                  "var_name": "HALLMARK_E2F_TARGETS",
+                  "label": "E2F Targets",
+                  "source": "hallmark",
                   "direction": "target",
                   "input": "llm-mapped",
                   "rank": 2
                 },
                 {
-                  "var_name": "MP13 EMT-II",
-                  "label": "EMT-II",
-                  "source": "3ca_mps",
+                  "var_name": "HALLMARK_G2M_CHECKPOINT",
+                  "label": "G2M Checkpoint",
+                  "source": "hallmark",
                   "direction": "target",
                   "input": "llm-mapped",
                   "rank": 3
@@ -8499,17 +8496,17 @@
                   "rank": 1
                 },
                 {
-                  "var_name": "MP12 EMT-I",
-                  "label": "EMT-I",
-                  "source": "3ca_mps",
+                  "var_name": "HALLMARK_E2F_TARGETS",
+                  "label": "E2F Targets",
+                  "source": "hallmark",
                   "direction": "target",
                   "input": "llm-mapped",
                   "rank": 2
                 },
                 {
-                  "var_name": "MP13 EMT-II",
-                  "label": "EMT-II",
-                  "source": "3ca_mps",
+                  "var_name": "HALLMARK_G2M_CHECKPOINT",
+                  "label": "G2M Checkpoint",
+                  "source": "hallmark",
                   "direction": "target",
                   "input": "llm-mapped",
                   "rank": 3
@@ -8533,17 +8530,17 @@
                   "rank": 1
                 },
                 {
-                  "var_name": "MP12 EMT-I",
-                  "label": "EMT-I",
-                  "source": "3ca_mps",
+                  "var_name": "HALLMARK_E2F_TARGETS",
+                  "label": "E2F Targets",
+                  "source": "hallmark",
                   "direction": "target",
                   "input": "llm-mapped",
                   "rank": 2
                 },
                 {
-                  "var_name": "MP13 EMT-II",
-                  "label": "EMT-II",
-                  "source": "3ca_mps",
+                  "var_name": "HALLMARK_G2M_CHECKPOINT",
+                  "label": "G2M Checkpoint",
+                  "source": "hallmark",
                   "direction": "target",
                   "input": "llm-mapped",
                   "rank": 3
@@ -8680,7 +8677,7 @@
               {
                 "attempt": 1,
                 "ok": true,
-                "elapsed_ms": 1226,
+                "elapsed_ms": 1124,
                 "response_hash": "339bb7ab19c2baccfb893a247b2af6ef366dc2aa5379ca497b23998b9d48d949",
                 "response_excerpt": "{\"selected_option\": \"breast\"}"
               }
@@ -8722,7 +8719,7 @@
               {
                 "attempt": 1,
                 "ok": true,
-                "elapsed_ms": 1331,
+                "elapsed_ms": 1018,
                 "response_hash": "1cba7372c8e898672ccb9c6edc043ef830f067db4488c007dd340e938bf8ab0c",
                 "response_excerpt": "{\"selected_option\": \"breast cancer\"}"
               }
@@ -8756,7 +8753,7 @@
               {
                 "attempt": 1,
                 "ok": true,
-                "elapsed_ms": 1227,
+                "elapsed_ms": 1130,
                 "response_hash": "e47245426c63cab3cb5242e96914863b1c9c9a18feee7f43b6c73a894a9ffb5f",
                 "response_excerpt": "{\"selected_option\": \"carcinoma\"}"
               }
@@ -8790,7 +8787,7 @@
               {
                 "attempt": 1,
                 "ok": true,
-                "elapsed_ms": 1352,
+                "elapsed_ms": 1431,
                 "response_hash": "9cf23bdc53e3f9adc6123e2c238665b0126b3f6a4959feaf85e2b06bb9079af7",
                 "response_excerpt": "{\n  \"selected_var_names\": [\n    \"HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION\",\n    \"HALLMARK_E2F_TARGETS\",\n    \"HALLMARK_G2M_CHECKPOINT\"\n  ]\n}"
               }
@@ -8835,7 +8832,7 @@
               {
                 "attempt": 1,
                 "ok": true,
-                "elapsed_ms": 1617,
+                "elapsed_ms": 1637,
                 "response_hash": "9cf23bdc53e3f9adc6123e2c238665b0126b3f6a4959feaf85e2b06bb9079af7",
                 "response_excerpt": "{\n  \"selected_var_names\": [\n    \"HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION\",\n    \"HALLMARK_E2F_TARGETS\",\n    \"HALLMARK_G2M_CHECKPOINT\"\n  ]\n}"
               }
@@ -8880,17 +8877,17 @@
               {
                 "attempt": 1,
                 "ok": true,
-                "elapsed_ms": 1535,
-                "response_hash": "07c3d4e4a1f414cffcdb2be11dbd98ad62fb453bad701e8d42c301c91e964369",
-                "response_excerpt": "{\n  \"selected_var_names\": [\n    \"HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION\",\n    \"MP12 EMT-I\",\n    \"MP13 EMT-II\"\n  ]\n}"
+                "elapsed_ms": 1330,
+                "response_hash": "9cf23bdc53e3f9adc6123e2c238665b0126b3f6a4959feaf85e2b06bb9079af7",
+                "response_excerpt": "{\n  \"selected_var_names\": [\n    \"HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION\",\n    \"HALLMARK_E2F_TARGETS\",\n    \"HALLMARK_G2M_CHECKPOINT\"\n  ]\n}"
               }
             ],
-            "parsed_json_hash": "f72cdff5b10637c0cd45c93ac829ab9a17453f63649ba96ed6d664e5215b7771",
+            "parsed_json_hash": "8e8ca3bfdf22218aaba9a5adcf694783ca7bda2be270bc15651336c707c234c0",
             "raw_output": {
               "selected_var_names": [
                 "HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION",
-                "MP12 EMT-I",
-                "MP13 EMT-II"
+                "HALLMARK_E2F_TARGETS",
+                "HALLMARK_G2M_CHECKPOINT"
               ]
             },
             "input_payload": {
@@ -8911,7 +8908,7 @@
             },
             "validated": true,
             "discard_reason": null,
-            "response_excerpt": "{\"selected_var_names\": [\"HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION\", \"MP12 EMT-I\", \"MP13 EMT-II\"]}"
+            "response_excerpt": "{\"selected_var_names\": [\"HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION\", \"HALLMARK_E2F_TARGETS\", \"HALLMARK_G2M_CHECKPOINT\"]}"
           }
         ],
         "selected_route": {
@@ -9099,17 +9096,17 @@
                   "rank": 1
                 },
                 {
-                  "var_name": "MP12 EMT-I",
-                  "label": "EMT-I",
-                  "source": "3ca_mps",
+                  "var_name": "HALLMARK_E2F_TARGETS",
+                  "label": "E2F Targets",
+                  "source": "hallmark",
                   "direction": "target",
                   "input": "llm-mapped",
                   "rank": 2
                 },
                 {
-                  "var_name": "MP13 EMT-II",
-                  "label": "EMT-II",
-                  "source": "3ca_mps",
+                  "var_name": "HALLMARK_G2M_CHECKPOINT",
+                  "label": "G2M Checkpoint",
+                  "source": "hallmark",
                   "direction": "target",
                   "input": "llm-mapped",
                   "rank": 3
@@ -9375,17 +9372,17 @@
                     "rank": 1
                   },
                   {
-                    "var_name": "MP12 EMT-I",
-                    "label": "EMT-I",
-                    "source": "3ca_mps",
+                    "var_name": "HALLMARK_E2F_TARGETS",
+                    "label": "E2F Targets",
+                    "source": "hallmark",
                     "direction": "target",
                     "input": "llm-mapped",
                     "rank": 2
                   },
                   {
-                    "var_name": "MP13 EMT-II",
-                    "label": "EMT-II",
-                    "source": "3ca_mps",
+                    "var_name": "HALLMARK_G2M_CHECKPOINT",
+                    "label": "G2M Checkpoint",
+                    "source": "hallmark",
                     "direction": "target",
                     "input": "llm-mapped",
                     "rank": 3
@@ -9528,17 +9525,17 @@
                     "rank": 1
                   },
                   {
-                    "var_name": "MP12 EMT-I",
-                    "label": "EMT-I",
-                    "source": "3ca_mps",
+                    "var_name": "HALLMARK_E2F_TARGETS",
+                    "label": "E2F Targets",
+                    "source": "hallmark",
                     "direction": "target",
                     "input": "llm-mapped",
                     "rank": 2
                   },
                   {
-                    "var_name": "MP13 EMT-II",
-                    "label": "EMT-II",
-                    "source": "3ca_mps",
+                    "var_name": "HALLMARK_G2M_CHECKPOINT",
+                    "label": "G2M Checkpoint",
+                    "source": "hallmark",
                     "direction": "target",
                     "input": "llm-mapped",
                     "rank": 3
@@ -9976,17 +9973,17 @@
                     "rank": 1
                   },
                   {
-                    "var_name": "MP12 EMT-I",
-                    "label": "EMT-I",
-                    "source": "3ca_mps",
+                    "var_name": "HALLMARK_E2F_TARGETS",
+                    "label": "E2F Targets",
+                    "source": "hallmark",
                     "direction": "target",
                     "input": "llm-mapped",
                     "rank": 2
                   },
                   {
-                    "var_name": "MP13 EMT-II",
-                    "label": "EMT-II",
-                    "source": "3ca_mps",
+                    "var_name": "HALLMARK_G2M_CHECKPOINT",
+                    "label": "G2M Checkpoint",
+                    "source": "hallmark",
                     "direction": "target",
                     "input": "llm-mapped",
                     "rank": 3
@@ -10010,17 +10007,17 @@
                     "rank": 1
                   },
                   {
-                    "var_name": "MP12 EMT-I",
-                    "label": "EMT-I",
-                    "source": "3ca_mps",
+                    "var_name": "HALLMARK_E2F_TARGETS",
+                    "label": "E2F Targets",
+                    "source": "hallmark",
                     "direction": "target",
                     "input": "llm-mapped",
                     "rank": 2
                   },
                   {
-                    "var_name": "MP13 EMT-II",
-                    "label": "EMT-II",
-                    "source": "3ca_mps",
+                    "var_name": "HALLMARK_G2M_CHECKPOINT",
+                    "label": "G2M Checkpoint",
+                    "source": "hallmark",
                     "direction": "target",
                     "input": "llm-mapped",
                     "rank": 3
@@ -10044,17 +10041,17 @@
                     "rank": 1
                   },
                   {
-                    "var_name": "MP12 EMT-I",
-                    "label": "EMT-I",
-                    "source": "3ca_mps",
+                    "var_name": "HALLMARK_E2F_TARGETS",
+                    "label": "E2F Targets",
+                    "source": "hallmark",
                     "direction": "target",
                     "input": "llm-mapped",
                     "rank": 2
                   },
                   {
-                    "var_name": "MP13 EMT-II",
-                    "label": "EMT-II",
-                    "source": "3ca_mps",
+                    "var_name": "HALLMARK_G2M_CHECKPOINT",
+                    "label": "G2M Checkpoint",
+                    "source": "hallmark",
                     "direction": "target",
                     "input": "llm-mapped",
                     "rank": 3
@@ -10078,17 +10075,17 @@
                     "rank": 1
                   },
                   {
-                    "var_name": "MP12 EMT-I",
-                    "label": "EMT-I",
-                    "source": "3ca_mps",
+                    "var_name": "HALLMARK_E2F_TARGETS",
+                    "label": "E2F Targets",
+                    "source": "hallmark",
                     "direction": "target",
                     "input": "llm-mapped",
                     "rank": 2
                   },
                   {
-                    "var_name": "MP13 EMT-II",
-                    "label": "EMT-II",
-                    "source": "3ca_mps",
+                    "var_name": "HALLMARK_G2M_CHECKPOINT",
+                    "label": "G2M Checkpoint",
+                    "source": "hallmark",
                     "direction": "target",
                     "input": "llm-mapped",
                     "rank": 3
@@ -10112,17 +10109,17 @@
                     "rank": 1
                   },
                   {
-                    "var_name": "MP12 EMT-I",
-                    "label": "EMT-I",
-                    "source": "3ca_mps",
+                    "var_name": "HALLMARK_E2F_TARGETS",
+                    "label": "E2F Targets",
+                    "source": "hallmark",
                     "direction": "target",
                     "input": "llm-mapped",
                     "rank": 2
                   },
                   {
-                    "var_name": "MP13 EMT-II",
-                    "label": "EMT-II",
-                    "source": "3ca_mps",
+                    "var_name": "HALLMARK_G2M_CHECKPOINT",
+                    "label": "G2M Checkpoint",
+                    "source": "hallmark",
                     "direction": "target",
                     "input": "llm-mapped",
                     "rank": 3
@@ -10146,17 +10143,17 @@
                     "rank": 1
                   },
                   {
-                    "var_name": "MP12 EMT-I",
-                    "label": "EMT-I",
-                    "source": "3ca_mps",
+                    "var_name": "HALLMARK_E2F_TARGETS",
+                    "label": "E2F Targets",
+                    "source": "hallmark",
                     "direction": "target",
                     "input": "llm-mapped",
                     "rank": 2
                   },
                   {
-                    "var_name": "MP13 EMT-II",
-                    "label": "EMT-II",
-                    "source": "3ca_mps",
+                    "var_name": "HALLMARK_G2M_CHECKPOINT",
+                    "label": "G2M Checkpoint",
+                    "source": "hallmark",
                     "direction": "target",
                     "input": "llm-mapped",
                     "rank": 3

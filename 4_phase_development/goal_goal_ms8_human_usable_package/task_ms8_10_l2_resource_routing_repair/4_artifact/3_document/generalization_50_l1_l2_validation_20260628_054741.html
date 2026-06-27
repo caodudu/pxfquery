@@ -14,19 +14,22 @@ main { padding:24px 36px; }
 pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px; overflow:auto; }
 .checks span { display:inline-block; margin:3px 6px 3px 0; padding:3px 7px; border-radius:999px; background:#eef2f5; font-size:12px; }
 </style></head><body>
-<header><h1>T138 Generalization 50 L1+L2 Validation</h1><div>Generated: 2026-06-27T22:40:37.276532+00:00</div></header>
+<header><h1>T138 Generalization 50 L1+L2 Validation</h1><div>Generated: 2026-06-27T21:47:41.194353+00:00</div></header>
 <main>
 <section class="summary">
 <div class="card"><h3>Total</h3><p>50</p></div>
-<div class="card"><h3>Passed</h3><p class="pass">50</p></div>
-<div class="card"><h3>Failed</h3><p class="fail">0</p></div>
+<div class="card"><h3>Passed</h3><p class="pass">49</p></div>
+<div class="card"><h3>Failed</h3><p class="fail">1</p></div>
 <div class="card"><h3>Model</h3><p>deepseek-v4-flash</p></div>
 </section>
 <pre>{
   &quot;by_route_status&quot;: {
-    &quot;routed&quot;: 50
+    &quot;routed&quot;: 49,
+    &quot;llm_output_invalid&quot;: 1
   },
-  &quot;failed_case_ids&quot;: []
+  &quot;failed_case_ids&quot;: [
+    &quot;G02&quot;
+  ]
 }</pre>
 
 <article class="case">
@@ -56,13 +59,13 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     &quot;provider&quot;: &quot;deepseek&quot;,
     &quot;base_url&quot;: &quot;https://api.deepseek.com/v1&quot;,
     &quot;model&quot;: &quot;deepseek-v4-flash&quot;,
-    &quot;started_at&quot;: &quot;2026-06-27T22:34:52.883488+00:00&quot;,
-    &quot;finished_at&quot;: &quot;2026-06-27T22:34:54.334354+00:00&quot;,
+    &quot;started_at&quot;: &quot;2026-06-27T21:41:56.255200+00:00&quot;,
+    &quot;finished_at&quot;: &quot;2026-06-27T21:41:57.897495+00:00&quot;,
     &quot;attempts&quot;: [
       {
         &quot;attempt&quot;: 1,
         &quot;ok&quot;: true,
-        &quot;elapsed_ms&quot;: 1450,
+        &quot;elapsed_ms&quot;: 1641,
         &quot;response_hash&quot;: &quot;b61d1c32cec58fcbf652383ccdf4f7fcfe425b695613d9fef7d5ad399db3963a&quot;,
         &quot;response_excerpt&quot;: &quot;{\n  \&quot;query_type\&quot;: \&quot;forward\&quot;,\n  \&quot;bio_context\&quot;: \&quot;lung adenocarcinoma\&quot;,\n  \&quot;pert_desc\&quot;: \&quot;Tarceva\&quot;,\n  \&quot;pert_class\&quot;: \&quot;drug\&quot;,\n  \&quot;genetic_modality\&quot;: null,\n  \&quot;function_desc\&quot;: \&quot;broad functional signatures shift\&quot;,\n  \&quot;activate\&quot;: [],\n  \&quot;suppress\&quot;: [],\n  \&quot;top_n\&quot;: null\n}&quot;
       }
@@ -197,10 +200,10 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
 </article>
 
 <article class="case">
-  <div class="case-head"><strong>G02</strong><span class="pass">PASS</span></div>
+  <div class="case-head"><strong>G02</strong><span class="fail">FAIL</span></div>
   <p>For triple negative breast cancer-like cells, what pathways are affected by doxorubicin treatment?</p>
   <div class="grid">
-    <section><h3>Checks</h3><div class="checks"><span class='good'>no_exception: PASS</span> <span class='good'>resource_indexes_available: PASS</span> <span class='good'>route_status_terminal: PASS</span> <span class='good'>no_unvalidated_llm: PASS</span> <span class='good'>has_handoff_payload_or_intent_completion: PASS</span> <span class='good'>candidate_limits_respected: PASS</span> <span class='good'>has_combination_candidates: PASS</span> <span class='good'>cell_routed: PASS</span> <span class='good'>perturbation_routed: PASS</span></div><p><b>Status:</b> routed</p></section>
+    <section><h3>Checks</h3><div class="checks"><span class='good'>no_exception: PASS</span> <span class='good'>resource_indexes_available: PASS</span> <span class='bad'>route_status_terminal: FAIL</span> <span class='bad'>no_unvalidated_llm: FAIL</span> <span class='good'>has_handoff_payload_or_intent_completion: PASS</span> <span class='good'>candidate_limits_respected: PASS</span> <span class='good'>has_combination_candidates: PASS</span> <span class='good'>cell_routed: PASS</span> <span class='good'>perturbation_routed: PASS</span> <span class='bad'>function_routed_or_explicit_no_filter: FAIL</span></div><p><b>Status:</b> llm_output_invalid</p></section>
     <section><h3>L1 Intent</h3><pre>{
   &quot;raw_query&quot;: &quot;For triple negative breast cancer-like cells, what pathways are affected by doxorubicin treatment?&quot;,
   &quot;normalized_query&quot;: &quot;For triple negative breast cancer-like cells, what pathways are affected by doxorubicin treatment?&quot;,
@@ -209,7 +212,7 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
   &quot;pert_desc&quot;: &quot;doxorubicin&quot;,
   &quot;pert_class&quot;: &quot;drug&quot;,
   &quot;genetic_modality&quot;: null,
-  &quot;function_desc&quot;: null,
+  &quot;function_desc&quot;: &quot;pathways affected&quot;,
   &quot;activate&quot;: [],
   &quot;suppress&quot;: [],
   &quot;top_n&quot;: null,
@@ -223,22 +226,22 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     &quot;provider&quot;: &quot;deepseek&quot;,
     &quot;base_url&quot;: &quot;https://api.deepseek.com/v1&quot;,
     &quot;model&quot;: &quot;deepseek-v4-flash&quot;,
-    &quot;started_at&quot;: &quot;2026-06-27T22:34:59.678141+00:00&quot;,
-    &quot;finished_at&quot;: &quot;2026-06-27T22:35:00.887910+00:00&quot;,
+    &quot;started_at&quot;: &quot;2026-06-27T21:42:02.422767+00:00&quot;,
+    &quot;finished_at&quot;: &quot;2026-06-27T21:42:03.858811+00:00&quot;,
     &quot;attempts&quot;: [
       {
         &quot;attempt&quot;: 1,
         &quot;ok&quot;: true,
-        &quot;elapsed_ms&quot;: 1209,
-        &quot;response_hash&quot;: &quot;1c1ef734f75bc1560fd8b3c35e18706ff68544cde120fcff4adf924a4e8fff63&quot;,
-        &quot;response_excerpt&quot;: &quot;{\n  \&quot;query_type\&quot;: \&quot;forward\&quot;,\n  \&quot;bio_context\&quot;: \&quot;triple negative breast cancer-like cells\&quot;,\n  \&quot;pert_desc\&quot;: \&quot;doxorubicin\&quot;,\n  \&quot;pert_class\&quot;: \&quot;drug\&quot;,\n  \&quot;genetic_modality\&quot;: null,\n  \&quot;function_desc\&quot;: null,\n  \&quot;activate\&quot;: [],\n  \&quot;suppress\&quot;: [],\n  \&quot;top_n\&quot;: null\n}&quot;
+        &quot;elapsed_ms&quot;: 1435,
+        &quot;response_hash&quot;: &quot;8ab78e0cdc771a313c2491572d42f88d7f231dde90730a79235bac57985f220c&quot;,
+        &quot;response_excerpt&quot;: &quot;{\n  \&quot;query_type\&quot;: \&quot;forward\&quot;,\n  \&quot;bio_context\&quot;: \&quot;triple negative breast cancer-like cells\&quot;,\n  \&quot;pert_desc\&quot;: \&quot;doxorubicin\&quot;,\n  \&quot;pert_class\&quot;: \&quot;drug\&quot;,\n  \&quot;genetic_modality\&quot;: null,\n  \&quot;function_desc\&quot;: \&quot;pathways affected\&quot;,\n  \&quot;activate\&quot;: [],\n  \&quot;suppress\&quot;: [],\n  \&quot;top_n\&quot;: null\n}&quot;
       }
     ],
     &quot;schema_repairs&quot;: 0,
     &quot;chat_restarts&quot;: 0,
     &quot;final_status&quot;: &quot;ok&quot;,
-    &quot;parsed_json_hash&quot;: &quot;3f770c076afd1e1d3a0f060bf20bc88d1866cc3ee5ab26abc7c794e4eb856300&quot;,
-    &quot;parsed_json_excerpt&quot;: &quot;{\&quot;activate\&quot;: [], \&quot;bio_context\&quot;: \&quot;triple negative breast cancer-like cells\&quot;, \&quot;function_desc\&quot;: null, \&quot;genetic_modality\&quot;: null, \&quot;pert_class\&quot;: \&quot;drug\&quot;, \&quot;pert_desc\&quot;: \&quot;doxorubicin\&quot;, \&quot;query_type\&quot;: \&quot;forward\&quot;, \&quot;suppress\&quot;: [], \&quot;top_n\&quot;: null}&quot;,
+    &quot;parsed_json_hash&quot;: &quot;f9eab441ac0b3c9cb4202c1bdcb23f78f0ed81aa2c7e5ca1c2dc6558cc93ed62&quot;,
+    &quot;parsed_json_excerpt&quot;: &quot;{\&quot;activate\&quot;: [], \&quot;bio_context\&quot;: \&quot;triple negative breast cancer-like cells\&quot;, \&quot;function_desc\&quot;: \&quot;pathways affected\&quot;, \&quot;genetic_modality\&quot;: null, \&quot;pert_class\&quot;: \&quot;drug\&quot;, \&quot;pert_desc\&quot;: \&quot;doxorubicin\&quot;, \&quot;query_type\&quot;: \&quot;forward\&quot;, \&quot;suppress\&quot;: [], \&quot;top_n\&quot;: null}&quot;,
     &quot;error&quot;: null
   }
 }</pre></section>
@@ -356,7 +359,7 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     }
   ]
 }</pre></section>
-    <section><h3>LLM Calls</h3><p>cell_tree_lineage / ok / deepseek-v4-flash / temp=0 / validated=True<br>cell_tree_disease / ok / deepseek-v4-flash / temp=0 / validated=True<br>cell_tree_subtype / ok / deepseek-v4-flash / temp=0 / validated=True</p></section>
+    <section><h3>LLM Calls</h3><p>cell_tree_lineage / ok / deepseek-v4-flash / temp=0 / validated=True<br>cell_tree_disease / ok / deepseek-v4-flash / temp=0 / validated=True<br>cell_tree_subtype / ok / deepseek-v4-flash / temp=0 / validated=True<br>function_mapping / failed / deepseek-v4-flash / temp=0 / validated=False</p></section>
   </div>
   <pre></pre>
 </article>
@@ -388,13 +391,13 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     &quot;provider&quot;: &quot;deepseek&quot;,
     &quot;base_url&quot;: &quot;https://api.deepseek.com/v1&quot;,
     &quot;model&quot;: &quot;deepseek-v4-flash&quot;,
-    &quot;started_at&quot;: &quot;2026-06-27T22:35:03.937166+00:00&quot;,
-    &quot;finished_at&quot;: &quot;2026-06-27T22:35:05.467756+00:00&quot;,
+    &quot;started_at&quot;: &quot;2026-06-27T21:42:09.161114+00:00&quot;,
+    &quot;finished_at&quot;: &quot;2026-06-27T21:42:11.207533+00:00&quot;,
     &quot;attempts&quot;: [
       {
         &quot;attempt&quot;: 1,
         &quot;ok&quot;: true,
-        &quot;elapsed_ms&quot;: 1530,
+        &quot;elapsed_ms&quot;: 2046,
         &quot;response_hash&quot;: &quot;173d4f80ad19209c3b044aba2d0afd678c54ac5a33bbbedec88e757dc5291967&quot;,
         &quot;response_excerpt&quot;: &quot;{\n  \&quot;query_type\&quot;: \&quot;forward\&quot;,\n  \&quot;bio_context\&quot;: \&quot;melanoma models\&quot;,\n  \&quot;pert_desc\&quot;: \&quot;vemurafenib\&quot;,\n  \&quot;pert_class\&quot;: \&quot;drug\&quot;,\n  \&quot;genetic_modality\&quot;: null,\n  \&quot;function_desc\&quot;: null,\n  \&quot;activate\&quot;: [],\n  \&quot;suppress\&quot;: [],\n  \&quot;top_n\&quot;: null\n}&quot;
       }
@@ -538,13 +541,13 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     &quot;provider&quot;: &quot;deepseek&quot;,
     &quot;base_url&quot;: &quot;https://api.deepseek.com/v1&quot;,
     &quot;model&quot;: &quot;deepseek-v4-flash&quot;,
-    &quot;started_at&quot;: &quot;2026-06-27T22:35:08.548549+00:00&quot;,
-    &quot;finished_at&quot;: &quot;2026-06-27T22:35:10.206486+00:00&quot;,
+    &quot;started_at&quot;: &quot;2026-06-27T21:42:15.412482+00:00&quot;,
+    &quot;finished_at&quot;: &quot;2026-06-27T21:42:17.147407+00:00&quot;,
     &quot;attempts&quot;: [
       {
         &quot;attempt&quot;: 1,
         &quot;ok&quot;: true,
-        &quot;elapsed_ms&quot;: 1657,
+        &quot;elapsed_ms&quot;: 1734,
         &quot;response_hash&quot;: &quot;72251227e79f2ad29171f613f10b257ada6f740c057aa9c638c42297ba891c33&quot;,
         &quot;response_excerpt&quot;: &quot;{\n  \&quot;query_type\&quot;: \&quot;forward\&quot;,\n  \&quot;bio_context\&quot;: \&quot;colorectal cancer cells\&quot;,\n  \&quot;pert_desc\&quot;: \&quot;5-FU\&quot;,\n  \&quot;pert_class\&quot;: \&quot;drug\&quot;,\n  \&quot;genetic_modality\&quot;: null,\n  \&quot;function_desc\&quot;: null,\n  \&quot;activate\&quot;: [\&quot;apoptosis\&quot;, \&quot;cell-cycle signatures\&quot;],\n  \&quot;suppress\&quot;: [],\n  \&quot;top_n\&quot;: null\n}&quot;
       }
@@ -720,13 +723,13 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     &quot;provider&quot;: &quot;deepseek&quot;,
     &quot;base_url&quot;: &quot;https://api.deepseek.com/v1&quot;,
     &quot;model&quot;: &quot;deepseek-v4-flash&quot;,
-    &quot;started_at&quot;: &quot;2026-06-27T22:35:15.891156+00:00&quot;,
-    &quot;finished_at&quot;: &quot;2026-06-27T22:35:17.348219+00:00&quot;,
+    &quot;started_at&quot;: &quot;2026-06-27T21:42:23.803204+00:00&quot;,
+    &quot;finished_at&quot;: &quot;2026-06-27T21:42:25.345831+00:00&quot;,
     &quot;attempts&quot;: [
       {
         &quot;attempt&quot;: 1,
         &quot;ok&quot;: true,
-        &quot;elapsed_ms&quot;: 1456,
+        &quot;elapsed_ms&quot;: 1542,
         &quot;response_hash&quot;: &quot;d13f220b5b42a2934c922455a393379d3cf1dc31c6e4862d135104cf8b3fc09f&quot;,
         &quot;response_excerpt&quot;: &quot;{\n  \&quot;query_type\&quot;: \&quot;forward\&quot;,\n  \&quot;bio_context\&quot;: \&quot;prostate cancer\&quot;,\n  \&quot;pert_desc\&quot;: \&quot;enzalutamide\&quot;,\n  \&quot;pert_class\&quot;: \&quot;drug\&quot;,\n  \&quot;genetic_modality\&quot;: null,\n  \&quot;function_desc\&quot;: null,\n  \&quot;activate\&quot;: [],\n  \&quot;suppress\&quot;: [],\n  \&quot;top_n\&quot;: null\n}&quot;
       }
@@ -862,7 +865,7 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
   <div class="case-head"><strong>G06</strong><span class="pass">PASS</span></div>
   <p>For ovarian tumor models without naming a cell line, what functional changes follow cisplatin treatment?</p>
   <div class="grid">
-    <section><h3>Checks</h3><div class="checks"><span class='good'>no_exception: PASS</span> <span class='good'>resource_indexes_available: PASS</span> <span class='good'>route_status_terminal: PASS</span> <span class='good'>no_unvalidated_llm: PASS</span> <span class='good'>has_handoff_payload_or_intent_completion: PASS</span> <span class='good'>candidate_limits_respected: PASS</span> <span class='good'>has_combination_candidates: PASS</span> <span class='good'>cell_routed: PASS</span> <span class='good'>perturbation_routed: PASS</span></div><p><b>Status:</b> routed</p></section>
+    <section><h3>Checks</h3><div class="checks"><span class='good'>no_exception: PASS</span> <span class='good'>resource_indexes_available: PASS</span> <span class='good'>route_status_terminal: PASS</span> <span class='good'>no_unvalidated_llm: PASS</span> <span class='good'>has_handoff_payload_or_intent_completion: PASS</span> <span class='good'>candidate_limits_respected: PASS</span> <span class='good'>has_combination_candidates: PASS</span> <span class='good'>cell_routed: PASS</span> <span class='good'>perturbation_routed: PASS</span> <span class='good'>function_routed_or_explicit_no_filter: PASS</span></div><p><b>Status:</b> routed</p></section>
     <section><h3>L1 Intent</h3><pre>{
   &quot;raw_query&quot;: &quot;For ovarian tumor models without naming a cell line, what functional changes follow cisplatin treatment?&quot;,
   &quot;normalized_query&quot;: &quot;For ovarian tumor models without naming a cell line, what functional changes follow cisplatin treatment?&quot;,
@@ -871,7 +874,7 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
   &quot;pert_desc&quot;: &quot;cisplatin&quot;,
   &quot;pert_class&quot;: &quot;drug&quot;,
   &quot;genetic_modality&quot;: null,
-  &quot;function_desc&quot;: null,
+  &quot;function_desc&quot;: &quot;functional changes&quot;,
   &quot;activate&quot;: [],
   &quot;suppress&quot;: [],
   &quot;top_n&quot;: null,
@@ -885,22 +888,22 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     &quot;provider&quot;: &quot;deepseek&quot;,
     &quot;base_url&quot;: &quot;https://api.deepseek.com/v1&quot;,
     &quot;model&quot;: &quot;deepseek-v4-flash&quot;,
-    &quot;started_at&quot;: &quot;2026-06-27T22:35:20.837831+00:00&quot;,
-    &quot;finished_at&quot;: &quot;2026-06-27T22:35:22.289848+00:00&quot;,
+    &quot;started_at&quot;: &quot;2026-06-27T21:42:28.587705+00:00&quot;,
+    &quot;finished_at&quot;: &quot;2026-06-27T21:42:29.844414+00:00&quot;,
     &quot;attempts&quot;: [
       {
         &quot;attempt&quot;: 1,
         &quot;ok&quot;: true,
-        &quot;elapsed_ms&quot;: 1451,
-        &quot;response_hash&quot;: &quot;a2e84e80097c157df22377bed4ac7fcbc4885ccaec4091d5571a0860bb0f004f&quot;,
-        &quot;response_excerpt&quot;: &quot;{\n  \&quot;query_type\&quot;: \&quot;forward\&quot;,\n  \&quot;bio_context\&quot;: \&quot;ovarian tumor models\&quot;,\n  \&quot;pert_desc\&quot;: \&quot;cisplatin\&quot;,\n  \&quot;pert_class\&quot;: \&quot;drug\&quot;,\n  \&quot;genetic_modality\&quot;: null,\n  \&quot;function_desc\&quot;: null,\n  \&quot;activate\&quot;: [],\n  \&quot;suppress\&quot;: [],\n  \&quot;top_n\&quot;: null\n}&quot;
+        &quot;elapsed_ms&quot;: 1256,
+        &quot;response_hash&quot;: &quot;826213dc0fcf4a5e01af417de3a0b694611e24c502426696b4f741e4f6723f42&quot;,
+        &quot;response_excerpt&quot;: &quot;{\n  \&quot;query_type\&quot;: \&quot;forward\&quot;,\n  \&quot;bio_context\&quot;: \&quot;ovarian tumor models\&quot;,\n  \&quot;pert_desc\&quot;: \&quot;cisplatin\&quot;,\n  \&quot;pert_class\&quot;: \&quot;drug\&quot;,\n  \&quot;genetic_modality\&quot;: null,\n  \&quot;function_desc\&quot;: \&quot;functional changes\&quot;,\n  \&quot;activate\&quot;: [],\n  \&quot;suppress\&quot;: [],\n  \&quot;top_n\&quot;: null\n}&quot;
       }
     ],
     &quot;schema_repairs&quot;: 0,
     &quot;chat_restarts&quot;: 0,
     &quot;final_status&quot;: &quot;ok&quot;,
-    &quot;parsed_json_hash&quot;: &quot;757712f570ba851453084e22dbcb91a668838e1a57373516b441072d390388be&quot;,
-    &quot;parsed_json_excerpt&quot;: &quot;{\&quot;activate\&quot;: [], \&quot;bio_context\&quot;: \&quot;ovarian tumor models\&quot;, \&quot;function_desc\&quot;: null, \&quot;genetic_modality\&quot;: null, \&quot;pert_class\&quot;: \&quot;drug\&quot;, \&quot;pert_desc\&quot;: \&quot;cisplatin\&quot;, \&quot;query_type\&quot;: \&quot;forward\&quot;, \&quot;suppress\&quot;: [], \&quot;top_n\&quot;: null}&quot;,
+    &quot;parsed_json_hash&quot;: &quot;19232ef8fdc0b36a7c98117e7aa35893d024bf169bdecb6a9ebfb923adf19b90&quot;,
+    &quot;parsed_json_excerpt&quot;: &quot;{\&quot;activate\&quot;: [], \&quot;bio_context\&quot;: \&quot;ovarian tumor models\&quot;, \&quot;function_desc\&quot;: \&quot;functional changes\&quot;, \&quot;genetic_modality\&quot;: null, \&quot;pert_class\&quot;: \&quot;drug\&quot;, \&quot;pert_desc\&quot;: \&quot;cisplatin\&quot;, \&quot;query_type\&quot;: \&quot;forward\&quot;, \&quot;suppress\&quot;: [], \&quot;top_n\&quot;: null}&quot;,
     &quot;error&quot;: null
   }
 }</pre></section>
@@ -990,13 +993,13 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     &quot;provider&quot;: &quot;deepseek&quot;,
     &quot;base_url&quot;: &quot;https://api.deepseek.com/v1&quot;,
     &quot;model&quot;: &quot;deepseek-v4-flash&quot;,
-    &quot;started_at&quot;: &quot;2026-06-27T22:35:25.138471+00:00&quot;,
-    &quot;finished_at&quot;: &quot;2026-06-27T22:35:26.420904+00:00&quot;,
+    &quot;started_at&quot;: &quot;2026-06-27T21:42:33.417363+00:00&quot;,
+    &quot;finished_at&quot;: &quot;2026-06-27T21:42:34.868593+00:00&quot;,
     &quot;attempts&quot;: [
       {
         &quot;attempt&quot;: 1,
         &quot;ok&quot;: true,
-        &quot;elapsed_ms&quot;: 1282,
+        &quot;elapsed_ms&quot;: 1450,
         &quot;response_hash&quot;: &quot;35ead10141bae4e092168120af79fd2f00d22bdccfdfff21bfe99086dcbaefab&quot;,
         &quot;response_excerpt&quot;: &quot;{\n  \&quot;query_type\&quot;: \&quot;forward\&quot;,\n  \&quot;bio_context\&quot;: \&quot;pancreatic cancer\&quot;,\n  \&quot;pert_desc\&quot;: \&quot;gemcitabine\&quot;,\n  \&quot;pert_class\&quot;: \&quot;drug\&quot;,\n  \&quot;genetic_modality\&quot;: null,\n  \&quot;function_desc\&quot;: null,\n  \&quot;activate\&quot;: [],\n  \&quot;suppress\&quot;: [\&quot;proliferation\&quot;, \&quot;stress-response readouts\&quot;],\n  \&quot;top_n\&quot;: null\n}&quot;
       }
@@ -1180,13 +1183,13 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     &quot;provider&quot;: &quot;deepseek&quot;,
     &quot;base_url&quot;: &quot;https://api.deepseek.com/v1&quot;,
     &quot;model&quot;: &quot;deepseek-v4-flash&quot;,
-    &quot;started_at&quot;: &quot;2026-06-27T22:35:30.994590+00:00&quot;,
-    &quot;finished_at&quot;: &quot;2026-06-27T22:35:32.204573+00:00&quot;,
+    &quot;started_at&quot;: &quot;2026-06-27T21:42:40.187710+00:00&quot;,
+    &quot;finished_at&quot;: &quot;2026-06-27T21:42:41.723064+00:00&quot;,
     &quot;attempts&quot;: [
       {
         &quot;attempt&quot;: 1,
         &quot;ok&quot;: true,
-        &quot;elapsed_ms&quot;: 1209,
+        &quot;elapsed_ms&quot;: 1535,
         &quot;response_hash&quot;: &quot;329dcd44f5be40ac7ea57eb8af626359081bd0c299393dcab3ff4ff85e91b585&quot;,
         &quot;response_excerpt&quot;: &quot;{\n  \&quot;query_type\&quot;: \&quot;forward\&quot;,\n  \&quot;bio_context\&quot;: \&quot;glioblastoma-like cells\&quot;,\n  \&quot;pert_desc\&quot;: \&quot;temozolomide\&quot;,\n  \&quot;pert_class\&quot;: \&quot;drug\&quot;,\n  \&quot;genetic_modality\&quot;: null,\n  \&quot;function_desc\&quot;: \&quot;changes across hallmark programs\&quot;,\n  \&quot;activate\&quot;: [],\n  \&quot;suppress\&quot;: [],\n  \&quot;top_n\&quot;: null\n}&quot;
       }
@@ -1259,7 +1262,7 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
   <div class="case-head"><strong>G09</strong><span class="pass">PASS</span></div>
   <p>In liver cancer context, what pathway readouts shift after sorafenib?</p>
   <div class="grid">
-    <section><h3>Checks</h3><div class="checks"><span class='good'>no_exception: PASS</span> <span class='good'>resource_indexes_available: PASS</span> <span class='good'>route_status_terminal: PASS</span> <span class='good'>no_unvalidated_llm: PASS</span> <span class='good'>has_handoff_payload_or_intent_completion: PASS</span> <span class='good'>candidate_limits_respected: PASS</span> <span class='good'>has_combination_candidates: PASS</span> <span class='good'>cell_routed: PASS</span> <span class='good'>perturbation_routed: PASS</span> <span class='good'>function_routed_or_explicit_no_filter: PASS</span></div><p><b>Status:</b> routed</p></section>
+    <section><h3>Checks</h3><div class="checks"><span class='good'>no_exception: PASS</span> <span class='good'>resource_indexes_available: PASS</span> <span class='good'>route_status_terminal: PASS</span> <span class='good'>no_unvalidated_llm: PASS</span> <span class='good'>has_handoff_payload_or_intent_completion: PASS</span> <span class='good'>candidate_limits_respected: PASS</span> <span class='good'>has_combination_candidates: PASS</span> <span class='good'>cell_routed: PASS</span> <span class='good'>perturbation_routed: PASS</span></div><p><b>Status:</b> routed</p></section>
     <section><h3>L1 Intent</h3><pre>{
   &quot;raw_query&quot;: &quot;In liver cancer context, what pathway readouts shift after sorafenib?&quot;,
   &quot;normalized_query&quot;: &quot;In liver cancer context, what pathway readouts shift after sorafenib?&quot;,
@@ -1268,7 +1271,7 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
   &quot;pert_desc&quot;: &quot;sorafenib&quot;,
   &quot;pert_class&quot;: &quot;drug&quot;,
   &quot;genetic_modality&quot;: null,
-  &quot;function_desc&quot;: &quot;pathway readouts shift&quot;,
+  &quot;function_desc&quot;: null,
   &quot;activate&quot;: [],
   &quot;suppress&quot;: [],
   &quot;top_n&quot;: null,
@@ -1282,22 +1285,22 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     &quot;provider&quot;: &quot;deepseek&quot;,
     &quot;base_url&quot;: &quot;https://api.deepseek.com/v1&quot;,
     &quot;model&quot;: &quot;deepseek-v4-flash&quot;,
-    &quot;started_at&quot;: &quot;2026-06-27T22:35:35.279253+00:00&quot;,
-    &quot;finished_at&quot;: &quot;2026-06-27T22:35:36.847246+00:00&quot;,
+    &quot;started_at&quot;: &quot;2026-06-27T21:42:45.667373+00:00&quot;,
+    &quot;finished_at&quot;: &quot;2026-06-27T21:42:47.392936+00:00&quot;,
     &quot;attempts&quot;: [
       {
         &quot;attempt&quot;: 1,
         &quot;ok&quot;: true,
-        &quot;elapsed_ms&quot;: 1567,
-        &quot;response_hash&quot;: &quot;47c5ab6b503a3b99ae77b4c8bcd2a40f050d4195b95061e52e60197d93f446aa&quot;,
-        &quot;response_excerpt&quot;: &quot;{\n  \&quot;query_type\&quot;: \&quot;forward\&quot;,\n  \&quot;bio_context\&quot;: \&quot;liver cancer\&quot;,\n  \&quot;pert_desc\&quot;: \&quot;sorafenib\&quot;,\n  \&quot;pert_class\&quot;: \&quot;drug\&quot;,\n  \&quot;genetic_modality\&quot;: null,\n  \&quot;function_desc\&quot;: \&quot;pathway readouts shift\&quot;,\n  \&quot;activate\&quot;: [],\n  \&quot;suppress\&quot;: [],\n  \&quot;top_n\&quot;: null\n}&quot;
+        &quot;elapsed_ms&quot;: 1725,
+        &quot;response_hash&quot;: &quot;a664df66371110f194fb666e2d699be7ca47b28a3a98bbd836e7c30441d634c5&quot;,
+        &quot;response_excerpt&quot;: &quot;{\n  \&quot;query_type\&quot;: \&quot;forward\&quot;,\n  \&quot;bio_context\&quot;: \&quot;liver cancer\&quot;,\n  \&quot;pert_desc\&quot;: \&quot;sorafenib\&quot;,\n  \&quot;pert_class\&quot;: \&quot;drug\&quot;,\n  \&quot;genetic_modality\&quot;: null,\n  \&quot;function_desc\&quot;: null,\n  \&quot;activate\&quot;: [],\n  \&quot;suppress\&quot;: [],\n  \&quot;top_n\&quot;: null\n}&quot;
       }
     ],
     &quot;schema_repairs&quot;: 0,
     &quot;chat_restarts&quot;: 0,
     &quot;final_status&quot;: &quot;ok&quot;,
-    &quot;parsed_json_hash&quot;: &quot;9988880b72f528802986e70b5adb9025f5aa472487c1066d7acaad6921f01d1c&quot;,
-    &quot;parsed_json_excerpt&quot;: &quot;{\&quot;activate\&quot;: [], \&quot;bio_context\&quot;: \&quot;liver cancer\&quot;, \&quot;function_desc\&quot;: \&quot;pathway readouts shift\&quot;, \&quot;genetic_modality\&quot;: null, \&quot;pert_class\&quot;: \&quot;drug\&quot;, \&quot;pert_desc\&quot;: \&quot;sorafenib\&quot;, \&quot;query_type\&quot;: \&quot;forward\&quot;, \&quot;suppress\&quot;: [], \&quot;top_n\&quot;: null}&quot;,
+    &quot;parsed_json_hash&quot;: &quot;2330e33236f4c3b08f18d71b291ce2d7aa19c60da6832f025d4062910c587767&quot;,
+    &quot;parsed_json_excerpt&quot;: &quot;{\&quot;activate\&quot;: [], \&quot;bio_context\&quot;: \&quot;liver cancer\&quot;, \&quot;function_desc\&quot;: null, \&quot;genetic_modality\&quot;: null, \&quot;pert_class\&quot;: \&quot;drug\&quot;, \&quot;pert_desc\&quot;: \&quot;sorafenib\&quot;, \&quot;query_type\&quot;: \&quot;forward\&quot;, \&quot;suppress\&quot;: [], \&quot;top_n\&quot;: null}&quot;,
     &quot;error&quot;: null
   }
 }</pre></section>
@@ -1447,13 +1450,13 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     &quot;provider&quot;: &quot;deepseek&quot;,
     &quot;base_url&quot;: &quot;https://api.deepseek.com/v1&quot;,
     &quot;model&quot;: &quot;deepseek-v4-flash&quot;,
-    &quot;started_at&quot;: &quot;2026-06-27T22:35:39.681530+00:00&quot;,
-    &quot;finished_at&quot;: &quot;2026-06-27T22:35:41.028649+00:00&quot;,
+    &quot;started_at&quot;: &quot;2026-06-27T21:42:51.634842+00:00&quot;,
+    &quot;finished_at&quot;: &quot;2026-06-27T21:42:53.192260+00:00&quot;,
     &quot;attempts&quot;: [
       {
         &quot;attempt&quot;: 1,
         &quot;ok&quot;: true,
-        &quot;elapsed_ms&quot;: 1346,
+        &quot;elapsed_ms&quot;: 1557,
         &quot;response_hash&quot;: &quot;fe814948ae55bf41a63d04618836763403d61ed41c9111af54bd7a194dac1072&quot;,
         &quot;response_excerpt&quot;: &quot;{\n  \&quot;query_type\&quot;: \&quot;forward\&quot;,\n  \&quot;bio_context\&quot;: \&quot;leukemia-like cells\&quot;,\n  \&quot;pert_desc\&quot;: \&quot;imatinib\&quot;,\n  \&quot;pert_class\&quot;: \&quot;drug\&quot;,\n  \&quot;genetic_modality\&quot;: null,\n  \&quot;function_desc\&quot;: null,\n  \&quot;activate\&quot;: [],\n  \&quot;suppress\&quot;: [],\n  \&quot;top_n\&quot;: null\n}&quot;
       }
@@ -1612,13 +1615,13 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     &quot;provider&quot;: &quot;deepseek&quot;,
     &quot;base_url&quot;: &quot;https://api.deepseek.com/v1&quot;,
     &quot;model&quot;: &quot;deepseek-v4-flash&quot;,
-    &quot;started_at&quot;: &quot;2026-06-27T22:35:44.387975+00:00&quot;,
-    &quot;finished_at&quot;: &quot;2026-06-27T22:35:45.874821+00:00&quot;,
+    &quot;started_at&quot;: &quot;2026-06-27T21:42:56.851751+00:00&quot;,
+    &quot;finished_at&quot;: &quot;2026-06-27T21:42:58.312248+00:00&quot;,
     &quot;attempts&quot;: [
       {
         &quot;attempt&quot;: 1,
         &quot;ok&quot;: true,
-        &quot;elapsed_ms&quot;: 1486,
+        &quot;elapsed_ms&quot;: 1460,
         &quot;response_hash&quot;: &quot;6b8d6212d886f9b23615e3c5bfc138b900cecd5681f4f317c679cf31323d482f&quot;,
         &quot;response_excerpt&quot;: &quot;{\n  \&quot;query_type\&quot;: \&quot;forward\&quot;,\n  \&quot;bio_context\&quot;: \&quot;A549\&quot;,\n  \&quot;pert_desc\&quot;: \&quot;MALAT1\&quot;,\n  \&quot;pert_class\&quot;: \&quot;genetic\&quot;,\n  \&quot;genetic_modality\&quot;: \&quot;knockdown\&quot;,\n  \&quot;function_desc\&quot;: \&quot;apoptosis-related readouts\&quot;,\n  \&quot;activate\&quot;: [],\n  \&quot;suppress\&quot;: [],\n  \&quot;top_n\&quot;: null\n}&quot;
       }
@@ -1775,7 +1778,7 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
   &quot;bio_context&quot;: &quot;breast cancer cells&quot;,
   &quot;pert_desc&quot;: &quot;estrogen receptor alpha / ESR1&quot;,
   &quot;pert_class&quot;: &quot;genetic&quot;,
-  &quot;genetic_modality&quot;: &quot;unknown&quot;,
+  &quot;genetic_modality&quot;: &quot;knockdown&quot;,
   &quot;function_desc&quot;: null,
   &quot;activate&quot;: [],
   &quot;suppress&quot;: [
@@ -1793,22 +1796,22 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     &quot;provider&quot;: &quot;deepseek&quot;,
     &quot;base_url&quot;: &quot;https://api.deepseek.com/v1&quot;,
     &quot;model&quot;: &quot;deepseek-v4-flash&quot;,
-    &quot;started_at&quot;: &quot;2026-06-27T22:35:47.864093+00:00&quot;,
-    &quot;finished_at&quot;: &quot;2026-06-27T22:35:49.502734+00:00&quot;,
+    &quot;started_at&quot;: &quot;2026-06-27T21:43:00.258356+00:00&quot;,
+    &quot;finished_at&quot;: &quot;2026-06-27T21:43:01.622736+00:00&quot;,
     &quot;attempts&quot;: [
       {
         &quot;attempt&quot;: 1,
         &quot;ok&quot;: true,
-        &quot;elapsed_ms&quot;: 1638,
-        &quot;response_hash&quot;: &quot;9f414f75f970fc8fc9cae4672d8a05e7d2ec013ec2cb913883aa5c96089957a0&quot;,
-        &quot;response_excerpt&quot;: &quot;{\n  \&quot;query_type\&quot;: \&quot;reverse\&quot;,\n  \&quot;bio_context\&quot;: \&quot;breast cancer cells\&quot;,\n  \&quot;pert_desc\&quot;: \&quot;estrogen receptor alpha / ESR1\&quot;,\n  \&quot;pert_class\&quot;: \&quot;genetic\&quot;,\n  \&quot;genetic_modality\&quot;: \&quot;unknown\&quot;,\n  \&quot;function_desc\&quot;: null,\n  \&quot;activate\&quot;: [],\n  \&quot;suppress\&quot;: [\&quot;estrogen receptor alpha\&quot;, \&quot;ESR1\&quot;],\n  \&quot;top_n\&quot;: null\n}&quot;
+        &quot;elapsed_ms&quot;: 1364,
+        &quot;response_hash&quot;: &quot;58f958911a5c8c146c56b8ad2a83f2b4b802fa07bb82b60ccfb19223ef8266a1&quot;,
+        &quot;response_excerpt&quot;: &quot;{\n  \&quot;query_type\&quot;: \&quot;reverse\&quot;,\n  \&quot;bio_context\&quot;: \&quot;breast cancer cells\&quot;,\n  \&quot;pert_desc\&quot;: \&quot;estrogen receptor alpha / ESR1\&quot;,\n  \&quot;pert_class\&quot;: \&quot;genetic\&quot;,\n  \&quot;genetic_modality\&quot;: \&quot;knockdown\&quot;,\n  \&quot;function_desc\&quot;: null,\n  \&quot;activate\&quot;: [],\n  \&quot;suppress\&quot;: [\&quot;estrogen receptor alpha\&quot;, \&quot;ESR1\&quot;],\n  \&quot;top_n\&quot;: null\n}&quot;
       }
     ],
     &quot;schema_repairs&quot;: 0,
     &quot;chat_restarts&quot;: 0,
     &quot;final_status&quot;: &quot;ok&quot;,
-    &quot;parsed_json_hash&quot;: &quot;258d53a689bb876efaa714eadafc723c5250ec40f94e7e41abdc26a14b1a1cf6&quot;,
-    &quot;parsed_json_excerpt&quot;: &quot;{\&quot;activate\&quot;: [], \&quot;bio_context\&quot;: \&quot;breast cancer cells\&quot;, \&quot;function_desc\&quot;: null, \&quot;genetic_modality\&quot;: \&quot;unknown\&quot;, \&quot;pert_class\&quot;: \&quot;genetic\&quot;, \&quot;pert_desc\&quot;: \&quot;estrogen receptor alpha / ESR1\&quot;, \&quot;query_type\&quot;: \&quot;reverse\&quot;, \&quot;suppress\&quot;: [\&quot;estrogen receptor alpha\&quot;, \&quot;ESR1\&quot;], \&quot;top_n\&quot;: null}&quot;,
+    &quot;parsed_json_hash&quot;: &quot;8762ad711775a64e3807bbfbaf3a68010af3139f6d633c3bacc23dc142b916f7&quot;,
+    &quot;parsed_json_excerpt&quot;: &quot;{\&quot;activate\&quot;: [], \&quot;bio_context\&quot;: \&quot;breast cancer cells\&quot;, \&quot;function_desc\&quot;: null, \&quot;genetic_modality\&quot;: \&quot;knockdown\&quot;, \&quot;pert_class\&quot;: \&quot;genetic\&quot;, \&quot;pert_desc\&quot;: \&quot;estrogen receptor alpha / ESR1\&quot;, \&quot;query_type\&quot;: \&quot;reverse\&quot;, \&quot;suppress\&quot;: [\&quot;estrogen receptor alpha\&quot;, \&quot;ESR1\&quot;], \&quot;top_n\&quot;: null}&quot;,
     &quot;error&quot;: null
   }
 }</pre></section>
@@ -1840,12 +1843,12 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 2
         }
       ],
-      &quot;modality&quot;: &quot;xpr&quot;,
+      &quot;modality&quot;: &quot;sh&quot;,
       &quot;evidence_level&quot;: &quot;function-set-and-cell-scope&quot;
     },
     {
       &quot;route_id&quot;: &quot;reverse_002&quot;,
-      &quot;cell&quot;: &quot;BT20&quot;,
+      &quot;cell&quot;: &quot;BT474&quot;,
       &quot;cell_role&quot;: &quot;llm-tree-leaf&quot;,
       &quot;interpretation_set_id&quot;: &quot;llm_1_direct_pathway&quot;,
       &quot;functions&quot;: [
@@ -1871,7 +1874,7 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     },
     {
       &quot;route_id&quot;: &quot;reverse_003&quot;,
-      &quot;cell&quot;: &quot;BT474&quot;,
+      &quot;cell&quot;: &quot;HS578T&quot;,
       &quot;cell_role&quot;: &quot;llm-tree-leaf&quot;,
       &quot;interpretation_set_id&quot;: &quot;llm_1_direct_pathway&quot;,
       &quot;functions&quot;: [
@@ -1892,7 +1895,7 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 2
         }
       ],
-      &quot;modality&quot;: &quot;xpr&quot;,
+      &quot;modality&quot;: &quot;sh&quot;,
       &quot;evidence_level&quot;: &quot;function-set-and-cell-scope&quot;
     }
   ],
@@ -1971,14 +1974,6 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
-        },
-        {
-          &quot;var_name&quot;: &quot;MP17 Interferon/MHC-II (I)&quot;,
-          &quot;label&quot;: &quot;Interferon/MHC-II (I)&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
-          &quot;direction&quot;: &quot;suppress&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 3
         }
       ]
     }
@@ -2034,13 +2029,13 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     &quot;provider&quot;: &quot;deepseek&quot;,
     &quot;base_url&quot;: &quot;https://api.deepseek.com/v1&quot;,
     &quot;model&quot;: &quot;deepseek-v4-flash&quot;,
-    &quot;started_at&quot;: &quot;2026-06-27T22:35:58.847402+00:00&quot;,
-    &quot;finished_at&quot;: &quot;2026-06-27T22:36:00.587435+00:00&quot;,
+    &quot;started_at&quot;: &quot;2026-06-27T21:43:09.356641+00:00&quot;,
+    &quot;finished_at&quot;: &quot;2026-06-27T21:43:11.348801+00:00&quot;,
     &quot;attempts&quot;: [
       {
         &quot;attempt&quot;: 1,
         &quot;ok&quot;: true,
-        &quot;elapsed_ms&quot;: 1739,
+        &quot;elapsed_ms&quot;: 1991,
         &quot;response_hash&quot;: &quot;e07713e155e0d538aa49521841e24831b9b781cae60ab574fa42ea1411a79037&quot;,
         &quot;response_excerpt&quot;: &quot;{\n  \&quot;query_type\&quot;: \&quot;forward\&quot;,\n  \&quot;bio_context\&quot;: \&quot;liver tumor models\&quot;,\n  \&quot;pert_desc\&quot;: \&quot;CTNNB1\&quot;,\n  \&quot;pert_class\&quot;: \&quot;genetic\&quot;,\n  \&quot;genetic_modality\&quot;: \&quot;crispr\&quot;,\n  \&quot;function_desc\&quot;: null,\n  \&quot;activate\&quot;: [],\n  \&quot;suppress\&quot;: [],\n  \&quot;top_n\&quot;: null\n}&quot;
       }
@@ -2174,13 +2169,13 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     &quot;provider&quot;: &quot;deepseek&quot;,
     &quot;base_url&quot;: &quot;https://api.deepseek.com/v1&quot;,
     &quot;model&quot;: &quot;deepseek-v4-flash&quot;,
-    &quot;started_at&quot;: &quot;2026-06-27T22:36:05.331969+00:00&quot;,
-    &quot;finished_at&quot;: &quot;2026-06-27T22:36:07.243857+00:00&quot;,
+    &quot;started_at&quot;: &quot;2026-06-27T21:43:16.522172+00:00&quot;,
+    &quot;finished_at&quot;: &quot;2026-06-27T21:43:18.791132+00:00&quot;,
     &quot;attempts&quot;: [
       {
         &quot;attempt&quot;: 1,
         &quot;ok&quot;: true,
-        &quot;elapsed_ms&quot;: 1911,
+        &quot;elapsed_ms&quot;: 2268,
         &quot;response_hash&quot;: &quot;d05a6fa18639c2370851f995aad353ba7fb94382ebc80efafebaaef3cce3d11e&quot;,
         &quot;response_excerpt&quot;: &quot;{\n  \&quot;query_type\&quot;: \&quot;forward\&quot;,\n  \&quot;bio_context\&quot;: \&quot;ovarian cancer\&quot;,\n  \&quot;pert_desc\&quot;: \&quot;BRCA-1\&quot;,\n  \&quot;pert_class\&quot;: \&quot;genetic\&quot;,\n  \&quot;genetic_modality\&quot;: \&quot;knockout\&quot;,\n  \&quot;function_desc\&quot;: \&quot;broad functional consequences\&quot;,\n  \&quot;activate\&quot;: [],\n  \&quot;suppress\&quot;: [],\n  \&quot;top_n\&quot;: null\n}&quot;
       }
@@ -2343,13 +2338,13 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     &quot;provider&quot;: &quot;deepseek&quot;,
     &quot;base_url&quot;: &quot;https://api.deepseek.com/v1&quot;,
     &quot;model&quot;: &quot;deepseek-v4-flash&quot;,
-    &quot;started_at&quot;: &quot;2026-06-27T22:36:14.505733+00:00&quot;,
-    &quot;finished_at&quot;: &quot;2026-06-27T22:36:16.119269+00:00&quot;,
+    &quot;started_at&quot;: &quot;2026-06-27T21:43:26.973136+00:00&quot;,
+    &quot;finished_at&quot;: &quot;2026-06-27T21:43:28.725253+00:00&quot;,
     &quot;attempts&quot;: [
       {
         &quot;attempt&quot;: 1,
         &quot;ok&quot;: true,
-        &quot;elapsed_ms&quot;: 1613,
+        &quot;elapsed_ms&quot;: 1751,
         &quot;response_hash&quot;: &quot;7ab396ebfd75b8ddd028918c7f66d80f56bf73cde986a552200a53e2b7c3b115&quot;,
         &quot;response_excerpt&quot;: &quot;{\n  \&quot;query_type\&quot;: \&quot;forward\&quot;,\n  \&quot;bio_context\&quot;: \&quot;glioma-like cells\&quot;,\n  \&quot;pert_desc\&quot;: \&quot;IDH1\&quot;,\n  \&quot;pert_class\&quot;: \&quot;genetic\&quot;,\n  \&quot;genetic_modality\&quot;: \&quot;rnai\&quot;,\n  \&quot;function_desc\&quot;: null,\n  \&quot;activate\&quot;: [],\n  \&quot;suppress\&quot;: [],\n  \&quot;top_n\&quot;: null\n}&quot;
       }
@@ -2512,13 +2507,13 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     &quot;provider&quot;: &quot;deepseek&quot;,
     &quot;base_url&quot;: &quot;https://api.deepseek.com/v1&quot;,
     &quot;model&quot;: &quot;deepseek-v4-flash&quot;,
-    &quot;started_at&quot;: &quot;2026-06-27T22:36:20.600755+00:00&quot;,
-    &quot;finished_at&quot;: &quot;2026-06-27T22:36:22.296185+00:00&quot;,
+    &quot;started_at&quot;: &quot;2026-06-27T21:43:34.100477+00:00&quot;,
+    &quot;finished_at&quot;: &quot;2026-06-27T21:43:36.004591+00:00&quot;,
     &quot;attempts&quot;: [
       {
         &quot;attempt&quot;: 1,
         &quot;ok&quot;: true,
-        &quot;elapsed_ms&quot;: 1695,
+        &quot;elapsed_ms&quot;: 1903,
         &quot;response_hash&quot;: &quot;fffff9913301bbb3c409eda93d0b58164515770136c11d75b5f7f1ce52107f48&quot;,
         &quot;response_excerpt&quot;: &quot;{\n  \&quot;query_type\&quot;: \&quot;forward\&quot;,\n  \&quot;bio_context\&quot;: \&quot;melanoma\&quot;,\n  \&quot;pert_desc\&quot;: \&quot;BRAF\&quot;,\n  \&quot;pert_class\&quot;: \&quot;genetic\&quot;,\n  \&quot;genetic_modality\&quot;: null,\n  \&quot;function_desc\&quot;: null,\n  \&quot;activate\&quot;: [],\n  \&quot;suppress\&quot;: [],\n  \&quot;top_n\&quot;: null\n}&quot;
       }
@@ -2658,16 +2653,16 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
   <div class="case-head"><strong>G17</strong><span class="pass">PASS</span></div>
   <p>For pancreatic cancer, knock down KRAS and report pathway-level output.</p>
   <div class="grid">
-    <section><h3>Checks</h3><div class="checks"><span class='good'>no_exception: PASS</span> <span class='good'>resource_indexes_available: PASS</span> <span class='good'>route_status_terminal: PASS</span> <span class='good'>no_unvalidated_llm: PASS</span> <span class='good'>has_handoff_payload_or_intent_completion: PASS</span> <span class='good'>candidate_limits_respected: PASS</span> <span class='good'>has_combination_candidates: PASS</span> <span class='good'>cell_routed: PASS</span> <span class='good'>function_routed_or_explicit_no_filter: PASS</span></div><p><b>Status:</b> routed</p></section>
+    <section><h3>Checks</h3><div class="checks"><span class='good'>no_exception: PASS</span> <span class='good'>resource_indexes_available: PASS</span> <span class='good'>route_status_terminal: PASS</span> <span class='good'>no_unvalidated_llm: PASS</span> <span class='good'>has_handoff_payload_or_intent_completion: PASS</span> <span class='good'>candidate_limits_respected: PASS</span> <span class='good'>has_combination_candidates: PASS</span> <span class='good'>cell_routed: PASS</span> <span class='good'>perturbation_routed: PASS</span> <span class='good'>function_routed_or_explicit_no_filter: PASS</span></div><p><b>Status:</b> routed</p></section>
     <section><h3>L1 Intent</h3><pre>{
   &quot;raw_query&quot;: &quot;For pancreatic cancer, knock down KRAS and report pathway-level output.&quot;,
   &quot;normalized_query&quot;: &quot;For pancreatic cancer, knock down KRAS and report pathway-level output.&quot;,
-  &quot;query_type&quot;: &quot;reverse&quot;,
+  &quot;query_type&quot;: &quot;forward&quot;,
   &quot;bio_context&quot;: &quot;pancreatic cancer&quot;,
   &quot;pert_desc&quot;: &quot;KRAS&quot;,
   &quot;pert_class&quot;: &quot;genetic&quot;,
   &quot;genetic_modality&quot;: &quot;knockdown&quot;,
-  &quot;function_desc&quot;: &quot;report pathway-level output&quot;,
+  &quot;function_desc&quot;: &quot;pathway-level output&quot;,
   &quot;activate&quot;: [],
   &quot;suppress&quot;: [],
   &quot;top_n&quot;: null,
@@ -2681,256 +2676,151 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     &quot;provider&quot;: &quot;deepseek&quot;,
     &quot;base_url&quot;: &quot;https://api.deepseek.com/v1&quot;,
     &quot;model&quot;: &quot;deepseek-v4-flash&quot;,
-    &quot;started_at&quot;: &quot;2026-06-27T22:36:27.000295+00:00&quot;,
-    &quot;finished_at&quot;: &quot;2026-06-27T22:36:28.709012+00:00&quot;,
+    &quot;started_at&quot;: &quot;2026-06-27T21:43:40.824932+00:00&quot;,
+    &quot;finished_at&quot;: &quot;2026-06-27T21:43:46.749454+00:00&quot;,
     &quot;attempts&quot;: [
       {
         &quot;attempt&quot;: 1,
         &quot;ok&quot;: true,
-        &quot;elapsed_ms&quot;: 1708,
-        &quot;response_hash&quot;: &quot;77f94dd9f5a938cb59f8ca2503c61a0f3c87611af0d92fd398a566b7ad554292&quot;,
-        &quot;response_excerpt&quot;: &quot;{\n  \&quot;query_type\&quot;: \&quot;reverse\&quot;,\n  \&quot;bio_context\&quot;: \&quot;pancreatic cancer\&quot;,\n  \&quot;pert_desc\&quot;: \&quot;KRAS\&quot;,\n  \&quot;pert_class\&quot;: \&quot;genetic\&quot;,\n  \&quot;genetic_modality\&quot;: \&quot;knockdown\&quot;,\n  \&quot;function_desc\&quot;: \&quot;report pathway-level output\&quot;,\n  \&quot;activate\&quot;: [],\n  \&quot;suppress\&quot;: [],\n  \&quot;top_n\&quot;: null\n}&quot;
+        &quot;elapsed_ms&quot;: 2030,
+        &quot;response_hash&quot;: &quot;baf880c2117b4768a0a5d3c47dd9c6dd0af261e7f577e7718827506c0516b0ca&quot;,
+        &quot;response_excerpt&quot;: &quot;{\n  \&quot;query_type\&quot;: \&quot;reverse\&quot;,\n  \&quot;bio_context\&quot;: \&quot;pancreatic cancer\&quot;,\n  \&quot;pert_desc\&quot;: \&quot;KRAS\&quot;,\n  \&quot;pert_class\&quot;: \&quot;genetic\&quot;,\n  \&quot;genetic_modality\&quot;: \&quot;knockdown\&quot;,\n  \&quot;function_desc\&quot;: null,\n  \&quot;activate\&quot;: [],\n  \&quot;suppress\&quot;: [],\n  \&quot;top_n\&quot;: null\n}&quot;
+      },
+      {
+        &quot;attempt&quot;: 1,
+        &quot;ok&quot;: true,
+        &quot;elapsed_ms&quot;: 1888,
+        &quot;response_hash&quot;: &quot;20dca8eed9190c6238cd51b2d58ecd9d702e7bb5809f5939a90b910ee0e99b88&quot;,
+        &quot;response_excerpt&quot;: &quot;{\n  \&quot;query_type\&quot;: \&quot;forward\&quot;,\n  \&quot;bio_context\&quot;: \&quot;pancreatic cancer\&quot;,\n  \&quot;pert_desc\&quot;: \&quot;KRAS\&quot;,\n  \&quot;pert_class\&quot;: \&quot;genetic\&quot;,\n  \&quot;genetic_modality\&quot;: \&quot;knockdown\&quot;,\n  \&quot;function_desc\&quot;: \&quot;pathway-level output\&quot;,\n  \&quot;activate\&quot;: [],\n  \&quot;suppress\&quot;: [],\n  \&quot;top_n\&quot;: null\n}&quot;
       }
     ],
-    &quot;schema_repairs&quot;: 0,
+    &quot;schema_repairs&quot;: 1,
     &quot;chat_restarts&quot;: 0,
     &quot;final_status&quot;: &quot;ok&quot;,
-    &quot;parsed_json_hash&quot;: &quot;38a2cf138a6e7ed217edba55636ca37ef2d2b8e3bd8c23585cdcc86716c7ffa2&quot;,
-    &quot;parsed_json_excerpt&quot;: &quot;{\&quot;activate\&quot;: [], \&quot;bio_context\&quot;: \&quot;pancreatic cancer\&quot;, \&quot;function_desc\&quot;: \&quot;report pathway-level output\&quot;, \&quot;genetic_modality\&quot;: \&quot;knockdown\&quot;, \&quot;pert_class\&quot;: \&quot;genetic\&quot;, \&quot;pert_desc\&quot;: \&quot;KRAS\&quot;, \&quot;query_type\&quot;: \&quot;reverse\&quot;, \&quot;suppress\&quot;: [], \&quot;top_n\&quot;: null}&quot;,
+    &quot;parsed_json_hash&quot;: &quot;acf5b6f73ffabad0b7b4e4260cce5e4ecd41b2201bbfe3830119e5b7a1579a4b&quot;,
+    &quot;parsed_json_excerpt&quot;: &quot;{\&quot;activate\&quot;: [], \&quot;bio_context\&quot;: \&quot;pancreatic cancer\&quot;, \&quot;function_desc\&quot;: \&quot;pathway-level output\&quot;, \&quot;genetic_modality\&quot;: \&quot;knockdown\&quot;, \&quot;pert_class\&quot;: \&quot;genetic\&quot;, \&quot;pert_desc\&quot;: \&quot;KRAS\&quot;, \&quot;query_type\&quot;: \&quot;forward\&quot;, \&quot;suppress\&quot;: [], \&quot;top_n\&quot;: null}&quot;,
     &quot;error&quot;: null
   }
 }</pre></section>
     <section><h3>Selected Route</h3><pre>{
-  &quot;query_type&quot;: &quot;reverse&quot;,
+  &quot;query_type&quot;: &quot;forward&quot;,
   &quot;cell&quot;: &quot;YAPC&quot;,
   &quot;combination_status&quot;: &quot;planned&quot;,
   &quot;selected_combination_routes&quot;: [
     {
-      &quot;route_id&quot;: &quot;reverse_001&quot;,
+      &quot;route_id&quot;: &quot;forward_001&quot;,
+      &quot;stage&quot;: &quot;A&quot;,
+      &quot;tier&quot;: &quot;exact_cell_exact_perturbation&quot;,
       &quot;cell&quot;: &quot;YAPC&quot;,
       &quot;cell_role&quot;: &quot;llm-tree-leaf&quot;,
-      &quot;interpretation_set_id&quot;: &quot;llm_1_direct_pathway&quot;,
-      &quot;functions&quot;: [
-        {
-          &quot;var_name&quot;: &quot;HALLMARK_KRAS_SIGNALING_UP&quot;,
-          &quot;label&quot;: &quot;Kras Signaling Up&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
-          &quot;direction&quot;: &quot;target&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 1
-        },
-        {
-          &quot;var_name&quot;: &quot;HALLMARK_KRAS_SIGNALING_DN&quot;,
-          &quot;label&quot;: &quot;Kras Signaling Dn&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
-          &quot;direction&quot;: &quot;target&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 2
-        },
-        {
-          &quot;var_name&quot;: &quot;HALLMARK_TNFA_SIGNALING_VIA_NFKB&quot;,
-          &quot;label&quot;: &quot;Tnfa Signaling Via Nfkb&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
-          &quot;direction&quot;: &quot;target&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 3
-        }
-      ],
-      &quot;modality&quot;: &quot;sh&quot;,
-      &quot;evidence_level&quot;: &quot;function-set-and-cell-scope&quot;
+      &quot;perturbation&quot;: &quot;KRAS&quot;,
+      &quot;perturbation_role&quot;: &quot;exact&quot;,
+      &quot;perturbation_record&quot;: {
+        &quot;symbol&quot;: &quot;KRAS&quot;,
+        &quot;gene_type&quot;: &quot;protein_coding&quot;,
+        &quot;in_matrix&quot;: true,
+        &quot;role&quot;: &quot;exact&quot;,
+        &quot;rank&quot;: 1
+      },
+      &quot;evidence_level&quot;: &quot;exact_cell_exact_perturbation&quot;
     },
     {
-      &quot;route_id&quot;: &quot;reverse_002&quot;,
+      &quot;route_id&quot;: &quot;forward_002&quot;,
+      &quot;stage&quot;: &quot;B&quot;,
+      &quot;tier&quot;: &quot;exact_cell_proxy_perturbation&quot;,
       &quot;cell&quot;: &quot;YAPC&quot;,
       &quot;cell_role&quot;: &quot;llm-tree-leaf&quot;,
-      &quot;interpretation_set_id&quot;: &quot;llm_2_mechanism_or_program&quot;,
-      &quot;functions&quot;: [
-        {
-          &quot;var_name&quot;: &quot;HALLMARK_KRAS_SIGNALING_DN&quot;,
-          &quot;label&quot;: &quot;Kras Signaling Dn&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
-          &quot;direction&quot;: &quot;target&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 1
-        },
-        {
-          &quot;var_name&quot;: &quot;HALLMARK_KRAS_SIGNALING_UP&quot;,
-          &quot;label&quot;: &quot;Kras Signaling Up&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
-          &quot;direction&quot;: &quot;target&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 2
-        },
-        {
-          &quot;var_name&quot;: &quot;HALLMARK_MTORC1_SIGNALING&quot;,
-          &quot;label&quot;: &quot;Mtorc1 Signaling&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
-          &quot;direction&quot;: &quot;target&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 3
-        }
-      ],
-      &quot;modality&quot;: &quot;sh&quot;,
-      &quot;evidence_level&quot;: &quot;function-set-and-cell-scope&quot;
+      &quot;perturbation&quot;: &quot;NRAS&quot;,
+      &quot;perturbation_role&quot;: &quot;supporting-semantic-neighbor&quot;,
+      &quot;perturbation_record&quot;: {
+        &quot;symbol&quot;: &quot;NRAS&quot;,
+        &quot;similarity&quot;: 1.0,
+        &quot;role&quot;: &quot;supporting-semantic-neighbor&quot;,
+        &quot;rank&quot;: 1
+      },
+      &quot;evidence_level&quot;: &quot;exact_cell_proxy_perturbation&quot;
     },
     {
-      &quot;route_id&quot;: &quot;reverse_003&quot;,
+      &quot;route_id&quot;: &quot;forward_003&quot;,
+      &quot;stage&quot;: &quot;B&quot;,
+      &quot;tier&quot;: &quot;exact_cell_proxy_perturbation&quot;,
       &quot;cell&quot;: &quot;YAPC&quot;,
       &quot;cell_role&quot;: &quot;llm-tree-leaf&quot;,
-      &quot;interpretation_set_id&quot;: &quot;llm_3_phenotype_or_state&quot;,
-      &quot;functions&quot;: [
-        {
-          &quot;var_name&quot;: &quot;HALLMARK_KRAS_SIGNALING_DN&quot;,
-          &quot;label&quot;: &quot;Kras Signaling Dn&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
-          &quot;direction&quot;: &quot;target&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 1
-        },
-        {
-          &quot;var_name&quot;: &quot;HALLMARK_KRAS_SIGNALING_UP&quot;,
-          &quot;label&quot;: &quot;Kras Signaling Up&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
-          &quot;direction&quot;: &quot;target&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 2
-        },
-        {
-          &quot;var_name&quot;: &quot;HALLMARK_INFLAMMATORY_RESPONSE&quot;,
-          &quot;label&quot;: &quot;Inflammatory Response&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
-          &quot;direction&quot;: &quot;target&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 3
-        }
-      ],
-      &quot;modality&quot;: &quot;sh&quot;,
-      &quot;evidence_level&quot;: &quot;function-set-and-cell-scope&quot;
+      &quot;perturbation&quot;: &quot;HRAS&quot;,
+      &quot;perturbation_role&quot;: &quot;supporting-semantic-neighbor&quot;,
+      &quot;perturbation_record&quot;: {
+        &quot;symbol&quot;: &quot;HRAS&quot;,
+        &quot;similarity&quot;: 0.76,
+        &quot;role&quot;: &quot;supporting-semantic-neighbor&quot;,
+        &quot;rank&quot;: 2
+      },
+      &quot;evidence_level&quot;: &quot;exact_cell_proxy_perturbation&quot;
     }
   ],
-  &quot;function_interpretation_sets&quot;: [
+  &quot;perturbation&quot;: {
+    &quot;symbol&quot;: &quot;KRAS&quot;,
+    &quot;gene_type&quot;: &quot;protein_coding&quot;,
+    &quot;in_matrix&quot;: true,
+    &quot;role&quot;: &quot;exact&quot;,
+    &quot;rank&quot;: 1
+  },
+  &quot;perturbation_proxies&quot;: [
     {
-      &quot;set_id&quot;: &quot;llm_1_direct_pathway&quot;,
-      &quot;status&quot;: &quot;resolved&quot;,
-      &quot;perspective&quot;: &quot;direct_pathway&quot;,
-      &quot;functions&quot;: [
-        {
-          &quot;var_name&quot;: &quot;HALLMARK_KRAS_SIGNALING_UP&quot;,
-          &quot;label&quot;: &quot;Kras Signaling Up&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
-          &quot;direction&quot;: &quot;target&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 1
-        },
-        {
-          &quot;var_name&quot;: &quot;HALLMARK_KRAS_SIGNALING_DN&quot;,
-          &quot;label&quot;: &quot;Kras Signaling Dn&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
-          &quot;direction&quot;: &quot;target&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 2
-        },
-        {
-          &quot;var_name&quot;: &quot;HALLMARK_TNFA_SIGNALING_VIA_NFKB&quot;,
-          &quot;label&quot;: &quot;Tnfa Signaling Via Nfkb&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
-          &quot;direction&quot;: &quot;target&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 3
-        }
-      ]
-    },
-    {
-      &quot;set_id&quot;: &quot;llm_2_mechanism_or_program&quot;,
-      &quot;status&quot;: &quot;resolved&quot;,
-      &quot;perspective&quot;: &quot;mechanism_or_program&quot;,
-      &quot;functions&quot;: [
-        {
-          &quot;var_name&quot;: &quot;HALLMARK_KRAS_SIGNALING_DN&quot;,
-          &quot;label&quot;: &quot;Kras Signaling Dn&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
-          &quot;direction&quot;: &quot;target&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 1
-        },
-        {
-          &quot;var_name&quot;: &quot;HALLMARK_KRAS_SIGNALING_UP&quot;,
-          &quot;label&quot;: &quot;Kras Signaling Up&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
-          &quot;direction&quot;: &quot;target&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 2
-        },
-        {
-          &quot;var_name&quot;: &quot;HALLMARK_MTORC1_SIGNALING&quot;,
-          &quot;label&quot;: &quot;Mtorc1 Signaling&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
-          &quot;direction&quot;: &quot;target&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 3
-        }
-      ]
-    },
-    {
-      &quot;set_id&quot;: &quot;llm_3_phenotype_or_state&quot;,
-      &quot;status&quot;: &quot;resolved&quot;,
-      &quot;perspective&quot;: &quot;phenotype_or_state&quot;,
-      &quot;functions&quot;: [
-        {
-          &quot;var_name&quot;: &quot;HALLMARK_KRAS_SIGNALING_DN&quot;,
-          &quot;label&quot;: &quot;Kras Signaling Dn&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
-          &quot;direction&quot;: &quot;target&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 1
-        },
-        {
-          &quot;var_name&quot;: &quot;HALLMARK_KRAS_SIGNALING_UP&quot;,
-          &quot;label&quot;: &quot;Kras Signaling Up&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
-          &quot;direction&quot;: &quot;target&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 2
-        },
-        {
-          &quot;var_name&quot;: &quot;HALLMARK_INFLAMMATORY_RESPONSE&quot;,
-          &quot;label&quot;: &quot;Inflammatory Response&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
-          &quot;direction&quot;: &quot;target&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 3
-        }
-      ]
-    }
-  ],
-  &quot;functions&quot;: [
-    {
-      &quot;var_name&quot;: &quot;HALLMARK_KRAS_SIGNALING_UP&quot;,
-      &quot;label&quot;: &quot;Kras Signaling Up&quot;,
-      &quot;source&quot;: &quot;hallmark&quot;,
-      &quot;direction&quot;: &quot;target&quot;,
-      &quot;input&quot;: &quot;llm-mapped&quot;,
+      &quot;symbol&quot;: &quot;NRAS&quot;,
+      &quot;similarity&quot;: 1.0,
+      &quot;role&quot;: &quot;supporting-semantic-neighbor&quot;,
       &quot;rank&quot;: 1
     },
     {
-      &quot;var_name&quot;: &quot;HALLMARK_KRAS_SIGNALING_DN&quot;,
-      &quot;label&quot;: &quot;Kras Signaling Dn&quot;,
-      &quot;source&quot;: &quot;hallmark&quot;,
-      &quot;direction&quot;: &quot;target&quot;,
-      &quot;input&quot;: &quot;llm-mapped&quot;,
+      &quot;symbol&quot;: &quot;HRAS&quot;,
+      &quot;similarity&quot;: 0.76,
+      &quot;role&quot;: &quot;supporting-semantic-neighbor&quot;,
       &quot;rank&quot;: 2
     },
     {
-      &quot;var_name&quot;: &quot;HALLMARK_TNFA_SIGNALING_VIA_NFKB&quot;,
-      &quot;label&quot;: &quot;Tnfa Signaling Via Nfkb&quot;,
-      &quot;source&quot;: &quot;hallmark&quot;,
-      &quot;direction&quot;: &quot;target&quot;,
-      &quot;input&quot;: &quot;llm-mapped&quot;,
+      &quot;symbol&quot;: &quot;SOS1&quot;,
+      &quot;similarity&quot;: 0.74,
+      &quot;role&quot;: &quot;supporting-semantic-neighbor&quot;,
       &quot;rank&quot;: 3
+    },
+    {
+      &quot;symbol&quot;: &quot;RRAS2&quot;,
+      &quot;similarity&quot;: 0.74,
+      &quot;role&quot;: &quot;supporting-semantic-neighbor&quot;,
+      &quot;rank&quot;: 4
+    },
+    {
+      &quot;symbol&quot;: &quot;SOS2&quot;,
+      &quot;similarity&quot;: 0.7,
+      &quot;role&quot;: &quot;supporting-semantic-neighbor&quot;,
+      &quot;rank&quot;: 5
+    }
+  ],
+  &quot;functions&quot;: [],
+  &quot;tier_order&quot;: [
+    {
+      &quot;tier&quot;: &quot;exact_cell_exact_perturbation&quot;,
+      &quot;cell_role&quot;: &quot;exact&quot;,
+      &quot;perturbation_role&quot;: &quot;exact&quot;
+    },
+    {
+      &quot;tier&quot;: &quot;exact_cell_proxy_perturbation&quot;,
+      &quot;cell_role&quot;: &quot;exact&quot;,
+      &quot;perturbation_role&quot;: &quot;proxy&quot;
+    },
+    {
+      &quot;tier&quot;: &quot;proxy_cell_exact_perturbation&quot;,
+      &quot;cell_role&quot;: &quot;proxy&quot;,
+      &quot;perturbation_role&quot;: &quot;exact&quot;
+    },
+    {
+      &quot;tier&quot;: &quot;proxy_cell_proxy_perturbation&quot;,
+      &quot;cell_role&quot;: &quot;proxy&quot;,
+      &quot;perturbation_role&quot;: &quot;proxy&quot;
     }
   ]
 }</pre></section>
-    <section><h3>LLM Calls</h3><p>cell_tree_lineage / ok / deepseek-v4-flash / temp=0 / validated=True<br>cell_tree_disease / ok / deepseek-v4-flash / temp=0 / validated=True<br>cell_tree_subtype / ok / deepseek-v4-flash / temp=0 / validated=True<br>function_reverse_mapping_direct_pathway / ok / deepseek-v4-flash / temp=0.0 / validated=True<br>function_reverse_mapping_mechanism_or_program / ok / deepseek-v4-flash / temp=0.35 / validated=True<br>function_reverse_mapping_phenotype_or_state / ok / deepseek-v4-flash / temp=0.7 / validated=True</p></section>
+    <section><h3>LLM Calls</h3><p>cell_tree_lineage / ok / deepseek-v4-flash / temp=0 / validated=True<br>cell_tree_disease / ok / deepseek-v4-flash / temp=0 / validated=True<br>cell_tree_subtype / ok / deepseek-v4-flash / temp=0 / validated=True</p></section>
   </div>
   <pre></pre>
 </article>
@@ -2962,13 +2852,13 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     &quot;provider&quot;: &quot;deepseek&quot;,
     &quot;base_url&quot;: &quot;https://api.deepseek.com/v1&quot;,
     &quot;model&quot;: &quot;deepseek-v4-flash&quot;,
-    &quot;started_at&quot;: &quot;2026-06-27T22:36:37.964400+00:00&quot;,
-    &quot;finished_at&quot;: &quot;2026-06-27T22:36:39.704967+00:00&quot;,
+    &quot;started_at&quot;: &quot;2026-06-27T21:43:51.578491+00:00&quot;,
+    &quot;finished_at&quot;: &quot;2026-06-27T21:43:53.608056+00:00&quot;,
     &quot;attempts&quot;: [
       {
         &quot;attempt&quot;: 1,
         &quot;ok&quot;: true,
-        &quot;elapsed_ms&quot;: 1740,
+        &quot;elapsed_ms&quot;: 2029,
         &quot;response_hash&quot;: &quot;1b5450346712b19e93450e998945a3ac79c7bf1efd9174062c92f8b99e793bb3&quot;,
         &quot;response_excerpt&quot;: &quot;{\n  \&quot;query_type\&quot;: \&quot;forward\&quot;,\n  \&quot;bio_context\&quot;: \&quot;prostate cancer\&quot;,\n  \&quot;pert_desc\&quot;: \&quot;MYC\&quot;,\n  \&quot;pert_class\&quot;: \&quot;genetic\&quot;,\n  \&quot;genetic_modality\&quot;: \&quot;overexpression\&quot;,\n  \&quot;function_desc\&quot;: null,\n  \&quot;activate\&quot;: [],\n  \&quot;suppress\&quot;: [],\n  \&quot;top_n\&quot;: null\n}&quot;
       }
@@ -3133,13 +3023,13 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     &quot;provider&quot;: &quot;deepseek&quot;,
     &quot;base_url&quot;: &quot;https://api.deepseek.com/v1&quot;,
     &quot;model&quot;: &quot;deepseek-v4-flash&quot;,
-    &quot;started_at&quot;: &quot;2026-06-27T22:36:44.311835+00:00&quot;,
-    &quot;finished_at&quot;: &quot;2026-06-27T22:36:46.055970+00:00&quot;,
+    &quot;started_at&quot;: &quot;2026-06-27T21:43:58.593409+00:00&quot;,
+    &quot;finished_at&quot;: &quot;2026-06-27T21:44:00.105476+00:00&quot;,
     &quot;attempts&quot;: [
       {
         &quot;attempt&quot;: 1,
         &quot;ok&quot;: true,
-        &quot;elapsed_ms&quot;: 1743,
+        &quot;elapsed_ms&quot;: 1511,
         &quot;response_hash&quot;: &quot;dd7f40e5ae3ca79ee5b6d0f37c05583d26486b6e42d7b339db31abf58c62c5e8&quot;,
         &quot;response_excerpt&quot;: &quot;{\n  \&quot;query_type\&quot;: \&quot;forward\&quot;,\n  \&quot;bio_context\&quot;: \&quot;lung cancer\&quot;,\n  \&quot;pert_desc\&quot;: \&quot;EGFR\&quot;,\n  \&quot;pert_class\&quot;: \&quot;genetic\&quot;,\n  \&quot;genetic_modality\&quot;: \&quot;knockdown\&quot;,\n  \&quot;function_desc\&quot;: null,\n  \&quot;activate\&quot;: [],\n  \&quot;suppress\&quot;: [\&quot;EGFR\&quot;],\n  \&quot;top_n\&quot;: null\n}&quot;
       }
@@ -3302,13 +3192,13 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     &quot;provider&quot;: &quot;deepseek&quot;,
     &quot;base_url&quot;: &quot;https://api.deepseek.com/v1&quot;,
     &quot;model&quot;: &quot;deepseek-v4-flash&quot;,
-    &quot;started_at&quot;: &quot;2026-06-27T22:36:49.714716+00:00&quot;,
-    &quot;finished_at&quot;: &quot;2026-06-27T22:36:51.480624+00:00&quot;,
+    &quot;started_at&quot;: &quot;2026-06-27T21:44:05.536730+00:00&quot;,
+    &quot;finished_at&quot;: &quot;2026-06-27T21:44:07.739983+00:00&quot;,
     &quot;attempts&quot;: [
       {
         &quot;attempt&quot;: 1,
         &quot;ok&quot;: true,
-        &quot;elapsed_ms&quot;: 1765,
+        &quot;elapsed_ms&quot;: 2203,
         &quot;response_hash&quot;: &quot;7d651206c86a92017bb42cacb843ee96e25c56c72808761257db5a3400c6554b&quot;,
         &quot;response_excerpt&quot;: &quot;{\n  \&quot;query_type\&quot;: \&quot;forward\&quot;,\n  \&quot;bio_context\&quot;: \&quot;colon cancer\&quot;,\n  \&quot;pert_desc\&quot;: \&quot;beta catenin / CTNNB1\&quot;,\n  \&quot;pert_class\&quot;: \&quot;genetic\&quot;,\n  \&quot;genetic_modality\&quot;: \&quot;knockdown\&quot;,\n  \&quot;function_desc\&quot;: null,\n  \&quot;activate\&quot;: [],\n  \&quot;suppress\&quot;: [],\n  \&quot;top_n\&quot;: null\n}&quot;
       }
@@ -3446,13 +3336,13 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     &quot;provider&quot;: &quot;deepseek&quot;,
     &quot;base_url&quot;: &quot;https://api.deepseek.com/v1&quot;,
     &quot;model&quot;: &quot;deepseek-v4-flash&quot;,
-    &quot;started_at&quot;: &quot;2026-06-27T22:36:57.510377+00:00&quot;,
-    &quot;finished_at&quot;: &quot;2026-06-27T22:36:59.021946+00:00&quot;,
+    &quot;started_at&quot;: &quot;2026-06-27T21:44:14.481607+00:00&quot;,
+    &quot;finished_at&quot;: &quot;2026-06-27T21:44:15.930641+00:00&quot;,
     &quot;attempts&quot;: [
       {
         &quot;attempt&quot;: 1,
         &quot;ok&quot;: true,
-        &quot;elapsed_ms&quot;: 1511,
+        &quot;elapsed_ms&quot;: 1448,
         &quot;response_hash&quot;: &quot;e3f745f6ca764225f3a3344339cc131fdc00e332f6e3bc1454ae1e53a9b1b596&quot;,
         &quot;response_excerpt&quot;: &quot;{\n  \&quot;query_type\&quot;: \&quot;reverse\&quot;,\n  \&quot;bio_context\&quot;: \&quot;breast cancer\&quot;,\n  \&quot;pert_desc\&quot;: null,\n  \&quot;pert_class\&quot;: \&quot;drug\&quot;,\n  \&quot;genetic_modality\&quot;: null,\n  \&quot;function_desc\&quot;: null,\n  \&quot;activate\&quot;: [\&quot;programmed cell death\&quot;],\n  \&quot;suppress\&quot;: [\&quot;cycling\&quot;],\n  \&quot;top_n\&quot;: null\n}&quot;
       }
@@ -3553,6 +3443,22 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;direction&quot;: &quot;mixed&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
+        },
+        {
+          &quot;var_name&quot;: &quot;MP5 Stress &quot;,
+          &quot;label&quot;: &quot;Stress &quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;direction&quot;: &quot;mixed&quot;,
+          &quot;input&quot;: &quot;llm-mapped&quot;,
+          &quot;rank&quot;: 2
+        },
+        {
+          &quot;var_name&quot;: &quot;MP9 Unfolded protein response&quot;,
+          &quot;label&quot;: &quot;Unfolded protein response&quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;direction&quot;: &quot;mixed&quot;,
+          &quot;input&quot;: &quot;llm-mapped&quot;,
+          &quot;rank&quot;: 3
         }
       ]
     },
@@ -3578,9 +3484,9 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_UNFOLDED_PROTEIN_RESPONSE&quot;,
-          &quot;label&quot;: &quot;Unfolded Protein Response&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
+          &quot;var_name&quot;: &quot;MP5 Stress &quot;,
+          &quot;label&quot;: &quot;Stress &quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;mixed&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -3634,8 +3540,8 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     &quot;provider&quot;: &quot;deepseek&quot;,
     &quot;base_url&quot;: &quot;https://api.deepseek.com/v1&quot;,
     &quot;model&quot;: &quot;deepseek-v4-flash&quot;,
-    &quot;started_at&quot;: &quot;2026-06-27T22:37:05.715727+00:00&quot;,
-    &quot;finished_at&quot;: &quot;2026-06-27T22:37:07.148916+00:00&quot;,
+    &quot;started_at&quot;: &quot;2026-06-27T21:44:23.099304+00:00&quot;,
+    &quot;finished_at&quot;: &quot;2026-06-27T21:44:24.531864+00:00&quot;,
     &quot;attempts&quot;: [
       {
         &quot;attempt&quot;: 1,
@@ -3681,9 +3587,9 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_E2F_TARGETS&quot;,
-          &quot;label&quot;: &quot;E2F Targets&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
+          &quot;var_name&quot;: &quot;MP20 MYC&quot;,
+          &quot;label&quot;: &quot;MYC&quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -3715,9 +3621,9 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_E2F_TARGETS&quot;,
-          &quot;label&quot;: &quot;E2F Targets&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
+          &quot;var_name&quot;: &quot;MP20 MYC&quot;,
+          &quot;label&quot;: &quot;MYC&quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -3749,9 +3655,9 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_E2F_TARGETS&quot;,
-          &quot;label&quot;: &quot;E2F Targets&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
+          &quot;var_name&quot;: &quot;MP20 MYC&quot;,
+          &quot;label&quot;: &quot;MYC&quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -3784,9 +3690,9 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_E2F_TARGETS&quot;,
-          &quot;label&quot;: &quot;E2F Targets&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
+          &quot;var_name&quot;: &quot;MP20 MYC&quot;,
+          &quot;label&quot;: &quot;MYC&quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -3799,28 +3705,12 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;perspective&quot;: &quot;mechanism_or_program&quot;,
       &quot;functions&quot;: [
         {
-          &quot;var_name&quot;: &quot;HALLMARK_MYC_TARGETS_V1&quot;,
-          &quot;label&quot;: &quot;Myc Targets V1&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
-          &quot;direction&quot;: &quot;suppress&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 1
-        },
-        {
-          &quot;var_name&quot;: &quot;HALLMARK_MYC_TARGETS_V2&quot;,
-          &quot;label&quot;: &quot;Myc Targets V2&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
-          &quot;direction&quot;: &quot;suppress&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 2
-        },
-        {
           &quot;var_name&quot;: &quot;MP20 MYC&quot;,
           &quot;label&quot;: &quot;MYC&quot;,
           &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 3
+          &quot;rank&quot;: 1
         }
       ]
     },
@@ -3836,6 +3726,22 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
+        },
+        {
+          &quot;var_name&quot;: &quot;MP1  Cell Cycle - G2/M&quot;,
+          &quot;label&quot;: &quot; Cell Cycle - G2/M&quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;direction&quot;: &quot;suppress&quot;,
+          &quot;input&quot;: &quot;llm-mapped&quot;,
+          &quot;rank&quot;: 2
+        },
+        {
+          &quot;var_name&quot;: &quot;MP2  Cell Cycle - G1/S&quot;,
+          &quot;label&quot;: &quot; Cell Cycle - G1/S&quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;direction&quot;: &quot;suppress&quot;,
+          &quot;input&quot;: &quot;llm-mapped&quot;,
+          &quot;rank&quot;: 3
         }
       ]
     }
@@ -3858,9 +3764,9 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;rank&quot;: 2
     },
     {
-      &quot;var_name&quot;: &quot;HALLMARK_E2F_TARGETS&quot;,
-      &quot;label&quot;: &quot;E2F Targets&quot;,
-      &quot;source&quot;: &quot;hallmark&quot;,
+      &quot;var_name&quot;: &quot;MP20 MYC&quot;,
+      &quot;label&quot;: &quot;MYC&quot;,
+      &quot;source&quot;: &quot;3ca_mps&quot;,
       &quot;direction&quot;: &quot;suppress&quot;,
       &quot;input&quot;: &quot;llm-mapped&quot;,
       &quot;rank&quot;: 3
@@ -3902,13 +3808,13 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     &quot;provider&quot;: &quot;deepseek&quot;,
     &quot;base_url&quot;: &quot;https://api.deepseek.com/v1&quot;,
     &quot;model&quot;: &quot;deepseek-v4-flash&quot;,
-    &quot;started_at&quot;: &quot;2026-06-27T22:37:15.341260+00:00&quot;,
-    &quot;finished_at&quot;: &quot;2026-06-27T22:37:17.080914+00:00&quot;,
+    &quot;started_at&quot;: &quot;2026-06-27T21:44:31.396149+00:00&quot;,
+    &quot;finished_at&quot;: &quot;2026-06-27T21:44:32.582487+00:00&quot;,
     &quot;attempts&quot;: [
       {
         &quot;attempt&quot;: 1,
         &quot;ok&quot;: true,
-        &quot;elapsed_ms&quot;: 1739,
+        &quot;elapsed_ms&quot;: 1186,
         &quot;response_hash&quot;: &quot;c3bfe351eaf2cc1c667f66f687ec41074b93cb4105a3cd1417f48e0a22caee13&quot;,
         &quot;response_excerpt&quot;: &quot;{\n  \&quot;query_type\&quot;: \&quot;reverse\&quot;,\n  \&quot;bio_context\&quot;: \&quot;ovarian cancer\&quot;,\n  \&quot;pert_desc\&quot;: null,\n  \&quot;pert_class\&quot;: \&quot;drug\&quot;,\n  \&quot;genetic_modality\&quot;: null,\n  \&quot;function_desc\&quot;: null,\n  \&quot;activate\&quot;: [\&quot;DNA damage\&quot;, \&quot;repair stress signatures\&quot;],\n  \&quot;suppress\&quot;: [],\n  \&quot;top_n\&quot;: null\n}&quot;
       }
@@ -3983,8 +3889,8 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;MP7 Stress (in vitro)&quot;,
-          &quot;label&quot;: &quot;Stress (in vitro)&quot;,
+          &quot;var_name&quot;: &quot;MP9 Unfolded protein response&quot;,
+          &quot;label&quot;: &quot;Unfolded protein response&quot;,
           &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;activate&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
@@ -4083,8 +3989,8 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;MP7 Stress (in vitro)&quot;,
-          &quot;label&quot;: &quot;Stress (in vitro)&quot;,
+          &quot;var_name&quot;: &quot;MP9 Unfolded protein response&quot;,
+          &quot;label&quot;: &quot;Unfolded protein response&quot;,
           &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;activate&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
@@ -4172,8 +4078,8 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
   &quot;function_desc&quot;: null,
   &quot;activate&quot;: [],
   &quot;suppress&quot;: [
-    &quot;MAPK signaling&quot;,
-    &quot;growth-factor signaling&quot;
+    &quot;MAPK signaling output&quot;,
+    &quot;growth-factor signaling output&quot;
   ],
   &quot;top_n&quot;: null,
   &quot;extracted_phrases&quot;: {},
@@ -4186,22 +4092,22 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     &quot;provider&quot;: &quot;deepseek&quot;,
     &quot;base_url&quot;: &quot;https://api.deepseek.com/v1&quot;,
     &quot;model&quot;: &quot;deepseek-v4-flash&quot;,
-    &quot;started_at&quot;: &quot;2026-06-27T22:37:23.443921+00:00&quot;,
-    &quot;finished_at&quot;: &quot;2026-06-27T22:37:24.994270+00:00&quot;,
+    &quot;started_at&quot;: &quot;2026-06-27T21:44:39.279016+00:00&quot;,
+    &quot;finished_at&quot;: &quot;2026-06-27T21:44:40.696918+00:00&quot;,
     &quot;attempts&quot;: [
       {
         &quot;attempt&quot;: 1,
         &quot;ok&quot;: true,
-        &quot;elapsed_ms&quot;: 1550,
-        &quot;response_hash&quot;: &quot;537c8bca07b5a32152567c780f643682fbffc1ff164bc7566a95c9c786e000d5&quot;,
-        &quot;response_excerpt&quot;: &quot;{\n  \&quot;query_type\&quot;: \&quot;reverse\&quot;,\n  \&quot;bio_context\&quot;: \&quot;melanoma\&quot;,\n  \&quot;pert_desc\&quot;: null,\n  \&quot;pert_class\&quot;: \&quot;drug\&quot;,\n  \&quot;genetic_modality\&quot;: null,\n  \&quot;function_desc\&quot;: null,\n  \&quot;activate\&quot;: [],\n  \&quot;suppress\&quot;: [\&quot;MAPK signaling\&quot;, \&quot;growth-factor signaling\&quot;],\n  \&quot;top_n\&quot;: null\n}&quot;
+        &quot;elapsed_ms&quot;: 1417,
+        &quot;response_hash&quot;: &quot;ab2d72d0261e0b35b9055f338c428c8ce4f67c3360fe8abb2b7c16b0629422fb&quot;,
+        &quot;response_excerpt&quot;: &quot;{\n  \&quot;query_type\&quot;: \&quot;reverse\&quot;,\n  \&quot;bio_context\&quot;: \&quot;melanoma\&quot;,\n  \&quot;pert_desc\&quot;: null,\n  \&quot;pert_class\&quot;: \&quot;drug\&quot;,\n  \&quot;genetic_modality\&quot;: null,\n  \&quot;function_desc\&quot;: null,\n  \&quot;activate\&quot;: [],\n  \&quot;suppress\&quot;: [\&quot;MAPK signaling output\&quot;, \&quot;growth-factor signaling output\&quot;],\n  \&quot;top_n\&quot;: null\n}&quot;
       }
     ],
     &quot;schema_repairs&quot;: 0,
     &quot;chat_restarts&quot;: 0,
     &quot;final_status&quot;: &quot;ok&quot;,
-    &quot;parsed_json_hash&quot;: &quot;ff3cb143ab310c16a0d3dd4ed29de6e1485a469e7ee99eee1fde35face0230e4&quot;,
-    &quot;parsed_json_excerpt&quot;: &quot;{\&quot;activate\&quot;: [], \&quot;bio_context\&quot;: \&quot;melanoma\&quot;, \&quot;function_desc\&quot;: null, \&quot;genetic_modality\&quot;: null, \&quot;pert_class\&quot;: \&quot;drug\&quot;, \&quot;pert_desc\&quot;: null, \&quot;query_type\&quot;: \&quot;reverse\&quot;, \&quot;suppress\&quot;: [\&quot;MAPK signaling\&quot;, \&quot;growth-factor signaling\&quot;], \&quot;top_n\&quot;: null}&quot;,
+    &quot;parsed_json_hash&quot;: &quot;6c3cbf4a5a489455b093a183043d7a132c46b42a98b004e4e9e231fb4e464b2c&quot;,
+    &quot;parsed_json_excerpt&quot;: &quot;{\&quot;activate\&quot;: [], \&quot;bio_context\&quot;: \&quot;melanoma\&quot;, \&quot;function_desc\&quot;: null, \&quot;genetic_modality\&quot;: null, \&quot;pert_class\&quot;: \&quot;drug\&quot;, \&quot;pert_desc\&quot;: null, \&quot;query_type\&quot;: \&quot;reverse\&quot;, \&quot;suppress\&quot;: [\&quot;MAPK signaling output\&quot;, \&quot;growth-factor signaling output\&quot;], \&quot;top_n\&quot;: null}&quot;,
     &quot;error&quot;: null
   }
 }</pre></section>
@@ -4359,16 +4265,16 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_PI3K_AKT_MTOR_SIGNALING&quot;,
-          &quot;label&quot;: &quot;Pi3K Akt Mtor Signaling&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_MTORC1_SIGNALING&quot;,
+          &quot;label&quot;: &quot;Mtorc1 Signaling&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_MTORC1_SIGNALING&quot;,
-          &quot;label&quot;: &quot;Mtorc1 Signaling&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_PI3K_AKT_MTOR_SIGNALING&quot;,
+          &quot;label&quot;: &quot;Pi3K Akt Mtor Signaling&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
@@ -4382,24 +4288,24 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;perspective&quot;: &quot;phenotype_or_state&quot;,
       &quot;functions&quot;: [
         {
-          &quot;var_name&quot;: &quot;HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION&quot;,
-          &quot;label&quot;: &quot;Epithelial Mesenchymal Transition&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_KRAS_SIGNALING_UP&quot;,
+          &quot;label&quot;: &quot;Kras Signaling Up&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_KRAS_SIGNALING_UP&quot;,
-          &quot;label&quot;: &quot;Kras Signaling Up&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_PI3K_AKT_MTOR_SIGNALING&quot;,
+          &quot;label&quot;: &quot;Pi3K Akt Mtor Signaling&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_PI3K_AKT_MTOR_SIGNALING&quot;,
-          &quot;label&quot;: &quot;Pi3K Akt Mtor Signaling&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_MTORC1_SIGNALING&quot;,
+          &quot;label&quot;: &quot;Mtorc1 Signaling&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
@@ -4471,13 +4377,13 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     &quot;provider&quot;: &quot;deepseek&quot;,
     &quot;base_url&quot;: &quot;https://api.deepseek.com/v1&quot;,
     &quot;model&quot;: &quot;deepseek-v4-flash&quot;,
-    &quot;started_at&quot;: &quot;2026-06-27T22:37:32.721577+00:00&quot;,
-    &quot;finished_at&quot;: &quot;2026-06-27T22:37:34.319006+00:00&quot;,
+    &quot;started_at&quot;: &quot;2026-06-27T21:44:48.597065+00:00&quot;,
+    &quot;finished_at&quot;: &quot;2026-06-27T21:44:50.133520+00:00&quot;,
     &quot;attempts&quot;: [
       {
         &quot;attempt&quot;: 1,
         &quot;ok&quot;: true,
-        &quot;elapsed_ms&quot;: 1597,
+        &quot;elapsed_ms&quot;: 1535,
         &quot;response_hash&quot;: &quot;75e297cf24eb4b42e67b80daef68524a04551435e2a0e79107cc582714e4ea9c&quot;,
         &quot;response_excerpt&quot;: &quot;{\n  \&quot;query_type\&quot;: \&quot;reverse\&quot;,\n  \&quot;bio_context\&quot;: \&quot;glioblastoma\&quot;,\n  \&quot;pert_desc\&quot;: null,\n  \&quot;pert_class\&quot;: \&quot;drug\&quot;,\n  \&quot;genetic_modality\&quot;: null,\n  \&quot;function_desc\&quot;: null,\n  \&quot;activate\&quot;: [\&quot;differentiation-like state\&quot;],\n  \&quot;suppress\&quot;: [\&quot;division\&quot;],\n  \&quot;top_n\&quot;: null\n}&quot;
       }
@@ -4570,25 +4476,25 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;interpretation_set_id&quot;: &quot;llm_3_phenotype_or_state&quot;,
       &quot;functions&quot;: [
         {
-          &quot;var_name&quot;: &quot;HALLMARK_ADIPOGENESIS&quot;,
-          &quot;label&quot;: &quot;Adipogenesis&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_MYOGENESIS&quot;,
+          &quot;label&quot;: &quot;Myogenesis&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;mixed&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_MYOGENESIS&quot;,
-          &quot;label&quot;: &quot;Myogenesis&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION&quot;,
+          &quot;label&quot;: &quot;Epithelial Mesenchymal Transition&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;mixed&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;MP12 EMT-I&quot;,
-          &quot;label&quot;: &quot;EMT-I&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_ADIPOGENESIS&quot;,
+          &quot;label&quot;: &quot;Adipogenesis&quot;,
+          &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;mixed&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -4667,25 +4573,25 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;perspective&quot;: &quot;phenotype_or_state&quot;,
       &quot;functions&quot;: [
         {
-          &quot;var_name&quot;: &quot;HALLMARK_ADIPOGENESIS&quot;,
-          &quot;label&quot;: &quot;Adipogenesis&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_MYOGENESIS&quot;,
+          &quot;label&quot;: &quot;Myogenesis&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;mixed&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_MYOGENESIS&quot;,
-          &quot;label&quot;: &quot;Myogenesis&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION&quot;,
+          &quot;label&quot;: &quot;Epithelial Mesenchymal Transition&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;mixed&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;MP12 EMT-I&quot;,
-          &quot;label&quot;: &quot;EMT-I&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_ADIPOGENESIS&quot;,
+          &quot;label&quot;: &quot;Adipogenesis&quot;,
+          &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;mixed&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -4752,13 +4658,13 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     &quot;provider&quot;: &quot;deepseek&quot;,
     &quot;base_url&quot;: &quot;https://api.deepseek.com/v1&quot;,
     &quot;model&quot;: &quot;deepseek-v4-flash&quot;,
-    &quot;started_at&quot;: &quot;2026-06-27T22:37:41.964969+00:00&quot;,
-    &quot;finished_at&quot;: &quot;2026-06-27T22:37:43.641410+00:00&quot;,
+    &quot;started_at&quot;: &quot;2026-06-27T21:44:58.354894+00:00&quot;,
+    &quot;finished_at&quot;: &quot;2026-06-27T21:44:59.962906+00:00&quot;,
     &quot;attempts&quot;: [
       {
         &quot;attempt&quot;: 1,
         &quot;ok&quot;: true,
-        &quot;elapsed_ms&quot;: 1676,
+        &quot;elapsed_ms&quot;: 1607,
         &quot;response_hash&quot;: &quot;4f3c7084dad1a8b2da3395a0466c30fce8a6e1405d34737aa851be5576cf844a&quot;,
         &quot;response_excerpt&quot;: &quot;{\n  \&quot;query_type\&quot;: \&quot;reverse\&quot;,\n  \&quot;bio_context\&quot;: \&quot;breast cancer\&quot;,\n  \&quot;pert_desc\&quot;: null,\n  \&quot;pert_class\&quot;: \&quot;genetic\&quot;,\n  \&quot;genetic_modality\&quot;: null,\n  \&quot;function_desc\&quot;: null,\n  \&quot;activate\&quot;: [],\n  \&quot;suppress\&quot;: [],\n  \&quot;top_n\&quot;: null\n}&quot;
       }
@@ -4893,13 +4799,13 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     &quot;provider&quot;: &quot;deepseek&quot;,
     &quot;base_url&quot;: &quot;https://api.deepseek.com/v1&quot;,
     &quot;model&quot;: &quot;deepseek-v4-flash&quot;,
-    &quot;started_at&quot;: &quot;2026-06-27T22:37:47.803515+00:00&quot;,
-    &quot;finished_at&quot;: &quot;2026-06-27T22:37:49.337145+00:00&quot;,
+    &quot;started_at&quot;: &quot;2026-06-27T21:45:05.084651+00:00&quot;,
+    &quot;finished_at&quot;: &quot;2026-06-27T21:45:06.925041+00:00&quot;,
     &quot;attempts&quot;: [
       {
         &quot;attempt&quot;: 1,
         &quot;ok&quot;: true,
-        &quot;elapsed_ms&quot;: 1533,
+        &quot;elapsed_ms&quot;: 1840,
         &quot;response_hash&quot;: &quot;3f0e5b75707ab7dc8193e84866f42fd8720e95a549c5d33b3dd424e39437acba&quot;,
         &quot;response_excerpt&quot;: &quot;{\n  \&quot;query_type\&quot;: \&quot;reverse\&quot;,\n  \&quot;bio_context\&quot;: \&quot;liver cancer\&quot;,\n  \&quot;pert_desc\&quot;: null,\n  \&quot;pert_class\&quot;: \&quot;genetic\&quot;,\n  \&quot;genetic_modality\&quot;: \&quot;knockdown\&quot;,\n  \&quot;function_desc\&quot;: null,\n  \&quot;activate\&quot;: [],\n  \&quot;suppress\&quot;: [\&quot;beta-catenin\&quot;, \&quot;Wnt-like output\&quot;],\n  \&quot;top_n\&quot;: null\n}&quot;
       }
@@ -5002,16 +4908,16 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;MP12 EMT-I&quot;,
-          &quot;label&quot;: &quot;EMT-I&quot;,
+          &quot;var_name&quot;: &quot;MP14 EMT-III &quot;,
+          &quot;label&quot;: &quot;EMT-III &quot;,
           &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;MP13 EMT-II&quot;,
-          &quot;label&quot;: &quot;EMT-II&quot;,
+          &quot;var_name&quot;: &quot;MP15 EMT IV&quot;,
+          &quot;label&quot;: &quot;EMT IV&quot;,
           &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
@@ -5080,13 +4986,13 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     &quot;provider&quot;: &quot;deepseek&quot;,
     &quot;base_url&quot;: &quot;https://api.deepseek.com/v1&quot;,
     &quot;model&quot;: &quot;deepseek-v4-flash&quot;,
-    &quot;started_at&quot;: &quot;2026-06-27T22:37:57.314683+00:00&quot;,
-    &quot;finished_at&quot;: &quot;2026-06-27T22:37:59.269233+00:00&quot;,
+    &quot;started_at&quot;: &quot;2026-06-27T21:45:15.732021+00:00&quot;,
+    &quot;finished_at&quot;: &quot;2026-06-27T21:45:17.472515+00:00&quot;,
     &quot;attempts&quot;: [
       {
         &quot;attempt&quot;: 1,
         &quot;ok&quot;: true,
-        &quot;elapsed_ms&quot;: 1954,
+        &quot;elapsed_ms&quot;: 1740,
         &quot;response_hash&quot;: &quot;f8d083288aa2e6c2b906e6db65e5174efb84e7310da8f975d7cde588aab4ef34&quot;,
         &quot;response_excerpt&quot;: &quot;{\n  \&quot;query_type\&quot;: \&quot;reverse\&quot;,\n  \&quot;bio_context\&quot;: \&quot;ovarian cancer\&quot;,\n  \&quot;pert_desc\&quot;: null,\n  \&quot;pert_class\&quot;: \&quot;genetic\&quot;,\n  \&quot;genetic_modality\&quot;: \&quot;rnai\&quot;,\n  \&quot;function_desc\&quot;: \&quot;decrease DNA repair programs\&quot;,\n  \&quot;activate\&quot;: [],\n  \&quot;suppress\&quot;: [\&quot;DNA repair programs\&quot;],\n  \&quot;top_n\&quot;: null\n}&quot;
       }
@@ -5135,22 +5041,6 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
-        },
-        {
-          &quot;var_name&quot;: &quot;MP8 Proteasomal degradation&quot;,
-          &quot;label&quot;: &quot;Proteasomal degradation&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
-          &quot;direction&quot;: &quot;suppress&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 2
-        },
-        {
-          &quot;var_name&quot;: &quot;MP9 Unfolded protein response&quot;,
-          &quot;label&quot;: &quot;Unfolded protein response&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
-          &quot;direction&quot;: &quot;suppress&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 3
         }
       ],
       &quot;modality&quot;: &quot;sh&quot;,
@@ -5169,22 +5059,6 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
-        },
-        {
-          &quot;var_name&quot;: &quot;MP8 Proteasomal degradation&quot;,
-          &quot;label&quot;: &quot;Proteasomal degradation&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
-          &quot;direction&quot;: &quot;suppress&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 2
-        },
-        {
-          &quot;var_name&quot;: &quot;MP9 Unfolded protein response&quot;,
-          &quot;label&quot;: &quot;Unfolded protein response&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
-          &quot;direction&quot;: &quot;suppress&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 3
         }
       ],
       &quot;modality&quot;: &quot;sh&quot;,
@@ -5219,22 +5093,6 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
-        },
-        {
-          &quot;var_name&quot;: &quot;MP8 Proteasomal degradation&quot;,
-          &quot;label&quot;: &quot;Proteasomal degradation&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
-          &quot;direction&quot;: &quot;suppress&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 2
-        },
-        {
-          &quot;var_name&quot;: &quot;MP9 Unfolded protein response&quot;,
-          &quot;label&quot;: &quot;Unfolded protein response&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
-          &quot;direction&quot;: &quot;suppress&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 3
         }
       ]
     },
@@ -5250,22 +5108,6 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
-        },
-        {
-          &quot;var_name&quot;: &quot;MP8 Proteasomal degradation&quot;,
-          &quot;label&quot;: &quot;Proteasomal degradation&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
-          &quot;direction&quot;: &quot;suppress&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 2
-        },
-        {
-          &quot;var_name&quot;: &quot;MP9 Unfolded protein response&quot;,
-          &quot;label&quot;: &quot;Unfolded protein response&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
-          &quot;direction&quot;: &quot;suppress&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 3
         }
       ]
     }
@@ -5313,13 +5155,13 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     &quot;provider&quot;: &quot;deepseek&quot;,
     &quot;base_url&quot;: &quot;https://api.deepseek.com/v1&quot;,
     &quot;model&quot;: &quot;deepseek-v4-flash&quot;,
-    &quot;started_at&quot;: &quot;2026-06-27T22:38:08.385097+00:00&quot;,
-    &quot;finished_at&quot;: &quot;2026-06-27T22:38:10.328330+00:00&quot;,
+    &quot;started_at&quot;: &quot;2026-06-27T21:45:23.718036+00:00&quot;,
+    &quot;finished_at&quot;: &quot;2026-06-27T21:45:25.296344+00:00&quot;,
     &quot;attempts&quot;: [
       {
         &quot;attempt&quot;: 1,
         &quot;ok&quot;: true,
-        &quot;elapsed_ms&quot;: 1942,
+        &quot;elapsed_ms&quot;: 1578,
         &quot;response_hash&quot;: &quot;717eaa1f9d7b99e4ec51587cfa733cf31bcdd229c9ea18b49127a3bfd97399ab&quot;,
         &quot;response_excerpt&quot;: &quot;{\n  \&quot;query_type\&quot;: \&quot;reverse\&quot;,\n  \&quot;bio_context\&quot;: \&quot;neural tumor\&quot;,\n  \&quot;pert_desc\&quot;: null,\n  \&quot;pert_class\&quot;: \&quot;genetic\&quot;,\n  \&quot;genetic_modality\&quot;: null,\n  \&quot;function_desc\&quot;: null,\n  \&quot;activate\&quot;: [],\n  \&quot;suppress\&quot;: [],\n  \&quot;top_n\&quot;: null\n}&quot;
       }
@@ -5420,9 +5262,9 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_ADIPOGENESIS&quot;,
-          &quot;label&quot;: &quot;Adipogenesis&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
+          &quot;var_name&quot;: &quot;MP20 MYC&quot;,
+          &quot;label&quot;: &quot;MYC&quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;target&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
@@ -5478,9 +5320,9 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_ADIPOGENESIS&quot;,
-          &quot;label&quot;: &quot;Adipogenesis&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
+          &quot;var_name&quot;: &quot;MP20 MYC&quot;,
+          &quot;label&quot;: &quot;MYC&quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;target&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
@@ -5493,20 +5335,28 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;perspective&quot;: &quot;phenotype_or_state&quot;,
       &quot;functions&quot;: [
         {
-          &quot;var_name&quot;: &quot;HALLMARK_MYOGENESIS&quot;,
-          &quot;label&quot;: &quot;Myogenesis&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
+          &quot;var_name&quot;: &quot;MP1  Cell Cycle - G2/M&quot;,
+          &quot;label&quot;: &quot; Cell Cycle - G2/M&quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;target&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_ADIPOGENESIS&quot;,
-          &quot;label&quot;: &quot;Adipogenesis&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
+          &quot;var_name&quot;: &quot;MP2  Cell Cycle - G1/S&quot;,
+          &quot;label&quot;: &quot; Cell Cycle - G1/S&quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;target&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
+        },
+        {
+          &quot;var_name&quot;: &quot;MP20 MYC&quot;,
+          &quot;label&quot;: &quot;MYC&quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;direction&quot;: &quot;target&quot;,
+          &quot;input&quot;: &quot;llm-mapped&quot;,
+          &quot;rank&quot;: 3
         }
       ]
     }
@@ -5572,13 +5422,13 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     &quot;provider&quot;: &quot;deepseek&quot;,
     &quot;base_url&quot;: &quot;https://api.deepseek.com/v1&quot;,
     &quot;model&quot;: &quot;deepseek-v4-flash&quot;,
-    &quot;started_at&quot;: &quot;2026-06-27T22:38:21.875248+00:00&quot;,
-    &quot;finished_at&quot;: &quot;2026-06-27T22:38:23.949070+00:00&quot;,
+    &quot;started_at&quot;: &quot;2026-06-27T21:45:34.369556+00:00&quot;,
+    &quot;finished_at&quot;: &quot;2026-06-27T21:45:36.000826+00:00&quot;,
     &quot;attempts&quot;: [
       {
         &quot;attempt&quot;: 1,
         &quot;ok&quot;: true,
-        &quot;elapsed_ms&quot;: 2073,
+        &quot;elapsed_ms&quot;: 1630,
         &quot;response_hash&quot;: &quot;5643cfbb46a71592ea01009bf1aed5e69a5c22f213e20d8d615847f8dcade8e3&quot;,
         &quot;response_excerpt&quot;: &quot;{\n  \&quot;query_type\&quot;: \&quot;reverse\&quot;,\n  \&quot;bio_context\&quot;: \&quot;pancreatic cancer\&quot;,\n  \&quot;pert_desc\&quot;: null,\n  \&quot;pert_class\&quot;: \&quot;genetic\&quot;,\n  \&quot;genetic_modality\&quot;: \&quot;knockout\&quot;,\n  \&quot;function_desc\&quot;: \&quot;reduce KRAS pathway output\&quot;,\n  \&quot;activate\&quot;: [],\n  \&quot;suppress\&quot;: [\&quot;KRAS pathway output\&quot;],\n  \&quot;top_n\&quot;: null\n}&quot;
       }
@@ -5768,25 +5618,25 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;perspective&quot;: &quot;phenotype_or_state&quot;,
       &quot;functions&quot;: [
         {
-          &quot;var_name&quot;: &quot;HALLMARK_KRAS_SIGNALING_DN&quot;,
-          &quot;label&quot;: &quot;Kras Signaling Dn&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_KRAS_SIGNALING_UP&quot;,
+          &quot;label&quot;: &quot;Kras Signaling Up&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_KRAS_SIGNALING_UP&quot;,
-          &quot;label&quot;: &quot;Kras Signaling Up&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_KRAS_SIGNALING_DN&quot;,
+          &quot;label&quot;: &quot;Kras Signaling Dn&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;MP16 MES (glioma)&quot;,
-          &quot;label&quot;: &quot;MES (glioma)&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_MYC_TARGETS_V1&quot;,
+          &quot;label&quot;: &quot;Myc Targets V1&quot;,
+          &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -5855,13 +5705,13 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     &quot;provider&quot;: &quot;deepseek&quot;,
     &quot;base_url&quot;: &quot;https://api.deepseek.com/v1&quot;,
     &quot;model&quot;: &quot;deepseek-v4-flash&quot;,
-    &quot;started_at&quot;: &quot;2026-06-27T22:38:33.533029+00:00&quot;,
-    &quot;finished_at&quot;: &quot;2026-06-27T22:38:35.471105+00:00&quot;,
+    &quot;started_at&quot;: &quot;2026-06-27T21:45:43.674484+00:00&quot;,
+    &quot;finished_at&quot;: &quot;2026-06-27T21:45:45.311822+00:00&quot;,
     &quot;attempts&quot;: [
       {
         &quot;attempt&quot;: 1,
         &quot;ok&quot;: true,
-        &quot;elapsed_ms&quot;: 1937,
+        &quot;elapsed_ms&quot;: 1637,
         &quot;response_hash&quot;: &quot;e8af681e9fa93d674c4831d21ea0fb4f37181e76aa8e32394ac298057f821859&quot;,
         &quot;response_excerpt&quot;: &quot;{\n  \&quot;query_type\&quot;: \&quot;reverse\&quot;,\n  \&quot;bio_context\&quot;: \&quot;immune-like tumor states\&quot;,\n  \&quot;pert_desc\&quot;: null,\n  \&quot;pert_class\&quot;: \&quot;genetic\&quot;,\n  \&quot;genetic_modality\&quot;: \&quot;shrna\&quot;,\n  \&quot;function_desc\&quot;: \&quot;activate interferon response signatures\&quot;,\n  \&quot;activate\&quot;: [\&quot;interferon response signatures\&quot;],\n  \&quot;suppress\&quot;: [],\n  \&quot;top_n\&quot;: null\n}&quot;
       }
@@ -6139,13 +5989,13 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     &quot;provider&quot;: &quot;deepseek&quot;,
     &quot;base_url&quot;: &quot;https://api.deepseek.com/v1&quot;,
     &quot;model&quot;: &quot;deepseek-v4-flash&quot;,
-    &quot;started_at&quot;: &quot;2026-06-27T22:38:44.737242+00:00&quot;,
-    &quot;finished_at&quot;: &quot;2026-06-27T22:38:46.682216+00:00&quot;,
+    &quot;started_at&quot;: &quot;2026-06-27T21:45:52.284038+00:00&quot;,
+    &quot;finished_at&quot;: &quot;2026-06-27T21:45:53.640974+00:00&quot;,
     &quot;attempts&quot;: [
       {
         &quot;attempt&quot;: 1,
         &quot;ok&quot;: true,
-        &quot;elapsed_ms&quot;: 1944,
+        &quot;elapsed_ms&quot;: 1356,
         &quot;response_hash&quot;: &quot;3fe628ac8f0fb2cacc6f972402fa557de2025f516a2bc560aefe94432c5ccc09&quot;,
         &quot;response_excerpt&quot;: &quot;{\n  \&quot;query_type\&quot;: \&quot;reverse\&quot;,\n  \&quot;bio_context\&quot;: \&quot;melanoma\&quot;,\n  \&quot;pert_desc\&quot;: null,\n  \&quot;pert_class\&quot;: \&quot;genetic\&quot;,\n  \&quot;genetic_modality\&quot;: null,\n  \&quot;function_desc\&quot;: null,\n  \&quot;activate\&quot;: [],\n  \&quot;suppress\&quot;: [\&quot;epithelial-mesenchymal\&quot;, \&quot;invasive programs\&quot;],\n  \&quot;top_n\&quot;: null\n}&quot;
       }
@@ -6304,24 +6154,24 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;perspective&quot;: &quot;mechanism_or_program&quot;,
       &quot;functions&quot;: [
         {
-          &quot;var_name&quot;: &quot;MP12 EMT-I&quot;,
-          &quot;label&quot;: &quot;EMT-I&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION&quot;,
+          &quot;label&quot;: &quot;Epithelial Mesenchymal Transition&quot;,
+          &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;MP13 EMT-II&quot;,
-          &quot;label&quot;: &quot;EMT-II&quot;,
+          &quot;var_name&quot;: &quot;MP12 EMT-I&quot;,
+          &quot;label&quot;: &quot;EMT-I&quot;,
           &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;MP14 EMT-III &quot;,
-          &quot;label&quot;: &quot;EMT-III &quot;,
+          &quot;var_name&quot;: &quot;MP13 EMT-II&quot;,
+          &quot;label&quot;: &quot;EMT-II&quot;,
           &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
@@ -6422,13 +6272,13 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     &quot;provider&quot;: &quot;deepseek&quot;,
     &quot;base_url&quot;: &quot;https://api.deepseek.com/v1&quot;,
     &quot;model&quot;: &quot;deepseek-v4-flash&quot;,
-    &quot;started_at&quot;: &quot;2026-06-27T22:38:54.639096+00:00&quot;,
-    &quot;finished_at&quot;: &quot;2026-06-27T22:38:56.000940+00:00&quot;,
+    &quot;started_at&quot;: &quot;2026-06-27T21:46:00.525380+00:00&quot;,
+    &quot;finished_at&quot;: &quot;2026-06-27T21:46:01.988157+00:00&quot;,
     &quot;attempts&quot;: [
       {
         &quot;attempt&quot;: 1,
         &quot;ok&quot;: true,
-        &quot;elapsed_ms&quot;: 1361,
+        &quot;elapsed_ms&quot;: 1462,
         &quot;response_hash&quot;: &quot;ede256471349bc01fc2f6252b8883faff6c76ee9659e4e707a1a63fcad17dd00&quot;,
         &quot;response_excerpt&quot;: &quot;{\n  \&quot;query_type\&quot;: \&quot;reverse\&quot;,\n  \&quot;bio_context\&quot;: \&quot;prostate cancer\&quot;,\n  \&quot;pert_desc\&quot;: null,\n  \&quot;pert_class\&quot;: \&quot;genetic\&quot;,\n  \&quot;genetic_modality\&quot;: \&quot;knockdown\&quot;,\n  \&quot;function_desc\&quot;: \&quot;reduce androgen response\&quot;,\n  \&quot;activate\&quot;: [],\n  \&quot;suppress\&quot;: [\&quot;androgen response\&quot;],\n  \&quot;top_n\&quot;: null\n}&quot;
       }
@@ -6608,13 +6458,13 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     &quot;provider&quot;: &quot;deepseek&quot;,
     &quot;base_url&quot;: &quot;https://api.deepseek.com/v1&quot;,
     &quot;model&quot;: &quot;deepseek-v4-flash&quot;,
-    &quot;started_at&quot;: &quot;2026-06-27T22:39:02.452487+00:00&quot;,
-    &quot;finished_at&quot;: &quot;2026-06-27T22:39:04.090307+00:00&quot;,
+    &quot;started_at&quot;: &quot;2026-06-27T21:46:09.798254+00:00&quot;,
+    &quot;finished_at&quot;: &quot;2026-06-27T21:46:11.439402+00:00&quot;,
     &quot;attempts&quot;: [
       {
         &quot;attempt&quot;: 1,
         &quot;ok&quot;: true,
-        &quot;elapsed_ms&quot;: 1637,
+        &quot;elapsed_ms&quot;: 1640,
         &quot;response_hash&quot;: &quot;03f7bb1f65c48091272685db8df46aec9efcf82b58b8132f17941db70ba0b595&quot;,
         &quot;response_excerpt&quot;: &quot;{\n  \&quot;query_type\&quot;: \&quot;reverse\&quot;,\n  \&quot;bio_context\&quot;: \&quot;leukemia-like context\&quot;,\n  \&quot;pert_desc\&quot;: null,\n  \&quot;pert_class\&quot;: \&quot;genetic\&quot;,\n  \&quot;genetic_modality\&quot;: null,\n  \&quot;function_desc\&quot;: \&quot;decrease MYC/E2F target programs\&quot;,\n  \&quot;activate\&quot;: [],\n  \&quot;suppress\&quot;: [\&quot;MYC/E2F target programs\&quot;],\n  \&quot;top_n\&quot;: null\n}&quot;
       }
@@ -6891,13 +6741,13 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     &quot;provider&quot;: &quot;deepseek&quot;,
     &quot;base_url&quot;: &quot;https://api.deepseek.com/v1&quot;,
     &quot;model&quot;: &quot;deepseek-v4-flash&quot;,
-    &quot;started_at&quot;: &quot;2026-06-27T22:39:11.771855+00:00&quot;,
-    &quot;finished_at&quot;: &quot;2026-06-27T22:39:13.511290+00:00&quot;,
+    &quot;started_at&quot;: &quot;2026-06-27T21:46:19.425557+00:00&quot;,
+    &quot;finished_at&quot;: &quot;2026-06-27T21:46:21.164507+00:00&quot;,
     &quot;attempts&quot;: [
       {
         &quot;attempt&quot;: 1,
         &quot;ok&quot;: true,
-        &quot;elapsed_ms&quot;: 1739,
+        &quot;elapsed_ms&quot;: 1738,
         &quot;response_hash&quot;: &quot;b6cef946db56c460023e03df2e5bbf0278e5667bccf8fcf493a51ab33937ab88&quot;,
         &quot;response_excerpt&quot;: &quot;{\n  \&quot;query_type\&quot;: \&quot;reverse\&quot;,\n  \&quot;bio_context\&quot;: \&quot;lung cancer cells\&quot;,\n  \&quot;pert_desc\&quot;: null,\n  \&quot;pert_class\&quot;: \&quot;genetic\&quot;,\n  \&quot;genetic_modality\&quot;: \&quot;overexpression\&quot;,\n  \&quot;function_desc\&quot;: \&quot;increase hypoxia-like signatures\&quot;,\n  \&quot;activate\&quot;: [\&quot;hypoxia-like signatures\&quot;],\n  \&quot;suppress\&quot;: [],\n  \&quot;top_n\&quot;: null\n}&quot;
       }
@@ -6938,9 +6788,9 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;MP5 Stress &quot;,
-          &quot;label&quot;: &quot;Stress &quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_GLYCOLYSIS&quot;,
+          &quot;label&quot;: &quot;Glycolysis&quot;,
+          &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;activate&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -6972,9 +6822,9 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;MP5 Stress &quot;,
-          &quot;label&quot;: &quot;Stress &quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_GLYCOLYSIS&quot;,
+          &quot;label&quot;: &quot;Glycolysis&quot;,
+          &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;activate&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -7006,9 +6856,9 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;MP5 Stress &quot;,
-          &quot;label&quot;: &quot;Stress &quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_GLYCOLYSIS&quot;,
+          &quot;label&quot;: &quot;Glycolysis&quot;,
+          &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;activate&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -7041,9 +6891,9 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;MP5 Stress &quot;,
-          &quot;label&quot;: &quot;Stress &quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_GLYCOLYSIS&quot;,
+          &quot;label&quot;: &quot;Glycolysis&quot;,
+          &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;activate&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -7103,9 +6953,9 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_GLYCOLYSIS&quot;,
-          &quot;label&quot;: &quot;Glycolysis&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
+          &quot;var_name&quot;: &quot;MP5 Stress &quot;,
+          &quot;label&quot;: &quot;Stress &quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;activate&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -7131,9 +6981,9 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;rank&quot;: 2
     },
     {
-      &quot;var_name&quot;: &quot;MP5 Stress &quot;,
-      &quot;label&quot;: &quot;Stress &quot;,
-      &quot;source&quot;: &quot;3ca_mps&quot;,
+      &quot;var_name&quot;: &quot;HALLMARK_GLYCOLYSIS&quot;,
+      &quot;label&quot;: &quot;Glycolysis&quot;,
+      &quot;source&quot;: &quot;hallmark&quot;,
       &quot;direction&quot;: &quot;activate&quot;,
       &quot;input&quot;: &quot;llm-mapped&quot;,
       &quot;rank&quot;: 3
@@ -7172,13 +7022,13 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     &quot;provider&quot;: &quot;deepseek&quot;,
     &quot;base_url&quot;: &quot;https://api.deepseek.com/v1&quot;,
     &quot;model&quot;: &quot;deepseek-v4-flash&quot;,
-    &quot;started_at&quot;: &quot;2026-06-27T22:39:20.958908+00:00&quot;,
-    &quot;finished_at&quot;: &quot;2026-06-27T22:39:22.567932+00:00&quot;,
+    &quot;started_at&quot;: &quot;2026-06-27T21:46:28.076399+00:00&quot;,
+    &quot;finished_at&quot;: &quot;2026-06-27T21:46:29.623058+00:00&quot;,
     &quot;attempts&quot;: [
       {
         &quot;attempt&quot;: 1,
         &quot;ok&quot;: true,
-        &quot;elapsed_ms&quot;: 1608,
+        &quot;elapsed_ms&quot;: 1546,
         &quot;response_hash&quot;: &quot;dff28e0d288a5dd401ecc18ada634f1da57410d4ff4d2f24644783383031eec6&quot;,
         &quot;response_excerpt&quot;: &quot;{\n  \&quot;query_type\&quot;: \&quot;forward\&quot;,\n  \&quot;bio_context\&quot;: \&quot;lung cancer\&quot;,\n  \&quot;pert_desc\&quot;: \&quot;MALAT1\&quot;,\n  \&quot;pert_class\&quot;: \&quot;genetic\&quot;,\n  \&quot;genetic_modality\&quot;: \&quot;unknown\&quot;,\n  \&quot;function_desc\&quot;: null,\n  \&quot;activate\&quot;: [],\n  \&quot;suppress\&quot;: [],\n  \&quot;top_n\&quot;: null\n}&quot;
       }
@@ -7341,13 +7191,13 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     &quot;provider&quot;: &quot;deepseek&quot;,
     &quot;base_url&quot;: &quot;https://api.deepseek.com/v1&quot;,
     &quot;model&quot;: &quot;deepseek-v4-flash&quot;,
-    &quot;started_at&quot;: &quot;2026-06-27T22:39:26.212159+00:00&quot;,
-    &quot;finished_at&quot;: &quot;2026-06-27T22:39:27.847675+00:00&quot;,
+    &quot;started_at&quot;: &quot;2026-06-27T21:46:33.515246+00:00&quot;,
+    &quot;finished_at&quot;: &quot;2026-06-27T21:46:35.151521+00:00&quot;,
     &quot;attempts&quot;: [
       {
         &quot;attempt&quot;: 1,
         &quot;ok&quot;: true,
-        &quot;elapsed_ms&quot;: 1635,
+        &quot;elapsed_ms&quot;: 1636,
         &quot;response_hash&quot;: &quot;2ae9d7f5a2586607d6fdc09762ef8d37b082f9cfd45034b85b46ecfdeead5f64&quot;,
         &quot;response_excerpt&quot;: &quot;{\n  \&quot;query_type\&quot;: \&quot;forward\&quot;,\n  \&quot;bio_context\&quot;: \&quot;breast cancer\&quot;,\n  \&quot;pert_desc\&quot;: \&quot;NEAT1\&quot;,\n  \&quot;pert_class\&quot;: \&quot;genetic\&quot;,\n  \&quot;genetic_modality\&quot;: \&quot;knockdown\&quot;,\n  \&quot;function_desc\&quot;: \&quot;broad pathway consequences\&quot;,\n  \&quot;activate\&quot;: [],\n  \&quot;suppress\&quot;: [],\n  \&quot;top_n\&quot;: null\n}&quot;
       }
@@ -7510,13 +7360,13 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     &quot;provider&quot;: &quot;deepseek&quot;,
     &quot;base_url&quot;: &quot;https://api.deepseek.com/v1&quot;,
     &quot;model&quot;: &quot;deepseek-v4-flash&quot;,
-    &quot;started_at&quot;: &quot;2026-06-27T22:39:32.061170+00:00&quot;,
-    &quot;finished_at&quot;: &quot;2026-06-27T22:39:33.685048+00:00&quot;,
+    &quot;started_at&quot;: &quot;2026-06-27T21:46:39.346427+00:00&quot;,
+    &quot;finished_at&quot;: &quot;2026-06-27T21:46:40.724341+00:00&quot;,
     &quot;attempts&quot;: [
       {
         &quot;attempt&quot;: 1,
         &quot;ok&quot;: true,
-        &quot;elapsed_ms&quot;: 1623,
+        &quot;elapsed_ms&quot;: 1377,
         &quot;response_hash&quot;: &quot;ac3075c2397cd0f7df0445d9789f60a67fb02c92f5b4f471f51bbd143cee47ef&quot;,
         &quot;response_excerpt&quot;: &quot;{\n  \&quot;query_type\&quot;: \&quot;forward\&quot;,\n  \&quot;bio_context\&quot;: \&quot;liver tumor models\&quot;,\n  \&quot;pert_desc\&quot;: \&quot;H19 lncRNA\&quot;,\n  \&quot;pert_class\&quot;: \&quot;genetic\&quot;,\n  \&quot;genetic_modality\&quot;: null,\n  \&quot;function_desc\&quot;: null,\n  \&quot;activate\&quot;: [],\n  \&quot;suppress\&quot;: [],\n  \&quot;top_n\&quot;: null\n}&quot;
       }
@@ -7679,13 +7529,13 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     &quot;provider&quot;: &quot;deepseek&quot;,
     &quot;base_url&quot;: &quot;https://api.deepseek.com/v1&quot;,
     &quot;model&quot;: &quot;deepseek-v4-flash&quot;,
-    &quot;started_at&quot;: &quot;2026-06-27T22:39:39.192495+00:00&quot;,
-    &quot;finished_at&quot;: &quot;2026-06-27T22:39:40.749853+00:00&quot;,
+    &quot;started_at&quot;: &quot;2026-06-27T21:46:46.095143+00:00&quot;,
+    &quot;finished_at&quot;: &quot;2026-06-27T21:46:47.332861+00:00&quot;,
     &quot;attempts&quot;: [
       {
         &quot;attempt&quot;: 1,
         &quot;ok&quot;: true,
-        &quot;elapsed_ms&quot;: 1557,
+        &quot;elapsed_ms&quot;: 1237,
         &quot;response_hash&quot;: &quot;6b058c4b89e38a967e87780aa431a4efb7f7bf4222887ea7482e76e80c192a88&quot;,
         &quot;response_excerpt&quot;: &quot;{\n  \&quot;query_type\&quot;: \&quot;forward\&quot;,\n  \&quot;bio_context\&quot;: \&quot;glioma-like cells\&quot;,\n  \&quot;pert_desc\&quot;: \&quot;XIST\&quot;,\n  \&quot;pert_class\&quot;: \&quot;genetic\&quot;,\n  \&quot;genetic_modality\&quot;: null,\n  \&quot;function_desc\&quot;: null,\n  \&quot;activate\&quot;: [],\n  \&quot;suppress\&quot;: [],\n  \&quot;top_n\&quot;: null\n}&quot;
       }
@@ -7848,13 +7698,13 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     &quot;provider&quot;: &quot;deepseek&quot;,
     &quot;base_url&quot;: &quot;https://api.deepseek.com/v1&quot;,
     &quot;model&quot;: &quot;deepseek-v4-flash&quot;,
-    &quot;started_at&quot;: &quot;2026-06-27T22:39:44.423083+00:00&quot;,
-    &quot;finished_at&quot;: &quot;2026-06-27T22:39:45.733937+00:00&quot;,
+    &quot;started_at&quot;: &quot;2026-06-27T21:46:51.366759+00:00&quot;,
+    &quot;finished_at&quot;: &quot;2026-06-27T21:46:52.704787+00:00&quot;,
     &quot;attempts&quot;: [
       {
         &quot;attempt&quot;: 1,
         &quot;ok&quot;: true,
-        &quot;elapsed_ms&quot;: 1310,
+        &quot;elapsed_ms&quot;: 1337,
         &quot;response_hash&quot;: &quot;623e87b731e1663bfb440eebc6889a0b2aee8bbd2b443afa56db7c3fea57641c&quot;,
         &quot;response_excerpt&quot;: &quot;{\n  \&quot;query_type\&quot;: \&quot;forward\&quot;,\n  \&quot;bio_context\&quot;: \&quot;ovarian cancer\&quot;,\n  \&quot;pert_desc\&quot;: \&quot;miR-21\&quot;,\n  \&quot;pert_class\&quot;: \&quot;genetic\&quot;,\n  \&quot;genetic_modality\&quot;: \&quot;unknown\&quot;,\n  \&quot;function_desc\&quot;: null,\n  \&quot;activate\&quot;: [],\n  \&quot;suppress\&quot;: [],\n  \&quot;top_n\&quot;: null\n}&quot;
       }
@@ -8017,13 +7867,13 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     &quot;provider&quot;: &quot;deepseek&quot;,
     &quot;base_url&quot;: &quot;https://api.deepseek.com/v1&quot;,
     &quot;model&quot;: &quot;deepseek-v4-flash&quot;,
-    &quot;started_at&quot;: &quot;2026-06-27T22:39:51.595853+00:00&quot;,
-    &quot;finished_at&quot;: &quot;2026-06-27T22:39:53.448251+00:00&quot;,
+    &quot;started_at&quot;: &quot;2026-06-27T21:46:58.645652+00:00&quot;,
+    &quot;finished_at&quot;: &quot;2026-06-27T21:46:59.872854+00:00&quot;,
     &quot;attempts&quot;: [
       {
         &quot;attempt&quot;: 1,
         &quot;ok&quot;: true,
-        &quot;elapsed_ms&quot;: 1852,
+        &quot;elapsed_ms&quot;: 1226,
         &quot;response_hash&quot;: &quot;bdd0732b121a876be487595cb361f9130a55d06df4c6abd876c3b936ca02cfe9&quot;,
         &quot;response_excerpt&quot;: &quot;{\n  \&quot;query_type\&quot;: \&quot;forward\&quot;,\n  \&quot;bio_context\&quot;: \&quot;A375 melanoma\&quot;,\n  \&quot;pert_desc\&quot;: \&quot;BRD-K81418486\&quot;,\n  \&quot;pert_class\&quot;: \&quot;drug\&quot;,\n  \&quot;genetic_modality\&quot;: null,\n  \&quot;function_desc\&quot;: null,\n  \&quot;activate\&quot;: [],\n  \&quot;suppress\&quot;: [],\n  \&quot;top_n\&quot;: null\n}&quot;
       }
@@ -8182,13 +8032,13 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     &quot;provider&quot;: &quot;deepseek&quot;,
     &quot;base_url&quot;: &quot;https://api.deepseek.com/v1&quot;,
     &quot;model&quot;: &quot;deepseek-v4-flash&quot;,
-    &quot;started_at&quot;: &quot;2026-06-27T22:39:56.498493+00:00&quot;,
-    &quot;finished_at&quot;: &quot;2026-06-27T22:39:57.949247+00:00&quot;,
+    &quot;started_at&quot;: &quot;2026-06-27T21:47:02.924874+00:00&quot;,
+    &quot;finished_at&quot;: &quot;2026-06-27T21:47:04.386620+00:00&quot;,
     &quot;attempts&quot;: [
       {
         &quot;attempt&quot;: 1,
         &quot;ok&quot;: true,
-        &quot;elapsed_ms&quot;: 1450,
+        &quot;elapsed_ms&quot;: 1461,
         &quot;response_hash&quot;: &quot;ea03256a40aee64534dd318c4018932e848d2b8bf5ad9068e8b3202e8a35734f&quot;,
         &quot;response_excerpt&quot;: &quot;{\n  \&quot;query_type\&quot;: \&quot;forward\&quot;,\n  \&quot;bio_context\&quot;: \&quot;MCF7\&quot;,\n  \&quot;pert_desc\&quot;: \&quot;tamoxifen or an estrogen receptor antagonist\&quot;,\n  \&quot;pert_class\&quot;: \&quot;drug\&quot;,\n  \&quot;genetic_modality\&quot;: null,\n  \&quot;function_desc\&quot;: \&quot;pathway readouts shift\&quot;,\n  \&quot;activate\&quot;: [],\n  \&quot;suppress\&quot;: [],\n  \&quot;top_n\&quot;: null\n}&quot;
       }
@@ -8349,13 +8199,13 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     &quot;provider&quot;: &quot;deepseek&quot;,
     &quot;base_url&quot;: &quot;https://api.deepseek.com/v1&quot;,
     &quot;model&quot;: &quot;deepseek-v4-flash&quot;,
-    &quot;started_at&quot;: &quot;2026-06-27T22:39:59.496159+00:00&quot;,
-    &quot;finished_at&quot;: &quot;2026-06-27T22:40:01.244433+00:00&quot;,
+    &quot;started_at&quot;: &quot;2026-06-27T21:47:06.037151+00:00&quot;,
+    &quot;finished_at&quot;: &quot;2026-06-27T21:47:07.539076+00:00&quot;,
     &quot;attempts&quot;: [
       {
         &quot;attempt&quot;: 1,
         &quot;ok&quot;: true,
-        &quot;elapsed_ms&quot;: 1748,
+        &quot;elapsed_ms&quot;: 1501,
         &quot;response_hash&quot;: &quot;791d6c57f4851adff9ddaaae639c9a82e5b55f0243fe4f20109873e916e65d52&quot;,
         &quot;response_excerpt&quot;: &quot;{\n  \&quot;query_type\&quot;: \&quot;forward\&quot;,\n  \&quot;bio_context\&quot;: \&quot;HEPG2\&quot;,\n  \&quot;pert_desc\&quot;: \&quot;TP53\&quot;,\n  \&quot;pert_class\&quot;: \&quot;genetic\&quot;,\n  \&quot;genetic_modality\&quot;: \&quot;knockdown\&quot;,\n  \&quot;function_desc\&quot;: null,\n  \&quot;activate\&quot;: [],\n  \&quot;suppress\&quot;: [],\n  \&quot;top_n\&quot;: null\n}&quot;
       }
@@ -8518,13 +8368,13 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     &quot;provider&quot;: &quot;deepseek&quot;,
     &quot;base_url&quot;: &quot;https://api.deepseek.com/v1&quot;,
     &quot;model&quot;: &quot;deepseek-v4-flash&quot;,
-    &quot;started_at&quot;: &quot;2026-06-27T22:40:01.757444+00:00&quot;,
-    &quot;finished_at&quot;: &quot;2026-06-27T22:40:03.585158+00:00&quot;,
+    &quot;started_at&quot;: &quot;2026-06-27T21:47:08.113316+00:00&quot;,
+    &quot;finished_at&quot;: &quot;2026-06-27T21:47:09.489215+00:00&quot;,
     &quot;attempts&quot;: [
       {
         &quot;attempt&quot;: 1,
         &quot;ok&quot;: true,
-        &quot;elapsed_ms&quot;: 1827,
+        &quot;elapsed_ms&quot;: 1375,
         &quot;response_hash&quot;: &quot;920e1bd6d44afba96beac83189d639de9bf1b567fb33bc877dde8c05cbf08430&quot;,
         &quot;response_excerpt&quot;: &quot;{\n  \&quot;query_type\&quot;: \&quot;forward\&quot;,\n  \&quot;bio_context\&quot;: \&quot;HCC827\&quot;,\n  \&quot;pert_desc\&quot;: \&quot;gefitinib\&quot;,\n  \&quot;pert_class\&quot;: \&quot;drug\&quot;,\n  \&quot;genetic_modality\&quot;: null,\n  \&quot;function_desc\&quot;: null,\n  \&quot;activate\&quot;: [],\n  \&quot;suppress\&quot;: [],\n  \&quot;top_n\&quot;: null\n}&quot;
       }
@@ -8683,13 +8533,13 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     &quot;provider&quot;: &quot;deepseek&quot;,
     &quot;base_url&quot;: &quot;https://api.deepseek.com/v1&quot;,
     &quot;model&quot;: &quot;deepseek-v4-flash&quot;,
-    &quot;started_at&quot;: &quot;2026-06-27T22:40:03.671316+00:00&quot;,
-    &quot;finished_at&quot;: &quot;2026-06-27T22:40:05.223374+00:00&quot;,
+    &quot;started_at&quot;: &quot;2026-06-27T21:47:09.575479+00:00&quot;,
+    &quot;finished_at&quot;: &quot;2026-06-27T21:47:11.239542+00:00&quot;,
     &quot;attempts&quot;: [
       {
         &quot;attempt&quot;: 1,
         &quot;ok&quot;: true,
-        &quot;elapsed_ms&quot;: 1551,
+        &quot;elapsed_ms&quot;: 1663,
         &quot;response_hash&quot;: &quot;64c219f2dd8ae8f2fcb861f5ca8a682438591af33ea1166bb3f48508c1704fd5&quot;,
         &quot;response_excerpt&quot;: &quot;{\n  \&quot;query_type\&quot;: \&quot;forward\&quot;,\n  \&quot;bio_context\&quot;: \&quot;PC3 prostate cancer cells\&quot;,\n  \&quot;pert_desc\&quot;: \&quot;AR\&quot;,\n  \&quot;pert_class\&quot;: \&quot;genetic\&quot;,\n  \&quot;genetic_modality\&quot;: \&quot;knockdown\&quot;,\n  \&quot;function_desc\&quot;: null,\n  \&quot;activate\&quot;: [],\n  \&quot;suppress\&quot;: [],\n  \&quot;top_n\&quot;: null\n}&quot;
       }
@@ -8852,13 +8702,13 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     &quot;provider&quot;: &quot;deepseek&quot;,
     &quot;base_url&quot;: &quot;https://api.deepseek.com/v1&quot;,
     &quot;model&quot;: &quot;deepseek-v4-flash&quot;,
-    &quot;started_at&quot;: &quot;2026-06-27T22:40:08.904597+00:00&quot;,
-    &quot;finished_at&quot;: &quot;2026-06-27T22:40:10.436094+00:00&quot;,
+    &quot;started_at&quot;: &quot;2026-06-27T21:47:15.458213+00:00&quot;,
+    &quot;finished_at&quot;: &quot;2026-06-27T21:47:17.076425+00:00&quot;,
     &quot;attempts&quot;: [
       {
         &quot;attempt&quot;: 1,
         &quot;ok&quot;: true,
-        &quot;elapsed_ms&quot;: 1531,
+        &quot;elapsed_ms&quot;: 1617,
         &quot;response_hash&quot;: &quot;7740f5c0c6a2f07ecf616a54969980c88a8e3a69947d8f4492e8d5ebc40747f2&quot;,
         &quot;response_excerpt&quot;: &quot;{\n  \&quot;query_type\&quot;: \&quot;forward\&quot;,\n  \&quot;bio_context\&quot;: \&quot;SKOV3-like ovarian cells\&quot;,\n  \&quot;pert_desc\&quot;: \&quot;paclitaxel\&quot;,\n  \&quot;pert_class\&quot;: \&quot;drug\&quot;,\n  \&quot;genetic_modality\&quot;: null,\n  \&quot;function_desc\&quot;: null,\n  \&quot;activate\&quot;: [],\n  \&quot;suppress\&quot;: [],\n  \&quot;top_n\&quot;: null\n}&quot;
       }
@@ -9017,13 +8867,13 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     &quot;provider&quot;: &quot;deepseek&quot;,
     &quot;base_url&quot;: &quot;https://api.deepseek.com/v1&quot;,
     &quot;model&quot;: &quot;deepseek-v4-flash&quot;,
-    &quot;started_at&quot;: &quot;2026-06-27T22:40:14.313649+00:00&quot;,
-    &quot;finished_at&quot;: &quot;2026-06-27T22:40:16.181464+00:00&quot;,
+    &quot;started_at&quot;: &quot;2026-06-27T21:47:20.612664+00:00&quot;,
+    &quot;finished_at&quot;: &quot;2026-06-27T21:47:21.990970+00:00&quot;,
     &quot;attempts&quot;: [
       {
         &quot;attempt&quot;: 1,
         &quot;ok&quot;: true,
-        &quot;elapsed_ms&quot;: 1867,
+        &quot;elapsed_ms&quot;: 1378,
         &quot;response_hash&quot;: &quot;f0003b38ab4730dca6b7fe894d37bf78a16d70bf0350076e6d0a66146f103ef3&quot;,
         &quot;response_excerpt&quot;: &quot;{\n  \&quot;query_type\&quot;: \&quot;forward\&quot;,\n  \&quot;bio_context\&quot;: \&quot;K562 leukemia\&quot;,\n  \&quot;pert_desc\&quot;: \&quot;BCR-ABL inhibition\&quot;,\n  \&quot;pert_class\&quot;: \&quot;drug\&quot;,\n  \&quot;genetic_modality\&quot;: null,\n  \&quot;function_desc\&quot;: null,\n  \&quot;activate\&quot;: [],\n  \&quot;suppress\&quot;: [],\n  \&quot;top_n\&quot;: null\n}&quot;
       }
@@ -9184,13 +9034,13 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     &quot;provider&quot;: &quot;deepseek&quot;,
     &quot;base_url&quot;: &quot;https://api.deepseek.com/v1&quot;,
     &quot;model&quot;: &quot;deepseek-v4-flash&quot;,
-    &quot;started_at&quot;: &quot;2026-06-27T22:40:21.510768+00:00&quot;,
-    &quot;finished_at&quot;: &quot;2026-06-27T22:40:22.800085+00:00&quot;,
+    &quot;started_at&quot;: &quot;2026-06-27T21:47:26.532137+00:00&quot;,
+    &quot;finished_at&quot;: &quot;2026-06-27T21:47:27.827565+00:00&quot;,
     &quot;attempts&quot;: [
       {
         &quot;attempt&quot;: 1,
         &quot;ok&quot;: true,
-        &quot;elapsed_ms&quot;: 1289,
+        &quot;elapsed_ms&quot;: 1295,
         &quot;response_hash&quot;: &quot;0fd7ae8c478343a7cb6ab65c078a4d559f3277bf7be3ce70021a23cb4d85309d&quot;,
         &quot;response_excerpt&quot;: &quot;{\n  \&quot;query_type\&quot;: \&quot;forward\&quot;,\n  \&quot;bio_context\&quot;: \&quot;U87-like glioma cells\&quot;,\n  \&quot;pert_desc\&quot;: \&quot;EGFR inhibition\&quot;,\n  \&quot;pert_class\&quot;: \&quot;drug\&quot;,\n  \&quot;genetic_modality\&quot;: null,\n  \&quot;function_desc\&quot;: \&quot;broad pathway outputs\&quot;,\n  \&quot;activate\&quot;: [],\n  \&quot;suppress\&quot;: [],\n  \&quot;top_n\&quot;: null\n}&quot;
       }
@@ -9355,13 +9205,13 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     &quot;provider&quot;: &quot;deepseek&quot;,
     &quot;base_url&quot;: &quot;https://api.deepseek.com/v1&quot;,
     &quot;model&quot;: &quot;deepseek-v4-flash&quot;,
-    &quot;started_at&quot;: &quot;2026-06-27T22:40:27.873108+00:00&quot;,
-    &quot;finished_at&quot;: &quot;2026-06-27T22:40:29.390240+00:00&quot;,
+    &quot;started_at&quot;: &quot;2026-06-27T21:47:32.359272+00:00&quot;,
+    &quot;finished_at&quot;: &quot;2026-06-27T21:47:33.762453+00:00&quot;,
     &quot;attempts&quot;: [
       {
         &quot;attempt&quot;: 1,
         &quot;ok&quot;: true,
-        &quot;elapsed_ms&quot;: 1516,
+        &quot;elapsed_ms&quot;: 1402,
         &quot;response_hash&quot;: &quot;e6ec5448d323646b92fa2527f1d80336edddcfcc7a54bc38763904c2480c0034&quot;,
         &quot;response_excerpt&quot;: &quot;{\n  \&quot;query_type\&quot;: \&quot;reverse\&quot;,\n  \&quot;bio_context\&quot;: \&quot;epithelial tumor\&quot;,\n  \&quot;pert_desc\&quot;: null,\n  \&quot;pert_class\&quot;: \&quot;drug\&quot;,\n  \&quot;genetic_modality\&quot;: null,\n  \&quot;function_desc\&quot;: null,\n  \&quot;activate\&quot;: [\&quot;apoptosis\&quot;],\n  \&quot;suppress\&quot;: [\&quot;E2F targets\&quot;],\n  \&quot;top_n\&quot;: null\n}&quot;
       }
@@ -9536,13 +9386,13 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     &quot;provider&quot;: &quot;deepseek&quot;,
     &quot;base_url&quot;: &quot;https://api.deepseek.com/v1&quot;,
     &quot;model&quot;: &quot;deepseek-v4-flash&quot;,
-    &quot;started_at&quot;: &quot;2026-06-27T22:40:32.314163+00:00&quot;,
-    &quot;finished_at&quot;: &quot;2026-06-27T22:40:33.896463+00:00&quot;,
+    &quot;started_at&quot;: &quot;2026-06-27T21:47:37.028368+00:00&quot;,
+    &quot;finished_at&quot;: &quot;2026-06-27T21:47:38.490750+00:00&quot;,
     &quot;attempts&quot;: [
       {
         &quot;attempt&quot;: 1,
         &quot;ok&quot;: true,
-        &quot;elapsed_ms&quot;: 1581,
+        &quot;elapsed_ms&quot;: 1462,
         &quot;response_hash&quot;: &quot;b0ea778f4afbdd55f309ca5f579d49268c7fc07715cdc393b3e8dd4bea753fbf&quot;,
         &quot;response_excerpt&quot;: &quot;{\n  \&quot;query_type\&quot;: \&quot;reverse\&quot;,\n  \&quot;bio_context\&quot;: \&quot;carcinoma\&quot;,\n  \&quot;pert_desc\&quot;: null,\n  \&quot;pert_class\&quot;: \&quot;genetic\&quot;,\n  \&quot;genetic_modality\&quot;: \&quot;knockdown\&quot;,\n  \&quot;function_desc\&quot;: null,\n  \&quot;activate\&quot;: [],\n  \&quot;suppress\&quot;: [\&quot;inflammatory response\&quot;, \&quot;proliferation\&quot;],\n  \&quot;top_n\&quot;: null\n}&quot;
       }

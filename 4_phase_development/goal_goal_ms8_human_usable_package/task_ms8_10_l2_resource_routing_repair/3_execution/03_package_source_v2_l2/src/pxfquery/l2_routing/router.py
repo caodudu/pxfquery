@@ -433,6 +433,22 @@ def _route_functions(
         else:
             unresolved.append(term)
 
+    if unresolved and intent.query_type == "forward" and not selected and _is_forward_scope_only_terms(unresolved):
+        return {
+            "status": "resolved",
+            "mode": "forward-result-scope-no-function-filter",
+            "selected": [],
+            "unresolved_terms": [],
+            "scope_terms": list(unresolved),
+            "scope_policy": "forward query asks for broad functional outputs, so L2 does not force a fixed function-index filter",
+            "ambiguity_level": "broad",
+            "broad_function_route": True,
+            "limits": {
+                "forward_max_functions": MAX_FUNCTION_FORWARD,
+                "reverse_interpretation_sets": MAX_REVERSE_INTERPRETATION_SETS,
+                "reverse_functions_per_set": MAX_REVERSE_FUNCTIONS_PER_SET,
+            },
+        }
     if unresolved and llm_provider is not None:
         llm_route = _llm_route_functions(intent, selected, unresolved, function_index, llm_provider)
         llm_calls.extend(llm_route.pop("llm_calls"))
@@ -717,23 +733,6 @@ def _llm_route_functions(
 ) -> dict[str, Any]:
     if intent.query_type == "reverse":
         return _llm_route_reverse_functions(intent, exact_selected, unresolved, function_index, llm_provider)
-    if not exact_selected and _is_forward_scope_only_terms(unresolved):
-        return {
-            "status": "resolved",
-            "mode": "forward-result-scope-no-function-filter",
-            "selected": [],
-            "unresolved_terms": [],
-            "scope_terms": list(unresolved),
-            "scope_policy": "forward query asks for broad functional outputs, so L2 does not force a fixed function-index filter",
-            "ambiguity_level": "broad",
-            "broad_function_route": True,
-            "llm_calls": [],
-            "limits": {
-                "forward_max_functions": MAX_FUNCTION_FORWARD,
-                "reverse_interpretation_sets": MAX_REVERSE_INTERPRETATION_SETS,
-                "reverse_functions_per_set": MAX_REVERSE_FUNCTIONS_PER_SET,
-            },
-        }
     payload, evidence = _llm_json(
         llm_provider,
         stage="function_mapping",
@@ -848,8 +847,10 @@ def _combine_status(
     routes = [cell_route, perturbation_route, function_route, combination_route]
     if any(r.get("status") == "resource-missing" for r in routes):
         return "resource-missing"
-    if any(call.get("status") in {"required", "failed"} for call in llm_calls):
-        return "llm-required"
+    if any(call.get("status") == "required" for call in llm_calls):
+        return "llm_unavailable"
+    if any(call.get("status") == "failed" for call in llm_calls):
+        return "llm_output_invalid"
     if combination_route.get("status") == "no_pair_available":
         return "no_pair_available"
     if any(str(r.get("status", "")).startswith("blocked") for r in routes):
@@ -876,7 +877,8 @@ def _route_reason(intent: QueryIntent, route_status: str) -> str:
     reasons = {
         "needs-intent-completion": "natural-language layer produced an incomplete intent",
         "resource-missing": "resource-backed routing could not start because required index files are missing",
-        "llm-required": "local indexes produced only exact hits or candidate retrieval; at least one ambiguous dimension still requires real LLM routing",
+        "llm_unavailable": "real LLM routing is required for at least one ambiguous dimension, but no usable provider completed that step",
+        "llm_output_invalid": "real LLM routing ran, but at least one output failed resource-index validation or provider completion",
         "unresolved": "resource routing ran but did not find enough usable candidates",
         "no_pair_available": "resource routing found entity candidates but no checked route candidate is available in loaded matrix metadata",
         "routed": "resource indexes resolved the requested dimensions into bounded execution candidates",
@@ -1495,26 +1497,34 @@ def _is_forward_scope_only_terms(terms: list[str]) -> bool:
         "profiles",
         "state",
         "states",
+        "cell",
+        "downstream",
         "change",
         "changes",
         "shift",
         "shifts",
         "alter",
         "altered",
+        "affect",
+        "affects",
+        "affected",
         "report",
         "ask",
         "across",
         "level",
     }
     operation_tokens = {"loss", "gain", "of", "blocker", "inhibitor", "inhibition", "antagonist", "agonist"}
+    stop_tokens = {"and", "or", "the", "a", "an", "to", "by", "after", "with", "in", "on"}
     for term in terms:
         norm = _normalize_token(term)
-        tokens = set(norm.split())
+        tokens = set(norm.split()) - stop_tokens
         if not tokens:
             return False
+        if tokens & operation_tokens and len(tokens - operation_tokens) <= 2:
+            continue
         if tokens <= (scope_tokens | operation_tokens):
             continue
-        if tokens & scope_tokens and len(tokens - scope_tokens - operation_tokens) <= 1:
+        if len(tokens & scope_tokens) >= 2 and len(tokens - scope_tokens - operation_tokens) <= 3:
             continue
         else:
             return False

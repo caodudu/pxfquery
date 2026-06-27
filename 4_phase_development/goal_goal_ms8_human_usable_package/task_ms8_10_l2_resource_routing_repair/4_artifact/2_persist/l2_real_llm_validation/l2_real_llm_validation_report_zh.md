@@ -1,6 +1,6 @@
 # T138 L2 真实 LLM 路由验证报告
 
-- 生成时间：2026-06-27T20:32:02.439708+00:00
+- 生成时间：2026-06-27T22:08:04.470272+00:00
 - 模型：deepseek-v4-flash
 - Base URL：https://api.deepseek.com/v1
 - 资源目录：`/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/2_persist/standard_resources`
@@ -60,7 +60,7 @@
   - gene_llm_call_ok: True
   - gene_resolved: True
 - LLM 调用：
-  - gene_normalization / ok / deepseek / deepseek-v4-flash / temp=0 / hash=1ff7bfa91c22f047fede512afdf44a6c3c48be443e513f31e083dfc8a4939b00
+  - gene_normalization / ok / deepseek / deepseek-v4-flash / temp=0 / hash=57cc7d0ca8fdbebf3a652d763688f26ec0925b69f2dc1e407f4c7309b78afa2b
 - 路由摘要：
   - cell: ['A549'] candidates=6
   - perturbation: [{'symbol': 'TP53', 'gene_type': 'protein_coding', 'in_matrix': True, 'role': 'llm-normalized', 'rank': 1}]
@@ -94,10 +94,10 @@
   - cell_tree_subtype / ok / deepseek / deepseek-v4-flash / temp=0 / hash=e47245426c63cab3cb5242e96914863b1c9c9a18feee7f43b6c73a894a9ffb5f
   - function_reverse_mapping_direct_pathway / ok / deepseek / deepseek-v4-flash / temp=0.0 / hash=8e8ca3bfdf22218aaba9a5adcf694783ca7bda2be270bc15651336c707c234c0
   - function_reverse_mapping_mechanism_or_program / ok / deepseek / deepseek-v4-flash / temp=0.35 / hash=8e8ca3bfdf22218aaba9a5adcf694783ca7bda2be270bc15651336c707c234c0
-  - function_reverse_mapping_phenotype_or_state / ok / deepseek / deepseek-v4-flash / temp=0.7 / hash=f72cdff5b10637c0cd45c93ac829ab9a17453f63649ba96ed6d664e5215b7771
+  - function_reverse_mapping_phenotype_or_state / ok / deepseek / deepseek-v4-flash / temp=0.7 / hash=8e8ca3bfdf22218aaba9a5adcf694783ca7bda2be270bc15651336c707c234c0
 - 路由摘要：
   - cell: ['BT20'] candidates=6
   - perturbation: []
   - function: [{'var_name': 'HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION', 'label': 'Epithelial Mesenchymal Transition', 'source': 'hallmark', 'direction': 'target', 'input': 'llm-mapped', 'rank': 1}, {'var_name': 'HALLMARK_E2F_TARGETS', 'label': 'E2F Targets', 'source': 'hallmark', 'direction': 'target', 'input': 'llm-mapped', 'rank': 2}, {'var_name': 'HALLMARK_G2M_CHECKPOINT', 'label': 'G2M Checkpoint', 'source': 'hallmark', 'direction': 'target', 'input': 'llm-mapped', 'rank': 3}]
   - reverse interpretation sets: 3
-  - reverse convergence: partial_divergence
+  - reverse convergence: complete_convergence

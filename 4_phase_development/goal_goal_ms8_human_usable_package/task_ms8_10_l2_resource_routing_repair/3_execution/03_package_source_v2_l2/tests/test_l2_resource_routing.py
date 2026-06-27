@@ -47,6 +47,22 @@ def test_l2_routes_exact_cell_noncoding_gene_and_function_from_real_indexes():
     assert route["perturbation_route"]["noncoding_supported"] is True
     assert len(route["perturbation_route"]["proxies"]) <= 5
     assert route["function_route"]["selected"][0]["var_name"] == "HALLMARK_APOPTOSIS"
+    assert route["llm_calls"] == []
+
+
+def test_l2_reports_resource_missing_without_registered_indexes():
+    intent = _intent(
+        bio_context="A549",
+        pert_desc="MALAT1",
+        pert_class="genetic",
+        function_desc="apoptosis",
+    )
+
+    route = route_intent(intent).to_dict()
+
+    assert route["route_status"] == "resource-missing"
+    assert route["resource_status"]["available"] == {}
+    assert "resource indexes" in route["reason"]
 
 
 def test_l2_does_not_promote_fuzzy_drug_candidates_without_llm_decision():
@@ -60,11 +76,12 @@ def test_l2_does_not_promote_fuzzy_drug_candidates_without_llm_decision():
 
     route = route_intent(intent, index_dir=STANDARD_RESOURCES).to_dict()
 
-    assert route["route_status"] == "llm-required"
+    assert route["route_status"] == "llm_unavailable"
     assert route["perturbation_route"]["status"] == "llm-required"
     assert route["perturbation_route"]["selected"] == []
     assert route["perturbation_route"]["retrieved_candidates"]
     assert route["llm_calls"][0]["stage"] == "drug_normalization"
+    assert route["llm_calls"][0]["status"] == "required"
 
 
 def test_pp_route_uses_registered_resource_pack_and_is_primary_public_route_entry():

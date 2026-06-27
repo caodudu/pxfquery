@@ -14,19 +14,20 @@ main { padding:24px 36px; }
 pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px; overflow:auto; }
 .checks span { display:inline-block; margin:3px 6px 3px 0; padding:3px 7px; border-radius:999px; background:#eef2f5; font-size:12px; }
 </style></head><body>
-<header><h1>T138 L2 over T137 60 Questions</h1><div>Generated: 2026-06-27T22:34:45.781898+00:00</div></header>
+<header><h1>T138 L2 over T137 60 Questions</h1><div>Generated: 2026-06-27T21:19:17.136262+00:00</div></header>
 <main>
 <section class="summary">
 <div class="card"><h3>Total</h3><p>60</p></div>
-<div class="card"><h3>Passed</h3><p class="pass">60</p></div>
-<div class="card"><h3>Failed</h3><p class="fail">0</p></div>
+<div class="card"><h3>Passed</h3><p class="pass">59</p></div>
+<div class="card"><h3>Failed</h3><p class="fail">1</p></div>
 <div class="card"><h3>Model</h3><p>deepseek-v4-flash</p></div>
 </section>
 <pre>{
   &quot;by_category&quot;: {
     &quot;forward_drug&quot;: {
       &quot;total&quot;: 15,
-      &quot;passed&quot;: 15
+      &quot;passed&quot;: 14,
+      &quot;failed&quot;: 1
     },
     &quot;forward_genetic&quot;: {
       &quot;total&quot;: 15,
@@ -42,9 +43,12 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     }
   },
   &quot;by_route_status&quot;: {
-    &quot;routed&quot;: 60
+    &quot;routed&quot;: 59,
+    &quot;llm_output_invalid&quot;: 1
   },
-  &quot;failed_case_ids&quot;: []
+  &quot;failed_case_ids&quot;: [
+    &quot;FD05&quot;
+  ]
 }</pre>
 
 <article class="case" data-ok="true" data-category="forward_drug">
@@ -850,8 +854,8 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
   </div>
 </article>
 
-<article class="case" data-ok="true" data-category="forward_drug">
-  <div class="case-head"><strong>FD05 · forward_drug</strong><span class="pass">PASS</span></div>
+<article class="case" data-ok="false" data-category="forward_drug">
+  <div class="case-head"><strong>FD05 · forward_drug</strong><span class="fail">FAIL</span></div>
   <div class="question">What is the functional footprint of the EGFR blocker Iressa in non-small-cell lung cancer?</div>
   <div class="grid">
     <section><h3>L1 Intent</h3><pre>{
@@ -868,7 +872,7 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
   &quot;ambiguity_flags&quot;: [],
   &quot;parser_notes&quot;: []
 }</pre></section>
-    <section><h3>L2 Checks</h3><div class="checks"><span class='good'>resource_indexes_available: PASS</span> <span class='good'>route_status_terminal: PASS</span> <span class='good'>no_unvalidated_llm: PASS</span> <span class='good'>has_handoff_payload: PASS</span> <span class='good'>has_combination_candidates: PASS</span> <span class='good'>candidate_limits_respected: PASS</span> <span class='good'>cell_routed: PASS</span> <span class='good'>perturbation_routed: PASS</span> <span class='good'>function_routed: PASS</span></div><p><b>Status:</b> routed</p><p><b>Unresolved:</b> <code>[]</code></p></section>
+    <section><h3>L2 Checks</h3><div class="checks"><span class='good'>resource_indexes_available: PASS</span> <span class='bad'>route_status_terminal: FAIL</span> <span class='bad'>no_unvalidated_llm: FAIL</span> <span class='good'>has_handoff_payload: PASS</span> <span class='good'>has_combination_candidates: PASS</span> <span class='good'>candidate_limits_respected: PASS</span> <span class='good'>cell_routed: PASS</span> <span class='good'>perturbation_routed: PASS</span> <span class='bad'>function_routed: FAIL</span></div><p><b>Status:</b> llm_output_invalid</p><p><b>Unresolved:</b> <code>[&quot;function&quot;, &quot;llm&quot;]</code></p></section>
     <section><h3>Selected Route</h3><pre>{
   &quot;query_type&quot;: &quot;forward&quot;,
   &quot;cell&quot;: &quot;HCC827&quot;,
@@ -986,23 +990,21 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
   ]
 }</pre></section>
     <section><h3>Function Route</h3><pre>{
-  &quot;status&quot;: &quot;resolved&quot;,
-  &quot;mode&quot;: &quot;forward-result-scope-no-function-filter&quot;,
+  &quot;status&quot;: &quot;llm-required&quot;,
+  &quot;mode&quot;: &quot;llm-function-mapping&quot;,
   &quot;selected&quot;: [],
-  &quot;unresolved_terms&quot;: [],
-  &quot;scope_terms&quot;: [
+  &quot;unresolved_terms&quot;: [
     &quot;EGFR blocker&quot;
   ],
-  &quot;scope_policy&quot;: &quot;forward query asks for broad functional outputs, so L2 does not force a fixed function-index filter&quot;,
-  &quot;ambiguity_level&quot;: &quot;broad&quot;,
-  &quot;broad_function_route&quot;: true,
+  &quot;ambiguity_level&quot;: &quot;narrow&quot;,
+  &quot;broad_function_route&quot;: false,
   &quot;limits&quot;: {
     &quot;forward_max_functions&quot;: 5,
     &quot;reverse_interpretation_sets&quot;: 3,
     &quot;reverse_functions_per_set&quot;: 3
   }
 }</pre><p><b>Reverse convergence:</b></p><pre>null</pre></section>
-    <section><h3>LLM Calls</h3><p>cell_tree_lineage / ok / deepseek-v4-flash / temp=0 / validated=True<br>cell_tree_disease / ok / deepseek-v4-flash / temp=0 / validated=True<br>cell_tree_subtype / ok / deepseek-v4-flash / temp=0 / validated=True<br>drug_normalization / ok / deepseek-v4-flash / temp=0 / validated=True</p></section>
+    <section><h3>LLM Calls</h3><p>cell_tree_lineage / ok / deepseek-v4-flash / temp=0 / validated=True<br>cell_tree_disease / ok / deepseek-v4-flash / temp=0 / validated=True<br>cell_tree_subtype / ok / deepseek-v4-flash / temp=0 / validated=True<br>drug_normalization / ok / deepseek-v4-flash / temp=0 / validated=True<br>function_mapping / failed / deepseek-v4-flash / temp=0 / validated=False</p></section>
     <section><h3>Combination</h3><pre>{
   &quot;status&quot;: &quot;planned&quot;,
   &quot;candidate_limits&quot;: {
@@ -1871,14 +1873,14 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     <section><h3>L2 Checks</h3><div class="checks"><span class='good'>resource_indexes_available: PASS</span> <span class='good'>route_status_terminal: PASS</span> <span class='good'>no_unvalidated_llm: PASS</span> <span class='good'>has_handoff_payload: PASS</span> <span class='good'>has_combination_candidates: PASS</span> <span class='good'>candidate_limits_respected: PASS</span> <span class='good'>cell_routed: PASS</span> <span class='good'>perturbation_routed: PASS</span></div><p><b>Status:</b> routed</p><p><b>Unresolved:</b> <code>[]</code></p></section>
     <section><h3>Selected Route</h3><pre>{
   &quot;query_type&quot;: &quot;forward&quot;,
-  &quot;cell&quot;: &quot;ES2&quot;,
+  &quot;cell&quot;: &quot;OC316&quot;,
   &quot;combination_status&quot;: &quot;planned&quot;,
   &quot;selected_combination_routes&quot;: [
     {
       &quot;route_id&quot;: &quot;forward_001&quot;,
       &quot;stage&quot;: &quot;A&quot;,
       &quot;tier&quot;: &quot;exact_cell_exact_perturbation&quot;,
-      &quot;cell&quot;: &quot;ES2&quot;,
+      &quot;cell&quot;: &quot;OC316&quot;,
       &quot;cell_role&quot;: &quot;llm-tree-leaf&quot;,
       &quot;perturbation&quot;: &quot;BRD-K01228321&quot;,
       &quot;perturbation_role&quot;: &quot;llm-normalized&quot;,
@@ -1894,23 +1896,7 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;route_id&quot;: &quot;forward_002&quot;,
       &quot;stage&quot;: &quot;C&quot;,
       &quot;tier&quot;: &quot;proxy_cell_exact_perturbation&quot;,
-      &quot;cell&quot;: &quot;EFO27&quot;,
-      &quot;cell_role&quot;: &quot;llm-tree-leaf&quot;,
-      &quot;perturbation&quot;: &quot;BRD-K01228321&quot;,
-      &quot;perturbation_role&quot;: &quot;llm-normalized&quot;,
-      &quot;perturbation_record&quot;: {
-        &quot;id&quot;: &quot;BRD-K01228321&quot;,
-        &quot;alias&quot;: &quot;cisplatin&quot;,
-        &quot;role&quot;: &quot;llm-normalized&quot;,
-        &quot;rank&quot;: 1
-      },
-      &quot;evidence_level&quot;: &quot;exact_cell_exact_perturbation&quot;
-    },
-    {
-      &quot;route_id&quot;: &quot;forward_003&quot;,
-      &quot;stage&quot;: &quot;C&quot;,
-      &quot;tier&quot;: &quot;proxy_cell_exact_perturbation&quot;,
-      &quot;cell&quot;: &quot;OC314&quot;,
+      &quot;cell&quot;: &quot;OVTOKO&quot;,
       &quot;cell_role&quot;: &quot;llm-tree-leaf&quot;,
       &quot;perturbation&quot;: &quot;BRD-K01228321&quot;,
       &quot;perturbation_role&quot;: &quot;llm-normalized&quot;,
@@ -1973,7 +1959,7 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;route_id&quot;: &quot;forward_001&quot;,
       &quot;stage&quot;: &quot;A&quot;,
       &quot;tier&quot;: &quot;exact_cell_exact_perturbation&quot;,
-      &quot;cell&quot;: &quot;ES2&quot;,
+      &quot;cell&quot;: &quot;OC316&quot;,
       &quot;cell_role&quot;: &quot;llm-tree-leaf&quot;,
       &quot;perturbation&quot;: &quot;BRD-K01228321&quot;,
       &quot;perturbation_role&quot;: &quot;llm-normalized&quot;,
@@ -1989,23 +1975,7 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;route_id&quot;: &quot;forward_002&quot;,
       &quot;stage&quot;: &quot;C&quot;,
       &quot;tier&quot;: &quot;proxy_cell_exact_perturbation&quot;,
-      &quot;cell&quot;: &quot;EFO27&quot;,
-      &quot;cell_role&quot;: &quot;llm-tree-leaf&quot;,
-      &quot;perturbation&quot;: &quot;BRD-K01228321&quot;,
-      &quot;perturbation_role&quot;: &quot;llm-normalized&quot;,
-      &quot;perturbation_record&quot;: {
-        &quot;id&quot;: &quot;BRD-K01228321&quot;,
-        &quot;alias&quot;: &quot;cisplatin&quot;,
-        &quot;role&quot;: &quot;llm-normalized&quot;,
-        &quot;rank&quot;: 1
-      },
-      &quot;evidence_level&quot;: &quot;exact_cell_exact_perturbation&quot;
-    },
-    {
-      &quot;route_id&quot;: &quot;forward_003&quot;,
-      &quot;stage&quot;: &quot;C&quot;,
-      &quot;tier&quot;: &quot;proxy_cell_exact_perturbation&quot;,
-      &quot;cell&quot;: &quot;OC314&quot;,
+      &quot;cell&quot;: &quot;OVTOKO&quot;,
       &quot;cell_role&quot;: &quot;llm-tree-leaf&quot;,
       &quot;perturbation&quot;: &quot;BRD-K01228321&quot;,
       &quot;perturbation_role&quot;: &quot;llm-normalized&quot;,
@@ -3863,14 +3833,14 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     <section><h3>L2 Checks</h3><div class="checks"><span class='good'>resource_indexes_available: PASS</span> <span class='good'>route_status_terminal: PASS</span> <span class='good'>no_unvalidated_llm: PASS</span> <span class='good'>has_handoff_payload: PASS</span> <span class='good'>has_combination_candidates: PASS</span> <span class='good'>candidate_limits_respected: PASS</span> <span class='good'>cell_routed: PASS</span> <span class='good'>perturbation_routed: PASS</span></div><p><b>Status:</b> routed</p><p><b>Unresolved:</b> <code>[]</code></p></section>
     <section><h3>Selected Route</h3><pre>{
   &quot;query_type&quot;: &quot;forward&quot;,
-  &quot;cell&quot;: &quot;HCC827&quot;,
+  &quot;cell&quot;: &quot;SALE&quot;,
   &quot;combination_status&quot;: &quot;planned&quot;,
   &quot;selected_combination_routes&quot;: [
     {
       &quot;route_id&quot;: &quot;forward_001&quot;,
       &quot;stage&quot;: &quot;A&quot;,
       &quot;tier&quot;: &quot;exact_cell_exact_perturbation&quot;,
-      &quot;cell&quot;: &quot;HCC827&quot;,
+      &quot;cell&quot;: &quot;SALE&quot;,
       &quot;cell_role&quot;: &quot;llm-tree-leaf&quot;,
       &quot;perturbation&quot;: &quot;TP53&quot;,
       &quot;perturbation_role&quot;: &quot;llm-normalized&quot;,
@@ -3887,7 +3857,7 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;route_id&quot;: &quot;forward_002&quot;,
       &quot;stage&quot;: &quot;B&quot;,
       &quot;tier&quot;: &quot;exact_cell_proxy_perturbation&quot;,
-      &quot;cell&quot;: &quot;HCC827&quot;,
+      &quot;cell&quot;: &quot;SALE&quot;,
       &quot;cell_role&quot;: &quot;llm-tree-leaf&quot;,
       &quot;perturbation&quot;: &quot;TP53BP2&quot;,
       &quot;perturbation_role&quot;: &quot;supporting-semantic-neighbor&quot;,
@@ -3903,7 +3873,7 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;route_id&quot;: &quot;forward_003&quot;,
       &quot;stage&quot;: &quot;B&quot;,
       &quot;tier&quot;: &quot;exact_cell_proxy_perturbation&quot;,
-      &quot;cell&quot;: &quot;HCC827&quot;,
+      &quot;cell&quot;: &quot;SALE&quot;,
       &quot;cell_role&quot;: &quot;llm-tree-leaf&quot;,
       &quot;perturbation&quot;: &quot;TP53TG1&quot;,
       &quot;perturbation_role&quot;: &quot;supporting-semantic-neighbor&quot;,
@@ -3998,7 +3968,7 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;route_id&quot;: &quot;forward_001&quot;,
       &quot;stage&quot;: &quot;A&quot;,
       &quot;tier&quot;: &quot;exact_cell_exact_perturbation&quot;,
-      &quot;cell&quot;: &quot;HCC827&quot;,
+      &quot;cell&quot;: &quot;SALE&quot;,
       &quot;cell_role&quot;: &quot;llm-tree-leaf&quot;,
       &quot;perturbation&quot;: &quot;TP53&quot;,
       &quot;perturbation_role&quot;: &quot;llm-normalized&quot;,
@@ -4015,7 +3985,7 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;route_id&quot;: &quot;forward_002&quot;,
       &quot;stage&quot;: &quot;B&quot;,
       &quot;tier&quot;: &quot;exact_cell_proxy_perturbation&quot;,
-      &quot;cell&quot;: &quot;HCC827&quot;,
+      &quot;cell&quot;: &quot;SALE&quot;,
       &quot;cell_role&quot;: &quot;llm-tree-leaf&quot;,
       &quot;perturbation&quot;: &quot;TP53BP2&quot;,
       &quot;perturbation_role&quot;: &quot;supporting-semantic-neighbor&quot;,
@@ -4031,7 +4001,7 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;route_id&quot;: &quot;forward_003&quot;,
       &quot;stage&quot;: &quot;B&quot;,
       &quot;tier&quot;: &quot;exact_cell_proxy_perturbation&quot;,
-      &quot;cell&quot;: &quot;HCC827&quot;,
+      &quot;cell&quot;: &quot;SALE&quot;,
       &quot;cell_role&quot;: &quot;llm-tree-leaf&quot;,
       &quot;perturbation&quot;: &quot;TP53TG1&quot;,
       &quot;perturbation_role&quot;: &quot;supporting-semantic-neighbor&quot;,
@@ -5318,14 +5288,14 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     <section><h3>L2 Checks</h3><div class="checks"><span class='good'>resource_indexes_available: PASS</span> <span class='good'>route_status_terminal: PASS</span> <span class='good'>no_unvalidated_llm: PASS</span> <span class='good'>has_handoff_payload: PASS</span> <span class='good'>has_combination_candidates: PASS</span> <span class='good'>candidate_limits_respected: PASS</span> <span class='good'>cell_routed: PASS</span> <span class='good'>perturbation_routed: PASS</span></div><p><b>Status:</b> routed</p><p><b>Unresolved:</b> <code>[]</code></p></section>
     <section><h3>Selected Route</h3><pre>{
   &quot;query_type&quot;: &quot;forward&quot;,
-  &quot;cell&quot;: &quot;HCC827&quot;,
+  &quot;cell&quot;: &quot;HUH751&quot;,
   &quot;combination_status&quot;: &quot;planned&quot;,
   &quot;selected_combination_routes&quot;: [
     {
       &quot;route_id&quot;: &quot;forward_001&quot;,
       &quot;stage&quot;: &quot;A&quot;,
       &quot;tier&quot;: &quot;exact_cell_exact_perturbation&quot;,
-      &quot;cell&quot;: &quot;HCC827&quot;,
+      &quot;cell&quot;: &quot;HUH751&quot;,
       &quot;cell_role&quot;: &quot;llm-tree-leaf&quot;,
       &quot;perturbation&quot;: &quot;HIF1A&quot;,
       &quot;perturbation_role&quot;: &quot;llm-normalized&quot;,
@@ -5342,7 +5312,7 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;route_id&quot;: &quot;forward_002&quot;,
       &quot;stage&quot;: &quot;B&quot;,
       &quot;tier&quot;: &quot;exact_cell_proxy_perturbation&quot;,
-      &quot;cell&quot;: &quot;HCC827&quot;,
+      &quot;cell&quot;: &quot;HUH751&quot;,
       &quot;cell_role&quot;: &quot;llm-tree-leaf&quot;,
       &quot;perturbation&quot;: &quot;HIF3A&quot;,
       &quot;perturbation_role&quot;: &quot;supporting-semantic-neighbor&quot;,
@@ -5358,7 +5328,7 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;route_id&quot;: &quot;forward_003&quot;,
       &quot;stage&quot;: &quot;B&quot;,
       &quot;tier&quot;: &quot;exact_cell_proxy_perturbation&quot;,
-      &quot;cell&quot;: &quot;HCC827&quot;,
+      &quot;cell&quot;: &quot;HUH751&quot;,
       &quot;cell_role&quot;: &quot;llm-tree-leaf&quot;,
       &quot;perturbation&quot;: &quot;HIF1AN&quot;,
       &quot;perturbation_role&quot;: &quot;supporting-semantic-neighbor&quot;,
@@ -5453,7 +5423,7 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;route_id&quot;: &quot;forward_001&quot;,
       &quot;stage&quot;: &quot;A&quot;,
       &quot;tier&quot;: &quot;exact_cell_exact_perturbation&quot;,
-      &quot;cell&quot;: &quot;HCC827&quot;,
+      &quot;cell&quot;: &quot;HUH751&quot;,
       &quot;cell_role&quot;: &quot;llm-tree-leaf&quot;,
       &quot;perturbation&quot;: &quot;HIF1A&quot;,
       &quot;perturbation_role&quot;: &quot;llm-normalized&quot;,
@@ -5470,7 +5440,7 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;route_id&quot;: &quot;forward_002&quot;,
       &quot;stage&quot;: &quot;B&quot;,
       &quot;tier&quot;: &quot;exact_cell_proxy_perturbation&quot;,
-      &quot;cell&quot;: &quot;HCC827&quot;,
+      &quot;cell&quot;: &quot;HUH751&quot;,
       &quot;cell_role&quot;: &quot;llm-tree-leaf&quot;,
       &quot;perturbation&quot;: &quot;HIF3A&quot;,
       &quot;perturbation_role&quot;: &quot;supporting-semantic-neighbor&quot;,
@@ -5486,7 +5456,7 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;route_id&quot;: &quot;forward_003&quot;,
       &quot;stage&quot;: &quot;B&quot;,
       &quot;tier&quot;: &quot;exact_cell_proxy_perturbation&quot;,
-      &quot;cell&quot;: &quot;HCC827&quot;,
+      &quot;cell&quot;: &quot;HUH751&quot;,
       &quot;cell_role&quot;: &quot;llm-tree-leaf&quot;,
       &quot;perturbation&quot;: &quot;HIF1AN&quot;,
       &quot;perturbation_role&quot;: &quot;supporting-semantic-neighbor&quot;,
@@ -6503,25 +6473,25 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;perspective&quot;: &quot;mechanism_or_program&quot;,
       &quot;functions&quot;: [
         {
-          &quot;var_name&quot;: &quot;HALLMARK_MYC_TARGETS_V1&quot;,
-          &quot;label&quot;: &quot;Myc Targets V1&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
+          &quot;var_name&quot;: &quot;MP20 MYC&quot;,
+          &quot;label&quot;: &quot;MYC&quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_MYC_TARGETS_V2&quot;,
-          &quot;label&quot;: &quot;Myc Targets V2&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_MYC_TARGETS_V1&quot;,
+          &quot;label&quot;: &quot;Myc Targets V1&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;MP20 MYC&quot;,
-          &quot;label&quot;: &quot;MYC&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_MYC_TARGETS_V2&quot;,
+          &quot;label&quot;: &quot;Myc Targets V2&quot;,
+          &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -6655,25 +6625,25 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;perspective&quot;: &quot;mechanism_or_program&quot;,
       &quot;functions&quot;: [
         {
-          &quot;var_name&quot;: &quot;HALLMARK_MYC_TARGETS_V1&quot;,
-          &quot;label&quot;: &quot;Myc Targets V1&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
+          &quot;var_name&quot;: &quot;MP20 MYC&quot;,
+          &quot;label&quot;: &quot;MYC&quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_MYC_TARGETS_V2&quot;,
-          &quot;label&quot;: &quot;Myc Targets V2&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_MYC_TARGETS_V1&quot;,
+          &quot;label&quot;: &quot;Myc Targets V1&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;MP20 MYC&quot;,
-          &quot;label&quot;: &quot;MYC&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_MYC_TARGETS_V2&quot;,
+          &quot;label&quot;: &quot;Myc Targets V2&quot;,
+          &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -6714,13 +6684,18 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
   ],
   &quot;reverse_mapping_convergence&quot;: {
     &quot;llm_nonempty_set_count&quot;: 3,
-    &quot;unique_llm_set_count&quot;: 1,
-    &quot;converged&quot;: true,
+    &quot;unique_llm_set_count&quot;: 2,
+    &quot;converged&quot;: false,
     &quot;unique_sets&quot;: [
       [
         &quot;HALLMARK_MYC_TARGETS_V1&quot;,
         &quot;HALLMARK_MYC_TARGETS_V2&quot;,
         &quot;MP20 MYC&quot;
+      ],
+      [
+        &quot;MP20 MYC&quot;,
+        &quot;HALLMARK_MYC_TARGETS_V1&quot;,
+        &quot;HALLMARK_MYC_TARGETS_V2&quot;
       ]
     ]
   },
@@ -6732,13 +6707,18 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
   }
 }</pre><p><b>Reverse convergence:</b></p><pre>{
   &quot;llm_nonempty_set_count&quot;: 3,
-  &quot;unique_llm_set_count&quot;: 1,
-  &quot;converged&quot;: true,
+  &quot;unique_llm_set_count&quot;: 2,
+  &quot;converged&quot;: false,
   &quot;unique_sets&quot;: [
     [
       &quot;HALLMARK_MYC_TARGETS_V1&quot;,
       &quot;HALLMARK_MYC_TARGETS_V2&quot;,
       &quot;MP20 MYC&quot;
+    ],
+    [
+      &quot;MP20 MYC&quot;,
+      &quot;HALLMARK_MYC_TARGETS_V1&quot;,
+      &quot;HALLMARK_MYC_TARGETS_V2&quot;
     ]
   ]
 }</pre></section>
@@ -7818,24 +7798,24 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;interpretation_set_id&quot;: &quot;llm_2_mechanism_or_program&quot;,
       &quot;functions&quot;: [
         {
-          &quot;var_name&quot;: &quot;MP12 EMT-I&quot;,
-          &quot;label&quot;: &quot;EMT-I&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION&quot;,
+          &quot;label&quot;: &quot;Epithelial Mesenchymal Transition&quot;,
+          &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;MP13 EMT-II&quot;,
-          &quot;label&quot;: &quot;EMT-II&quot;,
+          &quot;var_name&quot;: &quot;MP12 EMT-I&quot;,
+          &quot;label&quot;: &quot;EMT-I&quot;,
           &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;MP14 EMT-III &quot;,
-          &quot;label&quot;: &quot;EMT-III &quot;,
+          &quot;var_name&quot;: &quot;MP13 EMT-II&quot;,
+          &quot;label&quot;: &quot;EMT-II&quot;,
           &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
@@ -7868,8 +7848,8 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;MP13 EMT-II&quot;,
-          &quot;label&quot;: &quot;EMT-II&quot;,
+          &quot;var_name&quot;: &quot;MP14 EMT-III &quot;,
+          &quot;label&quot;: &quot;EMT-III &quot;,
           &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
@@ -7918,24 +7898,24 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;perspective&quot;: &quot;mechanism_or_program&quot;,
       &quot;functions&quot;: [
         {
-          &quot;var_name&quot;: &quot;MP12 EMT-I&quot;,
-          &quot;label&quot;: &quot;EMT-I&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION&quot;,
+          &quot;label&quot;: &quot;Epithelial Mesenchymal Transition&quot;,
+          &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;MP13 EMT-II&quot;,
-          &quot;label&quot;: &quot;EMT-II&quot;,
+          &quot;var_name&quot;: &quot;MP12 EMT-I&quot;,
+          &quot;label&quot;: &quot;EMT-I&quot;,
           &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;MP14 EMT-III &quot;,
-          &quot;label&quot;: &quot;EMT-III &quot;,
+          &quot;var_name&quot;: &quot;MP13 EMT-II&quot;,
+          &quot;label&quot;: &quot;EMT-II&quot;,
           &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
@@ -7965,8 +7945,8 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;MP13 EMT-II&quot;,
-          &quot;label&quot;: &quot;EMT-II&quot;,
+          &quot;var_name&quot;: &quot;MP14 EMT-III &quot;,
+          &quot;label&quot;: &quot;EMT-III &quot;,
           &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
@@ -8070,24 +8050,24 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;perspective&quot;: &quot;mechanism_or_program&quot;,
       &quot;functions&quot;: [
         {
-          &quot;var_name&quot;: &quot;MP12 EMT-I&quot;,
-          &quot;label&quot;: &quot;EMT-I&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION&quot;,
+          &quot;label&quot;: &quot;Epithelial Mesenchymal Transition&quot;,
+          &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;MP13 EMT-II&quot;,
-          &quot;label&quot;: &quot;EMT-II&quot;,
+          &quot;var_name&quot;: &quot;MP12 EMT-I&quot;,
+          &quot;label&quot;: &quot;EMT-I&quot;,
           &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;MP14 EMT-III &quot;,
-          &quot;label&quot;: &quot;EMT-III &quot;,
+          &quot;var_name&quot;: &quot;MP13 EMT-II&quot;,
+          &quot;label&quot;: &quot;EMT-II&quot;,
           &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
@@ -8117,8 +8097,8 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;MP13 EMT-II&quot;,
-          &quot;label&quot;: &quot;EMT-II&quot;,
+          &quot;var_name&quot;: &quot;MP14 EMT-III &quot;,
+          &quot;label&quot;: &quot;EMT-III &quot;,
           &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
@@ -8138,8 +8118,8 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
         &quot;MP13 EMT-II&quot;
       ],
       [
+        &quot;HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION&quot;,
         &quot;MP12 EMT-I&quot;,
-        &quot;MP13 EMT-II&quot;,
         &quot;MP14 EMT-III &quot;
       ]
     ]
@@ -8161,8 +8141,8 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;MP13 EMT-II&quot;
     ],
     [
+      &quot;HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION&quot;,
       &quot;MP12 EMT-I&quot;,
-      &quot;MP13 EMT-II&quot;,
       &quot;MP14 EMT-III &quot;
     ]
   ]
@@ -8218,24 +8198,24 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;interpretation_set_id&quot;: &quot;llm_2_mechanism_or_program&quot;,
       &quot;functions&quot;: [
         {
-          &quot;var_name&quot;: &quot;MP12 EMT-I&quot;,
-          &quot;label&quot;: &quot;EMT-I&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION&quot;,
+          &quot;label&quot;: &quot;Epithelial Mesenchymal Transition&quot;,
+          &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;MP13 EMT-II&quot;,
-          &quot;label&quot;: &quot;EMT-II&quot;,
+          &quot;var_name&quot;: &quot;MP12 EMT-I&quot;,
+          &quot;label&quot;: &quot;EMT-I&quot;,
           &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;MP14 EMT-III &quot;,
-          &quot;label&quot;: &quot;EMT-III &quot;,
+          &quot;var_name&quot;: &quot;MP13 EMT-II&quot;,
+          &quot;label&quot;: &quot;EMT-II&quot;,
           &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
@@ -8268,8 +8248,8 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;MP13 EMT-II&quot;,
-          &quot;label&quot;: &quot;EMT-II&quot;,
+          &quot;var_name&quot;: &quot;MP14 EMT-III &quot;,
+          &quot;label&quot;: &quot;EMT-III &quot;,
           &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
@@ -8334,9 +8314,9 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_HYPOXIA&quot;,
-          &quot;label&quot;: &quot;Hypoxia&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
+          &quot;var_name&quot;: &quot;MP5 Stress &quot;,
+          &quot;label&quot;: &quot;Stress &quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -8368,9 +8348,9 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_HYPOXIA&quot;,
-          &quot;label&quot;: &quot;Hypoxia&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
+          &quot;var_name&quot;: &quot;MP5 Stress &quot;,
+          &quot;label&quot;: &quot;Stress &quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -8402,9 +8382,9 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_HYPOXIA&quot;,
-          &quot;label&quot;: &quot;Hypoxia&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
+          &quot;var_name&quot;: &quot;MP5 Stress &quot;,
+          &quot;label&quot;: &quot;Stress &quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -8437,9 +8417,9 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_HYPOXIA&quot;,
-          &quot;label&quot;: &quot;Hypoxia&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
+          &quot;var_name&quot;: &quot;MP5 Stress &quot;,
+          &quot;label&quot;: &quot;Stress &quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -8468,9 +8448,9 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;MP5 Stress &quot;,
-          &quot;label&quot;: &quot;Stress &quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_HYPOXIA&quot;,
+          &quot;label&quot;: &quot;Hypoxia&quot;,
+          &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -8491,16 +8471,16 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;MP6 Hypoxia&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_HYPOXIA&quot;,
           &quot;label&quot;: &quot;Hypoxia&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;MP5 Stress &quot;,
-          &quot;label&quot;: &quot;Stress &quot;,
+          &quot;var_name&quot;: &quot;MP6 Hypoxia&quot;,
+          &quot;label&quot;: &quot;Hypoxia&quot;,
           &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
@@ -8527,9 +8507,9 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;rank&quot;: 2
     },
     {
-      &quot;var_name&quot;: &quot;HALLMARK_HYPOXIA&quot;,
-      &quot;label&quot;: &quot;Hypoxia&quot;,
-      &quot;source&quot;: &quot;hallmark&quot;,
+      &quot;var_name&quot;: &quot;MP5 Stress &quot;,
+      &quot;label&quot;: &quot;Stress &quot;,
+      &quot;source&quot;: &quot;3ca_mps&quot;,
       &quot;direction&quot;: &quot;suppress&quot;,
       &quot;input&quot;: &quot;llm-mapped&quot;,
       &quot;rank&quot;: 3
@@ -8557,9 +8537,9 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;rank&quot;: 2
     },
     {
-      &quot;var_name&quot;: &quot;HALLMARK_HYPOXIA&quot;,
-      &quot;label&quot;: &quot;Hypoxia&quot;,
-      &quot;source&quot;: &quot;hallmark&quot;,
+      &quot;var_name&quot;: &quot;MP5 Stress &quot;,
+      &quot;label&quot;: &quot;Stress &quot;,
+      &quot;source&quot;: &quot;3ca_mps&quot;,
       &quot;direction&quot;: &quot;suppress&quot;,
       &quot;input&quot;: &quot;llm-mapped&quot;,
       &quot;rank&quot;: 3
@@ -8589,9 +8569,9 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_HYPOXIA&quot;,
-          &quot;label&quot;: &quot;Hypoxia&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
+          &quot;var_name&quot;: &quot;MP5 Stress &quot;,
+          &quot;label&quot;: &quot;Stress &quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -8620,9 +8600,9 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;MP5 Stress &quot;,
-          &quot;label&quot;: &quot;Stress &quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_HYPOXIA&quot;,
+          &quot;label&quot;: &quot;Hypoxia&quot;,
+          &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -8643,16 +8623,16 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;MP6 Hypoxia&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_HYPOXIA&quot;,
           &quot;label&quot;: &quot;Hypoxia&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;MP5 Stress &quot;,
-          &quot;label&quot;: &quot;Stress &quot;,
+          &quot;var_name&quot;: &quot;MP6 Hypoxia&quot;,
+          &quot;label&quot;: &quot;Hypoxia&quot;,
           &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
@@ -8663,9 +8643,14 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
   ],
   &quot;reverse_mapping_convergence&quot;: {
     &quot;llm_nonempty_set_count&quot;: 3,
-    &quot;unique_llm_set_count&quot;: 2,
+    &quot;unique_llm_set_count&quot;: 3,
     &quot;converged&quot;: false,
     &quot;unique_sets&quot;: [
+      [
+        &quot;HALLMARK_ANGIOGENESIS&quot;,
+        &quot;HALLMARK_HYPOXIA&quot;,
+        &quot;MP6 Hypoxia&quot;
+      ],
       [
         &quot;HALLMARK_ANGIOGENESIS&quot;,
         &quot;MP6 Hypoxia&quot;,
@@ -8686,9 +8671,14 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
   }
 }</pre><p><b>Reverse convergence:</b></p><pre>{
   &quot;llm_nonempty_set_count&quot;: 3,
-  &quot;unique_llm_set_count&quot;: 2,
+  &quot;unique_llm_set_count&quot;: 3,
   &quot;converged&quot;: false,
   &quot;unique_sets&quot;: [
+    [
+      &quot;HALLMARK_ANGIOGENESIS&quot;,
+      &quot;HALLMARK_HYPOXIA&quot;,
+      &quot;MP6 Hypoxia&quot;
+    ],
     [
       &quot;HALLMARK_ANGIOGENESIS&quot;,
       &quot;MP6 Hypoxia&quot;,
@@ -8734,9 +8724,9 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_HYPOXIA&quot;,
-          &quot;label&quot;: &quot;Hypoxia&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
+          &quot;var_name&quot;: &quot;MP5 Stress &quot;,
+          &quot;label&quot;: &quot;Stress &quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -8768,9 +8758,9 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_HYPOXIA&quot;,
-          &quot;label&quot;: &quot;Hypoxia&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
+          &quot;var_name&quot;: &quot;MP5 Stress &quot;,
+          &quot;label&quot;: &quot;Stress &quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -8802,9 +8792,9 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_HYPOXIA&quot;,
-          &quot;label&quot;: &quot;Hypoxia&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
+          &quot;var_name&quot;: &quot;MP5 Stress &quot;,
+          &quot;label&quot;: &quot;Stress &quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -9410,16 +9400,16 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;interpretation_set_id&quot;: &quot;llm_2_mechanism_or_program&quot;,
       &quot;functions&quot;: [
         {
-          &quot;var_name&quot;: &quot;HALLMARK_KRAS_SIGNALING_UP&quot;,
-          &quot;label&quot;: &quot;Kras Signaling Up&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_KRAS_SIGNALING_DN&quot;,
+          &quot;label&quot;: &quot;Kras Signaling Dn&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_KRAS_SIGNALING_DN&quot;,
-          &quot;label&quot;: &quot;Kras Signaling Dn&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_KRAS_SIGNALING_UP&quot;,
+          &quot;label&quot;: &quot;Kras Signaling Up&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
@@ -9444,25 +9434,25 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;interpretation_set_id&quot;: &quot;llm_3_phenotype_or_state&quot;,
       &quot;functions&quot;: [
         {
-          &quot;var_name&quot;: &quot;HALLMARK_KRAS_SIGNALING_UP&quot;,
-          &quot;label&quot;: &quot;Kras Signaling Up&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_KRAS_SIGNALING_DN&quot;,
+          &quot;label&quot;: &quot;Kras Signaling Dn&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_KRAS_SIGNALING_DN&quot;,
-          &quot;label&quot;: &quot;Kras Signaling Dn&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_KRAS_SIGNALING_UP&quot;,
+          &quot;label&quot;: &quot;Kras Signaling Up&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;MP41 Unassigned&quot;,
-          &quot;label&quot;: &quot;Unassigned&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_PANCREAS_BETA_CELLS&quot;,
+          &quot;label&quot;: &quot;Pancreas Beta Cells&quot;,
+          &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -9510,16 +9500,16 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;perspective&quot;: &quot;mechanism_or_program&quot;,
       &quot;functions&quot;: [
         {
-          &quot;var_name&quot;: &quot;HALLMARK_KRAS_SIGNALING_UP&quot;,
-          &quot;label&quot;: &quot;Kras Signaling Up&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_KRAS_SIGNALING_DN&quot;,
+          &quot;label&quot;: &quot;Kras Signaling Dn&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_KRAS_SIGNALING_DN&quot;,
-          &quot;label&quot;: &quot;Kras Signaling Dn&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_KRAS_SIGNALING_UP&quot;,
+          &quot;label&quot;: &quot;Kras Signaling Up&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
@@ -9541,25 +9531,25 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;perspective&quot;: &quot;phenotype_or_state&quot;,
       &quot;functions&quot;: [
         {
-          &quot;var_name&quot;: &quot;HALLMARK_KRAS_SIGNALING_UP&quot;,
-          &quot;label&quot;: &quot;Kras Signaling Up&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_KRAS_SIGNALING_DN&quot;,
+          &quot;label&quot;: &quot;Kras Signaling Dn&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_KRAS_SIGNALING_DN&quot;,
-          &quot;label&quot;: &quot;Kras Signaling Dn&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_KRAS_SIGNALING_UP&quot;,
+          &quot;label&quot;: &quot;Kras Signaling Up&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;MP41 Unassigned&quot;,
-          &quot;label&quot;: &quot;Unassigned&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_PANCREAS_BETA_CELLS&quot;,
+          &quot;label&quot;: &quot;Pancreas Beta Cells&quot;,
+          &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -9662,16 +9652,16 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;perspective&quot;: &quot;mechanism_or_program&quot;,
       &quot;functions&quot;: [
         {
-          &quot;var_name&quot;: &quot;HALLMARK_KRAS_SIGNALING_UP&quot;,
-          &quot;label&quot;: &quot;Kras Signaling Up&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_KRAS_SIGNALING_DN&quot;,
+          &quot;label&quot;: &quot;Kras Signaling Dn&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_KRAS_SIGNALING_DN&quot;,
-          &quot;label&quot;: &quot;Kras Signaling Dn&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_KRAS_SIGNALING_UP&quot;,
+          &quot;label&quot;: &quot;Kras Signaling Up&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
@@ -9693,25 +9683,25 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;perspective&quot;: &quot;phenotype_or_state&quot;,
       &quot;functions&quot;: [
         {
-          &quot;var_name&quot;: &quot;HALLMARK_KRAS_SIGNALING_UP&quot;,
-          &quot;label&quot;: &quot;Kras Signaling Up&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_KRAS_SIGNALING_DN&quot;,
+          &quot;label&quot;: &quot;Kras Signaling Dn&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_KRAS_SIGNALING_DN&quot;,
-          &quot;label&quot;: &quot;Kras Signaling Dn&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_KRAS_SIGNALING_UP&quot;,
+          &quot;label&quot;: &quot;Kras Signaling Up&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;MP41 Unassigned&quot;,
-          &quot;label&quot;: &quot;Unassigned&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_PANCREAS_BETA_CELLS&quot;,
+          &quot;label&quot;: &quot;Pancreas Beta Cells&quot;,
+          &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -9721,18 +9711,23 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
   ],
   &quot;reverse_mapping_convergence&quot;: {
     &quot;llm_nonempty_set_count&quot;: 3,
-    &quot;unique_llm_set_count&quot;: 2,
+    &quot;unique_llm_set_count&quot;: 3,
     &quot;converged&quot;: false,
     &quot;unique_sets&quot;: [
       [
-        &quot;HALLMARK_KRAS_SIGNALING_UP&quot;,
         &quot;HALLMARK_KRAS_SIGNALING_DN&quot;,
+        &quot;HALLMARK_KRAS_SIGNALING_UP&quot;,
+        &quot;HALLMARK_PANCREAS_BETA_CELLS&quot;
+      ],
+      [
+        &quot;HALLMARK_KRAS_SIGNALING_DN&quot;,
+        &quot;HALLMARK_KRAS_SIGNALING_UP&quot;,
         &quot;MP40 PDAC-related&quot;
       ],
       [
         &quot;HALLMARK_KRAS_SIGNALING_UP&quot;,
         &quot;HALLMARK_KRAS_SIGNALING_DN&quot;,
-        &quot;MP41 Unassigned&quot;
+        &quot;MP40 PDAC-related&quot;
       ]
     ]
   },
@@ -9744,18 +9739,23 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
   }
 }</pre><p><b>Reverse convergence:</b></p><pre>{
   &quot;llm_nonempty_set_count&quot;: 3,
-  &quot;unique_llm_set_count&quot;: 2,
+  &quot;unique_llm_set_count&quot;: 3,
   &quot;converged&quot;: false,
   &quot;unique_sets&quot;: [
     [
-      &quot;HALLMARK_KRAS_SIGNALING_UP&quot;,
       &quot;HALLMARK_KRAS_SIGNALING_DN&quot;,
+      &quot;HALLMARK_KRAS_SIGNALING_UP&quot;,
+      &quot;HALLMARK_PANCREAS_BETA_CELLS&quot;
+    ],
+    [
+      &quot;HALLMARK_KRAS_SIGNALING_DN&quot;,
+      &quot;HALLMARK_KRAS_SIGNALING_UP&quot;,
       &quot;MP40 PDAC-related&quot;
     ],
     [
       &quot;HALLMARK_KRAS_SIGNALING_UP&quot;,
       &quot;HALLMARK_KRAS_SIGNALING_DN&quot;,
-      &quot;MP41 Unassigned&quot;
+      &quot;MP40 PDAC-related&quot;
     ]
   ]
 }</pre></section>
@@ -9810,16 +9810,16 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;interpretation_set_id&quot;: &quot;llm_2_mechanism_or_program&quot;,
       &quot;functions&quot;: [
         {
-          &quot;var_name&quot;: &quot;HALLMARK_KRAS_SIGNALING_UP&quot;,
-          &quot;label&quot;: &quot;Kras Signaling Up&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_KRAS_SIGNALING_DN&quot;,
+          &quot;label&quot;: &quot;Kras Signaling Dn&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_KRAS_SIGNALING_DN&quot;,
-          &quot;label&quot;: &quot;Kras Signaling Dn&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_KRAS_SIGNALING_UP&quot;,
+          &quot;label&quot;: &quot;Kras Signaling Up&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
@@ -9844,25 +9844,25 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;interpretation_set_id&quot;: &quot;llm_3_phenotype_or_state&quot;,
       &quot;functions&quot;: [
         {
-          &quot;var_name&quot;: &quot;HALLMARK_KRAS_SIGNALING_UP&quot;,
-          &quot;label&quot;: &quot;Kras Signaling Up&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_KRAS_SIGNALING_DN&quot;,
+          &quot;label&quot;: &quot;Kras Signaling Dn&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_KRAS_SIGNALING_DN&quot;,
-          &quot;label&quot;: &quot;Kras Signaling Dn&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_KRAS_SIGNALING_UP&quot;,
+          &quot;label&quot;: &quot;Kras Signaling Up&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;MP41 Unassigned&quot;,
-          &quot;label&quot;: &quot;Unassigned&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_PANCREAS_BETA_CELLS&quot;,
+          &quot;label&quot;: &quot;Pancreas Beta Cells&quot;,
+          &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -10002,22 +10002,6 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;direction&quot;: &quot;mixed&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
-        },
-        {
-          &quot;var_name&quot;: &quot;HALLMARK_P53_PATHWAY&quot;,
-          &quot;label&quot;: &quot;P53 Pathway&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
-          &quot;direction&quot;: &quot;mixed&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 2
-        },
-        {
-          &quot;var_name&quot;: &quot;HALLMARK_UV_RESPONSE_UP&quot;,
-          &quot;label&quot;: &quot;Uv Response Up&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
-          &quot;direction&quot;: &quot;mixed&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 3
         }
       ]
     }
@@ -10090,38 +10074,17 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;direction&quot;: &quot;mixed&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
-        },
-        {
-          &quot;var_name&quot;: &quot;HALLMARK_P53_PATHWAY&quot;,
-          &quot;label&quot;: &quot;P53 Pathway&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
-          &quot;direction&quot;: &quot;mixed&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 2
-        },
-        {
-          &quot;var_name&quot;: &quot;HALLMARK_UV_RESPONSE_UP&quot;,
-          &quot;label&quot;: &quot;Uv Response Up&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
-          &quot;direction&quot;: &quot;mixed&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 3
         }
       ]
     }
   ],
   &quot;reverse_mapping_convergence&quot;: {
     &quot;llm_nonempty_set_count&quot;: 3,
-    &quot;unique_llm_set_count&quot;: 2,
-    &quot;converged&quot;: false,
+    &quot;unique_llm_set_count&quot;: 1,
+    &quot;converged&quot;: true,
     &quot;unique_sets&quot;: [
       [
         &quot;HALLMARK_APOPTOSIS&quot;
-      ],
-      [
-        &quot;HALLMARK_APOPTOSIS&quot;,
-        &quot;HALLMARK_P53_PATHWAY&quot;,
-        &quot;HALLMARK_UV_RESPONSE_UP&quot;
       ]
     ]
   },
@@ -10133,16 +10096,11 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
   }
 }</pre><p><b>Reverse convergence:</b></p><pre>{
   &quot;llm_nonempty_set_count&quot;: 3,
-  &quot;unique_llm_set_count&quot;: 2,
-  &quot;converged&quot;: false,
+  &quot;unique_llm_set_count&quot;: 1,
+  &quot;converged&quot;: true,
   &quot;unique_sets&quot;: [
     [
       &quot;HALLMARK_APOPTOSIS&quot;
-    ],
-    [
-      &quot;HALLMARK_APOPTOSIS&quot;,
-      &quot;HALLMARK_P53_PATHWAY&quot;,
-      &quot;HALLMARK_UV_RESPONSE_UP&quot;
     ]
   ]
 }</pre></section>
@@ -10805,25 +10763,25 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;interpretation_set_id&quot;: &quot;llm_2_mechanism_or_program&quot;,
       &quot;functions&quot;: [
         {
-          &quot;var_name&quot;: &quot;MP6 Hypoxia&quot;,
-          &quot;label&quot;: &quot;Hypoxia&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
-          &quot;direction&quot;: &quot;suppress&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 1
-        },
-        {
           &quot;var_name&quot;: &quot;HALLMARK_HYPOXIA&quot;,
           &quot;label&quot;: &quot;Hypoxia&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
+          &quot;rank&quot;: 1
+        },
+        {
+          &quot;var_name&quot;: &quot;MP6 Hypoxia&quot;,
+          &quot;label&quot;: &quot;Hypoxia&quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;direction&quot;: &quot;suppress&quot;,
+          &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;MP5 Stress &quot;,
-          &quot;label&quot;: &quot;Stress &quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_GLYCOLYSIS&quot;,
+          &quot;label&quot;: &quot;Glycolysis&quot;,
+          &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -10839,17 +10797,17 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;interpretation_set_id&quot;: &quot;llm_3_phenotype_or_state&quot;,
       &quot;functions&quot;: [
         {
-          &quot;var_name&quot;: &quot;MP6 Hypoxia&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_HYPOXIA&quot;,
           &quot;label&quot;: &quot;Hypoxia&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_HYPOXIA&quot;,
+          &quot;var_name&quot;: &quot;MP6 Hypoxia&quot;,
           &quot;label&quot;: &quot;Hypoxia&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
@@ -10905,25 +10863,25 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;perspective&quot;: &quot;mechanism_or_program&quot;,
       &quot;functions&quot;: [
         {
-          &quot;var_name&quot;: &quot;MP6 Hypoxia&quot;,
-          &quot;label&quot;: &quot;Hypoxia&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
-          &quot;direction&quot;: &quot;suppress&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 1
-        },
-        {
           &quot;var_name&quot;: &quot;HALLMARK_HYPOXIA&quot;,
           &quot;label&quot;: &quot;Hypoxia&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
+          &quot;rank&quot;: 1
+        },
+        {
+          &quot;var_name&quot;: &quot;MP6 Hypoxia&quot;,
+          &quot;label&quot;: &quot;Hypoxia&quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;direction&quot;: &quot;suppress&quot;,
+          &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;MP5 Stress &quot;,
-          &quot;label&quot;: &quot;Stress &quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_GLYCOLYSIS&quot;,
+          &quot;label&quot;: &quot;Glycolysis&quot;,
+          &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -10936,17 +10894,17 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;perspective&quot;: &quot;phenotype_or_state&quot;,
       &quot;functions&quot;: [
         {
-          &quot;var_name&quot;: &quot;MP6 Hypoxia&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_HYPOXIA&quot;,
           &quot;label&quot;: &quot;Hypoxia&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_HYPOXIA&quot;,
+          &quot;var_name&quot;: &quot;MP6 Hypoxia&quot;,
           &quot;label&quot;: &quot;Hypoxia&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
@@ -11057,25 +11015,25 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;perspective&quot;: &quot;mechanism_or_program&quot;,
       &quot;functions&quot;: [
         {
-          &quot;var_name&quot;: &quot;MP6 Hypoxia&quot;,
-          &quot;label&quot;: &quot;Hypoxia&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
-          &quot;direction&quot;: &quot;suppress&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 1
-        },
-        {
           &quot;var_name&quot;: &quot;HALLMARK_HYPOXIA&quot;,
           &quot;label&quot;: &quot;Hypoxia&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
+          &quot;rank&quot;: 1
+        },
+        {
+          &quot;var_name&quot;: &quot;MP6 Hypoxia&quot;,
+          &quot;label&quot;: &quot;Hypoxia&quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;direction&quot;: &quot;suppress&quot;,
+          &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;MP5 Stress &quot;,
-          &quot;label&quot;: &quot;Stress &quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_GLYCOLYSIS&quot;,
+          &quot;label&quot;: &quot;Glycolysis&quot;,
+          &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -11088,17 +11046,17 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;perspective&quot;: &quot;phenotype_or_state&quot;,
       &quot;functions&quot;: [
         {
-          &quot;var_name&quot;: &quot;MP6 Hypoxia&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_HYPOXIA&quot;,
           &quot;label&quot;: &quot;Hypoxia&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_HYPOXIA&quot;,
+          &quot;var_name&quot;: &quot;MP6 Hypoxia&quot;,
           &quot;label&quot;: &quot;Hypoxia&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
@@ -11125,8 +11083,8 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
         &quot;HALLMARK_GLYCOLYSIS&quot;
       ],
       [
-        &quot;MP6 Hypoxia&quot;,
         &quot;HALLMARK_HYPOXIA&quot;,
+        &quot;MP6 Hypoxia&quot;,
         &quot;MP5 Stress &quot;
       ]
     ]
@@ -11148,8 +11106,8 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;HALLMARK_GLYCOLYSIS&quot;
     ],
     [
-      &quot;MP6 Hypoxia&quot;,
       &quot;HALLMARK_HYPOXIA&quot;,
+      &quot;MP6 Hypoxia&quot;,
       &quot;MP5 Stress &quot;
     ]
   ]
@@ -11205,25 +11163,25 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;interpretation_set_id&quot;: &quot;llm_2_mechanism_or_program&quot;,
       &quot;functions&quot;: [
         {
-          &quot;var_name&quot;: &quot;MP6 Hypoxia&quot;,
-          &quot;label&quot;: &quot;Hypoxia&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
-          &quot;direction&quot;: &quot;suppress&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 1
-        },
-        {
           &quot;var_name&quot;: &quot;HALLMARK_HYPOXIA&quot;,
           &quot;label&quot;: &quot;Hypoxia&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
+          &quot;rank&quot;: 1
+        },
+        {
+          &quot;var_name&quot;: &quot;MP6 Hypoxia&quot;,
+          &quot;label&quot;: &quot;Hypoxia&quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;direction&quot;: &quot;suppress&quot;,
+          &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;MP5 Stress &quot;,
-          &quot;label&quot;: &quot;Stress &quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_GLYCOLYSIS&quot;,
+          &quot;label&quot;: &quot;Glycolysis&quot;,
+          &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -11239,17 +11197,17 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;interpretation_set_id&quot;: &quot;llm_3_phenotype_or_state&quot;,
       &quot;functions&quot;: [
         {
-          &quot;var_name&quot;: &quot;MP6 Hypoxia&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_HYPOXIA&quot;,
           &quot;label&quot;: &quot;Hypoxia&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_HYPOXIA&quot;,
+          &quot;var_name&quot;: &quot;MP6 Hypoxia&quot;,
           &quot;label&quot;: &quot;Hypoxia&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
@@ -11477,16 +11435,16 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_G2M_CHECKPOINT&quot;,
-          &quot;label&quot;: &quot;G2M Checkpoint&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
+          &quot;var_name&quot;: &quot;MP5 Stress &quot;,
+          &quot;label&quot;: &quot;Stress &quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;activate&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_DNA_REPAIR&quot;,
-          &quot;label&quot;: &quot;Dna Repair&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_G2M_CHECKPOINT&quot;,
+          &quot;label&quot;: &quot;G2M Checkpoint&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;activate&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
@@ -11629,16 +11587,16 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_G2M_CHECKPOINT&quot;,
-          &quot;label&quot;: &quot;G2M Checkpoint&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
+          &quot;var_name&quot;: &quot;MP5 Stress &quot;,
+          &quot;label&quot;: &quot;Stress &quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;activate&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_DNA_REPAIR&quot;,
-          &quot;label&quot;: &quot;Dna Repair&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_G2M_CHECKPOINT&quot;,
+          &quot;label&quot;: &quot;G2M Checkpoint&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;activate&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
@@ -11649,13 +11607,18 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
   ],
   &quot;reverse_mapping_convergence&quot;: {
     &quot;llm_nonempty_set_count&quot;: 3,
-    &quot;unique_llm_set_count&quot;: 1,
-    &quot;converged&quot;: true,
+    &quot;unique_llm_set_count&quot;: 2,
+    &quot;converged&quot;: false,
     &quot;unique_sets&quot;: [
       [
         &quot;HALLMARK_P53_PATHWAY&quot;,
         &quot;HALLMARK_G2M_CHECKPOINT&quot;,
         &quot;HALLMARK_DNA_REPAIR&quot;
+      ],
+      [
+        &quot;HALLMARK_P53_PATHWAY&quot;,
+        &quot;MP5 Stress &quot;,
+        &quot;HALLMARK_G2M_CHECKPOINT&quot;
       ]
     ]
   },
@@ -11667,13 +11630,18 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
   }
 }</pre><p><b>Reverse convergence:</b></p><pre>{
   &quot;llm_nonempty_set_count&quot;: 3,
-  &quot;unique_llm_set_count&quot;: 1,
-  &quot;converged&quot;: true,
+  &quot;unique_llm_set_count&quot;: 2,
+  &quot;converged&quot;: false,
   &quot;unique_sets&quot;: [
     [
       &quot;HALLMARK_P53_PATHWAY&quot;,
       &quot;HALLMARK_G2M_CHECKPOINT&quot;,
       &quot;HALLMARK_DNA_REPAIR&quot;
+    ],
+    [
+      &quot;HALLMARK_P53_PATHWAY&quot;,
+      &quot;MP5 Stress &quot;,
+      &quot;HALLMARK_G2M_CHECKPOINT&quot;
     ]
   ]
 }</pre></section>
@@ -11835,17 +11803,17 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_TGF_BETA_SIGNALING&quot;,
-          &quot;label&quot;: &quot;Tgf Beta Signaling&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
+          &quot;var_name&quot;: &quot;MP14 EMT-III &quot;,
+          &quot;label&quot;: &quot;EMT-III &quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION&quot;,
-          &quot;label&quot;: &quot;Epithelial Mesenchymal Transition&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
+          &quot;var_name&quot;: &quot;MP15 EMT IV&quot;,
+          &quot;label&quot;: &quot;EMT IV&quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -11869,17 +11837,17 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_TGF_BETA_SIGNALING&quot;,
-          &quot;label&quot;: &quot;Tgf Beta Signaling&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
+          &quot;var_name&quot;: &quot;MP14 EMT-III &quot;,
+          &quot;label&quot;: &quot;EMT-III &quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION&quot;,
-          &quot;label&quot;: &quot;Epithelial Mesenchymal Transition&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
+          &quot;var_name&quot;: &quot;MP15 EMT IV&quot;,
+          &quot;label&quot;: &quot;EMT IV&quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -11903,17 +11871,17 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_TGF_BETA_SIGNALING&quot;,
-          &quot;label&quot;: &quot;Tgf Beta Signaling&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
+          &quot;var_name&quot;: &quot;MP14 EMT-III &quot;,
+          &quot;label&quot;: &quot;EMT-III &quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION&quot;,
-          &quot;label&quot;: &quot;Epithelial Mesenchymal Transition&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
+          &quot;var_name&quot;: &quot;MP15 EMT IV&quot;,
+          &quot;label&quot;: &quot;EMT IV&quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -11938,17 +11906,17 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_TGF_BETA_SIGNALING&quot;,
-          &quot;label&quot;: &quot;Tgf Beta Signaling&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
+          &quot;var_name&quot;: &quot;MP14 EMT-III &quot;,
+          &quot;label&quot;: &quot;EMT-III &quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION&quot;,
-          &quot;label&quot;: &quot;Epithelial Mesenchymal Transition&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
+          &quot;var_name&quot;: &quot;MP15 EMT IV&quot;,
+          &quot;label&quot;: &quot;EMT IV&quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -11969,16 +11937,16 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION&quot;,
-          &quot;label&quot;: &quot;Epithelial Mesenchymal Transition&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
+          &quot;var_name&quot;: &quot;MP14 EMT-III &quot;,
+          &quot;label&quot;: &quot;EMT-III &quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;MP14 EMT-III &quot;,
-          &quot;label&quot;: &quot;EMT-III &quot;,
+          &quot;var_name&quot;: &quot;MP15 EMT IV&quot;,
+          &quot;label&quot;: &quot;EMT IV&quot;,
           &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
@@ -11998,22 +11966,6 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
-        },
-        {
-          &quot;var_name&quot;: &quot;MP14 EMT-III &quot;,
-          &quot;label&quot;: &quot;EMT-III &quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
-          &quot;direction&quot;: &quot;suppress&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 2
-        },
-        {
-          &quot;var_name&quot;: &quot;MP12 EMT-I&quot;,
-          &quot;label&quot;: &quot;EMT-I&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
-          &quot;direction&quot;: &quot;suppress&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 3
         }
       ]
     }
@@ -12028,17 +11980,17 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;rank&quot;: 1
     },
     {
-      &quot;var_name&quot;: &quot;HALLMARK_TGF_BETA_SIGNALING&quot;,
-      &quot;label&quot;: &quot;Tgf Beta Signaling&quot;,
-      &quot;source&quot;: &quot;hallmark&quot;,
+      &quot;var_name&quot;: &quot;MP14 EMT-III &quot;,
+      &quot;label&quot;: &quot;EMT-III &quot;,
+      &quot;source&quot;: &quot;3ca_mps&quot;,
       &quot;direction&quot;: &quot;suppress&quot;,
       &quot;input&quot;: &quot;llm-mapped&quot;,
       &quot;rank&quot;: 2
     },
     {
-      &quot;var_name&quot;: &quot;HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION&quot;,
-      &quot;label&quot;: &quot;Epithelial Mesenchymal Transition&quot;,
-      &quot;source&quot;: &quot;hallmark&quot;,
+      &quot;var_name&quot;: &quot;MP15 EMT IV&quot;,
+      &quot;label&quot;: &quot;EMT IV&quot;,
+      &quot;source&quot;: &quot;3ca_mps&quot;,
       &quot;direction&quot;: &quot;suppress&quot;,
       &quot;input&quot;: &quot;llm-mapped&quot;,
       &quot;rank&quot;: 3
@@ -12058,17 +12010,17 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;rank&quot;: 1
     },
     {
-      &quot;var_name&quot;: &quot;HALLMARK_TGF_BETA_SIGNALING&quot;,
-      &quot;label&quot;: &quot;Tgf Beta Signaling&quot;,
-      &quot;source&quot;: &quot;hallmark&quot;,
+      &quot;var_name&quot;: &quot;MP14 EMT-III &quot;,
+      &quot;label&quot;: &quot;EMT-III &quot;,
+      &quot;source&quot;: &quot;3ca_mps&quot;,
       &quot;direction&quot;: &quot;suppress&quot;,
       &quot;input&quot;: &quot;llm-mapped&quot;,
       &quot;rank&quot;: 2
     },
     {
-      &quot;var_name&quot;: &quot;HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION&quot;,
-      &quot;label&quot;: &quot;Epithelial Mesenchymal Transition&quot;,
-      &quot;source&quot;: &quot;hallmark&quot;,
+      &quot;var_name&quot;: &quot;MP15 EMT IV&quot;,
+      &quot;label&quot;: &quot;EMT IV&quot;,
+      &quot;source&quot;: &quot;3ca_mps&quot;,
       &quot;direction&quot;: &quot;suppress&quot;,
       &quot;input&quot;: &quot;llm-mapped&quot;,
       &quot;rank&quot;: 3
@@ -12090,17 +12042,17 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_TGF_BETA_SIGNALING&quot;,
-          &quot;label&quot;: &quot;Tgf Beta Signaling&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
+          &quot;var_name&quot;: &quot;MP14 EMT-III &quot;,
+          &quot;label&quot;: &quot;EMT-III &quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION&quot;,
-          &quot;label&quot;: &quot;Epithelial Mesenchymal Transition&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
+          &quot;var_name&quot;: &quot;MP15 EMT IV&quot;,
+          &quot;label&quot;: &quot;EMT IV&quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -12121,16 +12073,16 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION&quot;,
-          &quot;label&quot;: &quot;Epithelial Mesenchymal Transition&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
+          &quot;var_name&quot;: &quot;MP14 EMT-III &quot;,
+          &quot;label&quot;: &quot;EMT-III &quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;MP14 EMT-III &quot;,
-          &quot;label&quot;: &quot;EMT-III &quot;,
+          &quot;var_name&quot;: &quot;MP15 EMT IV&quot;,
+          &quot;label&quot;: &quot;EMT IV&quot;,
           &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
@@ -12150,45 +12102,22 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
-        },
-        {
-          &quot;var_name&quot;: &quot;MP14 EMT-III &quot;,
-          &quot;label&quot;: &quot;EMT-III &quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
-          &quot;direction&quot;: &quot;suppress&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 2
-        },
-        {
-          &quot;var_name&quot;: &quot;MP12 EMT-I&quot;,
-          &quot;label&quot;: &quot;EMT-I&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
-          &quot;direction&quot;: &quot;suppress&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 3
         }
       ]
     }
   ],
   &quot;reverse_mapping_convergence&quot;: {
     &quot;llm_nonempty_set_count&quot;: 3,
-    &quot;unique_llm_set_count&quot;: 3,
+    &quot;unique_llm_set_count&quot;: 2,
     &quot;converged&quot;: false,
     &quot;unique_sets&quot;: [
       [
-        &quot;HALLMARK_WNT_BETA_CATENIN_SIGNALING&quot;,
-        &quot;HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION&quot;,
-        &quot;MP14 EMT-III &quot;
-      ],
-      [
-        &quot;HALLMARK_WNT_BETA_CATENIN_SIGNALING&quot;,
-        &quot;HALLMARK_TGF_BETA_SIGNALING&quot;,
-        &quot;HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION&quot;
+        &quot;HALLMARK_WNT_BETA_CATENIN_SIGNALING&quot;
       ],
       [
         &quot;HALLMARK_WNT_BETA_CATENIN_SIGNALING&quot;,
         &quot;MP14 EMT-III &quot;,
-        &quot;MP12 EMT-I&quot;
+        &quot;MP15 EMT IV&quot;
       ]
     ]
   },
@@ -12200,23 +12129,16 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
   }
 }</pre><p><b>Reverse convergence:</b></p><pre>{
   &quot;llm_nonempty_set_count&quot;: 3,
-  &quot;unique_llm_set_count&quot;: 3,
+  &quot;unique_llm_set_count&quot;: 2,
   &quot;converged&quot;: false,
   &quot;unique_sets&quot;: [
     [
-      &quot;HALLMARK_WNT_BETA_CATENIN_SIGNALING&quot;,
-      &quot;HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION&quot;,
-      &quot;MP14 EMT-III &quot;
-    ],
-    [
-      &quot;HALLMARK_WNT_BETA_CATENIN_SIGNALING&quot;,
-      &quot;HALLMARK_TGF_BETA_SIGNALING&quot;,
-      &quot;HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION&quot;
+      &quot;HALLMARK_WNT_BETA_CATENIN_SIGNALING&quot;
     ],
     [
       &quot;HALLMARK_WNT_BETA_CATENIN_SIGNALING&quot;,
       &quot;MP14 EMT-III &quot;,
-      &quot;MP12 EMT-I&quot;
+      &quot;MP15 EMT IV&quot;
     ]
   ]
 }</pre></section>
@@ -12245,17 +12167,17 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_TGF_BETA_SIGNALING&quot;,
-          &quot;label&quot;: &quot;Tgf Beta Signaling&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
+          &quot;var_name&quot;: &quot;MP14 EMT-III &quot;,
+          &quot;label&quot;: &quot;EMT-III &quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION&quot;,
-          &quot;label&quot;: &quot;Epithelial Mesenchymal Transition&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
+          &quot;var_name&quot;: &quot;MP15 EMT IV&quot;,
+          &quot;label&quot;: &quot;EMT IV&quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -12279,17 +12201,17 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_TGF_BETA_SIGNALING&quot;,
-          &quot;label&quot;: &quot;Tgf Beta Signaling&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
+          &quot;var_name&quot;: &quot;MP14 EMT-III &quot;,
+          &quot;label&quot;: &quot;EMT-III &quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION&quot;,
-          &quot;label&quot;: &quot;Epithelial Mesenchymal Transition&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
+          &quot;var_name&quot;: &quot;MP15 EMT IV&quot;,
+          &quot;label&quot;: &quot;EMT IV&quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -12313,17 +12235,17 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_TGF_BETA_SIGNALING&quot;,
-          &quot;label&quot;: &quot;Tgf Beta Signaling&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
+          &quot;var_name&quot;: &quot;MP14 EMT-III &quot;,
+          &quot;label&quot;: &quot;EMT-III &quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION&quot;,
-          &quot;label&quot;: &quot;Epithelial Mesenchymal Transition&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
+          &quot;var_name&quot;: &quot;MP15 EMT IV&quot;,
+          &quot;label&quot;: &quot;EMT IV&quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -12423,9 +12345,9 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION&quot;,
-          &quot;label&quot;: &quot;Epithelial Mesenchymal Transition&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
+          &quot;var_name&quot;: &quot;MP19 Epithelial Senescence&quot;,
+          &quot;label&quot;: &quot;Epithelial Senescence&quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;mixed&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -12457,9 +12379,9 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;MP12 EMT-I&quot;,
-          &quot;label&quot;: &quot;EMT-I&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION&quot;,
+          &quot;label&quot;: &quot;Epithelial Mesenchymal Transition&quot;,
+          &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;mixed&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -12523,9 +12445,9 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION&quot;,
-          &quot;label&quot;: &quot;Epithelial Mesenchymal Transition&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
+          &quot;var_name&quot;: &quot;MP19 Epithelial Senescence&quot;,
+          &quot;label&quot;: &quot;Epithelial Senescence&quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;mixed&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -12554,9 +12476,9 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;MP12 EMT-I&quot;,
-          &quot;label&quot;: &quot;EMT-I&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION&quot;,
+          &quot;label&quot;: &quot;Epithelial Mesenchymal Transition&quot;,
+          &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;mixed&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -12675,9 +12597,9 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION&quot;,
-          &quot;label&quot;: &quot;Epithelial Mesenchymal Transition&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
+          &quot;var_name&quot;: &quot;MP19 Epithelial Senescence&quot;,
+          &quot;label&quot;: &quot;Epithelial Senescence&quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;mixed&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -12706,9 +12628,9 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;MP12 EMT-I&quot;,
-          &quot;label&quot;: &quot;EMT-I&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION&quot;,
+          &quot;label&quot;: &quot;Epithelial Mesenchymal Transition&quot;,
+          &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;mixed&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -12729,7 +12651,7 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       [
         &quot;HALLMARK_ADIPOGENESIS&quot;,
         &quot;HALLMARK_MYOGENESIS&quot;,
-        &quot;MP12 EMT-I&quot;
+        &quot;MP19 Epithelial Senescence&quot;
       ]
     ]
   },
@@ -12752,7 +12674,7 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     [
       &quot;HALLMARK_ADIPOGENESIS&quot;,
       &quot;HALLMARK_MYOGENESIS&quot;,
-      &quot;MP12 EMT-I&quot;
+      &quot;MP19 Epithelial Senescence&quot;
     ]
   ]
 }</pre></section>
@@ -12823,9 +12745,9 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION&quot;,
-          &quot;label&quot;: &quot;Epithelial Mesenchymal Transition&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
+          &quot;var_name&quot;: &quot;MP19 Epithelial Senescence&quot;,
+          &quot;label&quot;: &quot;Epithelial Senescence&quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;mixed&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -12857,9 +12779,9 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;MP12 EMT-I&quot;,
-          &quot;label&quot;: &quot;EMT-I&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION&quot;,
+          &quot;label&quot;: &quot;Epithelial Mesenchymal Transition&quot;,
+          &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;mixed&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -13551,22 +13473,6 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;direction&quot;: &quot;activate&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
-        },
-        {
-          &quot;var_name&quot;: &quot;MP5 Stress &quot;,
-          &quot;label&quot;: &quot;Stress &quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
-          &quot;direction&quot;: &quot;activate&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 2
-        },
-        {
-          &quot;var_name&quot;: &quot;MP19 Epithelial Senescence&quot;,
-          &quot;label&quot;: &quot;Epithelial Senescence&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
-          &quot;direction&quot;: &quot;activate&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 3
         }
       ]
     }
@@ -13670,38 +13576,17 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;direction&quot;: &quot;activate&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
-        },
-        {
-          &quot;var_name&quot;: &quot;MP5 Stress &quot;,
-          &quot;label&quot;: &quot;Stress &quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
-          &quot;direction&quot;: &quot;activate&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 2
-        },
-        {
-          &quot;var_name&quot;: &quot;MP19 Epithelial Senescence&quot;,
-          &quot;label&quot;: &quot;Epithelial Senescence&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
-          &quot;direction&quot;: &quot;activate&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 3
         }
       ]
     }
   ],
   &quot;reverse_mapping_convergence&quot;: {
     &quot;llm_nonempty_set_count&quot;: 3,
-    &quot;unique_llm_set_count&quot;: 3,
+    &quot;unique_llm_set_count&quot;: 2,
     &quot;converged&quot;: false,
     &quot;unique_sets&quot;: [
       [
         &quot;HALLMARK_APOPTOSIS&quot;
-      ],
-      [
-        &quot;HALLMARK_APOPTOSIS&quot;,
-        &quot;MP5 Stress &quot;,
-        &quot;MP19 Epithelial Senescence&quot;
       ],
       [
         &quot;HALLMARK_APOPTOSIS&quot;,
@@ -13718,16 +13603,11 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
   }
 }</pre><p><b>Reverse convergence:</b></p><pre>{
   &quot;llm_nonempty_set_count&quot;: 3,
-  &quot;unique_llm_set_count&quot;: 3,
+  &quot;unique_llm_set_count&quot;: 2,
   &quot;converged&quot;: false,
   &quot;unique_sets&quot;: [
     [
       &quot;HALLMARK_APOPTOSIS&quot;
-    ],
-    [
-      &quot;HALLMARK_APOPTOSIS&quot;,
-      &quot;MP5 Stress &quot;,
-      &quot;MP19 Epithelial Senescence&quot;
     ],
     [
       &quot;HALLMARK_APOPTOSIS&quot;,
@@ -13971,24 +13851,24 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;perspective&quot;: &quot;phenotype_or_state&quot;,
       &quot;functions&quot;: [
         {
-          &quot;var_name&quot;: &quot;HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION&quot;,
-          &quot;label&quot;: &quot;Epithelial Mesenchymal Transition&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
+          &quot;var_name&quot;: &quot;MP12 EMT-I&quot;,
+          &quot;label&quot;: &quot;EMT-I&quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;MP12 EMT-I&quot;,
-          &quot;label&quot;: &quot;EMT-I&quot;,
+          &quot;var_name&quot;: &quot;MP13 EMT-II&quot;,
+          &quot;label&quot;: &quot;EMT-II&quot;,
           &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;MP13 EMT-II&quot;,
-          &quot;label&quot;: &quot;EMT-II&quot;,
+          &quot;var_name&quot;: &quot;MP14 EMT-III &quot;,
+          &quot;label&quot;: &quot;EMT-III &quot;,
           &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
@@ -14106,24 +13986,24 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;perspective&quot;: &quot;phenotype_or_state&quot;,
       &quot;functions&quot;: [
         {
-          &quot;var_name&quot;: &quot;HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION&quot;,
-          &quot;label&quot;: &quot;Epithelial Mesenchymal Transition&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
+          &quot;var_name&quot;: &quot;MP12 EMT-I&quot;,
+          &quot;label&quot;: &quot;EMT-I&quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;MP12 EMT-I&quot;,
-          &quot;label&quot;: &quot;EMT-I&quot;,
+          &quot;var_name&quot;: &quot;MP13 EMT-II&quot;,
+          &quot;label&quot;: &quot;EMT-II&quot;,
           &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;MP13 EMT-II&quot;,
-          &quot;label&quot;: &quot;EMT-II&quot;,
+          &quot;var_name&quot;: &quot;MP14 EMT-III &quot;,
+          &quot;label&quot;: &quot;EMT-III &quot;,
           &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
@@ -14134,13 +14014,18 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
   ],
   &quot;reverse_mapping_convergence&quot;: {
     &quot;llm_nonempty_set_count&quot;: 3,
-    &quot;unique_llm_set_count&quot;: 1,
-    &quot;converged&quot;: true,
+    &quot;unique_llm_set_count&quot;: 2,
+    &quot;converged&quot;: false,
     &quot;unique_sets&quot;: [
       [
         &quot;HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION&quot;,
         &quot;MP12 EMT-I&quot;,
         &quot;MP13 EMT-II&quot;
+      ],
+      [
+        &quot;MP12 EMT-I&quot;,
+        &quot;MP13 EMT-II&quot;,
+        &quot;MP14 EMT-III &quot;
       ]
     ]
   },
@@ -14152,13 +14037,18 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
   }
 }</pre><p><b>Reverse convergence:</b></p><pre>{
   &quot;llm_nonempty_set_count&quot;: 3,
-  &quot;unique_llm_set_count&quot;: 1,
-  &quot;converged&quot;: true,
+  &quot;unique_llm_set_count&quot;: 2,
+  &quot;converged&quot;: false,
   &quot;unique_sets&quot;: [
     [
       &quot;HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION&quot;,
       &quot;MP12 EMT-I&quot;,
       &quot;MP13 EMT-II&quot;
+    ],
+    [
+      &quot;MP12 EMT-I&quot;,
+      &quot;MP13 EMT-II&quot;,
+      &quot;MP14 EMT-III &quot;
     ]
   ]
 }</pre></section>
@@ -14278,6 +14168,14 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
+        },
+        {
+          &quot;var_name&quot;: &quot;MP1  Cell Cycle - G2/M&quot;,
+          &quot;label&quot;: &quot; Cell Cycle - G2/M&quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;direction&quot;: &quot;suppress&quot;,
+          &quot;input&quot;: &quot;llm-mapped&quot;,
+          &quot;rank&quot;: 3
         }
       ],
       &quot;modality&quot;: &quot;xpr&quot;,
@@ -14304,6 +14202,14 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
+        },
+        {
+          &quot;var_name&quot;: &quot;MP1  Cell Cycle - G2/M&quot;,
+          &quot;label&quot;: &quot; Cell Cycle - G2/M&quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;direction&quot;: &quot;suppress&quot;,
+          &quot;input&quot;: &quot;llm-mapped&quot;,
+          &quot;rank&quot;: 3
         }
       ],
       &quot;modality&quot;: &quot;sh&quot;,
@@ -14330,6 +14236,14 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
+        },
+        {
+          &quot;var_name&quot;: &quot;MP1  Cell Cycle - G2/M&quot;,
+          &quot;label&quot;: &quot; Cell Cycle - G2/M&quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;direction&quot;: &quot;suppress&quot;,
+          &quot;input&quot;: &quot;llm-mapped&quot;,
+          &quot;rank&quot;: 3
         }
       ],
       &quot;modality&quot;: &quot;xpr&quot;,
@@ -14357,6 +14271,14 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
+        },
+        {
+          &quot;var_name&quot;: &quot;MP1  Cell Cycle - G2/M&quot;,
+          &quot;label&quot;: &quot; Cell Cycle - G2/M&quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;direction&quot;: &quot;suppress&quot;,
+          &quot;input&quot;: &quot;llm-mapped&quot;,
+          &quot;rank&quot;: 3
         }
       ]
     },
@@ -14366,16 +14288,16 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;perspective&quot;: &quot;mechanism_or_program&quot;,
       &quot;functions&quot;: [
         {
-          &quot;var_name&quot;: &quot;HALLMARK_G2M_CHECKPOINT&quot;,
-          &quot;label&quot;: &quot;G2M Checkpoint&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_E2F_TARGETS&quot;,
+          &quot;label&quot;: &quot;E2F Targets&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_E2F_TARGETS&quot;,
-          &quot;label&quot;: &quot;E2F Targets&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_G2M_CHECKPOINT&quot;,
+          &quot;label&quot;: &quot;G2M Checkpoint&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
@@ -14411,14 +14333,6 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
-        },
-        {
-          &quot;var_name&quot;: &quot;HALLMARK_MITOTIC_SPINDLE&quot;,
-          &quot;label&quot;: &quot;Mitotic Spindle&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
-          &quot;direction&quot;: &quot;suppress&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 3
         }
       ]
     }
@@ -14439,6 +14353,14 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;direction&quot;: &quot;suppress&quot;,
       &quot;input&quot;: &quot;llm-mapped&quot;,
       &quot;rank&quot;: 2
+    },
+    {
+      &quot;var_name&quot;: &quot;MP1  Cell Cycle - G2/M&quot;,
+      &quot;label&quot;: &quot; Cell Cycle - G2/M&quot;,
+      &quot;source&quot;: &quot;3ca_mps&quot;,
+      &quot;direction&quot;: &quot;suppress&quot;,
+      &quot;input&quot;: &quot;llm-mapped&quot;,
+      &quot;rank&quot;: 3
     }
   ]
 }</pre></section>
@@ -14461,6 +14383,14 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;direction&quot;: &quot;suppress&quot;,
       &quot;input&quot;: &quot;llm-mapped&quot;,
       &quot;rank&quot;: 2
+    },
+    {
+      &quot;var_name&quot;: &quot;MP1  Cell Cycle - G2/M&quot;,
+      &quot;label&quot;: &quot; Cell Cycle - G2/M&quot;,
+      &quot;source&quot;: &quot;3ca_mps&quot;,
+      &quot;direction&quot;: &quot;suppress&quot;,
+      &quot;input&quot;: &quot;llm-mapped&quot;,
+      &quot;rank&quot;: 3
     }
   ],
   &quot;unresolved_terms&quot;: [],
@@ -14485,6 +14415,14 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
+        },
+        {
+          &quot;var_name&quot;: &quot;MP1  Cell Cycle - G2/M&quot;,
+          &quot;label&quot;: &quot; Cell Cycle - G2/M&quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;direction&quot;: &quot;suppress&quot;,
+          &quot;input&quot;: &quot;llm-mapped&quot;,
+          &quot;rank&quot;: 3
         }
       ]
     },
@@ -14494,16 +14432,16 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;perspective&quot;: &quot;mechanism_or_program&quot;,
       &quot;functions&quot;: [
         {
-          &quot;var_name&quot;: &quot;HALLMARK_G2M_CHECKPOINT&quot;,
-          &quot;label&quot;: &quot;G2M Checkpoint&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_E2F_TARGETS&quot;,
+          &quot;label&quot;: &quot;E2F Targets&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_E2F_TARGETS&quot;,
-          &quot;label&quot;: &quot;E2F Targets&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_G2M_CHECKPOINT&quot;,
+          &quot;label&quot;: &quot;G2M Checkpoint&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
@@ -14539,36 +14477,23 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
-        },
-        {
-          &quot;var_name&quot;: &quot;HALLMARK_MITOTIC_SPINDLE&quot;,
-          &quot;label&quot;: &quot;Mitotic Spindle&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
-          &quot;direction&quot;: &quot;suppress&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 3
         }
       ]
     }
   ],
   &quot;reverse_mapping_convergence&quot;: {
     &quot;llm_nonempty_set_count&quot;: 3,
-    &quot;unique_llm_set_count&quot;: 3,
+    &quot;unique_llm_set_count&quot;: 2,
     &quot;converged&quot;: false,
     &quot;unique_sets&quot;: [
       [
         &quot;HALLMARK_E2F_TARGETS&quot;,
-        &quot;HALLMARK_G2M_CHECKPOINT&quot;
-      ],
-      [
         &quot;HALLMARK_G2M_CHECKPOINT&quot;,
-        &quot;HALLMARK_E2F_TARGETS&quot;,
-        &quot;HALLMARK_MITOTIC_SPINDLE&quot;
-      ],
-      [
-        &quot;HALLMARK_G2M_CHECKPOINT&quot;,
-        &quot;HALLMARK_E2F_TARGETS&quot;,
         &quot;MP1  Cell Cycle - G2/M&quot;
+      ],
+      [
+        &quot;HALLMARK_G2M_CHECKPOINT&quot;,
+        &quot;HALLMARK_E2F_TARGETS&quot;
       ]
     ]
   },
@@ -14580,22 +14505,17 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
   }
 }</pre><p><b>Reverse convergence:</b></p><pre>{
   &quot;llm_nonempty_set_count&quot;: 3,
-  &quot;unique_llm_set_count&quot;: 3,
+  &quot;unique_llm_set_count&quot;: 2,
   &quot;converged&quot;: false,
   &quot;unique_sets&quot;: [
     [
       &quot;HALLMARK_E2F_TARGETS&quot;,
-      &quot;HALLMARK_G2M_CHECKPOINT&quot;
-    ],
-    [
       &quot;HALLMARK_G2M_CHECKPOINT&quot;,
-      &quot;HALLMARK_E2F_TARGETS&quot;,
-      &quot;HALLMARK_MITOTIC_SPINDLE&quot;
-    ],
-    [
-      &quot;HALLMARK_G2M_CHECKPOINT&quot;,
-      &quot;HALLMARK_E2F_TARGETS&quot;,
       &quot;MP1  Cell Cycle - G2/M&quot;
+    ],
+    [
+      &quot;HALLMARK_G2M_CHECKPOINT&quot;,
+      &quot;HALLMARK_E2F_TARGETS&quot;
     ]
   ]
 }</pre></section>
@@ -14630,6 +14550,14 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
+        },
+        {
+          &quot;var_name&quot;: &quot;MP1  Cell Cycle - G2/M&quot;,
+          &quot;label&quot;: &quot; Cell Cycle - G2/M&quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;direction&quot;: &quot;suppress&quot;,
+          &quot;input&quot;: &quot;llm-mapped&quot;,
+          &quot;rank&quot;: 3
         }
       ],
       &quot;modality&quot;: &quot;xpr&quot;,
@@ -14656,6 +14584,14 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
+        },
+        {
+          &quot;var_name&quot;: &quot;MP1  Cell Cycle - G2/M&quot;,
+          &quot;label&quot;: &quot; Cell Cycle - G2/M&quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;direction&quot;: &quot;suppress&quot;,
+          &quot;input&quot;: &quot;llm-mapped&quot;,
+          &quot;rank&quot;: 3
         }
       ],
       &quot;modality&quot;: &quot;sh&quot;,
@@ -14682,6 +14618,14 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
+        },
+        {
+          &quot;var_name&quot;: &quot;MP1  Cell Cycle - G2/M&quot;,
+          &quot;label&quot;: &quot; Cell Cycle - G2/M&quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;direction&quot;: &quot;suppress&quot;,
+          &quot;input&quot;: &quot;llm-mapped&quot;,
+          &quot;rank&quot;: 3
         }
       ],
       &quot;modality&quot;: &quot;xpr&quot;,
@@ -14729,22 +14673,6 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;direction&quot;: &quot;target&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
-        },
-        {
-          &quot;var_name&quot;: &quot;MP5 Stress &quot;,
-          &quot;label&quot;: &quot;Stress &quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
-          &quot;direction&quot;: &quot;target&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 2
-        },
-        {
-          &quot;var_name&quot;: &quot;MP7 Stress (in vitro)&quot;,
-          &quot;label&quot;: &quot;Stress (in vitro)&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
-          &quot;direction&quot;: &quot;target&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 3
         }
       ],
       &quot;modality&quot;: &quot;sh&quot;,
@@ -14763,22 +14691,6 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;direction&quot;: &quot;target&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
-        },
-        {
-          &quot;var_name&quot;: &quot;MP5 Stress &quot;,
-          &quot;label&quot;: &quot;Stress &quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
-          &quot;direction&quot;: &quot;target&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 2
-        },
-        {
-          &quot;var_name&quot;: &quot;MP7 Stress (in vitro)&quot;,
-          &quot;label&quot;: &quot;Stress (in vitro)&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
-          &quot;direction&quot;: &quot;target&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 3
         }
       ],
       &quot;modality&quot;: &quot;sh&quot;,
@@ -14797,22 +14709,6 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;direction&quot;: &quot;target&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
-        },
-        {
-          &quot;var_name&quot;: &quot;MP5 Stress &quot;,
-          &quot;label&quot;: &quot;Stress &quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
-          &quot;direction&quot;: &quot;target&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 2
-        },
-        {
-          &quot;var_name&quot;: &quot;MP7 Stress (in vitro)&quot;,
-          &quot;label&quot;: &quot;Stress (in vitro)&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
-          &quot;direction&quot;: &quot;target&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 3
         }
       ],
       &quot;modality&quot;: &quot;sh&quot;,
@@ -14832,22 +14728,6 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;direction&quot;: &quot;target&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
-        },
-        {
-          &quot;var_name&quot;: &quot;MP5 Stress &quot;,
-          &quot;label&quot;: &quot;Stress &quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
-          &quot;direction&quot;: &quot;target&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 2
-        },
-        {
-          &quot;var_name&quot;: &quot;MP7 Stress (in vitro)&quot;,
-          &quot;label&quot;: &quot;Stress (in vitro)&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
-          &quot;direction&quot;: &quot;target&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 3
         }
       ]
     },
@@ -14855,6 +14735,21 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;set_id&quot;: &quot;llm_2_mechanism_or_program&quot;,
       &quot;status&quot;: &quot;resolved&quot;,
       &quot;perspective&quot;: &quot;mechanism_or_program&quot;,
+      &quot;functions&quot;: [
+        {
+          &quot;var_name&quot;: &quot;HALLMARK_APOPTOSIS&quot;,
+          &quot;label&quot;: &quot;Apoptosis&quot;,
+          &quot;source&quot;: &quot;hallmark&quot;,
+          &quot;direction&quot;: &quot;target&quot;,
+          &quot;input&quot;: &quot;llm-mapped&quot;,
+          &quot;rank&quot;: 1
+        }
+      ]
+    },
+    {
+      &quot;set_id&quot;: &quot;llm_3_phenotype_or_state&quot;,
+      &quot;status&quot;: &quot;resolved&quot;,
+      &quot;perspective&quot;: &quot;phenotype_or_state&quot;,
       &quot;functions&quot;: [
         {
           &quot;var_name&quot;: &quot;HALLMARK_APOPTOSIS&quot;,
@@ -14873,40 +14768,9 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;MP5 Stress &quot;,
-          &quot;label&quot;: &quot;Stress &quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
-          &quot;direction&quot;: &quot;target&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 3
-        }
-      ]
-    },
-    {
-      &quot;set_id&quot;: &quot;llm_3_phenotype_or_state&quot;,
-      &quot;status&quot;: &quot;resolved&quot;,
-      &quot;perspective&quot;: &quot;phenotype_or_state&quot;,
-      &quot;functions&quot;: [
-        {
-          &quot;var_name&quot;: &quot;HALLMARK_APOPTOSIS&quot;,
-          &quot;label&quot;: &quot;Apoptosis&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_TNFA_SIGNALING_VIA_NFKB&quot;,
+          &quot;label&quot;: &quot;Tnfa Signaling Via Nfkb&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
-          &quot;direction&quot;: &quot;target&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 1
-        },
-        {
-          &quot;var_name&quot;: &quot;MP5 Stress &quot;,
-          &quot;label&quot;: &quot;Stress &quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
-          &quot;direction&quot;: &quot;target&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 2
-        },
-        {
-          &quot;var_name&quot;: &quot;MP7 Stress (in vitro)&quot;,
-          &quot;label&quot;: &quot;Stress (in vitro)&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;target&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -14922,22 +14786,6 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;direction&quot;: &quot;target&quot;,
       &quot;input&quot;: &quot;llm-mapped&quot;,
       &quot;rank&quot;: 1
-    },
-    {
-      &quot;var_name&quot;: &quot;MP5 Stress &quot;,
-      &quot;label&quot;: &quot;Stress &quot;,
-      &quot;source&quot;: &quot;3ca_mps&quot;,
-      &quot;direction&quot;: &quot;target&quot;,
-      &quot;input&quot;: &quot;llm-mapped&quot;,
-      &quot;rank&quot;: 2
-    },
-    {
-      &quot;var_name&quot;: &quot;MP7 Stress (in vitro)&quot;,
-      &quot;label&quot;: &quot;Stress (in vitro)&quot;,
-      &quot;source&quot;: &quot;3ca_mps&quot;,
-      &quot;direction&quot;: &quot;target&quot;,
-      &quot;input&quot;: &quot;llm-mapped&quot;,
-      &quot;rank&quot;: 3
     }
   ]
 }</pre></section>
@@ -14952,22 +14800,6 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;direction&quot;: &quot;target&quot;,
       &quot;input&quot;: &quot;llm-mapped&quot;,
       &quot;rank&quot;: 1
-    },
-    {
-      &quot;var_name&quot;: &quot;MP5 Stress &quot;,
-      &quot;label&quot;: &quot;Stress &quot;,
-      &quot;source&quot;: &quot;3ca_mps&quot;,
-      &quot;direction&quot;: &quot;target&quot;,
-      &quot;input&quot;: &quot;llm-mapped&quot;,
-      &quot;rank&quot;: 2
-    },
-    {
-      &quot;var_name&quot;: &quot;MP7 Stress (in vitro)&quot;,
-      &quot;label&quot;: &quot;Stress (in vitro)&quot;,
-      &quot;source&quot;: &quot;3ca_mps&quot;,
-      &quot;direction&quot;: &quot;target&quot;,
-      &quot;input&quot;: &quot;llm-mapped&quot;,
-      &quot;rank&quot;: 3
     }
   ],
   &quot;unresolved_terms&quot;: [],
@@ -14984,22 +14816,6 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;direction&quot;: &quot;target&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
-        },
-        {
-          &quot;var_name&quot;: &quot;MP5 Stress &quot;,
-          &quot;label&quot;: &quot;Stress &quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
-          &quot;direction&quot;: &quot;target&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 2
-        },
-        {
-          &quot;var_name&quot;: &quot;MP7 Stress (in vitro)&quot;,
-          &quot;label&quot;: &quot;Stress (in vitro)&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
-          &quot;direction&quot;: &quot;target&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 3
         }
       ]
     },
@@ -15007,6 +14823,21 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;set_id&quot;: &quot;llm_2_mechanism_or_program&quot;,
       &quot;status&quot;: &quot;resolved&quot;,
       &quot;perspective&quot;: &quot;mechanism_or_program&quot;,
+      &quot;functions&quot;: [
+        {
+          &quot;var_name&quot;: &quot;HALLMARK_APOPTOSIS&quot;,
+          &quot;label&quot;: &quot;Apoptosis&quot;,
+          &quot;source&quot;: &quot;hallmark&quot;,
+          &quot;direction&quot;: &quot;target&quot;,
+          &quot;input&quot;: &quot;llm-mapped&quot;,
+          &quot;rank&quot;: 1
+        }
+      ]
+    },
+    {
+      &quot;set_id&quot;: &quot;llm_3_phenotype_or_state&quot;,
+      &quot;status&quot;: &quot;resolved&quot;,
+      &quot;perspective&quot;: &quot;phenotype_or_state&quot;,
       &quot;functions&quot;: [
         {
           &quot;var_name&quot;: &quot;HALLMARK_APOPTOSIS&quot;,
@@ -15025,40 +14856,9 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;MP5 Stress &quot;,
-          &quot;label&quot;: &quot;Stress &quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
-          &quot;direction&quot;: &quot;target&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 3
-        }
-      ]
-    },
-    {
-      &quot;set_id&quot;: &quot;llm_3_phenotype_or_state&quot;,
-      &quot;status&quot;: &quot;resolved&quot;,
-      &quot;perspective&quot;: &quot;phenotype_or_state&quot;,
-      &quot;functions&quot;: [
-        {
-          &quot;var_name&quot;: &quot;HALLMARK_APOPTOSIS&quot;,
-          &quot;label&quot;: &quot;Apoptosis&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_TNFA_SIGNALING_VIA_NFKB&quot;,
+          &quot;label&quot;: &quot;Tnfa Signaling Via Nfkb&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
-          &quot;direction&quot;: &quot;target&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 1
-        },
-        {
-          &quot;var_name&quot;: &quot;MP5 Stress &quot;,
-          &quot;label&quot;: &quot;Stress &quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
-          &quot;direction&quot;: &quot;target&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 2
-        },
-        {
-          &quot;var_name&quot;: &quot;MP7 Stress (in vitro)&quot;,
-          &quot;label&quot;: &quot;Stress (in vitro)&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;target&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -15072,14 +14872,12 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     &quot;converged&quot;: false,
     &quot;unique_sets&quot;: [
       [
-        &quot;HALLMARK_APOPTOSIS&quot;,
-        &quot;HALLMARK_P53_PATHWAY&quot;,
-        &quot;MP5 Stress &quot;
+        &quot;HALLMARK_APOPTOSIS&quot;
       ],
       [
         &quot;HALLMARK_APOPTOSIS&quot;,
-        &quot;MP5 Stress &quot;,
-        &quot;MP7 Stress (in vitro)&quot;
+        &quot;HALLMARK_P53_PATHWAY&quot;,
+        &quot;HALLMARK_TNFA_SIGNALING_VIA_NFKB&quot;
       ]
     ]
   },
@@ -15095,14 +14893,12 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
   &quot;converged&quot;: false,
   &quot;unique_sets&quot;: [
     [
-      &quot;HALLMARK_APOPTOSIS&quot;,
-      &quot;HALLMARK_P53_PATHWAY&quot;,
-      &quot;MP5 Stress &quot;
+      &quot;HALLMARK_APOPTOSIS&quot;
     ],
     [
       &quot;HALLMARK_APOPTOSIS&quot;,
-      &quot;MP5 Stress &quot;,
-      &quot;MP7 Stress (in vitro)&quot;
+      &quot;HALLMARK_P53_PATHWAY&quot;,
+      &quot;HALLMARK_TNFA_SIGNALING_VIA_NFKB&quot;
     ]
   ]
 }</pre></section>
@@ -15129,22 +14925,6 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;direction&quot;: &quot;target&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
-        },
-        {
-          &quot;var_name&quot;: &quot;MP5 Stress &quot;,
-          &quot;label&quot;: &quot;Stress &quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
-          &quot;direction&quot;: &quot;target&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 2
-        },
-        {
-          &quot;var_name&quot;: &quot;MP7 Stress (in vitro)&quot;,
-          &quot;label&quot;: &quot;Stress (in vitro)&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
-          &quot;direction&quot;: &quot;target&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 3
         }
       ],
       &quot;modality&quot;: &quot;sh&quot;,
@@ -15163,22 +14943,6 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;direction&quot;: &quot;target&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
-        },
-        {
-          &quot;var_name&quot;: &quot;MP5 Stress &quot;,
-          &quot;label&quot;: &quot;Stress &quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
-          &quot;direction&quot;: &quot;target&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 2
-        },
-        {
-          &quot;var_name&quot;: &quot;MP7 Stress (in vitro)&quot;,
-          &quot;label&quot;: &quot;Stress (in vitro)&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
-          &quot;direction&quot;: &quot;target&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 3
         }
       ],
       &quot;modality&quot;: &quot;sh&quot;,
@@ -15197,22 +14961,6 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;direction&quot;: &quot;target&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
-        },
-        {
-          &quot;var_name&quot;: &quot;MP5 Stress &quot;,
-          &quot;label&quot;: &quot;Stress &quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
-          &quot;direction&quot;: &quot;target&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 2
-        },
-        {
-          &quot;var_name&quot;: &quot;MP7 Stress (in vitro)&quot;,
-          &quot;label&quot;: &quot;Stress (in vitro)&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
-          &quot;direction&quot;: &quot;target&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 3
         }
       ],
       &quot;modality&quot;: &quot;sh&quot;,
@@ -15822,22 +15570,6 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
-        },
-        {
-          &quot;var_name&quot;: &quot;HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION&quot;,
-          &quot;label&quot;: &quot;Epithelial Mesenchymal Transition&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
-          &quot;direction&quot;: &quot;suppress&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 2
-        },
-        {
-          &quot;var_name&quot;: &quot;HALLMARK_TGF_BETA_SIGNALING&quot;,
-          &quot;label&quot;: &quot;Tgf Beta Signaling&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
-          &quot;direction&quot;: &quot;suppress&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 3
         }
       ]
     },
@@ -15853,6 +15585,22 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
+        },
+        {
+          &quot;var_name&quot;: &quot;MP40 PDAC-related&quot;,
+          &quot;label&quot;: &quot;PDAC-related&quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;direction&quot;: &quot;suppress&quot;,
+          &quot;input&quot;: &quot;llm-mapped&quot;,
+          &quot;rank&quot;: 2
+        },
+        {
+          &quot;var_name&quot;: &quot;MP16 MES (glioma)&quot;,
+          &quot;label&quot;: &quot;MES (glioma)&quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;direction&quot;: &quot;suppress&quot;,
+          &quot;input&quot;: &quot;llm-mapped&quot;,
+          &quot;rank&quot;: 3
         }
       ]
     }
@@ -15910,22 +15658,6 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
-        },
-        {
-          &quot;var_name&quot;: &quot;HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION&quot;,
-          &quot;label&quot;: &quot;Epithelial Mesenchymal Transition&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
-          &quot;direction&quot;: &quot;suppress&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 2
-        },
-        {
-          &quot;var_name&quot;: &quot;HALLMARK_TGF_BETA_SIGNALING&quot;,
-          &quot;label&quot;: &quot;Tgf Beta Signaling&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
-          &quot;direction&quot;: &quot;suppress&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 3
         }
       ]
     },
@@ -15941,6 +15673,22 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
+        },
+        {
+          &quot;var_name&quot;: &quot;MP40 PDAC-related&quot;,
+          &quot;label&quot;: &quot;PDAC-related&quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;direction&quot;: &quot;suppress&quot;,
+          &quot;input&quot;: &quot;llm-mapped&quot;,
+          &quot;rank&quot;: 2
+        },
+        {
+          &quot;var_name&quot;: &quot;MP16 MES (glioma)&quot;,
+          &quot;label&quot;: &quot;MES (glioma)&quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;direction&quot;: &quot;suppress&quot;,
+          &quot;input&quot;: &quot;llm-mapped&quot;,
+          &quot;rank&quot;: 3
         }
       ]
     }
@@ -15955,8 +15703,8 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       ],
       [
         &quot;HALLMARK_WNT_BETA_CATENIN_SIGNALING&quot;,
-        &quot;HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION&quot;,
-        &quot;HALLMARK_TGF_BETA_SIGNALING&quot;
+        &quot;MP40 PDAC-related&quot;,
+        &quot;MP16 MES (glioma)&quot;
       ]
     ]
   },
@@ -15976,8 +15724,8 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     ],
     [
       &quot;HALLMARK_WNT_BETA_CATENIN_SIGNALING&quot;,
-      &quot;HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION&quot;,
-      &quot;HALLMARK_TGF_BETA_SIGNALING&quot;
+      &quot;MP40 PDAC-related&quot;,
+      &quot;MP16 MES (glioma)&quot;
     ]
   ]
 }</pre></section>
@@ -16787,9 +16535,9 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;MP40 PDAC-related&quot;,
-          &quot;label&quot;: &quot;PDAC-related&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_TNFA_SIGNALING_VIA_NFKB&quot;,
+          &quot;label&quot;: &quot;Tnfa Signaling Via Nfkb&quot;,
+          &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -16939,9 +16687,9 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;MP40 PDAC-related&quot;,
-          &quot;label&quot;: &quot;PDAC-related&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_TNFA_SIGNALING_VIA_NFKB&quot;,
+          &quot;label&quot;: &quot;Tnfa Signaling Via Nfkb&quot;,
+          &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -16957,7 +16705,7 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       [
         &quot;HALLMARK_KRAS_SIGNALING_DN&quot;,
         &quot;HALLMARK_KRAS_SIGNALING_UP&quot;,
-        &quot;MP40 PDAC-related&quot;
+        &quot;HALLMARK_TNFA_SIGNALING_VIA_NFKB&quot;
       ],
       [
         &quot;HALLMARK_KRAS_SIGNALING_UP&quot;,
@@ -16985,7 +16733,7 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     [
       &quot;HALLMARK_KRAS_SIGNALING_DN&quot;,
       &quot;HALLMARK_KRAS_SIGNALING_UP&quot;,
-      &quot;MP40 PDAC-related&quot;
+      &quot;HALLMARK_TNFA_SIGNALING_VIA_NFKB&quot;
     ],
     [
       &quot;HALLMARK_KRAS_SIGNALING_UP&quot;,
@@ -17488,24 +17236,24 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;interpretation_set_id&quot;: &quot;llm_1_direct_pathway&quot;,
       &quot;functions&quot;: [
         {
-          &quot;var_name&quot;: &quot;HALLMARK_E2F_TARGETS&quot;,
-          &quot;label&quot;: &quot;E2F Targets&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_G2M_CHECKPOINT&quot;,
+          &quot;label&quot;: &quot;G2M Checkpoint&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_G2M_CHECKPOINT&quot;,
-          &quot;label&quot;: &quot;G2M Checkpoint&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_E2F_TARGETS&quot;,
+          &quot;label&quot;: &quot;E2F Targets&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_MITOTIC_SPINDLE&quot;,
-          &quot;label&quot;: &quot;Mitotic Spindle&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_MYC_TARGETS_V1&quot;,
+          &quot;label&quot;: &quot;Myc Targets V1&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
@@ -17572,8 +17320,8 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_MYC_TARGETS_V1&quot;,
-          &quot;label&quot;: &quot;Myc Targets V1&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_MITOTIC_SPINDLE&quot;,
+          &quot;label&quot;: &quot;Mitotic Spindle&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
@@ -17591,24 +17339,24 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;perspective&quot;: &quot;direct_pathway&quot;,
       &quot;functions&quot;: [
         {
-          &quot;var_name&quot;: &quot;HALLMARK_E2F_TARGETS&quot;,
-          &quot;label&quot;: &quot;E2F Targets&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_G2M_CHECKPOINT&quot;,
+          &quot;label&quot;: &quot;G2M Checkpoint&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_G2M_CHECKPOINT&quot;,
-          &quot;label&quot;: &quot;G2M Checkpoint&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_E2F_TARGETS&quot;,
+          &quot;label&quot;: &quot;E2F Targets&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_MITOTIC_SPINDLE&quot;,
-          &quot;label&quot;: &quot;Mitotic Spindle&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_MYC_TARGETS_V1&quot;,
+          &quot;label&quot;: &quot;Myc Targets V1&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
@@ -17669,8 +17417,8 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_MYC_TARGETS_V1&quot;,
-          &quot;label&quot;: &quot;Myc Targets V1&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_MITOTIC_SPINDLE&quot;,
+          &quot;label&quot;: &quot;Mitotic Spindle&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
@@ -17681,24 +17429,24 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
   ],
   &quot;functions&quot;: [
     {
-      &quot;var_name&quot;: &quot;HALLMARK_E2F_TARGETS&quot;,
-      &quot;label&quot;: &quot;E2F Targets&quot;,
+      &quot;var_name&quot;: &quot;HALLMARK_G2M_CHECKPOINT&quot;,
+      &quot;label&quot;: &quot;G2M Checkpoint&quot;,
       &quot;source&quot;: &quot;hallmark&quot;,
       &quot;direction&quot;: &quot;suppress&quot;,
       &quot;input&quot;: &quot;llm-mapped&quot;,
       &quot;rank&quot;: 1
     },
     {
-      &quot;var_name&quot;: &quot;HALLMARK_G2M_CHECKPOINT&quot;,
-      &quot;label&quot;: &quot;G2M Checkpoint&quot;,
+      &quot;var_name&quot;: &quot;HALLMARK_E2F_TARGETS&quot;,
+      &quot;label&quot;: &quot;E2F Targets&quot;,
       &quot;source&quot;: &quot;hallmark&quot;,
       &quot;direction&quot;: &quot;suppress&quot;,
       &quot;input&quot;: &quot;llm-mapped&quot;,
       &quot;rank&quot;: 2
     },
     {
-      &quot;var_name&quot;: &quot;HALLMARK_MITOTIC_SPINDLE&quot;,
-      &quot;label&quot;: &quot;Mitotic Spindle&quot;,
+      &quot;var_name&quot;: &quot;HALLMARK_MYC_TARGETS_V1&quot;,
+      &quot;label&quot;: &quot;Myc Targets V1&quot;,
       &quot;source&quot;: &quot;hallmark&quot;,
       &quot;direction&quot;: &quot;suppress&quot;,
       &quot;input&quot;: &quot;llm-mapped&quot;,
@@ -17711,24 +17459,24 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
   &quot;mode&quot;: &quot;three-pass-llm-reverse-function-mapping&quot;,
   &quot;selected&quot;: [
     {
-      &quot;var_name&quot;: &quot;HALLMARK_E2F_TARGETS&quot;,
-      &quot;label&quot;: &quot;E2F Targets&quot;,
+      &quot;var_name&quot;: &quot;HALLMARK_G2M_CHECKPOINT&quot;,
+      &quot;label&quot;: &quot;G2M Checkpoint&quot;,
       &quot;source&quot;: &quot;hallmark&quot;,
       &quot;direction&quot;: &quot;suppress&quot;,
       &quot;input&quot;: &quot;llm-mapped&quot;,
       &quot;rank&quot;: 1
     },
     {
-      &quot;var_name&quot;: &quot;HALLMARK_G2M_CHECKPOINT&quot;,
-      &quot;label&quot;: &quot;G2M Checkpoint&quot;,
+      &quot;var_name&quot;: &quot;HALLMARK_E2F_TARGETS&quot;,
+      &quot;label&quot;: &quot;E2F Targets&quot;,
       &quot;source&quot;: &quot;hallmark&quot;,
       &quot;direction&quot;: &quot;suppress&quot;,
       &quot;input&quot;: &quot;llm-mapped&quot;,
       &quot;rank&quot;: 2
     },
     {
-      &quot;var_name&quot;: &quot;HALLMARK_MITOTIC_SPINDLE&quot;,
-      &quot;label&quot;: &quot;Mitotic Spindle&quot;,
+      &quot;var_name&quot;: &quot;HALLMARK_MYC_TARGETS_V1&quot;,
+      &quot;label&quot;: &quot;Myc Targets V1&quot;,
       &quot;source&quot;: &quot;hallmark&quot;,
       &quot;direction&quot;: &quot;suppress&quot;,
       &quot;input&quot;: &quot;llm-mapped&quot;,
@@ -17743,24 +17491,24 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;perspective&quot;: &quot;direct_pathway&quot;,
       &quot;functions&quot;: [
         {
-          &quot;var_name&quot;: &quot;HALLMARK_E2F_TARGETS&quot;,
-          &quot;label&quot;: &quot;E2F Targets&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_G2M_CHECKPOINT&quot;,
+          &quot;label&quot;: &quot;G2M Checkpoint&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_G2M_CHECKPOINT&quot;,
-          &quot;label&quot;: &quot;G2M Checkpoint&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_E2F_TARGETS&quot;,
+          &quot;label&quot;: &quot;E2F Targets&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_MITOTIC_SPINDLE&quot;,
-          &quot;label&quot;: &quot;Mitotic Spindle&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_MYC_TARGETS_V1&quot;,
+          &quot;label&quot;: &quot;Myc Targets V1&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
@@ -17821,8 +17569,8 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_MYC_TARGETS_V1&quot;,
-          &quot;label&quot;: &quot;Myc Targets V1&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_MITOTIC_SPINDLE&quot;,
+          &quot;label&quot;: &quot;Mitotic Spindle&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
@@ -17842,8 +17590,8 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
         &quot;HALLMARK_MITOTIC_SPINDLE&quot;
       ],
       [
-        &quot;HALLMARK_E2F_TARGETS&quot;,
         &quot;HALLMARK_G2M_CHECKPOINT&quot;,
+        &quot;HALLMARK_E2F_TARGETS&quot;,
         &quot;HALLMARK_MYC_TARGETS_V1&quot;
       ]
     ]
@@ -17865,8 +17613,8 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;HALLMARK_MITOTIC_SPINDLE&quot;
     ],
     [
-      &quot;HALLMARK_E2F_TARGETS&quot;,
       &quot;HALLMARK_G2M_CHECKPOINT&quot;,
+      &quot;HALLMARK_E2F_TARGETS&quot;,
       &quot;HALLMARK_MYC_TARGETS_V1&quot;
     ]
   ]
@@ -17888,24 +17636,24 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;interpretation_set_id&quot;: &quot;llm_1_direct_pathway&quot;,
       &quot;functions&quot;: [
         {
-          &quot;var_name&quot;: &quot;HALLMARK_E2F_TARGETS&quot;,
-          &quot;label&quot;: &quot;E2F Targets&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_G2M_CHECKPOINT&quot;,
+          &quot;label&quot;: &quot;G2M Checkpoint&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_G2M_CHECKPOINT&quot;,
-          &quot;label&quot;: &quot;G2M Checkpoint&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_E2F_TARGETS&quot;,
+          &quot;label&quot;: &quot;E2F Targets&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_MITOTIC_SPINDLE&quot;,
-          &quot;label&quot;: &quot;Mitotic Spindle&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_MYC_TARGETS_V1&quot;,
+          &quot;label&quot;: &quot;Myc Targets V1&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
@@ -17972,8 +17720,8 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_MYC_TARGETS_V1&quot;,
-          &quot;label&quot;: &quot;Myc Targets V1&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_MITOTIC_SPINDLE&quot;,
+          &quot;label&quot;: &quot;Mitotic Spindle&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
@@ -18089,17 +17837,17 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;interpretation_set_id&quot;: &quot;llm_3_phenotype_or_state&quot;,
       &quot;functions&quot;: [
         {
-          &quot;var_name&quot;: &quot;HALLMARK_HYPOXIA&quot;,
+          &quot;var_name&quot;: &quot;MP6 Hypoxia&quot;,
           &quot;label&quot;: &quot;Hypoxia&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;MP6 Hypoxia&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_HYPOXIA&quot;,
           &quot;label&quot;: &quot;Hypoxia&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
@@ -18186,17 +17934,17 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;perspective&quot;: &quot;phenotype_or_state&quot;,
       &quot;functions&quot;: [
         {
-          &quot;var_name&quot;: &quot;HALLMARK_HYPOXIA&quot;,
+          &quot;var_name&quot;: &quot;MP6 Hypoxia&quot;,
           &quot;label&quot;: &quot;Hypoxia&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;MP6 Hypoxia&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_HYPOXIA&quot;,
           &quot;label&quot;: &quot;Hypoxia&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
@@ -18338,17 +18086,17 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;perspective&quot;: &quot;phenotype_or_state&quot;,
       &quot;functions&quot;: [
         {
-          &quot;var_name&quot;: &quot;HALLMARK_HYPOXIA&quot;,
+          &quot;var_name&quot;: &quot;MP6 Hypoxia&quot;,
           &quot;label&quot;: &quot;Hypoxia&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;MP6 Hypoxia&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_HYPOXIA&quot;,
           &quot;label&quot;: &quot;Hypoxia&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
@@ -18366,7 +18114,7 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
   ],
   &quot;reverse_mapping_convergence&quot;: {
     &quot;llm_nonempty_set_count&quot;: 3,
-    &quot;unique_llm_set_count&quot;: 2,
+    &quot;unique_llm_set_count&quot;: 3,
     &quot;converged&quot;: false,
     &quot;unique_sets&quot;: [
       [
@@ -18377,6 +18125,11 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       [
         &quot;HALLMARK_HYPOXIA&quot;,
         &quot;MP6 Hypoxia&quot;,
+        &quot;MP5 Stress &quot;
+      ],
+      [
+        &quot;MP6 Hypoxia&quot;,
+        &quot;HALLMARK_HYPOXIA&quot;,
         &quot;MP5 Stress &quot;
       ]
     ]
@@ -18389,7 +18142,7 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
   }
 }</pre><p><b>Reverse convergence:</b></p><pre>{
   &quot;llm_nonempty_set_count&quot;: 3,
-  &quot;unique_llm_set_count&quot;: 2,
+  &quot;unique_llm_set_count&quot;: 3,
   &quot;converged&quot;: false,
   &quot;unique_sets&quot;: [
     [
@@ -18400,6 +18153,11 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
     [
       &quot;HALLMARK_HYPOXIA&quot;,
       &quot;MP6 Hypoxia&quot;,
+      &quot;MP5 Stress &quot;
+    ],
+    [
+      &quot;MP6 Hypoxia&quot;,
+      &quot;HALLMARK_HYPOXIA&quot;,
       &quot;MP5 Stress &quot;
     ]
   ]
@@ -18489,17 +18247,17 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;interpretation_set_id&quot;: &quot;llm_3_phenotype_or_state&quot;,
       &quot;functions&quot;: [
         {
-          &quot;var_name&quot;: &quot;HALLMARK_HYPOXIA&quot;,
+          &quot;var_name&quot;: &quot;MP6 Hypoxia&quot;,
           &quot;label&quot;: &quot;Hypoxia&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;MP6 Hypoxia&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_HYPOXIA&quot;,
           &quot;label&quot;: &quot;Hypoxia&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
@@ -18736,9 +18494,9 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_G2M_CHECKPOINT&quot;,
-          &quot;label&quot;: &quot;G2M Checkpoint&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
+          &quot;var_name&quot;: &quot;MP5 Stress &quot;,
+          &quot;label&quot;: &quot;Stress &quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;activate&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -18888,9 +18646,9 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_G2M_CHECKPOINT&quot;,
-          &quot;label&quot;: &quot;G2M Checkpoint&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
+          &quot;var_name&quot;: &quot;MP5 Stress &quot;,
+          &quot;label&quot;: &quot;Stress &quot;,
+          &quot;source&quot;: &quot;3ca_mps&quot;,
           &quot;direction&quot;: &quot;activate&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -18900,13 +18658,18 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
   ],
   &quot;reverse_mapping_convergence&quot;: {
     &quot;llm_nonempty_set_count&quot;: 3,
-    &quot;unique_llm_set_count&quot;: 1,
-    &quot;converged&quot;: true,
+    &quot;unique_llm_set_count&quot;: 2,
+    &quot;converged&quot;: false,
     &quot;unique_sets&quot;: [
       [
         &quot;HALLMARK_P53_PATHWAY&quot;,
         &quot;HALLMARK_DNA_REPAIR&quot;,
         &quot;HALLMARK_G2M_CHECKPOINT&quot;
+      ],
+      [
+        &quot;HALLMARK_P53_PATHWAY&quot;,
+        &quot;HALLMARK_DNA_REPAIR&quot;,
+        &quot;MP5 Stress &quot;
       ]
     ]
   },
@@ -18918,13 +18681,18 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
   }
 }</pre><p><b>Reverse convergence:</b></p><pre>{
   &quot;llm_nonempty_set_count&quot;: 3,
-  &quot;unique_llm_set_count&quot;: 1,
-  &quot;converged&quot;: true,
+  &quot;unique_llm_set_count&quot;: 2,
+  &quot;converged&quot;: false,
   &quot;unique_sets&quot;: [
     [
       &quot;HALLMARK_P53_PATHWAY&quot;,
       &quot;HALLMARK_DNA_REPAIR&quot;,
       &quot;HALLMARK_G2M_CHECKPOINT&quot;
+    ],
+    [
+      &quot;HALLMARK_P53_PATHWAY&quot;,
+      &quot;HALLMARK_DNA_REPAIR&quot;,
+      &quot;MP5 Stress &quot;
     ]
   ]
 }</pre></section>
@@ -19086,17 +18854,17 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;MP14 EMT-III &quot;,
-          &quot;label&quot;: &quot;EMT-III &quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_TGF_BETA_SIGNALING&quot;,
+          &quot;label&quot;: &quot;Tgf Beta Signaling&quot;,
+          &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;MP15 EMT IV&quot;,
-          &quot;label&quot;: &quot;EMT IV&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION&quot;,
+          &quot;label&quot;: &quot;Epithelial Mesenchymal Transition&quot;,
+          &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -19120,17 +18888,17 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;MP14 EMT-III &quot;,
-          &quot;label&quot;: &quot;EMT-III &quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_TGF_BETA_SIGNALING&quot;,
+          &quot;label&quot;: &quot;Tgf Beta Signaling&quot;,
+          &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;MP15 EMT IV&quot;,
-          &quot;label&quot;: &quot;EMT IV&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION&quot;,
+          &quot;label&quot;: &quot;Epithelial Mesenchymal Transition&quot;,
+          &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -19154,17 +18922,17 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;MP14 EMT-III &quot;,
-          &quot;label&quot;: &quot;EMT-III &quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_TGF_BETA_SIGNALING&quot;,
+          &quot;label&quot;: &quot;Tgf Beta Signaling&quot;,
+          &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;MP15 EMT IV&quot;,
-          &quot;label&quot;: &quot;EMT IV&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION&quot;,
+          &quot;label&quot;: &quot;Epithelial Mesenchymal Transition&quot;,
+          &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -19189,17 +18957,17 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;MP14 EMT-III &quot;,
-          &quot;label&quot;: &quot;EMT-III &quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_TGF_BETA_SIGNALING&quot;,
+          &quot;label&quot;: &quot;Tgf Beta Signaling&quot;,
+          &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;MP15 EMT IV&quot;,
-          &quot;label&quot;: &quot;EMT IV&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION&quot;,
+          &quot;label&quot;: &quot;Epithelial Mesenchymal Transition&quot;,
+          &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -19249,22 +19017,6 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
-        },
-        {
-          &quot;var_name&quot;: &quot;HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION&quot;,
-          &quot;label&quot;: &quot;Epithelial Mesenchymal Transition&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
-          &quot;direction&quot;: &quot;suppress&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 2
-        },
-        {
-          &quot;var_name&quot;: &quot;MP14 EMT-III &quot;,
-          &quot;label&quot;: &quot;EMT-III &quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
-          &quot;direction&quot;: &quot;suppress&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 3
         }
       ]
     }
@@ -19279,17 +19031,17 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;rank&quot;: 1
     },
     {
-      &quot;var_name&quot;: &quot;MP14 EMT-III &quot;,
-      &quot;label&quot;: &quot;EMT-III &quot;,
-      &quot;source&quot;: &quot;3ca_mps&quot;,
+      &quot;var_name&quot;: &quot;HALLMARK_TGF_BETA_SIGNALING&quot;,
+      &quot;label&quot;: &quot;Tgf Beta Signaling&quot;,
+      &quot;source&quot;: &quot;hallmark&quot;,
       &quot;direction&quot;: &quot;suppress&quot;,
       &quot;input&quot;: &quot;llm-mapped&quot;,
       &quot;rank&quot;: 2
     },
     {
-      &quot;var_name&quot;: &quot;MP15 EMT IV&quot;,
-      &quot;label&quot;: &quot;EMT IV&quot;,
-      &quot;source&quot;: &quot;3ca_mps&quot;,
+      &quot;var_name&quot;: &quot;HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION&quot;,
+      &quot;label&quot;: &quot;Epithelial Mesenchymal Transition&quot;,
+      &quot;source&quot;: &quot;hallmark&quot;,
       &quot;direction&quot;: &quot;suppress&quot;,
       &quot;input&quot;: &quot;llm-mapped&quot;,
       &quot;rank&quot;: 3
@@ -19309,17 +19061,17 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
       &quot;rank&quot;: 1
     },
     {
-      &quot;var_name&quot;: &quot;MP14 EMT-III &quot;,
-      &quot;label&quot;: &quot;EMT-III &quot;,
-      &quot;source&quot;: &quot;3ca_mps&quot;,
+      &quot;var_name&quot;: &quot;HALLMARK_TGF_BETA_SIGNALING&quot;,
+      &quot;label&quot;: &quot;Tgf Beta Signaling&quot;,
+      &quot;source&quot;: &quot;hallmark&quot;,
       &quot;direction&quot;: &quot;suppress&quot;,
       &quot;input&quot;: &quot;llm-mapped&quot;,
       &quot;rank&quot;: 2
     },
     {
-      &quot;var_name&quot;: &quot;MP15 EMT IV&quot;,
-      &quot;label&quot;: &quot;EMT IV&quot;,
-      &quot;source&quot;: &quot;3ca_mps&quot;,
+      &quot;var_name&quot;: &quot;HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION&quot;,
+      &quot;label&quot;: &quot;Epithelial Mesenchymal Transition&quot;,
+      &quot;source&quot;: &quot;hallmark&quot;,
       &quot;direction&quot;: &quot;suppress&quot;,
       &quot;input&quot;: &quot;llm-mapped&quot;,
       &quot;rank&quot;: 3
@@ -19341,17 +19093,17 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;MP14 EMT-III &quot;,
-          &quot;label&quot;: &quot;EMT-III &quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_TGF_BETA_SIGNALING&quot;,
+          &quot;label&quot;: &quot;Tgf Beta Signaling&quot;,
+          &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;MP15 EMT IV&quot;,
-          &quot;label&quot;: &quot;EMT IV&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION&quot;,
+          &quot;label&quot;: &quot;Epithelial Mesenchymal Transition&quot;,
+          &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -19401,35 +19153,22 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 1
-        },
-        {
-          &quot;var_name&quot;: &quot;HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION&quot;,
-          &quot;label&quot;: &quot;Epithelial Mesenchymal Transition&quot;,
-          &quot;source&quot;: &quot;hallmark&quot;,
-          &quot;direction&quot;: &quot;suppress&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 2
-        },
-        {
-          &quot;var_name&quot;: &quot;MP14 EMT-III &quot;,
-          &quot;label&quot;: &quot;EMT-III &quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
-          &quot;direction&quot;: &quot;suppress&quot;,
-          &quot;input&quot;: &quot;llm-mapped&quot;,
-          &quot;rank&quot;: 3
         }
       ]
     }
   ],
   &quot;reverse_mapping_convergence&quot;: {
     &quot;llm_nonempty_set_count&quot;: 3,
-    &quot;unique_llm_set_count&quot;: 2,
+    &quot;unique_llm_set_count&quot;: 3,
     &quot;converged&quot;: false,
     &quot;unique_sets&quot;: [
       [
+        &quot;HALLMARK_WNT_BETA_CATENIN_SIGNALING&quot;
+      ],
+      [
         &quot;HALLMARK_WNT_BETA_CATENIN_SIGNALING&quot;,
-        &quot;HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION&quot;,
-        &quot;MP14 EMT-III &quot;
+        &quot;HALLMARK_TGF_BETA_SIGNALING&quot;,
+        &quot;HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION&quot;
       ],
       [
         &quot;HALLMARK_WNT_BETA_CATENIN_SIGNALING&quot;,
@@ -19446,13 +19185,16 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
   }
 }</pre><p><b>Reverse convergence:</b></p><pre>{
   &quot;llm_nonempty_set_count&quot;: 3,
-  &quot;unique_llm_set_count&quot;: 2,
+  &quot;unique_llm_set_count&quot;: 3,
   &quot;converged&quot;: false,
   &quot;unique_sets&quot;: [
     [
+      &quot;HALLMARK_WNT_BETA_CATENIN_SIGNALING&quot;
+    ],
+    [
       &quot;HALLMARK_WNT_BETA_CATENIN_SIGNALING&quot;,
-      &quot;HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION&quot;,
-      &quot;MP14 EMT-III &quot;
+      &quot;HALLMARK_TGF_BETA_SIGNALING&quot;,
+      &quot;HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION&quot;
     ],
     [
       &quot;HALLMARK_WNT_BETA_CATENIN_SIGNALING&quot;,
@@ -19486,17 +19228,17 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;MP14 EMT-III &quot;,
-          &quot;label&quot;: &quot;EMT-III &quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_TGF_BETA_SIGNALING&quot;,
+          &quot;label&quot;: &quot;Tgf Beta Signaling&quot;,
+          &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;MP15 EMT IV&quot;,
-          &quot;label&quot;: &quot;EMT IV&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION&quot;,
+          &quot;label&quot;: &quot;Epithelial Mesenchymal Transition&quot;,
+          &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -19520,17 +19262,17 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;MP14 EMT-III &quot;,
-          &quot;label&quot;: &quot;EMT-III &quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_TGF_BETA_SIGNALING&quot;,
+          &quot;label&quot;: &quot;Tgf Beta Signaling&quot;,
+          &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;MP15 EMT IV&quot;,
-          &quot;label&quot;: &quot;EMT IV&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION&quot;,
+          &quot;label&quot;: &quot;Epithelial Mesenchymal Transition&quot;,
+          &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -19554,17 +19296,17 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;MP14 EMT-III &quot;,
-          &quot;label&quot;: &quot;EMT-III &quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_TGF_BETA_SIGNALING&quot;,
+          &quot;label&quot;: &quot;Tgf Beta Signaling&quot;,
+          &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;MP15 EMT IV&quot;,
-          &quot;label&quot;: &quot;EMT IV&quot;,
-          &quot;source&quot;: &quot;3ca_mps&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION&quot;,
+          &quot;label&quot;: &quot;Epithelial Mesenchymal Transition&quot;,
+          &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;suppress&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 3
@@ -19685,16 +19427,16 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_SPERMATOGENESIS&quot;,
-          &quot;label&quot;: &quot;Spermatogenesis&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_E2F_TARGETS&quot;,
+          &quot;label&quot;: &quot;E2F Targets&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;target&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_ADIPOGENESIS&quot;,
-          &quot;label&quot;: &quot;Adipogenesis&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_G2M_CHECKPOINT&quot;,
+          &quot;label&quot;: &quot;G2M Checkpoint&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;target&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
@@ -19751,16 +19493,16 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_SPERMATOGENESIS&quot;,
-          &quot;label&quot;: &quot;Spermatogenesis&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_E2F_TARGETS&quot;,
+          &quot;label&quot;: &quot;E2F Targets&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;target&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_ADIPOGENESIS&quot;,
-          &quot;label&quot;: &quot;Adipogenesis&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_G2M_CHECKPOINT&quot;,
+          &quot;label&quot;: &quot;G2M Checkpoint&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;target&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
@@ -19782,16 +19524,16 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_E2F_TARGETS&quot;,
-          &quot;label&quot;: &quot;E2F Targets&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_ADIPOGENESIS&quot;,
+          &quot;label&quot;: &quot;Adipogenesis&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;target&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_MITOTIC_SPINDLE&quot;,
-          &quot;label&quot;: &quot;Mitotic Spindle&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_E2F_TARGETS&quot;,
+          &quot;label&quot;: &quot;E2F Targets&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;target&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
@@ -19903,16 +19645,16 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_SPERMATOGENESIS&quot;,
-          &quot;label&quot;: &quot;Spermatogenesis&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_E2F_TARGETS&quot;,
+          &quot;label&quot;: &quot;E2F Targets&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;target&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_ADIPOGENESIS&quot;,
-          &quot;label&quot;: &quot;Adipogenesis&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_G2M_CHECKPOINT&quot;,
+          &quot;label&quot;: &quot;G2M Checkpoint&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;target&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
@@ -19934,16 +19676,16 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_E2F_TARGETS&quot;,
-          &quot;label&quot;: &quot;E2F Targets&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_ADIPOGENESIS&quot;,
+          &quot;label&quot;: &quot;Adipogenesis&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;target&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_MITOTIC_SPINDLE&quot;,
-          &quot;label&quot;: &quot;Mitotic Spindle&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_E2F_TARGETS&quot;,
+          &quot;label&quot;: &quot;E2F Targets&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;target&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
@@ -19954,18 +19696,23 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
   ],
   &quot;reverse_mapping_convergence&quot;: {
     &quot;llm_nonempty_set_count&quot;: 3,
-    &quot;unique_llm_set_count&quot;: 2,
+    &quot;unique_llm_set_count&quot;: 3,
     &quot;converged&quot;: false,
     &quot;unique_sets&quot;: [
       [
         &quot;HALLMARK_MYOGENESIS&quot;,
-        &quot;HALLMARK_E2F_TARGETS&quot;,
-        &quot;HALLMARK_MITOTIC_SPINDLE&quot;
+        &quot;HALLMARK_ADIPOGENESIS&quot;,
+        &quot;HALLMARK_E2F_TARGETS&quot;
       ],
       [
         &quot;HALLMARK_MYOGENESIS&quot;,
-        &quot;HALLMARK_SPERMATOGENESIS&quot;,
-        &quot;HALLMARK_ADIPOGENESIS&quot;
+        &quot;HALLMARK_E2F_TARGETS&quot;,
+        &quot;HALLMARK_G2M_CHECKPOINT&quot;
+      ],
+      [
+        &quot;HALLMARK_MYOGENESIS&quot;,
+        &quot;HALLMARK_E2F_TARGETS&quot;,
+        &quot;HALLMARK_MITOTIC_SPINDLE&quot;
       ]
     ]
   },
@@ -19977,18 +19724,23 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
   }
 }</pre><p><b>Reverse convergence:</b></p><pre>{
   &quot;llm_nonempty_set_count&quot;: 3,
-  &quot;unique_llm_set_count&quot;: 2,
+  &quot;unique_llm_set_count&quot;: 3,
   &quot;converged&quot;: false,
   &quot;unique_sets&quot;: [
     [
       &quot;HALLMARK_MYOGENESIS&quot;,
-      &quot;HALLMARK_E2F_TARGETS&quot;,
-      &quot;HALLMARK_MITOTIC_SPINDLE&quot;
+      &quot;HALLMARK_ADIPOGENESIS&quot;,
+      &quot;HALLMARK_E2F_TARGETS&quot;
     ],
     [
       &quot;HALLMARK_MYOGENESIS&quot;,
-      &quot;HALLMARK_SPERMATOGENESIS&quot;,
-      &quot;HALLMARK_ADIPOGENESIS&quot;
+      &quot;HALLMARK_E2F_TARGETS&quot;,
+      &quot;HALLMARK_G2M_CHECKPOINT&quot;
+    ],
+    [
+      &quot;HALLMARK_MYOGENESIS&quot;,
+      &quot;HALLMARK_E2F_TARGETS&quot;,
+      &quot;HALLMARK_MITOTIC_SPINDLE&quot;
     ]
   ]
 }</pre></section>
@@ -20085,16 +19837,16 @@ pre { white-space:pre-wrap; background:#f6f8fa; padding:10px; border-radius:6px;
           &quot;rank&quot;: 1
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_SPERMATOGENESIS&quot;,
-          &quot;label&quot;: &quot;Spermatogenesis&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_E2F_TARGETS&quot;,
+          &quot;label&quot;: &quot;E2F Targets&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;target&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
           &quot;rank&quot;: 2
         },
         {
-          &quot;var_name&quot;: &quot;HALLMARK_ADIPOGENESIS&quot;,
-          &quot;label&quot;: &quot;Adipogenesis&quot;,
+          &quot;var_name&quot;: &quot;HALLMARK_G2M_CHECKPOINT&quot;,
+          &quot;label&quot;: &quot;G2M Checkpoint&quot;,
           &quot;source&quot;: &quot;hallmark&quot;,
           &quot;direction&quot;: &quot;target&quot;,
           &quot;input&quot;: &quot;llm-mapped&quot;,
