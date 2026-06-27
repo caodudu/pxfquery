@@ -1591,6 +1591,18 @@ edges:
   to: goal_ms3_ms4_quality_and_repair/task_ms5_application_scene_candidate_map
   dep_id: T-093
   gate: must
+- from: goal_ms3_ms4_quality_and_repair/task_ms4_route_execution_matrix
+  to: goal_ms3_ms4_quality_and_repair/task_ms4_repaired_package_verification_gate
+  dep_id: T-094
+  gate: must
+- from: goal_ms3_ms4_quality_and_repair/task_ms4_parser_resolver_route_repair_version
+  to: goal_ms3_ms4_quality_and_repair/task_ms4_repaired_package_verification_gate
+  dep_id: T-098
+  gate: must
+- from: goal_ms3_ms4_quality_and_repair/task_ms4_reverse_engine_output_repair_version
+  to: goal_ms3_ms4_quality_and_repair/task_ms4_repaired_package_verification_gate
+  dep_id: T-099
+  gate: must
 labels:
 - id: label_mqpofuno
   phase: digestion
