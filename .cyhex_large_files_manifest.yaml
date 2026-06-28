@@ -2081,11 +2081,39 @@ excluded_from_git:
   size_mb: 9.05
 - path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_10_l2_resource_routing_repair/4_artifact/5_table/t137_60_l2_validation_latest.json
   size_mb: 9.05
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_11_l3_resource_pack_query_execution_repair/1_asset/.env
+  size_mb: 0.0
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_11_l3_resource_pack_query_execution_repair/1_asset/l3_light_resource_pack/cp_X_dense_thr0.1_round2_float16_compressed.npz
+  size_mb: 23.04
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_11_l3_resource_pack_query_execution_repair/1_asset/l3_light_resource_pack/cp_obs_min.parquet
+  size_mb: 4.38
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_11_l3_resource_pack_query_execution_repair/1_asset/l3_light_resource_pack/sh_X_dense_thr0.1_round2_float16_compressed.npz
+  size_mb: 22.01
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_11_l3_resource_pack_query_execution_repair/1_asset/l3_light_resource_pack/sh_obs_min.parquet
+  size_mb: 3.0
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_11_l3_resource_pack_query_execution_repair/1_asset/l3_light_resource_pack/xpr_X_dense_thr0.1_round2_float16_compressed.npz
+  size_mb: 15.13
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_11_l3_resource_pack_query_execution_repair/1_asset/l3_light_resource_pack/xpr_obs_min.parquet
+  size_mb: 2.63
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_11_l3_resource_pack_query_execution_repair/3_execution/04_package_source_v3_l3/.pytest_cache/CACHEDIR.TAG
+  size_mb: 0.0
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_11_l3_resource_pack_query_execution_repair/3_execution/04_package_source_v3_l3/.pytest_cache/v/cache/nodeids
+  size_mb: 0.0
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_11_l3_resource_pack_query_execution_repair/3_execution/04_package_source_v3_l3/src/pxfquery.egg-info/PKG-INFO
+  size_mb: 0.0
 - path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_11_l3_resource_pack_query_execution_repair/4_artifact/.DS_Store
   size_mb: 0.01
 - path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_11_l3_resource_pack_query_execution_repair/4_artifact/5_table/generalization_50_l1_l2_to_l3_replay_20260628_133440.tsv
   size_mb: 0.01
 - path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_11_l3_resource_pack_query_execution_repair/4_artifact/5_table/generalization_50_l1_l2_to_l3_replay_20260628_141642.tsv
+  size_mb: 0.01
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_11_l3_resource_pack_query_execution_repair/4_artifact/5_table/generalization_50_l1_l2_to_l3_replay_latest.tsv
+  size_mb: 0.01
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_11_l3_resource_pack_query_execution_repair/4_artifact/5_table/l3_direction_analysis_20260628_205230.tsv
+  size_mb: 0.01
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_11_l3_resource_pack_query_execution_repair/4_artifact/5_table/l3_direction_analysis_20260628_205401.tsv
+  size_mb: 0.01
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_11_l3_resource_pack_query_execution_repair/4_artifact/5_table/l3_direction_analysis_20260628_205640.tsv
   size_mb: 0.01
 - path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_11_l3_resource_pack_query_execution_repair/4_artifact/5_table/pxfquery_zenodo_resource_file_list_v20260628.tsv
   size_mb: 0.01
@@ -2093,10 +2121,46 @@ excluded_from_git:
   size_mb: 0.01
 - path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_11_l3_resource_pack_query_execution_repair/4_artifact/5_table/t137_60_l2_to_l3_replay_20260628_141406.tsv
   size_mb: 0.01
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_11_l3_resource_pack_query_execution_repair/4_artifact/5_table/t137_60_l2_to_l3_replay_latest.tsv
+  size_mb: 0.01
 - path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_11_l3_resource_pack_query_execution_repair/4_artifact/5_table/t137_60_l2_to_l3_replay_v20260628.tsv
   size_mb: 0.01
 - path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_11_l3_resource_pack_query_execution_repair/4_artifact/5_table/t137_60_l3_empty_hit_diagnosis_v20260628.tsv
   size_mb: 0.03
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_12_l4_evidence_dossier_plan/1_asset/.env
+  size_mb: 0.0
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_12_l4_evidence_dossier_plan/3_execution/04_package_source_v4_l4/.pytest_cache/CACHEDIR.TAG
+  size_mb: 0.0
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_12_l4_evidence_dossier_plan/3_execution/04_package_source_v4_l4/.pytest_cache/v/cache/lastfailed
+  size_mb: 0.0
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_12_l4_evidence_dossier_plan/3_execution/04_package_source_v4_l4/.pytest_cache/v/cache/nodeids
+  size_mb: 0.0
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_12_l4_evidence_dossier_plan/3_execution/04_package_source_v4_l4/src/pxfquery.egg-info/PKG-INFO
+  size_mb: 0.0
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_12_l4_evidence_dossier_plan/4_artifact/.DS_Store
+  size_mb: 0.01
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_12_l4_evidence_dossier_plan/4_artifact/5_table/t137_60_l1_to_l4_parallel_20260628_235242.tsv
+  size_mb: 0.02
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_12_l4_evidence_dossier_plan/4_artifact/5_table/t137_60_l1_to_l4_parallel_20260628_235532.json
+  size_mb: 5.91
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_12_l4_evidence_dossier_plan/4_artifact/5_table/t137_60_l1_to_l4_parallel_20260628_235532.tsv
+  size_mb: 0.03
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_12_l4_evidence_dossier_plan/4_artifact/5_table/t137_60_l1_to_l4_parallel_20260629_003228.json
+  size_mb: 20.26
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_12_l4_evidence_dossier_plan/4_artifact/5_table/t137_60_l1_to_l4_parallel_20260629_003228.tsv
+  size_mb: 0.07
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_12_l4_evidence_dossier_plan/4_artifact/5_table/t137_60_l1_to_l4_parallel_latest.json
+  size_mb: 20.26
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_12_l4_evidence_dossier_plan/4_artifact/5_table/t137_60_l1_to_l4_parallel_latest.tsv
+  size_mb: 0.07
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_13_l5_presentation_output_layer_plan/3_execution/04_package_source_v5_l5/.pytest_cache/CACHEDIR.TAG
+  size_mb: 0.0
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_13_l5_presentation_output_layer_plan/3_execution/04_package_source_v5_l5/.pytest_cache/v/cache/lastfailed
+  size_mb: 0.0
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_13_l5_presentation_output_layer_plan/3_execution/04_package_source_v5_l5/.pytest_cache/v/cache/nodeids
+  size_mb: 0.0
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_13_l5_presentation_output_layer_plan/3_execution/04_package_source_v5_l5/src/pxfquery.egg-info/PKG-INFO
+  size_mb: 0.0
 - path: 4_phase_development/goal_m1_python_package_v2/task_contract_and_demo_spec_m1/1_asset/t013_capability_status_matrix.csv
   size_mb: 0.0
 - path: 4_phase_development/goal_m1_python_package_v2/task_contract_and_demo_spec_m1/5_report/cli_sessions/check/20260624_032828_codex_cli_ced0408076a2/stderr.log

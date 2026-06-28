@@ -1991,3 +1991,21 @@ tasks:
   executor: human
   created: '2026-06-28'
   completed: null
+- id: T-141
+  name: ms8_13_l5_presentation_output_layer_plan
+  phase: development
+  goal: goal_goal_ms8_human_usable_package
+  path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_13_l5_presentation_output_layer_plan
+  status: pending
+  executor: human
+  created: '2026-06-29'
+  completed: null
+- id: T-142
+  name: pxfquery_web_l5_query_server_mvp
+  phase: translation
+  goal: goal_pending_g010
+  path: 5_phase_translation/goal_pending_g010/task_pxfquery_web_l5_query_server_mvp
+  status: pending
+  executor: human
+  created: '2026-06-29'
+  completed: null
