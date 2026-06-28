@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.5.3.dev0 - 2026-06-28
+
+- Completed the L2 resource-routing repair around `pxf.pp.route(qdata)`.
+- Added resource-backed cell, drug, gene, function, and combination route plans with bounded candidates, rejected-candidate evidence, unresolved dimensions, and L3 handoff payloads.
+- Added controlled DeepSeek-backed L2 routing for cell-tree traversal, drug/gene normalization, and function mapping; LLM outputs must validate against resource indexes.
+- Added explicit `llm_unavailable` and `llm_output_invalid` states instead of demo or local fallback behavior.
+- Validated with package tests, real DeepSeek L2 checks, T137 60-question L2 replay, and an additional 50-question L1+L2 generalization run.
+
 ## 0.5.1 - 2026-06-28
 
 - Renamed the first business layer from `l1_nlu` to `l1_intent`; no compatibility alias is kept.
