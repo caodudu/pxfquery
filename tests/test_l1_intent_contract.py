@@ -8,7 +8,9 @@ from pxfquery.l1_intent import IntentBackendError, IntentBackendNotConfigured
 
 def test_real_l1_deepseek_intent_reaches_l2_route_plan():
     pxf = PxFQuery()
-    token = os.environ.get("DEEPSEEK_API_KEY") or os.environ["PXFQUERY_LLM_API_KEY"]
+    token = os.environ.get("DEEPSEEK_API_KEY") or os.environ.get("PXFQUERY_LLM_API_KEY")
+    if not token:
+        pytest.skip("real L1 provider smoke test requires DEEPSEEK_API_KEY or PXFQUERY_LLM_API_KEY")
     pxf.settings.register_llm_provider(token=token, timeout=60)
     q = pxf.read.query("Which drugs activate apoptosis in cancer cells?")
 
@@ -24,11 +26,12 @@ def test_real_l1_deepseek_intent_reaches_l2_route_plan():
     assert isinstance(intent["missing_fields"], list)
     assert q.uns["_intent"].to_dict() == intent
 
-    pxf.tl.route(q)
+    pxf.pp.route(q)
     route = pxf.get.route(q)
 
     assert route["intent"] == intent
-    assert route["route_status"] in {"requires-resource-routing", "needs-intent-completion"}
+    assert route["schema_version"] == "l2-route-plan/v2"
+    assert route["route_status"] in {"routed", "llm-required", "resource-missing", "needs-intent-completion", "unresolved"}
 
 
 def test_l1_intent_requires_registered_provider(monkeypatch):

@@ -72,6 +72,7 @@ class FunctionIndex:
             self._var_names: list[str] = data["var_names"]
             self._meta: dict[str, dict] = data["meta"]
             self._aliases: dict[str, str] = data["aliases"]  # lowercase -> var_name
+            self._aliases.update(self._build_aliases_from_meta(self._meta))
         else:
             functions = data.get("functions", {})
             self._var_names = list(functions.keys())
@@ -227,4 +228,33 @@ class FunctionIndex:
         for k, v in curated.items():
             if v in functions:
                 aliases[k] = v
+        return aliases
+
+    @staticmethod
+    def _build_aliases_from_meta(meta: dict[str, dict]) -> dict[str, str]:
+        aliases: dict[str, str] = {}
+        for var_name, item in meta.items():
+            aliases[var_name.lower()] = var_name
+            label = str(item.get("label", "")).strip().lower()
+            if label:
+                aliases[label] = var_name
+                aliases[label.replace(" ", "_")] = var_name
+
+        curated = {
+            "emt": "HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION",
+            "epithelial mesenchymal transition": "HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION",
+            "oxphos": "HALLMARK_OXIDATIVE_PHOSPHORYLATION",
+            "p53": "HALLMARK_P53_PATHWAY",
+            "myc": "HALLMARK_MYC_TARGETS_V1",
+            "glycolysis": "HALLMARK_GLYCOLYSIS",
+            "apoptosis": "HALLMARK_APOPTOSIS",
+            "cell cycle": "HALLMARK_E2F_TARGETS",
+            "proliferation": "HALLMARK_E2F_TARGETS",
+            "inflammation": "HALLMARK_INFLAMMATORY_RESPONSE",
+            "interferon gamma": "HALLMARK_INTERFERON_GAMMA_RESPONSE",
+            "interferon alpha": "HALLMARK_INTERFERON_ALPHA_RESPONSE",
+        }
+        for key, value in curated.items():
+            if value in meta:
+                aliases[key] = value
         return aliases

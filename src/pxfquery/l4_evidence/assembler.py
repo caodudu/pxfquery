@@ -2,18 +2,17 @@ from __future__ import annotations
 
 from typing import Any
 
-from pxfquery.l3_execution import ForwardResult, ReverseResult
-
 
 def assemble_evidence(execution: Any) -> dict:
-    if isinstance(execution, ForwardResult):
+    result_type = type(execution).__name__
+    if result_type == "ForwardResult":
         return _assemble_forward(execution)
-    if isinstance(execution, ReverseResult):
+    if result_type == "ReverseResult":
         return _assemble_reverse(execution)
     raise TypeError(f"Unsupported execution result type: {type(execution)!r}")
 
 
-def _assemble_forward(result: ForwardResult) -> dict:
+def _assemble_forward(result: Any) -> dict:
     meta = getattr(result, "resolver_meta", {}) or {}
     activated = _series_records(result.top_activated if result.found else None, "activated_function")
     suppressed = _series_records(result.top_suppressed if result.found else None, "suppressed_function")
@@ -50,7 +49,7 @@ def _assemble_forward(result: ForwardResult) -> dict:
     }
 
 
-def _assemble_reverse(result: ReverseResult) -> dict:
+def _assemble_reverse(result: Any) -> dict:
     meta = getattr(result, "resolver_meta", {}) or {}
     candidates = result.candidates_df.reset_index(names="rank").to_dict(orient="records") if result.found else []
     return {

@@ -62,7 +62,7 @@ pxf.load_data_dir("/path/to/functional_matrices")
 pxf.enable_resolver(index_dir="/path/to/query_indexes", api_key="...")
 q = pxf.read.query("Which perturbations increase a requested biological function in a disease model?")
 pxf.pp.parse(q)
-pxf.tl.route(q)
+pxf.pp.route(q)
 pxf.tl.execute(q)
 pxf.tl.assemble(q)
 result = pxf.get.result(q)
@@ -156,5 +156,5 @@ print(pxfquery.__version__)
 Current version:
 
 ```text
-0.5.1
+0.5.3.dev0
 ```

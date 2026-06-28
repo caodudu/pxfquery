@@ -34,19 +34,26 @@ class PreprocessingNamespace:
         target.uns["_intent"] = intent
         return target if copy else None
 
-
-class ToolsNamespace:
-    def __init__(self, client) -> None:
-        self._client = client
-
     def route(self, qdata: PxFQueryData, *, copy: bool = False) -> PxFQueryData | None:
         target = _copy_qdata(qdata) if copy else qdata
         intent = _require_intent(target)
-        route_plan = route_intent(intent)
+        route_plan = route_intent(
+            intent,
+            assets=self._client.assets,
+            index_dir=self._client._index_dir,
+            llm_provider=self._client.llm_providers.get(),
+            forward_engines=self._client._forward_engines,
+            reverse_engines=self._client._reverse_engines,
+        )
         target.uns["route_plan"] = route_plan.to_dict()
         target.uns["_route_plan"] = route_plan
         target.uns["route_status"] = route_plan.route_status
         return target if copy else None
+
+
+class ToolsNamespace:
+    def __init__(self, client) -> None:
+        self._client = client
 
     def execute(self, qdata: PxFQueryData, *, copy: bool = False) -> PxFQueryData | None:
         target = _copy_qdata(qdata) if copy else qdata
@@ -94,7 +101,7 @@ class GetNamespace:
 def run_scanpy_style_pipeline(client, text: str) -> PxFQueryData:
     qdata = client.read.query(text)
     client.pp.parse(qdata)
-    client.tl.route(qdata)
+    client.pp.route(qdata)
     client.tl.execute(qdata)
     client.tl.assemble(qdata)
     return qdata
@@ -112,11 +119,7 @@ def _require_intent(qdata: PxFQueryData):
 
 def _require_route_plan(qdata: PxFQueryData):
     if "_route_plan" not in qdata.uns:
-        intent = _require_intent(qdata)
-        route_plan = route_intent(intent)
-        qdata.uns["route_plan"] = route_plan.to_dict()
-        qdata.uns["_route_plan"] = route_plan
-        qdata.uns["route_status"] = route_plan.route_status
+        raise RuntimeError("qdata has no l2 routing result; call pxf.pp.route(qdata) before downstream tools")
     return qdata.uns["_route_plan"]
 
 

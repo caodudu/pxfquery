@@ -198,11 +198,44 @@ class LLMProvider:
             )
             raise IntentBackendError(str(last_error)) from last_error
 
-    def _request_json(self, messages: list[dict[str, str]], evidence: ProviderEvidence) -> Any:
+    def request_json(
+        self,
+        *,
+        stage: str,
+        system_prompt: str,
+        user_payload: dict[str, Any],
+        validator: Callable[[Any], Any] | None = None,
+        temperature: float = 0,
+    ) -> tuple[Any, dict[str, Any]]:
+        evidence = ProviderEvidence(
+            provider=self.config.name,
+            base_url=self.config.base_url,
+            model=self.config.model,
+            started_at=_utc_now(),
+        )
+        messages = [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": json.dumps(user_payload, ensure_ascii=True, sort_keys=True)},
+        ]
+        self.event_log.stage(
+            stage,
+            "provider_start",
+            "Starting real LLM JSON request",
+            provider=self.config.name,
+            base_url=self.config.base_url,
+            model=self.config.model,
+        )
+        payload = self._request_json(messages, evidence, temperature=temperature)
+        if validator is not None:
+            validator(payload)
+        _finish_success(evidence, payload if isinstance(payload, dict) else {"payload": payload})
+        return payload, evidence.to_dict()
+
+    def _request_json(self, messages: list[dict[str, str]], evidence: ProviderEvidence, *, temperature: float = 0) -> Any:
         request_payload: dict[str, Any] = {
             "model": self.config.model,
             "messages": messages,
-            "temperature": 0,
+            "temperature": temperature,
             "max_tokens": self.config.max_tokens,
         }
         if self.config.response_format_json:

@@ -1,12 +1,11 @@
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Optional
+from typing import TYPE_CHECKING, Optional
 
 from pxfquery.l1_intent import ProviderRegistry, provider_from_env
-from pxfquery.l2_routing import QueryResolver, ResolverConfig
-from pxfquery.l3_execution import DataLoader, ForwardQuery, ReverseQuery
 from pxfquery.l3_execution.assets import AssetRegistry
+from pxfquery.l3_execution.loader import DataLoader
 from pxfquery.l3_execution.resources import ResourceManager
 from pxfquery.l5_presentation.model import PxFQueryAnswer
 from pxfquery.settings import SettingsNamespace
@@ -18,6 +17,11 @@ from pxfquery.workflow import (
     ToolsNamespace,
     run_scanpy_style_pipeline,
 )
+
+if TYPE_CHECKING:
+    from pxfquery.l2_routing.resolver import QueryResolver
+    from pxfquery.l3_execution.forward import ForwardQuery
+    from pxfquery.l3_execution.reverse import ReverseQuery
 
 
 class PxFQuery:
@@ -33,9 +37,10 @@ class PxFQuery:
             else:
                 self.llm_providers.register_provider("injected", initial_provider, default=True)
         self._loader = DataLoader()
-        self._forward_engines: dict[str, ForwardQuery] = {}
-        self._reverse_engines: dict[str, ReverseQuery] = {}
-        self._resolver: QueryResolver | None = None
+        self._forward_engines: dict[str, "ForwardQuery"] = {}
+        self._reverse_engines: dict[str, "ReverseQuery"] = {}
+        self._resolver: "QueryResolver | None" = None
+        self._index_dir: Path | None = None
         self.resources = ResourceManager(self)
         self.settings = SettingsNamespace(self)
         self.read = ReadNamespace()
@@ -48,6 +53,9 @@ class PxFQuery:
         return __version__
 
     def load_data(self, pert_type: str, path: str | Path) -> "PxFQuery":
+        from pxfquery.l3_execution.forward import ForwardQuery
+        from pxfquery.l3_execution.reverse import ReverseQuery
+
         self._loader.load_local(pert_type, path)
         adata = self._loader.get(pert_type)
         self._forward_engines[pert_type] = ForwardQuery(adata)
@@ -55,6 +63,9 @@ class PxFQuery:
         return self
 
     def load_data_dir(self, directory: str | Path) -> "PxFQuery":
+        from pxfquery.l3_execution.forward import ForwardQuery
+        from pxfquery.l3_execution.reverse import ReverseQuery
+
         self._loader.load_all_local(directory)
         for pert_type in self._loader.list_loaded():
             adata = self._loader.get(pert_type)
@@ -72,6 +83,8 @@ class PxFQuery:
         default_top_n: int = 20,
         summarize: bool = False,
     ) -> "PxFQuery":
+        from pxfquery.l2_routing.resolver import QueryResolver, ResolverConfig
+
         del summarize
         config = ResolverConfig(
             api_key=api_key,
@@ -86,6 +99,7 @@ class PxFQuery:
             index_dir=index_dir,
             config=config,
         )
+        self._index_dir = Path(index_dir).expanduser().resolve()
         return self
 
     def pert2func(
@@ -124,7 +138,8 @@ class PxFQuery:
 
     def plot(self, result, *, kind: str | None = None, backend: str = "plotly", top_n: int = 20, save: str | None = None):
         from pxfquery.l5_presentation.plots import plot_forward_bar, plot_reverse_table
-        from pxfquery.l3_execution import ForwardResult, ReverseResult
+        from pxfquery.l3_execution.forward import ForwardResult
+        from pxfquery.l3_execution.reverse import ReverseResult
 
         if isinstance(result, ForwardResult):
             fig = plot_forward_bar(result, top_n=top_n, backend=backend)
