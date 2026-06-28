@@ -127,6 +127,7 @@ def _execute_forward_route(route: dict[str, Any], route_plan: dict[str, Any], st
         scores={
             "aggregate": {name: float(value) for name, value in zip(matrix.var_names, scores)},
             "requested_functions": requested_scores,
+            "requested_function_records": _score_records(requested_scores),
             "aggregation": "mean",
         },
         rankings={
@@ -268,7 +269,16 @@ def _rank_records(var_names: list[str], scores: np.ndarray, order: np.ndarray, t
             continue
         if not positive and score >= 0:
             continue
-        rows.append({"function": var_names[int(idx)], "score": score})
+        function = var_names[int(idx)]
+        rows.append(
+            {
+                "rank": len(rows) + 1,
+                "label": function,
+                "function": function,
+                "score": score,
+                "direction": "activated" if positive else "suppressed",
+            }
+        )
         if len(rows) >= top_n:
             break
     return rows
@@ -277,9 +287,26 @@ def _rank_records(var_names: list[str], scores: np.ndarray, order: np.ndarray, t
 def _driving_terms(var_names: list[str], contributions: np.ndarray, *, top_n: int) -> list[dict[str, Any]]:
     order = np.argsort(-np.abs(contributions))[:top_n]
     return [
-        {"function": var_names[int(idx)], "contribution": float(contributions[int(idx)])}
-        for idx in order
+        {
+            "rank": rank,
+            "label": var_names[int(idx)],
+            "function": var_names[int(idx)],
+            "contribution": float(contributions[int(idx)]),
+        }
+        for rank, idx in enumerate(order, start=1)
         if float(contributions[int(idx)]) != 0.0
+    ][:top_n]
+
+
+def _score_records(scores: dict[str, float]) -> list[dict[str, Any]]:
+    return [
+        {
+            "rank": rank,
+            "label": name,
+            "function": name,
+            "score": float(value),
+        }
+        for rank, (name, value) in enumerate(scores.items(), start=1)
     ]
 
 

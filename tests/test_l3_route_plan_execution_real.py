@@ -5,6 +5,7 @@ import pytest
 
 from pxfquery import PxFQuery
 from pxfquery.l1_intent import QueryIntent
+from pxfquery.l3_execution.executor import _rank_records
 
 
 DEFAULT_STANDARD_RESOURCES = Path(
@@ -52,6 +53,26 @@ def _qdata_with_intent(pxf: PxFQuery, intent: QueryIntent):
     qdata.uns["_intent"] = intent
     qdata.uns["intent"] = intent.to_dict()
     return qdata
+
+
+def test_l3_rank_records_keep_human_label_and_machine_function_field():
+    records = _rank_records(
+        ["HALLMARK_APOPTOSIS", "HALLMARK_MYC_TARGETS_V1"],
+        scores=[1.25, -0.75],
+        order=[0, 1],
+        top_n=2,
+        positive=True,
+    )
+
+    assert records == [
+        {
+            "rank": 1,
+            "label": "HALLMARK_APOPTOSIS",
+            "function": "HALLMARK_APOPTOSIS",
+            "score": 1.25,
+            "direction": "activated",
+        }
+    ]
 
 
 def test_l3_executes_real_forward_route_plan_from_t138_l2():

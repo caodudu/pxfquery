@@ -4,6 +4,8 @@ import time
 
 from pxfquery import PxFQuery
 from pxfquery.l1_intent import QueryIntent
+from pxfquery.l2_routing.index.cellline_index import CellLineIndex
+from pxfquery.l2_routing.router import _expanded_tree_cells
 from pxfquery.l2_routing.router import route_intent
 
 
@@ -116,6 +118,19 @@ def test_l2_routes_cell_line_mentions_with_cells_suffix_as_exact():
         assert route["cell_route"]["mode"] == "exact-cell-with-lineage-proxies"
         assert route["cell_route"]["selected"] == [expected]
         assert not any(call["stage"].startswith("cell_tree_") for call in route["llm_calls"])
+
+
+def test_l2_marks_normal_same_lineage_anchor_as_semantic_downgrade():
+    assert STANDARD_RESOURCES.exists()
+    cell_index = CellLineIndex(STANDARD_RESOURCES / "cellline_index.json", STANDARD_RESOURCES / "cellline_neighbors.json")
+
+    expanded = _expanded_tree_cells(["MCF7"], cell_index)
+    normal_anchors = [item for item in expanded if item.get("cell_expansion_scope") == "normal_lineage_data_anchor"]
+
+    assert normal_anchors
+    assert all(item["source_disease"] == "breast cancer" for item in normal_anchors)
+    assert all(item["cell_route_distance"] >= 3 for item in normal_anchors)
+    assert all(item.get("semantic_downgrade_reason") for item in normal_anchors)
 
 
 def test_l2_reports_resource_missing_without_registered_indexes():

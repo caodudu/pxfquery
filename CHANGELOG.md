@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.5.5.dev1 - 2026-06-28
+
+- Added stable L3 evidence labels for forward rankings and requested function records so downstream HTML/L4 readers do not lose function names.
+- Integrated the L2 normal-lineage anchor downgrade patch: cancer-context routes that fall back to normal same-lineage data are explicitly marked as downgraded evidence.
+
 ## 0.5.5.dev0 - 2026-06-28
 
 - Repaired L3 route-plan execution against the current L1/L2 contract without legacy compatibility shells.
