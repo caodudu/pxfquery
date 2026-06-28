@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.5.6.dev3 - 2026-06-29
+
+- Added real optional L4 annotation providers under `pxfquery.l4_evidence.annotation` for PubMed, PubChem, and ChEMBL.
+- Made `pxf.tl.anno(qdata)` use the public annotation providers by default, while still accepting custom providers and source selection.
+- Added ChEMBL mechanism enrichment with target lookup by `target_chembl_id`, so drug-target evidence includes target names when ChEMBL exposes them.
+- Kept DrugBank as an explicit unavailable provider rather than inventing unauthenticated DrugBank data.
+
 ## 0.5.6.dev2 - 2026-06-29
 
 - Added `pxf.tl.parse(text)` as a one-call L1-L4 pipeline entrypoint and `pxf.tl.anno(qdata, providers=[...])` as an optional real-provider annotation extension point.

@@ -5,6 +5,7 @@ from typing import Any
 
 from pxfquery.l3_execution import execute_route_plan
 from pxfquery.l4_evidence import assemble_evidence
+from pxfquery.l4_evidence.annotation import default_annotation_providers
 from pxfquery.l1_intent import parse_intent
 from pxfquery.l2_routing import route_intent
 from pxfquery.l5_presentation.answer import build_answer
@@ -128,13 +129,16 @@ class ToolsNamespace:
         qdata: PxFQueryData,
         *,
         providers: list[Any] | tuple[Any, ...] | None = None,
+        sources: list[str] | tuple[str, ...] | None = None,
+        timeout: float = 20.0,
         copy: bool = False,
     ) -> PxFQueryData | None:
         target = _copy_qdata(qdata) if copy else qdata
         dossier = _require_evidence(target)
+        active_providers = list(providers) if providers is not None else default_annotation_providers(sources, timeout=timeout)
         records: list[dict[str, Any]] = []
         diagnostics: list[dict[str, Any]] = []
-        for provider in providers or []:
+        for provider in active_providers:
             name = getattr(provider, "name", provider.__class__.__name__)
             if not hasattr(provider, "annotate"):
                 diagnostics.append({"provider": name, "status": "unavailable", "reason": "provider does not expose annotate(...)"})
@@ -145,7 +149,7 @@ class ToolsNamespace:
                 diagnostics.append({"provider": name, "status": "failed", "reason": f"{type(exc).__name__}: {exc}"})
                 continue
             records.append({"provider": name, "status": "completed", "records": _json_safe_list(payload)})
-        status = "disabled" if providers is None else ("completed" if records else "unavailable")
+        status = "completed" if records else "unavailable"
         annotation = {"status": status, "records": records, "diagnostics": diagnostics}
         dossier.setdefault("evidence_layer", {})["annotation_evidence"] = annotation
         target.uns["evidence_dossier"] = dossier
