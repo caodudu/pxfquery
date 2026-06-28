@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-27T22:08:04.470272+00:00",
+  "generated_at": "2026-06-28T03:20:58.199510+00:00",
   "provider": {
     "base_url": "https://api.deepseek.com/v1",
     "model": "deepseek-v4-flash"
@@ -2021,7 +2021,7 @@
               {
                 "attempt": 1,
                 "ok": true,
-                "elapsed_ms": 806,
+                "elapsed_ms": 1714,
                 "response_hash": "303552cd44f87e204becd8da6e9711b195dd5c48710908cee2c36e02c39b0f04",
                 "response_excerpt": "{\"selected_option\": \"lung\"}"
               }
@@ -2063,7 +2063,7 @@
               {
                 "attempt": 1,
                 "ok": true,
-                "elapsed_ms": 1108,
+                "elapsed_ms": 1123,
                 "response_hash": "fcb240861ec4b84bbbc9f81aba75c4ea9f75c5c193e6ed36c2d52f2bd49580c3",
                 "response_excerpt": "{\"selected_option\": \"lung cancer\"}"
               }
@@ -2097,7 +2097,7 @@
               {
                 "attempt": 1,
                 "ok": true,
-                "elapsed_ms": 1013,
+                "elapsed_ms": 1024,
                 "response_hash": "2d274c6ca55924665a102dee293753b2a42859b24eeb3607c7af1c82612697b0",
                 "response_excerpt": "{\"selected_option\": \"non small cell lung cancer\"}"
               }
@@ -3466,7 +3466,7 @@
               {
                 "attempt": 1,
                 "ok": true,
-                "elapsed_ms": 967,
+                "elapsed_ms": 1186,
                 "response_hash": "a4700678cd276aaeed1f492be6114e4dae625c7d8b902a06673b872caf38d577",
                 "response_excerpt": "{\"selected_alias\": \"erlotinib\", \"hypothesis_names\": []}"
               }
@@ -5062,20 +5062,16 @@
               {
                 "attempt": 1,
                 "ok": true,
-                "elapsed_ms": 1633,
-                "response_hash": "e5a5bf0e0362ddb59be1934f2340f5f519c3f1b14c30963d2cf09ed53c72a139",
-                "response_excerpt": "{\n  \"selected_symbol\": null,\n  \"hypothesis_symbols\": [\"TP53\", \"TP53TG1\", \"TP53I3\", \"TP53BP1\", \"TP53AIP1\"]\n}"
+                "elapsed_ms": 1171,
+                "response_hash": "0e087926011cb0ec5ad00e835e8b784994446cf024d7e96037aca1f2d5659cc4",
+                "response_excerpt": "{\n  \"selected_symbol\": null,\n  \"hypothesis_symbols\": [\"TP53\"]\n}"
               }
             ],
-            "parsed_json_hash": "57cc7d0ca8fdbebf3a652d763688f26ec0925b69f2dc1e407f4c7309b78afa2b",
+            "parsed_json_hash": "246443d123ae643c170513bfe6e58b68ee923b99602e6ac69caf0e6657ed41bd",
             "raw_output": {
               "selected_symbol": null,
               "hypothesis_symbols": [
-                "TP53",
-                "TP53TG1",
-                "TP53I3",
-                "TP53BP1",
-                "TP53AIP1"
+                "TP53"
               ]
             },
             "input_payload": {
@@ -5091,7 +5087,7 @@
             },
             "validated": true,
             "discard_reason": null,
-            "response_excerpt": "{\"hypothesis_symbols\": [\"TP53\", \"TP53TG1\", \"TP53I3\", \"TP53BP1\", \"TP53AIP1\"], \"selected_symbol\": null}"
+            "response_excerpt": "{\"hypothesis_symbols\": [\"TP53\"], \"selected_symbol\": null}"
           }
         ],
         "selected_route": {
@@ -6680,7 +6676,7 @@
               {
                 "attempt": 1,
                 "ok": true,
-                "elapsed_ms": 1645,
+                "elapsed_ms": 1661,
                 "response_hash": "212a942f28f6b901d43e13e19363dc8ee36c2bfd7cffe320f9e40f5b17d06b81",
                 "response_excerpt": "{\"selected_var_names\": [\"HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION\", \"MP12 EMT-I\", \"MP13 EMT-II\", \"MP14 EMT-III\", \"MP15 EMT IV\"]}"
               }
@@ -8677,7 +8673,7 @@
               {
                 "attempt": 1,
                 "ok": true,
-                "elapsed_ms": 1124,
+                "elapsed_ms": 1120,
                 "response_hash": "339bb7ab19c2baccfb893a247b2af6ef366dc2aa5379ca497b23998b9d48d949",
                 "response_excerpt": "{\"selected_option\": \"breast\"}"
               }
@@ -8719,7 +8715,7 @@
               {
                 "attempt": 1,
                 "ok": true,
-                "elapsed_ms": 1018,
+                "elapsed_ms": 1008,
                 "response_hash": "1cba7372c8e898672ccb9c6edc043ef830f067db4488c007dd340e938bf8ab0c",
                 "response_excerpt": "{\"selected_option\": \"breast cancer\"}"
               }
@@ -8753,7 +8749,7 @@
               {
                 "attempt": 1,
                 "ok": true,
-                "elapsed_ms": 1130,
+                "elapsed_ms": 1141,
                 "response_hash": "e47245426c63cab3cb5242e96914863b1c9c9a18feee7f43b6c73a894a9ffb5f",
                 "response_excerpt": "{\"selected_option\": \"carcinoma\"}"
               }
@@ -8787,7 +8783,7 @@
               {
                 "attempt": 1,
                 "ok": true,
-                "elapsed_ms": 1431,
+                "elapsed_ms": 1210,
                 "response_hash": "9cf23bdc53e3f9adc6123e2c238665b0126b3f6a4959feaf85e2b06bb9079af7",
                 "response_excerpt": "{\n  \"selected_var_names\": [\n    \"HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION\",\n    \"HALLMARK_E2F_TARGETS\",\n    \"HALLMARK_G2M_CHECKPOINT\"\n  ]\n}"
               }
@@ -8832,7 +8828,7 @@
               {
                 "attempt": 1,
                 "ok": true,
-                "elapsed_ms": 1637,
+                "elapsed_ms": 1204,
                 "response_hash": "9cf23bdc53e3f9adc6123e2c238665b0126b3f6a4959feaf85e2b06bb9079af7",
                 "response_excerpt": "{\n  \"selected_var_names\": [\n    \"HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION\",\n    \"HALLMARK_E2F_TARGETS\",\n    \"HALLMARK_G2M_CHECKPOINT\"\n  ]\n}"
               }
@@ -8877,7 +8873,7 @@
               {
                 "attempt": 1,
                 "ok": true,
-                "elapsed_ms": 1330,
+                "elapsed_ms": 1349,
                 "response_hash": "9cf23bdc53e3f9adc6123e2c238665b0126b3f6a4959feaf85e2b06bb9079af7",
                 "response_excerpt": "{\n  \"selected_var_names\": [\n    \"HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION\",\n    \"HALLMARK_E2F_TARGETS\",\n    \"HALLMARK_G2M_CHECKPOINT\"\n  ]\n}"
               }

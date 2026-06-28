@@ -1,6 +1,6 @@
 # T138 L2 真实 LLM 路由验证报告
 
-- 生成时间：2026-06-27T22:08:04.470272+00:00
+- 生成时间：2026-06-28T03:20:58.199510+00:00
 - 模型：deepseek-v4-flash
 - Base URL：https://api.deepseek.com/v1
 - 资源目录：`/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/2_persist/standard_resources`
@@ -60,7 +60,7 @@
   - gene_llm_call_ok: True
   - gene_resolved: True
 - LLM 调用：
-  - gene_normalization / ok / deepseek / deepseek-v4-flash / temp=0 / hash=57cc7d0ca8fdbebf3a652d763688f26ec0925b69f2dc1e407f4c7309b78afa2b
+  - gene_normalization / ok / deepseek / deepseek-v4-flash / temp=0 / hash=246443d123ae643c170513bfe6e58b68ee923b99602e6ac69caf0e6657ed41bd
 - 路由摘要：
   - cell: ['A549'] candidates=6
   - perturbation: [{'symbol': 'TP53', 'gene_type': 'protein_coding', 'in_matrix': True, 'role': 'llm-normalized', 'rank': 1}]

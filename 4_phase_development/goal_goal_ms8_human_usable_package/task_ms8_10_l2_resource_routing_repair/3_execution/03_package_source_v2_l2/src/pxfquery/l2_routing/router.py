@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from difflib import SequenceMatcher
@@ -123,10 +124,12 @@ def route_intent(
             resource_status=resource_status,
         )
 
-    llm_calls: list[dict[str, Any]] = []
-    cell_route = _route_cell(intent, resources, llm_calls, llm_provider)
-    perturbation_route = _route_perturbation(intent, resources, llm_calls, llm_provider)
-    function_route = _route_functions(intent, resources, llm_calls, llm_provider)
+    cell_route, cell_calls, perturbation_route, perturbation_calls, function_route, function_calls = _route_dimensions_parallel(
+        intent,
+        resources,
+        llm_provider,
+    )
+    llm_calls: list[dict[str, Any]] = [*cell_calls, *perturbation_calls, *function_calls]
     combination_route = _route_combinations(
         intent,
         cell_route,
@@ -157,6 +160,33 @@ def route_intent(
         unresolved_dimensions=unresolved_dimensions,
         handoff_payload=handoff_payload,
     )
+
+
+def _route_dimensions_parallel(
+    intent: QueryIntent,
+    resources: ResourcePaths,
+    llm_provider: Any | None,
+) -> tuple[dict[str, Any], list[dict[str, Any]], dict[str, Any], list[dict[str, Any]], dict[str, Any], list[dict[str, Any]]]:
+    def run_cell() -> tuple[dict[str, Any], list[dict[str, Any]]]:
+        calls: list[dict[str, Any]] = []
+        return _route_cell(intent, resources, calls, llm_provider), calls
+
+    def run_perturbation() -> tuple[dict[str, Any], list[dict[str, Any]]]:
+        calls: list[dict[str, Any]] = []
+        return _route_perturbation(intent, resources, calls, llm_provider), calls
+
+    def run_function() -> tuple[dict[str, Any], list[dict[str, Any]]]:
+        calls: list[dict[str, Any]] = []
+        return _route_functions(intent, resources, calls, llm_provider), calls
+
+    with ThreadPoolExecutor(max_workers=3) as executor:
+        cell_future = executor.submit(run_cell)
+        perturbation_future = executor.submit(run_perturbation)
+        function_future = executor.submit(run_function)
+        cell_route, cell_calls = cell_future.result()
+        perturbation_route, perturbation_calls = perturbation_future.result()
+        function_route, function_calls = function_future.result()
+    return cell_route, cell_calls, perturbation_route, perturbation_calls, function_route, function_calls
 
 
 def classify_route(intent: QueryIntent) -> str:
@@ -786,8 +816,10 @@ def _llm_route_reverse_functions(
                 "functions": exact_selected[:MAX_REVERSE_FUNCTIONS_PER_SET],
             }
         )
-    for i, perspective in enumerate(perspectives, 1):
-        temperature = [0.0, 0.35, 0.7][i - 1]
+    jobs = [(i, perspective, [0.0, 0.35, 0.7][i - 1]) for i, perspective in enumerate(perspectives, 1)]
+
+    def run_mapping(job: tuple[int, str, float]) -> tuple[dict[str, Any], dict[str, Any] | None]:
+        i, perspective, temperature = job
         payload, evidence = _llm_json(
             llm_provider,
             stage=f"function_reverse_mapping_{perspective}",
@@ -809,13 +841,20 @@ def _llm_route_reverse_functions(
             },
         )
         mapped = _validate_function_payload(payload, function_index, MAX_REVERSE_FUNCTIONS_PER_SET)
-        calls.append(_llm_call_record(f"function_reverse_mapping_{perspective}", "ok" if mapped else "empty", evidence, payload, temperature=temperature))
+        call = _llm_call_record(f"function_reverse_mapping_{perspective}", "ok" if mapped else "empty", evidence, payload, temperature=temperature)
         if mapped:
             functions = [
                 _function_record(v, function_index, "llm-mapped", rank + 1, direction=_direction_for_reverse(intent))
                 for rank, v in enumerate(mapped)
             ]
-            sets.append({"set_id": f"llm_{i}_{perspective}", "status": "resolved", "perspective": perspective, "functions": functions})
+            return call, {"set_id": f"llm_{i}_{perspective}", "status": "resolved", "perspective": perspective, "functions": functions}
+        return call, None
+
+    with ThreadPoolExecutor(max_workers=len(jobs)) as executor:
+        for call, interpretation_set in executor.map(run_mapping, jobs):
+            calls.append(call)
+            if interpretation_set:
+                sets.append(interpretation_set)
     selected = exact_selected[:MAX_REVERSE_FUNCTIONS_PER_SET]
     if not selected and sets:
         selected = sets[0]["functions"]

@@ -4,7 +4,7 @@ from pxfquery import PxFQuery
 
 def test_public_entrypoint_is_single_client():
     assert pxfquery.__all__ == ["PxFQuery"]
-    assert PxFQuery().version == "0.5.3.dev1"
+    assert PxFQuery().version == "0.5.3.dev2"
 
 
 def test_scanpy_style_namespaces_are_available():

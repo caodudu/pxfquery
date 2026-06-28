@@ -156,5 +156,5 @@ print(pxfquery.__version__)
 Current version:
 
 ```text
-0.5.3.dev1
+0.5.3.dev2
 ```
