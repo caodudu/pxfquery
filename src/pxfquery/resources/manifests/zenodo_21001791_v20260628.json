@@ -77,7 +77,7 @@
       "url": "https://zenodo.org/api/records/21001791/files/gene_neighbors_simple.json/content",
       "bytes": 20443987,
       "sha256": "b6b8169eec0c3ff0ef1264eb4db723cb48863ef52ecb257dd6452c1a42db0ad9",
-      "group": "l2_proxy_neighbors"
+      "group": "l2_optional_proxy_neighbors"
     },
     "l2.function_index": {
       "path": "function_index.json",

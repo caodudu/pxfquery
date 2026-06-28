@@ -1,10 +1,11 @@
 import pxfquery
 from pxfquery import PxFQuery
+from pxfquery.resources import ResourceManager, default_manifest
 
 
 def test_public_entrypoint_is_single_client():
     assert pxfquery.__all__ == ["PxFQuery"]
-    assert PxFQuery().version == "0.5.5.dev3"
+    assert PxFQuery().version == "0.5.5.dev4"
 
 
 def test_scanpy_style_namespaces_are_available():
@@ -23,3 +24,34 @@ def test_scanpy_style_namespaces_are_available():
     assert not hasattr(pxf, "pert2func")
     assert not hasattr(pxf, "func2pert")
     assert not hasattr(pxf, "plot")
+
+
+def test_resource_manifest_switch_does_not_reuse_local_root(tmp_path):
+    local_root = tmp_path / "local_pack"
+    cache_root = tmp_path / "cache"
+    local_root.mkdir()
+    manager = ResourceManager(cache_dir=cache_root)
+
+    manager.use(local_root, strict=False)
+    local_status = manager.status()
+    assert local_status.source == "local_resource_pack"
+    assert local_status.root == str(local_root.resolve())
+
+    manager.use_manifest(default_manifest(), strict=False)
+    manifest_status = manager.status()
+    assert manifest_status.source == "manifest"
+    assert manifest_status.root is None
+    item = manager._resource_file(group="l3_functional_scores", modality="cp", kind="matrix")
+    assert str(local_root.resolve()) not in item.path
+    assert str(cache_root.resolve() / "v20260628") in item.path
+
+
+def test_default_route_prefetch_does_not_require_unused_simple_gene_neighbors(tmp_path):
+    manager = ResourceManager(cache_dir=tmp_path / "cache")
+
+    status = manager.ensure("l2_proxy_neighbors", auto_download=False)
+
+    assert "l2.cellline_neighbors" in status.missing_files
+    assert "l2.drug_neighbors" in status.missing_files
+    assert "l2.gene_neighbors" in status.missing_files
+    assert "l2.gene_neighbors_simple" not in status.missing_files

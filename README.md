@@ -76,24 +76,33 @@ Direct legacy matrix query helpers are intentionally not exposed in this L3 pack
 
 PxFquery uses a local resource pack containing perturbation matrices, indexes, and metadata. Normal users should think about this as one PxFquery resource pack, not as individual matrix/index files.
 
-Current local-pack flow:
+Default cached flow:
 
 ```python
 from pxfquery import PxFQuery
 
 pxf = PxFQuery()
+print(pxf.resources.status())
+```
+
+`PxFQuery()` mounts the packaged Zenodo manifest by default. Files are cached under `~/.cache/pxfquery/resources/v20260628` and are downloaded only when a route or execution step needs them.
+
+Explicit local-pack flow:
+
+```python
+pxf = PxFQuery()
 pxf.resources.use("/path/to/pxfquery_resource_pack")
 print(pxf.resources.status())
 ```
 
-Download flow:
+Manual prefetch is available when a caller wants to populate the cache before querying:
 
 ```python
 pxf = PxFQuery()
-pxf.resources.download()
+pxf.resources.download("l2_core_indexes")
+pxf.resources.download("l2_proxy_neighbors")
+pxf.resources.download("l3_functional_scores", modalities=("cp",), kinds=("obs", "matrix", "var"))
 ```
-
-The download/cache implementation is planned for the unified resource manager. Current tests use explicit local resource-pack paths.
 
 ## Interface Layers
 
@@ -108,11 +117,11 @@ User biomedical question
   -> pxfquery.l5_presentation
 ```
 
-The current `0.5.5.dev3` implementation keeps the five-layer structure and repairs L3 execution against current L2 route plans. `l1_intent` parsing requires a configured OpenAI-compatible LLM provider. L3 biological scores come from loaded functional matrices and resource-pack indexes.
+The current `0.5.5.dev4` implementation keeps the five-layer structure and repairs L3 execution against current L2 route plans. `l1_intent` parsing requires a configured OpenAI-compatible LLM provider. L3 biological scores come from loaded functional matrices and resource-pack indexes.
 
 ## Current Status
 
-Version `0.5.5.dev3` keeps the package capabilities inside the layered source architecture and repairs L3 execution:
+Version `0.5.5.dev4` keeps the package capabilities inside the layered source architecture and repairs L3 execution:
 
 - `pxfquery.l1_intent` parses the user's biomedical question into resolver-compatible intent through the configured LLM provider.
 - `pxfquery.l2_routing` performs resource-backed route planning with exact/proxy/unresolved dimensions.
@@ -134,7 +143,7 @@ The L1 contract test makes one real DiyGateway request. If the gateway is unavai
 Current source test target:
 
 ```text
-23 passed, 1 skipped
+36 passed, 4 skipped
 ```
 
 ## Version
@@ -147,5 +156,5 @@ print(pxfquery.__version__)
 Current version:
 
 ```text
-0.5.5.dev3
+0.5.5.dev4
 ```

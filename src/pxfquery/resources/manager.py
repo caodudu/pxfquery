@@ -83,6 +83,7 @@ class ResourceManager:
 
     def use(self, path: str | Path, *, strict: bool = True, version: str | None = None) -> ResourceStatus:
         self._root = Path(path).expanduser().resolve()
+        self._manifest = {}
         self._version = version
         if self._client is not None:
             self._client.assets = AssetRegistry.from_root(self._root, strict=strict)
@@ -93,6 +94,7 @@ class ResourceManager:
         payload = _load_manifest(manifest)
         self._manifest = payload
         self._version = version or payload.get("version") or payload.get("resource_version")
+        self._root = None
         root = payload.get("root")
         if root:
             root_path = Path(root).expanduser()
@@ -205,7 +207,9 @@ class ResourceManager:
                 item = self._resource_file(group="l3_functional_scores", modality=modality, kind=kind)
                 out[item.key] = item
         for key, filename in L2_INDEX_FILES.items():
-            item = self._local_file(key, filename, group="l2_proxy_neighbors" if "neighbors" in key else "l2_core_indexes")
+            item = self._manifest_file(key)
+            if item is None:
+                item = self._local_file(key, filename, group=L2_INDEX_GROUPS[key])
             out[item.key] = item
         return out
 
@@ -296,6 +300,19 @@ L2_INDEX_FILES = {
     "l2.gene_neighbors": "gene_neighbors.json",
     "l2.gene_neighbors_simple": "gene_neighbors_simple.json",
     "l2.function_index": "function_index.json",
+}
+
+L2_INDEX_GROUPS = {
+    "l2.cellline_index": "l2_core_indexes",
+    "l2.cellline_neighbors": "l2_proxy_neighbors",
+    "l2.cellline_tree": "l2_core_indexes",
+    "l2.drug_index": "l2_core_indexes",
+    "l2.drug_neighbors": "l2_proxy_neighbors",
+    "l2.gene_index": "l2_core_indexes",
+    "l2.gene_index_simple": "l2_core_indexes",
+    "l2.gene_neighbors": "l2_proxy_neighbors",
+    "l2.gene_neighbors_simple": "l2_optional_proxy_neighbors",
+    "l2.function_index": "l2_core_indexes",
 }
 
 

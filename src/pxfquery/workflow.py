@@ -41,6 +41,8 @@ class PreprocessingNamespace:
         if auto_download:
             self._client.resources.ensure("l2_core_indexes", auto_download=True)
             self._client.resources.ensure("l2_proxy_neighbors", auto_download=True)
+            if self._client.resources.manifest():
+                self._client.resources.ensure("l3_functional_scores", kinds=("obs",), auto_download=True)
         route_plan = route_intent(
             intent,
             assets=self._client.assets,

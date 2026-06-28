@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.5.5.dev4 - 2026-06-28
+
+- Added packaged default Zenodo resource manifest for record `21001791` and cache-first automatic resource download under `~/.cache/pxfquery/resources/v20260628`.
+- Wired `pxf.pp.route(qdata)` to fetch L2 indexes and L3 `obs_min` metadata when using the default manifest, and `pxf.tl.execute(qdata)` to fetch only the L3 matrix resources needed by the selected route.
+- Kept `pxf.resources.use(local_path)` as an explicit local resource-pack mode and fixed manifest/local switching so roots do not mix across modes.
+- Reduced default route prefetch by making the currently unused `gene_neighbors_simple.json` optional rather than part of `l2_proxy_neighbors`.
+- Verified an empty-cache default Zenodo route/execute path without passing an external resource directory.
+
 ## 0.5.5.dev3 - 2026-06-28
 
 - Removed raw-query phrase-triggered L1 validators and kept L1 validation focused on schema, structure, layer boundaries, and payload consistency.
