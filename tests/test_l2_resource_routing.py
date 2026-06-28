@@ -50,6 +50,24 @@ def test_l2_routes_exact_cell_noncoding_gene_and_function_from_real_indexes():
     assert route["llm_calls"] == []
 
 
+def test_l2_routes_cell_line_mentions_with_cells_suffix_as_exact():
+    assert STANDARD_RESOURCES.exists()
+    for context, expected in [("A549 cells", "A549"), ("MCF7 cells", "MCF7")]:
+        intent = _intent(
+            bio_context=context,
+            pert_desc="doxorubicin",
+            pert_class="drug",
+            function_desc="pathways affected",
+        )
+
+        route = route_intent(intent, index_dir=STANDARD_RESOURCES).to_dict()
+
+        assert route["route_status"] == "routed"
+        assert route["cell_route"]["mode"] == "exact-cell-with-lineage-proxies"
+        assert route["cell_route"]["selected"] == [expected]
+        assert not any(call["stage"].startswith("cell_tree_") for call in route["llm_calls"])
+
+
 def test_l2_reports_resource_missing_without_registered_indexes():
     intent = _intent(
         bio_context="A549",

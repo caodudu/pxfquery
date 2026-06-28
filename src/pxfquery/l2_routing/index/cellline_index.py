@@ -34,11 +34,15 @@ class CellLineIndex:
 
     def is_valid(self, name: str) -> bool:
         """Return True if a cell line name exists in matrix-backed valid_cells."""
-        return name.strip().upper() in self._valid_upper_to_canonical
+        return self.canonical(name) is not None
 
     def canonical(self, name: str) -> Optional[str]:
         """Return canonical cell line name with original casing, or None."""
-        return self._valid_upper_to_canonical.get(name.strip().upper())
+        for candidate in _cell_name_variants(name):
+            hit = self._valid_upper_to_canonical.get(candidate.upper())
+            if hit:
+                return hit
+        return None
 
     def valid_cells(self) -> list[str]:
         """Return all matrix-backed valid cell lines."""
@@ -154,3 +158,34 @@ class CellLineIndex:
                         continue
                     for c in cells:
                         self._cell_path[str(c).upper()] = (lineage, disease, subtype)
+
+
+def _cell_name_variants(name: str) -> list[str]:
+    raw = " ".join(str(name).strip().split())
+    if not raw:
+        return []
+    variants = [raw]
+    lowered = raw.lower()
+    suffixes = [
+        " cells",
+        " cell",
+        " cell line",
+        " cell-line",
+        " line",
+        " model",
+        " models",
+    ]
+    for suffix in suffixes:
+        if lowered.endswith(suffix):
+            variants.append(raw[: -len(suffix)].strip())
+    compact = raw.replace("-", "").replace("_", "").replace(" ", "")
+    if compact and compact not in variants:
+        variants.append(compact)
+    out: list[str] = []
+    seen: set[str] = set()
+    for item in variants:
+        key = item.upper()
+        if item and key not in seen:
+            out.append(item)
+            seen.add(key)
+    return out
