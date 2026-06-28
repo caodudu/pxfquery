@@ -7,6 +7,7 @@
 - Expanded internal cell and perturbation pools for observed pair search while keeping public `candidates`/`proxies` bounded.
 - Preserved unspecified genetic modality as both `xpr` and `sh`; only explicit modality terms narrow the route.
 - Added a final observed perturbation-anchor fallback when no routed cell-context pair exists; these routes are explicitly labeled as weak cell-context evidence instead of being treated as exact cell matches.
+- Made reverse routes availability-aware for `sh`/`xpr` cell scope by filtering candidates against `obs_min` modality rows and labeling weak observed-modality anchor fallbacks.
 
 ## 0.5.3.dev2 - 2026-06-28
 

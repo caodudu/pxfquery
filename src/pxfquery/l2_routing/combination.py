@@ -60,12 +60,13 @@ def route_combinations(
             },
             "pair_availability": pair_availability,
         }
-    route_candidates = _reverse_route_candidates(cell_route, function_route, intent)
-    pair_availability = _pair_availability_reverse(route_candidates, function_route, reverse_engines)
+    pair_metadata = _load_pair_metadata(resources) if pair_policy == "observed" else None
+    route_candidates = _reverse_route_candidates(cell_route, function_route, intent, pair_metadata)
+    pair_availability = _pair_availability_reverse(route_candidates, function_route, reverse_engines, pair_metadata, pair_policy)
     return {
         "status": _combination_status(bool(function_route.get("selected")), pair_availability),
         "query_type": "reverse",
-        "pair_policy": "cell_scope_only",
+        "pair_policy": "observed_cell_scope" if pair_metadata else "cell_scope_only",
         "cell_candidate_count": len(cell_candidates),
         "function_set_count": len(function_route.get("interpretation_sets", [])),
         "route_candidates": route_candidates,
@@ -89,6 +90,9 @@ def _forward_route_candidates(
     use_pair_metadata = bool(pair_metadata)
     cells = (cell_route.get("expanded_candidates") if use_pair_metadata else None) or cell_route.get("candidates", [])
     cells = cells[:MAX_EXPANDED_CELL_CANDIDATES if use_pair_metadata else MAX_CELL_CANDIDATES]
+    normal_lineage_anchor_cells = [c for c in cells if c.get("cell_expansion_scope") == "normal_lineage_data_anchor"]
+    if use_pair_metadata:
+        cells = [c for c in cells if c.get("cell_expansion_scope") != "normal_lineage_data_anchor"]
     exact_cells = [c for c in cells if c.get("role") in {"exact", "llm-tree-leaf", "all-cells"}][:1]
     proxy_cells = [c for c in cells if c not in exact_cells]
     exact_perts = perturbation_route.get("selected", [])[:1]
@@ -113,10 +117,27 @@ def _forward_route_candidates(
                 out.append(_make_forward_route(intent, len(out) + 1, stage, tier, cell, pert, matched_modalities, use_pair_metadata))
                 if len(out) >= MAX_PAIR_CHECKS:
                     return out
+    if use_pair_metadata and not out and normal_lineage_anchor_cells:
+        for stage, tier, stage_cells, stage_perts in [
+            ("E", "normal_lineage_anchor_exact_perturbation", normal_lineage_anchor_cells, exact_perts),
+            ("F", "normal_lineage_anchor_proxy_perturbation", normal_lineage_anchor_cells, proxy_perts),
+        ]:
+            for cell in stage_cells:
+                for pert in stage_perts:
+                    modalities = _forward_modalities(intent, pert)
+                    matched_modalities = _select_primary_or_fallback_modalities(
+                        intent,
+                        _pair_metadata_modalities(pair_metadata, cell.get("cell"), pert, modalities),
+                    )
+                    if not matched_modalities:
+                        continue
+                    out.append(_make_forward_route(intent, len(out) + 1, stage, tier, cell, pert, matched_modalities, use_pair_metadata))
+                    if len(out) >= MAX_PAIR_CHECKS:
+                        return out
     if use_pair_metadata and not out:
         for stage, tier, stage_perts in [
-            ("E", "observed_anchor_exact_perturbation", exact_perts),
-            ("F", "observed_anchor_proxy_perturbation", proxy_perts),
+            ("G", "observed_anchor_exact_perturbation", exact_perts),
+            ("H", "observed_anchor_proxy_perturbation", proxy_perts),
         ]:
             for pert in stage_perts:
                 modalities = _forward_modalities(intent, pert)
@@ -151,6 +172,9 @@ def _make_forward_route(
         "cell_role": cell.get("role"),
         "cell_expansion_scope": cell.get("cell_expansion_scope", "public_candidates"),
         "cell_route_distance": cell.get("cell_route_distance", 0 if cell.get("role") in {"exact", "llm-tree-leaf"} else 1),
+        "source_disease": cell.get("source_disease"),
+        "candidate_disease": cell.get("candidate_disease"),
+        "semantic_downgrade_reason": cell.get("semantic_downgrade_reason"),
         "perturbation": _perturbation_key(pert),
         "perturbation_role": pert.get("role"),
         "perturbation_expansion_scope": _perturbation_expansion_scope(pert),
@@ -162,7 +186,7 @@ def _make_forward_route(
         "pair_search_reason": _pair_search_reason(stage),
         "pair_verified": bool(use_pair_metadata),
         "pair_verification_source": "l3_obs_min" if use_pair_metadata else None,
-        "evidence_level": _evidence_level(cell.get("role"), pert.get("role")),
+        "evidence_level": _evidence_level(cell.get("role"), pert.get("role"), cell.get("cell_expansion_scope")),
     }
     if len(matched_modalities) == 1:
         route["modality"] = matched_modalities[0]
@@ -173,32 +197,66 @@ def _pair_search_reason(stage: str) -> str:
     if stage == "A":
         return "exact_or_initial_pair_available"
     if stage in {"E", "F"}:
+        return "no_observed_pair_in_cancer_context; using normal same-lineage data anchor with explicit semantic downgrade"
+    if stage in {"G", "H"}:
         return "no_observed_pair_in_routed_cell_context; using observed perturbation anchor cell with explicit weak-evidence label"
     return "strict_pair_unavailable_or_additional_observed_evidence"
 
 
-def _reverse_route_candidates(cell_route: dict[str, Any], function_route: dict[str, Any], intent: QueryIntent) -> list[dict[str, Any]]:
-    cells = cell_route.get("candidates", [])[:MAX_CELL_CANDIDATES] or [{"cell": None, "role": "all-cells"}]
+def _reverse_route_candidates(
+    cell_route: dict[str, Any],
+    function_route: dict[str, Any],
+    intent: QueryIntent,
+    pair_metadata: dict[str, set[tuple[str, str]]] | None,
+) -> list[dict[str, Any]]:
+    use_pair_metadata = bool(pair_metadata)
+    cells = (cell_route.get("expanded_candidates") if use_pair_metadata else None) or cell_route.get("candidates", [])
+    cells = cells[:MAX_EXPANDED_CELL_CANDIDATES if use_pair_metadata else MAX_CELL_CANDIDATES] or [{"cell": None, "role": "all-cells"}]
     sets = function_route.get("interpretation_sets") or [{"set_id": "selected", "functions": function_route.get("selected", [])}]
     modalities = _reverse_modalities(intent)
     out: list[dict[str, Any]] = []
     for interp in sets[:MAX_REVERSE_INTERPRETATION_SETS]:
         for cell in cells:
             for modality in modalities:
-                out.append(
-                    {
-                        "route_id": f"reverse_{len(out) + 1:03d}",
-                        "cell": cell.get("cell"),
-                        "cell_role": cell.get("role"),
-                        "interpretation_set_id": interp.get("set_id"),
-                        "functions": interp.get("functions", [])[:MAX_REVERSE_FUNCTIONS_PER_SET],
-                        "modality": modality,
-                        "evidence_level": "function-set-and-cell-scope",
-                    }
-                )
+                if use_pair_metadata and not _pair_metadata_has_cell(pair_metadata, modality, cell.get("cell")):
+                    continue
+                out.append(_make_reverse_route(len(out) + 1, cell, interp, modality, use_pair_metadata))
                 if len(out) >= MAX_PAIR_CHECKS:
                     return out
+    if use_pair_metadata and not out:
+        for interp in sets[:MAX_REVERSE_INTERPRETATION_SETS]:
+            for modality in modalities:
+                for cell in _observed_modality_anchor_cells(pair_metadata, modality):
+                    out.append(_make_reverse_route(len(out) + 1, cell, interp, modality, use_pair_metadata))
+                    if len(out) >= MAX_PAIR_CHECKS:
+                        return out
     return out
+
+
+def _make_reverse_route(
+    route_number: int,
+    cell: dict[str, Any],
+    interpretation_set: dict[str, Any],
+    modality: str,
+    use_pair_metadata: bool,
+) -> dict[str, Any]:
+    role = cell.get("role")
+    evidence = "observed_modality_anchor" if role == "observed-anchor" else "function-set-and-observed-cell-scope" if use_pair_metadata else "function-set-and-cell-scope"
+    return {
+        "route_id": f"reverse_{route_number:03d}",
+        "cell": cell.get("cell"),
+        "cell_role": role,
+        "cell_expansion_scope": cell.get("cell_expansion_scope"),
+        "cell_route_distance": cell.get("cell_route_distance"),
+        "interpretation_set_id": interpretation_set.get("set_id"),
+        "functions": interpretation_set.get("functions", [])[:MAX_REVERSE_FUNCTIONS_PER_SET],
+        "modality": modality,
+        "pair_search_round": "observed_modality_anchor_cell" if role == "observed-anchor" else "observed_cell_scope" if use_pair_metadata else None,
+        "pair_search_reason": "reverse route cell has observed rows for requested modality" if role != "observed-anchor" else "no routed cell-context rows for requested reverse modality; using observed modality anchor cell with explicit weak-evidence label",
+        "pair_verified": bool(use_pair_metadata),
+        "pair_verification_source": "l3_obs_min" if use_pair_metadata else None,
+        "evidence_level": evidence,
+    }
 
 
 def _combination_status(has_required_axis: bool, pair_availability: dict[str, Any]) -> str:
@@ -261,7 +319,31 @@ def _pair_availability_forward(
     return {"status": "checked", "checks": checks, "any_available": any(c["available"] for c in checks)}
 
 
-def _pair_availability_reverse(route_candidates: list[dict[str, Any]], function_route: dict[str, Any], engines: dict[str, Any] | None) -> dict[str, Any]:
+def _pair_availability_reverse(
+    route_candidates: list[dict[str, Any]],
+    function_route: dict[str, Any],
+    engines: dict[str, Any] | None,
+    pair_metadata: dict[str, set[tuple[str, str]]] | None,
+    pair_policy: str,
+) -> dict[str, Any]:
+    if pair_policy == "observed" and not pair_metadata:
+        return {
+            "status": "observed_pair_metadata_missing",
+            "checks": [],
+            "any_available": False,
+            "required_resources": ["cp_obs_min.parquet/csv", "sh_obs_min.parquet/csv", "xpr_obs_min.parquet/csv"],
+            "message": "observed reverse routing requires obs_min metadata to prefilter cell scope by modality rows",
+        }
+    if pair_metadata:
+        checks = [{**route, "available": True, "reject_reason": None, "cell_available": True} for route in route_candidates[:MAX_PAIR_CHECKS]]
+        return {
+            "status": "checked_l3_obs_min",
+            "checks": checks,
+            "any_available": bool(checks),
+            "all_functions_present": True,
+            "checked_modalities": sorted(pair_metadata),
+            "pair_metadata_policy": "reverse route candidates are prefiltered to cells with observed rows for each requested modality",
+        }
     if not engines:
         return {"status": "not_checked_no_loaded_matrix_engine"}
     checks = []
@@ -415,6 +497,38 @@ def _observed_anchor_cells(
     return out
 
 
+def _pair_metadata_has_cell(
+    pair_metadata: dict[str, set[tuple[str, str]]] | None,
+    modality: str,
+    cell: str | None,
+) -> bool:
+    if not pair_metadata or cell is None:
+        return False
+    cell_key = str(cell).upper()
+    return any(observed_cell == cell_key for observed_cell, _perturbation in pair_metadata.get(modality, set()))
+
+
+def _observed_modality_anchor_cells(
+    pair_metadata: dict[str, set[tuple[str, str]]] | None,
+    modality: str,
+) -> list[dict[str, Any]]:
+    if not pair_metadata:
+        return []
+    cells = sorted({cell for cell, _perturbation in pair_metadata.get(modality, set())})
+    out: list[dict[str, Any]] = []
+    for cell in cells[:MAX_EXPANDED_CELL_CANDIDATES]:
+        out.append(
+            {
+                "cell": cell,
+                "role": "observed-anchor",
+                "rank": len(out) + 1,
+                "cell_expansion_scope": "observed_modality_anchor",
+                "cell_route_distance": 3,
+            }
+        )
+    return out
+
+
 def _perturbation_values(record: dict[str, Any]) -> list[str]:
     values = []
     for key in ("id", "symbol", "alias"):
@@ -436,6 +550,8 @@ def _perturbation_expansion_scope(record: dict[str, Any] | None) -> str:
 
 
 def _pair_search_round(cell: dict[str, Any], perturbation: dict[str, Any]) -> str:
+    if cell.get("cell_expansion_scope") == "normal_lineage_data_anchor":
+        return "normal_lineage_data_anchor_cell"
     if cell.get("role") == "observed-anchor":
         return "observed_anchor_cell"
     cell_distance = int(cell.get("cell_route_distance") or 0)
@@ -575,7 +691,9 @@ def _reverse_modalities(intent: QueryIntent) -> list[str]:
     return ["cp", "xpr", "sh"]
 
 
-def _evidence_level(cell_role: str | None, perturbation_role: str | None) -> str:
+def _evidence_level(cell_role: str | None, perturbation_role: str | None, cell_scope: str | None = None) -> str:
+    if cell_scope == "normal_lineage_data_anchor":
+        return "normal_lineage_data_anchor"
     if cell_role == "observed-anchor":
         return "observed_perturbation_anchor"
     cell_exact = cell_role in {"exact", "llm-tree-leaf", "all-cells"}

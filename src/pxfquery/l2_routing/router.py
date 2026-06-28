@@ -1111,41 +1111,59 @@ def _expanded_tree_cells(cells: list[str], cell_index: CellLineIndex) -> list[di
     out: list[dict[str, Any]] = []
     seen: set[str] = set()
 
-    def add(cell: str, role: str, scope: str, distance: int) -> None:
+    def add(cell: str, role: str, scope: str, distance: int, source_path: tuple[str, str, str] | None = None) -> None:
         if len(out) >= MAX_EXPANDED_CELL_CANDIDATES:
             return
         canonical = cell_index.canonical(cell) or cell
         key = str(canonical).upper()
         if key in seen or not cell_index.is_valid(canonical):
             return
+        candidate_path = cell_index.get_cell_path(canonical)
         seen.add(key)
-        out.append(
-            {
-                "cell": canonical,
-                "role": role,
-                "rank": len(out) + 1,
-                "cell_expansion_scope": scope,
-                "cell_route_distance": distance,
-            }
-        )
+        item = {
+            "cell": canonical,
+            "role": role,
+            "rank": len(out) + 1,
+            "cell_expansion_scope": scope,
+            "cell_route_distance": distance,
+        }
+        if source_path:
+            item["source_lineage"] = source_path[0]
+            item["source_disease"] = source_path[1]
+            item["source_subtype"] = source_path[2]
+        if candidate_path:
+            item["candidate_lineage"] = candidate_path[0]
+            item["candidate_disease"] = candidate_path[1]
+            item["candidate_subtype"] = candidate_path[2]
+            if source_path and _is_cancer_label(source_path[1]) and not _is_cancer_label(candidate_path[1]):
+                item["cell_expansion_scope"] = "normal_lineage_data_anchor"
+                item["cell_route_distance"] = max(distance, 3)
+                item["semantic_downgrade_reason"] = "source context is cancer-specific but candidate cell is normal/non-cancer lineage"
+        out.append(item)
 
-    for cell in cells:
-        add(cell, "llm-tree-leaf", "selected_leaf", 0)
     if not cells:
         return out
     first_path = cell_index.get_cell_path(cells[0])
     if not first_path:
         return out
+    source_path = tuple(first_path)
+    for cell in cells:
+        add(cell, "llm-tree-leaf", "selected_leaf", 0, source_path)
     lineage, disease, _subtype = first_path
     for candidate in cell_index.valid_cells():
         path = cell_index.get_cell_path(candidate)
         if path and path[0] == lineage and path[1] == disease:
-            add(candidate, "same_disease_sibling", "same_disease_sibling", 1)
+            add(candidate, "same_disease_sibling", "same_disease_sibling", 1, source_path)
     for candidate in cell_index.valid_cells():
         path = cell_index.get_cell_path(candidate)
         if path and path[0] == lineage:
-            add(candidate, "same_lineage", "same_lineage", 2)
+            add(candidate, "same_lineage", "same_lineage", 2, source_path)
     return out
+
+
+def _is_cancer_label(label: str | None) -> bool:
+    text = str(label or "").lower()
+    return any(word in text for word in ("cancer", "carcinoma", "tumor", "melanoma", "leukemia", "lymphoma", "glioma", "sarcoma"))
 
 
 def _llm_choose_option(
