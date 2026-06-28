@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.5.3.dev2 - 2026-06-28
+
+- Parallelized independent L2 route dimensions (`cell`, `perturbation`, and `function`) while preserving fixed `llm_calls` merge order and RoutePlan schema.
+- Parallelized reverse three-pass function interpretation mapping while preserving fixed interpretation-set order.
+- Added scheduler regression tests proving L2 parallel execution occurs without leaking demo answers or changing public handoff structure.
+
 ## 0.5.3.dev1 - 2026-06-28
 
 - Fixed exact cell-line routing for surface forms such as `A549 cells` and `MCF7 cells`; these now canonicalize to valid cell IDs before LLM cell-tree traversal.
