@@ -4,7 +4,7 @@ from pxfquery import PxFQuery
 
 def test_public_entrypoint_is_single_client():
     assert pxfquery.__all__ == ["PxFQuery"]
-    assert PxFQuery().version == "0.5.3.dev3"
+    assert PxFQuery().version == "0.5.5.dev0"
 
 
 def test_scanpy_style_namespaces_are_available():
@@ -17,9 +17,9 @@ def test_scanpy_style_namespaces_are_available():
     assert hasattr(pxf, "tl")
     assert not hasattr(pxf.tl, "route")
     assert hasattr(pxf, "get")
-    assert hasattr(pxf, "load_data")
-    assert hasattr(pxf, "load_data_dir")
-    assert hasattr(pxf, "enable_resolver")
-    assert hasattr(pxf, "pert2func")
-    assert hasattr(pxf, "func2pert")
-    assert hasattr(pxf, "plot")
+    assert not hasattr(pxf, "load_data")
+    assert not hasattr(pxf, "load_data_dir")
+    assert not hasattr(pxf, "enable_resolver")
+    assert not hasattr(pxf, "pert2func")
+    assert not hasattr(pxf, "func2pert")
+    assert not hasattr(pxf, "plot")

@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.5.5.dev0 - 2026-06-28
+
+- Repaired L3 route-plan execution against the current L1/L2 contract without legacy compatibility shells.
+- Replaced the old L3 loader/forward/reverse surface with resource-pack-backed matrix execution over L2 route plans.
+- Kept L3 strict: unresolved route plans and missing matrix rows return structured failures rather than demo fallback values.
+- Added tabbed HTML replay reports for the T137 60-question and 50-question L1/L2 validation sets with L3 execution details.
+- Documented the lightweight resource-pack strategy for local paths plus future Zenodo download management.
+
 ## 0.5.3.dev3 - 2026-06-28
 
 - Added shared `pxfquery.resources` resource manager from the T139 resource-layer design so L2 and L3 use the same resource root and `obs_min` discovery.

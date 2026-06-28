@@ -28,12 +28,11 @@ def main(argv: list[str] | None = None) -> int:
         print(json.dumps(client.get.intent(qdata), ensure_ascii=False, indent=2))
         return 0
     if args.command == "query":
+        payload = PxFQuery().query(args.text)
         if args.json:
-            payload = PxFQuery().query(args.text)
             print(json.dumps(payload, ensure_ascii=False, indent=2))
         else:
-            client = PxFQuery()
-            print(client.ask(args.text))
+            print(json.dumps(payload, ensure_ascii=False, indent=2))
         return 0
     return 1
 

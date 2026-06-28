@@ -79,23 +79,6 @@ class SettingsNamespace:
             timeout=timeout,
         )
 
-    def enable_resolver(
-        self,
-        *,
-        index_dir: str,
-        token: str | None = None,
-        base_url: str = DIYGATEWAY_BASE_URL,
-        model: str = DIYGATEWAY_MODEL,
-        default_top_n: int = 20,
-    ) -> None:
-        self._client.enable_resolver(
-            index_dir=index_dir,
-            api_key=token,
-            base_url=base_url,
-            model=model,
-            default_top_n=default_top_n,
-        )
-
     def llm_provider_status(self) -> dict:
         return self._client.llm_providers.status()
 

@@ -13,7 +13,7 @@ setup(
     version=read_version(),
     packages=find_packages(where="src"),
     package_dir={"": "src"},
-    install_requires=["PyYAML>=6", "numpy>=1.23", "pandas>=1.5", "anndata>=0.9", "openai>=1.0"],
+    install_requires=["PyYAML>=6", "numpy>=1.23", "pandas>=1.5", "pyarrow>=10", "anndata>=0.9", "openai>=1.0", "tqdm>=4.60"],
     entry_points={"console_scripts": ["pxfquery=pxfquery.cli:main"]},
     python_requires=">=3.10",
 )

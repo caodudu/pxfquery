@@ -3,6 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Any
 
+from pxfquery.l3_execution import execute_route_plan
 from pxfquery.l4_evidence import assemble_evidence
 from pxfquery.l1_intent import parse_intent
 from pxfquery.l2_routing import route_intent
@@ -34,7 +35,7 @@ class PreprocessingNamespace:
         target.uns["_intent"] = intent
         return target if copy else None
 
-    def route(self, qdata: PxFQueryData, *, copy: bool = False, pair_policy: str = "observed") -> PxFQueryData | None:
+    def route(self, qdata: PxFQueryData, *, copy: bool = False) -> PxFQueryData | None:
         target = _copy_qdata(qdata) if copy else qdata
         intent = _require_intent(target)
         route_plan = route_intent(
@@ -42,9 +43,6 @@ class PreprocessingNamespace:
             assets=self._client.assets,
             index_dir=self._client._index_dir,
             llm_provider=self._client.llm_providers.get(),
-            forward_engines=self._client._forward_engines,
-            reverse_engines=self._client._reverse_engines,
-            pair_policy=pair_policy,
         )
         target.uns["route_plan"] = route_plan.to_dict()
         target.uns["_route_plan"] = route_plan
@@ -56,22 +54,25 @@ class ToolsNamespace:
     def __init__(self, client) -> None:
         self._client = client
 
-    def execute(self, qdata: PxFQueryData, *, copy: bool = False) -> PxFQueryData | None:
+    def execute(
+        self,
+        qdata: PxFQueryData,
+        *,
+        copy: bool = False,
+        resource_dir: str | None = None,
+        auto_download: bool = True,
+        top_n: int = 20,
+    ) -> PxFQueryData | None:
         target = _copy_qdata(qdata) if copy else qdata
         route_plan = _require_route_plan(target)
-        if self._client._resolver is None:
-            raise RuntimeError("Resolver is not enabled. Call pxf.enable_resolver(index_dir=...) before pxf.tl.execute(qdata).")
-        execution = self._client._resolver.execute_intent(
-            route_plan.intent.to_resolver_intent(),
-            user_input=target.text,
-            top_n=route_plan.intent.top_n,
-            summarize=False,
+        execution = execute_route_plan(
+            route_plan,
+            resources=self._client.resources,
+            resource_dir=resource_dir,
+            auto_download=auto_download,
+            top_n=top_n,
         )
-        target.uns["execution"] = {
-            "query_status": "found" if getattr(execution, "found", False) else "not-found",
-            "result": execution,
-            "resolver_meta": getattr(execution, "resolver_meta", {}),
-        }
+        target.uns["execution"] = execution.to_dict()
         target.uns["_execution"] = execution
         return target if copy else None
 
@@ -95,6 +96,9 @@ class GetNamespace:
     def result(self, qdata: PxFQueryData) -> dict[str, Any]:
         return qdata.uns["result"]
 
+    def execution(self, qdata: PxFQueryData) -> dict[str, Any]:
+        return qdata.uns["execution"]
+
     def answer(self, qdata: PxFQueryData, *, resources_status: dict[str, Any] | None = None):
         return build_answer(qdata.text, qdata.uns["result"], resources_status=resources_status)
 
@@ -104,7 +108,6 @@ def run_scanpy_style_pipeline(client, text: str) -> PxFQueryData:
     client.pp.parse(qdata)
     client.pp.route(qdata)
     client.tl.execute(qdata)
-    client.tl.assemble(qdata)
     return qdata
 
 
