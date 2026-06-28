@@ -6,7 +6,7 @@ from typing import TYPE_CHECKING, Optional
 from pxfquery.l1_intent import ProviderRegistry, provider_from_env
 from pxfquery.l3_execution.assets import AssetRegistry
 from pxfquery.l3_execution.loader import DataLoader
-from pxfquery.l3_execution.resources import ResourceManager
+from pxfquery.resources import ResourceManager
 from pxfquery.l5_presentation.model import PxFQueryAnswer
 from pxfquery.settings import SettingsNamespace
 from pxfquery.version import __version__

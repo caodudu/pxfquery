@@ -1982,3 +1982,12 @@ tasks:
   executor: human
   created: '2026-06-28'
   completed: null
+- id: T-140
+  name: ms8_12_l4_evidence_dossier_plan
+  phase: development
+  goal: goal_goal_ms8_human_usable_package
+  path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_12_l4_evidence_dossier_plan
+  status: pending
+  executor: human
+  created: '2026-06-28'
+  completed: null

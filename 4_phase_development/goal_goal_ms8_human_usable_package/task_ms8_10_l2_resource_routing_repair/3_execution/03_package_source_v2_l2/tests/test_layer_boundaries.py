@@ -15,6 +15,7 @@ def test_source_root_contains_only_thin_entrypoints_and_layer_folders():
         "l3_execution",
         "l4_evidence",
         "l5_presentation",
+        "resources",
         "settings.py",
         "utils",
         "version.py",

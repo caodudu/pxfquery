@@ -10,6 +10,7 @@ from pathlib import Path
 from typing import Any
 
 from pxfquery.l1_intent import QueryIntent
+from pxfquery.l2_routing.combination import route_combinations
 from pxfquery.l2_routing.index import CellLineIndex, DrugIndex, FunctionIndex
 
 
@@ -21,6 +22,9 @@ MAX_REVERSE_INTERPRETATION_SETS = 3
 MAX_REVERSE_FUNCTIONS_PER_SET = 3
 MAX_PAIR_CHECKS = 25
 MAX_SELECTED_ROUTES = 3
+MAX_EXPANDED_CELL_CANDIDATES = 25
+MAX_EXPANDED_PERTURBATION_PROXIES = 50
+MODALITIES = ("cp", "sh", "xpr")
 
 
 @dataclass
@@ -74,6 +78,9 @@ class ResourcePaths:
     gene_neighbors: Path | None = None
     gene_neighbors_simple: Path | None = None
     function_index: Path | None = None
+    cp_obs: Path | None = None
+    sh_obs: Path | None = None
+    xpr_obs: Path | None = None
 
     def status(self) -> dict[str, Any]:
         paths = {
@@ -87,6 +94,9 @@ class ResourcePaths:
             "gene_neighbors": self.gene_neighbors,
             "gene_neighbors_simple": self.gene_neighbors_simple,
             "function_index": self.function_index,
+            "cp_obs": self.cp_obs,
+            "sh_obs": self.sh_obs,
+            "xpr_obs": self.xpr_obs,
         }
         return {
             "root": str(self.root) if self.root else None,
@@ -103,6 +113,7 @@ def route_intent(
     llm_provider: Any | None = None,
     forward_engines: dict[str, Any] | None = None,
     reverse_engines: dict[str, Any] | None = None,
+    pair_policy: str = "observed",
 ) -> RoutePlan:
     base_status = classify_route(intent)
     if base_status == "needs-intent-completion":
@@ -130,13 +141,15 @@ def route_intent(
         llm_provider,
     )
     llm_calls: list[dict[str, Any]] = [*cell_calls, *perturbation_calls, *function_calls]
-    combination_route = _route_combinations(
+    combination_route = route_combinations(
         intent,
         cell_route,
         perturbation_route,
         function_route,
         forward_engines=forward_engines,
         reverse_engines=reverse_engines,
+        resources=resources,
+        pair_policy=pair_policy,
     )
     status = _combine_status(cell_route, perturbation_route, function_route, combination_route, llm_calls)
     selected_route = _selected_route(intent, cell_route, perturbation_route, function_route, combination_route)
@@ -222,7 +235,19 @@ def _resolve_resource_paths(*, assets: Any | None, index_dir: str | Path | None)
                 continue
             if ref.exists:
                 setattr(paths, attr, Path(ref.path))
-        return paths
+        for attr, keys in {
+            "cp_obs": ("l3_functional_scores.cp.obs", "matrix.cp_obs_min", "metadata.cp_obs_min"),
+            "sh_obs": ("l3_functional_scores.sh.obs", "matrix.sh_obs_min", "metadata.sh_obs_min"),
+            "xpr_obs": ("l3_functional_scores.xpr.obs", "matrix.xpr_obs_min", "metadata.xpr_obs_min"),
+        }.items():
+            for key in keys:
+                try:
+                    ref = assets.get(key)
+                except KeyError:
+                    continue
+                if ref.exists:
+                    setattr(paths, attr, Path(ref.path))
+                    break
     if paths.root is not None:
         for attr, filename in {
             "cellline_index": "cellline_index.json",
@@ -236,7 +261,12 @@ def _resolve_resource_paths(*, assets: Any | None, index_dir: str | Path | None)
             "gene_neighbors_simple": "gene_neighbors_simple.json",
             "function_index": "function_index.json",
         }.items():
-            setattr(paths, attr, paths.root / filename)
+            if getattr(paths, attr) is None:
+                setattr(paths, attr, paths.root / filename)
+        for modality in MODALITIES:
+            attr = f"{modality}_obs"
+            if getattr(paths, attr) is None:
+                setattr(paths, attr, _find_resource(paths.root, [f"{modality}_obs_min.parquet", f"{modality}_obs_min.csv"]))
     return paths
 
 
@@ -258,13 +288,16 @@ def _route_cell(
         proxies = cell_index.proxy_cells_for(alias_hit)
         candidates = [{"cell": alias_hit, "role": "exact", "rank": 1}]
         candidates.extend(_limited_cell_proxies(proxies, start_rank=2))
+        expanded_candidates = [{"cell": alias_hit, "role": "exact", "rank": 1, "cell_expansion_scope": "exact", "cell_route_distance": 0}]
+        expanded_candidates.extend(_expanded_cell_proxies(proxies, start_rank=2))
         return {
             "status": "resolved",
             "mode": "exact-cell-with-lineage-proxies",
             "selected": [alias_hit],
             "candidates": candidates[:MAX_CELL_CANDIDATES],
+            "expanded_candidates": expanded_candidates[:MAX_EXPANDED_CELL_CANDIDATES],
             "lineage_path": cell_index.get_cell_path(alias_hit),
-            "limits": {"max_candidates": MAX_CELL_CANDIDATES},
+            "limits": {"max_candidates": MAX_CELL_CANDIDATES, "max_expanded_candidates": MAX_EXPANDED_CELL_CANDIDATES},
         }
 
     if llm_provider is not None and tree_data.get("tree"):
@@ -321,6 +354,7 @@ def _route_drug(
     drug_index = DrugIndex(resources.drug_index, resources.drug_neighbors)
     brd_id = _lookup_drug(term, drug_index)
     if brd_id:
+        expanded_neighbors = drug_index.neighbors(brd_id, top_n=MAX_EXPANDED_PERTURBATION_PROXIES)
         return {
             "status": "resolved",
             "entity_type": "drug",
@@ -329,9 +363,13 @@ def _route_drug(
             "selected": [{"id": brd_id, "role": "exact", "rank": 1}],
             "proxies": [
                 {"id": neighbor, "similarity": score, "role": "structural-proxy", "rank": i + 1}
-                for i, (neighbor, score) in enumerate(drug_index.neighbors(brd_id, top_n=MAX_PERTURBATION_PROXIES))
+                for i, (neighbor, score) in enumerate(expanded_neighbors[:MAX_PERTURBATION_PROXIES])
             ],
-            "limits": {"max_proxies": MAX_PERTURBATION_PROXIES},
+            "expanded_proxies": [
+                {"id": neighbor, "similarity": score, "role": "structural-proxy", "rank": i + 1}
+                for i, (neighbor, score) in enumerate(expanded_neighbors)
+            ],
+            "limits": {"max_proxies": MAX_PERTURBATION_PROXIES, "max_expanded_proxies": MAX_EXPANDED_PERTURBATION_PROXIES},
         }
     aliases = _json_keys(resources.drug_index)
     candidates = _fuzzy_candidates(term, aliases, MAX_FUZZY_CANDIDATES)
@@ -372,7 +410,8 @@ def _route_gene(
     hit = _lookup_full_gene(term, gene_index) or _lookup_simple_gene(term, simple_index)
     if hit:
         symbol = hit["symbol"]
-        neighbors = _gene_neighbors(symbol, gene_neighbors, top_n=MAX_PERTURBATION_PROXIES)
+        expanded_neighbors = _gene_neighbors(symbol, gene_neighbors, top_n=MAX_EXPANDED_PERTURBATION_PROXIES)
+        neighbors = expanded_neighbors[:MAX_PERTURBATION_PROXIES]
         proxy_role = "semantic-proxy" if not hit["in_matrix"] else "supporting-semantic-neighbor"
         return {
             "status": "resolved" if hit["in_matrix"] or neighbors else "unresolved",
@@ -384,8 +423,12 @@ def _route_gene(
                 {"symbol": neighbor, "similarity": score, "role": proxy_role, "rank": i + 1}
                 for i, (neighbor, score) in enumerate(neighbors)
             ],
+            "expanded_proxies": [
+                {"symbol": neighbor, "similarity": score, "role": proxy_role, "rank": i + 1}
+                for i, (neighbor, score) in enumerate(expanded_neighbors)
+            ],
             "noncoding_supported": hit["gene_type"] != "protein_coding",
-            "limits": {"max_proxies": MAX_PERTURBATION_PROXIES},
+            "limits": {"max_proxies": MAX_PERTURBATION_PROXIES, "max_expanded_proxies": MAX_EXPANDED_PERTURBATION_PROXIES},
         }
     symbols = [v.get("symbol", k) for k, v in gene_index.items()]
     candidates = _fuzzy_candidates(term, symbols, MAX_FUZZY_CANDIDATES)
@@ -518,61 +561,6 @@ def _route_functions(
     return route
 
 
-def _route_combinations(
-    intent: QueryIntent,
-    cell_route: dict[str, Any],
-    perturbation_route: dict[str, Any],
-    function_route: dict[str, Any],
-    *,
-    forward_engines: dict[str, Any] | None = None,
-    reverse_engines: dict[str, Any] | None = None,
-) -> dict[str, Any]:
-    cell_candidates = cell_route.get("candidates") or [{"cell": None, "role": "all-cells"}]
-    if intent.query_type == "forward":
-        selected_pert = perturbation_route.get("selected", [])
-        proxy_pert = perturbation_route.get("proxies", [])
-        tiers = [
-            {"tier": "exact_cell_exact_perturbation", "cell_role": "exact", "perturbation_role": "exact"},
-            {"tier": "exact_cell_proxy_perturbation", "cell_role": "exact", "perturbation_role": "proxy"},
-            {"tier": "proxy_cell_exact_perturbation", "cell_role": "proxy", "perturbation_role": "exact"},
-            {"tier": "proxy_cell_proxy_perturbation", "cell_role": "proxy", "perturbation_role": "proxy"},
-        ]
-        route_candidates = _forward_route_candidates(cell_route, perturbation_route)
-        pair_availability = _pair_availability_forward(route_candidates, forward_engines)
-        status = _combination_status(bool(selected_pert or proxy_pert), pair_availability)
-        return {
-            "status": status,
-            "query_type": "forward",
-            "tier_order": tiers,
-            "route_candidates": route_candidates,
-            "selected_routes": _selected_available_routes(route_candidates, pair_availability),
-            "candidate_limits": {
-                "max_cell_candidates": MAX_CELL_CANDIDATES,
-                "max_perturbation_proxies": MAX_PERTURBATION_PROXIES,
-                "max_pair_checks": MAX_PAIR_CHECKS,
-                "max_selected_routes": MAX_SELECTED_ROUTES,
-            },
-            "pair_availability": pair_availability,
-        }
-    route_candidates = _reverse_route_candidates(cell_route, function_route, intent)
-    pair_availability = _pair_availability_reverse(route_candidates, function_route, reverse_engines)
-    return {
-        "status": _combination_status(bool(function_route.get("selected")), pair_availability),
-        "query_type": "reverse",
-        "cell_candidate_count": len(cell_candidates),
-        "function_set_count": len(function_route.get("interpretation_sets", [])),
-        "route_candidates": route_candidates,
-        "selected_routes": _selected_available_routes(route_candidates, pair_availability),
-        "candidate_limits": {
-            "max_cell_candidates": MAX_CELL_CANDIDATES,
-            "default_interpretation_sets": MAX_REVERSE_INTERPRETATION_SETS,
-            "max_functions_per_set": MAX_REVERSE_FUNCTIONS_PER_SET,
-            "max_selected_routes": MAX_SELECTED_ROUTES,
-        },
-        "pair_availability": pair_availability,
-    }
-
-
 def _llm_route_cell(
     bio_context: str,
     tree_data: dict[str, Any],
@@ -608,15 +596,17 @@ def _llm_route_cell(
         node = node[selected]
     cells = [c for c in node if cell_index.is_valid(c)] if isinstance(node, list) else []
     candidates = [{"cell": c, "role": "llm-tree-leaf", "rank": i + 1} for i, c in enumerate(cells[:MAX_CELL_CANDIDATES])]
+    expanded_candidates = _expanded_tree_cells(cells, cell_index)
     return {
         "status": "resolved" if candidates else "unresolved",
         "mode": "llm-cell-tree-selection",
         "selected": [candidates[0]["cell"]] if candidates else [],
         "candidates": candidates,
+        "expanded_candidates": expanded_candidates,
         "input": bio_context,
         "lineage_path": tuple(path),
         "llm_calls": llm_calls,
-        "limits": {"max_candidates": MAX_CELL_CANDIDATES},
+        "limits": {"max_candidates": MAX_CELL_CANDIDATES, "max_expanded_candidates": MAX_EXPANDED_CELL_CANDIDATES},
     }
 
 
@@ -670,6 +660,7 @@ def _llm_route_drug(
             "llm_calls": [call],
         }
     role = "mechanism-class-proxy" if mechanism_class else "llm-normalized"
+    expanded_neighbors = drug_index.neighbors(brd_id, top_n=MAX_EXPANDED_PERTURBATION_PROXIES)
     return {
         "status": "resolved",
         "entity_type": "drug",
@@ -680,10 +671,14 @@ def _llm_route_drug(
         "input_is_mechanism_class": mechanism_class,
         "proxies": [
             {"id": neighbor, "similarity": score, "role": "structural-proxy", "rank": i + 1}
-            for i, (neighbor, score) in enumerate(drug_index.neighbors(brd_id, top_n=MAX_PERTURBATION_PROXIES))
+            for i, (neighbor, score) in enumerate(expanded_neighbors[:MAX_PERTURBATION_PROXIES])
+        ],
+        "expanded_proxies": [
+            {"id": neighbor, "similarity": score, "role": "structural-proxy", "rank": i + 1}
+            for i, (neighbor, score) in enumerate(expanded_neighbors)
         ],
         "llm_calls": [call],
-        "limits": {"max_proxies": MAX_PERTURBATION_PROXIES},
+        "limits": {"max_proxies": MAX_PERTURBATION_PROXIES, "max_expanded_proxies": MAX_EXPANDED_PERTURBATION_PROXIES},
     }
 
 
@@ -735,7 +730,8 @@ def _llm_route_gene(
             "proxies": [],
             "llm_calls": [call],
         }
-    neighbors = _gene_neighbors(hit["symbol"], gene_neighbors, top_n=MAX_PERTURBATION_PROXIES)
+    expanded_neighbors = _gene_neighbors(hit["symbol"], gene_neighbors, top_n=MAX_EXPANDED_PERTURBATION_PROXIES)
+    neighbors = expanded_neighbors[:MAX_PERTURBATION_PROXIES]
     proxy_role = "semantic-proxy" if not hit["in_matrix"] else "supporting-semantic-neighbor"
     return {
         "status": "resolved" if hit["in_matrix"] or neighbors else "unresolved",
@@ -748,9 +744,13 @@ def _llm_route_gene(
             {"symbol": neighbor, "similarity": score, "role": proxy_role, "rank": i + 1}
             for i, (neighbor, score) in enumerate(neighbors)
         ],
+        "expanded_proxies": [
+            {"symbol": neighbor, "similarity": score, "role": proxy_role, "rank": i + 1}
+            for i, (neighbor, score) in enumerate(expanded_neighbors)
+        ],
         "noncoding_supported": hit["gene_type"] != "protein_coding",
         "llm_calls": [call],
-        "limits": {"max_proxies": MAX_PERTURBATION_PROXIES},
+        "limits": {"max_proxies": MAX_PERTURBATION_PROXIES, "max_expanded_proxies": MAX_EXPANDED_PERTURBATION_PROXIES},
     }
 
 
@@ -1016,200 +1016,6 @@ def _handoff_payload(
     }
 
 
-def _forward_route_candidates(cell_route: dict[str, Any], perturbation_route: dict[str, Any]) -> list[dict[str, Any]]:
-    cells = cell_route.get("candidates", [])[:MAX_CELL_CANDIDATES]
-    exact_cells = [c for c in cells if c.get("role") in {"exact", "llm-tree-leaf", "all-cells"}][:1]
-    proxy_cells = [c for c in cells if c not in exact_cells]
-    exact_perts = perturbation_route.get("selected", [])[:1]
-    proxy_perts = perturbation_route.get("proxies", [])[:MAX_PERTURBATION_PROXIES]
-    stages = [
-        ("A", "exact_cell_exact_perturbation", exact_cells, exact_perts),
-        ("B", "exact_cell_proxy_perturbation", exact_cells, proxy_perts),
-        ("C", "proxy_cell_exact_perturbation", proxy_cells, exact_perts),
-        ("D", "proxy_cell_proxy_perturbation", proxy_cells, proxy_perts),
-    ]
-    out: list[dict[str, Any]] = []
-    for stage, tier, stage_cells, stage_perts in stages:
-        for cell in stage_cells:
-            for pert in stage_perts:
-                out.append(
-                    {
-                        "route_id": f"forward_{len(out) + 1:03d}",
-                        "stage": stage,
-                        "tier": tier,
-                        "cell": cell.get("cell"),
-                        "cell_role": cell.get("role"),
-                        "perturbation": _perturbation_key(pert),
-                        "perturbation_role": pert.get("role"),
-                        "perturbation_record": pert,
-                        "evidence_level": _evidence_level(cell.get("role"), pert.get("role")),
-                    }
-                )
-                if len(out) >= MAX_PAIR_CHECKS:
-                    return out
-    return out
-
-
-def _reverse_route_candidates(cell_route: dict[str, Any], function_route: dict[str, Any], intent: QueryIntent) -> list[dict[str, Any]]:
-    cells = cell_route.get("candidates", [])[:MAX_CELL_CANDIDATES] or [{"cell": None, "role": "all-cells"}]
-    sets = function_route.get("interpretation_sets") or [{"set_id": "selected", "functions": function_route.get("selected", [])}]
-    modalities = _reverse_modalities(intent)
-    out: list[dict[str, Any]] = []
-    for interp in sets[:MAX_REVERSE_INTERPRETATION_SETS]:
-        for cell in cells:
-            for modality in modalities:
-                out.append(
-                    {
-                        "route_id": f"reverse_{len(out) + 1:03d}",
-                        "cell": cell.get("cell"),
-                        "cell_role": cell.get("role"),
-                        "interpretation_set_id": interp.get("set_id"),
-                        "functions": interp.get("functions", [])[:MAX_REVERSE_FUNCTIONS_PER_SET],
-                        "modality": modality,
-                        "evidence_level": "function-set-and-cell-scope",
-                    }
-                )
-                if len(out) >= MAX_PAIR_CHECKS:
-                    return out
-    return out
-
-
-def _combination_status(has_required_axis: bool, pair_availability: dict[str, Any]) -> str:
-    if not has_required_axis:
-        return "blocked-by-required-axis"
-    if pair_availability.get("status") == "checked" and pair_availability.get("any_available") is False:
-        return "no_pair_available"
-    if pair_availability.get("status") == "checked" and pair_availability.get("all_functions_present") is False:
-        return "no_pair_available"
-    return "planned"
-
-
-def _selected_available_routes(route_candidates: list[dict[str, Any]], pair_availability: dict[str, Any]) -> list[dict[str, Any]]:
-    checks = {c.get("route_id"): c for c in pair_availability.get("checks", []) if c.get("route_id")}
-    selected = []
-    for route in route_candidates:
-        check = checks.get(route.get("route_id"))
-        if check is None or check.get("available", True):
-            selected.append(route)
-        if len(selected) >= MAX_SELECTED_ROUTES:
-            break
-    return selected
-
-
-def _pair_availability_forward(route_candidates: list[dict[str, Any]], engines: dict[str, Any] | None) -> dict[str, Any]:
-    if not engines:
-        return {"status": "not_checked_no_loaded_matrix_engine"}
-    checks = []
-    for route in route_candidates[:MAX_PAIR_CHECKS]:
-        for pert_type, engine in engines.items():
-            if not _route_modality_matches(pert_type, route.get("perturbation_record")):
-                continue
-            obs = getattr(getattr(engine, "adata", None), "obs", None)
-            available = _obs_has_pair(obs, route.get("cell"), route.get("perturbation")) if obs is not None else False
-            checks.append({**route, "pert_type": pert_type, "available": available, "reject_reason": None if available else "pair not present in loaded matrix metadata"})
-    return {"status": "checked", "checks": checks, "any_available": any(c["available"] for c in checks)}
-
-
-def _pair_availability_reverse(route_candidates: list[dict[str, Any]], function_route: dict[str, Any], engines: dict[str, Any] | None) -> dict[str, Any]:
-    if not engines:
-        return {"status": "not_checked_no_loaded_matrix_engine"}
-    checks = []
-    for route in route_candidates[:MAX_PAIR_CHECKS]:
-        engine = engines.get(route.get("modality"))
-        if engine is None:
-            checks.append({**route, "available": False, "reject_reason": "requested modality not loaded"})
-            continue
-        adata = getattr(engine, "adata", None)
-        obs = getattr(getattr(engine, "adata", None), "obs", None)
-        var_names = set(map(str, getattr(adata, "var_names", [])))
-        functions = [f.get("var_name") for f in route.get("functions", [])]
-        functions_present = {f: f in var_names for f in functions}
-        cell_available = _obs_has_cell(obs, route.get("cell")) if obs is not None and route.get("cell") else True
-        available = bool(functions) and all(functions_present.values()) and cell_available
-        checks.append(
-            {
-                **route,
-                "available": available,
-                "functions_present": functions_present,
-                "cell_available": cell_available,
-                "has_cell_filter_columns": obs is not None,
-                "reject_reason": None if available else "function columns or cell scope not present in loaded matrix metadata",
-            }
-        )
-    return {
-        "status": "checked",
-        "checks": checks,
-        "any_available": any(c["available"] for c in checks),
-        "all_functions_present": all(all(c.get("functions_present", {}).values()) for c in checks) if checks else False,
-    }
-
-
-def _obs_has_pair(obs: Any, cell: str | None, perturbation: str | None) -> bool:
-    if cell is None or perturbation is None:
-        return False
-    try:
-        cell_mask = obs["cell_iname"].astype(str).str.upper() == str(cell).upper() if "cell_iname" in obs else True
-        pert_mask = False
-        for col in ["pert_id", "cmap_name", "target", "gene_symbol"]:
-            if col in obs:
-                pert_mask = pert_mask | (obs[col].astype(str).str.upper() == str(perturbation).upper())
-        return bool((cell_mask & pert_mask).any())
-    except Exception:
-        return False
-
-
-def _obs_has_cell(obs: Any, cell: str | None) -> bool:
-    if cell is None:
-        return True
-    try:
-        if "cell_iname" not in obs:
-            return True
-        return bool((obs["cell_iname"].astype(str).str.upper() == str(cell).upper()).any())
-    except Exception:
-        return False
-
-
-def _perturbation_key(record: dict[str, Any] | None) -> str | None:
-    if not record:
-        return None
-    return record.get("id") or record.get("symbol") or record.get("alias")
-
-
-def _route_modality_matches(pert_type: str, perturbation_record: dict[str, Any] | None) -> bool:
-    if not perturbation_record:
-        return False
-    if perturbation_record.get("id", "").startswith("BRD-"):
-        return pert_type == "cp"
-    if perturbation_record.get("symbol"):
-        return pert_type in {"xpr", "sh"}
-    return True
-
-
-def _reverse_modalities(intent: QueryIntent) -> list[str]:
-    if intent.pert_class == "drug":
-        return ["cp"]
-    if intent.pert_class == "genetic":
-        modality = (intent.genetic_modality or "").lower()
-        if modality in {"rnai", "shrna", "knockdown"}:
-            return ["sh"]
-        if modality in {"overexpression", "gof"}:
-            return ["xpr"]
-        return ["xpr", "sh"]
-    return ["cp", "xpr", "sh"]
-
-
-def _evidence_level(cell_role: str | None, perturbation_role: str | None) -> str:
-    cell_exact = cell_role in {"exact", "llm-tree-leaf", "all-cells"}
-    pert_exact = perturbation_role in {"exact", "llm-normalized"}
-    if cell_exact and pert_exact:
-        return "exact_cell_exact_perturbation"
-    if cell_exact:
-        return "exact_cell_proxy_perturbation"
-    if pert_exact:
-        return "proxy_cell_exact_perturbation"
-    return "proxy_cell_proxy_perturbation"
-
-
 def _direction_for_reverse(intent: QueryIntent) -> str:
     if intent.activate and not intent.suppress:
         return "activate"
@@ -1234,6 +1040,19 @@ def _load_json(path: Path | None) -> Any:
     if path is None:
         return {}
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def _find_resource(root: Path | None, names: list[str]) -> Path | None:
+    if root is None:
+        return None
+    for name in names:
+        direct = root / name
+        if direct.exists():
+            return direct.resolve()
+        matches = sorted(root.rglob(name))
+        if matches:
+            return matches[0].resolve()
+    return None
 
 
 def _json_keys(path: Path | None) -> list[str]:
@@ -1265,6 +1084,86 @@ def _limited_cell_proxies(proxies: dict[str, list[str]], *, start_rank: int) -> 
             if len(out) >= MAX_CELL_CANDIDATES - 1:
                 return out
     return out
+
+
+def _expanded_cell_proxies(proxies: dict[str, list[str]], *, start_rank: int) -> list[dict[str, Any]]:
+    out: list[dict[str, Any]] = []
+    seen: set[str] = set()
+    scopes = {
+        "same_subtype": ("same_subtype", 0),
+        "same_disease": ("same_disease_sibling", 1),
+        "same_lineage": ("same_lineage", 2),
+    }
+    for role in ["same_subtype", "same_disease", "same_lineage"]:
+        for cell in proxies.get(role, []):
+            key = str(cell).upper()
+            if key in seen:
+                continue
+            seen.add(key)
+            scope, distance = scopes[role]
+            out.append({"cell": cell, "role": role, "rank": start_rank + len(out), "cell_expansion_scope": scope, "cell_route_distance": distance})
+            if len(out) >= MAX_EXPANDED_CELL_CANDIDATES - 1:
+                return out
+    return out
+
+
+def _expanded_tree_cells(cells: list[str], cell_index: CellLineIndex) -> list[dict[str, Any]]:
+    out: list[dict[str, Any]] = []
+    seen: set[str] = set()
+
+    def add(cell: str, role: str, scope: str, distance: int, source_path: tuple[str, str, str] | None = None) -> None:
+        if len(out) >= MAX_EXPANDED_CELL_CANDIDATES:
+            return
+        canonical = cell_index.canonical(cell) or cell
+        key = str(canonical).upper()
+        if key in seen or not cell_index.is_valid(canonical):
+            return
+        candidate_path = cell_index.get_cell_path(canonical)
+        seen.add(key)
+        item = {
+            "cell": canonical,
+            "role": role,
+            "rank": len(out) + 1,
+            "cell_expansion_scope": scope,
+            "cell_route_distance": distance,
+        }
+        if source_path:
+            item["source_lineage"] = source_path[0]
+            item["source_disease"] = source_path[1]
+            item["source_subtype"] = source_path[2]
+        if candidate_path:
+            item["candidate_lineage"] = candidate_path[0]
+            item["candidate_disease"] = candidate_path[1]
+            item["candidate_subtype"] = candidate_path[2]
+            if source_path and _is_cancer_label(source_path[1]) and not _is_cancer_label(candidate_path[1]):
+                item["cell_expansion_scope"] = "normal_lineage_data_anchor"
+                item["cell_route_distance"] = max(distance, 3)
+                item["semantic_downgrade_reason"] = "source context is cancer-specific but candidate cell is normal/non-cancer lineage"
+        out.append(item)
+
+    if not cells:
+        return out
+    first_path = cell_index.get_cell_path(cells[0])
+    if not first_path:
+        return out
+    source_path = tuple(first_path)
+    for cell in cells:
+        add(cell, "llm-tree-leaf", "selected_leaf", 0, source_path)
+    lineage, disease, _subtype = first_path
+    for candidate in cell_index.valid_cells():
+        path = cell_index.get_cell_path(candidate)
+        if path and path[0] == lineage and path[1] == disease:
+            add(candidate, "same_disease_sibling", "same_disease_sibling", 1, source_path)
+    for candidate in cell_index.valid_cells():
+        path = cell_index.get_cell_path(candidate)
+        if path and path[0] == lineage:
+            add(candidate, "same_lineage", "same_lineage", 2, source_path)
+    return out
+
+
+def _is_cancer_label(label: str | None) -> bool:
+    text = str(label or "").lower()
+    return any(word in text for word in ("cancer", "carcinoma", "tumor", "melanoma", "leukemia", "lymphoma", "glioma", "sarcoma"))
 
 
 def _llm_choose_option(

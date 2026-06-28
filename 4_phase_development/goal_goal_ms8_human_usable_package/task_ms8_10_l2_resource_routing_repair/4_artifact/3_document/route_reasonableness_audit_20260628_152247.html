@@ -1,0 +1,1900 @@
+<!doctype html><html><head><meta charset="utf-8"><title>L2 route reasonableness audit</title>
+<style>body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;margin:24px}table{border-collapse:collapse;width:100%}td,th{border:1px solid #ccc;padding:6px;vertical-align:top}pre{white-space:pre-wrap;font-size:12px}</style>
+</head><body><h1>L2 route reasonableness audit</h1>
+<pre>{
+  &quot;source&quot;: &quot;/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_10_l2_resource_routing_repair/4_artifact/5_table/t137_60_l2_validation_latest.json&quot;,
+  &quot;summary&quot;: {
+    &quot;case_counts&quot;: {
+      &quot;direct&quot;: 17,
+      &quot;acceptable_proxy&quot;: 24,
+      &quot;unsupported&quot;: 19
+    },
+    &quot;route_counts&quot;: {
+      &quot;direct&quot;: 22,
+      &quot;acceptable_proxy&quot;: 88,
+      &quot;unsupported&quot;: 64,
+      &quot;data_only_anchor&quot;: 1
+    },
+    &quot;cases_by_level&quot;: {
+      &quot;direct&quot;: [
+        &quot;FD01&quot;,
+        &quot;FD04&quot;,
+        &quot;FD05&quot;,
+        &quot;FD06&quot;,
+        &quot;FD07&quot;,
+        &quot;FD08&quot;,
+        &quot;FD12&quot;,
+        &quot;FD14&quot;,
+        &quot;FD15&quot;,
+        &quot;FG01&quot;,
+        &quot;FG03&quot;,
+        &quot;FG04&quot;,
+        &quot;FG06&quot;,
+        &quot;FG07&quot;,
+        &quot;FG10&quot;,
+        &quot;RG01&quot;,
+        &quot;RG03&quot;
+      ],
+      &quot;acceptable_proxy&quot;: [
+        &quot;FD02&quot;,
+        &quot;FD03&quot;,
+        &quot;FD10&quot;,
+        &quot;FD11&quot;,
+        &quot;FG02&quot;,
+        &quot;FG05&quot;,
+        &quot;FG08&quot;,
+        &quot;FG09&quot;,
+        &quot;FG11&quot;,
+        &quot;FG12&quot;,
+        &quot;FG13&quot;,
+        &quot;FG14&quot;,
+        &quot;RG02&quot;,
+        &quot;RG04&quot;,
+        &quot;RG05&quot;,
+        &quot;RG06&quot;,
+        &quot;RG07&quot;,
+        &quot;RG08&quot;,
+        &quot;RG09&quot;,
+        &quot;RG10&quot;,
+        &quot;RG11&quot;,
+        &quot;RG12&quot;,
+        &quot;RG13&quot;,
+        &quot;RG14&quot;
+      ],
+      &quot;unsupported&quot;: [
+        &quot;FD09&quot;,
+        &quot;FD13&quot;,
+        &quot;FG15&quot;,
+        &quot;RD01&quot;,
+        &quot;RD02&quot;,
+        &quot;RD03&quot;,
+        &quot;RD04&quot;,
+        &quot;RD05&quot;,
+        &quot;RD06&quot;,
+        &quot;RD07&quot;,
+        &quot;RD08&quot;,
+        &quot;RD09&quot;,
+        &quot;RD10&quot;,
+        &quot;RD11&quot;,
+        &quot;RD12&quot;,
+        &quot;RD13&quot;,
+        &quot;RD14&quot;,
+        &quot;RD15&quot;,
+        &quot;RG15&quot;
+      ]
+    }
+  },
+  &quot;scope&quot;: &quot;External route reasonableness, not internal data availability and not PubMed co-occurrence scoring.&quot;
+}</pre>
+<table><thead><tr><th>Case</th><th>Verdict</th><th>Query</th><th>Selected route audits</th></tr></thead><tbody><tr><td>FD01</td><td>direct</td><td>In A549 cells, what functional programs change after doxorubicin treatment?</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;forward_001&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;doxorubicin&quot;,
+    &quot;scope&quot;: &quot;exact&quot;,
+    &quot;verdict&quot;: &quot;direct&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;User explicitly named this cell line.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;forward_002&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;epirubicin&quot;,
+    &quot;scope&quot;: &quot;exact&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;User explicitly named this cell line.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;forward_003&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;BRD-K92093830&quot;,
+    &quot;scope&quot;: &quot;exact&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;User explicitly named this cell line.&quot;
+  }
+]</pre></td></tr><tr><td>FD02</td><td>acceptable_proxy</td><td>What does doxo do in lung cancer models? I care about broad pathway effects, not a single gene.</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;forward_001&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;doxorubicin&quot;,
+    &quot;scope&quot;: &quot;same_disease_sibling&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Proxy cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;forward_002&quot;,
+    &quot;cell&quot;: &quot;unsupported&quot;,
+    &quot;perturbation&quot;: &quot;doxorubicin&quot;,
+    &quot;scope&quot;: &quot;same_disease_sibling&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Proxy cell lacks external support for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;forward_003&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;epirubicin&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  }
+]</pre></td></tr><tr><td>FD03</td><td>acceptable_proxy</td><td>For breast tumor context, if I treat with Herceptin/trastuzumab, what functions go up or down?</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;forward_001&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;atracurium&quot;,
+    &quot;scope&quot;: &quot;same_disease_sibling&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;unsupported&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Proxy cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;forward_002&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;ys-035&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;forward_003&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;ro-20-1724&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  }
+]</pre></td></tr><tr><td>FD04</td><td>direct</td><td>In colon cancer, after 5-FU exposure, which biological programs are most affected?</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;forward_001&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;fluorouracil&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;direct&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;forward_002&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;5-fp&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  }
+]</pre></td></tr><tr><td>FD05</td><td>direct</td><td>What is the functional footprint of the EGFR blocker Iressa in non-small-cell lung cancer?</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;forward_001&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;afatinib&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;forward_002&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;BRD-K19687926&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;forward_003&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;gefitinib&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;direct&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  }
+]</pre></td></tr><tr><td>FD06</td><td>direct</td><td>Suppose the sample is a liver carcinoma-like context and I add sorafenib; tell me the expected functional response.</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;forward_001&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;sorafenib&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;direct&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;forward_002&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;BRD-K49810818&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;forward_003&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;regorafenib&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  }
+]</pre></td></tr><tr><td>FD07</td><td>direct</td><td>For melanoma, what changes after a BRAF inhibitor like vemurafenib?</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;forward_001&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;vemurafenib&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;direct&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;forward_002&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;plx-4720&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;forward_003&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;vemurafenib&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;direct&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  }
+]</pre></td></tr><tr><td>FD08</td><td>direct</td><td>如果是乳腺癌背景，用 tamoxifen 处理后功能通路会怎么变？</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;forward_001&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;tamoxifen&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;direct&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;forward_002&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;BRD-K43744935&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;forward_003&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;toremifene&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  }
+]</pre></td></tr><tr><td>FD09</td><td>unsupported</td><td>In a kidney-derived cancer setting, what programs are changed by mTOR blockade with rapa/sirolimus?</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;forward_001&quot;,
+    &quot;cell&quot;: &quot;unsupported&quot;,
+    &quot;perturbation&quot;: &quot;sirolimus&quot;,
+    &quot;scope&quot;: &quot;same_lineage&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Proxy cell lacks external support for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;forward_002&quot;,
+    &quot;cell&quot;: &quot;unsupported&quot;,
+    &quot;perturbation&quot;: &quot;sirolimus&quot;,
+    &quot;scope&quot;: &quot;same_lineage&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Proxy cell lacks external support for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;forward_003&quot;,
+    &quot;cell&quot;: &quot;unsupported&quot;,
+    &quot;perturbation&quot;: &quot;BRD-K89626439&quot;,
+    &quot;scope&quot;: &quot;same_lineage&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Proxy cell lacks external support for the requested context.&quot;
+  }
+]</pre></td></tr><tr><td>FD10</td><td>acceptable_proxy</td><td>I don&#x27;t know the exact cell line: in ovarian cancer, after platinum chemo such as cisplatin, what functions are activated or suppressed?</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;forward_001&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;cisplatin&quot;,
+    &quot;scope&quot;: &quot;observed_perturbation_anchor&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Observed anchor has external support for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;forward_002&quot;,
+    &quot;cell&quot;: &quot;data_only_anchor&quot;,
+    &quot;perturbation&quot;: &quot;cisplatin&quot;,
+    &quot;scope&quot;: &quot;observed_perturbation_anchor&quot;,
+    &quot;verdict&quot;: &quot;data_only_anchor&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Observed anchor is data-executable but not externally supported as a semantic match to the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;forward_003&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;cisplatin&quot;,
+    &quot;scope&quot;: &quot;observed_perturbation_anchor&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Observed anchor has external support for the requested context.&quot;
+  }
+]</pre></td></tr><tr><td>FD11</td><td>acceptable_proxy</td><td>What does low-dose metformin treatment do to energy metabolism and growth/proliferation signatures in tumor cells?</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;forward_001&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;metformin&quot;,
+    &quot;scope&quot;: &quot;observed_perturbation_anchor&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Observed anchor has external support for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;forward_002&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;metformin&quot;,
+    &quot;scope&quot;: &quot;observed_perturbation_anchor&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Observed anchor has external support for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;forward_003&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;metformin&quot;,
+    &quot;scope&quot;: &quot;observed_perturbation_anchor&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Observed anchor has external support for the requested context.&quot;
+  }
+]</pre></td></tr><tr><td>FD12</td><td>direct</td><td>For prostate cancer organ context, after the AR antagonist enzalutamide, what functional programs shift?</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;forward_001&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;enzalutamide&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;direct&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;forward_002&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;arn-509&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;forward_003&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;ru-58841&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  }
+]</pre></td></tr><tr><td>FD13</td><td>unsupported</td><td>If a glioblastoma-like cell state is treated with TMZ/temozolomide, what DNA-damage or stress functions should PxFquery look for?</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;forward_001&quot;,
+    &quot;cell&quot;: &quot;unsupported&quot;,
+    &quot;perturbation&quot;: &quot;temozolomide&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell lacks external support for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;forward_002&quot;,
+    &quot;cell&quot;: &quot;unsupported&quot;,
+    &quot;perturbation&quot;: &quot;temozolomide&quot;,
+    &quot;scope&quot;: &quot;same_disease_sibling&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Proxy cell lacks external support for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;forward_003&quot;,
+    &quot;cell&quot;: &quot;unsupported&quot;,
+    &quot;perturbation&quot;: &quot;temozolomide&quot;,
+    &quot;scope&quot;: &quot;same_disease_sibling&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Proxy cell lacks external support for the requested context.&quot;
+  }
+]</pre></td></tr><tr><td>FD14</td><td>direct</td><td>I&#x27;m asking forward mode: pancreatic cancer context plus gemcitabine treatment; what function response?</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;forward_001&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;gemcitabine&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;direct&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;forward_002&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;psi-6130&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;forward_003&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;cytarabine&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  }
+]</pre></td></tr><tr><td>FD15</td><td>direct</td><td>In an immune-cell-like leukemia context, what is the perturbation-function profile of steroid treatment with dexamethasone?</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;forward_001&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;BRD-A69951442&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;forward_002&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;BRD-A37780065&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;forward_003&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;dexamethasone-acetate&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;direct&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  }
+]</pre></td></tr><tr><td>FG01</td><td>direct</td><td>In A549 cells, what functional programs change after EGFR CRISPR knockout?</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;forward_001&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;EGFR&quot;,
+    &quot;scope&quot;: &quot;exact&quot;,
+    &quot;verdict&quot;: &quot;direct&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;User explicitly named this cell line.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;forward_002&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;EGF&quot;,
+    &quot;scope&quot;: &quot;exact&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;User explicitly named this cell line.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;forward_003&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;EREG&quot;,
+    &quot;scope&quot;: &quot;exact&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;User explicitly named this cell line.&quot;
+  }
+]</pre></td></tr><tr><td>FG02</td><td>acceptable_proxy</td><td>What happens functionally if c-Myc is knocked down by RNAi in a breast cancer context?</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;forward_001&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;MYC&quot;,
+    &quot;scope&quot;: &quot;same_disease_sibling&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Proxy cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;forward_002&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;MYCN&quot;,
+    &quot;scope&quot;: &quot;same_disease_sibling&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Proxy cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;forward_003&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;MAX&quot;,
+    &quot;scope&quot;: &quot;same_disease_sibling&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Proxy cell is externally supported for the requested context.&quot;
+  }
+]</pre></td></tr><tr><td>FG03</td><td>direct</td><td>In melanoma, if B-RAF / BRAF is CRISPR knocked out, which pathways respond?</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;forward_001&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;BRAF&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;direct&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;forward_002&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;MAP2K2&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;forward_003&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;MAP2K1&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  }
+]</pre></td></tr><tr><td>FG04</td><td>direct</td><td>For colon cancer tissue context, tell me the function changes after shRNA suppression of K-Ras.</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;forward_001&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;KRAS&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;direct&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;forward_002&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;NRAS&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;forward_003&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;BRAF&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  }
+]</pre></td></tr><tr><td>FG05</td><td>acceptable_proxy</td><td>如果在肺癌背景敲低 p53/TP53，会影响哪些功能程序？</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;forward_001&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;TP53&quot;,
+    &quot;scope&quot;: &quot;same_disease_sibling&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Proxy cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;forward_002&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;TP53&quot;,
+    &quot;scope&quot;: &quot;same_disease_sibling&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Proxy cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;forward_003&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;BRCA1&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  }
+]</pre></td></tr><tr><td>FG06</td><td>direct</td><td>In liver tumor models, after CRISPR loss-of-function of beta-catenin/CTNNB1, what signatures change?</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;forward_001&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;CTNNB1&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;direct&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  }
+]</pre></td></tr><tr><td>FG07</td><td>direct</td><td>What is the downstream functional effect of overexpressing PKB/AKT1 in epithelial cancer cells?</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;forward_001&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;AKT1&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;direct&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;forward_002&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;PRKACA&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;forward_003&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;GSK3A&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  }
+]</pre></td></tr><tr><td>FG08</td><td>acceptable_proxy</td><td>No exact cell line: in ovarian cancer, knock out BRCA-1 and report functional effects.</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;forward_001&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;BRCA1&quot;,
+    &quot;scope&quot;: &quot;same_disease_sibling&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Proxy cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;forward_002&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;BRCA2&quot;,
+    &quot;scope&quot;: &quot;same_disease_sibling&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Proxy cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;forward_003&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;BRD7&quot;,
+    &quot;scope&quot;: &quot;same_disease_sibling&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Proxy cell is externally supported for the requested context.&quot;
+  }
+]</pre></td></tr><tr><td>FG09</td><td>acceptable_proxy</td><td>What does siRNA against CDK four / CDK4 do to cell-cycle and other functions in tumor cells?</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;forward_001&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;CDK4&quot;,
+    &quot;scope&quot;: &quot;observed_perturbation_anchor&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Observed anchor has external support for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;forward_002&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;CDK4&quot;,
+    &quot;scope&quot;: &quot;observed_perturbation_anchor&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Observed anchor has external support for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;forward_003&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;CDK4&quot;,
+    &quot;scope&quot;: &quot;observed_perturbation_anchor&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Observed anchor has external support for the requested context.&quot;
+  }
+]</pre></td></tr><tr><td>FG10</td><td>direct</td><td>In prostate cancer, CRISPR KO of the androgen receptor gene AR: what functional programs move?</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;forward_001&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;AR&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;direct&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;forward_002&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;AREG&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;forward_003&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;EREG&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  }
+]</pre></td></tr><tr><td>FG11</td><td>acceptable_proxy</td><td>For glioma-like cells, suppress isocitrate dehydrogenase 1 / IDH1 by RNA interference and ask what functions change.</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;forward_001&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;IDH1&quot;,
+    &quot;scope&quot;: &quot;same_disease_sibling&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Proxy cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;forward_002&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;IDH2&quot;,
+    &quot;scope&quot;: &quot;same_disease_sibling&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Proxy cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;forward_003&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;IDH3A&quot;,
+    &quot;scope&quot;: &quot;same_disease_sibling&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Proxy cell is externally supported for the requested context.&quot;
+  }
+]</pre></td></tr><tr><td>FG12</td><td>acceptable_proxy</td><td>What functional footprint follows shRNA knockdown of HIF-1 alpha, HIF1A, in hypoxic cancer context?</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;forward_001&quot;,
+    &quot;cell&quot;: &quot;unsupported&quot;,
+    &quot;perturbation&quot;: &quot;HIF1A&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell lacks external support for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;forward_002&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;HIF1A&quot;,
+    &quot;scope&quot;: &quot;same_disease_sibling&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Proxy cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;forward_003&quot;,
+    &quot;cell&quot;: &quot;unsupported&quot;,
+    &quot;perturbation&quot;: &quot;HIF1A&quot;,
+    &quot;scope&quot;: &quot;same_disease_sibling&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Proxy cell lacks external support for the requested context.&quot;
+  }
+]</pre></td></tr><tr><td>FG13</td><td>acceptable_proxy</td><td>I want perturbation-to-function: delete PTEN genetically in breast cancer, what response?</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;forward_001&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;PTEN&quot;,
+    &quot;scope&quot;: &quot;same_disease_sibling&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Proxy cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;forward_002&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;PHLPP1&quot;,
+    &quot;scope&quot;: &quot;same_disease_sibling&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Proxy cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;forward_003&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;PTPN2&quot;,
+    &quot;scope&quot;: &quot;same_disease_sibling&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Proxy cell is externally supported for the requested context.&quot;
+  }
+]</pre></td></tr><tr><td>FG14</td><td>acceptable_proxy</td><td>In leukemia context, CRISPR loss of BCL-2/BCL2 should alter which survival or death programs?</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;forward_001&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;BLCAP&quot;,
+    &quot;scope&quot;: &quot;same_disease_sibling&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Proxy cell is externally supported for the requested context.&quot;
+  }
+]</pre></td></tr><tr><td>FG15</td><td>unsupported</td><td>For a kidney cancer model, force expression of von Hippel-Lindau/VHL and ask for functional effects.</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;forward_001&quot;,
+    &quot;cell&quot;: &quot;unsupported&quot;,
+    &quot;perturbation&quot;: &quot;VHL&quot;,
+    &quot;scope&quot;: &quot;same_lineage&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Proxy cell lacks external support for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;forward_002&quot;,
+    &quot;cell&quot;: &quot;unsupported&quot;,
+    &quot;perturbation&quot;: &quot;VHL&quot;,
+    &quot;scope&quot;: &quot;same_lineage&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Proxy cell lacks external support for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;forward_003&quot;,
+    &quot;cell&quot;: &quot;unsupported&quot;,
+    &quot;perturbation&quot;: &quot;EGLN2&quot;,
+    &quot;scope&quot;: &quot;same_lineage&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;not_applicable&quot;,
+    &quot;cell_reason&quot;: &quot;Proxy cell lacks external support for the requested context.&quot;
+  }
+]</pre></td></tr><tr><td>RD01</td><td>unsupported</td><td>Which drugs activate apoptosis in MCF7 cells?</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;reverse_001&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;exact&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;unsupported&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;User explicitly named this cell line.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_002&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;same_subtype&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;unsupported&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Proxy cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_003&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;same_subtype&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;unsupported&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Proxy cell is externally supported for the requested context.&quot;
+  }
+]</pre></td></tr><tr><td>RD02</td><td>unsupported</td><td>Find small molecules that suppress MYC targets in lung cancer.</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;reverse_001&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;unsupported&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_002&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;unsupported&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_003&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;unsupported&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  }
+]</pre></td></tr><tr><td>RD03</td><td>unsupported</td><td>For melanoma, what compounds would reduce EMT and increase apoptosis?</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;reverse_001&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;unsupported&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_002&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;unsupported&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_003&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;unsupported&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  }
+]</pre></td></tr><tr><td>RD04</td><td>unsupported</td><td>I want drugs, not genes: in colon cancer, suppress cell cycle and activate inflammatory response.</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;reverse_001&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;unsupported&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_002&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;unsupported&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_003&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;unsupported&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  }
+]</pre></td></tr><tr><td>RD05</td><td>unsupported</td><td>有哪些药物可能在乳腺癌中增强 apoptosis 同时降低 proliferation？</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;reverse_001&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;unsupported&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_002&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;unsupported&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_003&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;unsupported&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  }
+]</pre></td></tr><tr><td>RD06</td><td>unsupported</td><td>In ovarian cancer tissue context, rank treatments that reverse epithelial-to-mesenchymal transition / invasiveness.</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;reverse_001&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;unsupported&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_002&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;same_disease_sibling&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;unsupported&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Proxy cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_003&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;same_disease_sibling&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;unsupported&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Proxy cell is externally supported for the requested context.&quot;
+  }
+]</pre></td></tr><tr><td>RD07</td><td>unsupported</td><td>For a liver cancer model, look for compounds that inhibit blood-vessel-growth / angiogenesis signatures.</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;reverse_001&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;unsupported&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_002&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;unsupported&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_003&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;unsupported&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  }
+]</pre></td></tr><tr><td>RD08</td><td>unsupported</td><td>Which medications might push tumor cells toward immune activation while suppressing sugar-burning glycolysis?</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;reverse_001&quot;,
+    &quot;cell&quot;: &quot;unsupported&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;unsupported&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell lacks external support for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_002&quot;,
+    &quot;cell&quot;: &quot;unsupported&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;unsupported&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell lacks external support for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_003&quot;,
+    &quot;cell&quot;: &quot;unsupported&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;unsupported&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell lacks external support for the requested context.&quot;
+  }
+]</pre></td></tr><tr><td>RD09</td><td>unsupported</td><td>Without knowing the cell line, in pancreatic cancer, find drugs to suppress KRAS signaling programs.</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;reverse_001&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;unsupported&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_002&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;unsupported&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_003&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;unsupported&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  }
+]</pre></td></tr><tr><td>RD10</td><td>unsupported</td><td>In prostate cancer organ context, which compounds decrease androgen-response and increase programmed cell death?</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;reverse_001&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;unsupported&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_002&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;unsupported&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_003&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;same_disease_sibling&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;unsupported&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Proxy cell is externally supported for the requested context.&quot;
+  }
+]</pre></td></tr><tr><td>RD11</td><td>unsupported</td><td>Find chemical perturbagens that make glioblastoma cells less proliferative, more quiescent if possible.</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;reverse_001&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;unsupported&quot;,
+    &quot;function&quot;: &quot;unsupported&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_002&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;same_disease_sibling&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;unsupported&quot;,
+    &quot;function&quot;: &quot;unsupported&quot;,
+    &quot;cell_reason&quot;: &quot;Proxy cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_003&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;same_disease_sibling&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;unsupported&quot;,
+    &quot;function&quot;: &quot;unsupported&quot;,
+    &quot;cell_reason&quot;: &quot;Proxy cell is externally supported for the requested context.&quot;
+  }
+]</pre></td></tr><tr><td>RD12</td><td>unsupported</td><td>What drug treatments could downregulate low-oxygen / hypoxia response in kidney cancer?</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;reverse_001&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;unsupported&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_002&quot;,
+    &quot;cell&quot;: &quot;unsupported&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;same_lineage&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;unsupported&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Proxy cell lacks external support for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_003&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;same_lineage&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;unsupported&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Proxy cell is externally supported for the requested context.&quot;
+  }
+]</pre></td></tr><tr><td>RD13</td><td>unsupported</td><td>Please search drug-like perturbations that wake up the p53 damage checkpoint in leukemia.</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;reverse_001&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;unsupported&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_002&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;unsupported&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_003&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;same_disease_sibling&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;unsupported&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Proxy cell is externally supported for the requested context.&quot;
+  }
+]</pre></td></tr><tr><td>RD14</td><td>unsupported</td><td>For gastric cancer, which compounds suppress WNT beta-catenin signaling, not just generic toxicity?</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;reverse_001&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;unsupported&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_002&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;unsupported&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_003&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;unsupported&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  }
+]</pre></td></tr><tr><td>RD15</td><td>unsupported</td><td>In a neural tumor context, find molecules that increase differentiation and reduce cycling/division.</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;reverse_001&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;unsupported&quot;,
+    &quot;function&quot;: &quot;unsupported&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_002&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;same_disease_sibling&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;unsupported&quot;,
+    &quot;function&quot;: &quot;unsupported&quot;,
+    &quot;cell_reason&quot;: &quot;Proxy cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_003&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;same_lineage&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;unsupported&quot;,
+    &quot;function&quot;: &quot;unsupported&quot;,
+    &quot;cell_reason&quot;: &quot;Proxy cell is externally supported for the requested context.&quot;
+  }
+]</pre></td></tr><tr><td>RG01</td><td>direct</td><td>Which RNAi knockdowns suppress MYC targets in MCF7 cells?</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;reverse_001&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;exact&quot;,
+    &quot;verdict&quot;: &quot;direct&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;User explicitly named this cell line.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_002&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;exact&quot;,
+    &quot;verdict&quot;: &quot;direct&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;User explicitly named this cell line.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_003&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;exact&quot;,
+    &quot;verdict&quot;: &quot;direct&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;User explicitly named this cell line.&quot;
+  }
+]</pre></td></tr><tr><td>RG02</td><td>acceptable_proxy</td><td>Find CRISPR knockouts that activate apoptosis in lung cancer.</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;reverse_001&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;same_disease_sibling&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Proxy cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_002&quot;,
+    &quot;cell&quot;: &quot;unsupported&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;same_disease_sibling&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Proxy cell lacks external support for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_003&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;same_disease_sibling&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Proxy cell is externally supported for the requested context.&quot;
+  }
+]</pre></td></tr><tr><td>RG03</td><td>direct</td><td>For melanoma, which genes should be knocked down to reduce EMT / invasion?</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;reverse_001&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;direct&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_002&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;direct&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_003&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;direct&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  }
+]</pre></td></tr><tr><td>RG04</td><td>acceptable_proxy</td><td>I want genetic perturbations, not drugs, that suppress cell-cycle progression in colon cancer.</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;reverse_001&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_002&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_003&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  }
+]</pre></td></tr><tr><td>RG05</td><td>acceptable_proxy</td><td>哪些基因敲低可能在乳腺癌中增强 programmed cell death / apoptosis？</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;reverse_001&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;same_disease_sibling&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Proxy cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_002&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;same_disease_sibling&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Proxy cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_003&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;same_disease_sibling&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Proxy cell is externally supported for the requested context.&quot;
+  }
+]</pre></td></tr><tr><td>RG06</td><td>acceptable_proxy</td><td>In ovarian cancer, find RNAi perturbations that decrease DNA repair / genome maintenance programs.</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;reverse_001&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;observed_modality_anchor&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Observed anchor has external support for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_002&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;observed_modality_anchor&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Observed anchor has external support for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_003&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;observed_modality_anchor&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Observed anchor has external support for the requested context.&quot;
+  }
+]</pre></td></tr><tr><td>RG07</td><td>acceptable_proxy</td><td>For liver cancer context, which CRISPR loss-of-function perturbations suppress beta-cat / CTNNB1 signaling?</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;reverse_001&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_002&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_003&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  }
+]</pre></td></tr><tr><td>RG08</td><td>acceptable_proxy</td><td>Find shRNA knockdowns that activate immune/interferon response signatures in tumor cells.</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;reverse_001&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;observed_modality_anchor&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Observed anchor has external support for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_002&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;observed_modality_anchor&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Observed anchor has external support for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_003&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;observed_modality_anchor&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Observed anchor has external support for the requested context.&quot;
+  }
+]</pre></td></tr><tr><td>RG09</td><td>acceptable_proxy</td><td>In pancreatic cancer, what gene KOs would reduce KRAS pathway output?</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;reverse_001&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;observed_modality_anchor&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Observed anchor has external support for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_002&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;observed_modality_anchor&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Observed anchor has external support for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_003&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;observed_modality_anchor&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Observed anchor has external support for the requested context.&quot;
+  }
+]</pre></td></tr><tr><td>RG10</td><td>acceptable_proxy</td><td>For prostate cancer, identify genetic perturbations that lower androgen receptor response, AR axis, whatever you call it.</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;reverse_001&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_002&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_003&quot;,
+    &quot;cell&quot;: &quot;direct&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;selected_leaf&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Selected cell is externally supported for the requested context.&quot;
+  }
+]</pre></td></tr><tr><td>RG11</td><td>acceptable_proxy</td><td>Which siRNA-like perturbations make glioma cells less proliferative and less mitotic?</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;reverse_001&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;same_lineage&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Proxy cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_002&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;same_lineage&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Proxy cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_003&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;same_lineage&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Proxy cell is externally supported for the requested context.&quot;
+  }
+]</pre></td></tr><tr><td>RG12</td><td>acceptable_proxy</td><td>In kidney cancer, find genes whose knockdown suppresses HIF / hypoxia response.</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;reverse_001&quot;,
+    &quot;cell&quot;: &quot;unsupported&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;same_lineage&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Proxy cell lacks external support for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_002&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;same_lineage&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Proxy cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_003&quot;,
+    &quot;cell&quot;: &quot;unsupported&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;same_lineage&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;direct&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Proxy cell lacks external support for the requested context.&quot;
+  }
+]</pre></td></tr><tr><td>RG13</td><td>acceptable_proxy</td><td>Search CRISPR KOs that activate p53 checkpoint / DNA damage response in leukemia.</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;reverse_001&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;same_disease_sibling&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Proxy cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_002&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;same_disease_sibling&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Proxy cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_003&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;same_disease_sibling&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Proxy cell is externally supported for the requested context.&quot;
+  }
+]</pre></td></tr><tr><td>RG14</td><td>acceptable_proxy</td><td>For gastric cancer, which genetic loss-of-function perturbations suppress Wnt/beta-cat signaling?</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;reverse_001&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;observed_modality_anchor&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Observed anchor has external support for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_002&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;observed_modality_anchor&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Observed anchor has external support for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_003&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;observed_modality_anchor&quot;,
+    &quot;verdict&quot;: &quot;acceptable_proxy&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;direct&quot;,
+    &quot;cell_reason&quot;: &quot;Observed anchor has external support for the requested context.&quot;
+  }
+]</pre></td></tr><tr><td>RG15</td><td>unsupported</td><td>In neural tumor context, find genetic perturbations that increase differentiation and reduce cycling/division.</td><td><pre>[
+  {
+    &quot;route_id&quot;: &quot;reverse_001&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;same_disease_sibling&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;unsupported&quot;,
+    &quot;cell_reason&quot;: &quot;Proxy cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_002&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;same_lineage&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;unsupported&quot;,
+    &quot;cell_reason&quot;: &quot;Proxy cell is externally supported for the requested context.&quot;
+  },
+  {
+    &quot;route_id&quot;: &quot;reverse_003&quot;,
+    &quot;cell&quot;: &quot;acceptable_proxy&quot;,
+    &quot;perturbation&quot;: &quot;&quot;,
+    &quot;scope&quot;: &quot;same_lineage&quot;,
+    &quot;verdict&quot;: &quot;unsupported&quot;,
+    &quot;pert&quot;: &quot;acceptable_proxy&quot;,
+    &quot;function&quot;: &quot;unsupported&quot;,
+    &quot;cell_reason&quot;: &quot;Proxy cell is externally supported for the requested context.&quot;
+  }
+]</pre></td></tr></tbody></table>
+</body></html>

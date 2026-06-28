@@ -34,7 +34,7 @@ class PreprocessingNamespace:
         target.uns["_intent"] = intent
         return target if copy else None
 
-    def route(self, qdata: PxFQueryData, *, copy: bool = False) -> PxFQueryData | None:
+    def route(self, qdata: PxFQueryData, *, copy: bool = False, pair_policy: str = "observed") -> PxFQueryData | None:
         target = _copy_qdata(qdata) if copy else qdata
         intent = _require_intent(target)
         route_plan = route_intent(
@@ -44,6 +44,7 @@ class PreprocessingNamespace:
             llm_provider=self._client.llm_providers.get(),
             forward_engines=self._client._forward_engines,
             reverse_engines=self._client._reverse_engines,
+            pair_policy=pair_policy,
         )
         target.uns["route_plan"] = route_plan.to_dict()
         target.uns["_route_plan"] = route_plan

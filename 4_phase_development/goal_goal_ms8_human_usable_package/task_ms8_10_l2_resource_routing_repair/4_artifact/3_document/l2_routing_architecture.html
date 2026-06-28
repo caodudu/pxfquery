@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PxFquery L2 Resource Routing Architecture</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #0d1117;
+    color: #c9d1d9;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    padding: 24px;
+    min-height: 100vh;
+  }
+  header {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #21262d;
+    padding-bottom: 16px;
+  }
+  header h1 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #e6edf3;
+    margin-bottom: 6px;
+  }
+  header p {
+    font-size: 11px;
+    color: #8b949e;
+  }
+  .diagram-wrap {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .meta {
+    margin-top: 20px;
+    font-size: 10px;
+    color: #484f58;
+    text-align: right;
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>PxFquery L2 Resource Routing — Architecture Diagram</h1>
+  <p>T-138 ms8_10_l2_resource_routing_repair &nbsp;·&nbsp; generated 2026-06-28</p>
+</header>
+
+<div class="diagram-wrap">
+<svg viewBox="0 0 960 1080" xmlns="http://www.w3.org/2000/svg" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="11" role="img">
+  <title>PxFquery L2 Resource Routing Architecture</title>
+  <desc>Flow diagram showing L2 routing: QueryIntent from L1 splits into 3 parallel dimension routes (cell, perturbation, function), then merges into combination assembly with obs_min pair verification, producing a RoutePlan with up to 25 data-verified candidates passed to L3.</desc>
+
+  <!-- Background -->
+  <rect width="960" height="1080" fill="#0d1117"/>
+
+  <!-- COLOR LEGEND -->
+  <g transform="translate(680,18)">
+    <rect width="270" height="22" rx="4" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+    <circle cx="14" cy="11" r="5" fill="#238636"/>
+    <text x="23" y="15" fill="#8b949e" font-size="10">exact / verified</text>
+    <circle cx="100" cy="11" r="5" fill="#9e6a03"/>
+    <text x="109" y="15" fill="#8b949e" font-size="10">LLM call</text>
+    <circle cx="165" cy="11" r="5" fill="#1f6feb"/>
+    <text x="174" y="15" fill="#8b949e" font-size="10">proxy / expand</text>
+  </g>
+
+  <!-- ══════════════════════════════════════
+       ROW 0 — INPUT
+  ══════════════════════════════════════ -->
+  <g transform="translate(300,18)">
+    <rect width="360" height="50" rx="6" fill="#161b22" stroke="#58a6ff" stroke-width="1.5"/>
+    <text x="180" y="16" text-anchor="middle" fill="#58a6ff" font-size="10" font-weight="600">L1 OUTPUT → L2 INPUT</text>
+    <text x="180" y="30" text-anchor="middle" fill="#c9d1d9" font-size="10">QueryIntent</text>
+    <text x="180" y="44" text-anchor="middle" fill="#8b949e" font-size="9">query_type · bio_context · pert_desc · pert_class · genetic_modality · function_desc · activate · suppress</text>
+  </g>
+
+  <!-- Fork lines -->
+  <line x1="480" y1="68" x2="480" y2="88" stroke="#30363d" stroke-width="1.5"/>
+  <line x1="160" y1="88" x2="800" y2="88" stroke="#30363d" stroke-width="1.5"/>
+  <line x1="160" y1="88" x2="160" y2="108" stroke="#30363d" stroke-width="1.5"/>
+  <line x1="480" y1="88" x2="480" y2="108" stroke="#30363d" stroke-width="1.5"/>
+  <line x1="800" y1="88" x2="800" y2="108" stroke="#30363d" stroke-width="1.5"/>
+
+  <!-- ══════════════════════════════════════
+       ROW 1 — DIMENSION HEADERS
+  ══════════════════════════════════════ -->
+  <g transform="translate(20,108)">
+    <rect width="280" height="22" rx="4" fill="#1f3a1f" stroke="#238636" stroke-width="1.5"/>
+    <text x="140" y="15" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="700">① CELL ROUTE</text>
+  </g>
+  <g transform="translate(340,108)">
+    <rect width="280" height="22" rx="4" fill="#2d1f1f" stroke="#f85149" stroke-width="1.5"/>
+    <text x="140" y="15" text-anchor="middle" fill="#ff7b72" font-size="11" font-weight="700">② PERTURBATION ROUTE</text>
+  </g>
+  <g transform="translate(660,108)">
+    <rect width="280" height="22" rx="4" fill="#1f2a3a" stroke="#1f6feb" stroke-width="1.5"/>
+    <text x="140" y="15" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="700">③ FUNCTION ROUTE</text>
+  </g>
+
+  <!-- ══ CELL COLUMN ══ -->
+  <g transform="translate(20,140)">
+    <rect width="280" height="42" rx="4" fill="#161b22" stroke="#238636" stroke-width="1"/>
+    <text x="140" y="13" text-anchor="middle" fill="#3fb950" font-size="9" font-weight="600">STEP 1 · Exact alias lookup</text>
+    <text x="140" y="27" text-anchor="middle" fill="#c9d1d9" font-size="9">cellline_index.json · valid_cells[240]</text>
+    <text x="140" y="39" text-anchor="middle" fill="#8b949e" font-size="9">bio_context → canonical(name.upper())</text>
+
+    <rect y="52" width="280" height="62" rx="4" fill="#161b22" stroke="#9e6a03" stroke-width="1"/>
+    <text x="140" y="65" text-anchor="middle" fill="#d29922" font-size="9" font-weight="600">STEP 2 · LLM cell tree traversal (on miss)</text>
+    <text x="140" y="78" text-anchor="middle" fill="#c9d1d9" font-size="9">cellline_tree.json (lineage → disease → subtype)</text>
+    <text x="140" y="91" text-anchor="middle" fill="#8b949e" font-size="9">3 serial LLM calls · controlled list selection</text>
+    <text x="140" y="104" text-anchor="middle" fill="#8b949e" font-size="9">deepseek-v4-flash · ~1s each</text>
+
+    <rect y="124" width="280" height="42" rx="4" fill="#161b22" stroke="#1f6feb" stroke-width="1"/>
+    <text x="140" y="137" text-anchor="middle" fill="#58a6ff" font-size="9" font-weight="600">STEP 3 · Proxy expansion</text>
+    <text x="140" y="150" text-anchor="middle" fill="#c9d1d9" font-size="9">cellline_neighbors.json · same_subtype / same_disease</text>
+    <text x="140" y="162" text-anchor="middle" fill="#8b949e" font-size="9">candidates[6] → expanded_candidates[≤25]</text>
+
+    <rect y="176" width="280" height="30" rx="4" fill="#0d1117" stroke="#30363d" stroke-width="1"/>
+    <text x="140" y="189" text-anchor="middle" fill="#3fb950" font-size="9" font-weight="600">OUTPUT</text>
+    <text x="140" y="201" text-anchor="middle" fill="#c9d1d9" font-size="9">candidates[6] · expanded_candidates[≤25]</text>
+
+    <rect y="216" width="280" height="18" rx="3" fill="#21262d"/>
+    <text x="140" y="228" text-anchor="middle" fill="#8b949e" font-size="8">FAIL → llm_unavailable / resource-missing</text>
+  </g>
+
+  <!-- ══ PERTURBATION COLUMN ══ -->
+  <g transform="translate(340,140)">
+    <rect width="135" height="16" rx="3" fill="#21262d"/>
+    <text x="67" y="11" text-anchor="middle" fill="#d29922" font-size="8" font-weight="600">pert_class=drug</text>
+    <rect x="145" width="135" height="16" rx="3" fill="#21262d"/>
+    <text x="212" y="11" text-anchor="middle" fill="#79c0ff" font-size="8" font-weight="600">pert_class=genetic</text>
+
+    <rect y="26" width="135" height="32" rx="4" fill="#161b22" stroke="#238636" stroke-width="1"/>
+    <text x="67" y="38" text-anchor="middle" fill="#3fb950" font-size="8" font-weight="600">Exact BRD lookup</text>
+    <text x="67" y="50" text-anchor="middle" fill="#8b949e" font-size="8">drug_index.json [5782 BRD]</text>
+
+    <rect x="145" y="26" width="135" height="32" rx="4" fill="#161b22" stroke="#238636" stroke-width="1"/>
+    <text x="212" y="38" text-anchor="middle" fill="#3fb950" font-size="8" font-weight="600">Exact symbol lookup</text>
+    <text x="212" y="50" text-anchor="middle" fill="#8b949e" font-size="8">gene_index.json · in_matrix check</text>
+
+    <rect y="68" width="135" height="52" rx="4" fill="#161b22" stroke="#9e6a03" stroke-width="1"/>
+    <text x="67" y="80" text-anchor="middle" fill="#d29922" font-size="8" font-weight="600">Fuzzy → LLM normalize</text>
+    <text x="67" y="92" text-anchor="middle" fill="#8b949e" font-size="8">top-5 alias candidates</text>
+    <text x="67" y="104" text-anchor="middle" fill="#8b949e" font-size="8">LLM picks 1 or hypothesis</text>
+    <text x="67" y="114" text-anchor="middle" fill="#8b949e" font-size="8">validate BRD ✓</text>
+
+    <rect x="145" y="68" width="135" height="52" rx="4" fill="#161b22" stroke="#9e6a03" stroke-width="1"/>
+    <text x="212" y="80" text-anchor="middle" fill="#d29922" font-size="8" font-weight="600">Fuzzy → LLM normalize</text>
+    <text x="212" y="92" text-anchor="middle" fill="#8b949e" font-size="8">gene_index aliases</text>
+    <text x="212" y="104" text-anchor="middle" fill="#8b949e" font-size="8">LLM picks symbol</text>
+    <text x="212" y="114" text-anchor="middle" fill="#8b949e" font-size="8">validate in gene_index ✓</text>
+
+    <rect y="130" width="135" height="32" rx="4" fill="#161b22" stroke="#1f6feb" stroke-width="1"/>
+    <text x="67" y="142" text-anchor="middle" fill="#58a6ff" font-size="8" font-weight="600">Tanimoto proxies</text>
+    <text x="67" y="154" text-anchor="middle" fill="#8b949e" font-size="8">drug_neighbors.json [≤50]</text>
+
+    <rect x="145" y="130" width="135" height="32" rx="4" fill="#161b22" stroke="#1f6feb" stroke-width="1"/>
+    <text x="212" y="142" text-anchor="middle" fill="#58a6ff" font-size="8" font-weight="600">GenePT proxies</text>
+    <text x="212" y="154" text-anchor="middle" fill="#8b949e" font-size="8">gene_neighbors.json [≤50]</text>
+
+    <rect y="172" width="280" height="34" rx="4" fill="#0d1117" stroke="#30363d" stroke-width="1"/>
+    <text x="140" y="185" text-anchor="middle" fill="#ff7b72" font-size="9" font-weight="600">OUTPUT</text>
+    <text x="140" y="197" text-anchor="middle" fill="#c9d1d9" font-size="9">selected[1 BRD/symbol] · proxies[5] · expanded_proxies[≤50]</text>
+
+    <rect y="216" width="280" height="18" rx="3" fill="#21262d"/>
+    <text x="140" y="228" text-anchor="middle" fill="#8b949e" font-size="8">FAIL → llm_output_invalid / unresolved</text>
+  </g>
+
+  <!-- ══ FUNCTION COLUMN ══ -->
+  <g transform="translate(660,140)">
+    <rect width="135" height="16" rx="3" fill="#21262d"/>
+    <text x="67" y="11" text-anchor="middle" fill="#d29922" font-size="8" font-weight="600">forward query</text>
+    <rect x="145" width="135" height="16" rx="3" fill="#21262d"/>
+    <text x="212" y="11" text-anchor="middle" fill="#79c0ff" font-size="8" font-weight="600">reverse query</text>
+
+    <rect y="26" width="135" height="32" rx="4" fill="#161b22" stroke="#238636" stroke-width="1"/>
+    <text x="67" y="38" text-anchor="middle" fill="#3fb950" font-size="8" font-weight="600">Exact match</text>
+    <text x="67" y="50" text-anchor="middle" fill="#8b949e" font-size="8">function_index.json [91 vars]</text>
+
+    <rect x="145" y="26" width="135" height="32" rx="4" fill="#161b22" stroke="#238636" stroke-width="1"/>
+    <text x="212" y="38" text-anchor="middle" fill="#3fb950" font-size="8" font-weight="600">Exact match</text>
+    <text x="212" y="50" text-anchor="middle" fill="#8b949e" font-size="8">function_index.json [91 vars]</text>
+
+    <rect y="68" width="135" height="52" rx="4" fill="#161b22" stroke="#9e6a03" stroke-width="1"/>
+    <text x="67" y="80" text-anchor="middle" fill="#d29922" font-size="8" font-weight="600">LLM list selection</text>
+    <text x="67" y="92" text-anchor="middle" fill="#8b949e" font-size="8">full 91-fn list to LLM</text>
+    <text x="67" y="104" text-anchor="middle" fill="#8b949e" font-size="8">select ≤5 var_names</text>
+    <text x="67" y="114" text-anchor="middle" fill="#8b949e" font-size="8">validate in index ✓</text>
+
+    <rect x="145" y="68" width="135" height="52" rx="4" fill="#161b22" stroke="#9e6a03" stroke-width="1"/>
+    <text x="212" y="80" text-anchor="middle" fill="#d29922" font-size="8" font-weight="600">3-pass LLM mapping</text>
+    <text x="212" y="92" text-anchor="middle" fill="#8b949e" font-size="8">direct_pathway T=0.0</text>
+    <text x="212" y="104" text-anchor="middle" fill="#8b949e" font-size="8">mechanism T=0.35</text>
+    <text x="212" y="114" text-anchor="middle" fill="#8b949e" font-size="8">phenotype T=0.70</text>
+
+    <rect y="130" width="280" height="76" rx="4" fill="#0d1117" stroke="#30363d" stroke-width="1"/>
+    <text x="140" y="143" text-anchor="middle" fill="#58a6ff" font-size="9" font-weight="600">OUTPUT</text>
+    <text x="140" y="157" text-anchor="middle" fill="#c9d1d9" font-size="9">forward: selected[≤5 var_names]</text>
+    <text x="140" y="171" text-anchor="middle" fill="#c9d1d9" font-size="9">reverse: interpretation_sets[3]</text>
+    <text x="140" y="184" text-anchor="middle" fill="#8b949e" font-size="9">each set: ≤3 validated var_names</text>
+    <text x="140" y="197" text-anchor="middle" fill="#8b949e" font-size="9">all validated against fixed 91-fn index</text>
+
+    <rect y="216" width="280" height="18" rx="3" fill="#21262d"/>
+    <text x="140" y="228" text-anchor="middle" fill="#8b949e" font-size="8">FAIL → llm_unavailable / unresolved</text>
+  </g>
+
+  <!-- Merge lines to combination -->
+  <line x1="160" y1="394" x2="160" y2="426" stroke="#30363d" stroke-width="1.5"/>
+  <line x1="480" y1="394" x2="480" y2="426" stroke="#30363d" stroke-width="1.5"/>
+  <line x1="800" y1="394" x2="800" y2="426" stroke="#30363d" stroke-width="1.5"/>
+  <line x1="160" y1="426" x2="800" y2="426" stroke="#30363d" stroke-width="1.5"/>
+  <line x1="480" y1="426" x2="480" y2="446" stroke="#30363d" stroke-width="1.5"/>
+  <polygon points="480,446 475,438 485,438" fill="#30363d"/>
+
+  <!-- ══════════════════════════════════════
+       ROW 2 — COMBINATION ASSEMBLY
+  ══════════════════════════════════════ -->
+  <g transform="translate(100,446)">
+    <rect width="760" height="22" rx="4" fill="#2d1b4e" stroke="#8957e5" stroke-width="1.5"/>
+    <text x="380" y="15" text-anchor="middle" fill="#d2a8ff" font-size="11" font-weight="700">④ COMBINATION ASSEMBLY  ·  pair_policy="observed"</text>
+  </g>
+
+  <!-- obs_min box -->
+  <g transform="translate(100,478)">
+    <rect width="240" height="60" rx="4" fill="#161b22" stroke="#8957e5" stroke-width="1"/>
+    <text x="120" y="14" text-anchor="middle" fill="#d2a8ff" font-size="9" font-weight="600">Load obs_min (small CSV, ~5MB each)</text>
+    <text x="120" y="28" text-anchor="middle" fill="#c9d1d9" font-size="9">cp_obs_min.csv  201k rows</text>
+    <text x="120" y="42" text-anchor="middle" fill="#c9d1d9" font-size="9">sh_obs_min.csv  189k rows</text>
+    <text x="120" y="56" text-anchor="middle" fill="#c9d1d9" font-size="9">xpr_obs_min.csv 132k rows</text>
+  </g>
+
+  <!-- Tier expansion box -->
+  <g transform="translate(360,478)">
+    <rect width="500" height="130" rx="4" fill="#161b22" stroke="#8957e5" stroke-width="1"/>
+    <text x="250" y="14" text-anchor="middle" fill="#d2a8ff" font-size="9" font-weight="600">Expand × Filter  (pair must exist in obs_min)</text>
+
+    <rect x="10" y="24" width="480" height="18" rx="3" fill="#1f3a1f"/>
+    <text x="20" y="36" fill="#3fb950" font-size="9" font-weight="600">A</text>
+    <text x="36" y="36" fill="#c9d1d9" font-size="9">exact_cell × exact_pert</text>
+    <text x="290" y="36" fill="#8b949e" font-size="8">1 × 1  →  ≤1 verified pair</text>
+
+    <rect x="10" y="46" width="480" height="18" rx="3" fill="#1f2d45"/>
+    <text x="20" y="58" fill="#58a6ff" font-size="9" font-weight="600">B</text>
+    <text x="36" y="58" fill="#c9d1d9" font-size="9">exact_cell × proxy_perts</text>
+    <text x="290" y="58" fill="#8b949e" font-size="8">1 × 50  →  verified pairs only</text>
+
+    <rect x="10" y="68" width="480" height="18" rx="3" fill="#1f2d45"/>
+    <text x="20" y="80" fill="#58a6ff" font-size="9" font-weight="600">C</text>
+    <text x="36" y="80" fill="#c9d1d9" font-size="9">proxy_cells × exact_pert</text>
+    <text x="290" y="80" fill="#8b949e" font-size="8">25 × 1  →  verified pairs only</text>
+
+    <rect x="10" y="90" width="480" height="18" rx="3" fill="#1f2d45"/>
+    <text x="20" y="102" fill="#58a6ff" font-size="9" font-weight="600">D</text>
+    <text x="36" y="102" fill="#c9d1d9" font-size="9">proxy_cells × proxy_perts</text>
+    <text x="290" y="102" fill="#8b949e" font-size="8">25 × 50  →  verified pairs only</text>
+
+    <rect x="10" y="112" width="480" height="14" rx="3" fill="#2d1f1f"/>
+    <text x="20" y="122" fill="#ff7b72" font-size="8" font-weight="600">E / F  fallback</text>
+    <text x="80" y="122" fill="#8b949e" font-size="8">0 pairs found → observed_anchor: search obs_min for cells that have this pert</text>
+  </g>
+
+  <!-- Cap box -->
+  <g transform="translate(100,548)">
+    <rect width="240" height="60" rx="4" fill="#161b22" stroke="#8957e5" stroke-width="1"/>
+    <text x="120" y="15" text-anchor="middle" fill="#d2a8ff" font-size="9" font-weight="600">Cap at 25 verified pairs</text>
+    <text x="120" y="30" text-anchor="middle" fill="#8b949e" font-size="8">pair_verified=True on each candidate</text>
+    <text x="120" y="44" text-anchor="middle" fill="#8b949e" font-size="8">status=checked_l3_obs_min (forward)</text>
+    <text x="120" y="58" text-anchor="middle" fill="#484f58" font-size="8">reverse: not checked via obs_min</text>
+  </g>
+
+  <!-- Arrow to selected_routes -->
+  <line x1="480" y1="618" x2="480" y2="648" stroke="#30363d" stroke-width="1.5"/>
+  <polygon points="480,648 475,640 485,640" fill="#30363d"/>
+
+  <!-- ══════════════════════════════════════
+       ROW 3 — SELECTED ROUTES + STATUS
+  ══════════════════════════════════════ -->
+  <g transform="translate(100,648)">
+    <rect width="340" height="80" rx="4" fill="#161b22" stroke="#8957e5" stroke-width="1"/>
+    <text x="170" y="15" text-anchor="middle" fill="#d2a8ff" font-size="9" font-weight="600">selected_routes  (top 3 by tier order)</text>
+    <text x="170" y="30" text-anchor="middle" fill="#8b949e" font-size="9">tier priority: A → B → C → D → E/F</text>
+    <text x="170" y="46" text-anchor="middle" fill="#c9d1d9" font-size="9">each route: cell · perturbation · modality</text>
+    <text x="170" y="60" text-anchor="middle" fill="#c9d1d9" font-size="9">tier · evidence_level · pair_search_round</text>
+    <text x="170" y="74" text-anchor="middle" fill="#8b949e" font-size="8">modality: cp (drug)  ·  sh (knockdown)  ·  xpr (OE)</text>
+  </g>
+
+  <g transform="translate(460,648)">
+    <rect width="400" height="80" rx="4" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+    <text x="200" y="15" text-anchor="middle" fill="#c9d1d9" font-size="9" font-weight="600">route_status</text>
+    <text x="14" y="30" fill="#3fb950" font-size="8" font-weight="600">routed</text>
+    <text x="80" y="30" fill="#8b949e" font-size="8">all dimensions resolved, pairs confirmed</text>
+    <text x="14" y="43" fill="#d29922" font-size="8" font-weight="600">llm_unavailable</text>
+    <text x="108" y="43" fill="#8b949e" font-size="8">LLM required but not configured</text>
+    <text x="14" y="56" fill="#f85149" font-size="8" font-weight="600">resource-missing</text>
+    <text x="114" y="56" fill="#8b949e" font-size="8">index files or obs_min absent</text>
+    <text x="14" y="69" fill="#f85149" font-size="8" font-weight="600">no_pair_available</text>
+    <text x="116" y="69" fill="#8b949e" font-size="8">no (cell, pert) pair in any matrix</text>
+    <text x="14" y="80" fill="#8b949e" font-size="8" font-weight="600">unresolved</text>
+    <text x="76" y="80" fill="#8b949e" font-size="8">LLM output invalid after index validation</text>
+  </g>
+
+  <!-- Arrow to output -->
+  <line x1="480" y1="728" x2="480" y2="758" stroke="#30363d" stroke-width="1.5"/>
+  <polygon points="480,758 475,750 485,750" fill="#30363d"/>
+
+  <!-- ══════════════════════════════════════
+       ROW 4 — OUTPUT RoutePlan
+  ══════════════════════════════════════ -->
+  <g transform="translate(100,758)">
+    <rect width="760" height="22" rx="4" fill="#1a2332" stroke="#58a6ff" stroke-width="1.5"/>
+    <text x="380" y="15" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="700">⑤ OUTPUT  ·  RoutePlan</text>
+  </g>
+
+  <g transform="translate(100,790)">
+    <rect width="180" height="90" rx="4" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+    <text x="90" y="14" text-anchor="middle" fill="#c9d1d9" font-size="9" font-weight="600">cell_route</text>
+    <text x="90" y="28" text-anchor="middle" fill="#8b949e" font-size="8">mode: exact / llm-tree</text>
+    <text x="90" y="41" text-anchor="middle" fill="#8b949e" font-size="8">selected[1]</text>
+    <text x="90" y="54" text-anchor="middle" fill="#8b949e" font-size="8">candidates[6]</text>
+    <text x="90" y="67" text-anchor="middle" fill="#8b949e" font-size="8">expanded_candidates[≤25]</text>
+    <text x="90" y="80" text-anchor="middle" fill="#8b949e" font-size="8">lineage_path</text>
+
+    <rect x="190" width="180" height="90" rx="4" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+    <text x="280" y="14" text-anchor="middle" fill="#c9d1d9" font-size="9" font-weight="600">perturbation_route</text>
+    <text x="280" y="28" text-anchor="middle" fill="#8b949e" font-size="8">mode: exact / llm-normalized</text>
+    <text x="280" y="41" text-anchor="middle" fill="#8b949e" font-size="8">selected[1 BRD/symbol]</text>
+    <text x="280" y="54" text-anchor="middle" fill="#8b949e" font-size="8">proxies[5]</text>
+    <text x="280" y="67" text-anchor="middle" fill="#8b949e" font-size="8">expanded_proxies[≤50]</text>
+    <text x="280" y="80" text-anchor="middle" fill="#8b949e" font-size="8">llm_calls[ ]</text>
+
+    <rect x="380" width="180" height="90" rx="4" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+    <text x="470" y="14" text-anchor="middle" fill="#c9d1d9" font-size="9" font-weight="600">function_route</text>
+    <text x="470" y="28" text-anchor="middle" fill="#8b949e" font-size="8">mode: exact / llm-mapped</text>
+    <text x="470" y="41" text-anchor="middle" fill="#8b949e" font-size="8">   / three-pass-reverse</text>
+    <text x="470" y="54" text-anchor="middle" fill="#8b949e" font-size="8">selected var_names[≤5]</text>
+    <text x="470" y="67" text-anchor="middle" fill="#8b949e" font-size="8">interpretation_sets[3]</text>
+    <text x="470" y="80" text-anchor="middle" fill="#8b949e" font-size="8">llm_calls[ ]</text>
+
+    <rect x="570" width="190" height="90" rx="4" fill="#161b22" stroke="#8957e5" stroke-width="1"/>
+    <text x="665" y="14" text-anchor="middle" fill="#d2a8ff" font-size="9" font-weight="600">combination_route</text>
+    <text x="665" y="28" text-anchor="middle" fill="#8b949e" font-size="8">pair_policy: observed</text>
+    <text x="665" y="41" text-anchor="middle" fill="#8b949e" font-size="8">route_candidates[≤25] ✓ verified</text>
+    <text x="665" y="54" text-anchor="middle" fill="#8b949e" font-size="8">selected_routes[≤3]</text>
+    <text x="665" y="67" text-anchor="middle" fill="#8b949e" font-size="8">pair_availability: checked_l3_obs_min</text>
+    <text x="665" y="80" text-anchor="middle" fill="#8b949e" font-size="8">tier_order: A → B → C → D → E/F</text>
+  </g>
+
+  <!-- Arrow to handoff -->
+  <line x1="480" y1="880" x2="480" y2="910" stroke="#30363d" stroke-width="1.5"/>
+  <polygon points="480,910 475,902 485,902" fill="#30363d"/>
+
+  <!-- ══════════════════════════════════════
+       ROW 5 — HANDOFF TO L3
+  ══════════════════════════════════════ -->
+  <g transform="translate(200,910)">
+    <rect width="560" height="44" rx="6" fill="#1a2332" stroke="#58a6ff" stroke-width="1.5"/>
+    <text x="280" y="16" text-anchor="middle" fill="#58a6ff" font-size="10" font-weight="700">handoff_payload  →  L3</text>
+    <text x="280" y="32" text-anchor="middle" fill="#8b949e" font-size="9">cell_candidates · perturbation_candidates · function_candidates · combination (all 25 verified routes)</text>
+  </g>
+
+  <!-- ══════════════════════════════════════
+       ROW 6 — TIMING
+  ══════════════════════════════════════ -->
+  <g transform="translate(20,968)">
+    <rect width="920" height="96" rx="4" fill="#0d1117" stroke="#21262d" stroke-width="1"/>
+    <text x="460" y="16" text-anchor="middle" fill="#8b949e" font-size="10" font-weight="600">Typical wall time  ·  deepseek-v4-flash  ·  sequential LLM calls</text>
+
+    <text x="40" y="36" fill="#3fb950" font-size="9" font-weight="600">Simple forward (exact drug / gene)</text>
+    <text x="40" y="50" fill="#8b949e" font-size="8">L1: 1.4s  +  L2: 3.3s (3 LLM)  =  4.7s total</text>
+
+    <text x="310" y="36" fill="#d29922" font-size="9" font-weight="600">Forward + LLM drug normalization</text>
+    <text x="310" y="50" fill="#8b949e" font-size="8">L1: 1.4s  +  L2: 5.0s (4 LLM)  =  6.5s total</text>
+
+    <text x="600" y="36" fill="#58a6ff" font-size="9" font-weight="600">Reverse + 3-pass function mapping</text>
+    <text x="600" y="50" fill="#8b949e" font-size="8">L1: 1.4s  +  L2: 6.6s (6 LLM)  =  8.0s total</text>
+
+    <line x1="20" y1="62" x2="900" y2="62" stroke="#21262d" stroke-width="1"/>
+    <text x="460" y="78" text-anchor="middle" fill="#484f58" font-size="8">L2 non-LLM overhead (index reads + obs_min pair check): &lt; 600ms  ·  all LLM calls serial, each ~950–1300ms</text>
+    <text x="460" y="90" text-anchor="middle" fill="#484f58" font-size="8">Validation: forward 60/60 checked_l3_obs_min  ·  reverse 60/60 not_checked (no obs_min path for reverse)</text>
+  </g>
+
+</svg>
+</div>
+
+<p class="meta">PxFquery T-138 · 2026-06-28 · auto-generated</p>
+</body>
+</html>

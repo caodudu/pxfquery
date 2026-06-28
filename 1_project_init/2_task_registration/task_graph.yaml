@@ -2048,6 +2048,22 @@ edges:
   to: goal_goal_ms8_human_usable_package/task_ms8_10_l2_resource_routing_repair
   dep_id: T-136
   gate: must
+- from: goal_goal_ms8_human_usable_package/task_ms8_07_legacy_core_layered_recovery
+  to: goal_goal_ms8_human_usable_package/task_ms8_11_l3_resource_pack_query_execution_repair
+  dep_id: T-135
+  gate: must
+- from: goal_goal_ms8_human_usable_package/task_ms8_08_original_logic_and_layer_target_anchor
+  to: goal_goal_ms8_human_usable_package/task_ms8_11_l3_resource_pack_query_execution_repair
+  dep_id: T-136
+  gate: must
+- from: goal_goal_ms8_human_usable_package/task_ms8_09_l1_real_llm_gate_repair
+  to: goal_goal_ms8_human_usable_package/task_ms8_11_l3_resource_pack_query_execution_repair
+  dep_id: T-137
+  gate: may
+- from: goal_goal_ms8_human_usable_package/task_ms8_10_l2_resource_routing_repair
+  to: goal_goal_ms8_human_usable_package/task_ms8_11_l3_resource_pack_query_execution_repair
+  dep_id: T-138
+  gate: may
 labels:
 - id: label_mqpofuno
   phase: digestion

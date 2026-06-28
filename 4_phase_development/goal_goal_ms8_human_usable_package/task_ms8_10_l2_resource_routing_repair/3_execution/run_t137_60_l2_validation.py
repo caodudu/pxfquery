@@ -4,6 +4,7 @@ import html
 import json
 import os
 import sys
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
@@ -54,12 +55,13 @@ def main() -> int:
     if len(records) != 60:
         raise SystemExit(f"期望 T137 60 题，实际 {len(records)}")
 
-    pxf = PxFQuery()
-    pxf.settings.register_llm_provider(token=token, base_url=base_url, model=model, timeout=90, max_network_attempts=4)
-    pxf.resources.use(STANDARD_RESOURCES)
+    max_workers = int(os.environ.get("PXFQUERY_VALIDATION_WORKERS", "8"))
 
-    out_records = []
-    for record in records:
+    def run_one(index_and_record: tuple[int, dict[str, Any]]) -> tuple[int, dict[str, Any]]:
+        index, record = index_and_record
+        pxf = PxFQuery()
+        pxf.settings.register_llm_provider(token=token, base_url=base_url, model=model, timeout=90, max_network_attempts=4)
+        pxf.resources.use(STANDARD_RESOURCES)
         intent = _intent_from_record(record)
         qdata = pxf.read.query(record["query"])
         qdata.uns["_intent"] = intent
@@ -69,9 +71,18 @@ def main() -> int:
             route = pxf.get.route(qdata)
             checks = _checks(route, record)
             ok = all(checks.values())
-            out_records.append({**record, "l2_ok": ok, "l2_checks": checks, "route_status": route["route_status"], "route": route})
+            return index, {**record, "l2_ok": ok, "l2_checks": checks, "route_status": route["route_status"], "route": route}
         except Exception as exc:
-            out_records.append({**record, "l2_ok": False, "l2_checks": {"exception": False}, "route_status": "exception", "route_error": f"{type(exc).__name__}: {exc}"})
+            return index, {**record, "l2_ok": False, "l2_checks": {"exception": False}, "route_status": "exception", "route_error": f"{type(exc).__name__}: {exc}"}
+
+    out_records: list[dict[str, Any] | None] = [None] * len(records)
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        futures = [executor.submit(run_one, item) for item in enumerate(records)]
+        for future in as_completed(futures):
+            index, out_record = future.result()
+            out_records[index] = out_record
+            print(f"completed {index + 1:02d}/{len(records)} {out_record['case_id']} ok={out_record['l2_ok']} status={out_record['route_status']}", flush=True)
+    out_records = [record for record in out_records if record is not None]
 
     summary = _summary(out_records)
     result = {
@@ -79,6 +90,7 @@ def main() -> int:
         "source_l1_report": str(T137_JSON),
         "resource_dir": str(STANDARD_RESOURCES),
         "provider": {"base_url": base_url, "model": model},
+        "parallel_workers": max_workers,
         "total": len(out_records),
         "passed": sum(1 for r in out_records if r["l2_ok"]),
         "failed": sum(1 for r in out_records if not r["l2_ok"]),
@@ -132,6 +144,7 @@ def _checks(route: dict[str, Any], record: dict[str, Any]) -> dict[str, bool]:
         "no_unvalidated_llm": all(call.get("validated") is True for call in llm_calls),
         "has_handoff_payload": bool(route.get("handoff_payload")),
         "has_combination_candidates": bool(route.get("combination_route", {}).get("route_candidates")),
+        "observed_availability_checked": _observed_availability_checked(route),
         "candidate_limits_respected": _limits_respected(route),
     }
     if intent.get("bio_context"):
@@ -161,6 +174,14 @@ def _limits_respected(route: dict[str, Any]) -> bool:
         and len(combo.get("route_candidates", [])) <= 25
         and len(combo.get("selected_routes", [])) <= 3
     )
+
+
+def _observed_availability_checked(route: dict[str, Any]) -> bool:
+    combo = route.get("combination_route", {})
+    if combo.get("pair_policy") not in {"observed", "observed_cell_scope"}:
+        return True
+    availability = combo.get("pair_availability", {})
+    return availability.get("status") == "checked_l3_obs_min" and availability.get("any_available") is True
 
 
 def _summary(records: list[dict[str, Any]]) -> dict[str, Any]:

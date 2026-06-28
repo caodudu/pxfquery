@@ -84,3 +84,23 @@ artifacts:
     path: 5_table/generalization_50_l1_l2_validation_latest.json
     status: active
     description: "Machine-readable latest 50-question L1+L2 generalization validation report; latest successful run passed 50/50."
+  - id: A-T138-PERSIST-012
+    kind: handoff_doc
+    path: 2_persist/l3_handoff_从L2_observed_pair路由合并.md
+    status: active
+    description: "Chinese handoff for T139/L3 merge: L2 observed/global pair_policy, obs_min resource use, route-plan fields, and L3 execution expectations."
+  - id: A-T138-RESOURCE-001
+    kind: runtime_resource
+    path: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/2_persist/standard_resources/cp_obs_min.csv
+    status: active
+    description: "L3-style lightweight cp row metadata generated from cp_func_ad.h5ad obs; used by L2 observed pair routing, not packaged as demo data."
+  - id: A-T138-RESOURCE-002
+    kind: runtime_resource
+    path: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/2_persist/standard_resources/sh_obs_min.csv
+    status: active
+    description: "L3-style lightweight sh row metadata generated from sh_func_ad.h5ad obs; used by L2 observed pair routing, not packaged as demo data."
+  - id: A-T138-RESOURCE-003
+    kind: runtime_resource
+    path: /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats/4_artifact/2_persist/standard_resources/xpr_obs_min.csv
+    status: active
+    description: "L3-style lightweight xpr row metadata generated from xpr_func_ad.h5ad obs; used by L2 observed pair routing, not packaged as demo data."

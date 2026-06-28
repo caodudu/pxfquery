@@ -2057,6 +2057,46 @@ excluded_from_git:
   size_mb: 0.0
 - path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_09_l1_real_llm_gate_repair/4_artifact/.DS_Store
   size_mb: 0.01
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_10_l2_resource_routing_repair/.env
+  size_mb: 0.0
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_10_l2_resource_routing_repair/3_execution/03_package_source_v2_l2/.pytest_cache/CACHEDIR.TAG
+  size_mb: 0.0
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_10_l2_resource_routing_repair/3_execution/03_package_source_v2_l2/.pytest_cache/v/cache/lastfailed
+  size_mb: 0.0
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_10_l2_resource_routing_repair/3_execution/03_package_source_v2_l2/.pytest_cache/v/cache/nodeids
+  size_mb: 0.0
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_10_l2_resource_routing_repair/4_artifact/.DS_Store
+  size_mb: 0.01
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_10_l2_resource_routing_repair/4_artifact/5_table/generalization_50_l1_l2_validation_20260628_133440.json
+  size_mb: 6.87
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_10_l2_resource_routing_repair/4_artifact/5_table/generalization_50_l1_l2_validation_20260628_141642.json
+  size_mb: 8.09
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_10_l2_resource_routing_repair/4_artifact/5_table/generalization_50_l1_l2_validation_latest.json
+  size_mb: 8.09
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_10_l2_resource_routing_repair/4_artifact/5_table/t137_60_l2_validation_20260628_130832.json
+  size_mb: 6.57
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_10_l2_resource_routing_repair/4_artifact/5_table/t137_60_l2_validation_20260628_131252.json
+  size_mb: 6.95
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_10_l2_resource_routing_repair/4_artifact/5_table/t137_60_l2_validation_20260628_141406.json
+  size_mb: 9.05
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_10_l2_resource_routing_repair/4_artifact/5_table/t137_60_l2_validation_latest.json
+  size_mb: 9.05
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_11_l3_resource_pack_query_execution_repair/4_artifact/.DS_Store
+  size_mb: 0.01
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_11_l3_resource_pack_query_execution_repair/4_artifact/5_table/generalization_50_l1_l2_to_l3_replay_20260628_133440.tsv
+  size_mb: 0.01
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_11_l3_resource_pack_query_execution_repair/4_artifact/5_table/generalization_50_l1_l2_to_l3_replay_20260628_141642.tsv
+  size_mb: 0.01
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_11_l3_resource_pack_query_execution_repair/4_artifact/5_table/pxfquery_zenodo_resource_file_list_v20260628.tsv
+  size_mb: 0.01
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_11_l3_resource_pack_query_execution_repair/4_artifact/5_table/t137_60_l2_to_l3_replay_20260628_131252.tsv
+  size_mb: 0.01
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_11_l3_resource_pack_query_execution_repair/4_artifact/5_table/t137_60_l2_to_l3_replay_20260628_141406.tsv
+  size_mb: 0.01
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_11_l3_resource_pack_query_execution_repair/4_artifact/5_table/t137_60_l2_to_l3_replay_v20260628.tsv
+  size_mb: 0.01
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_11_l3_resource_pack_query_execution_repair/4_artifact/5_table/t137_60_l3_empty_hit_diagnosis_v20260628.tsv
+  size_mb: 0.03
 - path: 4_phase_development/goal_m1_python_package_v2/task_contract_and_demo_spec_m1/1_asset/t013_capability_status_matrix.csv
   size_mb: 0.0
 - path: 4_phase_development/goal_m1_python_package_v2/task_contract_and_demo_spec_m1/5_report/cli_sessions/check/20260624_032828_codex_cli_ced0408076a2/stderr.log

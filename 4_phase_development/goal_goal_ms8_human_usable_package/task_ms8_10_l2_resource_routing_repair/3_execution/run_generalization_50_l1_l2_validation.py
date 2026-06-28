@@ -5,6 +5,7 @@ import json
 import os
 import sys
 from collections import Counter
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -98,13 +99,13 @@ def main() -> int:
         raise SystemExit("50题泛化验证需要真实 DeepSeek key；未配置时拒绝生成通过报告。")
     base_url = os.environ.get("PXFQUERY_LLM_BASE_URL") or os.environ.get("DEEPSEEK_API_BASE", OFFICIAL_DEEPSEEK_BASE_URL)
     model = os.environ.get("PXFQUERY_LLM_MODEL", OFFICIAL_DEEPSEEK_MODEL)
+    max_workers = int(os.environ.get("PXFQUERY_VALIDATION_WORKERS", "8"))
 
-    pxf = PxFQuery()
-    pxf.settings.register_llm_provider(token=token, base_url=base_url, model=model, timeout=90, max_network_attempts=4)
-    pxf.resources.use(STANDARD_RESOURCES)
-
-    records = []
-    for i, question in enumerate(QUESTIONS, 1):
+    def run_one(index_and_question: tuple[int, str]) -> tuple[int, dict[str, Any]]:
+        index, question = index_and_question
+        pxf = PxFQuery()
+        pxf.settings.register_llm_provider(token=token, base_url=base_url, model=model, timeout=90, max_network_attempts=4)
+        pxf.resources.use(STANDARD_RESOURCES)
         qdata = pxf.read.query(question)
         try:
             pxf.pp.parse(qdata)
@@ -112,33 +113,39 @@ def main() -> int:
             route = pxf.get.route(qdata)
             checks = _checks(route)
             ok = all(checks.values())
-            records.append(
-                {
-                    "case_id": f"G{i:02d}",
-                    "query": question,
-                    "ok": ok,
-                    "checks": checks,
-                    "intent": qdata.uns["intent"],
-                    "route_status": route["route_status"],
-                    "route": route,
-                }
-            )
+            return index, {
+                "case_id": f"G{index:02d}",
+                "query": question,
+                "ok": ok,
+                "checks": checks,
+                "intent": qdata.uns["intent"],
+                "route_status": route["route_status"],
+                "route": route,
+            }
         except Exception as exc:
-            records.append(
-                {
-                    "case_id": f"G{i:02d}",
-                    "query": question,
-                    "ok": False,
-                    "checks": {"no_exception": False},
-                    "route_status": "exception",
-                    "error": f"{type(exc).__name__}: {exc}",
-                }
-            )
+            return index, {
+                "case_id": f"G{index:02d}",
+                "query": question,
+                "ok": False,
+                "checks": {"no_exception": False},
+                "route_status": "exception",
+                "error": f"{type(exc).__name__}: {exc}",
+            }
+
+    records_by_index: list[dict[str, Any] | None] = [None] * len(QUESTIONS)
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        futures = [executor.submit(run_one, item) for item in enumerate(QUESTIONS, 1)]
+        for future in as_completed(futures):
+            index, record = future.result()
+            records_by_index[index - 1] = record
+            print(f"completed {index:02d}/{len(QUESTIONS)} {record['case_id']} ok={record['ok']} status={record['route_status']}", flush=True)
+    records = [record for record in records_by_index if record is not None]
 
     result = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "provider": {"base_url": base_url, "model": model},
         "resource_dir": str(STANDARD_RESOURCES),
+        "parallel_workers": max_workers,
         "total": len(records),
         "passed": sum(1 for r in records if r["ok"]),
         "failed": sum(1 for r in records if not r["ok"]),
@@ -181,6 +188,7 @@ def _checks(route: dict[str, Any]) -> dict[str, bool]:
         "route_status_terminal": status in {"routed", "no_pair_available", "needs-intent-completion"},
         "no_unvalidated_llm": all(call.get("validated") is True for call in llm_calls),
         "has_handoff_payload_or_intent_completion": bool(route.get("handoff_payload")) or status == "needs-intent-completion",
+        "observed_availability_checked": _observed_availability_checked(route),
         "candidate_limits_respected": _limits_respected(route),
     }
     if status != "needs-intent-completion":
@@ -207,6 +215,14 @@ def _limits_respected(route: dict[str, Any]) -> bool:
         and len(combo.get("route_candidates", [])) <= 25
         and len(combo.get("selected_routes", [])) <= 3
     )
+
+
+def _observed_availability_checked(route: dict[str, Any]) -> bool:
+    combo = route.get("combination_route", {})
+    if combo.get("pair_policy") not in {"observed", "observed_cell_scope"}:
+        return True
+    availability = combo.get("pair_availability", {})
+    return availability.get("status") == "checked_l3_obs_min" and availability.get("any_available") is True
 
 
 def _summary(records: list[dict[str, Any]]) -> dict[str, Any]:
