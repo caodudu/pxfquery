@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.5.3.dev3 - 2026-06-28
+
+- Added shared `pxfquery.resources` resource manager from the T139 resource-layer design so L2 and L3 use the same resource root and `obs_min` discovery.
+- Added L2 forward `pair_policy`: default `observed` filters top route candidates to real `(cell, perturbation)` pairs present in L3 `obs_min` metadata; explicit `global` keeps theoretical index-ranked candidates.
+- Expanded internal cell and perturbation pools for observed pair search while keeping public `candidates`/`proxies` bounded.
+- Preserved unspecified genetic modality as both `xpr` and `sh`; only explicit modality terms narrow the route.
+- Added a final observed perturbation-anchor fallback when no routed cell-context pair exists; these routes are explicitly labeled as weak cell-context evidence instead of being treated as exact cell matches.
+
 ## 0.5.3.dev2 - 2026-06-28
 
 - Parallelized independent L2 route dimensions (`cell`, `perturbation`, and `function`) while preserving fixed `llm_calls` merge order and RoutePlan schema.
