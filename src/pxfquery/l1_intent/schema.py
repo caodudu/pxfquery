@@ -18,6 +18,8 @@ class QueryIntent:
     function_desc: str | None = None
     activate: list[str] = field(default_factory=list)
     suppress: list[str] = field(default_factory=list)
+    constraints: list[dict[str, Any]] = field(default_factory=list)
+    forward_result_scope: str = "open"
     top_n: int | None = None
     extracted_phrases: dict[str, Any] = field(default_factory=dict)
     ambiguity_flags: list[str] = field(default_factory=list)
@@ -39,5 +41,7 @@ class QueryIntent:
             "function_desc": self.function_desc,
             "activate": list(self.activate),
             "suppress": list(self.suppress),
+            "constraints": list(self.constraints),
+            "forward_result_scope": self.forward_result_scope,
             "top_n": self.top_n,
         }

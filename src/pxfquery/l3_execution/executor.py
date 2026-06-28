@@ -102,7 +102,9 @@ def _execute_forward_route(route: dict[str, Any], route_plan: dict[str, Any], st
         return _skipped(route, "forward", "empty_matrix_hit", "no rows matched route cell and perturbation", modality=modality)
     X = matrix.X[mask]
     obs = matrix.obs.loc[mask].copy()
-    scores = X.mean(axis=0)
+    raw_scores = X.mean(axis=0)
+    score_multiplier = _score_multiplier(route)
+    scores = raw_scores * score_multiplier
     order_desc = np.argsort(-scores)
     order_asc = np.argsort(scores)
     requested = _requested_functions(route_plan)
@@ -128,6 +130,8 @@ def _execute_forward_route(route: dict[str, Any], route_plan: dict[str, Any], st
             "aggregate": {name: float(value) for name, value in zip(matrix.var_names, scores)},
             "requested_functions": requested_scores,
             "requested_function_records": _score_records(requested_scores),
+            "score_orientation": route.get("score_orientation") or "observed_perturbation_effect",
+            "score_multiplier": score_multiplier,
             "aggregation": "mean",
         },
         rankings={
@@ -152,25 +156,16 @@ def _execute_reverse_route(route: dict[str, Any], store: FunctionalMatrixStore, 
     mask = _row_mask(matrix, cell=route.get("cell"), perturbation=None)
     if not bool(mask.any()):
         return _skipped(route, "reverse", "empty_matrix_hit", "no rows matched route cell scope", modality=modality)
-    X = matrix.X[mask]
+    X = np.nan_to_num(np.asarray(matrix.X[mask], dtype=np.float32), nan=0.0, posinf=0.0, neginf=0.0)
+    target = np.nan_to_num(np.asarray(target, dtype=np.float32), nan=0.0, posinf=0.0, neginf=0.0)
     obs = matrix.obs.loc[mask].copy()
-    sims = _cosine(X, target)
-    order = np.argsort(-sims)[:top_n]
-    candidates = []
-    for rank, idx in enumerate(order, start=1):
-        row = obs.iloc[int(idx)]
-        contributions = X[int(idx)] * target
-        candidates.append(
-            {
-                "rank": rank,
-                "similarity": float(sims[int(idx)]),
-                "sig_id": _safe_value(row, "sig_id"),
-                "pert_id": _safe_value(row, "pert_id"),
-                "cmap_name": _safe_value(row, "cmap_name"),
-                "cell_iname": _safe_value(row, "cell_iname"),
-                "driving_terms": _driving_terms(matrix.var_names, contributions, top_n=5),
-            }
-        )
+    raw_n_rows = int(mask.sum())
+    X, obs = _aggregate_reverse_replicates(X, obs)
+    with np.errstate(divide="ignore", invalid="ignore", over="ignore"):
+        projections = np.asarray(X @ target, dtype=np.float32)
+    projections = np.nan_to_num(projections, nan=0.0, posinf=0.0, neginf=0.0)
+    ranking_mode = str(route.get("reverse_ranking_mode") or "perturbation_only")
+    rankings = _reverse_rankings(matrix.var_names, X, obs, target, projections, modality=modality, ranking_mode=ranking_mode, top_n=top_n)
     return L3RouteExecutionResult(
         route_id=route_id,
         query_type="reverse",
@@ -178,13 +173,14 @@ def _execute_reverse_route(route: dict[str, Any], store: FunctionalMatrixStore, 
         status="executed",
         cell=route.get("cell"),
         route_metadata=dict(route),
-        row_match={"n_rows": int(mask.sum()), "cell_scope": route.get("cell")},
+        row_match={"n_rows": raw_n_rows, "n_ranked_groups": int(len(obs)), "cell_scope": route.get("cell")},
         scores={
             "target_vector": {name: float(value) for name, value in zip(matrix.var_names, target) if value != 0},
-            "similarity_metric": "cosine",
+            "ranking_method": "signed_dot_projection",
             "interpretation_set_id": route.get("interpretation_set_id"),
+            "reverse_ranking_mode": ranking_mode,
         },
-        rankings={"top_perturbations": candidates},
+        rankings=rankings,
         diagnostics={"message": "reverse route executed", "warnings": warnings},
     )
 
@@ -213,10 +209,12 @@ def _forward_modalities(route: dict[str, Any], route_plan: dict[str, Any]) -> li
     if pert.startswith("BRD-") or str(record.get("id", "")).startswith("BRD-"):
         return ["cp"]
     modality = str(((route_plan.get("intent") or {}).get("genetic_modality") or "")).lower()
-    if modality in {"rnai", "shrna", "knockdown"}:
+    if modality in {"rnai", "shrna", "sh", "sirna", "knockdown"}:
         return ["sh"]
-    if modality in {"overexpression", "gof", "crispr", "knockout", "ko", "lof"}:
+    if modality in {"crispr", "knockout", "ko", "lof", "loss_of_function", "delete", "deletion", "xpr"}:
         return ["xpr"]
+    if modality in {"overexpression", "gof", "gain_of_function"}:
+        return ["xpr", "sh"]
     pert_class = str(((route_plan.get("intent") or {}).get("pert_class") or "")).lower()
     if pert_class == "genetic" or record.get("symbol"):
         return ["xpr", "sh"]
@@ -249,16 +247,130 @@ def _target_vector(functions: list[dict[str, Any]], var_names: list[str]) -> tup
     return target, warnings
 
 
-def _cosine(X: np.ndarray, target: np.ndarray) -> np.ndarray:
-    X = np.nan_to_num(np.asarray(X, dtype=np.float32), nan=0.0, posinf=0.0, neginf=0.0)
-    target = np.nan_to_num(np.asarray(target, dtype=np.float32), nan=0.0, posinf=0.0, neginf=0.0)
-    row_norm = np.linalg.norm(X, axis=1)
-    target_norm = np.linalg.norm(target)
-    denom = row_norm * target_norm
-    denom = np.where(denom == 0, 1e-10, denom)
-    with np.errstate(divide="ignore", invalid="ignore", over="ignore"):
-        scores = (X @ target) / denom
-    return np.nan_to_num(scores, nan=-np.inf, posinf=-np.inf, neginf=-np.inf)
+def _aggregate_reverse_replicates(X: np.ndarray, obs: pd.DataFrame) -> tuple[np.ndarray, pd.DataFrame]:
+    if len(obs) <= 1:
+        out = obs.reset_index(drop=True).copy()
+        out["n_signatures"] = len(out)
+        return X, out
+    frame = obs.reset_index(drop=True).copy()
+    if "cmap_name" in frame:
+        pert_key = frame["cmap_name"].astype(str)
+    elif "pert_id" in frame:
+        pert_key = frame["pert_id"].astype(str)
+    else:
+        pert_key = pd.Series([str(i) for i in range(len(frame))])
+    if "pert_id" in frame:
+        pert_key = pert_key.mask(pert_key.isin({"", "nan", "None"}), frame["pert_id"].astype(str))
+    frame["_reverse_perturbation_key"] = pert_key
+    frame["_reverse_cell_key"] = frame["cell_iname"].astype(str) if "cell_iname" in frame else ""
+    groups = frame.groupby(["_reverse_perturbation_key", "_reverse_cell_key"], sort=False, dropna=False).indices
+    agg_rows = []
+    agg_X = []
+    for (_, _), indices in groups.items():
+        idx = np.asarray(list(indices), dtype=int)
+        first = frame.iloc[int(idx[0])].copy()
+        first["n_signatures"] = int(len(idx))
+        if "sig_id" in frame:
+            first["sig_ids"] = [str(v) for v in frame.iloc[idx]["sig_id"].dropna().tolist()]
+        agg_rows.append(first.drop(labels=["_reverse_perturbation_key", "_reverse_cell_key"], errors="ignore"))
+        agg_X.append(np.mean(X[idx], axis=0))
+    return np.asarray(agg_X, dtype=np.float32), pd.DataFrame(agg_rows).reset_index(drop=True)
+
+
+def _score_multiplier(route: dict[str, Any]) -> int:
+    value = route.get("score_multiplier")
+    if value is None:
+        value = (route.get("perturbation_anchor") or {}).get("score_multiplier")
+    try:
+        multiplier = int(value)
+    except (TypeError, ValueError):
+        multiplier = 1
+    return -1 if multiplier < 0 else 1
+
+
+def _reverse_rankings(
+    var_names: list[str],
+    X: np.ndarray,
+    obs: pd.DataFrame,
+    target: np.ndarray,
+    projections: np.ndarray,
+    *,
+    modality: str,
+    ranking_mode: str,
+    top_n: int,
+) -> dict[str, list[dict[str, Any]]]:
+    if modality not in {"sh", "xpr"}:
+        return {"top_perturbations": _projection_records(var_names, X, obs, target, projections, np.argsort(-projections)[:top_n], "drug_treat", 1, top_n)}
+    rankings: dict[str, list[dict[str, Any]]] = {}
+    if ranking_mode in {"perturbation_only", "bidirectional"}:
+        rankings["top_loss_of_function_perturbations"] = _projection_records(
+            var_names,
+            X,
+            obs,
+            target,
+            projections,
+            np.argsort(-projections)[:top_n],
+            "inhibit_or_knockout_gene",
+            1,
+            top_n,
+        )
+    if ranking_mode in {"activation_only", "bidirectional"}:
+        rankings["top_activating_perturbations_inferred"] = _projection_records(
+            var_names,
+            X,
+            obs,
+            target,
+            projections,
+            np.argsort(projections)[:top_n],
+            "activate_or_increase_gene",
+            -1,
+            top_n,
+        )
+    if "top_loss_of_function_perturbations" in rankings:
+        rankings["top_perturbations"] = rankings["top_loss_of_function_perturbations"]
+    elif "top_activating_perturbations_inferred" in rankings:
+        rankings["top_perturbations"] = rankings["top_activating_perturbations_inferred"]
+    return rankings
+
+
+def _projection_records(
+    var_names: list[str],
+    X: np.ndarray,
+    obs: pd.DataFrame,
+    target: np.ndarray,
+    projections: np.ndarray,
+    order: np.ndarray,
+    recommended_operation: str,
+    orientation: int,
+    top_n: int,
+) -> list[dict[str, Any]]:
+    records = []
+    for idx in order[:top_n]:
+        row = obs.iloc[int(idx)]
+        raw_projection = float(projections[int(idx)])
+        # order is sorted so once sign flips all remaining entries also flip
+        if orientation == 1 and raw_projection <= 0:
+            break
+        if orientation == -1 and raw_projection >= 0:
+            break
+        oriented_projection = raw_projection * orientation
+        oriented_effect = X[int(idx)] * orientation
+        records.append(
+            {
+                "rank": len(records) + 1,
+                "score": oriented_projection,
+                "raw_projection": raw_projection,
+                "recommended_operation": recommended_operation,
+                "score_orientation": "observed_perturbation_effect" if orientation == 1 else "inferred_activation_from_opposite_lof_effect",
+                "sig_id": _safe_value(row, "sig_id"),
+                "pert_id": _safe_value(row, "pert_id"),
+                "cmap_name": _safe_value(row, "cmap_name"),
+                "cell_iname": _safe_value(row, "cell_iname"),
+                "label": _safe_value(row, "cmap_name") or _safe_value(row, "pert_id"),
+                "driving_terms": _driving_terms(var_names, oriented_effect * target, top_n=5),
+            }
+        )
+    return records
 
 
 def _rank_records(var_names: list[str], scores: np.ndarray, order: np.ndarray, top_n: int, *, positive: bool) -> list[dict[str, Any]]:

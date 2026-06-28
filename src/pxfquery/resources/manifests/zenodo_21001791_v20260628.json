@@ -1,0 +1,172 @@
+{
+  "schema_version": "pxfquery-resource-manifest/v1",
+  "name": "pxfquery-lightweight-resource-pack",
+  "version": "v20260628",
+  "record_id": "21001791",
+  "doi": "10.5281/zenodo.21001791",
+  "record_url": "https://zenodo.org/records/21001791",
+  "cache_subdir": "v20260628",
+  "files": {
+    "l2.cellline_index": {
+      "path": "cellline_index.json",
+      "filename": "cellline_index.json",
+      "url": "https://zenodo.org/api/records/21001791/files/cellline_index.json/content",
+      "bytes": 3574,
+      "sha256": "5f1dbdf86dc326ea3eebcdd2b40583459cbead391d6e701eb7e5d74a3eaf3f27",
+      "group": "l2_core_indexes"
+    },
+    "l2.cellline_neighbors": {
+      "path": "cellline_neighbors.json",
+      "filename": "cellline_neighbors.json",
+      "url": "https://zenodo.org/api/records/21001791/files/cellline_neighbors.json/content",
+      "bytes": 6610,
+      "sha256": "c5325e2edb8fcbfcfde05d9d1a7debba2fa821fbb2414be386c90a2cb9cf021f",
+      "group": "l2_proxy_neighbors"
+    },
+    "l2.cellline_tree": {
+      "path": "cellline_tree.json",
+      "filename": "cellline_tree.json",
+      "url": "https://zenodo.org/api/records/21001791/files/cellline_tree.json/content",
+      "bytes": 50548,
+      "sha256": "2e216f420afd09b4e68ab2c96dbcefe713d640eb9b19021ca80d234ce6e5f38d",
+      "group": "l2_core_indexes"
+    },
+    "l2.drug_index": {
+      "path": "drug_index.json",
+      "filename": "drug_index.json",
+      "url": "https://zenodo.org/api/records/21001791/files/drug_index.json/content",
+      "bytes": 180301,
+      "sha256": "22b97ad7ee37554dc922c99221b88c295478acfbbb5bff5f584ed35ce1b050c0",
+      "group": "l2_core_indexes"
+    },
+    "l2.drug_neighbors": {
+      "path": "drug_neighbors.json",
+      "filename": "drug_neighbors.json",
+      "url": "https://zenodo.org/api/records/21001791/files/drug_neighbors.json/content",
+      "bytes": 4588889,
+      "sha256": "b041ec49de8f27088284b4e68c0092b6990a2271d7e6ef42c43c09b31833f305",
+      "group": "l2_proxy_neighbors"
+    },
+    "l2.gene_index": {
+      "path": "gene_index.json",
+      "filename": "gene_index.json",
+      "url": "https://zenodo.org/api/records/21001791/files/gene_index.json/content",
+      "bytes": 6418019,
+      "sha256": "6ac38d92140ad49ba1be05c522efb05e4c15588be61917987c0a7b11d3a6d0e9",
+      "group": "l2_core_indexes"
+    },
+    "l2.gene_index_simple": {
+      "path": "gene_index_simple.json",
+      "filename": "gene_index_simple.json",
+      "url": "https://zenodo.org/api/records/21001791/files/gene_index_simple.json/content",
+      "bytes": 364484,
+      "sha256": "e79d4f047fa6db91e51b6057d517aa74499e5dc26842c11417c4f5a8250ba36e",
+      "group": "l2_core_indexes"
+    },
+    "l2.gene_neighbors": {
+      "path": "gene_neighbors.json",
+      "filename": "gene_neighbors.json",
+      "url": "https://zenodo.org/api/records/21001791/files/gene_neighbors.json/content",
+      "bytes": 22815738,
+      "sha256": "dc3255994a710b4b236d177cda5b306b30302d12d1e8d0a00c98434d4af2aae6",
+      "group": "l2_proxy_neighbors"
+    },
+    "l2.gene_neighbors_simple": {
+      "path": "gene_neighbors_simple.json",
+      "filename": "gene_neighbors_simple.json",
+      "url": "https://zenodo.org/api/records/21001791/files/gene_neighbors_simple.json/content",
+      "bytes": 20443987,
+      "sha256": "b6b8169eec0c3ff0ef1264eb4db723cb48863ef52ecb257dd6452c1a42db0ad9",
+      "group": "l2_proxy_neighbors"
+    },
+    "l2.function_index": {
+      "path": "function_index.json",
+      "filename": "function_index.json",
+      "url": "https://zenodo.org/api/records/21001791/files/function_index.json/content",
+      "bytes": 17899,
+      "sha256": "2b23be5b413021f0c2ebd7d684b4d47ca30949325513efb3c113f88d392a658f",
+      "group": "l2_core_indexes"
+    },
+    "l3_functional_scores.cp.matrix": {
+      "path": "cp_X_dense_thr0.1_round2_float16_compressed.npz",
+      "filename": "cp_X_dense_thr0.1_round2_float16_compressed.npz",
+      "url": "https://zenodo.org/api/records/21001791/files/cp_X_dense_thr0.1_round2_float16_compressed.npz/content",
+      "bytes": 24158097,
+      "sha256": "da42bd52425a79dabe13c3546c74dc22cd4749fc8ab3c0bf011d2da2fa5e8472",
+      "group": "l3_functional_scores",
+      "modality": "cp"
+    },
+    "l3_functional_scores.cp.obs": {
+      "path": "cp_obs_min.parquet",
+      "filename": "cp_obs_min.parquet",
+      "url": "https://zenodo.org/api/records/21001791/files/cp_obs_min.parquet/content",
+      "bytes": 4592519,
+      "sha256": "ef39b0fa55cafffa406717c934bafe537f6ccfb2ad7798b7e5584013ce45a81a",
+      "group": "l3_functional_scores",
+      "modality": "cp"
+    },
+    "l3_functional_scores.cp.var": {
+      "path": "cp_var_names.json",
+      "filename": "cp_var_names.json",
+      "url": "https://zenodo.org/api/records/21001791/files/cp_var_names.json/content",
+      "bytes": 2589,
+      "sha256": "bdd3515ef3eb210a0a4fe6e79d2b5623e443bb80fa2b6d4afdb42686c00a313e",
+      "group": "l3_functional_scores",
+      "modality": "cp"
+    },
+    "l3_functional_scores.sh.matrix": {
+      "path": "sh_X_dense_thr0.1_round2_float16_compressed.npz",
+      "filename": "sh_X_dense_thr0.1_round2_float16_compressed.npz",
+      "url": "https://zenodo.org/api/records/21001791/files/sh_X_dense_thr0.1_round2_float16_compressed.npz/content",
+      "bytes": 23082570,
+      "sha256": "d8f60cdb66a920d24217fe5cba2b4c82e73f8f674b2f9df9bc807599c3d1f6ed",
+      "group": "l3_functional_scores",
+      "modality": "sh"
+    },
+    "l3_functional_scores.sh.obs": {
+      "path": "sh_obs_min.parquet",
+      "filename": "sh_obs_min.parquet",
+      "url": "https://zenodo.org/api/records/21001791/files/sh_obs_min.parquet/content",
+      "bytes": 3148810,
+      "sha256": "0b967d98e284c7831a0cebacd75bab6c08da08bf8097978ac01fe5d07e520447",
+      "group": "l3_functional_scores",
+      "modality": "sh"
+    },
+    "l3_functional_scores.sh.var": {
+      "path": "sh_var_names.json",
+      "filename": "sh_var_names.json",
+      "url": "https://zenodo.org/api/records/21001791/files/sh_var_names.json/content",
+      "bytes": 2589,
+      "sha256": "bdd3515ef3eb210a0a4fe6e79d2b5623e443bb80fa2b6d4afdb42686c00a313e",
+      "group": "l3_functional_scores",
+      "modality": "sh"
+    },
+    "l3_functional_scores.xpr.matrix": {
+      "path": "xpr_X_dense_thr0.1_round2_float16_compressed.npz",
+      "filename": "xpr_X_dense_thr0.1_round2_float16_compressed.npz",
+      "url": "https://zenodo.org/api/records/21001791/files/xpr_X_dense_thr0.1_round2_float16_compressed.npz/content",
+      "bytes": 15863651,
+      "sha256": "2f4a40dbdc1d95964bb497912bcc8c6c8afe9c808c044b4989f9d9d55a4cb1c1",
+      "group": "l3_functional_scores",
+      "modality": "xpr"
+    },
+    "l3_functional_scores.xpr.obs": {
+      "path": "xpr_obs_min.parquet",
+      "filename": "xpr_obs_min.parquet",
+      "url": "https://zenodo.org/api/records/21001791/files/xpr_obs_min.parquet/content",
+      "bytes": 2758184,
+      "sha256": "7c407324e84c08b9ac92f59b06cb8263da6c6cc579481e64451ba4c897588b4b",
+      "group": "l3_functional_scores",
+      "modality": "xpr"
+    },
+    "l3_functional_scores.xpr.var": {
+      "path": "xpr_var_names.json",
+      "filename": "xpr_var_names.json",
+      "url": "https://zenodo.org/api/records/21001791/files/xpr_var_names.json/content",
+      "bytes": 2589,
+      "sha256": "bdd3515ef3eb210a0a4fe6e79d2b5623e443bb80fa2b6d4afdb42686c00a313e",
+      "group": "l3_functional_scores",
+      "modality": "xpr"
+    }
+  }
+}

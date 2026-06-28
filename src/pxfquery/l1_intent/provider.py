@@ -352,7 +352,15 @@ def _system_prompt(schema: dict[str, Any]) -> str:
             "pert_class=genetic for gene perturbation and drug for compound/drug treatment.",
             "genetic_modality captures the user's stated genetic modality: rnai, shrna, crispr, knockdown, knockout, overexpression, lof, gof, unknown, or null.",
             "For CMAP/LINCS resources, shRNA/RNAi maps later to sh and CRISPR loss-of-function maps later to xpr; do not perform that resource routing here.",
+            "Separate perturbation-operation direction from functional-target direction.",
+            "For reverse genetic recommendation, genetic_modality describes the requested gene operation, while activate/suppress describes the desired functional target direction.",
+            "For forward queries about a named perturbation, functional change direction belongs in forward_result_scope unless the user names specific functional targets.",
+            "Use forward_result_scope=activated_only, suppressed_only, both, or open for forward result filtering.",
+            "Use constraints for exclusion, avoidance, or undesired-effect clauses; constraints are not primary activate/suppress targets.",
+            "When a requested operation and evidence source differ, genetic_modality should encode the requested operation, not the evidence source.",
+            "bio_context is only real biological context such as cell line, tissue, disease, organ, or model; do not put pathway/function targets there.",
             "Use null for unknown scalar fields and empty arrays for absent activate/suppress phrases.",
+            "Use constraints=[] when there are no constraints.",
         ]
     )
 

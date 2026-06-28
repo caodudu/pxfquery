@@ -1,11 +1,13 @@
 import os
 from pathlib import Path
 
+import numpy as np
+import pandas as pd
 import pytest
 
 from pxfquery import PxFQuery
 from pxfquery.l1_intent import QueryIntent
-from pxfquery.l3_execution.executor import _rank_records
+from pxfquery.l3_execution.executor import _aggregate_reverse_replicates, _rank_records, _reverse_rankings
 
 
 DEFAULT_STANDARD_RESOURCES = Path(
@@ -73,6 +75,79 @@ def test_l3_rank_records_keep_human_label_and_machine_function_field():
             "direction": "activated",
         }
     ]
+
+
+def test_l3_reverse_genetic_bidirectional_projection_keeps_perturbation_anchors():
+    X = np.array([[2.0], [-3.0]], dtype=np.float32)
+    obs = pd.DataFrame(
+        [
+            {"sig_id": "s1", "pert_id": "GENE_A", "cmap_name": "GENE_A", "cell_iname": "A375"},
+            {"sig_id": "s2", "pert_id": "GENE_B", "cmap_name": "GENE_B", "cell_iname": "A375"},
+        ]
+    )
+    rankings = _reverse_rankings(
+        ["HALLMARK_APOPTOSIS"],
+        X,
+        obs,
+        np.array([1.0], dtype=np.float32),
+        np.asarray(X @ np.array([1.0], dtype=np.float32), dtype=np.float32),
+        modality="xpr",
+        ranking_mode="bidirectional",
+        top_n=1,
+    )
+
+    lof = rankings["top_loss_of_function_perturbations"][0]
+    activation = rankings["top_activating_perturbations_inferred"][0]
+    assert lof["label"] == "GENE_A"
+    assert lof["recommended_operation"] == "inhibit_or_knockout_gene"
+    assert lof["score"] == 2.0
+    assert activation["label"] == "GENE_B"
+    assert activation["recommended_operation"] == "activate_or_increase_gene"
+    assert activation["score"] == 3.0
+    assert activation["raw_projection"] == -3.0
+
+
+def test_l3_reverse_projection_records_filter_wrong_sign_hits():
+    X = np.array([[2.0], [-3.0]], dtype=np.float32)
+    obs = pd.DataFrame(
+        [
+            {"sig_id": "s1", "pert_id": "GENE_A", "cmap_name": "GENE_A", "cell_iname": "A375"},
+            {"sig_id": "s2", "pert_id": "GENE_B", "cmap_name": "GENE_B", "cell_iname": "A375"},
+        ]
+    )
+    rankings = _reverse_rankings(
+        ["HALLMARK_APOPTOSIS"],
+        X,
+        obs,
+        np.array([1.0], dtype=np.float32),
+        np.asarray(X @ np.array([1.0], dtype=np.float32), dtype=np.float32),
+        modality="xpr",
+        ranking_mode="perturbation_only",
+        top_n=2,
+    )
+
+    lof = rankings["top_loss_of_function_perturbations"]
+    assert [item["label"] for item in lof] == ["GENE_A"]
+    assert all(item["raw_projection"] > 0 for item in lof)
+
+
+def test_l3_reverse_aggregates_signature_replicates_by_perturbation_and_cell():
+    X = np.array([[2.0, 0.0], [4.0, 2.0], [-3.0, 1.0]], dtype=np.float32)
+    obs = pd.DataFrame(
+        [
+            {"sig_id": "s1", "pert_id": "P1", "cmap_name": "GENE_A", "cell_iname": "A375"},
+            {"sig_id": "s2", "pert_id": "P1", "cmap_name": "GENE_A", "cell_iname": "A375"},
+            {"sig_id": "s3", "pert_id": "P2", "cmap_name": "GENE_B", "cell_iname": "A375"},
+        ]
+    )
+
+    agg_X, agg_obs = _aggregate_reverse_replicates(X, obs)
+
+    assert agg_X.shape == (2, 2)
+    assert agg_obs.loc[0, "cmap_name"] == "GENE_A"
+    assert agg_obs.loc[0, "n_signatures"] == 2
+    assert agg_obs.loc[0, "sig_ids"] == ["s1", "s2"]
+    np.testing.assert_allclose(agg_X[0], np.array([3.0, 1.0], dtype=np.float32))
 
 
 def test_l3_executes_real_forward_route_plan_from_t138_l2():

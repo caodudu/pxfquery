@@ -4,6 +4,7 @@ import time
 
 from pxfquery import PxFQuery
 from pxfquery.l1_intent import QueryIntent
+from pxfquery.l2_routing.combination import _genetic_modality_plan, _genetic_reverse_mode
 from pxfquery.l2_routing.index.cellline_index import CellLineIndex
 from pxfquery.l2_routing.router import _expanded_tree_cells
 from pxfquery.l2_routing.router import route_intent
@@ -131,6 +132,18 @@ def test_l2_marks_normal_same_lineage_anchor_as_semantic_downgrade():
     assert all(item["source_disease"] == "breast cancer" for item in normal_anchors)
     assert all(item["cell_route_distance"] >= 3 for item in normal_anchors)
     assert all(item.get("semantic_downgrade_reason") for item in normal_anchors)
+
+
+def test_l2_genetic_modality_plan_treats_xpr_as_crispr_lof_not_overexpression():
+    crispr = _intent(pert_class="genetic", genetic_modality="crispr")
+    gof = _intent(pert_class="genetic", genetic_modality="overexpression")
+    unknown = _intent(pert_class="genetic", genetic_modality=None)
+
+    assert _genetic_modality_plan(crispr) == {"primary_modalities": ["xpr"], "fallback_modalities": ["sh"]}
+    assert _genetic_modality_plan(gof) == {"primary_modalities": ["xpr", "sh"], "fallback_modalities": []}
+    assert _genetic_reverse_mode("xpr", crispr) == "perturbation_only"
+    assert _genetic_reverse_mode("xpr", gof) == "activation_only"
+    assert _genetic_reverse_mode("xpr", unknown) == "bidirectional"
 
 
 def test_l2_reports_resource_missing_without_registered_indexes():

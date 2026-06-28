@@ -6,6 +6,7 @@ import os
 import shutil
 import urllib.request
 from dataclasses import asdict, dataclass, field
+from importlib import resources as importlib_resources
 from pathlib import Path
 from typing import Any
 
@@ -15,6 +16,8 @@ from pxfquery.l3_execution.assets import AssetRegistry
 
 
 DEFAULT_CACHE_DIR = Path.home() / ".cache" / "pxfquery" / "resources"
+DEFAULT_MANIFEST_PACKAGE = "pxfquery.resources.manifests"
+DEFAULT_MANIFEST_FILE = "zenodo_21001791_v20260628.json"
 MODALITIES = ("cp", "sh", "xpr")
 L3_MATRIX_PATTERNS = (
     "{modality}_X_dense_thr0.1_round2_float16_compressed.npz",
@@ -71,6 +74,8 @@ class ResourceManager:
         if env_root:
             self._root = Path(env_root).expanduser().resolve()
         self._cache_dir = Path(cache_dir).expanduser().resolve() if cache_dir else DEFAULT_CACHE_DIR
+        if self._root is None and _default_resources_enabled():
+            self.use_manifest(default_manifest(), strict=False)
 
     @property
     def root(self) -> Path | None:
@@ -97,7 +102,7 @@ class ResourceManager:
         elif isinstance(manifest, (str, Path)):
             self._root = Path(manifest).expanduser().resolve().parent
         if self._client is not None:
-            self._client.assets = AssetRegistry.from_manifest(payload, strict=strict)
+            self._refresh_client_assets(strict=strict)
             self._client._index_dir = self._root
         return self.status()
 
@@ -124,6 +129,20 @@ class ResourceManager:
             return self._client.assets.to_dict()
         return {}
 
+    def download(
+        self,
+        group: str | None = None,
+        *,
+        modalities: list[str] | tuple[str, ...] | None = None,
+        kinds: list[str] | tuple[str, ...] | None = None,
+    ) -> ResourceStatus:
+        if group is not None:
+            return self.ensure(group, modalities=modalities, kinds=kinds, auto_download=True)
+        for name in ("l2_core_indexes", "l2_proxy_neighbors"):
+            self.ensure(name, auto_download=True)
+        self.ensure("l3_functional_scores", modalities=modalities, kinds=kinds, auto_download=True)
+        return self.status()
+
     def path(self, group: str, *, modality: str | None = None, kind: str | None = None) -> Path:
         item = self._resource_file(group=group, modality=modality, kind=kind)
         if not item.exists:
@@ -143,6 +162,7 @@ class ResourceManager:
         if missing and auto_download:
             for item in missing:
                 self._download_file(item)
+            self._refresh_client_assets(strict=False)
             required = self._required_files(group=group, modalities=modalities, kinds=kinds)
             missing = [item for item in required if not item.exists]
         return ResourceStatus(
@@ -220,6 +240,8 @@ class ResourceManager:
             return None
         rel = payload.get("path") or payload.get("filename") or Path(payload.get("url", key)).name
         root = self._root or self._cache_dir / str(self._version or "default")
+        if self._root is None and self._manifest.get("cache_subdir"):
+            root = self._cache_dir / str(self._manifest["cache_subdir"])
         path = Path(rel).expanduser()
         if not path.is_absolute():
             path = root / path
@@ -253,6 +275,14 @@ class ResourceManager:
             part.unlink(missing_ok=True)
             raise RuntimeError(f"checksum_failed for {item.key}")
         shutil.move(str(part), str(target))
+
+    def _refresh_client_assets(self, *, strict: bool) -> None:
+        if self._client is None or not self._manifest:
+            return
+        base_dir = self._root
+        if base_dir is None:
+            base_dir = self._cache_dir / str(self._manifest.get("cache_subdir") or self._version or "default")
+        self._client.assets = AssetRegistry.from_manifest(self._manifest, strict=strict, base_dir=base_dir)
 
 
 L2_INDEX_FILES = {
@@ -296,6 +326,19 @@ def _load_manifest(manifest: str | Path | dict[str, Any]) -> dict[str, Any]:
     if not isinstance(payload, dict):
         raise ValueError("resource manifest must be a mapping")
     return payload
+
+
+def default_manifest() -> dict[str, Any]:
+    text = importlib_resources.files(DEFAULT_MANIFEST_PACKAGE).joinpath(DEFAULT_MANIFEST_FILE).read_text(encoding="utf-8")
+    payload = json.loads(text)
+    if not isinstance(payload, dict):
+        raise ValueError("default resource manifest must be a mapping")
+    return payload
+
+
+def _default_resources_enabled() -> bool:
+    value = os.environ.get("PXFQUERY_AUTO_RESOURCES", "1").strip().lower()
+    return value not in {"0", "false", "no", "off"}
 
 
 def _sha256(path: Path) -> str:

@@ -164,6 +164,7 @@ def _make_forward_route(
     matched_modalities: list[str],
     use_pair_metadata: bool,
 ) -> dict[str, Any]:
+    anchor = _perturbation_anchor(intent, pert, matched_modalities)
     route = {
         "route_id": f"forward_{route_number:03d}",
         "stage": stage,
@@ -182,6 +183,10 @@ def _make_forward_route(
         "perturbation_record": pert,
         "modalities": matched_modalities,
         "modality_evidence": _modality_evidence(intent, pert, matched_modalities),
+        "perturbation_anchor": anchor,
+        "score_orientation": anchor["score_orientation"],
+        "score_multiplier": anchor["score_multiplier"],
+        "recommended_operation": anchor["recommended_operation"],
         "pair_search_round": _pair_search_round(cell, pert),
         "pair_search_reason": _pair_search_reason(stage),
         "pair_verified": bool(use_pair_metadata),
@@ -220,14 +225,14 @@ def _reverse_route_candidates(
             for modality in modalities:
                 if use_pair_metadata and not _pair_metadata_has_cell(pair_metadata, modality, cell.get("cell")):
                     continue
-                out.append(_make_reverse_route(len(out) + 1, cell, interp, modality, use_pair_metadata))
+                out.append(_make_reverse_route(len(out) + 1, cell, interp, modality, use_pair_metadata, intent))
                 if len(out) >= MAX_PAIR_CHECKS:
                     return out
     if use_pair_metadata and not out:
         for interp in sets[:MAX_REVERSE_INTERPRETATION_SETS]:
             for modality in modalities:
                 for cell in _observed_modality_anchor_cells(pair_metadata, modality):
-                    out.append(_make_reverse_route(len(out) + 1, cell, interp, modality, use_pair_metadata))
+                    out.append(_make_reverse_route(len(out) + 1, cell, interp, modality, use_pair_metadata, intent))
                     if len(out) >= MAX_PAIR_CHECKS:
                         return out
     return out
@@ -239,9 +244,11 @@ def _make_reverse_route(
     interpretation_set: dict[str, Any],
     modality: str,
     use_pair_metadata: bool,
+    intent: QueryIntent,
 ) -> dict[str, Any]:
     role = cell.get("role")
     evidence = "observed_modality_anchor" if role == "observed-anchor" else "function-set-and-observed-cell-scope" if use_pair_metadata else "function-set-and-cell-scope"
+    reverse_mode = _genetic_reverse_mode(modality, intent)
     return {
         "route_id": f"reverse_{route_number:03d}",
         "cell": cell.get("cell"),
@@ -251,6 +258,7 @@ def _make_reverse_route(
         "interpretation_set_id": interpretation_set.get("set_id"),
         "functions": interpretation_set.get("functions", [])[:MAX_REVERSE_FUNCTIONS_PER_SET],
         "modality": modality,
+        "reverse_ranking_mode": reverse_mode,
         "pair_search_round": "observed_modality_anchor_cell" if role == "observed-anchor" else "observed_cell_scope" if use_pair_metadata else None,
         "pair_search_reason": "reverse route cell has observed rows for requested modality" if role != "observed-anchor" else "no routed cell-context rows for requested reverse modality; using observed modality anchor cell with explicit weak-evidence label",
         "pair_verified": bool(use_pair_metadata),
@@ -583,13 +591,17 @@ def _modality_evidence(intent: QueryIntent, perturbation_record: dict[str, Any] 
             reason = "requested_knockdown"
             match_type = "exact_requested"
             rank = "primary"
+        elif requested in {"crispr", "knockout", "ko", "lof", "loss_of_function", "delete", "deletion"} and modality == "xpr":
+            reason = "requested_crispr_loss_of_function"
+            match_type = "exact_requested"
+            rank = "primary"
         elif requested in {"crispr", "knockout", "ko", "lof", "loss_of_function", "delete", "deletion"} and modality == "sh":
             reason = "loss_of_function_proxy"
             match_type = "loss_of_function_proxy"
-            rank = "primary"
-        elif requested in {"overexpression", "xpr", "gof", "gain_of_function"} and modality == "xpr":
-            reason = "requested_overexpression"
-            match_type = "exact_requested"
+            rank = "fallback"
+        elif requested in {"overexpression", "gof", "gain_of_function"} and modality in {"xpr", "sh"}:
+            reason = "inferred_activation_from_lof_resource"
+            match_type = "opposite_lof_inference"
             rank = "primary"
         else:
             reason = "opposite_modality_fallback"
@@ -648,10 +660,12 @@ def _genetic_modality_plan(intent: QueryIntent) -> dict[str, list[str]]:
         return {"primary_modalities": ["sh", "xpr"], "fallback_modalities": []}
     if modality in {"rnai", "shrna", "sh", "sirna", "knockdown"}:
         return {"primary_modalities": ["sh"], "fallback_modalities": ["xpr"]}
-    if modality in {"overexpression", "xpr", "gof", "gain_of_function"}:
-        return {"primary_modalities": ["xpr"], "fallback_modalities": ["sh"]}
+    if modality in {"overexpression", "gof", "gain_of_function"}:
+        return {"primary_modalities": ["xpr", "sh"], "fallback_modalities": []}
     if modality in {"crispr", "knockout", "ko", "lof", "loss_of_function", "delete", "deletion"}:
-        return {"primary_modalities": ["sh"], "fallback_modalities": ["xpr"]}
+        return {"primary_modalities": ["xpr"], "fallback_modalities": ["sh"]}
+    if modality == "xpr":
+        return {"primary_modalities": ["xpr"], "fallback_modalities": ["sh"]}
     return {"primary_modalities": ["sh", "xpr"], "fallback_modalities": []}
 
 
@@ -683,12 +697,46 @@ def _reverse_modalities(intent: QueryIntent) -> list[str]:
         return ["cp"]
     if intent.pert_class == "genetic":
         modality = _normalize_genetic_modality(intent.genetic_modality)
-        if modality in {"rnai", "shrna", "sh", "sirna", "knockdown", "crispr", "knockout", "ko", "lof", "loss_of_function", "delete", "deletion"}:
+        if modality in {"rnai", "shrna", "sh", "sirna", "knockdown"}:
             return ["sh"]
-        if modality in {"overexpression", "xpr", "gof", "gain_of_function"}:
+        if modality in {"crispr", "knockout", "ko", "lof", "loss_of_function", "delete", "deletion", "xpr"}:
             return ["xpr"]
+        if modality in {"overexpression", "gof", "gain_of_function"}:
+            return ["xpr", "sh"]
         return ["xpr", "sh"]
     return ["cp", "xpr", "sh"]
+
+
+def _perturbation_anchor(intent: QueryIntent, perturbation_record: dict[str, Any] | None, modalities: list[str]) -> dict[str, Any]:
+    if perturbation_record and str(perturbation_record.get("id", "")).startswith("BRD-"):
+        return {
+            "entity_type": "compound",
+            "recommended_operation": "drug_treat",
+            "score_orientation": "observed_drug_perturbation_effect",
+            "score_multiplier": 1,
+        }
+    requested = _normalize_genetic_modality(intent.genetic_modality)
+    activation_requested = requested in {"overexpression", "gof", "gain_of_function"}
+    operation = "activate_or_increase_gene" if activation_requested else "inhibit_or_knockdown_gene"
+    return {
+        "entity_type": "gene",
+        "gene": perturbation_record.get("symbol") if perturbation_record else None,
+        "recommended_operation": operation,
+        "evidence_modality": ",".join(modalities),
+        "score_orientation": "inferred_activation_from_lof" if activation_requested else "observed_lof_perturbation_effect",
+        "score_multiplier": -1 if activation_requested else 1,
+    }
+
+
+def _genetic_reverse_mode(modality: str, intent: QueryIntent) -> str:
+    if modality not in {"sh", "xpr"}:
+        return "perturbation_only"
+    requested = _normalize_genetic_modality(intent.genetic_modality)
+    if requested in {"rnai", "shrna", "sh", "sirna", "knockdown", "crispr", "knockout", "ko", "lof", "loss_of_function", "delete", "deletion", "xpr"}:
+        return "perturbation_only"
+    if requested in {"overexpression", "gof", "gain_of_function"}:
+        return "activation_only"
+    return "bidirectional"
 
 
 def _evidence_level(cell_role: str | None, perturbation_role: str | None, cell_scope: str | None = None) -> str:

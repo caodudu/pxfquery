@@ -35,9 +35,12 @@ class PreprocessingNamespace:
         target.uns["_intent"] = intent
         return target if copy else None
 
-    def route(self, qdata: PxFQueryData, *, copy: bool = False) -> PxFQueryData | None:
+    def route(self, qdata: PxFQueryData, *, copy: bool = False, auto_download: bool = True) -> PxFQueryData | None:
         target = _copy_qdata(qdata) if copy else qdata
         intent = _require_intent(target)
+        if auto_download:
+            self._client.resources.ensure("l2_core_indexes", auto_download=True)
+            self._client.resources.ensure("l2_proxy_neighbors", auto_download=True)
         route_plan = route_intent(
             intent,
             assets=self._client.assets,

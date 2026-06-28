@@ -108,11 +108,11 @@ User biomedical question
   -> pxfquery.l5_presentation
 ```
 
-The current `0.5.5.dev1` implementation keeps the five-layer structure and repairs L3 execution against current L2 route plans. `l1_intent` parsing requires a configured OpenAI-compatible LLM provider. L3 biological scores come from loaded functional matrices and resource-pack indexes.
+The current `0.5.5.dev3` implementation keeps the five-layer structure and repairs L3 execution against current L2 route plans. `l1_intent` parsing requires a configured OpenAI-compatible LLM provider. L3 biological scores come from loaded functional matrices and resource-pack indexes.
 
 ## Current Status
 
-Version `0.5.5.dev1` keeps the package capabilities inside the layered source architecture and repairs L3 execution:
+Version `0.5.5.dev3` keeps the package capabilities inside the layered source architecture and repairs L3 execution:
 
 - `pxfquery.l1_intent` parses the user's biomedical question into resolver-compatible intent through the configured LLM provider.
 - `pxfquery.l2_routing` performs resource-backed route planning with exact/proxy/unresolved dimensions.
@@ -147,5 +147,5 @@ print(pxfquery.__version__)
 Current version:
 
 ```text
-0.5.5.dev1
+0.5.5.dev3
 ```

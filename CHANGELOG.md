@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.5.5.dev3 - 2026-06-28
+
+- Removed raw-query phrase-triggered L1 validators and kept L1 validation focused on schema, structure, layer boundaries, and payload consistency.
+- Kept `constraints` and `forward_result_scope` as structured L1 fields while leaving natural-language semantics to the configured LLM.
+- Added L3 reverse replicate aggregation by perturbation/cell and sign guards for reverse projection rankings.
+- Verified current T139 package source with 20-question DeepSeek L1-L2-L3, 60-question L2-to-L3, and 50-question generalization L2-to-L3 validation artifacts.
+
+## 0.5.5.dev2 - 2026-06-28
+
+- Corrected genetic perturbation sign semantics: `xpr` is treated as CRISPR/loss-of-function evidence, not overexpression.
+- Changed reverse ranking from cosine similarity to signed dot projection against the requested functional target vector.
+- Added bidirectional genetic reverse outputs for loss-of-function perturbations and activation perturbations inferred from opposite LOF effects; compound reverse remains single-direction drug perturbation ranking.
+- Added forward score orientation metadata so genetic activation-style queries can use `-LOF` inferred scores while preserving perturbation anchors.
+
 ## 0.5.5.dev1 - 2026-06-28
 
 - Added stable L3 evidence labels for forward rankings and requested function records so downstream HTML/L4 readers do not lose function names.
