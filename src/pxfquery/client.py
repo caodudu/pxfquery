@@ -44,13 +44,15 @@ class PxFQuery:
         self.pp.parse(qdata)
         self.pp.route(qdata)
         self.tl.execute(qdata)
+        self.tl.assemble(qdata)
         return {
-            "schema_version": "pxfquery-l3-query/v1",
+            "schema_version": "pxfquery-l4-query/v1",
             "intent": self.get.intent(qdata),
             "route_plan": self.get.route(qdata),
             "execution": self.get.execution(qdata),
+            "evidence_dossier": self.get.evidence(qdata),
             "resource_pack": self.resources.status().to_dict(),
         }
 
     def ask(self, text: str):
-        raise RuntimeError("L4/L5 answer assembly is not repaired in this L3 package version; use pxf.query(text) or the scanpy-style L1-L2-L3 calls.")
+        raise RuntimeError("L5 answer rendering is not implemented in this L4 package version; use pxf.query(text) or pxf.get.evidence(qdata).")

@@ -5,7 +5,7 @@ from pxfquery.resources import ResourceManager, default_manifest
 
 def test_public_entrypoint_is_single_client():
     assert pxfquery.__all__ == ["PxFQuery"]
-    assert PxFQuery().version == "0.5.5.dev4"
+    assert PxFQuery().version == "0.5.6.dev1"
 
 
 def test_scanpy_style_namespaces_are_available():
@@ -18,6 +18,7 @@ def test_scanpy_style_namespaces_are_available():
     assert hasattr(pxf, "tl")
     assert not hasattr(pxf.tl, "route")
     assert hasattr(pxf, "get")
+    assert hasattr(pxf.get, "evidence")
     assert not hasattr(pxf, "load_data")
     assert not hasattr(pxf, "load_data_dir")
     assert not hasattr(pxf, "enable_resolver")
@@ -46,7 +47,7 @@ def test_resource_manifest_switch_does_not_reuse_local_root(tmp_path):
     assert str(cache_root.resolve() / "v20260628") in item.path
 
 
-def test_default_route_prefetch_does_not_require_unused_simple_gene_neighbors(tmp_path):
+def test_default_route_prefetch_requires_only_current_l2_proxy_neighbors(tmp_path):
     manager = ResourceManager(cache_dir=tmp_path / "cache")
 
     status = manager.ensure("l2_proxy_neighbors", auto_download=False)
@@ -54,4 +55,4 @@ def test_default_route_prefetch_does_not_require_unused_simple_gene_neighbors(tm
     assert "l2.cellline_neighbors" in status.missing_files
     assert "l2.drug_neighbors" in status.missing_files
     assert "l2.gene_neighbors" in status.missing_files
-    assert "l2.gene_neighbors_simple" not in status.missing_files
+    assert len(status.missing_files) == 3

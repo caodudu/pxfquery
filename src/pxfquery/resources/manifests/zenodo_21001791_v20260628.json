@@ -71,14 +71,6 @@
       "sha256": "dc3255994a710b4b236d177cda5b306b30302d12d1e8d0a00c98434d4af2aae6",
       "group": "l2_proxy_neighbors"
     },
-    "l2.gene_neighbors_simple": {
-      "path": "gene_neighbors_simple.json",
-      "filename": "gene_neighbors_simple.json",
-      "url": "https://zenodo.org/api/records/21001791/files/gene_neighbors_simple.json/content",
-      "bytes": 20443987,
-      "sha256": "b6b8169eec0c3ff0ef1264eb4db723cb48863ef52ecb257dd6452c1a42db0ad9",
-      "group": "l2_optional_proxy_neighbors"
-    },
     "l2.function_index": {
       "path": "function_index.json",
       "filename": "function_index.json",

@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.5.6.dev1 - 2026-06-29
+
+- Published the T140 L4 package source to the GitHub export package.
+- Fixed default resource-cache behavior so existing cached files are reused without repeated checksum scans, while newly downloaded files are still verified.
+- Removed the obsolete `l2.gene_neighbors_simple` resource requirement.
+- Materialized functional-score `.npz` matrices to reusable local `.npy` memmap files on first use instead of decompressing them on every query.
+
+## 0.5.6.dev0 - 2026-06-28
+
+- Added L4 `EvidenceDossier` assembly over `l3-matrix-execution/v1`, replacing the old `ForwardResult` / `ReverseResult` adapter path.
+- Added renderer-neutral L4 sections: `claim_basis`, `evidence_layer`, `uncertainty_layer`, `rendering_hints`, and `audit_layer`.
+- Wired `pxf.tl.assemble(qdata)` to consume L1 intent, L2 route plan, and L3 execution together, and added `pxf.get.evidence(qdata)`.
+- Kept PubMed/literature as an optional channel that reports `disabled` without a provider, rather than inventing citations.
+- Added optional real LLM synthesis through the configured provider when `synthesize=True`; default L4 assembly remains deterministic and reports synthesis as disabled.
+- Verified L4 with resource-backed forward/reverse L3 execution and a real DeepSeek L1-L4 smoke run.
+
 ## 0.5.5.dev4 - 2026-06-28
 
 - Added packaged default Zenodo resource manifest for record `21001791` and cache-first automatic resource download under `~/.cache/pxfquery/resources/v20260628`.

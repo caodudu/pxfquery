@@ -76,7 +76,6 @@ class ResourcePaths:
     gene_index: Path | None = None
     gene_index_simple: Path | None = None
     gene_neighbors: Path | None = None
-    gene_neighbors_simple: Path | None = None
     function_index: Path | None = None
     cp_obs: Path | None = None
     sh_obs: Path | None = None
@@ -92,7 +91,6 @@ class ResourcePaths:
             "gene_index": self.gene_index,
             "gene_index_simple": self.gene_index_simple,
             "gene_neighbors": self.gene_neighbors,
-            "gene_neighbors_simple": self.gene_neighbors_simple,
             "function_index": self.function_index,
             "cp_obs": self.cp_obs,
             "sh_obs": self.sh_obs,
@@ -226,7 +224,6 @@ def _resolve_resource_paths(*, assets: Any | None, index_dir: str | Path | None)
             "gene_index": "index.gene_index",
             "gene_index_simple": "index.gene_index_simple",
             "gene_neighbors": "index.gene_neighbors",
-            "gene_neighbors_simple": "index.gene_neighbors_simple",
             "function_index": "index.function_index",
         }.items():
             try:
@@ -258,7 +255,6 @@ def _resolve_resource_paths(*, assets: Any | None, index_dir: str | Path | None)
             "gene_index": "gene_index.json",
             "gene_index_simple": "gene_index_simple.json",
             "gene_neighbors": "gene_neighbors.json",
-            "gene_neighbors_simple": "gene_neighbors_simple.json",
             "function_index": "function_index.json",
         }.items():
             if getattr(paths, attr) is None:

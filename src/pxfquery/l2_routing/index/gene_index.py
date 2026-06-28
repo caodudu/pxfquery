@@ -3,7 +3,7 @@ gene_index.py — Gene symbol lookup and semantic neighbor index for PxFquery.
 
 Pre-built index files (output/store/query_index/):
   gene_index_simple.json     : {SYMBOL_UPPER: type_code}  356 KB
-  gene_neighbors_simple.json : {symbol: [[neighbor, cosine_int], ...]}  19.5 MB
+  gene_neighbors.json        : {symbol: [[neighbor, cosine_int], ...]}
 
 Type codes
 ----------
@@ -12,8 +12,8 @@ Type codes
   "snr"  snRNA
   "misc" misc_RNA
 
-Storage format of gene_neighbors_simple.json
----------------------------------------------
+Storage format of the compact gene neighbor map
+-----------------------------------------------
 Values are lists of [neighbor_symbol, cosine_int].
 cosine_int = round(cosine × 100). Restore with cosine_int / 100.
 Lists are sorted cosine descending. Break early on min_cosine filter.
@@ -57,12 +57,12 @@ class GeneIndex:
     index_path : str or Path
         Path to gene_index_simple.json (UPPERCASE key → type_code).
     neighbors_path : str or Path
-        Path to gene_neighbors_simple.json (symbol → [[neighbor, cosine_int], ...]).
+        Path to a compact gene neighbor map (symbol → [[neighbor, cosine_int], ...]).
 
     Examples
     --------
     >>> idx = GeneIndex("output/store/query_index/gene_index_simple.json",
-    ...                 "output/store/query_index/gene_neighbors_simple.json")
+    ...                 "output/store/query_index/gene_neighbors.json")
     >>> idx.lookup("kras")
     ('KRAS', 'pc')
     >>> idx.in_matrix("KRAS")

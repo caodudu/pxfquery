@@ -4,6 +4,7 @@ import hashlib
 import json
 import os
 import shutil
+import time
 import urllib.request
 from dataclasses import asdict, dataclass, field
 from importlib import resources as importlib_resources
@@ -51,6 +52,7 @@ class ResourceStatus:
     root: str | None = None
     available_files: dict[str, str] = field(default_factory=dict)
     missing_files: list[str] = field(default_factory=list)
+    optional_missing_files: list[str] = field(default_factory=list)
     message: str = ""
 
     def to_dict(self) -> dict[str, Any]:
@@ -65,11 +67,13 @@ class ResourceManager:
     biological evidence.
     """
 
-    def __init__(self, client: Any | None = None, *, cache_dir: str | Path | None = None) -> None:
+    def __init__(self, client: Any | None = None, *, cache_dir: str | Path | None = None, verify_checksums: bool | None = None) -> None:
         self._client = client
         self._root: Path | None = None
         self._manifest: dict[str, Any] = {}
         self._version: str | None = None
+        self.verify_checksums = _default_checksum_verification() if verify_checksums is None else bool(verify_checksums)
+        self._functional_matrix_cache: dict[str, Any] = {}
         env_root = os.environ.get("PXFQUERY_RESOURCE_DIR")
         if env_root:
             self._root = Path(env_root).expanduser().resolve()
@@ -85,6 +89,7 @@ class ResourceManager:
         self._root = Path(path).expanduser().resolve()
         self._manifest = {}
         self._version = version
+        self._functional_matrix_cache.clear()
         if self._client is not None:
             self._client.assets = AssetRegistry.from_root(self._root, strict=strict)
             self._client._index_dir = self._root
@@ -95,6 +100,7 @@ class ResourceManager:
         self._manifest = payload
         self._version = version or payload.get("version") or payload.get("resource_version")
         self._root = None
+        self._functional_matrix_cache.clear()
         root = payload.get("root")
         if root:
             root_path = Path(root).expanduser()
@@ -111,16 +117,18 @@ class ResourceManager:
     def status(self) -> ResourceStatus:
         files = self._discover_files()
         available = {key: item.path for key, item in files.items() if item.exists}
-        missing = [key for key, item in files.items() if not item.exists]
+        missing_required = [key for key, item in files.items() if not item.exists and item.group not in OPTIONAL_RESOURCE_GROUPS]
+        missing_optional = [key for key, item in files.items() if not item.exists and item.group in OPTIONAL_RESOURCE_GROUPS]
         configured = self._root is not None or bool(self._manifest)
         return ResourceStatus(
             configured=configured,
-            available=configured and not missing,
+            available=configured and not missing_required,
             source="manifest" if self._manifest else ("local_resource_pack" if self._root else "unconfigured"),
             version=self._version,
             root=str(self._root) if self._root is not None else None,
             available_files=available,
-            missing_files=missing,
+            missing_files=missing_required,
+            optional_missing_files=missing_optional,
             message="PxFquery resources are configured." if configured else "No PxFquery resource pack is configured.",
         )
 
@@ -249,10 +257,11 @@ class ResourceManager:
         path = Path(rel).expanduser()
         if not path.is_absolute():
             path = root / path
+        exists = path.exists() and _manifest_file_ok(path, payload, verify_checksum=self.verify_checksums)
         return ResourceFile(
             key=key,
             path=str(path),
-            exists=path.exists() and _checksum_ok(path, payload.get("sha256")),
+            exists=exists,
             group=payload.get("group"),
             modality=payload.get("modality"),
             bytes=payload.get("bytes"),
@@ -266,19 +275,31 @@ class ResourceManager:
         target = Path(item.path)
         target.parent.mkdir(parents=True, exist_ok=True)
         part = target.with_suffix(target.suffix + ".part")
-        with urllib.request.urlopen(item.url) as response:
-            total = int(response.headers.get("Content-Length") or item.bytes or 0)
-            with part.open("wb") as handle, tqdm(total=total, unit="B", unit_scale=True, desc=item.key) as bar:
-                while True:
-                    chunk = response.read(1024 * 1024)
-                    if not chunk:
-                        break
-                    handle.write(chunk)
-                    bar.update(len(chunk))
-        if item.sha256 and _sha256(part) != item.sha256:
-            part.unlink(missing_ok=True)
-            raise RuntimeError(f"checksum_failed for {item.key}")
-        shutil.move(str(part), str(target))
+        lock = target.with_suffix(target.suffix + ".lock")
+        _acquire_lock(lock)
+        try:
+            if target.exists() and _checksum_ok(target, item.sha256):
+                return
+            if part.exists():
+                if item.bytes and part.stat().st_size == item.bytes and _checksum_ok(part, item.sha256):
+                    shutil.move(str(part), str(target))
+                    return
+                part.unlink(missing_ok=True)
+            with urllib.request.urlopen(item.url) as response:
+                total = int(response.headers.get("Content-Length") or item.bytes or 0)
+                with part.open("wb") as handle, tqdm(total=total, unit="B", unit_scale=True, desc=item.key) as bar:
+                    while True:
+                        chunk = response.read(1024 * 1024)
+                        if not chunk:
+                            break
+                        handle.write(chunk)
+                        bar.update(len(chunk))
+            if item.sha256 and _sha256(part) != item.sha256:
+                part.unlink(missing_ok=True)
+                raise RuntimeError(f"checksum_failed for {item.key}")
+            shutil.move(str(part), str(target))
+        finally:
+            lock.unlink(missing_ok=True)
 
     def _refresh_client_assets(self, *, strict: bool) -> None:
         if self._client is None or not self._manifest:
@@ -298,7 +319,6 @@ L2_INDEX_FILES = {
     "l2.gene_index": "gene_index.json",
     "l2.gene_index_simple": "gene_index_simple.json",
     "l2.gene_neighbors": "gene_neighbors.json",
-    "l2.gene_neighbors_simple": "gene_neighbors_simple.json",
     "l2.function_index": "function_index.json",
 }
 
@@ -311,9 +331,10 @@ L2_INDEX_GROUPS = {
     "l2.gene_index": "l2_core_indexes",
     "l2.gene_index_simple": "l2_core_indexes",
     "l2.gene_neighbors": "l2_proxy_neighbors",
-    "l2.gene_neighbors_simple": "l2_optional_proxy_neighbors",
     "l2.function_index": "l2_core_indexes",
 }
+
+OPTIONAL_RESOURCE_GROUPS: set[str] = set()
 
 
 def _find_first(root: Path | None, names: list[str]) -> Path | None:
@@ -368,3 +389,34 @@ def _sha256(path: Path) -> str:
 
 def _checksum_ok(path: Path, expected: str | None) -> bool:
     return True if not expected else _sha256(path) == expected
+
+
+def _size_ok(path: Path, expected: int | None) -> bool:
+    return True if expected is None else path.stat().st_size == expected
+
+
+def _manifest_file_ok(path: Path, payload: dict[str, Any], *, verify_checksum: bool) -> bool:
+    if not path.exists() or not _size_ok(path, payload.get("bytes")):
+        return False
+    if verify_checksum:
+        return _checksum_ok(path, payload.get("sha256"))
+    return True
+
+
+def _default_checksum_verification() -> bool:
+    value = os.environ.get("PXFQUERY_VERIFY_CHECKSUMS", "0").strip().lower()
+    return value in {"1", "true", "yes", "on"}
+
+
+def _acquire_lock(path: Path, *, timeout: float = 900.0, poll: float = 0.25) -> None:
+    started = time.time()
+    while True:
+        try:
+            fd = os.open(path, os.O_CREAT | os.O_EXCL | os.O_WRONLY)
+            with os.fdopen(fd, "w", encoding="utf-8") as handle:
+                handle.write(str(os.getpid()))
+            return
+        except FileExistsError:
+            if time.time() - started > timeout:
+                raise TimeoutError(f"timed out waiting for resource download lock: {path}")
+            time.sleep(poll)

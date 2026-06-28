@@ -81,12 +81,25 @@ class ToolsNamespace:
         target.uns["_execution"] = execution
         return target if copy else None
 
-    def assemble(self, qdata: PxFQueryData, *, copy: bool = False) -> PxFQueryData | None:
+    def assemble(
+        self,
+        qdata: PxFQueryData,
+        *,
+        copy: bool = False,
+        synthesize: bool = False,
+        literature_provider: Any | None = None,
+    ) -> PxFQueryData | None:
         target = _copy_qdata(qdata) if copy else qdata
         execution = _require_execution(target)
-        result = assemble_evidence(execution)
-        result["intent"] = target.uns["intent"]
-        result["route_plan"] = target.uns["route_plan"]
+        result = assemble_evidence(
+            execution,
+            intent=target.uns.get("intent"),
+            route_plan=target.uns.get("route_plan"),
+            llm_provider=self._client.llm_providers.get(),
+            synthesize=synthesize,
+            literature_provider=literature_provider,
+        )
+        target.uns["evidence_dossier"] = result
         target.uns["result"] = result
         return target if copy else None
 
@@ -101,6 +114,9 @@ class GetNamespace:
     def result(self, qdata: PxFQueryData) -> dict[str, Any]:
         return qdata.uns["result"]
 
+    def evidence(self, qdata: PxFQueryData) -> dict[str, Any]:
+        return qdata.uns["evidence_dossier"]
+
     def execution(self, qdata: PxFQueryData) -> dict[str, Any]:
         return qdata.uns["execution"]
 
@@ -113,6 +129,7 @@ def run_scanpy_style_pipeline(client, text: str) -> PxFQueryData:
     client.pp.parse(qdata)
     client.pp.route(qdata)
     client.tl.execute(qdata)
+    client.tl.assemble(qdata)
     return qdata
 
 

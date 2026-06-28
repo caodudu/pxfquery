@@ -21,7 +21,6 @@ DEFAULT_ASSET_FILES = {
     "index.cellline_index": ("cellline_index.json", "cell line lookup index"),
     "index.drug_neighbors": ("drug_neighbors.json", "drug proxy neighbor index"),
     "index.gene_neighbors": ("gene_neighbors.json", "gene proxy neighbor index"),
-    "index.gene_neighbors_simple": ("gene_neighbors_simple.json", "simple gene proxy neighbor index"),
     "index.cellline_neighbors": ("cellline_neighbors.json", "cell line proxy neighbor index"),
     "index.cellline_tree": ("cellline_tree.json", "cell line lineage tree"),
     "index.function_index": ("function_index.json", "function alias/index file"),
@@ -140,7 +139,6 @@ def _asset_entries_from_files(files: Any) -> dict[str, Any]:
         "l2.gene_index": "index.gene_index",
         "l2.gene_index_simple": "index.gene_index_simple",
         "l2.gene_neighbors": "index.gene_neighbors",
-        "l2.gene_neighbors_simple": "index.gene_neighbors_simple",
         "l2.function_index": "index.function_index",
     }
     out: dict[str, Any] = {}

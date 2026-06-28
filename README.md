@@ -12,7 +12,7 @@ How does a perturbation change functional programs in a disease model?
 Find perturbations associated with a requested phenotype in available models.
 ```
 
-This package version is an L1-L2-L3 repair package. It does not claim final L4 evidence assembly or L5 human answer rendering.
+This package version is an L1-L4 repair package. It adds internal L4 evidence dossier assembly. It does not claim final L5 human answer rendering.
 
 ## Install
 
@@ -37,8 +37,10 @@ q = pxf.read.query("Which perturbations increase a requested biological function
 pxf.pp.parse(q)
 pxf.pp.route(q)
 pxf.tl.execute(q)
+pxf.tl.assemble(q)
 
 execution = pxf.get.execution(q)
+evidence = pxf.get.evidence(q)
 ```
 
 The L3 execution payload contains:
@@ -48,11 +50,20 @@ The L3 execution payload contains:
 - extracted matrix-backed route results
 - empty-hit or resource errors when a route cannot be executed
 
+The L4 evidence dossier contains:
+
+- structured `claim_basis` for L5 rendering
+- route evidence, matrix evidence, optional literature evidence, and optional LLM synthesis
+- confidence/limitations/failure semantics
+- rendering constraints that prevent L5 from changing scores, candidates, or evidence status
+- audit fields for schema versions, resource state, errors, and warnings
+
 Programmatic output is still available:
 
 ```python
 route = pxf.get.route(q)
 execution = pxf.get.execution(q)
+evidence = pxf.get.evidence(q)
 ```
 
 Stepwise use follows a scanpy-style interface. This is the user interface; the five numbered folders are the internal functional layers.
@@ -65,10 +76,12 @@ q = pxf.read.query("Which perturbations increase a requested biological function
 pxf.pp.parse(q)
 pxf.pp.route(q)
 pxf.tl.execute(q)
+pxf.tl.assemble(q)
 execution = pxf.get.execution(q)
+evidence = pxf.get.evidence(q)
 ```
 
-`tl.assemble()` and final answer rendering are later L4/L5 responsibilities. The current repaired path is L1 parse, L2 route, and L3 execute.
+`tl.assemble()` now builds the internal L4 `EvidenceDossier`. Final L5 answer rendering remains a later presentation-layer responsibility.
 
 Direct legacy matrix query helpers are intentionally not exposed in this L3 package source.
 
@@ -117,16 +130,16 @@ User biomedical question
   -> pxfquery.l5_presentation
 ```
 
-The current `0.5.5.dev4` implementation keeps the five-layer structure and repairs L3 execution against current L2 route plans. `l1_intent` parsing requires a configured OpenAI-compatible LLM provider. L3 biological scores come from loaded functional matrices and resource-pack indexes.
+The current `0.5.6.dev1` implementation keeps the five-layer structure and repairs L4 evidence dossier assembly against current L1-L3 outputs. `l1_intent` parsing requires a configured OpenAI-compatible LLM provider. L3 biological scores come from loaded functional matrices and resource-pack indexes.
 
 ## Current Status
 
-Version `0.5.5.dev4` keeps the package capabilities inside the layered source architecture and repairs L3 execution:
+Version `0.5.6.dev1` keeps the package capabilities inside the layered source architecture and repairs L4 evidence assembly:
 
 - `pxfquery.l1_intent` parses the user's biomedical question into resolver-compatible intent through the configured LLM provider.
 - `pxfquery.l2_routing` performs resource-backed route planning with exact/proxy/unresolved dimensions.
 - `pxfquery.l3_execution` extracts matrix-backed function scores or reverse perturbation candidates from L2 route plans.
-- `pxfquery.l4_evidence` is reserved for downstream evidence assembly.
+- `pxfquery.l4_evidence` assembles a renderer-neutral `EvidenceDossier` from L1 intent, L2 route plan, and L3 execution.
 - `pxfquery.l5_presentation` is reserved for downstream answer rendering and plots.
 
 The package root is intentionally thin. Product code lives inside the five visible layer directories.
@@ -143,7 +156,7 @@ The L1 contract test makes one real DiyGateway request. If the gateway is unavai
 Current source test target:
 
 ```text
-36 passed, 4 skipped
+44 passed, 1 skipped
 ```
 
 ## Version
@@ -156,5 +169,5 @@ print(pxfquery.__version__)
 Current version:
 
 ```text
-0.5.5.dev4
+0.5.6.dev1
 ```

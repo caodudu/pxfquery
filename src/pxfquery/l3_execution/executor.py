@@ -54,7 +54,11 @@ def execute_route_plan(
         result.errors.append({"code": "no_executable_route", "message": "route plan contains no selected routes"})
         return result
 
-    store = FunctionalMatrixStore(resources, auto_download=auto_download)
+    store = FunctionalMatrixStore(
+        resources,
+        auto_download=auto_download,
+        cache=getattr(resources, "_functional_matrix_cache", None),
+    )
     for route_item in routes:
         route_results: list[L3RouteExecutionResult] = []
         if query_type == "forward":
