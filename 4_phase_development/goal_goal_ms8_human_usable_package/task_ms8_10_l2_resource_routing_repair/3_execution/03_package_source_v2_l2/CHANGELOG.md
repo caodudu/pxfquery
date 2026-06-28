@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.5.3.dev1 - 2026-06-28
+
+- Fixed exact cell-line routing for surface forms such as `A549 cells` and `MCF7 cells`; these now canonicalize to valid cell IDs before LLM cell-tree traversal.
+- Added regression coverage to ensure exact cell mentions with common suffixes do not route through proxy tree selection.
+
 ## 0.5.3.dev0 - 2026-06-28
 
 - Completed the L2 resource-routing repair around `pxf.pp.route(qdata)`.
