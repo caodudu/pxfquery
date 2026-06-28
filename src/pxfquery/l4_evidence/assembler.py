@@ -15,6 +15,7 @@ def assemble_evidence(
     llm_provider: Any | None = None,
     synthesize: bool = False,
     literature_provider: Any | None = None,
+    debug: bool = False,
 ) -> dict[str, Any]:
     """Build a renderer-neutral L4 evidence dossier from L1/L2/L3 outputs."""
 
@@ -24,7 +25,7 @@ def assemble_evidence(
     status = _dossier_status(execution_dict)
     evidence_grade = _evidence_grade(status, execution_dict, route_dict)
     matrix_evidence = _matrix_evidence(execution_dict)
-    route_evidence = _route_evidence(route_dict)
+    route_evidence = _route_evidence(route_dict, include_rejected=False)
     intent_evidence = _intent_evidence(intent_dict)
     limitations = _limitations(status, intent_dict, route_dict, execution_dict, evidence_grade)
     claim_basis = _claim_basis(status, intent_dict, route_evidence, matrix_evidence, evidence_grade, limitations)
@@ -64,6 +65,7 @@ def assemble_evidence(
             "warnings": _json_safe(execution_dict.get("warnings", [])),
             "resource_pack": _json_safe(execution_dict.get("resource_pack", {})),
             "matrix_summary": _json_safe(execution_dict.get("matrix_summary", {})),
+            "debug": _debug_layer(route_dict, include_rejected=debug),
         },
     }
     return _json_safe(dossier)
@@ -152,10 +154,10 @@ def _intent_evidence(intent: dict[str, Any]) -> dict[str, Any]:
     return {key: _json_safe(intent.get(key)) for key in keys if key in intent}
 
 
-def _route_evidence(route_plan: dict[str, Any]) -> dict[str, Any]:
+def _route_evidence(route_plan: dict[str, Any], *, include_rejected: bool = False) -> dict[str, Any]:
     if not route_plan:
         return {"status": "missing", "reason": "route_plan was not provided to L4"}
-    return {
+    evidence = {
         "status": route_plan.get("route_status"),
         "reason": route_plan.get("reason"),
         "selected_route": _json_safe(route_plan.get("selected_route", {})),
@@ -163,11 +165,13 @@ def _route_evidence(route_plan: dict[str, Any]) -> dict[str, Any]:
         "cell_route": _json_safe(route_plan.get("cell_route", {})),
         "perturbation_route": _json_safe(route_plan.get("perturbation_route", {})),
         "function_route": _json_safe(route_plan.get("function_route", {})),
-        "rejected_candidates": _json_safe(route_plan.get("rejected_candidates", [])),
         "unresolved_dimensions": _json_safe(route_plan.get("unresolved_dimensions", [])),
         "llm_route_calls": _json_safe(route_plan.get("llm_calls", [])),
         "resource_status": _json_safe(route_plan.get("resource_status", {})),
     }
+    if include_rejected:
+        evidence["rejected_candidates"] = _json_safe(route_plan.get("rejected_candidates", []))
+    return evidence
 
 
 def _matrix_evidence(execution: dict[str, Any]) -> dict[str, Any]:
@@ -360,8 +364,10 @@ def _must_not_claim(status: str, evidence_grade: str) -> list[str]:
     ]
     if status != "evidence_found":
         claims.append("the query was fully answered")
-    if evidence_grade != "exact_matrix":
+    if evidence_grade not in {"exact_matrix", "exact_primary_with_proxy_support"}:
         claims.append("exact matrix evidence")
+    if evidence_grade == "exact_primary_with_proxy_support":
+        claims.append("all selected evidence routes were exact")
     return claims
 
 
@@ -400,7 +406,10 @@ def _llm_synthesis(
                 "Summarize the supplied compact PxFquery evidence as one small valid JSON object. "
                 "Use concise strings. Do not use markdown. Do not add candidates, "
                 "do not alter scores, do not invent citations, and do not convert no-hit, proxy, "
-                "or partial evidence into exact evidence. Return keys: summary, verdict_rationale, "
+                "or partial evidence into exact evidence. Preserve evidence_grade semantics exactly. "
+                "For exact_primary_with_proxy_support, state that exact primary matrix evidence is present "
+                "and proxy routes are supporting references; do not call it 'not exact' and do not call all routes exact. "
+                "Return keys: summary, verdict_rationale, "
                 "confidence_rationale, limitations_summary."
             ),
             user_payload=payload,
@@ -438,6 +447,7 @@ def _synthesis_payload(
             "must_mention": claim_basis.get("must_mention"),
             "must_not_claim": claim_basis.get("must_not_claim"),
         },
+        "evidence_grade_semantics": _evidence_grade_semantics(claim_basis.get("must_mention", [])),
         "route_summary": {
             "status": route_evidence.get("status"),
             "selected_route_count": len(route_evidence.get("selected_routes") or []),
@@ -457,6 +467,22 @@ def _synthesis_payload(
         "literature_status": literature_evidence.get("status"),
         "limitations": limitations[:5],
     }
+
+
+def _evidence_grade_semantics(must_mention: list[str]) -> dict[str, str]:
+    grade = next((str(item) for item in must_mention if str(item).endswith("_matrix") or "proxy_support" in str(item)), "")
+    if grade == "exact_primary_with_proxy_support":
+        return {
+            "grade": grade,
+            "meaning": "The primary route is exact matrix evidence. Proxy routes are supporting references only.",
+            "required_phrase": "exact primary matrix evidence with proxy support",
+            "forbidden_interpretation": "Do not say this means no exact evidence. Do not say all selected routes are exact.",
+        }
+    if grade == "exact_matrix":
+        return {"grade": grade, "meaning": "The selected matrix evidence is exact for the routed query."}
+    if "proxy" in grade or grade == "weak_matrix":
+        return {"grade": grade, "meaning": "The evidence is proxy or weak matrix evidence, not exact primary evidence."}
+    return {"grade": grade, "meaning": "Use claim_basis.must_mention and limitations without upgrading the evidence grade."}
 
 
 def _compact_rankings(items: list[dict[str, Any]]) -> list[dict[str, Any]]:
@@ -501,6 +527,16 @@ def _rendering_hints(claim_basis: dict[str, Any], evidence_grade: str) -> dict[s
             "invent_pubmed_citations",
         ],
         "evidence_grade": evidence_grade,
+    }
+
+
+def _debug_layer(route_plan: dict[str, Any], *, include_rejected: bool) -> dict[str, Any]:
+    rejected = route_plan.get("rejected_candidates", []) if include_rejected else []
+    return {
+        "available": bool(include_rejected),
+        "rejected_candidates": _json_safe(rejected),
+        "rejected_candidate_count": len(route_plan.get("rejected_candidates", []) or []),
+        "default_visibility": "hidden",
     }
 
 

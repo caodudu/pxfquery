@@ -5,7 +5,7 @@ from pxfquery.resources import ResourceManager, default_manifest
 
 def test_public_entrypoint_is_single_client():
     assert pxfquery.__all__ == ["PxFQuery"]
-    assert PxFQuery().version == "0.5.6.dev1"
+    assert PxFQuery().version == "0.5.6.dev2"
 
 
 def test_scanpy_style_namespaces_are_available():
@@ -16,6 +16,8 @@ def test_scanpy_style_namespaces_are_available():
     assert hasattr(pxf, "pp")
     assert hasattr(pxf.pp, "route")
     assert hasattr(pxf, "tl")
+    assert hasattr(pxf.tl, "parse")
+    assert hasattr(pxf.tl, "anno")
     assert not hasattr(pxf.tl, "route")
     assert hasattr(pxf, "get")
     assert hasattr(pxf.get, "evidence")
@@ -56,3 +58,26 @@ def test_default_route_prefetch_requires_only_current_l2_proxy_neighbors(tmp_pat
     assert "l2.drug_neighbors" in status.missing_files
     assert "l2.gene_neighbors" in status.missing_files
     assert len(status.missing_files) == 3
+
+
+def test_tl_anno_attaches_only_provider_returned_records():
+    class Provider:
+        name = "fake-annotation"
+
+        def annotate(self, *, query, evidence_dossier):
+            return [{"source": "unit-test", "query": query, "status": evidence_dossier["dossier_status"]}]
+
+    pxf = PxFQuery()
+    qdata = pxf.read.query("test annotation")
+    qdata.uns["evidence_dossier"] = {
+        "schema_version": "l4-evidence-dossier/v1",
+        "dossier_status": "evidence_found",
+        "evidence_layer": {},
+    }
+
+    pxf.tl.anno(qdata, providers=[Provider()])
+
+    annotation = qdata.uns["evidence_dossier"]["evidence_layer"]["annotation_evidence"]
+    assert annotation["status"] == "completed"
+    assert annotation["records"][0]["provider"] == "fake-annotation"
+    assert annotation["records"][0]["records"] == [{"source": "unit-test", "query": "test annotation", "status": "evidence_found"}]

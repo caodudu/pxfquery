@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.5.6.dev2 - 2026-06-29
+
+- Added `pxf.tl.parse(text)` as a one-call L1-L4 pipeline entrypoint and `pxf.tl.anno(qdata, providers=[...])` as an optional real-provider annotation extension point.
+- Kept `rejected_candidates` out of default L4 route evidence and exposed it only through hidden debug audit output when requested.
+- Strengthened L4 LLM synthesis instructions so `exact_primary_with_proxy_support` is summarized as exact primary matrix evidence with proxy support, not as absent exact evidence.
+- Filtered `CSS001*` control perturbations from sh/xpr reverse rankings before candidate ranking.
+- Added L2 cell-tree robustness for deterministic single-option tree steps and empty-object LLM repair retries.
+
 ## 0.5.6.dev1 - 2026-06-29
 
 - Published the T140 L4 package source to the GitHub export package.

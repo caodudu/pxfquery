@@ -165,6 +165,15 @@ def _execute_reverse_route(route: dict[str, Any], store: FunctionalMatrixStore, 
     obs = matrix.obs.loc[mask].copy()
     raw_n_rows = int(mask.sum())
     X, obs = _aggregate_reverse_replicates(X, obs)
+    X, obs, control_filter = _filter_reverse_control_perturbations(X, obs, modality=modality)
+    if len(obs) == 0:
+        return _skipped(
+            route,
+            "reverse",
+            "no_valid_candidate_after_control_filter",
+            "all reverse candidates were filtered as control perturbations",
+            modality=modality,
+        )
     with np.errstate(divide="ignore", invalid="ignore", over="ignore"):
         projections = np.asarray(X @ target, dtype=np.float32)
     projections = np.nan_to_num(projections, nan=0.0, posinf=0.0, neginf=0.0)
@@ -185,7 +194,7 @@ def _execute_reverse_route(route: dict[str, Any], store: FunctionalMatrixStore, 
             "reverse_ranking_mode": ranking_mode,
         },
         rankings=rankings,
-        diagnostics={"message": "reverse route executed", "warnings": warnings},
+        diagnostics={"message": "reverse route executed", "warnings": warnings, "control_filter": control_filter},
     )
 
 
@@ -279,6 +288,30 @@ def _aggregate_reverse_replicates(X: np.ndarray, obs: pd.DataFrame) -> tuple[np.
         agg_rows.append(first.drop(labels=["_reverse_perturbation_key", "_reverse_cell_key"], errors="ignore"))
         agg_X.append(np.mean(X[idx], axis=0))
     return np.asarray(agg_X, dtype=np.float32), pd.DataFrame(agg_rows).reset_index(drop=True)
+
+
+def _filter_reverse_control_perturbations(X: np.ndarray, obs: pd.DataFrame, *, modality: str) -> tuple[np.ndarray, pd.DataFrame, dict[str, Any]]:
+    if modality not in {"sh", "xpr"} or obs.empty:
+        return X, obs, {"enabled": modality in {"sh", "xpr"}, "filtered_groups": 0, "patterns": ["CSS001*"]}
+    control_mask = np.zeros(len(obs), dtype=bool)
+    for col in ("pert_id", "cmap_name"):
+        if col in obs:
+            values = obs[col].astype(str).str.upper()
+            control_mask |= values.str.startswith("CSS001").to_numpy()
+    kept = ~control_mask
+    filtered = int(control_mask.sum())
+    if filtered == 0:
+        return X, obs, {"enabled": True, "filtered_groups": 0, "patterns": ["CSS001*"]}
+    return (
+        X[kept],
+        obs.loc[kept].reset_index(drop=True),
+        {
+            "enabled": True,
+            "filtered_groups": filtered,
+            "remaining_groups": int(kept.sum()),
+            "patterns": ["CSS001*"],
+        },
+    )
 
 
 def _score_multiplier(route: dict[str, Any]) -> int:

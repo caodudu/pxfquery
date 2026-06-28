@@ -7,7 +7,7 @@ import pytest
 
 from pxfquery import PxFQuery
 from pxfquery.l1_intent import QueryIntent
-from pxfquery.l3_execution.executor import _aggregate_reverse_replicates, _rank_records, _reverse_rankings
+from pxfquery.l3_execution.executor import _aggregate_reverse_replicates, _filter_reverse_control_perturbations, _rank_records, _reverse_rankings
 
 
 DEFAULT_STANDARD_RESOURCES = Path(
@@ -129,6 +129,33 @@ def test_l3_reverse_projection_records_filter_wrong_sign_hits():
     lof = rankings["top_loss_of_function_perturbations"]
     assert [item["label"] for item in lof] == ["GENE_A"]
     assert all(item["raw_projection"] > 0 for item in lof)
+
+
+def test_l3_reverse_filters_css001_control_sequences_before_ranking():
+    X = np.array([[30.0], [5.0], [4.0]], dtype=np.float32)
+    obs = pd.DataFrame(
+        [
+            {"sig_id": "ctrl", "pert_id": "CSS001_CONTROL", "cmap_name": "CSS001", "cell_iname": "MCF7"},
+            {"sig_id": "s1", "pert_id": "GENE_A", "cmap_name": "GENE_A", "cell_iname": "MCF7"},
+            {"sig_id": "s2", "pert_id": "GENE_B", "cmap_name": "GENE_B", "cell_iname": "MCF7"},
+        ]
+    )
+
+    filtered_X, filtered_obs, diagnostics = _filter_reverse_control_perturbations(X, obs, modality="sh")
+    rankings = _reverse_rankings(
+        ["HALLMARK_MYC_TARGETS_V1"],
+        filtered_X,
+        filtered_obs,
+        np.array([1.0], dtype=np.float32),
+        np.asarray(filtered_X @ np.array([1.0], dtype=np.float32), dtype=np.float32),
+        modality="sh",
+        ranking_mode="perturbation_only",
+        top_n=10,
+    )
+
+    assert diagnostics["filtered_groups"] == 1
+    assert all(not str(item["pert_id"]).startswith("CSS001") for item in rankings["top_perturbations"])
+    assert [item["label"] for item in rankings["top_perturbations"]] == ["GENE_A", "GENE_B"]
 
 
 def test_l3_reverse_aggregates_signature_replicates_by_perturbation_and_cell():

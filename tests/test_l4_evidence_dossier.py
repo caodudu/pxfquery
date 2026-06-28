@@ -124,6 +124,113 @@ def test_l4_partial_evidence_keeps_partial_status_and_limitation():
     assert dossier["evidence_layer"]["matrix_evidence"]["primary_result"]["n_rows"] == 2
 
 
+def test_l4_keeps_rejected_candidates_out_of_default_route_evidence():
+    execution = {
+        "schema_version": "l3-matrix-execution/v1",
+        "query_id": "q-debug",
+        "query_type": "forward",
+        "execution_status": "executed",
+        "source_route_schema": "l2-route-plan/v2",
+        "executed_routes": [
+            {
+                "route_id": "forward_001",
+                "query_type": "forward",
+                "modality": "cp",
+                "status": "executed",
+                "cell": "A375",
+                "route_metadata": {"tier": "exact_cell_exact_perturbation", "perturbation": "erlotinib"},
+                "row_match": {"n_rows": 1},
+                "scores": {"requested_functions": {}},
+                "rankings": {"top_activated": [], "top_suppressed": []},
+                "diagnostics": {},
+            }
+        ],
+        "skipped_routes": [],
+        "errors": [],
+        "warnings": [],
+    }
+    route_plan = {
+        "schema_version": "l2-route-plan/v2",
+        "route_status": "routed",
+        "combination_route": {"selected_routes": [{"tier": "exact_cell_exact_perturbation"}]},
+        "rejected_candidates": [{"candidate": "wrong-context"}],
+    }
+
+    dossier = assemble_evidence(execution, intent={"query_type": "forward"}, route_plan=route_plan)
+    debug_dossier = assemble_evidence(execution, intent={"query_type": "forward"}, route_plan=route_plan, debug=True)
+
+    assert "rejected_candidates" not in dossier["evidence_layer"]["route_evidence"]
+    assert dossier["audit_layer"]["debug"]["default_visibility"] == "hidden"
+    assert dossier["audit_layer"]["debug"]["rejected_candidates"] == []
+    assert debug_dossier["audit_layer"]["debug"]["rejected_candidates"] == [{"candidate": "wrong-context"}]
+
+
+def test_l4_synthesis_payload_preserves_exact_primary_with_proxy_support_semantics():
+    class Provider:
+        def __init__(self):
+            self.system_prompt = ""
+            self.user_payload = {}
+
+        def request_json(self, *, stage, system_prompt, user_payload, temperature=0):
+            self.system_prompt = system_prompt
+            self.user_payload = user_payload
+            return {
+                "summary": "exact primary matrix evidence with proxy support",
+                "verdict_rationale": "primary exact route plus proxy references",
+                "confidence_rationale": "moderate",
+                "limitations_summary": "proxy routes are supporting references",
+            }, {"provider": "fake", "final_status": "ok", "attempts": [], "parsed_json_hash": "fake"}
+
+    provider = Provider()
+    execution = {
+        "schema_version": "l3-matrix-execution/v1",
+        "query_id": "q-synthesis",
+        "query_type": "forward",
+        "execution_status": "executed",
+        "source_route_schema": "l2-route-plan/v2",
+        "executed_routes": [
+            {
+                "route_id": "forward_001",
+                "query_type": "forward",
+                "modality": "cp",
+                "status": "executed",
+                "cell": "A375",
+                "route_metadata": {"tier": "exact_cell_exact_perturbation", "perturbation": "erlotinib"},
+                "row_match": {"n_rows": 1},
+                "scores": {"requested_functions": {}},
+                "rankings": {"top_activated": [], "top_suppressed": []},
+                "diagnostics": {},
+            }
+        ],
+        "skipped_routes": [],
+        "errors": [],
+        "warnings": [],
+    }
+    route_plan = {
+        "schema_version": "l2-route-plan/v2",
+        "route_status": "routed",
+        "combination_route": {
+            "selected_routes": [
+                {"tier": "exact_cell_exact_perturbation"},
+                {"tier": "exact_cell_proxy_perturbation"},
+            ]
+        },
+    }
+
+    dossier = assemble_evidence(
+        execution,
+        intent={"query_type": "forward", "bio_context": "A375", "pert_desc": "erlotinib"},
+        route_plan=route_plan,
+        llm_provider=provider,
+        synthesize=True,
+    )
+
+    assert dossier["evidence_layer"]["evidence_grade"] == "exact_primary_with_proxy_support"
+    assert "do not call it 'not exact'" in provider.system_prompt
+    assert provider.user_payload["evidence_grade_semantics"]["required_phrase"] == "exact primary matrix evidence with proxy support"
+    assert "all selected evidence routes were exact" in dossier["claim_basis"]["must_not_claim"]
+
+
 def test_l4_route_unresolved_is_not_answered():
     execution = {
         "schema_version": "l3-matrix-execution/v1",

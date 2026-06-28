@@ -40,11 +40,7 @@ class PxFQuery:
         return __version__
 
     def query(self, text: str) -> dict:
-        qdata = self.read.query(text)
-        self.pp.parse(qdata)
-        self.pp.route(qdata)
-        self.tl.execute(qdata)
-        self.tl.assemble(qdata)
+        qdata = self.tl.parse(text)
         return {
             "schema_version": "pxfquery-l4-query/v1",
             "intent": self.get.intent(qdata),

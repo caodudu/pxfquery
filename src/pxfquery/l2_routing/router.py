@@ -570,13 +570,18 @@ def _llm_route_cell(
         if not isinstance(node, dict) or not node:
             break
         options = list(node.keys())
-        selected, call = _llm_choose_option(
-            llm_provider,
-            stage=f"cell_tree_{level}",
-            user_text=bio_context,
-            level=level,
-            options=options,
-        )
+        stage = f"cell_tree_{level}"
+        if len(options) == 1:
+            selected = options[0]
+            call = _unique_option_call(stage=stage, level=level, selected=selected, options=options)
+        else:
+            selected, call = _llm_choose_option(
+                llm_provider,
+                stage=stage,
+                user_text=bio_context,
+                level=level,
+                options=options,
+            )
         llm_calls.append(call)
         if selected not in node:
             return {
@@ -1170,19 +1175,71 @@ def _llm_choose_option(
     level: str,
     options: list[str],
 ) -> tuple[str | None, dict[str, Any]]:
+    prompt = (
+        "You are PxFquery L2 cell-context routing. Return one JSON object. "
+        "Choose selected_option exactly from options. Do not invent options. "
+        "Use null only if no option is defensible. Never return an empty object."
+    )
+    user_payload = {"bio_context": user_text, "level": level, "options": options}
     payload, evidence = _llm_json(
         llm_provider,
         stage=stage,
-        system_prompt=(
-            "You are PxFquery L2 cell-context routing. Return one JSON object. "
-            "Choose selected_option exactly from options. Do not invent options. "
-            "Use null only if no option is defensible."
-        ),
-        user_payload={"bio_context": user_text, "level": level, "options": options},
+        system_prompt=prompt,
+        user_payload=user_payload,
     )
     selected = payload.get("selected_option") if isinstance(payload, dict) else None
     ok = isinstance(selected, str) and selected in options
+    if not ok and payload == {}:
+        repair_payload, repair_evidence = _llm_json(
+            llm_provider,
+            stage=f"{stage}_empty_object_repair",
+            system_prompt=(
+                prompt
+                + " Your previous response was an empty JSON object, which is invalid. "
+                "Return {'selected_option': <one option or null>, 'reason': <short string>}."
+            ),
+            user_payload=user_payload | {"previous_invalid_output": {}},
+        )
+        repair_selected = repair_payload.get("selected_option") if isinstance(repair_payload, dict) else None
+        repair_ok = isinstance(repair_selected, str) and repair_selected in options
+        call = _llm_call_record(stage, "ok" if repair_ok else "failed", repair_evidence, repair_payload)
+        call["repair_attempted"] = True
+        call["previous_invalid_output"] = payload
+        call["previous_provider_evidence"] = _json_safe_llm_evidence(evidence)
+        return repair_selected if repair_ok else None, call
     return selected if ok else None, _llm_call_record(stage, "ok" if ok else "failed", evidence, payload)
+
+
+def _unique_option_call(*, stage: str, level: str, selected: str, options: list[str]) -> dict[str, Any]:
+    return {
+        "stage": stage,
+        "status": "ok",
+        "provider": None,
+        "base_url": None,
+        "model": None,
+        "temperature": None,
+        "final_status": "skipped",
+        "attempts": [],
+        "parsed_json_hash": None,
+        "raw_output": {"selected_option": selected, "reason": "single valid tree option"},
+        "input_payload": {"level": level, "options": options},
+        "validated": True,
+        "discard_reason": None,
+        "response_excerpt": "",
+        "selection_method": "deterministic_unique_tree_option",
+    }
+
+
+def _json_safe_llm_evidence(value: Any) -> Any:
+    if isinstance(value, dict):
+        return {str(key): _json_safe_llm_evidence(item) for key, item in value.items()}
+    if isinstance(value, list):
+        return [_json_safe_llm_evidence(item) for item in value]
+    if isinstance(value, tuple):
+        return [_json_safe_llm_evidence(item) for item in value]
+    if isinstance(value, (str, int, float, bool)) or value is None:
+        return value
+    return str(value)
 
 
 def _llm_json(llm_provider: Any, *, stage: str, system_prompt: str, user_payload: dict[str, Any], temperature: float = 0) -> tuple[Any, dict[str, Any]]:

@@ -80,6 +80,52 @@ class _ConcurrentProvider:
         raise AssertionError(f"unexpected LLM stage: {stage}")
 
 
+class _CellTreeRepairProvider:
+    def __init__(self):
+        self.stages = []
+
+    def request_json(self, *, stage, system_prompt, user_payload, temperature=0, validator=None):
+        self.stages.append(stage)
+        if stage == "cell_tree_lineage":
+            payload = {}
+        elif stage == "cell_tree_lineage_empty_object_repair":
+            payload = {"selected_option": "central_nervous_system", "reason": "glioblastoma is a CNS tumor"}
+        elif stage == "cell_tree_disease":
+            payload = {"selected_option": "brain cancer"}
+        elif stage == "cell_tree_subtype":
+            payload = {"selected_option": "glioblastoma"}
+        else:
+            payload = {"selected_var_names": ["HALLMARK_E2F_TARGETS"]}
+        return payload, {
+            "provider": "fake",
+            "base_url": "memory://fake",
+            "model": "fake-cell-repair",
+            "final_status": "ok",
+            "attempts": [{"attempt": 1, "ok": True}],
+            "parsed_json_hash": stage,
+        }
+
+
+class _ProstateProvider:
+    def request_json(self, *, stage, system_prompt, user_payload, temperature=0, validator=None):
+        if stage == "cell_tree_lineage":
+            payload = {"selected_option": "prostate"}
+        elif stage == "cell_tree_subtype":
+            payload = {"selected_option": "carcinoma"}
+        elif stage.startswith("function_reverse_mapping_"):
+            payload = {"selected_var_names": ["HALLMARK_APOPTOSIS"]}
+        else:
+            payload = {}
+        return payload, {
+            "provider": "fake",
+            "base_url": "memory://fake",
+            "model": "fake-prostate",
+            "final_status": "ok",
+            "attempts": [{"attempt": 1, "ok": True}],
+            "parsed_json_hash": stage,
+        }
+
+
 def test_l2_routes_exact_cell_noncoding_gene_and_function_from_real_indexes():
     assert STANDARD_RESOURCES.exists()
     intent = _intent(
@@ -251,3 +297,40 @@ def test_l2_routes_reverse_function_interpretation_passes_in_parallel_with_stabl
         "mechanism_or_program",
         "phenotype_or_state",
     ]
+
+
+def test_l2_cell_tree_repairs_empty_json_and_records_repair_attempt():
+    assert STANDARD_RESOURCES.exists()
+    provider = _CellTreeRepairProvider()
+    intent = _intent(
+        query_type="reverse",
+        bio_context="glioblastoma",
+        pert_class="drug",
+        function_desc="less proliferative",
+    )
+
+    route = route_intent(intent, index_dir=STANDARD_RESOURCES, llm_provider=provider).to_dict()
+
+    assert route["cell_route"]["status"] == "resolved"
+    assert route["cell_route"]["selected"] == ["GI1"]
+    lineage_call = next(call for call in route["llm_calls"] if call["stage"] == "cell_tree_lineage")
+    assert lineage_call["repair_attempted"] is True
+    assert "cell_tree_lineage_empty_object_repair" in provider.stages
+
+
+def test_l2_cell_tree_uses_unique_tree_option_without_llm_call():
+    assert STANDARD_RESOURCES.exists()
+    provider = _ProstateProvider()
+    intent = _intent(
+        query_type="reverse",
+        bio_context="prostate cancer",
+        pert_class="drug",
+        function_desc="apoptosis",
+    )
+
+    route = route_intent(intent, index_dir=STANDARD_RESOURCES, llm_provider=provider).to_dict()
+
+    assert route["cell_route"]["status"] == "resolved"
+    skipped = [call for call in route["llm_calls"] if call.get("selection_method") == "deterministic_unique_tree_option"]
+    assert skipped
+    assert all(call["validated"] for call in skipped)
