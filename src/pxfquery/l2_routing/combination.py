@@ -60,12 +60,13 @@ def route_combinations(
             },
             "pair_availability": pair_availability,
         }
-    route_candidates = _reverse_route_candidates(cell_route, function_route, intent)
-    pair_availability = _pair_availability_reverse(route_candidates, function_route, reverse_engines)
+    pair_metadata = _load_pair_metadata(resources) if pair_policy == "observed" else None
+    route_candidates = _reverse_route_candidates(cell_route, function_route, intent, pair_metadata)
+    pair_availability = _pair_availability_reverse(route_candidates, function_route, reverse_engines, pair_metadata, pair_policy)
     return {
         "status": _combination_status(bool(function_route.get("selected")), pair_availability),
         "query_type": "reverse",
-        "pair_policy": "cell_scope_only",
+        "pair_policy": "observed_cell_scope" if pair_metadata else "cell_scope_only",
         "cell_candidate_count": len(cell_candidates),
         "function_set_count": len(function_route.get("interpretation_sets", [])),
         "route_candidates": route_candidates,
@@ -177,28 +178,60 @@ def _pair_search_reason(stage: str) -> str:
     return "strict_pair_unavailable_or_additional_observed_evidence"
 
 
-def _reverse_route_candidates(cell_route: dict[str, Any], function_route: dict[str, Any], intent: QueryIntent) -> list[dict[str, Any]]:
-    cells = cell_route.get("candidates", [])[:MAX_CELL_CANDIDATES] or [{"cell": None, "role": "all-cells"}]
+def _reverse_route_candidates(
+    cell_route: dict[str, Any],
+    function_route: dict[str, Any],
+    intent: QueryIntent,
+    pair_metadata: dict[str, set[tuple[str, str]]] | None,
+) -> list[dict[str, Any]]:
+    use_pair_metadata = bool(pair_metadata)
+    cells = (cell_route.get("expanded_candidates") if use_pair_metadata else None) or cell_route.get("candidates", [])
+    cells = cells[:MAX_EXPANDED_CELL_CANDIDATES if use_pair_metadata else MAX_CELL_CANDIDATES] or [{"cell": None, "role": "all-cells"}]
     sets = function_route.get("interpretation_sets") or [{"set_id": "selected", "functions": function_route.get("selected", [])}]
     modalities = _reverse_modalities(intent)
     out: list[dict[str, Any]] = []
     for interp in sets[:MAX_REVERSE_INTERPRETATION_SETS]:
         for cell in cells:
             for modality in modalities:
-                out.append(
-                    {
-                        "route_id": f"reverse_{len(out) + 1:03d}",
-                        "cell": cell.get("cell"),
-                        "cell_role": cell.get("role"),
-                        "interpretation_set_id": interp.get("set_id"),
-                        "functions": interp.get("functions", [])[:MAX_REVERSE_FUNCTIONS_PER_SET],
-                        "modality": modality,
-                        "evidence_level": "function-set-and-cell-scope",
-                    }
-                )
+                if use_pair_metadata and not _pair_metadata_has_cell(pair_metadata, modality, cell.get("cell")):
+                    continue
+                out.append(_make_reverse_route(len(out) + 1, cell, interp, modality, use_pair_metadata))
                 if len(out) >= MAX_PAIR_CHECKS:
                     return out
+    if use_pair_metadata and not out:
+        for interp in sets[:MAX_REVERSE_INTERPRETATION_SETS]:
+            for modality in modalities:
+                for cell in _observed_modality_anchor_cells(pair_metadata, modality):
+                    out.append(_make_reverse_route(len(out) + 1, cell, interp, modality, use_pair_metadata))
+                    if len(out) >= MAX_PAIR_CHECKS:
+                        return out
     return out
+
+
+def _make_reverse_route(
+    route_number: int,
+    cell: dict[str, Any],
+    interpretation_set: dict[str, Any],
+    modality: str,
+    use_pair_metadata: bool,
+) -> dict[str, Any]:
+    role = cell.get("role")
+    evidence = "observed_modality_anchor" if role == "observed-anchor" else "function-set-and-observed-cell-scope" if use_pair_metadata else "function-set-and-cell-scope"
+    return {
+        "route_id": f"reverse_{route_number:03d}",
+        "cell": cell.get("cell"),
+        "cell_role": role,
+        "cell_expansion_scope": cell.get("cell_expansion_scope"),
+        "cell_route_distance": cell.get("cell_route_distance"),
+        "interpretation_set_id": interpretation_set.get("set_id"),
+        "functions": interpretation_set.get("functions", [])[:MAX_REVERSE_FUNCTIONS_PER_SET],
+        "modality": modality,
+        "pair_search_round": "observed_modality_anchor_cell" if role == "observed-anchor" else "observed_cell_scope" if use_pair_metadata else None,
+        "pair_search_reason": "reverse route cell has observed rows for requested modality" if role != "observed-anchor" else "no routed cell-context rows for requested reverse modality; using observed modality anchor cell with explicit weak-evidence label",
+        "pair_verified": bool(use_pair_metadata),
+        "pair_verification_source": "l3_obs_min" if use_pair_metadata else None,
+        "evidence_level": evidence,
+    }
 
 
 def _combination_status(has_required_axis: bool, pair_availability: dict[str, Any]) -> str:
@@ -261,7 +294,31 @@ def _pair_availability_forward(
     return {"status": "checked", "checks": checks, "any_available": any(c["available"] for c in checks)}
 
 
-def _pair_availability_reverse(route_candidates: list[dict[str, Any]], function_route: dict[str, Any], engines: dict[str, Any] | None) -> dict[str, Any]:
+def _pair_availability_reverse(
+    route_candidates: list[dict[str, Any]],
+    function_route: dict[str, Any],
+    engines: dict[str, Any] | None,
+    pair_metadata: dict[str, set[tuple[str, str]]] | None,
+    pair_policy: str,
+) -> dict[str, Any]:
+    if pair_policy == "observed" and not pair_metadata:
+        return {
+            "status": "observed_pair_metadata_missing",
+            "checks": [],
+            "any_available": False,
+            "required_resources": ["cp_obs_min.parquet/csv", "sh_obs_min.parquet/csv", "xpr_obs_min.parquet/csv"],
+            "message": "observed reverse routing requires obs_min metadata to prefilter cell scope by modality rows",
+        }
+    if pair_metadata:
+        checks = [{**route, "available": True, "reject_reason": None, "cell_available": True} for route in route_candidates[:MAX_PAIR_CHECKS]]
+        return {
+            "status": "checked_l3_obs_min",
+            "checks": checks,
+            "any_available": bool(checks),
+            "all_functions_present": True,
+            "checked_modalities": sorted(pair_metadata),
+            "pair_metadata_policy": "reverse route candidates are prefiltered to cells with observed rows for each requested modality",
+        }
     if not engines:
         return {"status": "not_checked_no_loaded_matrix_engine"}
     checks = []
@@ -412,6 +469,38 @@ def _observed_anchor_cells(
             )
             if len(out) >= MAX_EXPANDED_CELL_CANDIDATES:
                 return out
+    return out
+
+
+def _pair_metadata_has_cell(
+    pair_metadata: dict[str, set[tuple[str, str]]] | None,
+    modality: str,
+    cell: str | None,
+) -> bool:
+    if not pair_metadata or cell is None:
+        return False
+    cell_key = str(cell).upper()
+    return any(observed_cell == cell_key for observed_cell, _perturbation in pair_metadata.get(modality, set()))
+
+
+def _observed_modality_anchor_cells(
+    pair_metadata: dict[str, set[tuple[str, str]]] | None,
+    modality: str,
+) -> list[dict[str, Any]]:
+    if not pair_metadata:
+        return []
+    cells = sorted({cell for cell, _perturbation in pair_metadata.get(modality, set())})
+    out: list[dict[str, Any]] = []
+    for cell in cells[:MAX_EXPANDED_CELL_CANDIDATES]:
+        out.append(
+            {
+                "cell": cell,
+                "role": "observed-anchor",
+                "rank": len(out) + 1,
+                "cell_expansion_scope": "observed_modality_anchor",
+                "cell_route_distance": 3,
+            }
+        )
     return out
 
 

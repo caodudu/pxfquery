@@ -26,7 +26,25 @@ DEFAULT_ASSET_FILES = {
     "index.cellline_neighbors": ("cellline_neighbors.json", "cell line proxy neighbor index"),
     "index.cellline_tree": ("cellline_tree.json", "cell line lineage tree"),
     "index.function_index": ("function_index.json", "function alias/index file"),
+    "l3_functional_scores.cp.matrix": ("cp_X_dense_thr0.1_round2_float16_compressed.npz", "compound perturbation lightweight score matrix"),
+    "l3_functional_scores.cp.obs": ("cp_obs_min.parquet", "compound perturbation L3 observation metadata"),
+    "l3_functional_scores.cp.var": ("cp_var_names.json", "compound perturbation L3 function names"),
+    "l3_functional_scores.sh.matrix": ("sh_X_dense_thr0.1_round2_float16_compressed.npz", "shRNA perturbation lightweight score matrix"),
+    "l3_functional_scores.sh.obs": ("sh_obs_min.parquet", "shRNA perturbation L3 observation metadata"),
+    "l3_functional_scores.sh.var": ("sh_var_names.json", "shRNA perturbation L3 function names"),
+    "l3_functional_scores.xpr.matrix": ("xpr_X_dense_thr0.1_round2_float16_compressed.npz", "overexpression perturbation lightweight score matrix"),
+    "l3_functional_scores.xpr.obs": ("xpr_obs_min.parquet", "overexpression perturbation L3 observation metadata"),
+    "l3_functional_scores.xpr.var": ("xpr_var_names.json", "overexpression perturbation L3 function names"),
+    "matrix.cp_obs_min": ("cp_obs_min.parquet", "compound perturbation L3 observation metadata"),
+    "matrix.sh_obs_min": ("sh_obs_min.parquet", "shRNA perturbation L3 observation metadata"),
+    "matrix.xpr_obs_min": ("xpr_obs_min.parquet", "overexpression perturbation L3 observation metadata"),
     "provenance.data_description": ("data_description.yaml", "data provenance description"),
+}
+
+OPTIONAL_ROOT_SCAN_KEYS = {
+    key
+    for key in DEFAULT_ASSET_FILES
+    if key.startswith("l3_functional_scores.") or key in {"matrix.cp_obs_min", "matrix.sh_obs_min", "matrix.xpr_obs_min"}
 }
 
 
@@ -54,7 +72,7 @@ class AssetRegistry:
         for key, (filename, role) in DEFAULT_ASSET_FILES.items():
             path = _find_one(base, filename)
             if path is None:
-                if strict:
+                if strict and key not in OPTIONAL_ROOT_SCAN_KEYS:
                     raise FileNotFoundError(f"required asset not found under {base}: {filename}")
                 refs[key] = AssetRef(key=key, path=str(base / filename), role=role, exists=False, source="root_scan")
             else:

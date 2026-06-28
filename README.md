@@ -12,6 +12,8 @@ How does a perturbation change functional programs in a disease model?
 Find perturbations associated with a requested phenotype in available models.
 ```
 
+This package version is an L1-L2-L3 repair package. It does not claim final L4 evidence assembly or L5 human answer rendering.
+
 ## Install
 
 ```bash
@@ -30,27 +32,27 @@ from pxfquery import PxFQuery
 
 pxf = PxFQuery()
 pxf.settings.use_deepseek(token="...", timeout=60)
-pxf.load_data_dir("/path/to/functional_matrices")
-pxf.enable_resolver(index_dir="/path/to/query_indexes", api_key="...")
-answer = pxf.ask("Which perturbations increase a requested biological function in a disease model?")
+pxf.resources.use("/path/to/pxfquery_resource_pack")
+q = pxf.read.query("Which perturbations increase a requested biological function in a disease model?")
+pxf.pp.parse(q)
+pxf.pp.route(q)
+pxf.tl.execute(q)
 
-print(answer)
+execution = pxf.get.execution(q)
 ```
 
-The default answer is meant for a biomedical reader. It contains:
+The L3 execution payload contains:
 
 - how PxFquery interpreted the question
-- biological results
-- evidence used
-- biological interpretation
-- limitations
+- the selected L2 route plan
+- extracted matrix-backed route results
+- empty-hit or resource errors when a route cannot be executed
 
 Programmatic output is still available:
 
 ```python
-payload = answer.to_dict()
-structured = answer.structured_result
-diagnostics = answer.diagnostics
+route = pxf.get.route(q)
+execution = pxf.get.execution(q)
 ```
 
 Stepwise use follows a scanpy-style interface. This is the user interface; the five numbered folders are the internal functional layers.
@@ -58,28 +60,17 @@ Stepwise use follows a scanpy-style interface. This is the user interface; the f
 ```python
 pxf = PxFQuery()
 pxf.settings.use_deepseek(token="...", timeout=60)
-pxf.load_data_dir("/path/to/functional_matrices")
-pxf.enable_resolver(index_dir="/path/to/query_indexes", api_key="...")
+pxf.resources.use("/path/to/pxfquery_resource_pack")
 q = pxf.read.query("Which perturbations increase a requested biological function in a disease model?")
 pxf.pp.parse(q)
 pxf.pp.route(q)
 pxf.tl.execute(q)
-pxf.tl.assemble(q)
-result = pxf.get.result(q)
-answer = pxf.get.answer(q)
+execution = pxf.get.execution(q)
 ```
 
-Direct matrix queries are also available:
+`tl.assemble()` and final answer rendering are later L4/L5 responsibilities. The current repaired path is L1 parse, L2 route, and L3 execute.
 
-```python
-forward = pxf.pert2func("EGFR", pert_type="xpr", cell_line="A549")
-reverse = pxf.func2pert(
-    activate=["HALLMARK_APOPTOSIS"],
-    suppress=["HALLMARK_MYC_TARGETS_V1"],
-    pert_type="cp",
-    cell_line="A549",
-)
-```
+Direct legacy matrix query helpers are intentionally not exposed in this L3 package source.
 
 ## Resource Pack
 
@@ -102,7 +93,7 @@ pxf = PxFQuery()
 pxf.resources.download()
 ```
 
-The download/cache implementation is not active in `0.5.1`; `resources.download()` reports that official resource-pack download is not configured and asks users to provide a local pack for now.
+The download/cache implementation is planned for the unified resource manager. Current tests use explicit local resource-pack paths.
 
 ## Interface Layers
 
@@ -117,17 +108,17 @@ User biomedical question
   -> pxfquery.l5_presentation
 ```
 
-The current `0.5.1` implementation restores the original matrix-backed forward/reverse query core and resolver architecture. `l1_intent` parsing requires a configured OpenAI-compatible LLM provider. Biological hits come from loaded functional matrices and query indexes.
+The current `0.5.5.dev0` implementation keeps the five-layer structure and repairs L3 execution against current L2 route plans. `l1_intent` parsing requires a configured OpenAI-compatible LLM provider. L3 biological scores come from loaded functional matrices and resource-pack indexes.
 
 ## Current Status
 
-Version `0.5.1` keeps the restored package capabilities inside the layered source architecture and repairs the L1 intent provider boundary:
+Version `0.5.5.dev0` keeps the package capabilities inside the layered source architecture and repairs L3 execution:
 
 - `pxfquery.l1_intent` parses the user's biomedical question into resolver-compatible intent through the configured LLM provider.
-- `pxfquery.l2_routing` performs index-backed entity resolution and exact/proxy evidence routing.
-- `pxfquery.l3_execution` loads functional matrices and runs forward/reverse perturbation-function queries.
-- `pxfquery.l4_evidence` assembles route metadata, function scores, candidates, and diagnostics.
-- `pxfquery.l5_presentation` renders biomedical answers and plots.
+- `pxfquery.l2_routing` performs resource-backed route planning with exact/proxy/unresolved dimensions.
+- `pxfquery.l3_execution` extracts matrix-backed function scores or reverse perturbation candidates from L2 route plans.
+- `pxfquery.l4_evidence` is reserved for downstream evidence assembly.
+- `pxfquery.l5_presentation` is reserved for downstream answer rendering and plots.
 
 The package root is intentionally thin. Product code lives inside the five visible layer directories.
 
@@ -143,7 +134,7 @@ The L1 contract test makes one real DiyGateway request. If the gateway is unavai
 Current source test target:
 
 ```text
-10 passed
+23 passed, 1 skipped
 ```
 
 ## Version
@@ -156,5 +147,5 @@ print(pxfquery.__version__)
 Current version:
 
 ```text
-0.5.3.dev2
+0.5.5.dev0
 ```

@@ -131,7 +131,7 @@ def route_intent(
             intent=intent,
             route_status="resource-missing",
             required_capabilities=_required_capabilities(intent),
-            reason="no L2 resource indexes are registered; call pxf.resources.use(...) or pxf.enable_resolver(index_dir=...)",
+            reason="no L2 resource indexes are registered; call pxf.resources.use(...) or pxf.resources.use_manifest(...)",
             resource_status=resource_status,
         )
 
