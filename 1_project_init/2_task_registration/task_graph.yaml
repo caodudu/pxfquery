@@ -2096,6 +2096,10 @@ edges:
   to: goal_pending_g010/task_pxfquery_web_l5_query_server_mvp
   dep_id: T-019
   gate: may
+- from: goal_goal_ms8_human_usable_package/task_ms8_13_l5_presentation_output_layer_plan
+  to: goal_goal_ms8_human_usable_package/task_ms8_14_user_value_l5_output_rework
+  dep_id: T-141
+  gate: must
 labels:
 - id: label_mqpofuno
   phase: digestion

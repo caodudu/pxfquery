@@ -2027,3 +2027,12 @@ tasks:
   executor: hybrid
   created: '2026-06-29'
   completed: null
+- id: T-145
+  name: figure2_data_and_notebook_figure_workbench
+  phase: translation
+  goal: goal_paper_figure_planning
+  path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench
+  status: pending
+  executor: human
+  created: '2026-06-29'
+  completed: null
