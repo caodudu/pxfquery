@@ -263,6 +263,7 @@ def _primary_result(query_type: str | None, route: dict[str, Any] | None) -> dic
     return {
         "cell": route.get("cell"),
         "perturbation": metadata.get("perturbation"),
+        "perturbation_alias": (metadata.get("perturbation_record") or {}).get("alias"),
         "modality": route.get("modality"),
         "n_rows": row_match.get("n_rows"),
         "pert_ids": _json_safe(row_match.get("pert_ids", [])),

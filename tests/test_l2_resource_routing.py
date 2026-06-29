@@ -167,6 +167,25 @@ def test_l2_routes_cell_line_mentions_with_cells_suffix_as_exact():
         assert not any(call["stage"].startswith("cell_tree_") for call in route["llm_calls"])
 
 
+def test_l2_exact_drug_routes_include_readable_aliases_from_packaged_index():
+    assert STANDARD_RESOURCES.exists()
+    intent = _intent(
+        bio_context="A549",
+        pert_desc="doxorubicin",
+        pert_class="drug",
+        function_desc="pathways affected",
+    )
+
+    route = route_intent(intent, index_dir=STANDARD_RESOURCES).to_dict()
+
+    selected = route["perturbation_route"]["selected"][0]
+    assert selected["id"] == "BRD-K61468417"
+    assert selected["alias"] == "doxorubicin"
+    assert "doxorubicin" in selected["aliases"]
+    assert route["perturbation_route"]["proxies"]
+    assert route["perturbation_route"]["proxies"][0]["id"].startswith("BRD-")
+
+
 def test_l2_marks_normal_same_lineage_anchor_as_semantic_downgrade():
     assert STANDARD_RESOURCES.exists()
     cell_index = CellLineIndex(STANDARD_RESOURCES / "cellline_index.json", STANDARD_RESOURCES / "cellline_neighbors.json")

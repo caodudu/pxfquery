@@ -356,13 +356,13 @@ def _route_drug(
             "entity_type": "drug",
             "mode": "exact-drug-alias",
             "input": term,
-            "selected": [{"id": brd_id, "role": "exact", "rank": 1}],
+            "selected": [_drug_record(drug_index, brd_id, role="exact", rank=1, input_alias=term)],
             "proxies": [
-                {"id": neighbor, "similarity": score, "role": "structural-proxy", "rank": i + 1}
+                _drug_record(drug_index, neighbor, role="structural-proxy", rank=i + 1, similarity=score)
                 for i, (neighbor, score) in enumerate(expanded_neighbors[:MAX_PERTURBATION_PROXIES])
             ],
             "expanded_proxies": [
-                {"id": neighbor, "similarity": score, "role": "structural-proxy", "rank": i + 1}
+                _drug_record(drug_index, neighbor, role="structural-proxy", rank=i + 1, similarity=score)
                 for i, (neighbor, score) in enumerate(expanded_neighbors)
             ],
             "limits": {"max_proxies": MAX_PERTURBATION_PROXIES, "max_expanded_proxies": MAX_EXPANDED_PERTURBATION_PROXIES},
@@ -667,20 +667,41 @@ def _llm_route_drug(
         "entity_type": "drug",
         "mode": "llm-normalized-drug",
         "input": term,
-        "selected": [{"id": brd_id, "alias": selected_alias, "role": role, "rank": 1}],
+        "selected": [_drug_record(drug_index, brd_id, role=role, rank=1, input_alias=selected_alias)],
         "retrieved_candidates": candidates,
         "input_is_mechanism_class": mechanism_class,
         "proxies": [
-            {"id": neighbor, "similarity": score, "role": "structural-proxy", "rank": i + 1}
+            _drug_record(drug_index, neighbor, role="structural-proxy", rank=i + 1, similarity=score)
             for i, (neighbor, score) in enumerate(expanded_neighbors[:MAX_PERTURBATION_PROXIES])
         ],
         "expanded_proxies": [
-            {"id": neighbor, "similarity": score, "role": "structural-proxy", "rank": i + 1}
+            _drug_record(drug_index, neighbor, role="structural-proxy", rank=i + 1, similarity=score)
             for i, (neighbor, score) in enumerate(expanded_neighbors)
         ],
         "llm_calls": [call],
         "limits": {"max_proxies": MAX_PERTURBATION_PROXIES, "max_expanded_proxies": MAX_EXPANDED_PERTURBATION_PROXIES},
     }
+
+
+def _drug_record(
+    drug_index: DrugIndex,
+    brd_id: str,
+    *,
+    role: str,
+    rank: int,
+    similarity: float | None = None,
+    input_alias: str | None = None,
+) -> dict[str, Any]:
+    aliases = drug_index.aliases_for(brd_id)
+    display = input_alias or drug_index.display_name(brd_id)
+    record: dict[str, Any] = {"id": brd_id, "role": role, "rank": rank}
+    if display:
+        record["alias"] = display
+    if aliases:
+        record["aliases"] = aliases
+    if similarity is not None:
+        record["similarity"] = similarity
+    return record
 
 
 def _llm_route_gene(

@@ -102,6 +102,8 @@ def _public_stage(stage: str) -> str:
         return "Matrix"
     if "evidence" in text or "assemble" in text:
         return "Evidence"
+    if "annotation" in text or "anno" in text:
+        return "Annotation"
     if "answer" in text or "render" in text:
         return "Answer"
     return "Status"

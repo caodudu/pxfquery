@@ -59,6 +59,11 @@ class DrugIndex:
     def __init__(self, index_path: str | Path, neighbors_path: str | Path):
         with open(index_path, encoding="utf-8") as f:
             self._index: dict[str, str] = json.load(f)  # alias → full BRD-id
+        self._aliases_by_id: dict[str, list[str]] = {}
+        for alias, brd_id in self._index.items():
+            self._aliases_by_id.setdefault(brd_id, []).append(alias)
+        for aliases in self._aliases_by_id.values():
+            aliases.sort(key=lambda item: (item.startswith("brd-"), len(item), item))
 
         with open(neighbors_path, encoding="utf-8") as f:
             self._neighbors_raw: dict[str, list] = json.load(f)  # id_no_prefix → [[id_no_prefix, t_int]]
@@ -104,6 +109,21 @@ class DrugIndex:
             if result is not None:
                 return result
         return None
+
+    def aliases_for(self, brd_id: str, *, limit: int = 10) -> list[str]:
+        """
+        Return known aliases for a BRD id from the packaged drug index.
+
+        The index is stored as alias -> BRD-id for lookup; this method exposes
+        the reverse mapping for user-facing labels and evidence summaries.
+        """
+        aliases = self._aliases_by_id.get(str(brd_id), [])
+        return aliases[:limit]
+
+    def display_name(self, brd_id: str) -> str | None:
+        """Return the preferred readable alias for a BRD id, if available."""
+        aliases = self.aliases_for(brd_id, limit=1)
+        return aliases[0] if aliases else None
 
     def neighbors(
         self,

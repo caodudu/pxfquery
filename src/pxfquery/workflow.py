@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from concurrent.futures import ThreadPoolExecutor, TimeoutError
 from time import perf_counter
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -74,6 +75,9 @@ class ToolsNamespace:
         auto_download: bool = True,
         top_n: int = 20,
         debug: bool = False,
+        annotate: bool = False,
+        annotation_sources: list[str] | tuple[str, ...] = ("chembl",),
+        annotation_timeout: float = 5.0,
         progress: bool | EventLog = True,
         copy: bool = False,
     ) -> PxFQueryData:
@@ -120,6 +124,24 @@ class ToolsNamespace:
             self.assemble(qdata, synthesize=synthesize, literature_provider=literature_provider, debug=debug)
             dossier = qdata.uns.get("evidence_dossier") or {}
             events.stage("evidence", "evidence_done", "done", status=_public_status(dossier.get("dossier_status")), time=_elapsed(stage_start))
+
+            if annotate:
+                stage_start = perf_counter()
+                if _should_auto_annotate(qdata):
+                    events.stage("annotation", "annotation_start", "start", sources=",".join(annotation_sources), timeout=annotation_timeout)
+                    self.anno(qdata, sources=annotation_sources, timeout=annotation_timeout)
+                    annotation = qdata.uns.get("annotation_evidence") or {}
+                    events.stage(
+                        "annotation",
+                        "annotation_done",
+                        "done",
+                        status=annotation.get("status"),
+                        records=sum(len(block.get("records") or []) for block in annotation.get("records") or []),
+                        diagnostics=len(annotation.get("diagnostics") or []),
+                        time=_elapsed(stage_start),
+                    )
+                else:
+                    events.stage("annotation", "annotation_skipped", "skipped", reason="drug_aliases_available_or_no_compound_routes", time=_elapsed(stage_start))
         except Exception as exc:
             events.error("pipeline", "failed", "failed", error=f"{type(exc).__name__}: {exc}")
             qdata.uns["progress_events"] = events.to_list()
@@ -179,7 +201,7 @@ class ToolsNamespace:
         *,
         providers: list[Any] | tuple[Any, ...] | None = None,
         sources: list[str] | tuple[str, ...] | None = None,
-        timeout: float = 20.0,
+        timeout: float = 5.0,
         copy: bool = False,
     ) -> PxFQueryData | None:
         target = _copy_qdata(qdata) if copy else qdata
@@ -192,12 +214,20 @@ class ToolsNamespace:
             if not hasattr(provider, "annotate"):
                 diagnostics.append({"provider": name, "status": "unavailable", "reason": "provider does not expose annotate(...)"})
                 continue
+            provider_start = perf_counter()
             try:
-                payload = provider.annotate(query=target.text, evidence_dossier=dossier)
+                payload = _run_provider_with_timeout(provider, query=target.text, evidence_dossier=dossier, timeout=timeout)
+            except TimeoutError:
+                diagnostics.append({"provider": name, "status": "timed_out", "reason": f"annotation exceeded {timeout:.1f}s"})
+                continue
             except Exception as exc:
                 diagnostics.append({"provider": name, "status": "failed", "reason": f"{type(exc).__name__}: {exc}"})
                 continue
-            records.append({"provider": name, "status": "completed", "records": _json_safe_list(payload)})
+            elapsed = perf_counter() - provider_start
+            if elapsed > timeout:
+                diagnostics.append({"provider": name, "status": "timed_out", "reason": f"annotation exceeded {timeout:.1f}s", "elapsed": round(elapsed, 3)})
+                continue
+            records.append({"provider": name, "status": "completed", "elapsed": round(elapsed, 3), "records": _json_safe_list(payload)})
         status = "completed" if records else "unavailable"
         annotation = {"status": status, "records": records, "diagnostics": diagnostics}
         dossier.setdefault("evidence_layer", {})["annotation_evidence"] = annotation
@@ -325,6 +355,25 @@ def run_scanpy_style_pipeline(client, text: str) -> PxFQueryData:
 
 def _copy_qdata(qdata: PxFQueryData) -> PxFQueryData:
     return PxFQueryData(text=qdata.text, obs=dict(qdata.obs), uns=dict(qdata.uns))
+
+
+def _should_auto_annotate(qdata: PxFQueryData, *, limit: int = 5) -> bool:
+    dossier = qdata.uns.get("evidence_dossier") or {}
+    matrix = ((dossier.get("evidence_layer") or {}).get("matrix_evidence") or {})
+    routes = [route for route in matrix.get("executed_routes") or [] if route.get("modality") == "cp"]
+    if not routes:
+        return False
+    top = routes[:limit]
+    return all(not route.get("perturbation_alias") for route in top)
+
+
+def _run_provider_with_timeout(provider: Any, *, query: str, evidence_dossier: dict[str, Any], timeout: float) -> Any:
+    executor = ThreadPoolExecutor(max_workers=1)
+    future = executor.submit(provider.annotate, query=query, evidence_dossier=evidence_dossier)
+    try:
+        return future.result(timeout=timeout)
+    finally:
+        executor.shutdown(wait=False, cancel_futures=True)
 
 
 def _require_intent(qdata: PxFQueryData):

@@ -108,12 +108,12 @@ def test_chembl_provider_fetches_molecule_and_mechanism(monkeypatch):
                     {
                         "mechanism_of_action": "EGFR inhibitor",
                         "target_chembl_id": "CHEMBL203",
+                        "target_pref_name": "Epidermal growth factor receptor",
                         "action_type": "INHIBITOR",
                     }
                 ]
             }
-        if "target/CHEMBL203.json" in url:
-            return {"pref_name": "Epidermal growth factor receptor", "target_type": "SINGLE PROTEIN", "organism": "Homo sapiens"}
+        assert "target/CHEMBL203.json" not in url
         raise AssertionError(url)
 
     monkeypatch.setattr(provider_module, "_http_json", fake_http_json)
@@ -123,4 +123,31 @@ def test_chembl_provider_fetches_molecule_and_mechanism(monkeypatch):
     assert records[0]["status"] == "found"
     assert records[0]["records"][0]["molecule_chembl_id"] == "CHEMBL553"
     assert records[0]["records"][0]["mechanisms"][0]["target_name"] == "Epidermal growth factor receptor"
-    assert records[0]["records"][0]["mechanisms"][0]["target_type"] == "SINGLE PROTEIN"
+
+
+def test_compound_terms_skip_genetic_routes_and_prefer_alias_over_brd():
+    genetic = _dossier()
+    genetic["evidence_layer"]["intent_evidence"]["pert_class"] = "genetic"
+    genetic["evidence_layer"]["matrix_evidence"]["primary_result"] = {
+        "cell": "A549",
+        "perturbation": "MYC",
+        "modality": "sh",
+    }
+    genetic["evidence_layer"]["matrix_evidence"]["executed_routes"] = [
+        {"cell": "A549", "perturbation": "MYC", "modality": "sh"}
+    ]
+
+    drug = _dossier()
+    drug["evidence_layer"]["matrix_evidence"]["executed_routes"] = [
+        {
+            "cell": "A549",
+            "perturbation": "BRD-K61468417",
+            "perturbation_alias": "doxorubicin",
+            "modality": "cp",
+        }
+    ]
+
+    assert provider_module._compound_terms(genetic, max_terms=5) == []
+    drug_terms = provider_module._compound_terms(drug, max_terms=5)
+    assert "doxorubicin" in drug_terms
+    assert "BRD-K61468417" not in drug_terms

@@ -6,6 +6,7 @@ import time
 import urllib.error
 import urllib.parse
 import urllib.request
+from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
 from typing import Any
 
@@ -155,22 +156,26 @@ class PubChemAnnotationProvider:
 @dataclass
 class ChEMBLAnnotationProvider:
     timeout: float = DEFAULT_TIMEOUT
-    max_terms: int = 5
-    limit: int = 3
+    max_terms: int = 1
+    limit: int = 1
+    max_workers: int = 4
     name: str = "chembl"
 
     def __post_init__(self) -> None:
-        self._target_cache: dict[str, dict[str, Any]] = {}
+        self._molecule_cache: dict[str, dict[str, Any]] = {}
 
     def annotate(self, *, query: str, evidence_dossier: dict[str, Any]) -> list[dict[str, Any]]:
-        records = []
-        for term in _compound_terms(evidence_dossier, max_terms=self.max_terms):
-            hit = self._annotate_molecule(term)
-            if hit:
-                records.append(hit)
-        return records
+        terms = _compound_terms(evidence_dossier, max_terms=self.max_terms)
+        if not terms:
+            return []
+        with ThreadPoolExecutor(max_workers=min(self.max_workers, len(terms))) as executor:
+            hits = list(executor.map(self._annotate_molecule, terms))
+        return [hit for hit in hits if hit]
 
     def _annotate_molecule(self, term: str) -> dict[str, Any]:
+        cache_key = term.strip().lower()
+        if cache_key in self._molecule_cache:
+            return self._molecule_cache[cache_key]
         search_url = "https://www.ebi.ac.uk/chembl/api/data/molecule/search.json?" + urllib.parse.urlencode({"q": term, "limit": str(self.limit)})
         payload = _http_json(search_url, timeout=self.timeout)
         molecules = payload.get("molecules") or []
@@ -196,29 +201,18 @@ class ChEMBLAnnotationProvider:
                     "url": f"https://www.ebi.ac.uk/chembl/explore/compound/{chembl_id}" if chembl_id else None,
                 }
             )
-        return {"source": self.name, "status": "found" if records else "no_hits", "term": term, "records": records}
+        hit = {"source": self.name, "status": "found" if records else "no_hits", "term": term, "records": records}
+        self._molecule_cache[cache_key] = hit
+        return hit
 
     def _mechanism_record(self, item: dict[str, Any]) -> dict[str, Any]:
         target_id = item.get("target_chembl_id")
-        target = self._target_record(str(target_id)) if target_id else {}
         return {
             "mechanism_of_action": item.get("mechanism_of_action"),
             "target_chembl_id": target_id,
-            "target_name": item.get("target_pref_name") or target.get("pref_name"),
-            "target_type": target.get("target_type"),
-            "organism": target.get("organism"),
+            "target_name": item.get("target_pref_name"),
             "action_type": item.get("action_type"),
         }
-
-    def _target_record(self, target_id: str) -> dict[str, Any]:
-        if target_id in self._target_cache:
-            return self._target_cache[target_id]
-        try:
-            payload = _http_json(f"https://www.ebi.ac.uk/chembl/api/data/target/{urllib.parse.quote(target_id)}.json", timeout=self.timeout)
-        except urllib.error.HTTPError:
-            payload = {}
-        self._target_cache[target_id] = payload
-        return payload
 
 
 @dataclass
@@ -268,13 +262,48 @@ def _primary_terms(evidence_dossier: dict[str, Any]) -> list[dict[str, str]]:
 
 
 def _compound_terms(evidence_dossier: dict[str, Any], *, max_terms: int) -> list[str]:
-    terms = []
-    for item in _primary_terms(evidence_dossier):
-        role = item.get("role")
-        term = item.get("term", "")
-        if role in {"drug", "compound", "perturbation"} and _looks_like_compound_term(term):
+    layer = evidence_dossier.get("evidence_layer") or {}
+    intent = layer.get("intent_evidence") or {}
+    matrix = layer.get("matrix_evidence") or {}
+    if str(intent.get("pert_class") or "").lower() not in {"drug", "compound"} and not _matrix_has_compound_routes(matrix):
+        return []
+
+    terms: list[str] = []
+    aliased_perturbations: set[str] = set()
+    for route in matrix.get("executed_routes") or []:
+        if route.get("modality") != "cp":
+            continue
+        alias = route.get("perturbation_alias")
+        perturbation = route.get("perturbation")
+        if alias and _looks_like_compound_term(str(alias)):
+            terms.append(str(alias))
+            if perturbation:
+                aliased_perturbations.add(str(perturbation))
+        elif perturbation and _looks_like_compound_term(str(perturbation)):
+            terms.append(str(perturbation))
+
+    primary = matrix.get("primary_result") or {}
+    if primary.get("modality") == "cp":
+        alias = primary.get("perturbation_alias")
+        perturbation = primary.get("perturbation")
+        if alias and _looks_like_compound_term(str(alias)):
+            terms.append(str(alias))
+        elif perturbation and str(perturbation) not in aliased_perturbations and _looks_like_compound_term(str(perturbation)):
+            terms.append(str(perturbation))
+
+    if not terms and intent.get("pert_class") == "drug" and intent.get("pert_desc"):
+        term = str(intent["pert_desc"])
+        if _looks_like_compound_term(term):
             terms.append(term)
+
     return [item["term"] for item in _dedupe_terms([{"term": term, "role": "compound"} for term in terms])[:max_terms]]
+
+
+def _matrix_has_compound_routes(matrix: dict[str, Any]) -> bool:
+    primary = matrix.get("primary_result") or {}
+    if primary.get("modality") == "cp":
+        return True
+    return any(route.get("modality") == "cp" for route in matrix.get("executed_routes") or [])
 
 
 def _looks_like_compound_term(term: str) -> bool:
