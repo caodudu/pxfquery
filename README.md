@@ -16,15 +16,15 @@ biological question
 
 The language model is used to understand the question. The biological answer is produced from perturbation signature matrices, functional score matrices, metadata, and resource indexes.
 
-## Traditional Workflow vs PxFquery
+## Traditional Lookup vs PxFquery
 
-| Traditional perturbation lookup | PxFquery |
+| If you use LINCS / CMap manually | If you use PxFquery |
 | --- | --- |
-| Start from fixed identifiers such as one compound, one gene, or one cell line. | Start from a biological sentence that may contain perturbations, phenotypes, cell context, direction, and intent. |
-| The user manually decides whether the task is perturbation-to-function or function-to-perturbation. | The LLM resolves the query mode and extracts structured biological intent. |
-| Alias handling, cell-context matching, modality selection, and score-table routing are separate manual steps. | Resource routing connects aliases, contexts, perturbation modalities, and functional matrices in one query object. |
-| Forward and reverse analysis require different scripts and different result formats. | Forward and reverse analysis use the same `pxf.tl.parse()` and `pxf.tl.answer()` interface. |
-| Results usually end as tables that still need interpretation and plotting. | PxFquery returns ranked results, biological summaries, reusable evidence, plots, HTML reports, CLI output, and MCP payloads. |
+| You translate the biological question into keywords by hand. | You ask the biological question directly. |
+| You decide which compound, gene, cell line, and matrix to search. | PxFquery resolves entities, context, modality, and query direction. |
+| You run separate steps for forward and reverse questions. | One interface handles perturbation-to-function and function-to-perturbation queries. |
+| You compare tables and then make figures yourself. | PxFquery returns ranked answers, evidence tables, figures, and an HTML report. |
+| You write a separate wrapper for scripts or AI tools. | The same result can be used from Python, CLI, chat, reports, or MCP. |
 
 This design connects manuscript-style biological questions with computable perturbation-function evidence.
 
@@ -46,25 +46,21 @@ In a lung adenocarcinoma model, which perturbations are linked to suppression of
 
 PxFquery resolves the desired functional state and searches perturbations associated with that profile.
 
-**Mixed biological intent**
+## Outputs
 
-```text
-Which genetic perturbations may reduce MYC-related programs in a breast cancer context while preserving oxidative phosphorylation?
-```
+PxFquery is designed to produce material a biological reader can inspect directly:
 
-PxFquery keeps the positive and negative functional directions separate during parsing and evidence assembly.
+| Output | What it shows |
+| --- | --- |
+| Answer summary | The main biological pattern found for the question. |
+| Ranked results | Perturbations or functional programs ordered by the matrix evidence. |
+| Evidence table | Matched compounds, genes, contexts, routes, scores, and source fields. |
+| Figures | Bar plots, bubble plots, heatmaps, and evidence-flow panels generated from the query result. |
+| HTML report | A readable report with the question, interpreted query, ranked evidence, figures, and method overview. |
+| Chat follow-up | Continued discussion over the same evidence object. |
+| CLI and MCP | The same query engine exposed to terminals, pipelines, and external AI software. |
 
-## What PxFquery Produces
-
-- ranked perturbations or ranked functional programs
-- context-aware biological summaries
-- evidence tables with matched entities, route information, and scores
-- publication-style plots including bar plots, bubble plots, heatmaps, query evidence diagrams, and provenance panels
-- HTML reports for biological readers
-- command-line output for pipeline use
-- MCP tools for external AI research environments
-
-The same evidence object powers the Python API, CLI, figures, HTML report, chat, and MCP interface.
+The Python API, command line, HTML report, chat interface, and MCP server all reuse the same parsed evidence object.
 
 ## Data Scope
 
