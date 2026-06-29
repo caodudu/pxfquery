@@ -23,9 +23,10 @@ class PxFQueryEvent:
 class EventLog:
     """Small non-secret event logger for stage reports, warnings, and errors."""
 
-    def __init__(self, *, enabled: bool = True, stream=None) -> None:
+    def __init__(self, *, enabled: bool = True, stream=None, style: str = "json") -> None:
         self.enabled = enabled
         self.stream = stream if stream is not None else sys.stderr
+        self.style = style
         self.events: list[PxFQueryEvent] = []
 
     def stage(self, layer: str, stage: str, message: str, **details: Any) -> PxFQueryEvent:
@@ -58,7 +59,10 @@ class EventLog:
         )
         self.events.append(event)
         if self.enabled:
-            print(json.dumps(event.to_dict(), ensure_ascii=False, sort_keys=True), file=self.stream)
+            if self.style == "text":
+                print(_text_line(event), file=self.stream)
+            else:
+                print(json.dumps(event.to_dict(), ensure_ascii=False, sort_keys=True), file=self.stream)
         return event
 
 
@@ -74,3 +78,30 @@ def _redact(value: Any) -> Any:
     if isinstance(value, list):
         return [_redact(item) for item in value]
     return value
+
+
+def _text_line(event: PxFQueryEvent) -> str:
+    stage = _public_stage(event.stage or event.layer)
+    prefix = "ERROR" if event.level == "error" else "WARN" if event.level == "warning" else stage
+    details = []
+    for key, value in event.details.items():
+        if value in (None, "", [], {}):
+            continue
+        details.append(f"{key}={value}")
+    suffix = f" | {'; '.join(details)}" if details else ""
+    return f"[{prefix}] {event.message}{suffix}"
+
+
+def _public_stage(stage: str) -> str:
+    text = stage.lower()
+    if "parse" in text or "intent" in text:
+        return "Parsing"
+    if "route" in text or "match" in text:
+        return "Matching"
+    if "matrix" in text or "query" in text:
+        return "Matrix"
+    if "evidence" in text or "assemble" in text:
+        return "Evidence"
+    if "answer" in text or "render" in text:
+        return "Answer"
+    return "Status"

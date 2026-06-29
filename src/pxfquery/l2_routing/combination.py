@@ -11,7 +11,7 @@ MAX_PERTURBATION_PROXIES = 5
 MAX_REVERSE_INTERPRETATION_SETS = 3
 MAX_REVERSE_FUNCTIONS_PER_SET = 3
 MAX_PAIR_CHECKS = 25
-MAX_SELECTED_ROUTES = 3
+MAX_SELECTED_ROUTES = 6
 MAX_EXPANDED_CELL_CANDIDATES = 25
 MAX_EXPANDED_PERTURBATION_PROXIES = 50
 MODALITIES = ("cp", "sh", "xpr")
@@ -40,7 +40,7 @@ def route_combinations(
             {"tier": "proxy_cell_proxy_perturbation", "cell_role": "proxy", "perturbation_role": "proxy"},
         ]
         pair_metadata = _load_pair_metadata(resources) if pair_policy == "observed" else None
-        route_candidates = _forward_route_candidates(cell_route, perturbation_route, intent, pair_metadata)
+        route_candidates = _rank_routes_by_quality(_forward_route_candidates(cell_route, perturbation_route, intent, pair_metadata))
         pair_availability = _pair_availability_forward(route_candidates, forward_engines, pair_metadata, pair_policy)
         status = _combination_status(bool(selected_pert or proxy_pert), pair_availability)
         return {
@@ -61,7 +61,7 @@ def route_combinations(
             "pair_availability": pair_availability,
         }
     pair_metadata = _load_pair_metadata(resources) if pair_policy == "observed" else None
-    route_candidates = _reverse_route_candidates(cell_route, function_route, intent, pair_metadata)
+    route_candidates = _rank_routes_by_quality(_reverse_route_candidates(cell_route, function_route, intent, pair_metadata))
     pair_availability = _pair_availability_reverse(route_candidates, function_route, reverse_engines, pair_metadata, pair_policy)
     return {
         "status": _combination_status(bool(function_route.get("selected")), pair_availability),
@@ -93,14 +93,17 @@ def _forward_route_candidates(
     normal_lineage_anchor_cells = [c for c in cells if c.get("cell_expansion_scope") == "normal_lineage_data_anchor"]
     if use_pair_metadata:
         cells = [c for c in cells if c.get("cell_expansion_scope") != "normal_lineage_data_anchor"]
-    exact_cells = [c for c in cells if c.get("role") in {"exact", "llm-tree-leaf", "all-cells"}][:1]
-    proxy_cells = [c for c in cells if c not in exact_cells]
+    exact_cells = [c for c in cells if c.get("role") in {"exact", "all-cells"}][:1]
+    representative_cells = [c for c in cells if c.get("role") == "llm-tree-leaf"]
+    proxy_cells = [c for c in cells if c not in exact_cells and c not in representative_cells]
     exact_perts = perturbation_route.get("selected", [])[:1]
     proxy_source = (perturbation_route.get("expanded_proxies") if use_pair_metadata else None) or perturbation_route.get("proxies", [])
     proxy_perts = proxy_source[:MAX_EXPANDED_PERTURBATION_PROXIES if use_pair_metadata else MAX_PERTURBATION_PROXIES]
     stages = [
         ("A", "exact_cell_exact_perturbation", exact_cells, exact_perts),
+        ("R", "representative_cell_representative_perturbation", representative_cells, exact_perts),
         ("B", "exact_cell_proxy_perturbation", exact_cells, proxy_perts),
+        ("S", "representative_cell_proxy_perturbation", representative_cells, proxy_perts),
         ("C", "proxy_cell_exact_perturbation", proxy_cells, exact_perts),
         ("D", "proxy_cell_proxy_perturbation", proxy_cells, proxy_perts),
     ]
@@ -165,6 +168,9 @@ def _make_forward_route(
     use_pair_metadata: bool,
 ) -> dict[str, Any]:
     anchor = _perturbation_anchor(intent, pert, matched_modalities)
+    cell_distance = _cell_match_distance(cell)
+    pert_distance = _perturbation_match_distance(pert)
+    route_quality = _route_quality(cell_distance, pert_distance)
     route = {
         "route_id": f"forward_{route_number:03d}",
         "stage": stage,
@@ -173,13 +179,16 @@ def _make_forward_route(
         "cell_role": cell.get("role"),
         "cell_expansion_scope": cell.get("cell_expansion_scope", "public_candidates"),
         "cell_route_distance": cell.get("cell_route_distance", 0 if cell.get("role") in {"exact", "llm-tree-leaf"} else 1),
+        "cell_match_type": _cell_match_type(cell),
+        "cell_match_distance": cell_distance,
         "source_disease": cell.get("source_disease"),
         "candidate_disease": cell.get("candidate_disease"),
-        "semantic_downgrade_reason": cell.get("semantic_downgrade_reason"),
         "perturbation": _perturbation_key(pert),
         "perturbation_role": pert.get("role"),
         "perturbation_expansion_scope": _perturbation_expansion_scope(pert),
         "perturbation_source_rank": pert.get("rank"),
+        "perturbation_match_type": _perturbation_match_type(pert),
+        "perturbation_match_distance": pert_distance,
         "perturbation_record": pert,
         "modalities": matched_modalities,
         "modality_evidence": _modality_evidence(intent, pert, matched_modalities),
@@ -192,6 +201,9 @@ def _make_forward_route(
         "pair_verified": bool(use_pair_metadata),
         "pair_verification_source": "l3_obs_min" if use_pair_metadata else None,
         "evidence_level": _evidence_level(cell.get("role"), pert.get("role"), cell.get("cell_expansion_scope")),
+        "semantic_downgrade_reason": cell.get("semantic_downgrade_reason"),
+        "route_quality_score": route_quality,
+        "route_quality": _route_quality_label(route_quality),
     }
     if len(matched_modalities) == 1:
         route["modality"] = matched_modalities[0]
@@ -249,12 +261,16 @@ def _make_reverse_route(
     role = cell.get("role")
     evidence = "observed_modality_anchor" if role == "observed-anchor" else "function-set-and-observed-cell-scope" if use_pair_metadata else "function-set-and-cell-scope"
     reverse_mode = _genetic_reverse_mode(modality, intent)
+    cell_distance = _cell_match_distance(cell)
+    route_quality = _route_quality(cell_distance, 0.0)
     return {
         "route_id": f"reverse_{route_number:03d}",
         "cell": cell.get("cell"),
         "cell_role": role,
         "cell_expansion_scope": cell.get("cell_expansion_scope"),
         "cell_route_distance": cell.get("cell_route_distance"),
+        "cell_match_type": _cell_match_type(cell),
+        "cell_match_distance": cell_distance,
         "interpretation_set_id": interpretation_set.get("set_id"),
         "functions": interpretation_set.get("functions", [])[:MAX_REVERSE_FUNCTIONS_PER_SET],
         "modality": modality,
@@ -264,6 +280,8 @@ def _make_reverse_route(
         "pair_verified": bool(use_pair_metadata),
         "pair_verification_source": "l3_obs_min" if use_pair_metadata else None,
         "evidence_level": evidence,
+        "route_quality_score": route_quality,
+        "route_quality": _route_quality_label(route_quality),
     }
 
 
@@ -289,6 +307,22 @@ def _selected_available_routes(route_candidates: list[dict[str, Any]], pair_avai
         if len(selected) >= MAX_SELECTED_ROUTES:
             break
     return selected
+
+
+def _rank_routes_by_quality(routes: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    ranked = sorted(
+        routes,
+        key=lambda route: (
+            float(route.get("route_quality_score", 1.0)),
+            float(route.get("perturbation_match_distance", 0.0)),
+            float(route.get("cell_match_distance", 0.0)),
+            int(route.get("perturbation_source_rank") or 999),
+            int(route.get("cell_route_distance") or 999),
+        ),
+    )
+    for rank, route in enumerate(ranked, 1):
+        route["route_quality_rank"] = rank
+    return ranked
 
 
 def _pair_availability_forward(
@@ -472,6 +506,107 @@ def _pair_metadata_modalities(
         if any((cell_key, value) in pairs for value in perturbation_values):
             matched.append(modality)
     return matched
+
+
+def _cell_match_type(cell: dict[str, Any] | None) -> str:
+    if not cell:
+        return "all_available_contexts"
+    role = str(cell.get("role") or "")
+    scope = str(cell.get("cell_expansion_scope") or "")
+    if role == "exact":
+        return "user_specified_cell"
+    if role == "all-cells":
+        return "all_available_contexts"
+    if role == "llm-tree-leaf":
+        return "concept_representative_cell"
+    if scope == "same_disease_sibling" or role in {"same_subtype", "same_disease", "same_disease_sibling"}:
+        return "same_disease_cell"
+    if scope == "same_lineage" or role == "same_lineage":
+        return "same_lineage_cell"
+    if scope == "normal_lineage_data_anchor":
+        return "normal_lineage_data_anchor"
+    if role == "observed-anchor":
+        return "observed_data_anchor_cell"
+    return role or scope or "cell_context_candidate"
+
+
+def _cell_match_distance(cell: dict[str, Any] | None) -> float:
+    if not cell:
+        return 0.5
+    raw = cell.get("cell_route_distance")
+    try:
+        base = min(max(float(raw) / 3.0, 0.0), 1.0)
+    except (TypeError, ValueError):
+        base = 0.5
+    role = str(cell.get("role") or "")
+    scope = str(cell.get("cell_expansion_scope") or "")
+    modifier = 0.0
+    if role == "exact":
+        modifier -= 0.05
+    elif role == "llm-tree-leaf":
+        modifier += 0.05
+    elif role == "observed-anchor":
+        modifier += 0.1
+    if scope == "normal_lineage_data_anchor":
+        modifier += 0.1
+    return round(min(max(base + modifier, 0.0), 1.0), 3)
+
+
+def _perturbation_match_type(record: dict[str, Any] | None) -> str:
+    if not record:
+        return "missing_perturbation"
+    role = str(record.get("role") or "")
+    if role == "exact":
+        return "user_specified_perturbation"
+    if role == "llm-normalized":
+        return "normalized_named_perturbation"
+    if role == "mechanism-class-proxy":
+        return "mechanism_representative"
+    if role == "structural-proxy":
+        return "structural_neighbor"
+    if role in {"semantic-proxy", "supporting-semantic-neighbor"}:
+        return "semantic_neighbor"
+    return role or "perturbation_candidate"
+
+
+def _perturbation_match_distance(record: dict[str, Any] | None) -> float:
+    if not record:
+        return 1.0
+    match_type = _perturbation_match_type(record)
+    if match_type in {"user_specified_perturbation", "normalized_named_perturbation"}:
+        similarity = 1.0
+    elif match_type == "mechanism_representative":
+        similarity = 0.95
+    elif match_type in {"semantic_neighbor", "structural_neighbor"}:
+        try:
+            similarity = float(record.get("similarity"))
+        except (TypeError, ValueError):
+            similarity = 0.25
+    else:
+        similarity = 0.25
+    base = 1.0 - min(max(similarity, 0.0), 1.0)
+    modifier = 0.0
+    if match_type == "semantic_neighbor":
+        modifier -= 0.05
+    elif match_type == "structural_neighbor":
+        modifier += 0.0
+    return round(min(max(base + modifier, 0.0), 1.0), 3)
+
+
+def _route_quality(cell_distance: float, perturbation_distance: float) -> float:
+    return round(min(max((cell_distance + perturbation_distance) / 2.0, 0.0), 1.0), 3)
+
+
+def _route_quality_label(score: float) -> str:
+    if score <= 0.12:
+        return "direct_or_close_representative"
+    if score <= 0.3:
+        return "strong_representative"
+    if score <= 0.55:
+        return "usable_neighbor"
+    if score <= 0.75:
+        return "distant_neighbor"
+    return "fallback"
 
 
 def _observed_anchor_cells(

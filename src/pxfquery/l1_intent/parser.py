@@ -67,7 +67,6 @@ BIO_CONTEXT_HINT_WORDS = {
     "primary",
 }
 
-
 def parse_intent(text: str, *, provider: Any | None = None) -> QueryIntent:
     if provider is None:
         raise IntentBackendNotConfigured(

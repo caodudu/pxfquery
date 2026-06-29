@@ -3,6 +3,8 @@ from __future__ import annotations
 from dataclasses import asdict, dataclass, field
 from typing import Any
 
+from pxfquery.version import __version__
+
 
 @dataclass
 class PxFQueryAnswer:
@@ -37,23 +39,19 @@ class PxFQueryAnswer:
         return self.structured_result[key]
 
     def __str__(self) -> str:
-        lines = [self.headline, "", f"Question understood as: {self.interpreted_question}", "", self.summary]
-        lines.extend(["", "Biological results:"])
-        if self.biological_results:
-            for item in self.biological_results[:8]:
-                label = item.get("label") or item.get("name") or item.get("id") or "result"
-                score = item.get("score")
-                rank = item.get("rank")
-                prefix = f"{rank}. " if rank is not None else "- "
-                suffix = f" (score={score})" if score is not None else ""
-                lines.append(f"{prefix}{label}{suffix}")
-        else:
-            lines.append("- No biological result is claimed by L4.")
-        if self.evidence:
-            lines.extend(["", "Evidence:"])
-            for key, value in self.evidence.items():
-                lines.append(f"- {key}: {value}")
-        if self.limitations:
-            lines.extend(["", "Limitations:"])
-            lines.extend(f"- {item}" for item in self.limitations)
-        return "\n".join(lines)
+        return self._llm_answer_text()
+
+    def _llm_answer_text(self) -> str:
+        if self.summary_source != "l4.llm_synthesis.biological_summary" or not str(self.summary or "").strip():
+            raise RuntimeError("L5 default answer requires L4 LLM biological_summary.")
+        return "\n".join(
+            [
+                "Answer",
+                str(self.summary).strip(),
+                "",
+                "=======",
+                f"Analysis source: pxfquery {__version__}",
+                'Evidence: inspect `answer.tables["route_summary"]` and `answer.tables["route_function_results"]`.',
+                "Figures: call `pxf.tl.figures(qdata, output_dir=...)` after `pxf.tl.answer(qdata)`.",
+            ]
+        )

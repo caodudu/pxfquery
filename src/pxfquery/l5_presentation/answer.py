@@ -60,22 +60,14 @@ def _as_dossier(structured: dict[str, Any]) -> dict[str, Any]:
 
 
 def _headline(basis: dict[str, Any]) -> str:
-    if basis.get("answerability") == "answered":
-        return "PxFquery found matrix-backed evidence"
-    if basis.get("answerability") == "partially_answered":
-        return "PxFquery found partial matrix-backed evidence"
-    return "PxFquery did not find matrix-backed evidence"
+    return "Biological answer"
 
 
 def _summary(basis: dict[str, Any], synthesis: dict[str, Any]) -> str:
     biological_summary = synthesis.get("biological_summary") or synthesis.get("summary")
     if biological_summary:
         return str(biological_summary)
-    claim = basis.get("main_claim") or "L4 did not provide a displayable claim."
-    strength = basis.get("claim_strength")
-    if strength and strength != "none":
-        return f"{claim} Confidence is {strength} within the configured evidence package."
-    return claim
+    return ""
 
 
 def _summary_source(basis: dict[str, Any], synthesis: dict[str, Any]) -> str:
@@ -83,8 +75,6 @@ def _summary_source(basis: dict[str, Any], synthesis: dict[str, Any]) -> str:
         return "l4.llm_synthesis.biological_summary"
     if synthesis.get("summary"):
         return "l4.llm_synthesis.summary"
-    if basis.get("main_claim"):
-        return "l4.claim_basis.main_claim"
     return "l4.missing_summary"
 
 

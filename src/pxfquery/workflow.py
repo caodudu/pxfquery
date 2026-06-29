@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from time import perf_counter
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
@@ -12,6 +13,7 @@ from pxfquery.l2_routing import route_intent
 from pxfquery.l5_presentation.answer import build_answer
 from pxfquery.l5_presentation.chat import build_chat_response
 from pxfquery.l5_presentation.figures import write_figure_files
+from pxfquery.utils.events import EventLog, PxFQueryEvent
 
 
 @dataclass
@@ -67,18 +69,62 @@ class ToolsNamespace:
         self,
         text: str,
         *,
-        synthesize: bool = False,
+        synthesize: bool = True,
         literature_provider: Any | None = None,
         auto_download: bool = True,
         top_n: int = 20,
         debug: bool = False,
+        progress: bool | EventLog = True,
         copy: bool = False,
     ) -> PxFQueryData:
         qdata = self._client.read.query(text)
-        self._client.pp.parse(qdata)
-        self._client.pp.route(qdata, auto_download=auto_download)
-        self.execute(qdata, auto_download=auto_download, top_n=top_n)
-        self.assemble(qdata, synthesize=synthesize, literature_provider=literature_provider, debug=debug)
+        events = progress if isinstance(progress, EventLog) else EventLog(enabled=bool(progress), style="text")
+        qdata.uns["progress_events"] = events.to_list()
+        try:
+            stage_start = perf_counter()
+            events.stage("parse", "parse_start", "start")
+            self._client.pp.parse(qdata)
+            intent = qdata.uns.get("intent", {})
+            events.stage(
+                "parse",
+                "parse_done",
+                "done",
+                mode=intent.get("query_type"),
+                context=intent.get("bio_context"),
+                perturbation=intent.get("pert_desc"),
+                function=intent.get("function_desc"),
+                time=_elapsed(stage_start),
+            )
+
+            stage_start = perf_counter()
+            events.stage("match", "match_start", "start")
+            self._client.pp.route(qdata, auto_download=auto_download)
+            selected = ((qdata.uns.get("route_plan") or {}).get("combination_route") or {}).get("selected_routes") or []
+            events.stage("match", "match_done", "done", matches=len(selected), time=_elapsed(stage_start))
+
+            stage_start = perf_counter()
+            events.stage("matrix", "matrix_start", "start")
+            self.execute(qdata, auto_download=auto_download, top_n=top_n)
+            execution = qdata.uns.get("execution") or {}
+            events.stage(
+                "matrix",
+                "matrix_done",
+                "done",
+                profiles=len(execution.get("executed_routes") or []),
+                skipped=len(execution.get("skipped_routes") or []),
+                time=_elapsed(stage_start),
+            )
+
+            stage_start = perf_counter()
+            events.stage("evidence", "evidence_start", "start")
+            self.assemble(qdata, synthesize=synthesize, literature_provider=literature_provider, debug=debug)
+            dossier = qdata.uns.get("evidence_dossier") or {}
+            events.stage("evidence", "evidence_done", "done", status=_public_status(dossier.get("dossier_status")), time=_elapsed(stage_start))
+        except Exception as exc:
+            events.error("pipeline", "failed", "failed", error=f"{type(exc).__name__}: {exc}")
+            qdata.uns["progress_events"] = events.to_list()
+            raise
+        qdata.uns["progress_events"] = events.to_list()
         return _copy_qdata(qdata) if copy else qdata
 
     def execute(
@@ -108,7 +154,7 @@ class ToolsNamespace:
         qdata: PxFQueryData,
         *,
         copy: bool = False,
-        synthesize: bool = False,
+        synthesize: bool = True,
         literature_provider: Any | None = None,
         debug: bool = False,
     ) -> PxFQueryData | None:
@@ -166,10 +212,19 @@ class ToolsNamespace:
         *,
         mode: str = "python",
         output: str | Path | None = None,
+        progress: bool | EventLog = False,
         copy: bool = False,
     ) -> PxFQueryData | None:
         target = _copy_qdata(qdata) if copy else qdata
         dossier = _require_evidence(target)
+        events = progress if isinstance(progress, EventLog) else EventLog(enabled=bool(progress), style="text")
+        existing = target.uns.get("progress_events") or []
+        for item in existing:
+            event = _event_from_dict(item)
+            if event is not None:
+                events.events.append(event)
+        stage_start = perf_counter()
+        events.stage("answer", "answer_start", "start", mode=mode)
         answer = build_answer(target.text, dossier, mode=mode)
         if mode == "html" and output is not None:
             path = Path(output)
@@ -177,6 +232,8 @@ class ToolsNamespace:
             target.uns["answer_output"] = str(path)
         target.uns["_answer"] = answer
         target.uns["answer"] = answer.to_dict()
+        events.stage("answer", "answer_done", "done", mode=mode, time=_elapsed(stage_start))
+        target.uns["progress_events"] = events.to_list()
         return target if copy else None
 
     def chat(
@@ -309,3 +366,34 @@ def _json_safe_list(value: Any) -> Any:
         except Exception:
             pass
     return str(value)
+
+
+def _event_from_dict(value: Any) -> PxFQueryEvent | None:
+    if not isinstance(value, dict):
+        return None
+    try:
+        return PxFQueryEvent(
+            timestamp=str(value.get("timestamp") or ""),
+            layer=str(value.get("layer") or ""),
+            stage=str(value.get("stage") or ""),
+            level=str(value.get("level") or "stage"),
+            message=str(value.get("message") or ""),
+            details=value.get("details") if isinstance(value.get("details"), dict) else {},
+        )
+    except Exception:
+        return None
+
+
+def _public_status(value: Any) -> str:
+    text = str(value or "")
+    if text in {"evidence_found", "partial_evidence"}:
+        return "ready"
+    if text in {"unresolved_route", "no_executable_route", "no_matrix_hit"}:
+        return "no_match"
+    if text in {"resource_unavailable", "invalid_upstream_schema"}:
+        return "blocked"
+    return text or "unknown"
+
+
+def _elapsed(start: float) -> str:
+    return f"{perf_counter() - start:.2f}s"

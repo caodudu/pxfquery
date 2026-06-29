@@ -11,6 +11,7 @@ def build_tables(dossier: dict[str, Any]) -> dict[str, list[dict[str, Any]]]:
     return {
         "ranked_results": _ranked_results(matrix),
         "route_summary": _route_summary(route, matrix),
+        "route_function_results": _route_function_results(matrix),
         "matrix_context": _matrix_context(primary),
         "claim_rules": _claim_rules(dossier),
     }
@@ -56,7 +57,16 @@ def _route_summary(route: dict[str, Any], matrix: dict[str, Any]) -> list[dict[s
                 "status": item.get("status") or route.get("status"),
                 "cell": item.get("cell") or item.get("matched_cell"),
                 "perturbation": item.get("perturbation") or item.get("matched_perturbation"),
+                "perturbation_alias": item.get("perturbation_alias") or (item.get("perturbation_record") or {}).get("alias"),
                 "tier": item.get("tier") or item.get("evidence_tier"),
+                "cell_match_type": item.get("cell_match_type"),
+                "perturbation_match_type": item.get("perturbation_match_type"),
+                "cell_match_distance": item.get("cell_match_distance"),
+                "perturbation_match_distance": item.get("perturbation_match_distance"),
+                "route_quality_score": item.get("route_quality_score"),
+                "route_quality": item.get("route_quality"),
+                "score_orientation": item.get("score_orientation"),
+                "recommended_operation": item.get("recommended_operation"),
                 "reason": item.get("reason") or item.get("pair_search_reason"),
             }
         )
@@ -65,11 +75,51 @@ def _route_summary(route: dict[str, Any], matrix: dict[str, Any]) -> list[dict[s
             "route_id": item.get("route_id"),
             "status": item.get("status"),
             "cell": item.get("cell"),
+            "perturbation": item.get("perturbation"),
+            "perturbation_alias": item.get("perturbation_alias"),
             "tier": item.get("tier"),
+            "cell_match_type": item.get("cell_match_type"),
+            "perturbation_match_type": item.get("perturbation_match_type"),
+            "cell_match_distance": item.get("cell_match_distance"),
+            "perturbation_match_distance": item.get("perturbation_match_distance"),
+            "route_quality_score": item.get("route_quality_score"),
+            "route_quality": item.get("route_quality"),
+            "score_orientation": item.get("score_orientation"),
+            "recommended_operation": item.get("recommended_operation"),
             "reason": item.get("pair_search_reason"),
         }
         if row not in rows:
             rows.append(row)
+    return rows
+
+
+def _route_function_results(matrix: dict[str, Any]) -> list[dict[str, Any]]:
+    if matrix.get("mode") != "forward":
+        return []
+    rows = []
+    for route in matrix.get("executed_routes") or []:
+        for direction_key in ("top_activated", "top_suppressed"):
+            for item in route.get(direction_key) or []:
+                rows.append(
+                    {
+                        "route_id": route.get("route_id"),
+                        "cell": route.get("cell"),
+                        "perturbation": route.get("perturbation"),
+                        "perturbation_alias": route.get("perturbation_alias"),
+                        "modality": route.get("modality"),
+                        "score_orientation": route.get("score_orientation"),
+                        "recommended_operation": route.get("recommended_operation"),
+                        "route_quality_score": route.get("route_quality_score"),
+                        "route_quality": route.get("route_quality"),
+                        "cell_match_type": route.get("cell_match_type"),
+                        "perturbation_match_type": route.get("perturbation_match_type"),
+                        "rank": item.get("rank"),
+                        "label": item.get("label") or item.get("function"),
+                        "function": item.get("function") or item.get("label"),
+                        "score": item.get("score"),
+                        "direction": item.get("direction") or ("activated" if direction_key == "top_activated" else "suppressed"),
+                    }
+                )
     return rows
 
 
