@@ -168,18 +168,22 @@ def test_l4_keeps_rejected_candidates_out_of_default_route_evidence():
 def test_l4_synthesis_payload_preserves_exact_primary_with_proxy_support_semantics():
     class Provider:
         def __init__(self):
-            self.system_prompt = ""
-            self.user_payload = {}
+            self.system_prompts = {}
+            self.user_payloads = {}
 
         def request_json(self, *, stage, system_prompt, user_payload, temperature=0):
-            self.system_prompt = system_prompt
-            self.user_payload = user_payload
+            self.system_prompts[stage] = system_prompt
+            self.user_payloads[stage] = user_payload
+            if stage.startswith("l4_forward_biological_answer"):
+                return {
+                    "answer": "Erlotinib in A375 cells activates stress programs.",
+                    "subquestions": [],
+                }, {"provider": "fake", "final_status": "ok", "attempts": [], "parsed_json_hash": "bio"}
             return {
-                "biological_summary": "Erlotinib in A375 cells activates stress programs.",
-                "evidence_audit_summary": "Exact primary matrix evidence with proxy support.",
+                "summary": "Exact primary matrix evidence with proxy support.",
                 "verdict_rationale": "primary exact route plus proxy references",
                 "confidence_rationale": "moderate",
-            }, {"provider": "fake", "final_status": "ok", "attempts": [], "parsed_json_hash": "fake"}
+            }, {"provider": "fake", "final_status": "ok", "attempts": [], "parsed_json_hash": "audit"}
 
     provider = Provider()
     execution = {
@@ -226,19 +230,13 @@ def test_l4_synthesis_payload_preserves_exact_primary_with_proxy_support_semanti
     )
 
     assert dossier["evidence_layer"]["evidence_grade"] == "exact_primary_with_proxy_support"
-    assert "Use only the supplied biology_context" in provider.system_prompt
-    assert "biological_summary must directly answer the biological question" in provider.system_prompt
-    assert "Do not start biological_summary with 'PxFquery found'" in provider.system_prompt
-    assert provider.user_payload["summary_contract"]["summary_focus"] == "biological_answer_only"
-    assert provider.user_payload["summary_contract"]["isolated_outputs"] == ["biological_summary", "evidence_audit_summary"]
-    assert "PxFquery found" in provider.user_payload["summary_contract"]["forbidden_summary_openers"]
-    assert "limitations" not in provider.user_payload
-    assert "limitations" in provider.user_payload["summary_contract"]["forbidden_topics"]
-    assert "claim_basis" not in provider.user_payload
-    assert "evidence_grade_semantics" not in provider.user_payload
-    assert "route_summary" not in provider.user_payload
-    assert provider.user_payload["biology_context"]["cell"] == "A375"
-    assert provider.user_payload["audit_context"]["evidence_grade"] == "exact_primary_with_proxy_support"
+    bio_stage = "l4_forward_biological_answer"
+    assert "biological answer writer" in provider.system_prompts[bio_stage]
+    assert "Do not mention PxFquery" in provider.system_prompts[bio_stage]
+    assert "audit_context" not in provider.user_payloads[bio_stage]
+    assert "claim_basis" not in provider.user_payloads[bio_stage]
+    assert provider.user_payloads[bio_stage]["interpreted_intent"]["cell"] == "A375"
+    assert provider.user_payloads["l4_execution_quality"]["audit_context"]["evidence_grade"] == "exact_primary_with_proxy_support"
     synthesis = dossier["evidence_layer"]["llm_synthesis"]
     assert synthesis["summary"] == "Erlotinib in A375 cells activates stress programs."
     assert synthesis["biological_summary"] == synthesis["summary"]
@@ -259,9 +257,9 @@ def test_l4_reverse_concept_context_payload_does_not_promote_primary_cell():
                 self.system_prompt = system_prompt
                 self.user_payload = user_payload
                 return {
-                    "answer": "Across lung cancer models, afatinib is the most consistently supported candidate.",
+                    "answer": "Across NSCLC model-set profiles, afatinib is the most consistently supported candidate.",
                     "subquestions": [],
-                    "candidate_interpretation": ["afatinib: candidate supported across multiple lung cancer models"],
+                    "candidate_interpretation": ["afatinib: candidate supported across multiple NSCLC model-set profiles"],
                     "support_notes": [],
                 }, {"provider": "fake", "final_status": "ok", "attempts": []}
             return {"summary": "Reverse query executed."}, {"provider": "fake", "final_status": "ok", "attempts": []}
@@ -306,7 +304,7 @@ def test_l4_reverse_concept_context_payload_does_not_promote_primary_cell():
 
     assemble_evidence(
         execution,
-        intent={"query_type": "reverse", "bio_context": "lung cancer", "function_desc": "suppress MYC targets"},
+        intent={"query_type": "reverse", "bio_context": "NSCLC model set", "function_desc": "suppress MYC targets"},
         route_plan={"schema_version": "l2-route-plan/v2", "route_status": "routed"},
         llm_provider=provider,
         synthesize=True,
@@ -319,6 +317,61 @@ def test_l4_reverse_concept_context_payload_does_not_promote_primary_cell():
     assert "Do not frame the answer as" in provider.system_prompt
 
 
+def test_l4_reverse_payload_hides_unreadable_genetic_reagent_ids_from_llm():
+    class Provider:
+        def __init__(self):
+            self.user_payload = {}
+
+        def request_json(self, *, stage, system_prompt, user_payload, temperature=0):
+            if stage.startswith("l4_reverse_biological_answer"):
+                self.user_payload = user_payload
+                return {"answer": "AURKA is the readable candidate.", "subquestions": []}, {"provider": "fake"}
+            return {"summary": "Reverse query executed."}, {"provider": "fake"}
+
+    provider = Provider()
+    execution = {
+        "schema_version": "l3-matrix-execution/v1",
+        "query_id": "q-reverse-genetic",
+        "query_type": "reverse",
+        "execution_status": "executed",
+        "source_route_schema": "l2-route-plan/v2",
+        "executed_routes": [
+            {
+                "route_id": "reverse_001",
+                "query_type": "reverse",
+                "modality": "xpr",
+                "status": "executed",
+                "cell": "A549",
+                "route_metadata": {"cell_match_type": "concept_representative_cell"},
+                "row_match": {"n_rows": 10, "n_ranked_groups": 10},
+                "rankings": {
+                    "top_perturbations": [
+                        {"rank": 1, "label": "BRDN0000733847", "pert_id": "BRDN0000733847", "score": 10.0},
+                        {"rank": 2, "label": "AURKA", "pert_id": "BRDN0001148015", "cmap_name": "AURKA", "score": 9.0},
+                    ]
+                },
+                "scores": {},
+                "diagnostics": {},
+            }
+        ],
+        "skipped_routes": [],
+        "errors": [],
+        "warnings": [],
+    }
+
+    assemble_evidence(
+        execution,
+        intent={"query_type": "reverse", "bio_context": "NSCLC model set", "function_desc": "activate apoptosis"},
+        route_plan={"schema_version": "l2-route-plan/v2", "route_status": "routed"},
+        llm_provider=provider,
+        synthesize=True,
+    )
+
+    assert [row["label"] for row in provider.user_payload["candidate_summary"]] == ["AURKA"]
+    profile_candidates = provider.user_payload["evidence_profiles"][0]["candidate_perturbations"]
+    assert [row["label"] for row in profile_candidates] == ["AURKA"]
+
+
 def test_l4_synthesis_repairs_quality_report_style_summary():
     class Provider:
         def __init__(self):
@@ -326,19 +379,21 @@ def test_l4_synthesis_repairs_quality_report_style_summary():
 
         def request_json(self, *, stage, system_prompt, user_payload, temperature=0):
             self.stages.append(stage)
-            if stage == "l4_evidence":
+            if stage == "l4_forward_biological_answer":
                 return {
-                    "biological_summary": "PxFquery found evidence grade exact_primary_with_proxy_support.",
-                    "evidence_audit_summary": "proxy routes are not exact",
-                    "verdict_rationale": "proxy routes are not exact",
-                    "confidence_rationale": "moderate",
+                    "answer": "PxFquery found evidence grade exact_primary_with_proxy_support.",
+                    "subquestions": [],
                 }, {"provider": "fake", "final_status": "ok", "attempts": [], "parsed_json_hash": "bad"}
+            if stage == "l4_biological_answer_repair":
+                return {
+                    "answer": "Erlotinib in A375 cells activates stress programs and suppresses cholesterol homeostasis.",
+                    "subquestions": [],
+                }, {"provider": "fake", "final_status": "ok", "attempts": [], "parsed_json_hash": "repair"}
             return {
-                "biological_summary": "Erlotinib in A375 cells activates stress programs and suppresses cholesterol homeostasis.",
-                "evidence_audit_summary": "Exact primary matrix evidence is present, with proxy routes as supporting references.",
+                "summary": "Exact primary matrix evidence is present, with proxy routes as supporting references.",
                 "verdict_rationale": "Exact primary matrix evidence is present, with proxy routes as supporting references.",
                 "confidence_rationale": "Moderate because the primary evidence has one matched row.",
-            }, {"provider": "fake", "final_status": "ok", "attempts": [], "parsed_json_hash": "repair"}
+            }, {"provider": "fake", "final_status": "ok", "attempts": [], "parsed_json_hash": "audit"}
 
     provider = Provider()
     execution = {
@@ -380,11 +435,11 @@ def test_l4_synthesis_repairs_quality_report_style_summary():
     )
     synthesis = dossier["evidence_layer"]["llm_synthesis"]
 
-    assert provider.stages == ["l4_evidence", "l4_evidence_repair"]
+    assert provider.stages == ["l4_forward_biological_answer", "l4_biological_answer_repair", "l4_execution_quality"]
     assert synthesis["summary"].startswith("Erlotinib in A375 cells")
     assert synthesis["biological_summary"] == synthesis["summary"]
     assert synthesis["evidence_audit_summary"].startswith("Exact primary matrix evidence")
-    assert synthesis["diagnostics"]["quality_flags"] == []
+    assert synthesis["diagnostics"]["biological_quality_flags"] == []
 
 
 def test_l4_route_unresolved_is_not_answered():

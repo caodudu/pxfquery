@@ -131,6 +131,30 @@ def test_l3_reverse_projection_records_filter_wrong_sign_hits():
     assert all(item["raw_projection"] > 0 for item in lof)
 
 
+def test_l3_reverse_genetic_skips_unreadable_brdn_reagents_before_ranking():
+    X = np.array([[9.0], [5.0], [4.0]], dtype=np.float32)
+    obs = pd.DataFrame(
+        [
+            {"sig_id": "s1", "pert_id": "BRDN0000733847", "cmap_name": None, "cell_iname": "A549"},
+            {"sig_id": "s2", "pert_id": "BRDN0001148015", "cmap_name": "AURKA", "cell_iname": "A549"},
+            {"sig_id": "s3", "pert_id": "HAHN-000205", "cmap_name": "PSMA1", "cell_iname": "A549"},
+        ]
+    )
+    rankings = _reverse_rankings(
+        ["HALLMARK_APOPTOSIS"],
+        X,
+        obs,
+        np.array([1.0], dtype=np.float32),
+        np.asarray(X @ np.array([1.0], dtype=np.float32), dtype=np.float32),
+        modality="xpr",
+        ranking_mode="perturbation_only",
+        top_n=2,
+    )
+
+    assert [item["label"] for item in rankings["top_perturbations"]] == ["AURKA", "PSMA1"]
+    assert all(not str(item["label"]).startswith("BRDN") for item in rankings["top_perturbations"])
+
+
 def test_l3_reverse_filters_css001_control_sequences_before_ranking():
     X = np.array([[30.0], [5.0], [4.0]], dtype=np.float32)
     obs = pd.DataFrame(

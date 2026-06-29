@@ -105,6 +105,13 @@ def _evidence_grade(status: str, execution: dict[str, Any], route_plan: dict[str
     if not execution.get("executed_routes"):
         return "no_matrix"
     routes = execution.get("executed_routes", [])
+    tiers = _route_tiers(execution, route_plan)
+    has_exact_primary = any("exact_cell_exact_perturbation" in tier or "exact_matrix" in tier for tier in tiers)
+    has_proxy_support = any("proxy" in tier for tier in tiers)
+    if has_exact_primary and has_proxy_support:
+        return "exact_primary_with_proxy_support"
+    if has_exact_primary:
+        return "exact_matrix"
     best_score = min((_route_quality_score((route.get("route_metadata") or {})) for route in routes), default=1.0)
     labels = {str((route.get("route_metadata") or {}).get("route_quality") or "") for route in routes}
     if "fallback" in labels or best_score > 0.75:
@@ -402,6 +409,8 @@ def _must_not_claim(status: str, evidence_grade: str) -> list[str]:
     ]
     if status != "evidence_found":
         claims.append("the query was fully answered")
+    if evidence_grade == "exact_primary_with_proxy_support":
+        claims.append("all selected evidence routes were exact")
     if evidence_grade in {"fallback_matrix", "distant_neighbor_matrix"}:
         claims.append("direct coverage of the requested biological concept")
     return claims
@@ -759,7 +768,7 @@ def _route_biology_context(matrix_evidence: dict[str, Any]) -> list[dict[str, An
             if requested:
                 profile["requested_function_records"] = _json_safe(requested)
         elif matrix_evidence.get("mode") == "reverse":
-            profile["candidate_perturbations"] = _compact_rankings(route.get("top_perturbations", []))
+            profile["candidate_perturbations"] = _compact_reverse_candidates(route.get("top_perturbations", []), modality=route.get("modality"))
         profiles.append({key: value for key, value in profile.items() if value not in (None, [], {})})
     return profiles
 
@@ -782,8 +791,11 @@ def _reverse_candidate_summary(matrix_evidence: dict[str, Any], *, max_candidate
     for route in routes:
         route_id = route.get("route_id")
         cell = route.get("cell")
+        modality = route.get("modality")
         is_exact_route = route_id in exact_route_ids
         for item in route.get("top_perturbations") or []:
+            if _unreadable_reverse_candidate(item, modality=modality):
+                continue
             key = _candidate_key(item)
             if not key:
                 continue
@@ -839,6 +851,24 @@ def _reverse_candidate_summary(matrix_evidence: dict[str, Any], *, max_candidate
     for rank, row in enumerate(rows[:max_candidates], start=1):
         row["rank"] = rank
     return rows[:max_candidates]
+
+
+def _compact_reverse_candidates(items: list[dict[str, Any]], *, modality: str | None) -> list[dict[str, Any]]:
+    compact = []
+    for item in items:
+        if _unreadable_reverse_candidate(item, modality=modality):
+            continue
+        compact.extend(_compact_rankings([item]))
+        if len(compact) >= 8:
+            break
+    return compact
+
+
+def _unreadable_reverse_candidate(item: dict[str, Any], *, modality: str | None) -> bool:
+    if modality not in {"sh", "xpr"}:
+        return False
+    label = str(item.get("label") or item.get("cmap_name") or item.get("pert_id") or "").strip()
+    return bool(re.fullmatch(r"BRDN\d+", label))
 
 
 def _candidate_key(item: dict[str, Any]) -> str:

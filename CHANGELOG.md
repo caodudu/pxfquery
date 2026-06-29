@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.5.11.dev0 - 2026-06-29
+
+- Added local `PxFQueryData` pickle persistence through `qdata.save(...)`, `PxFQueryData.load(...)`, `pxf.tl.save/load(...)`, and `pxf.read.save/load(...)` so query objects can be restored for L5 answer, figure, report, and chat output.
+- Reworked reverse-query figures to use complete Hallmark and 3CA MPS functional universes from the packaged resource index, with unmatched dimensions left blank and no hard-coded function list in the L5 plot layer.
+- Cleaned reverse ring heatmaps by removing MP numeric prefixes from 3CA MPS labels and eliminating visible cell-splitting gaps in colored sectors.
+- Updated reverse candidate bubble labels so perturbation names are primary and supporting cell contexts appear underneath in parentheses.
+- Verified the 02 Python answer-object notebook pickle roundtrip and the 05 figure acceptance notebook with regenerated PDF/PNG outputs.
+
 ## 0.5.6.dev4 - 2026-06-29
 
 - Split L4 LLM synthesis into two default isolated outputs: `biological_summary` for the biology answer and `evidence_audit_summary` for route/evidence/run quality.

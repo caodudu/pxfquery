@@ -1,6 +1,7 @@
 from pathlib import Path
 
-from pxfquery import PxFQuery
+from pxfquery import PxFQuery, PxFQueryData
+from pxfquery.l5_presentation.figures import build_figure_specs
 
 
 def sample_dossier():
@@ -53,7 +54,40 @@ def sample_dossier():
                     ],
                 },
                 "executed_routes": [
-                    {"route_id": "route_x", "status": "executed", "cell": "CONTEXT_X", "tier": "exact"}
+                    {
+                        "route_id": "route_x",
+                        "status": "executed",
+                        "cell": "CONTEXT_X",
+                        "perturbation": "PERT_X",
+                        "tier": "exact",
+                        "cell_match_distance": 0.0,
+                        "perturbation_match_distance": 0.0,
+                        "n_rows": 4,
+                        "top_activated": [
+                            {"rank": 1, "label": "FUNCTION_X", "score": 0.72, "direction": "activated"},
+                            {"rank": 2, "label": "FUNCTION_Y", "score": 0.41, "direction": "activated"},
+                        ],
+                        "top_suppressed": [
+                            {"rank": 1, "label": "FUNCTION_Z", "score": -0.35, "direction": "suppressed"}
+                        ],
+                    },
+                    {
+                        "route_id": "route_y",
+                        "status": "executed",
+                        "cell": "CONTEXT_Y",
+                        "perturbation": "PERT_X",
+                        "tier": "proxy",
+                        "cell_match_distance": 0.25,
+                        "perturbation_match_distance": 0.0,
+                        "n_rows": 3,
+                        "top_activated": [
+                            {"rank": 1, "label": "FUNCTION_X", "score": 0.52, "direction": "activated"},
+                            {"rank": 2, "label": "FUNCTION_Y", "score": 0.22, "direction": "activated"},
+                        ],
+                        "top_suppressed": [
+                            {"rank": 1, "label": "FUNCTION_Z", "score": -0.18, "direction": "suppressed"}
+                        ],
+                    },
                 ],
             },
         },
@@ -148,8 +182,12 @@ def test_tl_answer_builds_single_scanpy_style_output_without_changing_l4():
     assert answer.summary_source == "l4.llm_synthesis.biological_summary"
     assert answer.evidence["evidence_audit_summary"] == "Exact matrix evidence was available for the primary route."
     assert answer.biological_results[0]["label"] == "FUNCTION_X"
-    assert {spec["kind"] for spec in answer.figures} >= {"bar", "bubble", "heatmap", "route_flow", "evidence_panel"}
-    assert all(spec.get("svg", "").startswith("<svg") for spec in answer.figures)
+    assert {spec["kind"] for spec in answer.figures} >= {
+        "evidence_match_map",
+        "function_match_heatmap",
+        "function_consensus_bar",
+    }
+    assert all("svg" not in spec for spec in answer.figures)
     assert dossier["claim_basis"]["main_claim"].endswith("CONTEXT_X.")
 
 
@@ -178,6 +216,51 @@ def test_reverse_l5_tables_deduplicate_routes_and_aggregate_candidate_consensus(
     assert tables["route_target_functions"][0]["direction"] == "activate"
 
 
+def test_reverse_ring_heatmaps_use_complete_function_universe():
+    specs = build_figure_specs(reverse_sample_dossier())
+    rings = [spec for spec in specs if spec["kind"] == "reverse_function_ring_heatmap"]
+
+    hallmark = next(spec for spec in rings if spec["source"] == "hallmark")
+    mps = next(spec for spec in rings if spec["source"] == "3ca_mps")
+
+    assert len(hallmark["functions"]) == 50
+    assert "Apoptosis" in hallmark["functions"]
+    assert len(mps["functions"]) == 41
+    assert all(not label.lower().startswith("mp") for label in mps["functions"])
+    assert sum(abs(value) > 0 for row in hallmark["values"] for value in row) == 2
+    assert sum(abs(value) > 0 for row in mps["values"] for value in row) == 0
+
+
+def test_reverse_l5_tables_hide_unreadable_genetic_reagent_candidates():
+    pxf = PxFQuery()
+    qdata = pxf.read.query("Find CRISPR knockouts that activate apoptosis in NSCLC model set.")
+    dossier = reverse_sample_dossier()
+    matrix = dossier["evidence_layer"]["matrix_evidence"]
+    matrix["primary_result"]["modality"] = "xpr"
+    matrix["primary_result"]["top_perturbations"] = [
+        {"rank": 1, "label": "BRDN0000733847", "pert_id": "BRDN0000733847", "score": 10.0},
+        {"rank": 2, "label": "AURKA", "pert_id": "BRDN0001148015", "cmap_name": "AURKA", "score": 9.0},
+    ]
+    matrix["executed_routes"] = [
+        {
+            "route_id": "reverse_001",
+            "status": "executed",
+            "cell": "A549",
+            "cell_match_type": "concept_representative_cell",
+            "modality": "xpr",
+            "top_perturbations": matrix["primary_result"]["top_perturbations"],
+        }
+    ]
+    qdata.uns["evidence_dossier"] = dossier
+    qdata.uns["result"] = dossier
+
+    pxf.tl.answer(qdata)
+    tables = pxf.get.answer(qdata).tables
+
+    assert [row["label"] for row in tables["ranked_results"]] == ["AURKA"]
+    assert [row["label"] for row in tables["primary_route_ranked_results"]] == ["AURKA"]
+
+
 def test_tl_answer_html_mode_can_write_report(tmp_path):
     pxf = PxFQuery()
     qdata = pxf.read.query("render report")
@@ -192,12 +275,12 @@ def test_tl_answer_html_mode_can_write_report(tmp_path):
     assert out.exists()
     html = out.read_text(encoding="utf-8")
     assert "Main Evidence" in html
-    assert "<svg" in html
+    assert "Figures" in html
     assert answer.html is not None
     assert qdata.uns["answer_output"] == str(Path(out))
 
 
-def test_tl_figures_writes_real_svg_files(tmp_path):
+def test_tl_figures_writes_real_pdf_and_png_files(tmp_path):
     pxf = PxFQuery()
     qdata = pxf.read.query("write figures")
     dossier = sample_dossier()
@@ -205,17 +288,58 @@ def test_tl_figures_writes_real_svg_files(tmp_path):
     qdata.uns["result"] = dossier
 
     pxf.tl.answer(qdata)
-    pxf.tl.figures(qdata, output_dir=tmp_path, prefix="case", format="png")
+    pxf.tl.figures(qdata, output_dir=tmp_path, prefix="case")
 
     paths = [Path(path) for path in qdata.uns["figure_outputs"]]
-    assert len(paths) >= 5
+    assert len(paths) >= 3
     assert all(path.exists() for path in paths)
-    assert all(path.suffix == ".png" for path in paths)
-    assert all(path.read_bytes().startswith(b"\x89PNG") for path in paths)
+    assert all(path.suffix == ".pdf" for path in paths)
+    assert all(path.read_bytes().startswith(b"%PDF") for path in paths)
 
-    pxf.tl.figures(qdata, output_dir=tmp_path / "svg", prefix="case", format="svg")
-    svg_paths = [Path(path) for path in qdata.uns["figure_outputs"]]
-    assert all(path.read_text(encoding="utf-8").startswith("<svg") for path in svg_paths)
+    pxf.tl.figures(qdata, output_dir=tmp_path / "png", prefix="case", format="png")
+    png_paths = [Path(path) for path in qdata.uns["figure_outputs"]]
+    assert all(path.read_bytes().startswith(b"\x89PNG") for path in png_paths)
+
+    try:
+        pxf.tl.figures(qdata, output_dir=tmp_path / "svg", prefix="case", format="svg")
+    except ValueError as exc:
+        assert "pdf" in str(exc) and "png" in str(exc)
+    else:
+        raise AssertionError("SVG figure export is not part of the accepted L5 figure surface")
+
+
+def test_qdata_pickle_roundtrip_preserves_l5_answer_and_outputs(tmp_path):
+    pxf = PxFQuery()
+    qdata = pxf.read.query("persist answer object")
+    dossier = sample_dossier()
+    qdata.uns["evidence_dossier"] = dossier
+    qdata.uns["result"] = dossier
+    pxf.tl.answer(qdata)
+
+    pkl_path = qdata.save(tmp_path / "answer_state.pkl")
+    restored = pxf.read.load(pkl_path)
+
+    assert restored.text == qdata.text
+    assert pxf.get.answer(restored).summary == pxf.get.answer(qdata).summary
+    assert restored.uns["evidence_dossier"] == dossier
+    pxf.tl.figures(restored, output_dir=tmp_path / "figures")
+    assert all(Path(path).exists() for path in restored.uns["figure_outputs"])
+
+
+def test_qdata_pickle_roundtrip_can_resume_l5_answer(tmp_path):
+    pxf = PxFQuery()
+    qdata = pxf.read.query("persist evidence object")
+    dossier = sample_dossier()
+    qdata.uns["evidence_dossier"] = dossier
+    qdata.uns["result"] = dossier
+
+    pkl_path = pxf.tl.save(qdata, tmp_path / "evidence_state.pkl")
+    restored = PxFQueryData.load(pkl_path)
+    pxf.tl.answer(restored)
+
+    answer = pxf.get.answer(restored)
+    assert answer.summary == "PERT_X changes FUNCTION_X, FUNCTION_Y, and FUNCTION_Z in CONTEXT_X."
+    assert restored.uns["pickle_path"] == str(pkl_path)
 
 
 def test_tl_answer_mcp_mode_reuses_same_answer_payload():

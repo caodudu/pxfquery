@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 from typing import Any
 
 
@@ -42,7 +43,8 @@ def _ranked_results(matrix: dict[str, Any]) -> list[dict[str, Any]]:
 def _primary_route_ranked_results(matrix: dict[str, Any]) -> list[dict[str, Any]]:
     primary = matrix.get("primary_result") or {}
     if matrix.get("mode") == "reverse":
-        return [_compact_result(item, "primary_route_candidate") for item in primary.get("top_perturbations") or []]
+        modality = primary.get("modality")
+        return [_compact_result(item, "primary_route_candidate") for item in primary.get("top_perturbations") or [] if not _unreadable_reverse_candidate(item, modality=modality)]
     return []
 
 
@@ -70,6 +72,8 @@ def _reverse_candidate_consensus(matrix: dict[str, Any]) -> list[dict[str, Any]]
         modality = route.get("modality")
         is_exact_route = route_id in exact_route_ids
         for item in route.get("top_perturbations") or []:
+            if _unreadable_reverse_candidate(item, modality=modality):
+                continue
             key = _candidate_key(item)
             if not key:
                 continue
@@ -166,6 +170,13 @@ def _candidate_key(item: dict[str, Any]) -> str:
         if value is not None and str(value).strip():
             return str(value).strip().lower()
     return ""
+
+
+def _unreadable_reverse_candidate(item: dict[str, Any], *, modality: str | None) -> bool:
+    if modality not in {"sh", "xpr"}:
+        return False
+    label = str(item.get("label") or item.get("cmap_name") or item.get("pert_id") or "").strip()
+    return bool(re.fullmatch(r"BRDN\d+", label))
 
 
 def _route_summary(route: dict[str, Any], matrix: dict[str, Any]) -> list[dict[str, Any]]:

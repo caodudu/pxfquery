@@ -5,6 +5,7 @@ from time import perf_counter
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
+import pickle
 
 from pxfquery.l3_execution import execute_route_plan
 from pxfquery.l4_evidence import assemble_evidence
@@ -15,6 +16,10 @@ from pxfquery.l5_presentation.answer import build_answer
 from pxfquery.l5_presentation.chat import build_chat_response
 from pxfquery.l5_presentation.figures import write_figure_files
 from pxfquery.utils.events import EventLog, PxFQueryEvent
+from pxfquery.version import __version__
+
+
+QDATA_PICKLE_SCHEMA = "pxfquery-qdata-pickle/v1"
 
 
 @dataclass
@@ -25,10 +30,53 @@ class PxFQueryData:
     obs: dict[str, Any] = field(default_factory=dict)
     uns: dict[str, Any] = field(default_factory=dict)
 
+    def save(self, path: str | Path) -> Path:
+        """Serialize this query object to a local pickle file."""
+        return save_qdata(self, path)
+
+    @classmethod
+    def load(cls, path: str | Path) -> "PxFQueryData":
+        """Restore a query object from a local pickle file."""
+        return load_qdata(path)
+
+
+def save_qdata(qdata: PxFQueryData, path: str | Path) -> Path:
+    target = Path(path)
+    target.parent.mkdir(parents=True, exist_ok=True)
+    payload = {
+        "schema_version": QDATA_PICKLE_SCHEMA,
+        "pxfquery_version": __version__,
+        "qdata": qdata,
+    }
+    with target.open("wb") as handle:
+        pickle.dump(payload, handle, protocol=pickle.HIGHEST_PROTOCOL)
+    qdata.uns["pickle_path"] = str(target)
+    return target
+
+
+def load_qdata(path: str | Path) -> PxFQueryData:
+    source = Path(path)
+    with source.open("rb") as handle:
+        payload = pickle.load(handle)
+    if isinstance(payload, PxFQueryData):
+        qdata = payload
+    elif isinstance(payload, dict) and payload.get("schema_version") == QDATA_PICKLE_SCHEMA and isinstance(payload.get("qdata"), PxFQueryData):
+        qdata = payload["qdata"]
+    else:
+        raise ValueError("pickle file does not contain a PxFquery query object")
+    qdata.uns["pickle_path"] = str(source)
+    return qdata
+
 
 class ReadNamespace:
     def query(self, text: str) -> PxFQueryData:
         return PxFQueryData(text=text.strip())
+
+    def save(self, qdata: PxFQueryData, path: str | Path) -> Path:
+        return save_qdata(qdata, path)
+
+    def load(self, path: str | Path) -> PxFQueryData:
+        return load_qdata(path)
 
 
 class PreprocessingNamespace:
@@ -304,7 +352,7 @@ class ToolsNamespace:
         *,
         output_dir: str | Path,
         prefix: str = "pxfquery",
-        format: str = "png",
+        format: str = "pdf",
         copy: bool = False,
     ) -> PxFQueryData | None:
         target = _copy_qdata(qdata) if copy else qdata
@@ -317,6 +365,12 @@ class ToolsNamespace:
         paths = write_figure_files(answer.figures, output_dir, prefix=prefix, fmt=format)
         target.uns["figure_outputs"] = paths
         return target if copy else None
+
+    def save(self, qdata: PxFQueryData, path: str | Path) -> Path:
+        return save_qdata(qdata, path)
+
+    def load(self, path: str | Path) -> PxFQueryData:
+        return load_qdata(path)
 
 
 class GetNamespace:

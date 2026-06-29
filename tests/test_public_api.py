@@ -1,11 +1,12 @@
 import pxfquery
-from pxfquery import PxFQuery
+from pxfquery import PxFQuery, PxFQueryData
 from pxfquery.resources import ResourceManager, default_manifest
 
 
 def test_public_entrypoint_is_single_client():
-    assert pxfquery.__all__ == ["PxFQuery"]
-    assert PxFQuery().version == "0.5.10.dev0"
+    assert pxfquery.__all__ == ["PxFQuery", "PxFQueryData"]
+    assert PxFQueryData(text="query").text == "query"
+    assert PxFQuery().version == "0.5.11.dev0"
 
 
 def test_scanpy_style_namespaces_are_available():

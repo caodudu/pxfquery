@@ -33,7 +33,7 @@ def main(argv: list[str] | None = None) -> int:
     figures_cmd = sub.add_parser("figures")
     figures_cmd.add_argument("text")
     figures_cmd.add_argument("--output-dir", required=True)
-    figures_cmd.add_argument("--format", choices=["png", "svg"], default="png")
+    figures_cmd.add_argument("--format", choices=["pdf", "png"], default="pdf")
 
     mcp_cmd = sub.add_parser("mcp-server")
     mcp_cmd.add_argument("--env-file")

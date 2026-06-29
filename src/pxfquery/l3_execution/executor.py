@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+import re
 from typing import Any
 
 import numpy as np
@@ -337,7 +338,7 @@ def _reverse_rankings(
     top_n: int,
 ) -> dict[str, list[dict[str, Any]]]:
     if modality not in {"sh", "xpr"}:
-        return {"top_perturbations": _projection_records(var_names, X, obs, target, projections, np.argsort(-projections)[:top_n], "drug_treat", 1, top_n)}
+        return {"top_perturbations": _projection_records(var_names, X, obs, target, projections, np.argsort(-projections), "drug_treat", 1, top_n)}
     rankings: dict[str, list[dict[str, Any]]] = {}
     if ranking_mode in {"perturbation_only", "bidirectional"}:
         rankings["top_loss_of_function_perturbations"] = _projection_records(
@@ -346,7 +347,7 @@ def _reverse_rankings(
             obs,
             target,
             projections,
-            np.argsort(-projections)[:top_n],
+            np.argsort(-projections),
             "inhibit_or_knockout_gene",
             1,
             top_n,
@@ -358,7 +359,7 @@ def _reverse_rankings(
             obs,
             target,
             projections,
-            np.argsort(projections)[:top_n],
+            np.argsort(projections),
             "activate_or_increase_gene",
             -1,
             top_n,
@@ -382,7 +383,7 @@ def _projection_records(
     top_n: int,
 ) -> list[dict[str, Any]]:
     records = []
-    for idx in order[:top_n]:
+    for idx in order:
         row = obs.iloc[int(idx)]
         raw_projection = float(projections[int(idx)])
         # order is sorted so once sign flips all remaining entries also flip
@@ -390,6 +391,8 @@ def _projection_records(
             break
         if orientation == -1 and raw_projection >= 0:
             break
+        if _unreadable_genetic_reagent(row):
+            continue
         oriented_projection = raw_projection * orientation
         oriented_effect = X[int(idx)] * orientation
         records.append(
@@ -407,7 +410,15 @@ def _projection_records(
                 "driving_terms": _driving_terms(var_names, oriented_effect * target, top_n=5),
             }
         )
+        if len(records) >= top_n:
+            break
     return records
+
+
+def _unreadable_genetic_reagent(row: Any) -> bool:
+    pert_id = str(_safe_value(row, "pert_id") or "").strip()
+    cmap_name = str(_safe_value(row, "cmap_name") or "").strip()
+    return bool(re.fullmatch(r"BRDN\d+", pert_id)) and not cmap_name
 
 
 def _rank_records(var_names: list[str], scores: np.ndarray, order: np.ndarray, top_n: int, *, positive: bool) -> list[dict[str, Any]]:

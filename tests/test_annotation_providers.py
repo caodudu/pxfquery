@@ -98,9 +98,33 @@ def test_pubchem_provider_fetches_cid_and_properties(monkeypatch):
     assert records[0]["records"][0]["cid"] == 176870
 
 
-def test_chembl_provider_fetches_molecule_and_mechanism(monkeypatch):
+def _reverse_drug_dossier_with_candidates():
+    dossier = _dossier()
+    dossier["evidence_layer"]["matrix_evidence"] = {
+        "mode": "reverse",
+        "primary_result": {
+            "cell": "A375",
+            "modality": "cp",
+            "top_perturbations": [
+                {"rank": 1, "label": "afatinib", "pert_id": "BRD-K66175015"},
+                {"rank": 2, "label": "BRD-K63750851", "pert_id": "BRD-K63750851"},
+                {"rank": 3, "label": "AZD-9291", "pert_id": "BRD-K42805893"},
+                {"rank": 4, "label": "BRD-K12345678", "pert_id": "BRD-K12345678"},
+                {"rank": 5, "label": "BRD-K87654321", "pert_id": "BRD-K87654321"},
+                {"rank": 6, "label": "BRD-K00000000", "pert_id": "BRD-K00000000"},
+            ],
+        },
+        "executed_routes": [],
+    }
+    return dossier
+
+
+def test_chembl_provider_fetches_only_visible_brdk_reverse_candidates(monkeypatch):
+    searched_terms = []
+
     def fake_http_json(url, *, timeout=20.0, retries=1):
         if "molecule/search.json" in url:
+            searched_terms.append(parse_qs(urlparse(url).query)["q"][0])
             return {"molecules": [{"molecule_chembl_id": "CHEMBL553", "pref_name": "ERLOTINIB", "molecule_type": "Small molecule"}]}
         if "mechanism.json" in url:
             return {
@@ -118,11 +142,49 @@ def test_chembl_provider_fetches_molecule_and_mechanism(monkeypatch):
 
     monkeypatch.setattr(provider_module, "_http_json", fake_http_json)
 
-    records = ChEMBLAnnotationProvider(timeout=1).annotate(query="x", evidence_dossier=_dossier())
+    records = ChEMBLAnnotationProvider(timeout=1).annotate(query="x", evidence_dossier=_reverse_drug_dossier_with_candidates())
 
+    assert searched_terms == ["BRD-K63750851", "BRD-K12345678", "BRD-K87654321"]
     assert records[0]["status"] == "found"
+    assert records[0]["term"] == "BRD-K63750851"
     assert records[0]["records"][0]["molecule_chembl_id"] == "CHEMBL553"
     assert records[0]["records"][0]["mechanisms"][0]["target_name"] == "Epidermal growth factor receptor"
+
+
+def test_chembl_provider_queries_forward_visible_brdk_but_not_readable_names(monkeypatch):
+    searched_terms = []
+
+    def fake_http_json(url, *, timeout=20.0, retries=1):
+        if "molecule/search.json" in url:
+            searched_terms.append(parse_qs(urlparse(url).query)["q"][0])
+            return {"molecules": []}
+        raise AssertionError(url)
+
+    monkeypatch.setattr(provider_module, "_http_json", fake_http_json)
+
+    forward_brdk = _dossier()
+    forward_brdk["evidence_layer"]["matrix_evidence"]["primary_result"]["perturbation"] = "BRD-K00000001"
+    assert ChEMBLAnnotationProvider(timeout=1).annotate(query="x", evidence_dossier=forward_brdk)[0]["term"] == "BRD-K00000001"
+    assert searched_terms == ["BRD-K00000001"]
+
+
+def test_chembl_provider_does_not_query_non_brdk_readable_names(monkeypatch):
+    calls = []
+
+    def fake_http_json(url, *, timeout=20.0, retries=1):
+        calls.append(url)
+        raise AssertionError(url)
+
+    monkeypatch.setattr(provider_module, "_http_json", fake_http_json)
+
+    assert ChEMBLAnnotationProvider(timeout=1).annotate(query="x", evidence_dossier=_dossier()) == []
+    readable_reverse = _reverse_drug_dossier_with_candidates()
+    readable_reverse["evidence_layer"]["matrix_evidence"]["primary_result"]["top_perturbations"] = [
+        {"rank": 1, "label": "afatinib", "pert_id": "BRD-K66175015"},
+        {"rank": 2, "label": "AZD-9291", "pert_id": "BRD-K42805893"},
+    ]
+    assert ChEMBLAnnotationProvider(timeout=1).annotate(query="x", evidence_dossier=readable_reverse) == []
+    assert calls == []
 
 
 def test_compound_terms_skip_genetic_routes_and_prefer_alias_over_brd():

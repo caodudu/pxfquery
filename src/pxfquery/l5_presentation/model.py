@@ -44,6 +44,9 @@ class PxFQueryAnswer:
     def _llm_answer_text(self) -> str:
         if self.summary_source != "l4.llm_synthesis.biological_summary" or not str(self.summary or "").strip():
             raise RuntimeError("L5 default answer requires L4 LLM biological_summary.")
+        evidence_tables = '`answer.tables["route_summary"]` and `answer.tables["route_function_results"]`'
+        if self.tables.get("route_target_functions"):
+            evidence_tables = '`answer.tables["route_summary"]`, `answer.tables["ranked_results"]`, and `answer.tables["route_target_functions"]`'
         return "\n".join(
             [
                 "Answer",
@@ -51,7 +54,7 @@ class PxFQueryAnswer:
                 "",
                 "=======",
                 f"Analysis source: pxfquery {__version__}",
-                'Evidence: inspect `answer.tables["route_summary"]` and `answer.tables["route_function_results"]`.',
+                f"Evidence: inspect {evidence_tables}.",
                 "Figures: call `pxf.tl.figures(qdata, output_dir=...)` after `pxf.tl.answer(qdata)`.",
             ]
         )

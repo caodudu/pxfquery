@@ -156,7 +156,7 @@ class PubChemAnnotationProvider:
 @dataclass
 class ChEMBLAnnotationProvider:
     timeout: float = DEFAULT_TIMEOUT
-    max_terms: int = 1
+    max_terms: int = 5
     limit: int = 1
     max_workers: int = 4
     name: str = "chembl"
@@ -165,7 +165,7 @@ class ChEMBLAnnotationProvider:
         self._molecule_cache: dict[str, dict[str, Any]] = {}
 
     def annotate(self, *, query: str, evidence_dossier: dict[str, Any]) -> list[dict[str, Any]]:
-        terms = _compound_terms(evidence_dossier, max_terms=self.max_terms)
+        terms = _chembl_brdk_candidate_terms(evidence_dossier, max_terms=self.max_terms)
         if not terms:
             return []
         with ThreadPoolExecutor(max_workers=min(self.max_workers, len(terms))) as executor:
@@ -297,6 +297,63 @@ def _compound_terms(evidence_dossier: dict[str, Any], *, max_terms: int) -> list
             terms.append(term)
 
     return [item["term"] for item in _dedupe_terms([{"term": term, "role": "compound"} for term in terms])[:max_terms]]
+
+
+def _chembl_brdk_candidate_terms(evidence_dossier: dict[str, Any], *, max_terms: int) -> list[str]:
+    layer = evidence_dossier.get("evidence_layer") or {}
+    intent = layer.get("intent_evidence") or {}
+    matrix = layer.get("matrix_evidence") or {}
+    if str(intent.get("pert_class") or "").lower() not in {"drug", "compound"} and not _matrix_has_compound_routes(matrix):
+        return []
+
+    candidates = _brdk_candidate_rows(matrix)
+    terms = []
+    for item in candidates[:5]:
+        term = _visible_brdk_candidate_term(item)
+        if term:
+            terms.append(term)
+    return [item["term"] for item in _dedupe_terms([{"term": term, "role": "compound"} for term in terms])[:max_terms]]
+
+
+def _brdk_candidate_rows(matrix: dict[str, Any]) -> list[dict[str, Any]]:
+    primary = matrix.get("primary_result") or {}
+    if matrix.get("mode") == "forward":
+        rows = []
+        alias = primary.get("perturbation_alias")
+        perturbation = primary.get("perturbation")
+        if alias:
+            rows.append({"label": alias, "pert_id": perturbation})
+        elif perturbation:
+            rows.append({"label": perturbation, "pert_id": perturbation})
+        for route in matrix.get("executed_routes") or []:
+            if route.get("modality") != "cp":
+                continue
+            alias = route.get("perturbation_alias")
+            perturbation = route.get("perturbation")
+            if alias:
+                rows.append({"label": alias, "pert_id": perturbation})
+            elif perturbation:
+                rows.append({"label": perturbation, "pert_id": perturbation})
+        return rows
+    if matrix.get("mode") != "reverse":
+        return []
+    if primary.get("modality") == "cp":
+        return list(primary.get("top_perturbations") or [])
+    rows = []
+    for route in matrix.get("executed_routes") or []:
+        if route.get("modality") == "cp":
+            rows.extend(route.get("top_perturbations") or [])
+    return rows
+
+
+def _visible_brdk_candidate_term(item: dict[str, Any]) -> str | None:
+    visible = str(item.get("label") or item.get("cmap_name") or "").strip()
+    if visible.upper().startswith("BRD-K"):
+        return visible
+    pert_id = str(item.get("pert_id") or "").strip()
+    if not visible and pert_id.upper().startswith("BRD-K"):
+        return pert_id
+    return None
 
 
 def _matrix_has_compound_routes(matrix: dict[str, Any]) -> bool:
