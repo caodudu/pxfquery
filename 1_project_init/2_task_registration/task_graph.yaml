@@ -2100,6 +2100,18 @@ edges:
   to: goal_goal_ms8_human_usable_package/task_ms8_14_user_value_l5_output_rework
   dep_id: T-141
   gate: must
+- from: goal_paper_figure_planning/task_pxfquery_paper_translation_anchor
+  to: goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench
+  dep_id: T-143
+  gate: may
+- from: goal_paper_figure_planning/task_pxfquery_paper_translation_anchor
+  to: goal_paper_figure_planning/task_figure1_concept_notebook_pdf_workbench
+  dep_id: T-143
+  gate: must
+- from: goal_goal_ms8_human_usable_package/task_ms8_14_user_value_l5_output_rework
+  to: goal_paper_figure_planning/task_figure1_concept_notebook_pdf_workbench
+  dep_id: T-144
+  gate: may
 labels:
 - id: label_mqpofuno
   phase: digestion

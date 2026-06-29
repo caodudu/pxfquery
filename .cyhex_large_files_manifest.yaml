@@ -6776,15 +6776,15 @@ excluded_from_git:
 - path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_14_user_value_l5_output_rework/3_execution/06_acceptance_notebooks/05_figure_outputs/forward_png/forward_03_function_consensus_bar.png
   size_mb: 0.07
 - path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_14_user_value_l5_output_rework/3_execution/06_acceptance_notebooks/05_figure_outputs/reverse_pdf/reverse_01_reverse_function_ring_heatmap.pdf
-  size_mb: 0.02
+  size_mb: 0.07
 - path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_14_user_value_l5_output_rework/3_execution/06_acceptance_notebooks/05_figure_outputs/reverse_pdf/reverse_02_reverse_function_ring_heatmap.pdf
-  size_mb: 0.02
+  size_mb: 0.03
 - path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_14_user_value_l5_output_rework/3_execution/06_acceptance_notebooks/05_figure_outputs/reverse_pdf/reverse_03_reverse_candidate_bubble.pdf
   size_mb: 0.02
 - path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_14_user_value_l5_output_rework/3_execution/06_acceptance_notebooks/05_figure_outputs/reverse_png/reverse_01_reverse_function_ring_heatmap.png
-  size_mb: 0.11
+  size_mb: 0.14
 - path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_14_user_value_l5_output_rework/3_execution/06_acceptance_notebooks/05_figure_outputs/reverse_png/reverse_02_reverse_function_ring_heatmap.png
-  size_mb: 0.03
+  size_mb: 0.09
 - path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_14_user_value_l5_output_rework/3_execution/06_acceptance_notebooks/05_figure_outputs/reverse_png/reverse_03_reverse_candidate_bubble.png
   size_mb: 0.06
 - path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_14_user_value_l5_output_rework/4_artifact/.DS_Store
@@ -8473,6 +8473,8 @@ excluded_from_git:
   size_mb: 0.0
 - path: 4_phase_development/goal_resource_index_packs_v1/task_resource_manifest_v1/5_report/cli_sessions/execute/20260623_065804_opencode_cli_1cdb8899fe5e/stdout.log
   size_mb: 0.19
+- path: 5_phase_translation/.DS_Store
+  size_mb: 0.01
 - path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_algorithm_method_story/1_asset/ms6_evidence_claim_mapping.csv
   size_mb: 0.0
 - path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_algorithm_method_story/5_report/cli_sessions/check/20260627_070649_opencode_cli_b60d8415eaf4/stderr.log
@@ -8532,6 +8534,56 @@ excluded_from_git:
 - path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_package_capability_narrative/5_report/cli_sessions/execute/20260627_070809_opencode_cli_04bf05ef9cc1/stdout.log
   size_mb: 0.12
 - path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_writing_figure_resource_pack/4_artifact/5_table/ms6_figure_story_map_v20260627.csv
+  size_mb: 0.0
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/.DS_Store
+  size_mb: 0.01
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/.DS_Store
+  size_mb: 0.01
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/.DS_Store
+  size_mb: 0.01
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_panel_A_resource_scale.pdf
+  size_mb: 0.01
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_panel_A_resource_scale.png
+  size_mb: 0.11
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_panel_A_resource_scale.svg
+  size_mb: 0.04
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_panel_B_observed_coverage_heatmap.pdf
+  size_mb: 0.02
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_panel_B_observed_coverage_heatmap.png
+  size_mb: 0.15
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_panel_B_observed_coverage_heatmap.svg
+  size_mb: 0.08
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_panel_C_observed_unobserved_donut.pdf
+  size_mb: 0.01
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_panel_C_observed_unobserved_donut.png
+  size_mb: 0.06
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_panel_C_observed_unobserved_donut.svg
+  size_mb: 0.03
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_panel_D_proxy_routing_HOTAIR_flow.pdf
+  size_mb: 0.01
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_panel_D_proxy_routing_HOTAIR_flow.png
+  size_mb: 0.08
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_panel_D_proxy_routing_HOTAIR_flow.svg
+  size_mb: 0.03
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_panel_D_proxy_routing_ncrna_anchors.pdf
+  size_mb: 0.02
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_panel_D_proxy_routing_ncrna_anchors.png
+  size_mb: 0.12
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_panel_D_proxy_routing_ncrna_anchors.svg
+  size_mb: 0.06
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/5_table/figure2_table_cell_perturbation_occupancy_top_grid.csv
+  size_mb: 0.12
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/5_table/figure2_table_observed_pairs_long.csv
+  size_mb: 16.66
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/5_table/figure2_table_observed_unobserved_summary.csv
+  size_mb: 0.0
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/5_table/figure2_table_panel_A_summary_counts.csv
+  size_mb: 0.0
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/5_table/figure2_table_proxy_routing_example_ncrna.csv
+  size_mb: 0.01
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/5_table/figure2_table_proxy_routing_summary.csv
+  size_mb: 0.0
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/5_table/figure2_table_resource_scale.csv
   size_mb: 0.0
 - path: 5_phase_translation/goal_pending_g010/task_pending_t019/5_report/cli_sessions/check/20260623_034938_opencode_cli_859768c74307/stderr.log
   size_mb: 0.0

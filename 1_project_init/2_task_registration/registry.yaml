@@ -2036,3 +2036,21 @@ tasks:
   executor: human
   created: '2026-06-29'
   completed: null
+- id: T-146
+  name: figure1_concept_notebook_pdf_workbench
+  phase: translation
+  goal: goal_paper_figure_planning
+  path: 5_phase_translation/goal_paper_figure_planning/task_figure1_concept_notebook_pdf_workbench
+  status: pending
+  executor: human
+  created: '2026-06-29'
+  completed: null
+- id: T-147
+  name: figure3_forward_genetic_query_notebook_figure_workbench
+  phase: translation
+  goal: goal_paper_figure_planning
+  path: 5_phase_translation/goal_paper_figure_planning/task_figure3_forward_genetic_query_notebook_figure_wo
+  status: pending
+  executor: human
+  created: '2026-06-29'
+  completed: null
