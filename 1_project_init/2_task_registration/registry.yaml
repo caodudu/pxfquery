@@ -2009,3 +2009,21 @@ tasks:
   executor: human
   created: '2026-06-29'
   completed: null
+- id: T-143
+  name: pxfquery_paper_translation_anchor
+  phase: translation
+  goal: goal_paper_figure_planning
+  path: 5_phase_translation/goal_paper_figure_planning/task_pxfquery_paper_translation_anchor
+  status: active
+  executor: human
+  created: '2026-06-29'
+  completed: null
+- id: T-144
+  name: ms8_14_user_value_l5_output_rework
+  phase: development
+  goal: goal_goal_ms8_human_usable_package
+  path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_14_user_value_l5_output_rework
+  status: pending
+  executor: hybrid
+  created: '2026-06-29'
+  completed: null
