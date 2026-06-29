@@ -149,6 +149,15 @@ print(answer)
 
 `pxf.tl.parse()` performs semantic parsing, evidence-aware matching, matrix execution, and evidence assembly. `pxf.tl.answer()` renders the assembled evidence into user-facing outputs.
 
+Executed GitHub demos are available in [`demo/`](demo/):
+
+1. forward query
+2. reverse query
+3. figures
+4. client and answer object
+5. chat
+6. MCP placeholder
+
 ## Forward and Reverse Queries
 
 ```python
