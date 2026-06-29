@@ -2120,6 +2120,10 @@ edges:
   to: goal_paper_figure_planning/task_pxfquery_new_figure3_concept_and_notebook_workbe
   dep_id: T-143
   gate: must
+- from: goal_paper_figure_planning/task_pxfquery_paper_translation_anchor
+  to: goal_paper_figure_planning/task_figure5_forward_drug_query_notebook_figure_workb
+  dep_id: T-143
+  gate: must
 labels:
 - id: label_mqpofuno
   phase: digestion
