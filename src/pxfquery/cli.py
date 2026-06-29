@@ -5,6 +5,7 @@ import json
 import os
 import sys
 from pathlib import Path
+from typing import Any
 
 from pxfquery import PxFQuery
 
@@ -20,6 +21,18 @@ def main(argv: list[str] | None = None) -> int:
     query_cmd = sub.add_parser("query")
     query_cmd.add_argument("text")
     query_cmd.add_argument("--json", action="store_true")
+
+    save_cmd = sub.add_parser("save")
+    save_cmd.add_argument("text")
+    save_cmd.add_argument("--output", required=True)
+    save_cmd.add_argument("--annotate", action="store_true")
+
+    load_cmd = sub.add_parser("load")
+    load_cmd.add_argument("path")
+    load_cmd.add_argument("--json", action="store_true")
+    load_cmd.add_argument("--answer", action="store_true")
+    load_cmd.add_argument("--figures-output-dir")
+    load_cmd.add_argument("--format", choices=["pdf", "png"], default="pdf")
 
     answer_cmd = sub.add_parser("answer")
     answer_cmd.add_argument("text")
@@ -55,6 +68,24 @@ def main(argv: list[str] | None = None) -> int:
             print(json.dumps(payload, ensure_ascii=False, indent=2))
         else:
             print(json.dumps(payload, ensure_ascii=False, indent=2))
+        return 0
+    if args.command == "save":
+        client = PxFQuery()
+        qdata = client.tl.parse(args.text, annotate=args.annotate)
+        path = client.tl.save(qdata, args.output)
+        print(str(path))
+        return 0
+    if args.command == "load":
+        client = PxFQuery()
+        qdata = client.tl.load(args.path)
+        if args.answer:
+            client.tl.answer(qdata)
+            print(str(client.get.answer(qdata)))
+        if args.figures_output_dir:
+            client.tl.figures(qdata, output_dir=args.figures_output_dir, format=args.format)
+            print(json.dumps(qdata.uns["figure_outputs"], ensure_ascii=False, indent=2))
+        if args.json or (not args.answer and not args.figures_output_dir):
+            print(json.dumps(_qdata_payload(qdata), ensure_ascii=False, indent=2))
         return 0
     if args.command == "answer":
         client = PxFQuery()
@@ -103,6 +134,37 @@ def _load_env_file(path: str | os.PathLike[str]) -> None:
             continue
         key, value = stripped.split("=", 1)
         os.environ[key.strip()] = value.strip()
+
+
+def _qdata_payload(qdata) -> dict[str, Any]:
+    return {
+        "schema_version": "pxfquery-qdata-cli/v1",
+        "text": qdata.text,
+        "obs": _json_safe(qdata.obs),
+        "uns": {key: _json_safe(value) for key, value in qdata.uns.items() if not str(key).startswith("_")},
+    }
+
+
+def _json_safe(value: Any) -> Any:
+    if isinstance(value, dict):
+        return {str(key): _json_safe(item) for key, item in value.items()}
+    if isinstance(value, list):
+        return [_json_safe(item) for item in value]
+    if isinstance(value, tuple):
+        return [_json_safe(item) for item in value]
+    if isinstance(value, (str, int, float, bool)) or value is None:
+        return value
+    if hasattr(value, "to_dict"):
+        try:
+            return _json_safe(value.to_dict())
+        except Exception:
+            pass
+    if hasattr(value, "item"):
+        try:
+            return value.item()
+        except Exception:
+            pass
+    return str(value)
 
 
 if __name__ == "__main__":

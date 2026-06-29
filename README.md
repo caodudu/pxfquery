@@ -258,6 +258,18 @@ This is useful when a query has already run and you want to regenerate L5 output
 pxfquery answer "In a lung adenocarcinoma model, which perturbations are linked to suppression of inflammatory response and preservation of oxidative phosphorylation?"
 ```
 
+Save and reuse a local query object from the CLI:
+
+```bash
+pxfquery save \
+  "In A549 lung cancer cells, what functional programs are changed after EGFR CRISPR knockout?" \
+  --output a549_egfr_ko.pkl
+
+pxfquery load a549_egfr_ko.pkl --answer
+pxfquery load a549_egfr_ko.pkl --json
+pxfquery load a549_egfr_ko.pkl --figures-output-dir a549_egfr_ko_figures --format pdf
+```
+
 Write an HTML report:
 
 ```bash
@@ -331,5 +343,5 @@ print(pxfquery.__version__)
 Current package version:
 
 ```text
-0.5.12.dev0
+0.5.13.dev0
 ```

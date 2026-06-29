@@ -1,12 +1,13 @@
 import pxfquery
 from pxfquery import PxFQuery, PxFQueryData
+from pxfquery.cli import main as cli_main
 from pxfquery.resources import ResourceManager, default_manifest
 
 
 def test_public_entrypoint_is_single_client():
     assert pxfquery.__all__ == ["PxFQuery", "PxFQueryData"]
     assert PxFQueryData(text="query").text == "query"
-    assert PxFQuery().version == "0.5.12.dev0"
+    assert PxFQuery().version == "0.5.13.dev0"
 
 
 def test_scanpy_style_namespaces_are_available():
@@ -86,3 +87,84 @@ def test_tl_anno_attaches_only_provider_returned_records():
     assert annotation["status"] == "completed"
     assert annotation["records"][0]["provider"] == "fake-annotation"
     assert annotation["records"][0]["records"] == [{"source": "unit-test", "query": "test annotation", "status": "evidence_found"}]
+
+
+def test_cli_load_restores_saved_qdata_for_json_and_answer(tmp_path, capsys):
+    pxf = PxFQuery()
+    qdata = pxf.read.query("show PERT_X effects")
+    qdata.uns["evidence_dossier"] = _sample_dossier()
+    qdata.uns["result"] = qdata.uns["evidence_dossier"]
+    pkl = tmp_path / "qdata.pkl"
+    pxf.tl.save(qdata, pkl)
+
+    assert cli_main(["load", str(pkl), "--json"]) == 0
+    json_out = capsys.readouterr().out
+    assert '"schema_version": "pxfquery-qdata-cli/v1"' in json_out
+    assert '"evidence_dossier"' in json_out
+    assert '"_answer"' not in json_out
+
+    assert cli_main(["load", str(pkl), "--answer"]) == 0
+    answer_out = capsys.readouterr().out
+    assert "Answer" in answer_out
+    assert "PERT_X changes FUNCTION_X in CONTEXT_X." in answer_out
+    assert "Analysis source: pxfquery 0.5.13.dev0" in answer_out
+
+
+def _sample_dossier():
+    return {
+        "schema_version": "l4-evidence-dossier/v1",
+        "query_type": "forward",
+        "dossier_status": "evidence_found",
+        "claim_basis": {
+            "answerability": "answered",
+            "main_claim": "Matrix evidence supports a functional response.",
+            "claim_type": "matrix_backed_effect",
+            "claim_strength": "high",
+        },
+        "evidence_layer": {
+            "evidence_grade": "exact_matrix",
+            "llm_synthesis": {
+                "status": "completed",
+                "biological_summary": "PERT_X changes FUNCTION_X in CONTEXT_X.",
+                "evidence_audit_summary": "A saved query object was restored from pickle.",
+            },
+            "intent_evidence": {
+                "query_type": "forward",
+                "bio_context": "CONTEXT_X",
+                "pert_desc": "PERT_X",
+            },
+            "route_evidence": {
+                "status": "routed",
+                "selected_routes": [
+                    {"route_id": "route_x", "status": "selected", "cell": "CONTEXT_X", "tier": "exact"}
+                ],
+            },
+            "matrix_evidence": {
+                "mode": "forward",
+                "execution_status": "executed",
+                "primary_result": {
+                    "cell": "CONTEXT_X",
+                    "perturbation": "PERT_X",
+                    "modality": "cp",
+                    "n_rows": 1,
+                    "top_activated": [{"rank": 1, "label": "FUNCTION_X", "score": 0.7, "direction": "activated"}],
+                    "top_suppressed": [],
+                },
+                "executed_routes": [
+                    {
+                        "route_id": "route_x",
+                        "status": "executed",
+                        "cell": "CONTEXT_X",
+                        "perturbation": "PERT_X",
+                        "modality": "cp",
+                        "cell_match_distance": 0.0,
+                        "perturbation_match_distance": 0.0,
+                        "n_rows": 1,
+                        "top_activated": [{"rank": 1, "label": "FUNCTION_X", "score": 0.7, "direction": "activated"}],
+                        "top_suppressed": [],
+                    }
+                ],
+            },
+        },
+        "uncertainty_layer": {"confidence": "high", "limitations": []},
+    }
