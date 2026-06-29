@@ -2,132 +2,150 @@ from __future__ import annotations
 
 from typing import Any
 
+from pxfquery.l5_presentation.figures import build_figure_specs
+from pxfquery.l5_presentation.mcp import build_mcp_payload
 from pxfquery.l5_presentation.model import PxFQueryAnswer
+from pxfquery.l5_presentation.report import render_html_answer
+from pxfquery.l5_presentation.tables import build_tables
 
 
-def build_answer(question: str, structured: dict[str, Any], *, resources_status: dict[str, Any] | None = None) -> PxFQueryAnswer:
-    intent = structured.get("intent", {})
-    context = structured.get("query_context", {})
-    function_response = structured.get("function_response", {})
-    diagnostics = structured.get("diagnostics", {})
+def build_answer(question: str, structured: dict[str, Any], *, mode: str = "python") -> PxFQueryAnswer:
+    dossier = _as_dossier(structured)
+    if dossier.get("schema_version") != "l4-evidence-dossier/v1":
+        raise ValueError("L5 expects an L4 evidence dossier; call pxf.tl.assemble(qdata) before pxf.tl.answer(qdata)")
 
-    interpreted = _interpreted_question(intent, context)
-    biological_results = _biological_results(function_response)
-    evidence = _evidence(structured, resources_status)
-    limitations = _limitations(structured, resources_status)
+    basis = dossier.get("claim_basis") or {}
+    evidence_layer = dossier.get("evidence_layer") or {}
+    intent = evidence_layer.get("intent_evidence") or {}
+    route = evidence_layer.get("route_evidence") or {}
+    matrix = evidence_layer.get("matrix_evidence") or {}
+    synthesis = evidence_layer.get("llm_synthesis") or {}
+    uncertainty = dossier.get("uncertainty_layer") or {}
+    tables = build_tables(dossier)
+    figures = build_figure_specs(dossier)
+    limitations = _limitations(dossier)
+    contract = _rendering_contract(dossier, mode)
 
-    return PxFQueryAnswer(
+    answer = PxFQueryAnswer(
         question=question,
-        interpreted_question=interpreted,
-        biological_results=biological_results,
-        evidence=evidence,
-        biological_interpretation=_interpretation(intent, biological_results),
+        interpreted_question=_interpreted_question(intent, matrix),
+        headline=_headline(basis),
+        summary=_summary(basis, synthesis),
+        summary_source=_summary_source(basis, synthesis),
+        biological_results=tables["ranked_results"],
+        evidence=_evidence(dossier, route, matrix, synthesis),
         limitations=limitations,
-        structured_result=structured,
+        tables=tables,
+        figures=figures,
+        rendering_contract=contract,
+        structured_result=dossier,
         engineering={
-            "diagnostics": diagnostics,
-            "route_status": structured.get("route_status"),
-            "trace": _trace(structured),
+            "dossier_status": dossier.get("dossier_status"),
+            "confidence": uncertainty.get("confidence"),
+            "trace": _trace(dossier),
         },
     )
+    if mode == "html":
+        answer.html = render_html_answer(answer)
+    if mode == "mcp":
+        answer.mcp = build_mcp_payload(answer)
+    return answer
 
 
-def _interpreted_question(intent: dict[str, Any], context: dict[str, Any]) -> str:
-    query_type = intent.get("query_type") or "query"
-    biological_context = intent.get("bio_context") or context.get("biological_context") or "available biological models"
+def _as_dossier(structured: dict[str, Any]) -> dict[str, Any]:
+    if structured.get("schema_version") == "l4-evidence-dossier/v1":
+        return structured
+    nested = structured.get("evidence_dossier")
+    return nested if isinstance(nested, dict) else structured
+
+
+def _headline(basis: dict[str, Any]) -> str:
+    if basis.get("answerability") == "answered":
+        return "PxFquery found matrix-backed evidence"
+    if basis.get("answerability") == "partially_answered":
+        return "PxFquery found partial matrix-backed evidence"
+    return "PxFquery did not find matrix-backed evidence"
+
+
+def _summary(basis: dict[str, Any], synthesis: dict[str, Any]) -> str:
+    biological_summary = synthesis.get("biological_summary") or synthesis.get("summary")
+    if biological_summary:
+        return str(biological_summary)
+    claim = basis.get("main_claim") or "L4 did not provide a displayable claim."
+    strength = basis.get("claim_strength")
+    if strength and strength != "none":
+        return f"{claim} Confidence is {strength} within the configured evidence package."
+    return claim
+
+
+def _summary_source(basis: dict[str, Any], synthesis: dict[str, Any]) -> str:
+    if synthesis.get("biological_summary"):
+        return "l4.llm_synthesis.biological_summary"
+    if synthesis.get("summary"):
+        return "l4.llm_synthesis.summary"
+    if basis.get("main_claim"):
+        return "l4.claim_basis.main_claim"
+    return "l4.missing_summary"
+
+
+def _interpreted_question(intent: dict[str, Any], matrix: dict[str, Any]) -> str:
+    query_type = intent.get("query_type") or matrix.get("mode") or "query"
+    primary = matrix.get("primary_result") or {}
+    biological_context = intent.get("bio_context") or primary.get("cell") or "available biological models"
     if query_type == "reverse":
         function = intent.get("function_desc") or ", ".join((intent.get("activate") or []) + (intent.get("suppress") or [])) or "the requested functional state"
         return f"find perturbations associated with {function} in {biological_context}"
-    perturbation = intent.get("pert_desc") or context.get("perturbation") or "the requested perturbation"
+    perturbation = intent.get("pert_desc") or primary.get("perturbation") or "the requested perturbation"
     return f"estimate functional effects of {perturbation} in {biological_context}"
 
 
-def _biological_results(function_response: dict[str, Any]) -> list[dict[str, Any]]:
-    candidates = function_response.get("candidates")
-    if isinstance(candidates, list) and candidates:
-        return candidates
-    activated = function_response.get("activated") or []
-    suppressed = function_response.get("suppressed") or []
-    if activated or suppressed:
-        return activated + suppressed
-    scores = function_response.get("scores")
-    if isinstance(scores, list):
-        return [
-            {
-                "rank": item.get("rank"),
-                "id": item.get("pert_id"),
-                "label": item.get("cmap_name") or item.get("pert_id"),
-                "score": item.get("score"),
-                "result_type": "ranked_perturbation",
-            }
-            for item in scores
-        ]
-    if isinstance(scores, dict):
-        ranked = sorted(scores.items(), key=lambda item: abs(item[1]), reverse=True)
-        return [
-            {
-                "rank": idx + 1,
-                "label": key,
-                "score": value,
-                "result_type": "function_score",
-            }
-            for idx, (key, value) in enumerate(ranked)
-        ]
-    return []
-
-
-def _evidence(structured: dict[str, Any], resources_status: dict[str, Any] | None) -> dict[str, Any]:
-    context = structured.get("query_context", {})
-    function_response = structured.get("function_response", {})
-    diagnostics = structured.get("diagnostics", {})
-    evidence = {
-        "biological_context": context.get("biological_context") or "not resolved",
-        "perturbation": context.get("perturbation"),
-        "query_type": structured.get("query_type"),
-        "route_status": structured.get("route_status"),
-        "result_status": function_response.get("status"),
+def _evidence(dossier: dict[str, Any], route: dict[str, Any], matrix: dict[str, Any], synthesis: dict[str, Any]) -> dict[str, Any]:
+    primary = matrix.get("primary_result") or {}
+    out = {
+        "dossier_status": dossier.get("dossier_status"),
+        "evidence_grade": (dossier.get("evidence_layer") or {}).get("evidence_grade"),
+        "evidence_audit_summary": synthesis.get("evidence_audit_summary"),
+        "route_status": route.get("status"),
+        "query_type": dossier.get("query_type"),
+        "primary_cell": primary.get("cell"),
+        "primary_perturbation": primary.get("perturbation"),
+        "primary_modality": primary.get("modality"),
+        "matched_rows": primary.get("n_rows"),
     }
-    if resources_status:
-        evidence["resource_pack"] = resources_status.get("message") or resources_status.get("source")
-        evidence["resource_count"] = resources_status.get("asset_count")
-    if diagnostics.get("indexes_searched"):
-        evidence["matched_indexes"] = ", ".join(diagnostics["indexes_searched"])
-    return evidence
+    return {key: value for key, value in out.items() if value is not None}
 
 
-def _readable_data_source(matrix_source: str | None) -> str:
-    if matrix_source == "resource_pack_pending":
-        return "resource-pack query execution pending"
-    if matrix_source == "registered_assets":
-        return "registered resource pack metadata; no matrix retrieval was produced"
-    return matrix_source or "not retrieved"
+def _limitations(dossier: dict[str, Any]) -> list[str]:
+    items = []
+    for item in (dossier.get("uncertainty_layer") or {}).get("limitations", []):
+        text = item.get("message") if isinstance(item, dict) else str(item)
+        if text and text not in items:
+            items.append(text)
+    for item in (dossier.get("claim_basis") or {}).get("caution_points", []):
+        text = str(item)
+        if text and text not in items:
+            items.append(text)
+    return items
 
 
-def _limitations(structured: dict[str, Any], resources_status: dict[str, Any] | None) -> list[str]:
-    limitations = []
-    diagnostics = structured.get("diagnostics", {})
-    if diagnostics.get("missing_fields"):
-        limitations.append(f"Missing fields: {', '.join(diagnostics['missing_fields'])}.")
-    if diagnostics.get("warnings"):
-        limitations.extend(str(item) for item in diagnostics["warnings"])
-    if resources_status and not resources_status.get("configured"):
-        limitations.append("No local PxFquery resource pack is configured yet.")
-    return limitations
+def _rendering_contract(dossier: dict[str, Any], mode: str) -> dict[str, Any]:
+    basis = dossier.get("claim_basis") or {}
+    hints = dossier.get("rendering_hints") or {}
+    return {
+        "mode": mode,
+        "allowed_transformations": hints.get("allowed_transformations", []),
+        "forbidden_transformations": hints.get("forbidden_transformations", []),
+        "must_mention": basis.get("must_mention", []),
+        "must_not_claim": basis.get("must_not_claim", []),
+    }
 
 
-def _interpretation(intent: dict[str, Any], results: list[dict[str, Any]]) -> str:
-    if not results:
-        return "No matrix-backed biological result was found for this query and resource configuration."
-    if intent.get("query_type") == "reverse":
-        return "Candidates are ranked by similarity between their functional score vector and the requested functional target."
-    return "Functional programs are ordered by matrix-derived perturbation scores for the resolved evidence context."
-
-
-def _trace(structured: dict[str, Any]) -> list[dict[str, Any]]:
+def _trace(dossier: dict[str, Any]) -> list[dict[str, Any]]:
+    audit = dossier.get("audit_layer") or {}
     return [
-        {"layer": "natural_language_understanding", "event": "intent_parsed"},
-        {"layer": "evidence_routing", "event": "route_selected", "status": structured.get("route_status")},
-        {"layer": "resource_pack_query_execution", "event": "execution_result_available"},
-        {"layer": "evidence_assembly", "event": "evidence_payload_built"},
-        {"layer": "biological_result_presentation", "event": "answer_built"},
+        {"layer": "l1", "event": "intent_parsed", "schema": (audit.get("schema_versions") or {}).get("l2")},
+        {"layer": "l2", "event": "route_selected"},
+        {"layer": "l3", "event": "matrix_execution", "status": audit.get("raw_execution_status")},
+        {"layer": "l4", "event": "evidence_dossier", "status": dossier.get("dossier_status")},
+        {"layer": "l5", "event": "presentation_rendered"},
     ]

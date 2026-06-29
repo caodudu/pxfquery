@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from pathlib import Path
 from typing import Any
 
 from pxfquery.l3_execution import execute_route_plan
@@ -9,6 +10,8 @@ from pxfquery.l4_evidence.annotation import default_annotation_providers
 from pxfquery.l1_intent import parse_intent
 from pxfquery.l2_routing import route_intent
 from pxfquery.l5_presentation.answer import build_answer
+from pxfquery.l5_presentation.chat import build_chat_response
+from pxfquery.l5_presentation.figures import write_figure_files
 
 
 @dataclass
@@ -157,6 +160,77 @@ class ToolsNamespace:
         target.uns["annotation_evidence"] = annotation
         return target if copy else None
 
+    def answer(
+        self,
+        qdata: PxFQueryData,
+        *,
+        mode: str = "python",
+        output: str | Path | None = None,
+        copy: bool = False,
+    ) -> PxFQueryData | None:
+        target = _copy_qdata(qdata) if copy else qdata
+        dossier = _require_evidence(target)
+        answer = build_answer(target.text, dossier, mode=mode)
+        if mode == "html" and output is not None:
+            path = Path(output)
+            path.write_text(answer.html or "", encoding="utf-8")
+            target.uns["answer_output"] = str(path)
+        target.uns["_answer"] = answer
+        target.uns["answer"] = answer.to_dict()
+        return target if copy else None
+
+    def chat(
+        self,
+        qdata: PxFQueryData,
+        message: str,
+        *,
+        copy: bool = False,
+        llm_provider: Any | None = None,
+        print_response: bool = True,
+    ) -> PxFQueryData | None:
+        target = _copy_qdata(qdata) if copy else qdata
+        dossier = _require_evidence(target)
+        answer = target.uns.get("_answer")
+        if answer is None:
+            answer = build_answer(target.text, dossier, mode="python")
+            target.uns["_answer"] = answer
+            target.uns["answer"] = answer.to_dict()
+        provider = llm_provider if llm_provider is not None else self._client.llm_providers.get()
+        history = target.uns.setdefault("chat", [])
+        turn = build_chat_response(
+            target.text,
+            dossier,
+            message,
+            answer=answer,
+            history=history,
+            llm_provider=provider,
+        )
+        history.append(turn)
+        target.uns["last_chat"] = turn
+        if print_response:
+            print(turn["assistant"])
+        return target if copy else None
+
+    def figures(
+        self,
+        qdata: PxFQueryData,
+        *,
+        output_dir: str | Path,
+        prefix: str = "pxfquery",
+        format: str = "png",
+        copy: bool = False,
+    ) -> PxFQueryData | None:
+        target = _copy_qdata(qdata) if copy else qdata
+        answer = target.uns.get("_answer")
+        if answer is None:
+            dossier = _require_evidence(target)
+            answer = build_answer(target.text, dossier, mode="python")
+            target.uns["_answer"] = answer
+            target.uns["answer"] = answer.to_dict()
+        paths = write_figure_files(answer.figures, output_dir, prefix=prefix, fmt=format)
+        target.uns["figure_outputs"] = paths
+        return target if copy else None
+
 
 class GetNamespace:
     def intent(self, qdata: PxFQueryData) -> dict[str, Any]:
@@ -174,8 +248,18 @@ class GetNamespace:
     def execution(self, qdata: PxFQueryData) -> dict[str, Any]:
         return qdata.uns["execution"]
 
-    def answer(self, qdata: PxFQueryData, *, resources_status: dict[str, Any] | None = None):
-        return build_answer(qdata.text, qdata.uns["result"], resources_status=resources_status)
+    def answer(self, qdata: PxFQueryData):
+        if "_answer" not in qdata.uns:
+            raise RuntimeError("qdata has no L5 answer; call pxf.tl.answer(qdata) before pxf.get.answer(qdata)")
+        return qdata.uns["_answer"]
+
+    def chat(self, qdata: PxFQueryData) -> str:
+        if "last_chat" not in qdata.uns:
+            raise RuntimeError("qdata has no L5 chat turn; call pxf.tl.chat(qdata, message) before pxf.get.chat(qdata)")
+        return qdata.uns["last_chat"]["assistant"]
+
+    def chat_history(self, qdata: PxFQueryData) -> list[dict[str, Any]]:
+        return qdata.uns.get("chat", [])
 
 
 def run_scanpy_style_pipeline(client, text: str) -> PxFQueryData:

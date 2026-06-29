@@ -50,5 +50,7 @@ class PxFQuery:
             "resource_pack": self.resources.status().to_dict(),
         }
 
-    def ask(self, text: str):
-        raise RuntimeError("L5 answer rendering is not implemented in this L4 package version; use pxf.query(text) or pxf.get.evidence(qdata).")
+    def ask(self, text: str, *, mode: str = "python"):
+        qdata = self.tl.parse(text)
+        self.tl.answer(qdata, mode=mode)
+        return self.get.answer(qdata)

@@ -175,10 +175,10 @@ def test_l4_synthesis_payload_preserves_exact_primary_with_proxy_support_semanti
             self.system_prompt = system_prompt
             self.user_payload = user_payload
             return {
-                "summary": "exact primary matrix evidence with proxy support",
+                "biological_summary": "Erlotinib in A375 cells activates stress programs.",
+                "evidence_audit_summary": "Exact primary matrix evidence with proxy support.",
                 "verdict_rationale": "primary exact route plus proxy references",
                 "confidence_rationale": "moderate",
-                "limitations_summary": "proxy routes are supporting references",
             }, {"provider": "fake", "final_status": "ok", "attempts": [], "parsed_json_hash": "fake"}
 
     provider = Provider()
@@ -226,9 +226,92 @@ def test_l4_synthesis_payload_preserves_exact_primary_with_proxy_support_semanti
     )
 
     assert dossier["evidence_layer"]["evidence_grade"] == "exact_primary_with_proxy_support"
-    assert "do not call it 'not exact'" in provider.system_prompt
-    assert provider.user_payload["evidence_grade_semantics"]["required_phrase"] == "exact primary matrix evidence with proxy support"
+    assert "Use only the supplied biology_context" in provider.system_prompt
+    assert "biological_summary must directly answer the biological question" in provider.system_prompt
+    assert "Do not start biological_summary with 'PxFquery found'" in provider.system_prompt
+    assert provider.user_payload["summary_contract"]["summary_focus"] == "biological_answer_only"
+    assert provider.user_payload["summary_contract"]["isolated_outputs"] == ["biological_summary", "evidence_audit_summary"]
+    assert "PxFquery found" in provider.user_payload["summary_contract"]["forbidden_summary_openers"]
+    assert "limitations" not in provider.user_payload
+    assert "limitations" in provider.user_payload["summary_contract"]["forbidden_topics"]
+    assert "claim_basis" not in provider.user_payload
+    assert "evidence_grade_semantics" not in provider.user_payload
+    assert "route_summary" not in provider.user_payload
+    assert provider.user_payload["biology_context"]["cell"] == "A375"
+    assert provider.user_payload["audit_context"]["evidence_grade"] == "exact_primary_with_proxy_support"
+    synthesis = dossier["evidence_layer"]["llm_synthesis"]
+    assert synthesis["summary"] == "Erlotinib in A375 cells activates stress programs."
+    assert synthesis["biological_summary"] == synthesis["summary"]
+    assert synthesis["evidence_audit_summary"] == "Exact primary matrix evidence with proxy support."
     assert "all selected evidence routes were exact" in dossier["claim_basis"]["must_not_claim"]
+
+
+def test_l4_synthesis_repairs_quality_report_style_summary():
+    class Provider:
+        def __init__(self):
+            self.stages = []
+
+        def request_json(self, *, stage, system_prompt, user_payload, temperature=0):
+            self.stages.append(stage)
+            if stage == "l4_evidence":
+                return {
+                    "biological_summary": "PxFquery found evidence grade exact_primary_with_proxy_support.",
+                    "evidence_audit_summary": "proxy routes are not exact",
+                    "verdict_rationale": "proxy routes are not exact",
+                    "confidence_rationale": "moderate",
+                }, {"provider": "fake", "final_status": "ok", "attempts": [], "parsed_json_hash": "bad"}
+            return {
+                "biological_summary": "Erlotinib in A375 cells activates stress programs and suppresses cholesterol homeostasis.",
+                "evidence_audit_summary": "Exact primary matrix evidence is present, with proxy routes as supporting references.",
+                "verdict_rationale": "Exact primary matrix evidence is present, with proxy routes as supporting references.",
+                "confidence_rationale": "Moderate because the primary evidence has one matched row.",
+            }, {"provider": "fake", "final_status": "ok", "attempts": [], "parsed_json_hash": "repair"}
+
+    provider = Provider()
+    execution = {
+        "schema_version": "l3-matrix-execution/v1",
+        "query_id": "q-repair",
+        "query_type": "forward",
+        "execution_status": "executed",
+        "source_route_schema": "l2-route-plan/v2",
+        "executed_routes": [
+            {
+                "route_id": "forward_001",
+                "query_type": "forward",
+                "modality": "cp",
+                "status": "executed",
+                "cell": "A375",
+                "route_metadata": {"tier": "exact_cell_exact_perturbation", "perturbation": "erlotinib"},
+                "row_match": {"n_rows": 1},
+                "scores": {"requested_functions": {}},
+                "rankings": {"top_activated": [{"label": "MP5 Stress"}], "top_suppressed": [{"label": "HALLMARK_CHOLESTEROL_HOMEOSTASIS"}]},
+                "diagnostics": {},
+            }
+        ],
+        "skipped_routes": [],
+        "errors": [],
+        "warnings": [],
+    }
+    route_plan = {
+        "schema_version": "l2-route-plan/v2",
+        "route_status": "routed",
+        "combination_route": {"selected_routes": [{"tier": "exact_cell_exact_perturbation"}, {"tier": "exact_cell_proxy_perturbation"}]},
+    }
+
+    dossier = assemble_evidence(
+        execution,
+        intent={"query_type": "forward", "bio_context": "A375", "pert_desc": "erlotinib"},
+        route_plan=route_plan,
+        llm_provider=provider,
+        synthesize=True,
+    )
+    synthesis = dossier["evidence_layer"]["llm_synthesis"]
+
+    assert provider.stages == ["l4_evidence", "l4_evidence_repair"]
+    assert synthesis["summary"].startswith("Erlotinib in A375 cells")
+    assert synthesis["biological_summary"] == synthesis["summary"]
+    assert synthesis["evidence_audit_summary"].startswith("Exact primary matrix evidence")
+    assert synthesis["diagnostics"]["quality_flags"] == []
 
 
 def test_l4_route_unresolved_is_not_answered():

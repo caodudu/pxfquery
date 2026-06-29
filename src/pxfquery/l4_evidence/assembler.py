@@ -402,16 +402,7 @@ def _llm_synthesis(
     try:
         result, evidence = llm_provider.request_json(
             stage="l4_evidence",
-            system_prompt=(
-                "Summarize the supplied compact PxFquery evidence as one small valid JSON object. "
-                "Use concise strings. Do not use markdown. Do not add candidates, "
-                "do not alter scores, do not invent citations, and do not convert no-hit, proxy, "
-                "or partial evidence into exact evidence. Preserve evidence_grade semantics exactly. "
-                "For exact_primary_with_proxy_support, state that exact primary matrix evidence is present "
-                "and proxy routes are supporting references; do not call it 'not exact' and do not call all routes exact. "
-                "Return keys: summary, verdict_rationale, "
-                "confidence_rationale, limitations_summary."
-            ),
+            system_prompt=_synthesis_system_prompt(),
             user_payload=payload,
             temperature=0,
         )
@@ -419,15 +410,68 @@ def _llm_synthesis(
         return {"status": "failed", "summary": None, "provider_evidence": {}, "diagnostics": {"reason": str(exc)}}
     if not isinstance(result, dict):
         return {"status": "failed", "summary": None, "provider_evidence": _json_safe(evidence), "diagnostics": {"reason": "LLM synthesis returned non-object JSON."}}
+    quality_flags = _synthesis_quality_flags(result)
+    if quality_flags:
+        try:
+            repaired, repair_evidence = llm_provider.request_json(
+                stage="l4_evidence_repair",
+                system_prompt=(
+                    _synthesis_system_prompt()
+                    + " Your previous JSON failed these quality checks: "
+                    + ", ".join(quality_flags)
+                    + ". Rewrite the same keys using the same evidence. "
+                    + "Do not use the phrase 'not exact'. Do not make evidence quality the lead sentence."
+                ),
+                user_payload=payload | {"previous_invalid_synthesis": result, "quality_flags": quality_flags},
+                temperature=0,
+            )
+            if isinstance(repaired, dict) and not _synthesis_quality_flags(repaired):
+                result = repaired
+                evidence = {"initial": _json_safe(evidence), "repair": _json_safe(repair_evidence)}
+                quality_flags = []
+        except Exception as exc:
+            quality_flags.append(f"repair_failed:{type(exc).__name__}")
     return {
         "status": "completed",
-        "summary": result.get("summary"),
+        "summary": result.get("biological_summary") or result.get("summary"),
+        "biological_summary": result.get("biological_summary") or result.get("summary"),
+        "evidence_audit_summary": result.get("evidence_audit_summary"),
         "verdict_rationale": result.get("verdict_rationale"),
         "confidence_rationale": result.get("confidence_rationale"),
-        "limitations_summary": result.get("limitations_summary"),
+        "limitations_summary": None,
         "provider_evidence": _json_safe(evidence),
-        "diagnostics": {},
+        "diagnostics": {"quality_flags": quality_flags},
     }
+
+
+def _synthesis_system_prompt() -> str:
+    return (
+        "Write one compact JSON object with two isolated summaries. "
+        "Use only the supplied biology_context when writing biological_summary. "
+        "biological_summary is for a biology user and may use only biology_context. "
+        "biological_summary must directly answer the biological question. "
+        "For forward queries, describe which programs are activated and suppressed by the perturbation in the cell context. "
+        "For reverse queries, name the ranked candidate perturbations/genes and the phenotype or program they are predicted to affect. "
+        "Do not put query-quality, evidence-quality, software, benchmark, or validation language in biological_summary. "
+        "Do not start biological_summary with 'PxFquery found', 'Evidence grade', 'The evidence', 'Confidence', or row counts. "
+        "Do not mention disabled literature, PubMed availability, limitations, matched rows, evidence grades, exact/proxy labels, or clinical caveats in biological_summary. "
+        "evidence_audit_summary is separate and may use audit_context to summarize evidence grade, route quality, and run quality for reports or developers. "
+        "Do not add candidates, do not alter scores, and do not invent citations. "
+        "Return keys: biological_summary, evidence_audit_summary, verdict_rationale, confidence_rationale."
+    )
+
+
+def _synthesis_quality_flags(result: dict[str, Any]) -> list[str]:
+    flags = []
+    summary = str(result.get("biological_summary") or result.get("summary") or "").strip().lower()
+    combined = summary
+    for opener in ("pxfquery found", "evidence grade", "the evidence", "confidence", "matched rows"):
+        if summary.startswith(opener):
+            flags.append(f"summary_starts_with:{opener}")
+    for phrase in ("not exact", "no exact evidence", "insufficient evidence", "not enough evidence", "not reliable", "unreliable", "cannot answer"):
+        if phrase in combined:
+            flags.append(f"forbidden_phrase:{phrase}")
+    return flags
 
 
 def _synthesis_payload(
@@ -439,33 +483,30 @@ def _synthesis_payload(
 ) -> dict[str, Any]:
     primary = matrix_evidence.get("primary_result") or {}
     return {
-        "claim_basis": {
-            "answerability": claim_basis.get("answerability"),
-            "main_claim": claim_basis.get("main_claim"),
-            "claim_type": claim_basis.get("claim_type"),
-            "claim_strength": claim_basis.get("claim_strength"),
-            "must_mention": claim_basis.get("must_mention"),
-            "must_not_claim": claim_basis.get("must_not_claim"),
-        },
-        "evidence_grade_semantics": _evidence_grade_semantics(claim_basis.get("must_mention", [])),
-        "route_summary": {
-            "status": route_evidence.get("status"),
-            "selected_route_count": len(route_evidence.get("selected_routes") or []),
-            "primary_route": (route_evidence.get("selected_routes") or [{}])[0],
-        },
-        "matrix_summary": {
-            "mode": matrix_evidence.get("mode"),
-            "execution_status": matrix_evidence.get("execution_status"),
-            "primary_cell": primary.get("cell"),
-            "primary_perturbation": primary.get("perturbation"),
-            "primary_modality": primary.get("modality"),
-            "primary_n_rows": primary.get("n_rows"),
+        "biology_context": {
+            "query_type": matrix_evidence.get("mode"),
+            "cell": primary.get("cell"),
+            "perturbation": primary.get("perturbation"),
+            "modality": primary.get("modality"),
+            "requested_function_scores": primary.get("requested_function_scores"),
             "top_activated": _compact_rankings(primary.get("top_activated", [])),
             "top_suppressed": _compact_rankings(primary.get("top_suppressed", [])),
             "top_perturbations": _compact_rankings(primary.get("top_perturbations", [])),
         },
-        "literature_status": literature_evidence.get("status"),
-        "limitations": limitations[:5],
+        "summary_contract": {
+            "summary_focus": "biological_answer_only",
+            "isolated_outputs": ["biological_summary", "evidence_audit_summary"],
+            "forbidden_summary_openers": ["PxFquery found", "Evidence grade", "The evidence", "Confidence", "Matched rows"],
+            "forbidden_topics": ["limitations", "disabled literature", "PubMed unavailable", "clinical validation caveats", "evidence grade", "matched rows"],
+        },
+        "audit_context": {
+            "answerability": claim_basis.get("answerability"),
+            "claim_strength": claim_basis.get("claim_strength"),
+            "evidence_grade": _evidence_grade_semantics(claim_basis.get("must_mention", [])).get("grade"),
+            "must_not_claim": claim_basis.get("must_not_claim"),
+            "selected_route_count": len(route_evidence.get("selected_routes") or []),
+            "literature_status": literature_evidence.get("status"),
+        },
     }
 
 

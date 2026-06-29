@@ -1,169 +1,286 @@
 # PxFquery
 
-PxFquery is a Python package for asking biomedical perturbation questions in natural language.
+PxFquery is a Python package for querying perturbation-function evidence from natural-language biological questions. It is designed for exploratory analysis of LINCS / Connectivity Map-style perturbational signatures, especially questions that connect compounds, genetic perturbations, cell contexts, and functional gene-set programs.
 
-It is designed for evidence routing over a local PxFquery resource pack: a user asks in biological language, PxFquery interprets the question, routes it to available perturbation-function resources, and returns a readable answer with evidence and limitations.
-
-Example questions:
+The package supports two common query directions:
 
 ```text
-Which perturbations increase a requested biological function in a disease model?
-How does a perturbation change functional programs in a disease model?
-Find perturbations associated with a requested phenotype in available models.
+Forward: In EGFR-driven lung adenocarcinoma models, what functional programs are changed by EGFR inhibition, and are inflammatory or MAPK-related programs affected?
+
+Reverse: In a lung adenocarcinoma model, which perturbations are linked to suppression of inflammatory response while avoiding strong MYC activation?
 ```
 
-This package version is an L1-L4 repair package. It adds internal L4 evidence dossier assembly. It does not claim final L5 human answer rendering.
+Both are returned as structured evidence reports with ranked functional results or perturbation candidates, route information, limitations, figures, and optional conversational follow-up.
 
-## Install
+## What PxFquery Provides
+
+- Natural-language perturbation queries for drug and genetic perturbation settings.
+- Forward queries: what functional programs change after a perturbation.
+- Reverse queries: which perturbations are associated with a requested functional state.
+- Matrix-backed evidence from LINCS / Connectivity Map-style perturbation resources.
+- Compound, shRNA/RNAi, and overexpression-style perturbation modalities when the corresponding matrices are available.
+- Optional public annotation from sources such as PubMed, PubChem, and ChEMBL.
+- Python, command-line, HTML report, figure, and MCP interfaces.
+- Publication-oriented visual outputs, including ranked score bars, bubble plots, heatmaps, evidence-path diagrams, and evidence-limit panels.
+
+The output should be read as a structured summary of perturbational evidence: what was matched in the resource pack, which functional programs were ranked, where proxy evidence was used, and what limitations should accompany the interpretation.
+
+## Installation
 
 ```bash
 git clone git@github.com:caodudu/pxfquery.git
 cd pxfquery
 python -m pip install -e .
-python -m pip install pytest PyYAML
 ```
 
-PxFquery is source-install first.
+PxFquery requires Python 3.10 or newer.
 
-## Basic Use
+## Configuration
 
-```python
-from pxfquery import PxFQuery
-
-pxf = PxFQuery()
-pxf.settings.use_deepseek(token="...", timeout=60)
-pxf.resources.use("/path/to/pxfquery_resource_pack")
-q = pxf.tl.parse("Which perturbations increase a requested biological function in a disease model?")
-
-execution = pxf.get.execution(q)
-evidence = pxf.get.evidence(q)
-```
-
-The L3 execution payload contains:
-
-- how PxFquery interpreted the question
-- the selected L2 route plan
-- extracted matrix-backed route results
-- empty-hit or resource errors when a route cannot be executed
-
-The L4 evidence dossier contains:
-
-- structured `claim_basis` for L5 rendering
-- route evidence, matrix evidence, optional literature evidence, and optional LLM synthesis
-- confidence/limitations/failure semantics
-- rendering constraints that prevent L5 from changing scores, candidates, or evidence status
-- audit fields for schema versions, resource state, errors, and warnings
-
-Programmatic output is still available:
-
-```python
-route = pxf.get.route(q)
-execution = pxf.get.execution(q)
-evidence = pxf.get.evidence(q)
-```
-
-Optional L4 annotation can be added after the L1-L4 matrix-backed dossier exists:
-
-```python
-pxf.tl.anno(q, sources=("pubmed", "pubchem", "chembl"))
-annotation = q.uns["annotation_evidence"]
-```
-
-`tl.anno()` uses real public APIs for configured sources. DrugBank is not enabled by default because PxFquery has no public unauthenticated DrugBank API configured.
-
-Stepwise use follows a scanpy-style interface. This is the user interface; the five numbered folders are the internal functional layers.
-
-```python
-pxf = PxFQuery()
-pxf.settings.use_deepseek(token="...", timeout=60)
-pxf.resources.use("/path/to/pxfquery_resource_pack")
-q = pxf.read.query("Which perturbations increase a requested biological function in a disease model?")
-pxf.pp.parse(q)
-pxf.pp.route(q)
-pxf.tl.execute(q)
-pxf.tl.assemble(q)
-execution = pxf.get.execution(q)
-evidence = pxf.get.evidence(q)
-```
-
-`tl.assemble()` now builds the internal L4 `EvidenceDossier`. Final L5 answer rendering remains a later presentation-layer responsibility.
-
-Direct legacy matrix query helpers are intentionally not exposed in this L3 package source.
-
-## Resource Pack
-
-PxFquery uses a local resource pack containing perturbation matrices, indexes, and metadata. Normal users should think about this as one PxFquery resource pack, not as individual matrix/index files.
-
-Default cached flow:
-
-```python
-from pxfquery import PxFQuery
-
-pxf = PxFQuery()
-print(pxf.resources.status())
-```
-
-`PxFQuery()` mounts the packaged Zenodo manifest by default. Files are cached under `~/.cache/pxfquery/resources/v20260628` and are downloaded only when a route or execution step needs them.
-
-Explicit local-pack flow:
-
-```python
-pxf = PxFQuery()
-pxf.resources.use("/path/to/pxfquery_resource_pack")
-print(pxf.resources.status())
-```
-
-Manual prefetch is available when a caller wants to populate the cache before querying:
-
-```python
-pxf = PxFQuery()
-pxf.resources.download("l2_core_indexes")
-pxf.resources.download("l2_proxy_neighbors")
-pxf.resources.download("l3_functional_scores", modalities=("cp",), kinds=("obs", "matrix", "var"))
-```
-
-## Interface Layers
-
-PxFquery source is organized into explicit layers.
-
-```text
-User biomedical question
-  -> pxfquery.l1_intent
-  -> pxfquery.l2_routing
-  -> pxfquery.l3_execution
-  -> pxfquery.l4_evidence
-  -> pxfquery.l5_presentation
-```
-
-The current `0.5.6.dev3` implementation keeps the five-layer structure and repairs L4 evidence dossier assembly against current L1-L3 outputs. `l1_intent` parsing requires a configured OpenAI-compatible LLM provider. L3 biological scores come from loaded functional matrices and resource-pack indexes.
-
-## Current Status
-
-Version `0.5.6.dev3` keeps the package capabilities inside the layered source architecture and repairs L4 evidence assembly:
-
-- `pxfquery.l1_intent` parses the user's biomedical question into resolver-compatible intent through the configured LLM provider.
-- `pxfquery.l2_routing` performs resource-backed route planning with exact/proxy/unresolved dimensions.
-- `pxfquery.l3_execution` extracts matrix-backed function scores or reverse perturbation candidates from L2 route plans.
-- `pxfquery.l4_evidence` assembles a renderer-neutral `EvidenceDossier` from L1 intent, L2 route plan, and L3 execution.
-- `pxf.tl.parse(text)` runs the L1-L4 pipeline in one call, while `pxf.tl.anno(qdata, sources=("pubmed", "pubchem", "chembl"))` attaches optional real provider annotations without making them mandatory.
-- `pxfquery.l5_presentation` is reserved for downstream answer rendering and plots.
-
-The package root is intentionally thin. Product code lives inside the five visible layer directories.
-
-## Test
+PxFquery uses a configured language-model endpoint to interpret the user's question and to support evidence-constrained follow-up discussion. The endpoint is not fixed to one provider; any compatible provider can be registered through environment variables:
 
 ```bash
 export PXFQUERY_LLM_API_KEY="..."
-python -m pytest -q tests
+export PXFQUERY_LLM_BASE_URL="https://your-provider.example/v1"
+export PXFQUERY_LLM_MODEL="your-model-name"
+export PXFQUERY_LLM_PROVIDER="your-provider-name"
 ```
 
-The L1 contract test makes one real DiyGateway request. If the gateway is unavailable or the token is missing, the test fails.
+You can also configure a provider inside Python:
 
-Current source test target:
+```python
+from pxfquery import PxFQuery
+
+pxf = PxFQuery()
+pxf.settings.register_llm_provider(
+    name="my-provider",
+    token="...",
+    base_url="https://your-provider.example/v1",
+    model="your-model-name",
+    timeout=60,
+)
+```
+
+For users who choose DeepSeek, the convenience helper is:
+
+```python
+pxf.settings.use_deepseek(token="...", timeout=60)
+```
+
+Resource files are managed automatically. PxFquery uses a packaged Zenodo manifest and downloads the required LINCS / Connectivity Map-derived matrices, functional gene-set scores, metadata, and lookup indexes into the user's cache when a query needs them.
+
+```python
+print(pxf.resources.status())
+```
+
+Advanced users who maintain a local mirror of the resource pack can mount it explicitly with `pxf.resources.use("/path/to/pxfquery_resource_pack")`.
+
+## Quick Start
+
+```python
+from pxfquery import PxFQuery
+
+pxf = PxFQuery()
+
+forward = pxf.tl.parse(
+    "In EGFR-driven lung adenocarcinoma models, what functional programs are changed by EGFR inhibition, and are inflammatory or MAPK-related programs affected?",
+    top_n=10,
+)
+pxf.tl.answer(forward)
+forward_answer = pxf.get.answer(forward)
+
+reverse = pxf.tl.parse(
+    "In a lung adenocarcinoma model, which perturbations are linked to suppression of inflammatory response while avoiding strong MYC activation?",
+    top_n=10,
+)
+pxf.tl.answer(reverse)
+reverse_answer = pxf.get.answer(reverse)
+
+print(forward_answer.summary)
+print(reverse_answer.biological_results[:5])
+```
+
+`pxf.tl.parse()` runs the evidence search. `pxf.tl.answer()` converts the evidence into a user-facing answer object without changing the underlying evidence.
+
+## Python Output
+
+The answer object contains:
+
+- `summary`: a concise biological interpretation.
+- `biological_results`: ranked functional programs or perturbation candidates.
+- `evidence`: context, evidence grade, matched rows, and route status.
+- `limitations`: evidence limits that should be reported with the result.
+- `tables`: display-ready evidence tables.
+- `figures`: figure specifications used by HTML and file outputs.
+
+Forward-query example:
+
+```python
+answer = pxf.ask(
+    "For EGFR-driven lung adenocarcinoma models, what functional programs are changed by EGFR inhibition?",
+    mode="python",
+)
+
+print(answer.headline)
+print(answer.summary)
+```
+
+Reverse-query example:
+
+```python
+answer = pxf.ask(
+    "Which perturbations suppress inflammatory response in a lung cancer context?",
+    mode="python",
+)
+
+print(answer.headline)
+print(answer.summary)
+```
+
+## Figures
+
+PxFquery can write figure files directly from the evidence result:
+
+```python
+q = pxf.tl.parse(
+    "For a breast tumor context, which treatments are associated with reduced ERBB2 signaling and increased apoptosis?",
+    top_n=10,
+)
+pxf.tl.answer(q)
+
+pxf.tl.figures(q, output_dir="pxfquery_figures", format="png")
+pxf.tl.figures(q, output_dir="pxfquery_figures_svg", format="svg")
+```
+
+Current figure types include:
+
+- ranked evidence score bar plot
+- result magnitude bubble plot
+- primary score heatmap
+- query evidence path diagram
+- evidence limits panel
+
+These figures are designed for rapid biological review and manuscript-supporting exploratory reports, not as a substitute for independent statistical validation.
+
+## HTML Report
+
+HTML reports are intended for sharing a readable query result with collaborators:
+
+```python
+q = pxf.tl.parse(
+    "In a lung cancer setting, find perturbations associated with lower inflammatory signaling without a strong proliferative signature.",
+    top_n=10,
+)
+pxf.tl.answer(q, mode="html", output="lung_cancer_inflammation_report.html")
+```
+
+The report includes the original question, interpreted biological question, main evidence table, process overview, figures, and evidence limits. It avoids exposing internal package labels in the user-facing report.
+
+## Follow-up Chat
+
+After evidence is assembled, users can ask follow-up questions constrained to the same evidence:
+
+```python
+q = pxf.tl.parse(
+    "For EGFR-driven lung adenocarcinoma models, summarize perturbations that reduce MAPK-related programs and report any evidence limitations.",
+    top_n=10,
+)
+pxf.tl.answer(q)
+
+pxf.tl.chat(q, "Summarize the strongest evidence and the main limitations.")
+print(pxf.get.chat(q))
+```
+
+The chat interface is evidence-constrained. It is not allowed to add new candidates, change scores, invent citations, or upgrade weak evidence.
+
+## Command Line
+
+The command-line interface is useful for scripted queries and report generation:
+
+```bash
+pxfquery answer "In a lung adenocarcinoma model, which perturbations are linked to suppression of inflammatory response while avoiding strong MYC activation?"
+
+pxfquery answer \
+  "In a lung cancer setting, find perturbations associated with lower inflammatory signaling without a strong proliferative signature." \
+  --mode html \
+  --output lung_cancer_inflammation_report.html
+
+pxfquery figures \
+  "For a breast tumor context, which treatments are associated with reduced ERBB2 signaling and increased apoptosis?" \
+  --output-dir breast_tumor_erbb2_figures \
+  --format png
+
+pxfquery chat \
+  "For EGFR-driven lung adenocarcinoma models, summarize perturbations that reduce MAPK-related programs and report any evidence limitations." \
+  "Explain the main evidence and limitations."
+```
+
+If configuration is stored in an environment file:
+
+```bash
+pxfquery --env-file .env answer "Which genetic perturbations may reduce MYC-related programs in a breast cancer context while preserving oxidative phosphorylation?"
+```
+
+## Optional Annotation
+
+Additional public-database annotation can be attached after the primary evidence result:
+
+```python
+q = pxf.tl.parse(
+    "Which compounds are associated with suppression of interferon response in a lung cancer context?",
+    top_n=10,
+)
+pxf.tl.anno(q, sources=("pubmed", "pubchem", "chembl"))
+
+annotation = q.uns["annotation_evidence"]
+```
+
+Annotation is optional. It supplements the matrix-backed result and does not replace the primary evidence route.
+
+## MCP Interface
+
+PxFquery can be exposed as an MCP server for compatible external analysis environments:
+
+```bash
+python -m pxfquery.mcp_server --env-file .env
+```
+
+Available MCP tools:
+
+- `pxfquery_parse_answer`: run a query and return the evidence-grounded answer payload.
+- `pxfquery_render_figures`: run a query and write figure files.
+- `pxfquery_l5_chat`: answer a follow-up question using the assembled evidence.
+
+The MCP interface returns structured evidence and display payloads. The calling application remains responsible for how it presents the result to the user.
+
+## Example Questions
+
+Forward perturbation questions:
 
 ```text
-49 passed, 6 skipped
+For EGFR-driven lung adenocarcinoma models, what functional programs are changed by EGFR inhibition?
+For a breast tumor context, what functions go up or down after trastuzumab treatment?
+In melanoma models, does MEK inhibition suppress MAPK-related programs and alter inflammatory signatures?
 ```
+
+Reverse evidence questions:
+
+```text
+In a lung adenocarcinoma model, which perturbations are linked to suppression of inflammatory response while avoiding strong MYC activation?
+Find compounds linked to increased oxidative phosphorylation in a cancer cell context.
+Which genetic perturbations may reduce MYC-related programs in a breast cancer context while preserving oxidative phosphorylation?
+```
+
+## Interpreting Results
+
+A PxFquery result should be read as an evidence summary from the configured LINCS / Connectivity Map-style resource pack:
+
+- High-ranked rows indicate stronger matrix-backed associations within the available data.
+- Functional programs are derived from perturbational signature scores, not from de novo pathway enrichment performed at query time.
+- Proxy matches should be treated as weaker support than exact context or perturbation matches.
+- Partial evidence should be reported with its limitations.
+- Absence of evidence is not evidence of absence.
+- Results are hypothesis-generating unless followed by independent biological validation.
 
 ## Version
 
@@ -172,8 +289,8 @@ import pxfquery
 print(pxfquery.__version__)
 ```
 
-Current version:
+Current package version:
 
 ```text
-0.5.6.dev3
+0.5.7.dev0
 ```

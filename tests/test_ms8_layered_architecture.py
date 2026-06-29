@@ -54,12 +54,12 @@ def test_product_source_has_five_visible_layers():
 
 
 def test_package_root_contains_user_interface_not_internal_layer_logic():
-    expected = {"__init__.py", "__main__.py", "cli.py", "client.py", "settings.py", "version.py", "workflow.py"}
+    expected = {"__init__.py", "__main__.py", "cli.py", "client.py", "mcp_server.py", "settings.py", "version.py", "workflow.py"}
     actual = {path.name for path in SRC.iterdir() if path.is_file()}
     assert actual == expected
 
 
 def test_presentation_layer_contains_only_current_files():
-    allowed = {"__init__.py", "answer.py", "model.py", "plots.py"}
+    allowed = {"__init__.py", "answer.py", "chat.py", "figures.py", "mcp.py", "model.py", "plots.py", "report.py", "tables.py"}
     actual = {path.name for path in (SRC / "l5_presentation").iterdir() if path.is_file()}
     assert actual == allowed

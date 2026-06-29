@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.5.6.dev4 - 2026-06-29
+
+- Split L4 LLM synthesis into two default isolated outputs: `biological_summary` for the biology answer and `evidence_audit_summary` for route/evidence/run quality.
+- Restricted `biological_summary` to supplied biological result content so L5 can display it without inheriting audit language such as evidence grade, PubMed status, limitations, or route quality.
+- Kept audit language available in `evidence_audit_summary` for HTML reports, methods, debugging, and downstream L5 renderers that need provenance.
+- Added 60-question batch summary fields and quality flags for L4 synthesis outputs.
+- Verified the T140 internal package with 60 real DeepSeek L1-L4 synthesis runs: 60/60 completed, no missing dual-summary fields, and no flagged biological-summary quality leakage.
+
 ## 0.5.6.dev3 - 2026-06-29
 
 - Added real optional L4 annotation providers under `pxfquery.l4_evidence.annotation` for PubMed, PubChem, and ChEMBL.

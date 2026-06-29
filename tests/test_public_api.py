@@ -5,7 +5,7 @@ from pxfquery.resources import ResourceManager, default_manifest
 
 def test_public_entrypoint_is_single_client():
     assert pxfquery.__all__ == ["PxFQuery"]
-    assert PxFQuery().version == "0.5.6.dev3"
+    assert PxFQuery().version == "0.5.7.dev0"
 
 
 def test_scanpy_style_namespaces_are_available():
@@ -18,9 +18,13 @@ def test_scanpy_style_namespaces_are_available():
     assert hasattr(pxf, "tl")
     assert hasattr(pxf.tl, "parse")
     assert hasattr(pxf.tl, "anno")
+    assert hasattr(pxf.tl, "answer")
+    assert hasattr(pxf.tl, "chat")
+    assert hasattr(pxf.tl, "figures")
     assert not hasattr(pxf.tl, "route")
     assert hasattr(pxf, "get")
     assert hasattr(pxf.get, "evidence")
+    assert hasattr(pxf.get, "chat")
     assert not hasattr(pxf, "load_data")
     assert not hasattr(pxf, "load_data_dir")
     assert not hasattr(pxf, "enable_resolver")
