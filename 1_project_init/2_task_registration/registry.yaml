@@ -2063,3 +2063,12 @@ tasks:
   executor: human
   created: '2026-06-30'
   completed: null
+- id: T-149
+  name: figure5_forward_drug_query_notebook_figure_workbench
+  phase: translation
+  goal: goal_paper_figure_planning
+  path: 5_phase_translation/goal_paper_figure_planning/task_figure5_forward_drug_query_notebook_figure_workb
+  status: pending
+  executor: human
+  created: '2026-06-30'
+  completed: null
