@@ -27,10 +27,10 @@ The language model is used for semantic interpretation and evidence-grounded ans
 
 ## Example Questions
 
-**Forward: perturbation to function**
+**Forward: drug perturbation**
 
 ```text
-For EGFR-driven lung adenocarcinoma models, what functional programs are changed by EGFR inhibition, and are inflammatory or MAPK-related programs affected?
+For EGFR-driven lung adenocarcinoma models, what functional programs are changed by Erlotinib, and are inflammatory or MAPK-related programs affected?
 ```
 
 **Forward: genetic perturbation**
@@ -39,10 +39,10 @@ For EGFR-driven lung adenocarcinoma models, what functional programs are changed
 In A549 lung cancer cells, what functional programs are changed after EGFR CRISPR knockout?
 ```
 
-**Reverse: function to perturbation**
+**Reverse: drug perturbation**
 
 ```text
-In a lung adenocarcinoma model, which perturbations are linked to suppression of inflammatory response and preservation of oxidative phosphorylation?
+In a lung adenocarcinoma model, which drugs are linked to suppression of inflammatory response and preservation of oxidative phosphorylation?
 ```
 
 **Reverse: genetic candidates**
