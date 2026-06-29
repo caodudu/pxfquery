@@ -41,7 +41,7 @@ def test_user_visible_artifacts_do_not_show_unsupported_biological_outputs():
         if root.is_file():
             text_parts.append(root.read_text(encoding="utf-8"))
         elif root.exists():
-            text_parts.extend(path.read_text(encoding="utf-8") for path in root.rglob("*") if path.is_file())
+            text_parts.extend(path.read_text(encoding="utf-8") for path in root.rglob("*") if path.is_file() and path.suffix.lower() in {".md", ".txt", ".rst"})
     text = "\n".join(text_parts)
     for marker in blocked:
         assert marker not in text

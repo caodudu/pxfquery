@@ -1,32 +1,29 @@
 # PxFquery
 
-**PxFquery** is a natural-language query engine for perturbation biology. It converts biological questions into structured perturbation-function queries, searches **LINCS / Connectivity Map-style signature matrices**, and returns ranked evidence with tables, figures, reports, command-line output, and MCP-compatible responses.
+**PxFquery** is an LLM-assisted perturbation biology query engine. It turns a natural-language biological question into evidence-aware matches over LINCS / Connectivity Map-style perturbation signatures, then returns a user-facing biological answer, reusable evidence tables, figures, HTML reports, chat follow-up, CLI output, and MCP-compatible payloads.
+
+PxFquery is not a keyword lookup wrapper. Its core use case is asking biological questions where the context, perturbation, function, and direction may be explicit or approximate.
 
 ## Core Idea
 
-PxFquery treats a biological question as a query program:
+![PxFquery core idea and analysis workflow](docs/pxfquery_core_idea.png)
+
+PxFquery supports two complementary query directions:
+
+- **Perturbation-to-function query**: given a biological context and a perturbation, estimate which functional programs change.
+- **Function-to-perturbation query**: given a biological context and a desired functional state, rank perturbation candidates associated with that state.
+
+The analysis workflow is:
 
 ```text
-biological question
-  -> LLM semantic parsing
-  -> perturbation / function / context / direction / query-mode routing
-  -> LINCS / CMap-style matrix evidence retrieval
-  -> ranked biological answer, figures, report, and reusable evidence object
+natural-language question
+  -> structured intent
+  -> evidence-aware matching across cell context, perturbation, and function resources
+  -> CMap-style matrix query
+  -> biological answer, evidence object, figures, HTML report, chat, CLI, or MCP response
 ```
 
-The language model is used to understand the question. The biological answer is produced from perturbation signature matrices, functional score matrices, metadata, and resource indexes.
-
-## Traditional Lookup vs PxFquery
-
-| If you use LINCS / CMap manually | If you use PxFquery |
-| --- | --- |
-| You translate the biological question into keywords by hand. | You ask the biological question directly. |
-| You decide which compound, gene, cell line, and matrix to search. | PxFquery resolves entities, context, modality, and query direction. |
-| You run separate steps for forward and reverse questions. | One interface handles perturbation-to-function and function-to-perturbation queries. |
-| You compare tables and then make figures yourself. | PxFquery returns ranked answers, evidence tables, figures, and an HTML report. |
-| You write a separate wrapper for scripts or AI tools. | The same result can be used from Python, CLI, chat, reports, or MCP. |
-
-This design connects manuscript-style biological questions with computable perturbation-function evidence.
+The language model is used for semantic interpretation and evidence-grounded answer organization. Matrix-backed functional evidence, metadata, and resource indexes drive the biological result.
 
 ## Example Questions
 
@@ -36,7 +33,11 @@ This design connects manuscript-style biological questions with computable pertu
 For EGFR-driven lung adenocarcinoma models, what functional programs are changed by EGFR inhibition, and are inflammatory or MAPK-related programs affected?
 ```
 
-PxFquery resolves the perturbation, context, modality, and functional programs, then ranks matrix-backed functional responses.
+**Forward: genetic perturbation**
+
+```text
+In A549 lung cancer cells, what functional programs are changed after EGFR CRISPR knockout?
+```
 
 **Reverse: function to perturbation**
 
@@ -44,44 +45,28 @@ PxFquery resolves the perturbation, context, modality, and functional programs, 
 In a lung adenocarcinoma model, which perturbations are linked to suppression of inflammatory response and preservation of oxidative phosphorylation?
 ```
 
-PxFquery resolves the desired functional state and searches perturbations associated with that profile.
+**Reverse: genetic candidates**
 
-## Outputs
-
-PxFquery is designed to produce material a biological reader can inspect directly:
-
-| Output | What it shows |
-| --- | --- |
-| Answer summary | The main biological pattern found for the question. |
-| Ranked results | Perturbations or functional programs ordered by the matrix evidence. |
-| Evidence table | Matched compounds, genes, contexts, routes, scores, and source fields. |
-| Figures | Bar plots, bubble plots, heatmaps, and evidence-flow panels generated from the query result. |
-| HTML report | A readable report with the question, interpreted query, ranked evidence, figures, and method overview. |
-| Chat follow-up | Continued discussion over the same evidence object. |
-| CLI and MCP | The same query engine exposed to terminals, pipelines, and external AI software. |
-
-The Python API, command line, HTML report, chat interface, and MCP server all reuse the same parsed evidence object.
-
-## Data Scope
-
-PxFquery works with a resource pack built from perturbational signature resources:
-
-- compound perturbation matrices
-- shRNA/RNAi and overexpression-style genetic perturbation matrices
-- functional gene-set score matrices
-- perturbation, gene, compound, and cell-context metadata
-- lookup indexes for biological names and aliases
-
-Resource files are managed automatically. PxFquery uses a packaged Zenodo manifest and downloads the required matrices, metadata, and indexes into the user's cache when a query needs them.
-
-```python
-from pxfquery import PxFQuery
-
-pxf = PxFQuery()
-print(pxf.resources.status())
+```text
+In melanoma models, which genetic knockdown perturbations are linked to suppression of EMT programs?
 ```
 
-Advanced users who maintain a local mirror can mount it explicitly with `pxf.resources.use("/path/to/pxfquery_resource_pack")`.
+## What PxFquery Returns
+
+PxFquery keeps one evidence object and renders it through multiple outlets.
+
+| Outlet | Purpose |
+| --- | --- |
+| `print(answer)` | A biological answer for the user, followed by a short source/evidence note. |
+| Python answer object | Structured access to summary text, biological results, tables, figures, and evidence metadata. |
+| Evidence tables | Matched contexts, perturbations, functional programs, scores, and provenance fields for inspection. |
+| Figures | Query-specific evidence visualizations. Forward queries include evidence-match maps and program-support summaries; reverse queries include candidate-ranking views and function-match views. |
+| HTML report | A readable report with the question, answer, figures, run-quality summary, and package version. |
+| Chat | Follow-up questions over the same evidence object. Chat requires a configured LLM provider and has no local template fallback. |
+| CLI | Terminal access to answer, JSON, HTML, figures, and chat commands. |
+| MCP server | Tool-compatible access for external AI analysis environments. |
+
+The same parsed evidence object can be saved and reloaded for later presentation-layer work.
 
 ## Installation
 
@@ -93,9 +78,26 @@ python -m pip install -e .
 
 PxFquery requires Python 3.10 or newer.
 
-## Language Model Configuration
+## Resource Pack
 
-PxFquery uses a configured language-model endpoint for semantic query parsing and evidence-grounded follow-up discussion. The endpoint is not fixed to one provider.
+PxFquery uses an internal resource manifest and downloads required matrices, metadata, and indexes into the user cache when needed. Users normally do not need to provide external CSV files.
+
+```python
+from pxfquery import PxFQuery
+
+pxf = PxFQuery()
+print(pxf.resources.status())
+```
+
+Advanced users with a local mirror can mount it explicitly:
+
+```python
+pxf.resources.use("/path/to/pxfquery_resource_pack")
+```
+
+## LLM Configuration
+
+PxFquery needs a configured LLM endpoint for semantic parsing, biological answer synthesis, evidence-audit text, and chat follow-up.
 
 Environment-variable configuration:
 
@@ -121,7 +123,7 @@ pxf.settings.register_llm_provider(
 )
 ```
 
-For users who choose DeepSeek, a convenience helper is available:
+DeepSeek helper:
 
 ```python
 pxf.settings.use_deepseek(token="...", timeout=60)
@@ -134,131 +136,181 @@ from pxfquery import PxFQuery
 
 pxf = PxFQuery()
 
+q = pxf.tl.parse(
+    "For EGFR-driven lung adenocarcinoma models, what functional programs are changed "
+    "by EGFR inhibition, and are inflammatory or MAPK-related programs affected?",
+    top_n=10,
+)
+pxf.tl.answer(q)
+answer = pxf.get.answer(q)
+
+print(answer)
+```
+
+`pxf.tl.parse()` performs semantic parsing, evidence-aware matching, matrix execution, and evidence assembly. `pxf.tl.answer()` renders the assembled evidence into user-facing outputs.
+
+## Forward and Reverse Queries
+
+```python
 forward = pxf.tl.parse(
-    "In EGFR-driven lung adenocarcinoma models, what functional programs are changed by EGFR inhibition, and are inflammatory or MAPK-related programs affected?",
+    "In A549 lung cancer cells, what functional programs are changed by doxorubicin treatment?",
     top_n=10,
 )
 pxf.tl.answer(forward)
-forward_answer = pxf.get.answer(forward)
+print(pxf.get.answer(forward))
 
 reverse = pxf.tl.parse(
-    "In a lung adenocarcinoma model, which perturbations are linked to suppression of inflammatory response and preservation of oxidative phosphorylation?",
+    "In MCF7 breast cancer cells, which drug perturbations are linked to activation of apoptosis programs?",
     top_n=10,
 )
 pxf.tl.answer(reverse)
-reverse_answer = pxf.get.answer(reverse)
-
-print(forward_answer.summary)
-print(reverse_answer.biological_results[:5])
+print(pxf.get.answer(reverse))
 ```
 
-`pxf.tl.parse()` performs semantic parsing, route selection, matrix query execution, and evidence assembly. `pxf.tl.answer()` renders the assembled evidence for user-facing output.
+Forward queries rank functional responses for matched context-perturbation evidence. Reverse queries rank perturbation candidates against requested functional criteria.
 
-## Python Output
+## Python Answer Object
 
 ```python
 answer = pxf.ask(
-    "For EGFR-driven lung adenocarcinoma models, what functional programs are changed by EGFR inhibition?",
+    "For melanoma models treated with BRAF inhibitors, which functional programs change?",
     mode="python",
 )
 
-print(answer.headline)
 print(answer.summary)
 print(answer.biological_results[:5])
+print(answer.tables.keys())
 ```
 
-The answer object contains:
+Common fields:
 
-- `summary`: biological interpretation
-- `biological_results`: ranked functional programs or perturbation candidates
-- `evidence`: matched context, evidence grade, route summary, and provenance fields
-- `tables`: display-ready evidence tables
-- `figures`: figure specifications used by HTML and file outputs
+- `summary`: biological answer text.
+- `biological_results`: ranked functional programs or perturbation candidates.
+- `tables`: display-ready evidence tables such as match summaries and functional results.
+- `figures`: figure specifications used by report and file outputs.
+- `evidence`: compact metadata for source, run quality, and evidence provenance.
 
-## Figures and HTML Reports
+## HTML Reports and Figures
 
 ```python
 q = pxf.tl.parse(
-    "For a breast tumor context, which treatments are associated with reduced ERBB2 signaling and increased apoptosis?",
+    "In lung adenocarcinoma models, which drug perturbations are linked to suppression of MYC target programs?",
     top_n=10,
 )
 pxf.tl.answer(q)
 
-pxf.tl.figures(q, output_dir="pxfquery_figures", format="png")
-pxf.tl.figures(q, output_dir="pxfquery_figures_svg", format="svg")
-pxf.tl.answer(q, mode="html", output="breast_tumor_erbb2_report.html")
+pxf.tl.figures(q, output_dir="pxfquery_figures", format="pdf")
+pxf.tl.answer(q, mode="html", output="lung_myc_report.html")
 ```
 
-HTML reports include the original question, interpreted biological question, ranked evidence table, process overview, figures, and evidence provenance.
+The HTML report is intentionally simple: question, biological answer, figures, run-quality report, and package version. It avoids table-heavy debug dumps in the main report body.
 
-## Follow-up Discussion
+Figure files default well for manuscript or notebook inspection; PDF output keeps editable text for Illustrator-style workflows.
+
+## Follow-up Chat
 
 ```python
 q = pxf.tl.parse(
-    "For EGFR-driven lung adenocarcinoma models, summarize perturbations that reduce MAPK-related programs and inflammatory signatures.",
+    "In melanoma models, which genetic knockdown perturbations are linked to suppression of EMT programs?",
     top_n=10,
 )
 pxf.tl.answer(q)
 
-pxf.tl.chat(q, "Summarize the strongest biological patterns and the supporting evidence.")
+pxf.tl.chat(
+    q,
+    "Using only the current evidence object, identify the best-supported knockdown candidates "
+    "and note uncertainty in target identity or model matching.",
+)
 print(pxf.get.chat(q))
+print(pxf.get.chat_history(q))
 ```
 
-Follow-up answers use the assembled PxFquery result and preserve the ranked programs, scores, candidates, and citations supplied by the evidence package.
+Chat answers are constrained to the assembled evidence object. PxFquery does not silently replace chat with a local template when no LLM provider is configured.
+
+## Save and Reload a Query Object
+
+```python
+q = pxf.tl.parse(
+    "In breast cancer models, what functional programs are changed after MYC RNAi knockdown?",
+    top_n=10,
+)
+pxf.tl.answer(q)
+
+pxf.tl.save(q, "myc_breast_query.pkl")
+q2 = pxf.tl.load("myc_breast_query.pkl")
+print(pxf.get.answer(q2))
+```
+
+This is useful when a query has already run and you want to regenerate L5 outputs such as HTML, figures, or chat later.
 
 ## Command Line
 
 ```bash
 pxfquery answer "In a lung adenocarcinoma model, which perturbations are linked to suppression of inflammatory response and preservation of oxidative phosphorylation?"
-
-pxfquery answer \
-  "In a lung cancer setting, find perturbations associated with lower inflammatory signaling and low proliferative signature." \
-  --mode html \
-  --output lung_cancer_inflammation_report.html
-
-pxfquery figures \
-  "For a breast tumor context, which treatments are associated with reduced ERBB2 signaling and increased apoptosis?" \
-  --output-dir breast_tumor_erbb2_figures \
-  --format png
-
-pxfquery chat \
-  "For EGFR-driven lung adenocarcinoma models, summarize perturbations that reduce MAPK-related programs and inflammatory signatures." \
-  "Explain the main biological patterns and supporting evidence."
 ```
 
-If configuration is stored in an environment file:
+Write an HTML report:
 
 ```bash
-pxfquery --env-file .env answer "Which genetic perturbations may reduce MYC-related programs in a breast cancer context while preserving oxidative phosphorylation?"
+pxfquery answer \
+  "For EGFR-driven lung adenocarcinoma models, what functional programs are changed by EGFR inhibition?" \
+  --mode html \
+  --output egfr_lung_report.html
 ```
 
-## Optional Public Annotation
+Write figure files:
 
-Additional public-database annotation can be attached after the primary matrix-backed result:
+```bash
+pxfquery figures \
+  "In melanoma models, which drug perturbations are linked to suppression of EMT programs while preserving or activating apoptosis programs?" \
+  --output-dir melanoma_reverse_figures \
+  --format pdf
+```
+
+Run evidence-grounded chat from the command line:
+
+```bash
+pxfquery chat \
+  "In A549 lung cancer cells, what functional programs are changed after EGFR CRISPR knockout?" \
+  "Using only the current evidence object, explain whether the pattern supports reduced growth signaling."
+```
+
+Use an environment file:
+
+```bash
+pxfquery --env-file .env answer "Which genetic perturbations may reduce MYC-related programs in a breast cancer context?"
+```
+
+## Optional Annotation
+
+The primary result is matrix-backed. Optional annotation can add public database context after the query result exists:
 
 ```python
 q = pxf.tl.parse(
     "Which compounds are associated with suppression of interferon response in a lung cancer context?",
     top_n=10,
 )
-pxf.tl.anno(q, sources=("pubmed", "pubchem", "chembl"))
+pxf.tl.answer(q)
+pxf.tl.anno(q, sources=("chembl",), timeout=5)
 
 annotation = q.uns["annotation_evidence"]
 ```
 
+Annotation is supplementary; it should not replace the matrix evidence used for ranking.
+
 ## MCP Interface
 
-PxFquery can be exposed as an MCP server for compatible external analysis environments:
+PxFquery can run as an MCP server:
 
 ```bash
 python -m pxfquery.mcp_server --env-file .env
 ```
 
-Available MCP tools:
+Available tools:
 
-- `pxfquery_parse_answer`: run a query and return the evidence-grounded answer payload
-- `pxfquery_render_figures`: run a query and write figure files
-- `pxfquery_l5_chat`: answer a follow-up question using the assembled evidence
+- `pxfquery_parse_answer`: run a query and return an answer payload.
+- `pxfquery_render_figures`: run a query and write figure files.
+- `pxfquery_l5_chat`: answer a follow-up using the assembled evidence.
 
 ## Version
 
@@ -270,5 +322,5 @@ print(pxfquery.__version__)
 Current package version:
 
 ```text
-0.5.7.dev0
+0.5.12.dev0
 ```

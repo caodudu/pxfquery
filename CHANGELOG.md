@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.5.12.dev0 - 2026-06-29
+
+- Added the PxFquery core-idea workflow PNG to the repository and referenced it from the README.
+- Reworked the README around the current forward/reverse query model, evidence-aware matching terminology, resource-pack behavior, LLM requirements, HTML reports, figures, chat, CLI, save/load, annotation, and MCP surfaces.
+- Published the current human-usable HTML report renderer on `main`, including question, biological answer, figures, run-quality report, and package-version footer without table-heavy report body or limitation section.
+- Updated release tests for the new package version and binary documentation assets.
+
 ## 0.5.11.dev0 - 2026-06-29
 
 - Added local `PxFQueryData` pickle persistence through `qdata.save(...)`, `PxFQueryData.load(...)`, `pxf.tl.save/load(...)`, and `pxf.read.save/load(...)` so query objects can be restored for L5 answer, figure, report, and chat output.

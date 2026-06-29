@@ -274,8 +274,13 @@ def test_tl_answer_html_mode_can_write_report(tmp_path):
 
     assert out.exists()
     html = out.read_text(encoding="utf-8")
-    assert "Main Evidence" in html
+    assert "Answer" in html
     assert "Figures" in html
+    assert "Run Quality Report" in html
+    assert "PxFquery package version" in html
+    assert "<table" not in html
+    assert "Evidence Limits" not in html
+    assert "Exact matrix evidence was available for the primary route." in html
     assert answer.html is not None
     assert qdata.uns["answer_output"] == str(Path(out))
 
