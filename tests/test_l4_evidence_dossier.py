@@ -246,6 +246,79 @@ def test_l4_synthesis_payload_preserves_exact_primary_with_proxy_support_semanti
     assert "all selected evidence routes were exact" in dossier["claim_basis"]["must_not_claim"]
 
 
+def test_l4_reverse_concept_context_payload_does_not_promote_primary_cell():
+    class Provider:
+        def __init__(self):
+            self.system_prompt = ""
+            self.user_payload = {}
+            self.stages = []
+
+        def request_json(self, *, stage, system_prompt, user_payload, temperature=0):
+            self.stages.append(stage)
+            if stage.startswith("l4_reverse_biological_answer"):
+                self.system_prompt = system_prompt
+                self.user_payload = user_payload
+                return {
+                    "answer": "Across lung cancer models, afatinib is the most consistently supported candidate.",
+                    "subquestions": [],
+                    "candidate_interpretation": ["afatinib: candidate supported across multiple lung cancer models"],
+                    "support_notes": [],
+                }, {"provider": "fake", "final_status": "ok", "attempts": []}
+            return {"summary": "Reverse query executed."}, {"provider": "fake", "final_status": "ok", "attempts": []}
+
+    provider = Provider()
+    execution = {
+        "schema_version": "l3-matrix-execution/v1",
+        "query_id": "q-reverse",
+        "query_type": "reverse",
+        "execution_status": "executed",
+        "source_route_schema": "l2-route-plan/v2",
+        "executed_routes": [
+            {
+                "route_id": "reverse_001",
+                "query_type": "reverse",
+                "modality": "cp",
+                "status": "executed",
+                "cell": "HCC827",
+                "route_metadata": {"cell_match_type": "concept_representative_cell", "route_quality_score": 0.025},
+                "row_match": {"n_rows": 3, "n_ranked_groups": 3},
+                "rankings": {"top_perturbations": [{"rank": 1, "label": "AZD-9291", "pert_id": "BRD-A", "score": 16.0}]},
+                "scores": {},
+                "diagnostics": {},
+            },
+            {
+                "route_id": "reverse_002",
+                "query_type": "reverse",
+                "modality": "cp",
+                "status": "executed",
+                "cell": "NCIH1573",
+                "route_metadata": {"cell_match_type": "concept_representative_cell", "route_quality_score": 0.025},
+                "row_match": {"n_rows": 100, "n_ranked_groups": 100},
+                "rankings": {"top_perturbations": [{"rank": 1, "label": "afatinib", "pert_id": "BRD-B", "score": 30.0}]},
+                "scores": {},
+                "diagnostics": {},
+            },
+        ],
+        "skipped_routes": [],
+        "errors": [],
+        "warnings": [],
+    }
+
+    assemble_evidence(
+        execution,
+        intent={"query_type": "reverse", "bio_context": "lung cancer", "function_desc": "suppress MYC targets"},
+        route_plan={"schema_version": "l2-route-plan/v2", "route_status": "routed"},
+        llm_provider=provider,
+        synthesize=True,
+    )
+
+    assert provider.user_payload["interpreted_intent"]["context_scope"] == "concept_or_disease_model_set"
+    assert provider.user_payload["interpreted_intent"]["cell"] is None
+    assert provider.user_payload["interpreted_intent"]["searched_cells"] == ["HCC827", "NCIH1573"]
+    assert provider.user_payload["candidate_summary"][0]["label"] in {"AZD-9291", "afatinib"}
+    assert "Do not frame the answer as" in provider.system_prompt
+
+
 def test_l4_synthesis_repairs_quality_report_style_summary():
     class Provider:
         def __init__(self):

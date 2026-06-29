@@ -66,6 +66,72 @@ def sample_dossier():
     }
 
 
+def reverse_sample_dossier():
+    dossier = sample_dossier()
+    dossier["query_type"] = "reverse"
+    dossier["evidence_layer"]["intent_evidence"] = {
+        "query_type": "reverse",
+        "bio_context": "MCF7 cells",
+        "function_desc": "activate apoptosis",
+    }
+    dossier["evidence_layer"]["route_evidence"] = {
+        "status": "routed",
+        "selected_routes": [
+            {"route_id": "reverse_001", "status": "selected", "cell": "MCF7", "modality": "cp"},
+            {"route_id": "reverse_002", "status": "selected", "cell": "BT474", "modality": "cp"},
+        ],
+    }
+    dossier["evidence_layer"]["matrix_evidence"] = {
+        "mode": "reverse",
+        "execution_status": "executed",
+        "primary_result": {
+            "cell": "MCF7",
+            "modality": "cp",
+            "top_perturbations": [
+                {"rank": 1, "label": "PRIMARY_ONLY", "pert_id": "BRD-PRIMARY", "score": 9.0},
+                {"rank": 2, "label": "SHARED", "pert_id": "BRD-SHARED", "score": 5.0},
+            ],
+        },
+        "executed_routes": [
+            {
+                "route_id": "reverse_001",
+                "status": "executed",
+                "cell": "MCF7",
+                "cell_match_type": "user_specified_cell",
+                "modality": "cp",
+                "n_rows": 10,
+                "interpretation_set_id": "exact",
+                "functions": [
+                    {"rank": 1, "var_name": "HALLMARK_APOPTOSIS", "label": "Apoptosis", "source": "hallmark", "direction": "activate", "input": "apoptosis"}
+                ],
+                "target_vector": {"HALLMARK_APOPTOSIS": 1.0},
+                "top_perturbations": [
+                    {"rank": 1, "label": "PRIMARY_ONLY", "pert_id": "BRD-PRIMARY", "score": 9.0},
+                    {"rank": 2, "label": "SHARED", "pert_id": "BRD-SHARED", "score": 5.0},
+                ],
+            },
+            {
+                "route_id": "reverse_002",
+                "status": "executed",
+                "cell": "BT474",
+                "cell_match_type": "same_disease_cell",
+                "modality": "cp",
+                "n_rows": 12,
+                "interpretation_set_id": "exact",
+                "functions": [
+                    {"rank": 1, "var_name": "HALLMARK_APOPTOSIS", "label": "Apoptosis", "source": "hallmark", "direction": "activate", "input": "apoptosis"}
+                ],
+                "target_vector": {"HALLMARK_APOPTOSIS": 1.0},
+                "top_perturbations": [
+                    {"rank": 1, "label": "SHARED", "pert_id": "BRD-SHARED", "score": 4.5},
+                    {"rank": 2, "label": "BT474_ONLY", "pert_id": "BRD-BT474", "score": 8.0},
+                ],
+            },
+        ],
+    }
+    return dossier
+
+
 def test_tl_answer_builds_single_scanpy_style_output_without_changing_l4():
     pxf = PxFQuery()
     qdata = pxf.read.query("show PERT_X effects")
@@ -77,7 +143,7 @@ def test_tl_answer_builds_single_scanpy_style_output_without_changing_l4():
     answer = pxf.get.answer(qdata)
 
     assert answer.structured_result is dossier
-    assert answer.headline == "PxFquery found matrix-backed evidence"
+    assert answer.headline == "Biological answer"
     assert answer.summary == "PERT_X changes FUNCTION_X, FUNCTION_Y, and FUNCTION_Z in CONTEXT_X."
     assert answer.summary_source == "l4.llm_synthesis.biological_summary"
     assert answer.evidence["evidence_audit_summary"] == "Exact matrix evidence was available for the primary route."
@@ -85,6 +151,31 @@ def test_tl_answer_builds_single_scanpy_style_output_without_changing_l4():
     assert {spec["kind"] for spec in answer.figures} >= {"bar", "bubble", "heatmap", "route_flow", "evidence_panel"}
     assert all(spec.get("svg", "").startswith("<svg") for spec in answer.figures)
     assert dossier["claim_basis"]["main_claim"].endswith("CONTEXT_X.")
+
+
+def test_reverse_l5_tables_deduplicate_routes_and_aggregate_candidate_consensus():
+    pxf = PxFQuery()
+    qdata = pxf.read.query("Which drugs activate apoptosis in MCF7 cells?")
+    dossier = reverse_sample_dossier()
+    qdata.uns["evidence_dossier"] = dossier
+    qdata.uns["result"] = dossier
+
+    pxf.tl.answer(qdata)
+    tables = pxf.get.answer(qdata).tables
+
+    route_ids = [row["route_id"] for row in tables["route_summary"]]
+    assert route_ids == ["reverse_001", "reverse_002"]
+    assert all(row["status"] == "executed" for row in tables["route_summary"])
+
+    assert tables["ranked_results"][0]["label"] == "PRIMARY_ONLY"
+    assert tables["ranked_results"][0]["exact_cell_support"] is True
+    assert tables["ranked_results"][1]["label"] == "SHARED"
+    assert tables["ranked_results"][1]["support_routes"] == 2
+    assert tables["ranked_results"][1]["support_cells"] == 2
+    assert tables["primary_route_ranked_results"][0]["label"] == "PRIMARY_ONLY"
+    assert tables["route_target_functions"][0]["label"] == "Apoptosis"
+    assert tables["route_target_functions"][0]["target_weight"] == 1.0
+    assert tables["route_target_functions"][0]["direction"] == "activate"
 
 
 def test_tl_answer_html_mode_can_write_report(tmp_path):
@@ -138,7 +229,7 @@ def test_tl_answer_mcp_mode_reuses_same_answer_payload():
     payload = pxf.get.answer(qdata).mcp
 
     assert payload["schema_version"] == "pxfquery-l5-mcp/v1"
-    assert payload["answer"]["headline"] == "PxFquery found matrix-backed evidence"
+    assert payload["answer"]["headline"] == "Biological answer"
     assert payload["answer"]["summary_source"] == "l4.llm_synthesis.biological_summary"
     assert payload["l4_evidence"] is dossier
 

@@ -235,6 +235,12 @@ def _route_summary(route: dict[str, Any]) -> dict[str, Any]:
         out["requested_function_records"] = _json_safe((route.get("scores") or {}).get("requested_function_records", []))
     elif route.get("query_type") == "reverse":
         rankings = route.get("rankings") or {}
+        scores = route.get("scores") or {}
+        out["interpretation_set_id"] = scores.get("interpretation_set_id") or metadata.get("interpretation_set_id")
+        out["functions"] = _json_safe(metadata.get("functions", []))
+        out["target_vector"] = _json_safe(scores.get("target_vector", {}))
+        out["ranking_method"] = scores.get("ranking_method")
+        out["reverse_ranking_mode"] = scores.get("reverse_ranking_mode") or metadata.get("reverse_ranking_mode")
         out["top_perturbations"] = _json_safe(rankings.get("top_perturbations", []))
         out["rankings"] = _json_safe(rankings)
     return out
@@ -618,19 +624,24 @@ Role
 You are the biological answer writer for a reverse functional perturbation query.
 
 Input
-You receive exactly three inputs:
+You receive exactly four inputs:
 - user_question: the user's original question.
-- interpreted_intent: parsed biological context and requested functional state.
+- interpreted_intent: parsed biological context, context_scope, searched_cells, and requested functional state.
+- candidate_summary: cross-profile candidate summary. It is the primary candidate ranking for reverse queries.
 - evidence_profiles: matched profiles containing candidate_perturbations or candidate genes with their functional match evidence.
 
 Task
-Write the default user-facing biological answer. Identify what functional state the user wants, then explain which candidate perturbations or genes best match that state using only interpreted_intent and evidence_profiles.
+Write the default user-facing biological answer. Identify what functional state the user wants, then explain which candidate perturbations or genes best match that state using only interpreted_intent, candidate_summary, and evidence_profiles.
 
 Required reasoning behavior
-- Start with the most relevant candidate or candidate group.
+- Start with candidate_summary, not the first evidence profile.
+- If interpreted_intent.context_scope is concept_or_disease_model_set, answer at the disease/model-set level. Do not frame the answer as "in [first cell line]" or imply the first searched cell is the user's requested model.
+- If interpreted_intent.has_user_specified_cell is true, prioritize candidates with exact_cell_support. Other cells may only be described as supporting or broader-context evidence.
+- If interpreted_intent.has_user_specified_cell is false, rank candidates by cross-profile support and mean/best functional match in candidate_summary.
 - Explain the functional direction each candidate supports.
 - Distinguish strong matches, partial matches, and unresolved candidates using the supplied evidence.
 - If the supplied evidence does not support a clear candidate, say not resolved from the supplied functional evidence.
+- Mention searched cell lines only when needed to explain model-set support; do not make them the headline unless the user specified a cell line.
 
 Forbidden in answer
 - Do not mention software, internal layers, routes, evidence grades, exact/proxy status, row counts, scores, benchmarks, missing literature, clinical efficacy, or validation status.
@@ -704,11 +715,16 @@ def _biological_answer_payload(
     matrix_evidence: dict[str, Any],
 ) -> dict[str, Any]:
     primary = matrix_evidence.get("primary_result") or {}
+    is_reverse = matrix_evidence.get("mode") == "reverse"
+    route_scope = _reverse_route_scope(matrix_evidence) if is_reverse else {}
     return {
         "user_question": claim_basis.get("user_question"),
         "interpreted_intent": {
             "query_type": matrix_evidence.get("mode"),
-            "cell": primary.get("cell"),
+            "cell": primary.get("cell") if not is_reverse or route_scope.get("has_user_specified_cell") else None,
+            "context_scope": route_scope.get("context_scope"),
+            "searched_cells": route_scope.get("searched_cells"),
+            "has_user_specified_cell": route_scope.get("has_user_specified_cell"),
             "perturbation": primary.get("perturbation"),
             "modality": primary.get("modality"),
             "score_orientation": primary.get("score_orientation"),
@@ -717,8 +733,9 @@ def _biological_answer_payload(
             "requested_function_scores": primary.get("requested_function_scores"),
             "top_activated": _compact_rankings(primary.get("top_activated", [])),
             "top_suppressed": _compact_rankings(primary.get("top_suppressed", [])),
-            "top_perturbations": _compact_rankings(primary.get("top_perturbations", [])),
+            "top_perturbations": _compact_rankings(primary.get("top_perturbations", [])) if not is_reverse else [],
         },
+        "candidate_summary": _reverse_candidate_summary(matrix_evidence) if is_reverse else [],
         "evidence_profiles": _route_biology_context(matrix_evidence),
     }
 
@@ -745,6 +762,91 @@ def _route_biology_context(matrix_evidence: dict[str, Any]) -> list[dict[str, An
             profile["candidate_perturbations"] = _compact_rankings(route.get("top_perturbations", []))
         profiles.append({key: value for key, value in profile.items() if value not in (None, [], {})})
     return profiles
+
+
+def _reverse_route_scope(matrix_evidence: dict[str, Any]) -> dict[str, Any]:
+    routes = matrix_evidence.get("executed_routes") or []
+    searched_cells = [route.get("cell") for route in routes if route.get("cell")]
+    has_user_specified = any(route.get("cell_match_type") == "user_specified_cell" for route in routes)
+    return {
+        "context_scope": "user_specified_cell" if has_user_specified else "concept_or_disease_model_set",
+        "has_user_specified_cell": has_user_specified,
+        "searched_cells": searched_cells,
+    }
+
+
+def _reverse_candidate_summary(matrix_evidence: dict[str, Any], *, max_candidates: int = 12) -> list[dict[str, Any]]:
+    routes = matrix_evidence.get("executed_routes") or []
+    exact_route_ids = {route.get("route_id") for route in routes if route.get("cell_match_type") == "user_specified_cell"}
+    groups: dict[str, dict[str, Any]] = {}
+    for route in routes:
+        route_id = route.get("route_id")
+        cell = route.get("cell")
+        is_exact_route = route_id in exact_route_ids
+        for item in route.get("top_perturbations") or []:
+            key = _candidate_key(item)
+            if not key:
+                continue
+            score = item.get("score")
+            try:
+                score_value = float(score)
+            except (TypeError, ValueError):
+                continue
+            group = groups.setdefault(
+                key,
+                {
+                    "label": item.get("label") or item.get("cmap_name") or item.get("pert_id") or key,
+                    "scores": [],
+                    "exact_scores": [],
+                    "cells": set(),
+                    "route_ids": set(),
+                    "best": None,
+                },
+            )
+            group["scores"].append(score_value)
+            if is_exact_route:
+                group["exact_scores"].append(score_value)
+            if cell:
+                group["cells"].add(cell)
+            if route_id:
+                group["route_ids"].add(route_id)
+            if group["best"] is None or score_value > group["best"]["score"]:
+                group["best"] = {"score": score_value, "cell": cell, "route_id": route_id}
+    rows = []
+    for group in groups.values():
+        scores = group["scores"]
+        exact_scores = group["exact_scores"]
+        best = group.get("best") or {}
+        exact_score = sum(exact_scores) / len(exact_scores) if exact_scores else None
+        mean_score = sum(scores) / len(scores)
+        rows.append(
+            {
+                "label": group["label"],
+                "score": exact_score if exact_score is not None else mean_score,
+                "exact_cell_support": bool(exact_scores),
+                "mean_score": mean_score,
+                "best_score": best.get("score"),
+                "support_routes": len(group["route_ids"]),
+                "support_cells": len(group["cells"]),
+                "cells": sorted(group["cells"]),
+                "best_cell": best.get("cell"),
+            }
+        )
+    if exact_route_ids:
+        rows.sort(key=lambda item: (not item["exact_cell_support"], -(item["score"] or 0.0), -item["support_routes"], str(item["label"])))
+    else:
+        rows.sort(key=lambda item: (-item["support_routes"], -item["support_cells"], -(item["score"] or 0.0), str(item["label"])))
+    for rank, row in enumerate(rows[:max_candidates], start=1):
+        row["rank"] = rank
+    return rows[:max_candidates]
+
+
+def _candidate_key(item: dict[str, Any]) -> str:
+    for key in ("pert_id", "cmap_name", "label", "name"):
+        value = item.get(key)
+        if value is not None and str(value).strip():
+            return str(value).strip().lower()
+    return ""
 
 
 def _score_orientation_interpretation(value: str | None) -> str | None:
