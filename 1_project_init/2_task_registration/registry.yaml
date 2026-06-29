@@ -2046,11 +2046,20 @@ tasks:
   created: '2026-06-29'
   completed: null
 - id: T-147
-  name: figure3_forward_genetic_query_notebook_figure_workbench
+  name: figure4_forward_genetic_query_notebook_figure_workbench
   phase: translation
   goal: goal_paper_figure_planning
-  path: 5_phase_translation/goal_paper_figure_planning/task_figure3_forward_genetic_query_notebook_figure_wo
+  path: 5_phase_translation/goal_paper_figure_planning/task_figure4_forward_genetic_query_notebook_figure_wo
   status: pending
   executor: human
   created: '2026-06-29'
+  completed: null
+- id: T-148
+  name: pxfquery_new_figure3_concept_and_notebook_workbench
+  phase: translation
+  goal: goal_paper_figure_planning
+  path: 5_phase_translation/goal_paper_figure_planning/task_pxfquery_new_figure3_concept_and_notebook_workbe
+  status: pending
+  executor: human
+  created: '2026-06-30'
   completed: null

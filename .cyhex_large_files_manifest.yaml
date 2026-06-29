@@ -6748,7 +6748,7 @@ excluded_from_git:
 - path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_14_user_value_l5_output_rework/3_execution/05_package_source_v6_user_value_l5/.pytest_cache/v/cache/lastfailed
   size_mb: 0.0
 - path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_14_user_value_l5_output_rework/3_execution/05_package_source_v6_user_value_l5/.pytest_cache/v/cache/nodeids
-  size_mb: 0.0
+  size_mb: 0.01
 - path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_14_user_value_l5_output_rework/3_execution/05_package_source_v6_user_value_l5/src/pxfquery.egg-info/PKG-INFO
   size_mb: 0.0
 - path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_14_user_value_l5_output_rework/3_execution/06_acceptance_notebooks/.DS_Store
@@ -6801,8 +6801,14 @@ excluded_from_git:
   size_mb: 0.05
 - path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_14_user_value_l5_output_rework/4_artifact/1_tmp/cli_acceptance_figures_forward/pxfquery_01_bar.png
   size_mb: 0.07
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_14_user_value_l5_output_rework/4_artifact/1_tmp/cli_acceptance_figures_forward/pxfquery_01_evidence_match_map.png
+  size_mb: 0.05
 - path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_14_user_value_l5_output_rework/4_artifact/1_tmp/cli_acceptance_figures_forward/pxfquery_02_bubble.png
   size_mb: 0.08
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_14_user_value_l5_output_rework/4_artifact/1_tmp/cli_acceptance_figures_forward/pxfquery_02_function_match_heatmap.png
+  size_mb: 0.08
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_14_user_value_l5_output_rework/4_artifact/1_tmp/cli_acceptance_figures_forward/pxfquery_03_function_consensus_bar.png
+  size_mb: 0.07
 - path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_14_user_value_l5_output_rework/4_artifact/1_tmp/cli_acceptance_figures_forward/pxfquery_03_heatmap.png
   size_mb: 0.08
 - path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_14_user_value_l5_output_rework/4_artifact/1_tmp/cli_acceptance_figures_forward/pxfquery_04_route_flow.png
@@ -6811,10 +6817,16 @@ excluded_from_git:
   size_mb: 0.06
 - path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_14_user_value_l5_output_rework/4_artifact/1_tmp/cli_acceptance_figures_reverse/pxfquery_01_bar.png
   size_mb: 0.05
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_14_user_value_l5_output_rework/4_artifact/1_tmp/cli_acceptance_figures_reverse/pxfquery_01_reverse_function_ring_heatmap.png
+  size_mb: 0.14
 - path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_14_user_value_l5_output_rework/4_artifact/1_tmp/cli_acceptance_figures_reverse/pxfquery_02_bubble.png
   size_mb: 0.07
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_14_user_value_l5_output_rework/4_artifact/1_tmp/cli_acceptance_figures_reverse/pxfquery_02_reverse_function_ring_heatmap.png
+  size_mb: 0.09
 - path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_14_user_value_l5_output_rework/4_artifact/1_tmp/cli_acceptance_figures_reverse/pxfquery_03_heatmap.png
   size_mb: 0.06
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_14_user_value_l5_output_rework/4_artifact/1_tmp/cli_acceptance_figures_reverse/pxfquery_03_reverse_candidate_bubble.png
+  size_mb: 0.07
 - path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_14_user_value_l5_output_rework/4_artifact/1_tmp/cli_acceptance_figures_reverse/pxfquery_04_route_flow.png
   size_mb: 0.05
 - path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_14_user_value_l5_output_rework/4_artifact/1_tmp/cli_acceptance_figures_reverse/pxfquery_05_evidence_panel.png
@@ -6891,6 +6903,8 @@ excluded_from_git:
   size_mb: 0.0
 - path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_14_user_value_l5_output_rework/4_artifact/1_tmp/figure_acceptance_svg/egfr_lung_05_evidence_panel.svg
   size_mb: 0.0
+- path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_14_user_value_l5_output_rework/4_artifact/1_tmp/html_acceptance_12_cases/html_12_case_figure_contact_sheet_css2x.png
+  size_mb: 0.49
 - path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_14_user_value_l5_output_rework/4_artifact/1_tmp/notebook_exec_logs/01_print_answer_acceptance.log
   size_mb: 0.0
 - path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_14_user_value_l5_output_rework/4_artifact/1_tmp/notebook_exec_logs/01_print_answer_acceptance.status
@@ -8535,24 +8549,162 @@ excluded_from_git:
   size_mb: 0.12
 - path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_writing_figure_resource_pack/4_artifact/5_table/ms6_figure_story_map_v20260627.csv
   size_mb: 0.0
+- path: 5_phase_translation/goal_paper_figure_planning/.DS_Store
+  size_mb: 0.01
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure1_concept_notebook_pdf_workbench/.DS_Store
+  size_mb: 0.01
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure1_concept_notebook_pdf_workbench/1_asset/legacy_original_figure1_F1-SSR.ai
+  size_mb: 0.53
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure1_concept_notebook_pdf_workbench/2_protocol/.DS_Store
+  size_mb: 0.01
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure1_concept_notebook_pdf_workbench/3_execution/.DS_Store
+  size_mb: 0.01
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure1_concept_notebook_pdf_workbench/3_execution/figure1_illustrator/figure1_v1.ai
+  size_mb: 0.21
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure1_concept_notebook_pdf_workbench/3_execution/figure1_illustrator/figure1_v2.ai
+  size_mb: 0.44
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure1_concept_notebook_pdf_workbench/3_execution/figure1_illustrator/figure1_v3.ai
+  size_mb: 0.43
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure1_concept_notebook_pdf_workbench/3_execution/figure1_illustrator/figure1_v3.pdf
+  size_mb: 0.42
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure1_concept_notebook_pdf_workbench/3_execution/figure1_illustrator/figure1_v3.png
+  size_mb: 0.02
 - path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/.DS_Store
   size_mb: 0.01
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/3_execution/.DS_Store
+  size_mb: 0.01
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/3_execution/illustrators/.DS_Store
+  size_mb: 0.01
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/3_execution/illustrators/figure2_v1.ai
+  size_mb: 0.42
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/3_execution/illustrators/s1_v1.ai
+  size_mb: 0.42
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/3_execution/illustrators/s1_v2.ai
+  size_mb: 0.52
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/3_execution/illustrators/s1_v2.pdf
+  size_mb: 0.48
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/3_execution/illustrators/s1_v2.png
+  size_mb: 0.02
 - path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/.DS_Store
   size_mb: 0.01
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/1_tmp/.DS_Store
+  size_mb: 0.01
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/1_tmp/retired_figures/figure2_appendix_full_cellline_routing_tree_manual_matplotlib.pdf
+  size_mb: 0.02
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/1_tmp/retired_figures/figure2_appendix_full_cellline_routing_tree_manual_matplotlib.png
+  size_mb: 0.12
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/1_tmp/retired_figures/figure2_appendix_full_cellline_routing_tree_manual_matplotlib.svg
+  size_mb: 0.24
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/1_tmp/retired_figures/figure2_panel_C_cellline_routing_tree_manual_matplotlib.pdf
+  size_mb: 0.02
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/1_tmp/retired_figures/figure2_panel_C_cellline_routing_tree_manual_matplotlib.png
+  size_mb: 0.09
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/1_tmp/retired_figures/figure2_panel_C_cellline_routing_tree_manual_matplotlib.svg
+  size_mb: 0.24
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/1_tmp/retired_figures/figure2_panel_C_coverage_median_bars.pdf
+  size_mb: 0.01
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/1_tmp/retired_figures/figure2_panel_C_coverage_median_bars.png
+  size_mb: 0.08
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/1_tmp/retired_figures/figure2_panel_C_coverage_median_bars.svg
+  size_mb: 0.04
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/1_tmp/retired_figures/figure2_panel_C_exploration_drug_gene_neighbor_networks.pdf
+  size_mb: 0.02
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/1_tmp/retired_figures/figure2_panel_C_exploration_drug_gene_neighbor_networks.png
+  size_mb: 0.16
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/1_tmp/retired_figures/figure2_panel_C_exploration_drug_gene_neighbor_networks.svg
+  size_mb: 0.1
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/1_tmp/retired_figures/figure2_panel_C_exploration_full_cellline_tree.pdf
+  size_mb: 0.06
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/1_tmp/retired_figures/figure2_panel_C_exploration_full_cellline_tree.png
+  size_mb: 1.29
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/1_tmp/retired_figures/figure2_panel_C_exploration_full_cellline_tree.svg
+  size_mb: 0.39
 - path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/.DS_Store
   size_mb: 0.01
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_appendix2_coverage_proportion_kde.pdf
+  size_mb: 0.02
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_appendix2_coverage_proportion_kde.png
+  size_mb: 0.2
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_appendix2_coverage_proportion_kde.svg
+  size_mb: 0.11
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_appendix_full_cellline_routing_tree.pdf
+  size_mb: 0.07
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_appendix_full_cellline_routing_tree.png
+  size_mb: 0.35
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_appendix_full_cellline_routing_tree.svg
+  size_mb: 0.34
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_appendix_full_cellline_routing_tree_labeled.pdf
+  size_mb: 0.07
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_appendix_full_cellline_routing_tree_labeled.png
+  size_mb: 2.06
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_appendix_full_cellline_routing_tree_labeled.svg
+  size_mb: 0.21
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_appendix_global_cell_perturbation_coverage_heatmap.pdf
+  size_mb: 0.01
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_appendix_global_cell_perturbation_coverage_heatmap.png
+  size_mb: 0.07
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_appendix_global_cell_perturbation_coverage_heatmap.svg
+  size_mb: 0.04
 - path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_panel_A_resource_scale.pdf
   size_mb: 0.01
 - path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_panel_A_resource_scale.png
-  size_mb: 0.11
+  size_mb: 0.09
 - path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_panel_A_resource_scale.svg
   size_mb: 0.04
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_panel_B_combined_observed_unobserved_and_median_coverage.pdf
+  size_mb: 0.01
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_panel_B_combined_observed_unobserved_and_median_coverage.png
+  size_mb: 0.14
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_panel_B_combined_observed_unobserved_and_median_coverage.svg
+  size_mb: 0.05
 - path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_panel_B_observed_coverage_heatmap.pdf
   size_mb: 0.02
 - path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_panel_B_observed_coverage_heatmap.png
   size_mb: 0.15
 - path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_panel_B_observed_coverage_heatmap.svg
   size_mb: 0.08
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_panel_B_observed_unobserved_donut.pdf
+  size_mb: 0.01
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_panel_B_observed_unobserved_donut.png
+  size_mb: 0.06
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_panel_B_observed_unobserved_donut.svg
+  size_mb: 0.03
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_panel_C_cellline_routing_tree.pdf
+  size_mb: 0.04
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_panel_C_cellline_routing_tree.png
+  size_mb: 0.89
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_panel_C_cellline_routing_tree.svg
+  size_mb: 0.14
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_panel_C_cellline_routing_tree_circular.pdf
+  size_mb: 0.04
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_panel_C_cellline_routing_tree_circular.png
+  size_mb: 0.89
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_panel_C_cellline_routing_tree_circular.svg
+  size_mb: 0.14
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_panel_C_cellline_routing_tree_circular_force_topology.pdf
+  size_mb: 0.04
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_panel_C_cellline_routing_tree_circular_force_topology.png
+  size_mb: 0.6
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_panel_C_cellline_routing_tree_circular_force_topology.svg
+  size_mb: 0.17
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_panel_C_cellline_routing_tree_circular_rot90.pdf
+  size_mb: 0.04
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_panel_C_cellline_routing_tree_circular_rot90.png
+  size_mb: 0.42
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_panel_C_cellline_routing_tree_circular_rot90.svg
+  size_mb: 0.17
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_panel_C_cellline_routing_tree_unlabeled_all.pdf
+  size_mb: 0.01
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_panel_C_cellline_routing_tree_unlabeled_all.png
+  size_mb: 0.02
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_panel_C_cellline_routing_tree_unlabeled_all.svg
+  size_mb: 0.16
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_panel_C_cellline_routing_tree_unlabeled_all_ete.pdf
+  size_mb: 0.02
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_panel_C_cellline_routing_tree_unlabeled_all_ete.png
+  size_mb: 0.04
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_panel_C_cellline_routing_tree_unlabeled_all_ete.svg
+  size_mb: 0.18
 - path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_panel_C_observed_unobserved_donut.pdf
   size_mb: 0.01
 - path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_panel_C_observed_unobserved_donut.png
@@ -8571,6 +8723,28 @@ excluded_from_git:
   size_mb: 0.12
 - path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/4_picture/figure2/figure2_panel_D_proxy_routing_ncrna_anchors.svg
   size_mb: 0.06
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/5_table/figure2_appendix2_kde_coverage_distribution_summary.csv
+  size_mb: 0.0
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/5_table/figure2_appendix2_kde_coverage_distributions_long.csv
+  size_mb: 3.45
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/5_table/figure2_appendix_global_cell_perturbation_coverage_summary.csv
+  size_mb: 0.0
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/5_table/figure2_panel_B_median_coverage_summary.csv
+  size_mb: 0.0
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/5_table/figure2_panel_C_cellline_tree_edges.csv
+  size_mb: 0.04
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/5_table/figure2_panel_C_cellline_tree_excluded_points.csv
+  size_mb: 0.0
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/5_table/figure2_panel_C_cellline_tree_excluded_singletons.csv
+  size_mb: 0.0
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/5_table/figure2_panel_C_cellline_tree_nodes.csv
+  size_mb: 0.03
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/5_table/figure2_panel_C_cellline_tree_summary.csv
+  size_mb: 0.0
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/5_table/figure2_panel_C_coverage_median_summary.csv
+  size_mb: 0.0
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/5_table/figure2_panel_C_network_exploration_summary.csv
+  size_mb: 0.0
 - path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/5_table/figure2_table_cell_perturbation_occupancy_top_grid.csv
   size_mb: 0.12
 - path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/5_table/figure2_table_observed_pairs_long.csv
@@ -8585,6 +8759,12 @@ excluded_from_git:
   size_mb: 0.0
 - path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench/4_artifact/5_table/figure2_table_resource_scale.csv
   size_mb: 0.0
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure4_forward_genetic_query_notebook_figure_wo/.DS_Store
+  size_mb: 0.01
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure4_forward_genetic_query_notebook_figure_wo/3_execution/.DS_Store
+  size_mb: 0.01
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure4_forward_genetic_query_notebook_figure_wo/3_execution/illustrator/figure4_v1.ai
+  size_mb: 0.42
 - path: 5_phase_translation/goal_pending_g010/task_pending_t019/5_report/cli_sessions/check/20260623_034938_opencode_cli_859768c74307/stderr.log
   size_mb: 0.0
 - path: 5_phase_translation/goal_pending_g010/task_pending_t019/5_report/cli_sessions/check/20260623_034938_opencode_cli_859768c74307/stdout.log

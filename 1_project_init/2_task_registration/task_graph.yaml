@@ -2112,6 +2112,10 @@ edges:
   to: goal_paper_figure_planning/task_figure1_concept_notebook_pdf_workbench
   dep_id: T-144
   gate: may
+- from: goal_paper_figure_planning/task_pxfquery_paper_translation_anchor
+  to: goal_paper_figure_planning/task_figure4_forward_genetic_query_notebook_figure_wo
+  dep_id: T-143
+  gate: must
 labels:
 - id: label_mqpofuno
   phase: digestion
