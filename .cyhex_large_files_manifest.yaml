@@ -9012,6 +9012,12 @@ excluded_from_git:
 - path: 5_phase_translation/goal_paper_figure_planning/task_figure4_forward_genetic_query_notebook_figure_wo/3_execution/03_panel_a_six_candidate_t144_figures_outputs/FG02_MYC_MCF7/pdf/FG02_MYC_MCF7_02_function_match_heatmap.pdf
   size_mb: 0.03
 - path: 5_phase_translation/goal_paper_figure_planning/task_figure4_forward_genetic_query_notebook_figure_wo/3_execution/03_panel_a_six_candidate_t144_figures_outputs/FG02_MYC_MCF7/pdf/FG02_MYC_MCF7_03_function_consensus_bar.pdf
+  size_mb: 0.02
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure4_forward_genetic_query_notebook_figure_wo/3_execution/03_panel_a_six_candidate_t144_figures_outputs/FG02_MYC_MCF7/png/FG02_MYC_MCF7_01_evidence_match_map.png
+  size_mb: 0.08
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure4_forward_genetic_query_notebook_figure_wo/3_execution/03_panel_a_six_candidate_t144_figures_outputs/FG02_MYC_MCF7/png/FG02_MYC_MCF7_02_function_match_heatmap.png
+  size_mb: 0.1
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure4_forward_genetic_query_notebook_figure_wo/3_execution/03_panel_a_six_candidate_t144_figures_outputs/FG02_MYC_MCF7/png/FG02_MYC_MCF7_03_function_consensus_bar.png
   size_mb: 0.0
 - path: 5_phase_translation/goal_paper_figure_planning/task_figure4_forward_genetic_query_notebook_figure_wo/3_execution/illustrator/figure4_v1.ai
   size_mb: 0.41
@@ -9093,18 +9099,12 @@ excluded_from_git:
   size_mb: 0.08
 - path: 5_phase_translation/goal_paper_figure_planning/task_figure5_forward_drug_query_notebook_figure_workb/4_artifact/4_picture/figure5/panel_a_candidate_previews/README_FORWARD_EGFR_LUAD/png/readme_forward_egfr_luad_03_function_consensus_bar.png
   size_mb: 0.07
-- path: 5_phase_translation/goal_paper_figure_planning/task_figure5_forward_drug_query_notebook_figure_workb/4_artifact/4_picture/figure5/panel_a_candidate_previews/contact_sheet_egfr_luad_01_evidence_match_map.png
-  size_mb: 0.06
-- path: 5_phase_translation/goal_paper_figure_planning/task_figure5_forward_drug_query_notebook_figure_workb/4_artifact/4_picture/figure5/panel_a_candidate_previews/contact_sheet_egfr_luad_02_function_match_heatmap.png
-  size_mb: 0.07
-- path: 5_phase_translation/goal_paper_figure_planning/task_figure5_forward_drug_query_notebook_figure_workb/4_artifact/4_picture/figure5/panel_a_candidate_previews/contact_sheet_egfr_luad_03_function_consensus_bar.png
-  size_mb: 0.09
 - path: 5_phase_translation/goal_paper_figure_planning/task_figure5_forward_drug_query_notebook_figure_workb/4_artifact/4_picture/figure5/panel_a_candidate_previews/contact_sheet_evidence_match_map.png
-  size_mb: 0.2
+  size_mb: 0.24
 - path: 5_phase_translation/goal_paper_figure_planning/task_figure5_forward_drug_query_notebook_figure_workb/4_artifact/4_picture/figure5/panel_a_candidate_previews/contact_sheet_function_consensus_bar.png
-  size_mb: 0.29
+  size_mb: 0.36
 - path: 5_phase_translation/goal_paper_figure_planning/task_figure5_forward_drug_query_notebook_figure_workb/4_artifact/4_picture/figure5/panel_a_candidate_previews/contact_sheet_function_match_heatmap.png
-  size_mb: 0.22
+  size_mb: 0.27
 - path: 5_phase_translation/goal_paper_figure_planning/task_figure5_forward_drug_query_notebook_figure_workb/4_artifact/5_table/figure5/panel_a_candidates/FD01/route_function_results.csv
   size_mb: 0.02
 - path: 5_phase_translation/goal_paper_figure_planning/task_figure5_forward_drug_query_notebook_figure_workb/4_artifact/5_table/figure5/panel_a_candidates/FD01/route_summary.csv
