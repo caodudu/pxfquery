@@ -339,9 +339,12 @@ python -m pxfquery.mcp_server --env-file .env
 
 Available tools:
 
-- `pxfquery_parse_answer`: run a query and return an answer payload.
+- `pxfquery_parse_answer`: run a query and return a compact answer payload by default. Use `detail="full"` only when the caller needs full L4 evidence JSON.
 - `pxfquery_render_figures`: run a query and write figure files.
-- `pxfquery_l5_chat`: answer a follow-up using the assembled evidence.
+- `pxfquery_check_evidence_terms`: check whether requested terms appear in the compact evidence object without returning full evidence JSON.
+- `pxfquery_l5_chat`: answer a follow-up using the assembled evidence. Pass `qdata_path` to reuse a saved query object instead of rerunning parse and evidence assembly.
+
+For AI-product integrations, prefer the default compact payload from `pxfquery_parse_answer`. It contains the biological summary, top ranked results, route summary, evidence contract, and evidence index. Full L4 evidence is intentionally opt-in to avoid oversized MCP tool outputs.
 
 ## Version
 
@@ -353,5 +356,5 @@ print(pxfquery.__version__)
 Current package version:
 
 ```text
-0.5.14.dev0
+0.5.15.dev0
 ```
