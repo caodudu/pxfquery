@@ -2,12 +2,11 @@ from __future__ import annotations
 
 import argparse
 import json
-import os
 import sys
-from pathlib import Path
 from typing import Any
 
 from pxfquery import PxFQuery
+from pxfquery.utils.env import load_env_file
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -53,7 +52,7 @@ def main(argv: list[str] | None = None) -> int:
 
     args = parser.parse_args(argv)
     if args.env_file:
-        _load_env_file(args.env_file)
+        load_env_file(args.env_file)
     if args.command == "parse":
         if not args.text:
             parser.error("parse requires text")
@@ -124,16 +123,6 @@ def main(argv: list[str] | None = None) -> int:
         mcp_main(mcp_args)
         return 0
     return 1
-
-
-def _load_env_file(path: str | os.PathLike[str]) -> None:
-    env_path = Path(path)
-    for line in env_path.read_text(encoding="utf-8").splitlines():
-        stripped = line.strip()
-        if not stripped or stripped.startswith("#") or "=" not in stripped:
-            continue
-        key, value = stripped.split("=", 1)
-        os.environ[key.strip()] = value.strip()
 
 
 def _qdata_payload(qdata) -> dict[str, Any]:

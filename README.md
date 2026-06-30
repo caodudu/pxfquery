@@ -108,6 +108,16 @@ export PXFQUERY_LLM_MODEL="your-model-name"
 export PXFQUERY_LLM_PROVIDER="your-provider-name"
 ```
 
+DeepSeek-compatible environment variables are also accepted, which is useful when running PxFquery as an MCP server from tools that already pass DeepSeek-style variables:
+
+```bash
+export DEEPSEEK_API_KEY="..."
+export DEEPSEEK_API_BASE="https://api.deepseek.com/v1"
+export DEEPSEEK_MODEL="deepseek-v4-flash"
+```
+
+When both forms are present, `PXFQUERY_LLM_*` takes precedence.
+
 Python configuration:
 
 ```python
@@ -343,5 +353,5 @@ print(pxfquery.__version__)
 Current package version:
 
 ```text
-0.5.13.dev0
+0.5.14.dev0
 ```

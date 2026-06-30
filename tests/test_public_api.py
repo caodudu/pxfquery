@@ -2,12 +2,13 @@ import pxfquery
 from pxfquery import PxFQuery, PxFQueryData
 from pxfquery.cli import main as cli_main
 from pxfquery.resources import ResourceManager, default_manifest
+from pxfquery.utils.env import load_env_file
 
 
 def test_public_entrypoint_is_single_client():
     assert pxfquery.__all__ == ["PxFQuery", "PxFQueryData"]
     assert PxFQueryData(text="query").text == "query"
-    assert PxFQuery().version == "0.5.13.dev0"
+    assert PxFQuery().version == "0.5.14.dev0"
 
 
 def test_scanpy_style_namespaces_are_available():
@@ -107,7 +108,37 @@ def test_cli_load_restores_saved_qdata_for_json_and_answer(tmp_path, capsys):
     answer_out = capsys.readouterr().out
     assert "Answer" in answer_out
     assert "PERT_X changes FUNCTION_X in CONTEXT_X." in answer_out
-    assert "Analysis source: pxfquery 0.5.13.dev0" in answer_out
+    assert "Analysis source: pxfquery 0.5.14.dev0" in answer_out
+
+
+def test_env_file_loader_accepts_export_and_quoted_deepseek_aliases(tmp_path, monkeypatch):
+    for key in [
+        "PXFQUERY_LLM_API_KEY",
+        "PXFQUERY_LLM_BASE_URL",
+        "PXFQUERY_LLM_MODEL",
+        "DEEPSEEK_API_KEY",
+        "DEEPSEEK_API_BASE",
+        "DEEPSEEK_MODEL",
+    ]:
+        monkeypatch.delenv(key, raising=False)
+    env_file = tmp_path / ".env"
+    env_file.write_text(
+        "\n".join(
+            [
+                'export DEEPSEEK_API_KEY="deepseek-token"',
+                "DEEPSEEK_API_BASE='https://deepseek.example/v1'",
+                "DEEPSEEK_MODEL=deepseek-test-model",
+            ]
+        ),
+        encoding="utf-8",
+    )
+
+    load_env_file(env_file)
+    status = PxFQuery().settings.l1_provider_status()
+
+    assert status["configured"] is True
+    assert status["base_url"] == "https://deepseek.example/v1"
+    assert status["model"] == "deepseek-test-model"
 
 
 def _sample_dossier():

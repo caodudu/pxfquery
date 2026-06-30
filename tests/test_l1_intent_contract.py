@@ -43,11 +43,30 @@ def test_l1_intent_requires_registered_provider(monkeypatch):
     monkeypatch.delenv("PXFQUERY_LLM_API_KEY", raising=False)
     monkeypatch.delenv("PXFQUERY_LLM_BASE_URL", raising=False)
     monkeypatch.delenv("PXFQUERY_LLM_MODEL", raising=False)
+    monkeypatch.delenv("DEEPSEEK_API_KEY", raising=False)
+    monkeypatch.delenv("DEEPSEEK_API_BASE", raising=False)
+    monkeypatch.delenv("DEEPSEEK_BASE_URL", raising=False)
+    monkeypatch.delenv("DEEPSEEK_MODEL", raising=False)
     pxf = PxFQuery()
     q = pxf.read.query("Which drugs activate apoptosis in cancer cells?")
 
     with pytest.raises(IntentBackendNotConfigured):
         pxf.pp.parse(q)
+
+
+def test_deepseek_env_aliases_register_default_provider(monkeypatch):
+    monkeypatch.delenv("PXFQUERY_LLM_API_KEY", raising=False)
+    monkeypatch.delenv("PXFQUERY_LLM_BASE_URL", raising=False)
+    monkeypatch.delenv("PXFQUERY_LLM_MODEL", raising=False)
+    monkeypatch.setenv("DEEPSEEK_API_KEY", "deepseek-token")
+    monkeypatch.setenv("DEEPSEEK_API_BASE", "https://deepseek.example/v1")
+    monkeypatch.setenv("DEEPSEEK_MODEL", "deepseek-test-model")
+
+    status = PxFQuery().settings.l1_provider_status()
+
+    assert status["configured"] is True
+    assert status["base_url"] == "https://deepseek.example/v1"
+    assert status["model"] == "deepseek-test-model"
 
 
 class _BadProvider:

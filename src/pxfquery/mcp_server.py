@@ -1,13 +1,12 @@
 from __future__ import annotations
 
 import argparse
-import os
-from pathlib import Path
 from typing import Any
 
 from mcp.server.fastmcp import FastMCP
 
 from pxfquery import PxFQuery
+from pxfquery.utils.env import load_env_file
 
 
 mcp = FastMCP("pxfquery")
@@ -64,18 +63,8 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("--env-file")
     args = parser.parse_args(argv)
     if args.env_file:
-        _load_env_file(args.env_file)
+        load_env_file(args.env_file)
     mcp.run(transport="stdio")
-
-
-def _load_env_file(path: str | os.PathLike[str]) -> None:
-    env_path = Path(path)
-    for line in env_path.read_text(encoding="utf-8").splitlines():
-        stripped = line.strip()
-        if not stripped or stripped.startswith("#") or "=" not in stripped:
-            continue
-        key, value = stripped.split("=", 1)
-        os.environ[key.strip()] = value.strip()
 
 
 if __name__ == "__main__":

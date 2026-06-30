@@ -25,6 +25,11 @@ PXFQUERY_LLM_API_KEY_ENV = "PXFQUERY_LLM_API_KEY"
 PXFQUERY_LLM_BASE_URL_ENV = "PXFQUERY_LLM_BASE_URL"
 PXFQUERY_LLM_MODEL_ENV = "PXFQUERY_LLM_MODEL"
 PXFQUERY_LLM_TIMEOUT_ENV = "PXFQUERY_LLM_TIMEOUT"
+DEEPSEEK_API_KEY_ENV = "DEEPSEEK_API_KEY"
+DEEPSEEK_API_BASE_ENV = "DEEPSEEK_API_BASE"
+DEEPSEEK_BASE_URL_ENV = "DEEPSEEK_BASE_URL"
+DEEPSEEK_MODEL_ENV = "DEEPSEEK_MODEL"
+DEEPSEEK_TIMEOUT_ENV = "DEEPSEEK_TIMEOUT"
 
 
 @dataclass
@@ -319,21 +324,33 @@ class LLMProvider:
 
 
 def provider_from_env(*, required: bool = False) -> LLMProvider | None:
-    api_key = os.environ.get(PXFQUERY_LLM_API_KEY_ENV)
+    api_key = _env_first(PXFQUERY_LLM_API_KEY_ENV, DEEPSEEK_API_KEY_ENV)
     if not api_key:
         if required:
-            raise IntentBackendError(f"LLM provider token is not configured; set {PXFQUERY_LLM_API_KEY_ENV}")
+            raise IntentBackendError(
+                f"LLM provider token is not configured; set {PXFQUERY_LLM_API_KEY_ENV} "
+                f"or {DEEPSEEK_API_KEY_ENV}"
+            )
         return None
     name = os.environ.get(PXFQUERY_LLM_PROVIDER_ENV, DEFAULT_PROVIDER)
     return LLMProvider(
         LLMProviderConfig(
             name=name,
-            base_url=os.environ.get(PXFQUERY_LLM_BASE_URL_ENV, OFFICIAL_DEEPSEEK_BASE_URL),
+            base_url=_env_first(PXFQUERY_LLM_BASE_URL_ENV, DEEPSEEK_API_BASE_ENV, DEEPSEEK_BASE_URL_ENV)
+            or OFFICIAL_DEEPSEEK_BASE_URL,
             api_key=api_key,
-            model=os.environ.get(PXFQUERY_LLM_MODEL_ENV, OFFICIAL_DEEPSEEK_MODEL),
-            timeout=float(os.environ.get(PXFQUERY_LLM_TIMEOUT_ENV, "60")),
+            model=_env_first(PXFQUERY_LLM_MODEL_ENV, DEEPSEEK_MODEL_ENV) or OFFICIAL_DEEPSEEK_MODEL,
+            timeout=float(_env_first(PXFQUERY_LLM_TIMEOUT_ENV, DEEPSEEK_TIMEOUT_ENV) or "60"),
         )
     )
+
+
+def _env_first(*names: str) -> str | None:
+    for name in names:
+        value = os.environ.get(name)
+        if value:
+            return value
+    return None
 
 
 def _system_prompt(schema: dict[str, Any]) -> str:
