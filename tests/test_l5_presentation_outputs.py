@@ -362,7 +362,8 @@ def test_tl_answer_mcp_mode_reuses_same_answer_payload():
     assert payload["answer"]["headline"] == "Biological answer"
     assert payload["answer"]["summary_source"] == "l4.llm_synthesis.biological_summary"
     assert payload["ranked_results"][0]["label"] == "FUNCTION_X"
-    assert payload["evidence_index"]["ranked_result_count"] == 3
+    assert "ranked_result_count" not in payload["evidence_index"]
+    assert all("score" not in row for row in payload["ranked_results"])
     assert "l4_evidence" not in payload
     assert "tables" not in payload
     assert "figure_specs" not in payload
@@ -383,8 +384,9 @@ def test_mcp_full_detail_is_explicit_and_term_check_uses_compact_index():
     terms = check_evidence_terms(answer, ["FUNCTION_X", "missing-term"])
 
     assert payload["detail"] == "full"
-    assert payload["l4_evidence"] is dossier
+    assert payload["l4_evidence"] == dossier
     assert len(payload["ranked_results"]) == 2
+    assert payload["evidence_index"]["ranked_result_count"] == 3
     assert payload["tables"]["route_function_results"]
     assert terms["terms"][0]["present"] is True
     assert terms["terms"][0]["hits"][0]["source"] in {"answer", "ranked_results", "route_function_results"}
