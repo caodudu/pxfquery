@@ -170,6 +170,9 @@ def _make_forward_route(
     anchor = _perturbation_anchor(intent, pert, matched_modalities)
     cell_distance = _cell_match_distance(cell)
     pert_distance = _perturbation_match_distance(pert)
+    modality_evidence = _modality_evidence(intent, pert, matched_modalities)
+    primary_modality = _primary_modality_evidence(modality_evidence)
+    modality_distance = _modality_match_distance(primary_modality)
     route_quality = _route_quality(cell_distance, pert_distance)
     route = {
         "route_id": f"forward_{route_number:03d}",
@@ -191,7 +194,12 @@ def _make_forward_route(
         "perturbation_match_distance": pert_distance,
         "perturbation_record": pert,
         "modalities": matched_modalities,
-        "modality_evidence": _modality_evidence(intent, pert, matched_modalities),
+        "modality_evidence": modality_evidence,
+        "modality_match_type": primary_modality.get("modality_match_type"),
+        "modality_rank": primary_modality.get("modality_rank"),
+        "modality_match_distance": modality_distance,
+        "modality_reason": primary_modality.get("reason"),
+        "requested_modality": primary_modality.get("requested_modality"),
         "perturbation_anchor": anchor,
         "score_orientation": anchor["score_orientation"],
         "score_multiplier": anchor["score_multiplier"],
@@ -313,6 +321,7 @@ def _rank_routes_by_quality(routes: list[dict[str, Any]]) -> list[dict[str, Any]
     ranked = sorted(
         routes,
         key=lambda route: (
+            _route_sort_modality_distance(route),
             float(route.get("route_quality_score", 1.0)),
             float(route.get("perturbation_match_distance", 0.0)),
             float(route.get("cell_match_distance", 0.0)),
@@ -323,6 +332,16 @@ def _rank_routes_by_quality(routes: list[dict[str, Any]]) -> list[dict[str, Any]
     for rank, route in enumerate(ranked, 1):
         route["route_quality_rank"] = rank
     return ranked
+
+
+def _route_sort_modality_distance(route: dict[str, Any]) -> float:
+    requested = str(route.get("requested_modality") or "").casefold()
+    if requested not in {"crispr", "knockout", "ko", "lof", "loss_of_function", "delete", "deletion", "xpr"}:
+        return 0.0
+    try:
+        return float(route.get("modality_match_distance", 0.0))
+    except (TypeError, ValueError):
+        return 0.0
 
 
 def _pair_availability_forward(
@@ -595,6 +614,31 @@ def _perturbation_match_distance(record: dict[str, Any] | None) -> float:
 
 def _route_quality(cell_distance: float, perturbation_distance: float) -> float:
     return round(min(max((cell_distance + perturbation_distance) / 2.0, 0.0), 1.0), 3)
+
+
+def _primary_modality_evidence(modality_evidence: list[dict[str, str]]) -> dict[str, str]:
+    if not modality_evidence:
+        return {
+            "modality": "",
+            "reason": "missing_modality_evidence",
+            "requested_modality": "unspecified",
+            "modality_match_type": "missing_modality_evidence",
+            "modality_rank": "fallback",
+        }
+    primary = [item for item in modality_evidence if item.get("modality_rank") == "primary"]
+    return (primary or modality_evidence)[0]
+
+
+def _modality_match_distance(modality_evidence: dict[str, str]) -> float:
+    rank = str(modality_evidence.get("modality_rank") or "")
+    match_type = str(modality_evidence.get("modality_match_type") or "")
+    if rank == "primary" and match_type in {"exact_requested", "unspecified_allowed", "opposite_lof_inference"}:
+        return 0.0
+    if rank == "primary":
+        return 0.1
+    if match_type == "loss_of_function_proxy":
+        return 0.35
+    return 0.45
 
 
 def _route_quality_label(score: float) -> str:

@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.5.21.dev0 - 2026-07-02
+
+- Updated forward genetic route ranking so explicit CRISPR/xpr loss-of-function queries prefer requested-modality evidence before fallback shRNA evidence.
+- Preserved sh/knockdown route ordering, compound forward queries, and reverse queries outside this modality-specific sorting rule.
+- Kept L3 proxy sign calibration as the route-level direction mechanism; L5 does not receive calibration hints or perform direction guessing.
+- Verified the forward genetic diagnostic batch: sh metrics remain at the 0.5.20 level while xpr median rank percentiles improve across activated and suppressed outputs.
+
 ## 0.5.20.dev0 - 2026-07-02
 
 - Revised forward genetic proxy direction calibration so shared-cell functional profile evidence uses a moderate signed threshold and majority sign check.

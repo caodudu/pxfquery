@@ -4,7 +4,7 @@ import time
 
 from pxfquery import PxFQuery
 from pxfquery.l1_intent import QueryIntent
-from pxfquery.l2_routing.combination import _genetic_modality_plan, _genetic_reverse_mode
+from pxfquery.l2_routing.combination import _genetic_modality_plan, _genetic_reverse_mode, _make_forward_route, _rank_routes_by_quality
 from pxfquery.l2_routing.index.cellline_index import CellLineIndex
 from pxfquery.l2_routing.router import _expanded_tree_cells
 from pxfquery.l2_routing.router import route_intent
@@ -209,6 +209,74 @@ def test_l2_genetic_modality_plan_treats_xpr_as_crispr_lof_not_overexpression():
     assert _genetic_reverse_mode("xpr", crispr) == "perturbation_only"
     assert _genetic_reverse_mode("xpr", gof) == "activation_only"
     assert _genetic_reverse_mode("xpr", unknown) == "bidirectional"
+
+
+def test_l2_crispr_fallback_sh_route_carries_lower_modality_quality():
+    intent = _intent(pert_class="genetic", genetic_modality="crispr")
+    cell = {"cell": "A549", "role": "exact", "cell_expansion_scope": "exact", "cell_route_distance": 0}
+    pert = {"symbol": "IGF2R", "role": "exact", "rank": 1}
+
+    xpr_route = _make_forward_route(intent, 1, "A", "exact", cell, pert, ["xpr"], True)
+    sh_route = _make_forward_route(intent, 2, "A", "exact", cell, pert, ["sh"], True)
+
+    assert xpr_route["modality_rank"] == "primary"
+    assert xpr_route["modality_match_distance"] == 0.0
+    assert xpr_route["route_quality_score"] == 0.0
+    assert sh_route["modality_rank"] == "fallback"
+    assert sh_route["modality_match_type"] == "loss_of_function_proxy"
+    assert sh_route["modality_match_distance"] > xpr_route["modality_match_distance"]
+    assert sh_route["route_quality_score"] == xpr_route["route_quality_score"]
+
+
+def test_l2_drug_forward_route_keeps_exact_modality_quality():
+    intent = _intent(pert_class="drug", genetic_modality=None)
+    cell = {"cell": "A549", "role": "exact", "cell_expansion_scope": "exact", "cell_route_distance": 0}
+    pert = {"id": "BRD-K70401845", "alias": "erlotinib", "role": "exact", "rank": 1}
+
+    route = _make_forward_route(intent, 1, "A", "exact", cell, pert, ["cp"], True)
+
+    assert route["modality_rank"] == "primary"
+    assert route["modality_match_type"] == "exact_requested"
+    assert route["modality_match_distance"] == 0.0
+    assert route["route_quality_score"] == 0.0
+
+
+def test_l2_crispr_primary_modality_proxy_ranks_before_fallback_exact():
+    intent = _intent(pert_class="genetic", genetic_modality="crispr")
+    cell = {"cell": "A549", "role": "exact", "cell_expansion_scope": "exact", "cell_route_distance": 0}
+    exact = {"symbol": "TARGET", "role": "exact", "rank": 1}
+    proxy = {"symbol": "PROXY", "role": "supporting-semantic-neighbor", "similarity": 0.75, "rank": 1}
+
+    sh_exact = _make_forward_route(intent, 1, "A", "exact", cell, exact, ["sh"], True)
+    xpr_proxy = _make_forward_route(intent, 2, "B", "proxy", cell, proxy, ["xpr"], True)
+
+    ranked = _rank_routes_by_quality([sh_exact, xpr_proxy])
+
+    assert ranked[0]["perturbation"] == "PROXY"
+    assert ranked[0]["modality"] == "xpr"
+    assert ranked[0]["modality_rank"] == "primary"
+    assert ranked[1]["perturbation"] == "TARGET"
+    assert ranked[1]["modality"] == "sh"
+    assert ranked[1]["modality_rank"] == "fallback"
+
+
+def test_l2_knockdown_route_sort_does_not_prioritize_modality_over_exact_gene():
+    intent = _intent(pert_class="genetic", genetic_modality="knockdown")
+    cell = {"cell": "MCF7", "role": "exact", "cell_expansion_scope": "exact", "cell_route_distance": 0}
+    exact = {"symbol": "TARGET", "role": "exact", "rank": 1}
+    proxy = {"symbol": "PROXY", "role": "supporting-semantic-neighbor", "similarity": 0.75, "rank": 1}
+
+    xpr_exact = _make_forward_route(intent, 1, "A", "exact", cell, exact, ["xpr"], True)
+    sh_proxy = _make_forward_route(intent, 2, "B", "proxy", cell, proxy, ["sh"], True)
+
+    ranked = _rank_routes_by_quality([xpr_exact, sh_proxy])
+
+    assert ranked[0]["perturbation"] == "TARGET"
+    assert ranked[0]["modality"] == "xpr"
+    assert ranked[0]["modality_rank"] == "fallback"
+    assert ranked[1]["perturbation"] == "PROXY"
+    assert ranked[1]["modality"] == "sh"
+    assert ranked[1]["modality_rank"] == "primary"
 
 
 def test_l2_reports_resource_missing_without_registered_indexes():
