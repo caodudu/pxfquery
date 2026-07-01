@@ -66,6 +66,7 @@ def assemble_evidence(
             "warnings": _json_safe(execution_dict.get("warnings", [])),
             "resource_pack": _json_safe(execution_dict.get("resource_pack", {})),
             "matrix_summary": _json_safe(execution_dict.get("matrix_summary", {})),
+            "proxy_direction_calibrations": _proxy_direction_calibrations(execution_dict),
             "debug": _debug_layer(route_dict, include_rejected=debug),
         },
     }
@@ -204,6 +205,27 @@ def _matrix_evidence(execution: dict[str, Any]) -> dict[str, Any]:
         "skipped_routes": skipped,
         "raw_route_results": _json_safe(execution.get("executed_routes", [])),
     }
+
+
+def _proxy_direction_calibrations(execution: dict[str, Any]) -> list[dict[str, Any]]:
+    records = []
+    for route in execution.get("executed_routes") or []:
+        scores = route.get("scores") or {}
+        metadata = route.get("route_metadata") or {}
+        calibration = scores.get("proxy_direction_calibration") or metadata.get("proxy_direction_calibration")
+        if not calibration:
+            continue
+        records.append(
+            {
+                "route_id": route.get("route_id"),
+                "query_type": route.get("query_type"),
+                "modality": route.get("modality"),
+                "cell": route.get("cell"),
+                "perturbation": metadata.get("perturbation"),
+                "calibration": _json_safe(calibration),
+            }
+        )
+    return records
 
 
 def _route_summary(route: dict[str, Any]) -> dict[str, Any]:

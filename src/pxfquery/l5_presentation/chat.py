@@ -26,6 +26,7 @@ def build_chat_response(
         raise ValueError("response_mode must be 'natural' or 'json'")
 
     current_answer = answer or build_answer(question, dossier, mode="python")
+    llm_safe_dossier = _strip_llm_hidden_fields(dossier)
     user_payload = {
         "original_question": question,
         "user_message": message,
@@ -57,8 +58,8 @@ def build_chat_response(
             "figures": current_answer.figures,
             "rendering_contract": current_answer.rendering_contract,
         },
-        "evidence_boundary": _evidence_boundary_context(dossier),
-        "l4_evidence": dossier,
+        "evidence_boundary": _evidence_boundary_context(llm_safe_dossier),
+        "l4_evidence": llm_safe_dossier,
         "history": history or [],
     }
     if response_mode == "json":
@@ -251,3 +252,14 @@ def _dedupe(items: list[str]) -> list[str]:
             seen.add(key)
             output.append(item)
     return output
+
+
+def _strip_llm_hidden_fields(value: Any) -> Any:
+    hidden = {"proxy_direction_calibration", "proxy_direction_calibrations"}
+    if isinstance(value, dict):
+        return {key: _strip_llm_hidden_fields(item) for key, item in value.items() if key not in hidden}
+    if isinstance(value, list):
+        return [_strip_llm_hidden_fields(item) for item in value]
+    if isinstance(value, tuple):
+        return [_strip_llm_hidden_fields(item) for item in value]
+    return value

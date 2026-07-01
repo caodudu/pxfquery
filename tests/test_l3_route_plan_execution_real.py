@@ -7,7 +7,8 @@ import pytest
 
 from pxfquery import PxFQuery
 from pxfquery.l1_intent import QueryIntent
-from pxfquery.l3_execution.executor import _aggregate_reverse_replicates, _filter_reverse_control_perturbations, _rank_records, _reverse_rankings
+from pxfquery.l3_execution.executor import execute_route_plan, _aggregate_reverse_replicates, _execute_forward_route, _filter_reverse_control_perturbations, _rank_records, _reverse_rankings
+from pxfquery.l3_execution.matrix_store import FunctionalMatrix
 
 
 DEFAULT_STANDARD_RESOURCES = Path(
@@ -199,6 +200,173 @@ def test_l3_reverse_aggregates_signature_replicates_by_perturbation_and_cell():
     assert agg_obs.loc[0, "n_signatures"] == 2
     assert agg_obs.loc[0, "sig_ids"] == ["s1", "s2"]
     np.testing.assert_allclose(agg_X[0], np.array([3.0, 1.0], dtype=np.float32))
+
+
+class _FakeStore:
+    def __init__(self, matrix: FunctionalMatrix) -> None:
+        self.matrix = matrix
+
+    def load(self, modality: str) -> FunctionalMatrix:
+        assert modality == self.matrix.modality
+        return self.matrix
+
+
+class _FakeResources:
+    def __init__(self, matrix: FunctionalMatrix) -> None:
+        self._functional_matrix_cache = {matrix.modality: matrix}
+
+    def status(self):
+        class _Status:
+            def to_dict(self):
+                return {}
+
+        return _Status()
+
+    def ensure(self, *args, **kwargs):
+        class _Status:
+            available = True
+            missing_files: list[str] = []
+
+        return _Status()
+
+
+def _calibration_matrix(modality: str = "sh") -> FunctionalMatrix:
+    obs = pd.DataFrame(
+        [
+            {"sig_id": "q", "pert_id": "PROXY", "cmap_name": "PROXY", "cell_iname": "QUERY"},
+            {"sig_id": "t1", "pert_id": "TARGET", "cmap_name": "TARGET", "cell_iname": "C1"},
+            {"sig_id": "p1", "pert_id": "PROXY", "cmap_name": "PROXY", "cell_iname": "C1"},
+            {"sig_id": "t2", "pert_id": "TARGET", "cmap_name": "TARGET", "cell_iname": "C2"},
+            {"sig_id": "p2", "pert_id": "PROXY", "cmap_name": "PROXY", "cell_iname": "C2"},
+            {"sig_id": "t3", "pert_id": "TARGET", "cmap_name": "TARGET", "cell_iname": "C3"},
+            {"sig_id": "p3", "pert_id": "PROXY", "cmap_name": "PROXY", "cell_iname": "C3"},
+        ]
+    )
+    X = np.array(
+        [
+            [2.0, -1.0],
+            [1.0, -1.0],
+            [-1.0, 1.0],
+            [2.0, -2.0],
+            [-2.0, 2.0],
+            [3.0, -3.0],
+            [-3.0, 3.0],
+        ],
+        dtype=np.float32,
+    )
+    return FunctionalMatrix(
+        modality=modality,
+        X=X,
+        obs=obs,
+        var_names=["F_POS", "F_NEG"],
+        matrix_path="synthetic",
+        matrix_cache_path=None,
+        obs_path="synthetic",
+        var_path="synthetic",
+    )
+
+
+def test_l3_forward_genetic_proxy_direction_calibration_flips_negative_shared_cell_profile():
+    matrix = _calibration_matrix("sh")
+    route = {
+        "route_id": "forward_001",
+        "cell": "QUERY",
+        "perturbation": "PROXY",
+        "perturbation_match_type": "semantic_neighbor",
+        "perturbation_match_distance": 0.5,
+        "modality": "sh",
+    }
+    route_plan = {"intent": {"query_type": "forward", "pert_desc": "TARGET"}}
+
+    result = _execute_forward_route(route, route_plan, _FakeStore(matrix), top_n=2, modality="sh")
+
+    calibration = result.scores["proxy_direction_calibration"]
+    assert calibration["status"] == "flipped"
+    assert calibration["score_multiplier"] == -1
+    assert calibration["n_common_cells"] == 3
+    assert result.scores["score_multiplier"] == -1
+    assert result.rankings["top_activated"][0]["label"] == "F_NEG"
+    assert result.rankings["top_suppressed"][0]["label"] == "F_POS"
+
+
+def test_l3_forward_drug_proxy_direction_calibration_is_disabled_by_default():
+    matrix = _calibration_matrix("cp")
+    route = {
+        "route_id": "forward_001",
+        "cell": "QUERY",
+        "perturbation": "PROXY",
+        "perturbation_match_type": "structural_neighbor",
+        "perturbation_match_distance": 0.5,
+        "modality": "cp",
+    }
+    route_plan = {"intent": {"query_type": "forward", "pert_desc": "TARGET"}}
+
+    result = _execute_forward_route(route, route_plan, _FakeStore(matrix), top_n=2, modality="cp")
+
+    calibration = result.scores["proxy_direction_calibration"]
+    assert calibration["status"] == "disabled"
+    assert calibration["score_multiplier"] == 1
+    assert result.rankings["top_activated"][0]["label"] == "F_POS"
+
+
+def test_l3_forward_drug_proxy_direction_calibration_can_be_enabled():
+    matrix = _calibration_matrix("cp")
+    route = {
+        "route_id": "forward_001",
+        "cell": "QUERY",
+        "perturbation": "PROXY",
+        "perturbation_match_type": "structural_neighbor",
+        "perturbation_match_distance": 0.5,
+        "modality": "cp",
+    }
+    route_plan = {"intent": {"query_type": "forward", "pert_desc": "TARGET"}}
+
+    result = _execute_forward_route(
+        route,
+        route_plan,
+        _FakeStore(matrix),
+        top_n=2,
+        modality="cp",
+        calibration_config={"drug": True},
+    )
+
+    calibration = result.scores["proxy_direction_calibration"]
+    assert calibration["status"] == "flipped"
+    assert result.scores["score_multiplier"] == -1
+    assert result.rankings["top_activated"][0]["label"] == "F_NEG"
+
+
+def test_proxy_direction_calibration_does_not_run_for_reverse_routes():
+    matrix = _calibration_matrix("sh")
+    route_plan = {
+        "schema_version": "l2-route-plan/v2",
+        "query_id": "reverse_calibration_guard",
+        "route_status": "routed",
+        "intent": {"query_type": "reverse"},
+        "combination_route": {
+            "selected_routes": [
+                {
+                    "route_id": "reverse_001",
+                    "cell": "QUERY",
+                    "modality": "sh",
+                    "functions": [{"var_name": "F_POS", "direction": "activate", "weight": 1.0}],
+                }
+            ]
+        },
+    }
+
+    result = execute_route_plan(
+        route_plan,
+        resources=_FakeResources(matrix),
+        auto_download=False,
+        top_n=2,
+        forward_proxy_direction_calibration={"enabled": True, "genetic": True, "drug": True},
+    )
+
+    assert result.execution_status == "executed"
+    route = result.executed_routes[0]
+    assert "proxy_direction_calibration" not in route["scores"]
+    assert "proxy_direction_calibration" not in route["route_metadata"]
 
 
 def test_l3_executes_real_forward_route_plan_from_t138_l2():

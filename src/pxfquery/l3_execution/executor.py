@@ -19,6 +19,7 @@ def execute_route_plan(
     resource_dir: str | Path | None = None,
     auto_download: bool = True,
     top_n: int = 20,
+    forward_proxy_direction_calibration: dict[str, Any] | None = None,
 ) -> L3ExecutionResult:
     if resource_dir is not None:
         resources.use(resource_dir, strict=False)
@@ -70,7 +71,16 @@ def execute_route_plan(
                 route_results.append(_skipped(route_item, query_type, _error_code(exc), str(exc)))
             for modality in modalities:
                 try:
-                    route_results.append(_execute_forward_route(route_item, route, store, top_n=top_n, modality=modality))
+                    route_results.append(
+                        _execute_forward_route(
+                            route_item,
+                            route,
+                            store,
+                            top_n=top_n,
+                            modality=modality,
+                            calibration_config=forward_proxy_direction_calibration,
+                        )
+                    )
                 except Exception as exc:
                     route_results.append(_skipped(route_item, query_type, _error_code(exc), str(exc), modality=modality))
         else:
@@ -100,7 +110,15 @@ def execute_route_plan(
     return result
 
 
-def _execute_forward_route(route: dict[str, Any], route_plan: dict[str, Any], store: FunctionalMatrixStore, *, top_n: int, modality: str) -> L3RouteExecutionResult:
+def _execute_forward_route(
+    route: dict[str, Any],
+    route_plan: dict[str, Any],
+    store: FunctionalMatrixStore,
+    *,
+    top_n: int,
+    modality: str,
+    calibration_config: dict[str, Any] | None = None,
+) -> L3RouteExecutionResult:
     matrix = store.load(modality)
     mask = _row_mask(matrix, cell=route.get("cell"), perturbation=route.get("perturbation"))
     if not bool(mask.any()):
@@ -108,7 +126,10 @@ def _execute_forward_route(route: dict[str, Any], route_plan: dict[str, Any], st
     X = matrix.X[mask]
     obs = matrix.obs.loc[mask].copy()
     raw_scores = X.mean(axis=0)
-    score_multiplier = _score_multiplier(route)
+    base_score_multiplier = _score_multiplier(route)
+    calibration = _forward_proxy_direction_calibration(route, route_plan, matrix, modality=modality, config=calibration_config)
+    calibration_multiplier = int(calibration.get("score_multiplier") or 1)
+    score_multiplier = base_score_multiplier * calibration_multiplier
     scores = raw_scores * score_multiplier
     order_desc = np.argsort(-scores)
     order_asc = np.argsort(scores)
@@ -118,13 +139,17 @@ def _execute_forward_route(route: dict[str, Any], route_plan: dict[str, Any], st
     route_id = str(route.get("route_id") or "forward")
     if len(modalities) > 1:
         route_id = f"{route_id}:{modality}"
+    route_metadata = dict(route)
+    route_metadata["proxy_direction_calibration"] = calibration
+    route_metadata["base_score_multiplier"] = base_score_multiplier
+    route_metadata["score_multiplier"] = score_multiplier
     return L3RouteExecutionResult(
         route_id=route_id,
         query_type="forward",
         modality=modality,
         status="executed",
         cell=route.get("cell"),
-        route_metadata=dict(route),
+        route_metadata=route_metadata,
         row_match={
             "n_rows": int(mask.sum()),
             "sig_ids": obs.get("sig_id", pd.Series(dtype=str)).astype(str).head(50).tolist(),
@@ -137,6 +162,8 @@ def _execute_forward_route(route: dict[str, Any], route_plan: dict[str, Any], st
             "requested_function_records": _score_records(requested_scores),
             "score_orientation": route.get("score_orientation") or "observed_perturbation_effect",
             "score_multiplier": score_multiplier,
+            "base_score_multiplier": base_score_multiplier,
+            "proxy_direction_calibration": calibration,
             "aggregation": "mean",
         },
         rankings={
@@ -324,6 +351,178 @@ def _score_multiplier(route: dict[str, Any]) -> int:
     except (TypeError, ValueError):
         multiplier = 1
     return -1 if multiplier < 0 else 1
+
+
+DEFAULT_FORWARD_PROXY_DIRECTION_CALIBRATION = {
+    "enabled": True,
+    "genetic": True,
+    "drug": False,
+    "min_common_cells": 3,
+    "flip_threshold": -0.15,
+    "keep_threshold": 0.15,
+}
+
+
+def _forward_proxy_direction_calibration(
+    route: dict[str, Any],
+    route_plan: dict[str, Any],
+    matrix: FunctionalMatrix,
+    *,
+    modality: str,
+    config: dict[str, Any] | None,
+) -> dict[str, Any]:
+    cfg = dict(DEFAULT_FORWARD_PROXY_DIRECTION_CALIBRATION)
+    if config:
+        cfg.update(config)
+    target = _target_perturbation_name(route, route_plan)
+    matched = str(route.get("perturbation") or "").strip()
+    entity_type = "compound" if modality == "cp" else "gene"
+    out = {
+        "enabled": bool(cfg.get("enabled")),
+        "status": "not_applicable",
+        "method": "shared_cell_function_profile_correlation",
+        "target_perturbation": target or None,
+        "matched_perturbation": matched or None,
+        "modality": modality,
+        "entity_type": entity_type,
+        "n_common_cells": 0,
+        "median_correlation": None,
+        "positive_cells": 0,
+        "negative_cells": 0,
+        "score_multiplier": 1,
+    }
+    if not cfg.get("enabled"):
+        out["status"] = "disabled"
+        return out
+    if entity_type == "gene" and not cfg.get("genetic", True):
+        out["status"] = "disabled"
+        return out
+    if entity_type == "compound" and not cfg.get("drug", False):
+        out["status"] = "disabled"
+        return out
+    if not target or not matched:
+        out["status"] = "uncertain"
+        out["reason"] = "missing_target_or_matched_perturbation"
+        return out
+    if _same_perturbation_name(target, matched):
+        return out
+    if _is_direct_perturbation_route(route):
+        return out
+
+    correlations = _shared_cell_profile_correlations(
+        matrix,
+        target=target,
+        matched=matched,
+        exclude_cell=str(route.get("cell") or ""),
+    )
+    out["n_common_cells"] = len(correlations)
+    out["positive_cells"] = sum(1 for value in correlations if value > 0)
+    out["negative_cells"] = sum(1 for value in correlations if value < 0)
+    min_common = int(cfg.get("min_common_cells") or 3)
+    if len(correlations) < min_common:
+        out["status"] = "uncertain"
+        out["reason"] = "insufficient_common_cells"
+        return out
+    median_corr = float(np.median(np.asarray(correlations, dtype=np.float32)))
+    out["median_correlation"] = median_corr
+    if median_corr <= float(cfg.get("flip_threshold", -0.15)):
+        out["status"] = "flipped"
+        out["score_multiplier"] = -1
+    elif median_corr >= float(cfg.get("keep_threshold", 0.15)):
+        out["status"] = "kept"
+        out["score_multiplier"] = 1
+    else:
+        out["status"] = "uncertain"
+        out["reason"] = "weak_or_ambiguous_correlation"
+    return out
+
+
+def _target_perturbation_name(route: dict[str, Any], route_plan: dict[str, Any]) -> str:
+    for value in (
+        route.get("target_perturbation"),
+        (route.get("target_perturbation_record") or {}).get("id"),
+        (route.get("target_perturbation_record") or {}).get("symbol"),
+        ((route_plan.get("perturbation_route") or {}).get("selected") or [{}])[0].get("id")
+        if (route_plan.get("perturbation_route") or {}).get("selected")
+        else None,
+        ((route_plan.get("perturbation_route") or {}).get("selected") or [{}])[0].get("symbol")
+        if (route_plan.get("perturbation_route") or {}).get("selected")
+        else None,
+        (route_plan.get("intent") or {}).get("pert_desc"),
+    ):
+        text = str(value or "").strip()
+        if text:
+            return text
+    return ""
+
+
+def _is_direct_perturbation_route(route: dict[str, Any]) -> bool:
+    match_type = str(route.get("perturbation_match_type") or route.get("perturbation_role") or "").casefold()
+    scope = str(route.get("perturbation_expansion_scope") or "").casefold()
+    if match_type in {"user_specified_perturbation", "normalized_named_perturbation", "exact"}:
+        return True
+    if scope == "exact":
+        return True
+    distance = route.get("perturbation_match_distance")
+    try:
+        return float(distance) == 0.0
+    except (TypeError, ValueError):
+        return False
+
+
+def _shared_cell_profile_correlations(matrix: FunctionalMatrix, *, target: str, matched: str, exclude_cell: str) -> list[float]:
+    obs = matrix.obs
+    if "cell_iname" not in obs:
+        return []
+    target_mask = _perturbation_mask(obs, target)
+    matched_mask = _perturbation_mask(obs, matched)
+    if not bool(target_mask.any()) or not bool(matched_mask.any()):
+        return []
+    target_cells = set(obs.loc[target_mask, "cell_iname"].astype(str))
+    matched_cells = set(obs.loc[matched_mask, "cell_iname"].astype(str))
+    excluded = exclude_cell.strip().casefold()
+    common_cells = sorted(cell for cell in (target_cells & matched_cells) if cell.strip().casefold() != excluded)
+    correlations: list[float] = []
+    for cell in common_cells:
+        cell_mask = obs["cell_iname"].astype(str).to_numpy() == cell
+        target_idx = np.flatnonzero(target_mask & cell_mask)
+        matched_idx = np.flatnonzero(matched_mask & cell_mask)
+        if len(target_idx) == 0 or len(matched_idx) == 0:
+            continue
+        target_profile = np.asarray(matrix.X[target_idx], dtype=np.float32).mean(axis=0)
+        matched_profile = np.asarray(matrix.X[matched_idx], dtype=np.float32).mean(axis=0)
+        corr = _profile_correlation(target_profile, matched_profile)
+        if corr is not None:
+            correlations.append(corr)
+    return correlations
+
+
+def _perturbation_mask(obs: pd.DataFrame, perturbation: str) -> np.ndarray:
+    mask = np.zeros(len(obs), dtype=bool)
+    query = str(perturbation or "").strip().upper()
+    if not query:
+        return mask
+    for col in ("pert_id", "cmap_name"):
+        if col in obs:
+            mask |= obs[col].astype(str).str.upper().to_numpy() == query
+    return mask
+
+
+def _profile_correlation(a: np.ndarray, b: np.ndarray) -> float | None:
+    x = np.nan_to_num(np.asarray(a, dtype=np.float32), nan=0.0, posinf=0.0, neginf=0.0)
+    y = np.nan_to_num(np.asarray(b, dtype=np.float32), nan=0.0, posinf=0.0, neginf=0.0)
+    if x.shape != y.shape or x.size == 0:
+        return None
+    x = x - float(np.mean(x))
+    y = y - float(np.mean(y))
+    denom = float(np.linalg.norm(x) * np.linalg.norm(y))
+    if denom == 0.0:
+        return None
+    return float(np.dot(x, y) / denom)
+
+
+def _same_perturbation_name(a: str, b: str) -> bool:
+    return str(a or "").strip().casefold() == str(b or "").strip().casefold()
 
 
 def _reverse_rankings(

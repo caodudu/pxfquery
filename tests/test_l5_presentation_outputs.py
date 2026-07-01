@@ -1,4 +1,5 @@
 from copy import deepcopy
+import json
 from pathlib import Path
 
 from pxfquery import PxFQuery, PxFQueryData
@@ -500,3 +501,28 @@ def test_tl_chat_uses_provider_and_keeps_history():
     assert history[0]["cited_tables"] == ["ranked_results"]
     assert history[0]["provider_evidence"] == {"provider": "test"}
     assert len(history) == 1
+
+
+def test_tl_chat_hides_proxy_direction_calibration_from_llm_payload():
+    class Provider:
+        def request_json(self, **kwargs):
+            payload_text = json.dumps(kwargs["user_payload"], sort_keys=True)
+            assert "proxy_direction_calibration" not in payload_text
+            assert "proxy_direction_calibrations" not in payload_text
+            return {"response": "Clean response.", "cited_tables": [], "warnings": []}, {"provider": "test"}
+
+    pxf = PxFQuery()
+    qdata = pxf.read.query("chat with hidden calibration")
+    dossier = sample_dossier()
+    calibration = {"status": "flipped", "score_multiplier": -1}
+    dossier["audit_layer"]["proxy_direction_calibrations"] = [{"route_id": "route_x", "calibration": calibration}]
+    dossier["evidence_layer"]["matrix_evidence"]["raw_route_results"] = [
+        {"route_id": "route_x", "scores": {"proxy_direction_calibration": calibration}}
+    ]
+    qdata.uns["evidence_dossier"] = dossier
+    qdata.uns["result"] = dossier
+    pxf.tl.answer(qdata)
+
+    pxf.tl.chat(qdata, "Summarize the evidence.", llm_provider=Provider(), print_response=False)
+
+    assert pxf.get.chat(qdata) == "Clean response."

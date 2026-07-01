@@ -28,6 +28,14 @@ class PxFQuery:
             else:
                 self.llm_providers.register_provider("injected", initial_provider, default=True)
         self._index_dir: Path | None = None
+        self.forward_proxy_direction_calibration = {
+            "enabled": True,
+            "genetic": True,
+            "drug": False,
+            "min_common_cells": 3,
+            "flip_threshold": -0.15,
+            "keep_threshold": 0.15,
+        }
         self.resources = ResourceManager(self)
         self.settings = SettingsNamespace(self)
         self.read = ReadNamespace()

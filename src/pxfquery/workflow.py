@@ -214,6 +214,7 @@ class ToolsNamespace:
             resource_dir=resource_dir,
             auto_download=auto_download,
             top_n=top_n,
+            forward_proxy_direction_calibration=self._client.forward_proxy_direction_calibration,
         )
         target.uns["execution"] = execution.to_dict()
         target.uns["_execution"] = execution

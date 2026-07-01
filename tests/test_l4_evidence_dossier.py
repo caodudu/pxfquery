@@ -1,4 +1,5 @@
 import os
+import json
 from pathlib import Path
 
 import pytest
@@ -242,6 +243,64 @@ def test_l4_synthesis_payload_preserves_exact_primary_with_proxy_support_semanti
     assert synthesis["biological_summary"] == synthesis["summary"]
     assert synthesis["evidence_audit_summary"] == "Exact primary matrix evidence with proxy support."
     assert "all selected evidence routes were exact" in dossier["claim_basis"]["must_not_claim"]
+
+
+def test_l4_records_proxy_direction_calibration_but_hides_it_from_llm_payloads():
+    class Provider:
+        def __init__(self):
+            self.user_payloads = {}
+
+        def request_json(self, *, stage, system_prompt, user_payload, temperature=0):
+            self.user_payloads[stage] = user_payload
+            if stage.startswith("l4_forward_biological_answer"):
+                return {"answer": "Gene perturbation changes functional programs.", "subquestions": []}, {"provider": "fake"}
+            return {"summary": "Execution completed.", "verdict_rationale": "ok", "confidence_rationale": "ok"}, {"provider": "fake"}
+
+    calibration = {
+        "status": "flipped",
+        "method": "shared_cell_function_profile_correlation",
+        "target_perturbation": "TARGET",
+        "matched_perturbation": "PROXY",
+        "score_multiplier": -1,
+    }
+    execution = {
+        "schema_version": "l3-matrix-execution/v1",
+        "query_id": "q-calibration",
+        "query_type": "forward",
+        "execution_status": "executed",
+        "source_route_schema": "l2-route-plan/v2",
+        "executed_routes": [
+            {
+                "route_id": "forward_001",
+                "query_type": "forward",
+                "modality": "sh",
+                "status": "executed",
+                "cell": "A549",
+                "route_metadata": {"perturbation": "PROXY", "proxy_direction_calibration": calibration},
+                "row_match": {"n_rows": 1},
+                "scores": {"requested_functions": {}, "proxy_direction_calibration": calibration},
+                "rankings": {"top_activated": [], "top_suppressed": []},
+                "diagnostics": {},
+            }
+        ],
+        "skipped_routes": [],
+        "errors": [],
+        "warnings": [],
+    }
+    provider = Provider()
+    dossier = assemble_evidence(
+        execution,
+        intent={"query_type": "forward", "bio_context": "A549", "pert_desc": "TARGET"},
+        route_plan={"schema_version": "l2-route-plan/v2", "route_status": "routed", "combination_route": {"selected_routes": []}},
+        llm_provider=provider,
+    )
+
+    assert dossier["audit_layer"]["proxy_direction_calibrations"][0]["calibration"]["status"] == "flipped"
+    assert "proxy_direction_calibration" in json.dumps(dossier["evidence_layer"]["matrix_evidence"]["raw_route_results"])
+    for payload in provider.user_payloads.values():
+        payload_text = json.dumps(payload)
+        assert "proxy_direction_calibration" not in payload_text
+        assert "proxy_direction_calibrations" not in payload_text
 
 
 def test_l4_reverse_concept_context_payload_does_not_promote_primary_cell():
