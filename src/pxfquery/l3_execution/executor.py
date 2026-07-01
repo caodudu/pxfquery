@@ -130,7 +130,9 @@ def _execute_forward_route(
     calibration = _forward_proxy_direction_calibration(route, route_plan, matrix, modality=modality, config=calibration_config)
     calibration_multiplier = int(calibration.get("score_multiplier") or 1)
     score_multiplier = base_score_multiplier * calibration_multiplier
-    scores = raw_scores * score_multiplier
+    score_weight = _score_weight(calibration)
+    effective_score_multiplier = float(score_multiplier) * score_weight
+    scores = raw_scores * effective_score_multiplier
     order_desc = np.argsort(-scores)
     order_asc = np.argsort(scores)
     requested = _requested_functions(route_plan)
@@ -143,6 +145,8 @@ def _execute_forward_route(
     route_metadata["proxy_direction_calibration"] = calibration
     route_metadata["base_score_multiplier"] = base_score_multiplier
     route_metadata["score_multiplier"] = score_multiplier
+    route_metadata["score_weight"] = score_weight
+    route_metadata["effective_score_multiplier"] = effective_score_multiplier
     return L3RouteExecutionResult(
         route_id=route_id,
         query_type="forward",
@@ -163,6 +167,8 @@ def _execute_forward_route(
             "score_orientation": route.get("score_orientation") or "observed_perturbation_effect",
             "score_multiplier": score_multiplier,
             "base_score_multiplier": base_score_multiplier,
+            "score_weight": score_weight,
+            "effective_score_multiplier": effective_score_multiplier,
             "proxy_direction_calibration": calibration,
             "aggregation": "mean",
         },
@@ -353,13 +359,24 @@ def _score_multiplier(route: dict[str, Any]) -> int:
     return -1 if multiplier < 0 else 1
 
 
+def _score_weight(calibration: dict[str, Any]) -> float:
+    try:
+        weight = float(calibration.get("score_weight", 1.0))
+    except (TypeError, ValueError):
+        weight = 1.0
+    if not np.isfinite(weight):
+        return 1.0
+    return float(min(1.0, max(0.0, weight)))
+
+
 DEFAULT_FORWARD_PROXY_DIRECTION_CALIBRATION = {
     "enabled": True,
     "genetic": True,
     "drug": False,
     "min_common_cells": 3,
-    "flip_threshold": -0.15,
-    "keep_threshold": 0.15,
+    "flip_threshold": -0.10,
+    "keep_threshold": 0.10,
+    "uncertain_proxy_weight": 0.35,
 }
 
 
@@ -390,6 +407,7 @@ def _forward_proxy_direction_calibration(
         "positive_cells": 0,
         "negative_cells": 0,
         "score_multiplier": 1,
+        "score_weight": 1.0,
     }
     if not cfg.get("enabled"):
         out["status"] = "disabled"
@@ -403,6 +421,7 @@ def _forward_proxy_direction_calibration(
     if not target or not matched:
         out["status"] = "uncertain"
         out["reason"] = "missing_target_or_matched_perturbation"
+        out["score_weight"] = _uncertain_proxy_weight(cfg)
         return out
     if _same_perturbation_name(target, matched):
         return out
@@ -422,19 +441,33 @@ def _forward_proxy_direction_calibration(
     if len(correlations) < min_common:
         out["status"] = "uncertain"
         out["reason"] = "insufficient_common_cells"
+        out["score_weight"] = _uncertain_proxy_weight(cfg)
         return out
     median_corr = float(np.median(np.asarray(correlations, dtype=np.float32)))
     out["median_correlation"] = median_corr
-    if median_corr <= float(cfg.get("flip_threshold", -0.15)):
+    negative_majority = out["negative_cells"] > out["positive_cells"]
+    positive_majority = out["positive_cells"] > out["negative_cells"]
+    if median_corr <= float(cfg.get("flip_threshold", -0.10)) and negative_majority:
         out["status"] = "flipped"
         out["score_multiplier"] = -1
-    elif median_corr >= float(cfg.get("keep_threshold", 0.15)):
+    elif median_corr >= float(cfg.get("keep_threshold", 0.10)) and positive_majority:
         out["status"] = "kept"
         out["score_multiplier"] = 1
     else:
         out["status"] = "uncertain"
         out["reason"] = "weak_or_ambiguous_correlation"
+        out["score_weight"] = _uncertain_proxy_weight(cfg)
     return out
+
+
+def _uncertain_proxy_weight(config: dict[str, Any]) -> float:
+    try:
+        weight = float(config.get("uncertain_proxy_weight", 0.35))
+    except (TypeError, ValueError):
+        weight = 0.35
+    if not np.isfinite(weight):
+        return 0.35
+    return float(min(1.0, max(0.0, weight)))
 
 
 def _target_perturbation_name(route: dict[str, Any], route_plan: dict[str, Any]) -> str:

@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.5.20.dev0 - 2026-07-02
+
+- Revised forward genetic proxy direction calibration so shared-cell functional profile evidence uses a moderate signed threshold and majority sign check.
+- Added an uncertainty weight for unresolved genetic proxy routes, so ambiguous proxy evidence no longer enters forward scoring at full strength.
+- Kept drug proxy calibration disabled by default and kept reverse queries outside the calibration path.
+- Preserved calibration details as execution/audit metadata while keeping them out of L4/L5 LLM-facing biological answer payloads.
+
 ## 0.5.12.dev0 - 2026-06-29
 
 - Added the PxFquery core-idea workflow PNG to the repository and referenced it from the README.

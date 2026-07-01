@@ -266,6 +266,42 @@ def _calibration_matrix(modality: str = "sh") -> FunctionalMatrix:
     )
 
 
+def _weak_negative_calibration_matrix(modality: str = "sh") -> FunctionalMatrix:
+    obs = pd.DataFrame(
+        [
+            {"sig_id": "q", "pert_id": "PROXY", "cmap_name": "PROXY", "cell_iname": "QUERY"},
+            {"sig_id": "t1", "pert_id": "TARGET", "cmap_name": "TARGET", "cell_iname": "C1"},
+            {"sig_id": "p1", "pert_id": "PROXY", "cmap_name": "PROXY", "cell_iname": "C1"},
+            {"sig_id": "t2", "pert_id": "TARGET", "cmap_name": "TARGET", "cell_iname": "C2"},
+            {"sig_id": "p2", "pert_id": "PROXY", "cmap_name": "PROXY", "cell_iname": "C2"},
+            {"sig_id": "t3", "pert_id": "TARGET", "cmap_name": "TARGET", "cell_iname": "C3"},
+            {"sig_id": "p3", "pert_id": "PROXY", "cmap_name": "PROXY", "cell_iname": "C3"},
+        ]
+    )
+    X = np.array(
+        [
+            [2.0, -1.0, 0.5],
+            [1.0, 0.0, 0.0],
+            [-0.12, 0.99, 0.0],
+            [0.0, 1.0, 0.0],
+            [0.99, -0.12, 0.0],
+            [1.0, 1.0, 0.0],
+            [-1.0, 1.0, 0.0],
+        ],
+        dtype=np.float32,
+    )
+    return FunctionalMatrix(
+        modality=modality,
+        X=X,
+        obs=obs,
+        var_names=["F_POS", "F_NEG", "F_LOW"],
+        matrix_path="synthetic",
+        matrix_cache_path=None,
+        obs_path="synthetic",
+        var_path="synthetic",
+    )
+
+
 def test_l3_forward_genetic_proxy_direction_calibration_flips_negative_shared_cell_profile():
     matrix = _calibration_matrix("sh")
     route = {
@@ -283,10 +319,67 @@ def test_l3_forward_genetic_proxy_direction_calibration_flips_negative_shared_ce
     calibration = result.scores["proxy_direction_calibration"]
     assert calibration["status"] == "flipped"
     assert calibration["score_multiplier"] == -1
+    assert calibration["score_weight"] == 1.0
     assert calibration["n_common_cells"] == 3
     assert result.scores["score_multiplier"] == -1
+    assert result.scores["score_weight"] == 1.0
+    assert result.scores["effective_score_multiplier"] == -1.0
     assert result.rankings["top_activated"][0]["label"] == "F_NEG"
     assert result.rankings["top_suppressed"][0]["label"] == "F_POS"
+
+
+def test_l3_forward_genetic_proxy_direction_calibration_flips_at_moderate_negative_threshold():
+    matrix = _weak_negative_calibration_matrix("sh")
+    route = {
+        "route_id": "forward_001",
+        "cell": "QUERY",
+        "perturbation": "PROXY",
+        "perturbation_match_type": "semantic_neighbor",
+        "perturbation_match_distance": 0.5,
+        "modality": "sh",
+    }
+    route_plan = {"intent": {"query_type": "forward", "pert_desc": "TARGET"}}
+
+    result = _execute_forward_route(route, route_plan, _FakeStore(matrix), top_n=2, modality="sh")
+
+    calibration = result.scores["proxy_direction_calibration"]
+    assert calibration["status"] == "flipped"
+    assert calibration["score_multiplier"] == -1
+    assert calibration["negative_cells"] > calibration["positive_cells"]
+    assert calibration["median_correlation"] <= -0.10
+    assert result.rankings["top_activated"][0]["label"] == "F_NEG"
+
+
+def test_l3_forward_genetic_proxy_direction_calibration_downweights_ambiguous_proxy():
+    matrix = _weak_negative_calibration_matrix("sh")
+    route = {
+        "route_id": "forward_001",
+        "cell": "QUERY",
+        "perturbation": "PROXY",
+        "perturbation_match_type": "semantic_neighbor",
+        "perturbation_match_distance": 0.5,
+        "modality": "sh",
+    }
+    route_plan = {"intent": {"query_type": "forward", "pert_desc": "TARGET"}}
+
+    result = _execute_forward_route(
+        route,
+        route_plan,
+        _FakeStore(matrix),
+        top_n=2,
+        modality="sh",
+        calibration_config={"flip_threshold": -0.95, "keep_threshold": 0.95, "uncertain_proxy_weight": 0.25},
+    )
+
+    calibration = result.scores["proxy_direction_calibration"]
+    assert calibration["status"] == "uncertain"
+    assert calibration["reason"] == "weak_or_ambiguous_correlation"
+    assert calibration["score_multiplier"] == 1
+    assert calibration["score_weight"] == 0.25
+    assert result.scores["score_multiplier"] == 1
+    assert result.scores["score_weight"] == 0.25
+    assert result.scores["effective_score_multiplier"] == 0.25
+    np.testing.assert_allclose(result.scores["aggregate"]["F_POS"], 0.5)
 
 
 def test_l3_forward_drug_proxy_direction_calibration_is_disabled_by_default():
@@ -306,6 +399,8 @@ def test_l3_forward_drug_proxy_direction_calibration_is_disabled_by_default():
     calibration = result.scores["proxy_direction_calibration"]
     assert calibration["status"] == "disabled"
     assert calibration["score_multiplier"] == 1
+    assert calibration["score_weight"] == 1.0
+    assert result.scores["effective_score_multiplier"] == 1.0
     assert result.rankings["top_activated"][0]["label"] == "F_POS"
 
 
@@ -333,6 +428,7 @@ def test_l3_forward_drug_proxy_direction_calibration_can_be_enabled():
     calibration = result.scores["proxy_direction_calibration"]
     assert calibration["status"] == "flipped"
     assert result.scores["score_multiplier"] == -1
+    assert result.scores["score_weight"] == 1.0
     assert result.rankings["top_activated"][0]["label"] == "F_NEG"
 
 

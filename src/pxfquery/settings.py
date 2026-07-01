@@ -102,6 +102,7 @@ class SettingsNamespace:
         min_common_cells: int | None = None,
         flip_threshold: float | None = None,
         keep_threshold: float | None = None,
+        uncertain_proxy_weight: float | None = None,
     ) -> dict:
         config = dict(self._client.forward_proxy_direction_calibration)
         updates = {
@@ -111,6 +112,7 @@ class SettingsNamespace:
             "min_common_cells": min_common_cells,
             "flip_threshold": flip_threshold,
             "keep_threshold": keep_threshold,
+            "uncertain_proxy_weight": uncertain_proxy_weight,
         }
         for key, value in updates.items():
             if value is not None:
