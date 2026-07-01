@@ -797,6 +797,7 @@ def _render_function_route_heatmap_matplotlib(spec: dict[str, Any]):
         import seaborn as sns
 
         df = pd.DataFrame(values, index=[_short(row, 48) for row in rows], columns=[_short(col, 28) for col in cols])
+        vmin, vmax = _symmetric_color_limits(values)
         fig_h = max(3.8, 0.30 * len(rows) + 1.6)
         fig_w = max(6.6, 0.58 * len(cols) + 3.5)
         if len(rows) > 1 and len(cols) > 1:
@@ -804,6 +805,8 @@ def _render_function_route_heatmap_matplotlib(spec: dict[str, Any]):
                 df,
                 cmap="vlag",
                 center=0,
+                vmin=vmin,
+                vmax=vmax,
                 linewidths=0.35,
                 linecolor="#f1f5f9",
                 figsize=(fig_w, fig_h),
@@ -818,7 +821,7 @@ def _render_function_route_heatmap_matplotlib(spec: dict[str, Any]):
             grid.ax_heatmap.tick_params(axis="y", labelsize=8)
             return grid.fig
         fig, ax = plt.subplots(figsize=(fig_w, fig_h))
-        sns.heatmap(df, ax=ax, cmap="vlag", center=0, linewidths=0.35, linecolor="#f1f5f9", cbar_kws={"label": ""})
+        sns.heatmap(df, ax=ax, cmap="vlag", center=0, vmin=vmin, vmax=vmax, linewidths=0.35, linecolor="#f1f5f9", cbar_kws={"label": ""})
         ax.set_title(str(spec.get("title") or "Functional signal clustered by evidence match"))
         ax.set_xlabel("Evidence Match")
         ax.set_ylabel("Functional Program")
@@ -828,7 +831,8 @@ def _render_function_route_heatmap_matplotlib(spec: dict[str, Any]):
     except Exception:
         fig_h = max(3.0, 0.32 * len(rows) + 1.6)
         fig, ax = plt.subplots(figsize=(8.8, fig_h))
-        image = ax.imshow(values, aspect="auto", cmap="coolwarm")
+        vmin, vmax = _symmetric_color_limits(values)
+        image = ax.imshow(values, aspect="auto", cmap="coolwarm", vmin=vmin, vmax=vmax)
         ax.set_yticks(range(len(rows)))
         ax.set_yticklabels([_short(row, 44) for row in rows])
         ax.set_xticks(range(len(cols)))
@@ -1283,7 +1287,8 @@ def _render_heatmap_matplotlib(spec: dict[str, Any]):
         raise ValueError("heatmap figure needs row labels and values")
     fig_h = max(3.0, 0.32 * len(labels) + 1.5)
     fig, ax = plt.subplots(figsize=(7.8, fig_h))
-    image = ax.imshow(values, aspect="auto", cmap="coolwarm")
+    vmin, vmax = _symmetric_color_limits(values)
+    image = ax.imshow(values, aspect="auto", cmap="coolwarm", vmin=vmin, vmax=vmax)
     ax.set_yticks(range(len(labels)))
     ax.set_yticklabels([_short(label, 42) for label in labels])
     ax.set_xticks(range(len(spec.get("columns", ["primary match"]))))
@@ -1292,6 +1297,22 @@ def _render_heatmap_matplotlib(spec: dict[str, Any]):
     fig.colorbar(image, ax=ax, shrink=0.72, label="matrix score")
     _caption(fig, spec)
     return fig
+
+
+def _symmetric_color_limits(values: list[list[float]]) -> tuple[float, float]:
+    max_abs = 0.0
+    for row in values:
+        for value in row:
+            try:
+                number = float(value)
+            except (TypeError, ValueError):
+                continue
+            if number != number:
+                continue
+            max_abs = max(max_abs, abs(number))
+    if max_abs <= 0:
+        max_abs = 1.0
+    return -max_abs, max_abs
 
 
 def _render_route_flow_matplotlib(spec: dict[str, Any]):

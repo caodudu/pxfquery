@@ -1,7 +1,7 @@
 from pathlib import Path
 
 from pxfquery import PxFQuery, PxFQueryData
-from pxfquery.l5_presentation.figures import build_figure_specs
+from pxfquery.l5_presentation.figures import _symmetric_color_limits, build_figure_specs
 
 
 def sample_dossier():
@@ -229,6 +229,11 @@ def test_reverse_ring_heatmaps_use_complete_function_universe():
     assert all(not label.lower().startswith("mp") for label in mps["functions"])
     assert sum(abs(value) > 0 for row in hallmark["values"] for value in row) == 2
     assert sum(abs(value) > 0 for row in mps["values"] for value in row) == 0
+
+
+def test_diverging_heatmap_color_limits_are_symmetric_around_zero():
+    assert _symmetric_color_limits([[0.2, -0.8], [0.4, 0.1]]) == (-0.8, 0.8)
+    assert _symmetric_color_limits([[0.0, 0.0]]) == (-1.0, 1.0)
 
 
 def test_reverse_l5_tables_hide_unreadable_genetic_reagent_candidates():
