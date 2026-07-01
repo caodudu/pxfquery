@@ -1,3 +1,4 @@
+from copy import deepcopy
 from pathlib import Path
 
 from pxfquery import PxFQuery, PxFQueryData
@@ -189,6 +190,69 @@ def test_tl_answer_builds_single_scanpy_style_output_without_changing_l4():
     }
     assert all("svg" not in spec for spec in answer.figures)
     assert dossier["claim_basis"]["main_claim"].endswith("CONTEXT_X.")
+
+
+def test_forward_ranked_results_are_cross_match_consensus_not_first_route_only():
+    pxf = PxFQuery()
+    qdata = pxf.read.query("show concept-level perturbation effects")
+    dossier = deepcopy(sample_dossier())
+    matrix = dossier["evidence_layer"]["matrix_evidence"]
+    matrix["primary_result"]["top_activated"] = [
+        {"rank": 1, "label": "PRIMARY_ONLY", "score": 0.99, "direction": "activated"},
+        {"rank": 2, "label": "SHARED", "score": 0.40, "direction": "activated"},
+    ]
+    matrix["primary_result"]["top_suppressed"] = []
+    matrix["executed_routes"][0]["top_activated"] = [
+        {"rank": 1, "label": "PRIMARY_ONLY", "score": 0.99, "direction": "activated"},
+        {"rank": 2, "label": "SHARED", "score": 0.40, "direction": "activated"},
+    ]
+    matrix["executed_routes"][0]["top_suppressed"] = []
+    matrix["executed_routes"][1]["top_activated"] = [
+        {"rank": 1, "label": "SHARED", "score": 0.35, "direction": "activated"},
+    ]
+    matrix["executed_routes"][1]["top_suppressed"] = []
+
+    qdata.uns["evidence_dossier"] = dossier
+    qdata.uns["result"] = dossier
+    pxf.tl.answer(qdata)
+    tables = pxf.get.answer(qdata).tables
+
+    assert tables["ranked_results"][0]["label"] == "SHARED"
+    assert tables["ranked_results"][0]["kind"] == "function_consensus"
+    assert tables["ranked_results"][0]["support_routes"] == 2
+    assert tables["ranked_results"][1]["label"] == "PRIMARY_ONLY"
+    assert tables["primary_route_ranked_results"][0]["label"] == "PRIMARY_ONLY"
+
+
+def test_forward_exact_direct_evidence_anchors_consensus_with_proxy_support():
+    pxf = PxFQuery()
+    qdata = pxf.read.query("show exact perturbation effects with proxy support")
+    dossier = deepcopy(sample_dossier())
+    matrix = dossier["evidence_layer"]["matrix_evidence"]
+    matrix["executed_routes"][0]["cell_match_type"] = "user_specified_cell"
+    matrix["executed_routes"][0]["perturbation_match_type"] = "user_specified_perturbation"
+    matrix["executed_routes"][0]["top_activated"] = [
+        {"rank": 1, "label": "DIRECT_ONLY", "score": 0.60, "direction": "activated"},
+    ]
+    matrix["executed_routes"][0]["top_suppressed"] = []
+    matrix["executed_routes"][1]["cell_match_type"] = "same_disease_cell"
+    matrix["executed_routes"][1]["perturbation_match_type"] = "structural_proxy"
+    matrix["executed_routes"][1]["top_activated"] = [
+        {"rank": 1, "label": "PROXY_ONLY", "score": 0.95, "direction": "activated"},
+        {"rank": 2, "label": "DIRECT_ONLY", "score": 0.40, "direction": "activated"},
+    ]
+    matrix["executed_routes"][1]["top_suppressed"] = []
+
+    qdata.uns["evidence_dossier"] = dossier
+    qdata.uns["result"] = dossier
+    pxf.tl.answer(qdata)
+    tables = pxf.get.answer(qdata).tables
+
+    assert tables["ranked_results"][0]["label"] == "DIRECT_ONLY"
+    assert tables["ranked_results"][0]["direct_route_support"] is True
+    assert tables["ranked_results"][0]["support_routes"] == 2
+    assert tables["ranked_results"][1]["label"] == "PROXY_ONLY"
+    assert tables["ranked_results"][1]["direct_route_support"] is False
 
 
 def test_reverse_l5_tables_deduplicate_routes_and_aggregate_candidate_consensus():

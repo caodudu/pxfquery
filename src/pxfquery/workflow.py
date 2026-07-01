@@ -322,6 +322,7 @@ class ToolsNamespace:
         copy: bool = False,
         llm_provider: Any | None = None,
         print_response: bool = True,
+        response_mode: str = "natural",
     ) -> PxFQueryData | None:
         target = _copy_qdata(qdata) if copy else qdata
         dossier = _require_evidence(target)
@@ -339,6 +340,7 @@ class ToolsNamespace:
             answer=answer,
             history=history,
             llm_provider=provider,
+            response_mode=response_mode,
         )
         history.append(turn)
         target.uns["last_chat"] = turn

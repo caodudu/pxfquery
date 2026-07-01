@@ -21,9 +21,166 @@ def build_tables(dossier: dict[str, Any]) -> dict[str, list[dict[str, Any]]]:
 
 
 def _ranked_results(matrix: dict[str, Any]) -> list[dict[str, Any]]:
-    primary = matrix.get("primary_result") or {}
     if matrix.get("mode") == "reverse":
         return _reverse_candidate_consensus(matrix)
+    return _forward_function_consensus(matrix)
+
+
+def _forward_function_consensus(matrix: dict[str, Any]) -> list[dict[str, Any]]:
+    groups: dict[str, dict[str, Any]] = {}
+    for route in matrix.get("executed_routes") or []:
+        route_id = route.get("route_id")
+        cell = route.get("cell")
+        route_quality_score = _float_or_none(route.get("route_quality_score"))
+        route_quality = route.get("route_quality")
+        is_direct_route = _is_direct_forward_route(route)
+        for direction_key, default_direction in (("top_activated", "activated"), ("top_suppressed", "suppressed")):
+            for item in route.get(direction_key) or []:
+                label = item.get("label") or item.get("function")
+                if not label:
+                    continue
+                direction = str(item.get("direction") or default_direction).lower()
+                score = _float_or_none(item.get("score"))
+                if score is None:
+                    continue
+                signed_score = abs(score) if "activ" in direction or "up" in direction else -abs(score)
+                key = _function_key(str(label))
+                group = groups.setdefault(
+                    key,
+                    {
+                        "label": str(label),
+                        "scores": [],
+                        "route_ids": set(),
+                        "cells": set(),
+                        "direct_route_ids": set(),
+                        "activated_route_ids": set(),
+                        "suppressed_route_ids": set(),
+                        "best_abs_score": 0.0,
+                        "best_route_quality_score": None,
+                        "best_route_quality": None,
+                    },
+                )
+                group["scores"].append(signed_score)
+                if route_id:
+                    group["route_ids"].add(str(route_id))
+                    if signed_score >= 0:
+                        group["activated_route_ids"].add(str(route_id))
+                    else:
+                        group["suppressed_route_ids"].add(str(route_id))
+                    if is_direct_route:
+                        group["direct_route_ids"].add(str(route_id))
+                if cell:
+                    group["cells"].add(str(cell))
+                if abs(score) > group["best_abs_score"]:
+                    group["best_abs_score"] = abs(score)
+                if route_quality_score is not None:
+                    best_quality_score = group.get("best_route_quality_score")
+                    if best_quality_score is None or route_quality_score < best_quality_score:
+                        group["best_route_quality_score"] = route_quality_score
+                        group["best_route_quality"] = route_quality
+
+        for item in route.get("requested_function_records") or []:
+            label = item.get("label") or item.get("function")
+            if not label:
+                continue
+            key = _function_key(str(label))
+            groups.setdefault(
+                key,
+                {
+                    "label": str(label),
+                    "scores": [],
+                    "route_ids": set(),
+                    "cells": set(),
+                    "direct_route_ids": set(),
+                    "activated_route_ids": set(),
+                    "suppressed_route_ids": set(),
+                    "best_abs_score": 0.0,
+                    "best_route_quality_score": route_quality_score,
+                    "best_route_quality": route_quality,
+                    "requested": True,
+                },
+            )
+
+    if not groups:
+        return _primary_forward_results(matrix)
+
+    rows: list[dict[str, Any]] = []
+    for group in groups.values():
+        scores = group.get("scores") or []
+        route_ids = sorted(group["route_ids"])
+        cells = sorted(group["cells"])
+        activated_support = len(group["activated_route_ids"])
+        suppressed_support = len(group["suppressed_route_ids"])
+        if scores:
+            mean_signed_score = sum(scores) / len(scores)
+            mean_abs_score = sum(abs(value) for value in scores) / len(scores)
+        else:
+            mean_signed_score = 0.0
+            mean_abs_score = 0.0
+        if activated_support > suppressed_support:
+            direction = "activated"
+        elif suppressed_support > activated_support:
+            direction = "suppressed"
+        elif mean_signed_score > 0:
+            direction = "activated"
+        elif mean_signed_score < 0:
+            direction = "suppressed"
+        else:
+            direction = "mixed"
+        rows.append(
+            {
+                "label": group.get("label"),
+                "score": mean_signed_score,
+                "mean_score": mean_signed_score,
+                "mean_abs_score": mean_abs_score,
+                "best_abs_score": group.get("best_abs_score"),
+                "direction": direction,
+                "kind": "function_consensus",
+                "source": "matched_evidence",
+                "support_routes": len(route_ids),
+                "support_cells": len(cells),
+                "route_ids": ", ".join(route_ids),
+                "cells": ", ".join(cells),
+                "direct_route_support": bool(group["direct_route_ids"]),
+                "direct_support_routes": len(group["direct_route_ids"]),
+                "activated_support_routes": activated_support,
+                "suppressed_support_routes": suppressed_support,
+                "direction_consistent": not (activated_support and suppressed_support),
+                "best_route_quality_score": group.get("best_route_quality_score"),
+                "best_route_quality": group.get("best_route_quality"),
+            }
+        )
+    has_direct_support = any(item["direct_support_routes"] for item in rows)
+    if has_direct_support:
+        rows.sort(
+            key=lambda item: (
+                -item["direct_support_routes"],
+                -item["support_routes"],
+                -item["support_cells"],
+                not item["direction_consistent"],
+                -(item.get("mean_abs_score") or 0.0),
+                -(item.get("best_abs_score") or 0.0),
+                str(item.get("label") or ""),
+            )
+        )
+    else:
+        rows.sort(
+            key=lambda item: (
+                -item["support_routes"],
+                -item["support_cells"],
+                not item["direction_consistent"],
+                -(item.get("mean_abs_score") or 0.0),
+                -(item.get("best_abs_score") or 0.0),
+                str(item.get("label") or ""),
+            )
+        )
+    for rank, row in enumerate(rows, start=1):
+        row["rank"] = rank
+    return rows
+
+
+def _primary_forward_results(matrix: dict[str, Any]) -> list[dict[str, Any]]:
+    primary = matrix.get("primary_result") or {}
     rows = []
     for item in primary.get("top_activated") or []:
         row = _compact_result(item, "activated_function")
@@ -45,7 +202,7 @@ def _primary_route_ranked_results(matrix: dict[str, Any]) -> list[dict[str, Any]
     if matrix.get("mode") == "reverse":
         modality = primary.get("modality")
         return [_compact_result(item, "primary_route_candidate") for item in primary.get("top_perturbations") or [] if not _unreadable_reverse_candidate(item, modality=modality)]
-    return []
+    return _primary_forward_results(matrix)
 
 
 def _compact_result(item: dict[str, Any], kind: str) -> dict[str, Any]:
@@ -170,6 +327,27 @@ def _candidate_key(item: dict[str, Any]) -> str:
         if value is not None and str(value).strip():
             return str(value).strip().lower()
     return ""
+
+
+def _function_key(label: str) -> str:
+    return re.sub(r"\s+", " ", str(label).replace("_", " ").strip()).casefold()
+
+
+def _float_or_none(value: Any) -> float | None:
+    try:
+        return float(value)
+    except (TypeError, ValueError):
+        return None
+
+
+def _is_direct_forward_route(route: dict[str, Any]) -> bool:
+    cell_match = str(route.get("cell_match_type") or route.get("cell_role") or "").casefold()
+    pert_match = str(route.get("perturbation_match_type") or route.get("perturbation_role") or "").casefold()
+    cell_distance = _float_or_none(route.get("cell_match_distance"))
+    pert_distance = _float_or_none(route.get("perturbation_match_distance"))
+    cell_direct = "user_specified" in cell_match or "exact" in cell_match or cell_distance == 0.0
+    pert_direct = "user_specified" in pert_match or "exact" in pert_match or "mechanism" in pert_match or pert_distance == 0.0
+    return bool(cell_direct and pert_direct)
 
 
 def _unreadable_reverse_candidate(item: dict[str, Any], *, modality: str | None) -> bool:

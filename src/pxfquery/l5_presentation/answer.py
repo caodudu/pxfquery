@@ -90,19 +90,34 @@ def _interpreted_question(intent: dict[str, Any], matrix: dict[str, Any]) -> str
 
 
 def _evidence(dossier: dict[str, Any], route: dict[str, Any], matrix: dict[str, Any], synthesis: dict[str, Any]) -> dict[str, Any]:
-    primary = matrix.get("primary_result") or {}
+    routes = matrix.get("executed_routes") or []
+    matched_contexts = _dedupe_strings([item.get("cell") or item.get("context") for item in routes])
+    matched_perturbations = _dedupe_strings([item.get("perturbation") or item.get("perturbation_label") for item in routes])
+    matched_modalities = _dedupe_strings([item.get("modality") for item in routes])
     out = {
         "dossier_status": dossier.get("dossier_status"),
         "evidence_grade": (dossier.get("evidence_layer") or {}).get("evidence_grade"),
         "evidence_audit_summary": synthesis.get("evidence_audit_summary"),
         "route_status": route.get("status"),
         "query_type": dossier.get("query_type"),
-        "primary_cell": primary.get("cell"),
-        "primary_perturbation": primary.get("perturbation"),
-        "primary_modality": primary.get("modality"),
-        "matched_rows": primary.get("n_rows"),
+        "matched_contexts": matched_contexts,
+        "matched_perturbations": matched_perturbations,
+        "matched_modalities": matched_modalities,
+        "matched_evidence_count": len(routes) if routes else None,
     }
     return {key: value for key, value in out.items() if value is not None}
+
+
+def _dedupe_strings(values: list[Any]) -> list[str]:
+    seen: set[str] = set()
+    output: list[str] = []
+    for value in values:
+        text = str(value or "").strip()
+        key = text.casefold()
+        if text and key not in seen:
+            seen.add(key)
+            output.append(text)
+    return output
 
 
 def _limitations(dossier: dict[str, Any]) -> list[str]:

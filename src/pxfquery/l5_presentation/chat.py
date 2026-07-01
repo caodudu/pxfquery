@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import re
 from typing import Any
 
@@ -15,11 +16,14 @@ def build_chat_response(
     answer: PxFQueryAnswer | None = None,
     history: list[dict[str, Any]] | None = None,
     llm_provider: Any | None = None,
+    response_mode: str = "natural",
 ) -> dict[str, Any]:
     if llm_provider is None:
         raise RuntimeError("pxf.tl.chat requires a configured PxFquery LLM provider; local template fallback is disabled.")
     if not hasattr(llm_provider, "request_json"):
         raise TypeError("pxf.tl.chat requires the configured LLM provider to expose request_json(...)")
+    if response_mode not in {"natural", "json"}:
+        raise ValueError("response_mode must be 'natural' or 'json'")
 
     current_answer = answer or build_answer(question, dossier, mode="python")
     user_payload = {
@@ -57,12 +61,28 @@ def build_chat_response(
         "l4_evidence": dossier,
         "history": history or [],
     }
+    if response_mode == "json":
+        result, provider_evidence = _request_structured_json(llm_provider, user_payload)
+        if not isinstance(result, dict):
+            raise RuntimeError("pxf.tl.chat json provider returned non-object JSON")
+        assistant = json.dumps(result, ensure_ascii=False, sort_keys=True)
+        return {
+            "user": message,
+            "assistant": assistant,
+            "response_mode": response_mode,
+            "json": result,
+            "cited_tables": [str(item) for item in result.get("cited_tables", [])] if isinstance(result.get("cited_tables"), list) else [],
+            "warnings": [str(item) for item in result.get("warnings", [])] if isinstance(result.get("warnings"), list) else [],
+            "provider_evidence": provider_evidence,
+        }
+
     result, provider_evidence = _request_chat_json(llm_provider, user_payload)
     if not isinstance(result, dict):
         raise RuntimeError("pxf.tl.chat provider returned non-object JSON")
     return {
         "user": message,
         "assistant": str(result.get("response") or ""),
+        "response_mode": response_mode,
         "cited_tables": [str(item) for item in result.get("cited_tables", [])],
         "warnings": [str(item) for item in result.get("warnings", [])],
         "provider_evidence": provider_evidence,
@@ -134,6 +154,43 @@ def _request_chat_json(llm_provider: Any, user_payload: dict[str, Any]) -> tuple
         )
         evidence = {"initial_error": f"{type(first_error).__name__}: {first_error}", "repair": evidence}
         return result, evidence
+
+
+def _request_structured_json(llm_provider: Any, user_payload: dict[str, Any]) -> tuple[Any, dict[str, Any]]:
+    system_prompt = (
+        "You are filling a structured JSON answer for PxFquery. Use only the supplied "
+        "current_answer, tables, and L4 evidence. The user's follow-up message defines "
+        "the exact JSON schema and allowed candidates. Return exactly one valid JSON "
+        "object that follows that schema. In this JSON mode, raw JSON, exact "
+        "function identifiers, option IDs, route-derived candidates, and table-derived "
+        "candidate labels are allowed when requested by the user. Do not use "
+        "outside biomedical knowledge. Do not add candidates that are not in the supplied "
+        "allowed values. Do not include scores, prose, markdown, or explanatory fields "
+        "unless the user explicitly requests those keys."
+    )
+    try:
+        return llm_provider.request_json(
+            stage="l5_chat_json",
+            system_prompt=system_prompt,
+            user_payload=user_payload,
+            temperature=0,
+        )
+    except Exception as first_error:
+        repair_payload = {
+            "previous_error": f"{type(first_error).__name__}: {first_error}",
+            "instruction": (
+                "Return exactly one valid JSON object. Follow the user's "
+                "schema and allowed values. Do not include markdown or prose."
+            ),
+            "original_payload": user_payload,
+        }
+        result, evidence = llm_provider.request_json(
+            stage="l5_chat_json_repair",
+            system_prompt=system_prompt,
+            user_payload=repair_payload,
+            temperature=0,
+        )
+        return result, {"initial_error": f"{type(first_error).__name__}: {first_error}", "repair": evidence}
 
 
 def _presentation_policy_violations(text: str) -> list[str]:

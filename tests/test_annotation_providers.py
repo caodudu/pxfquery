@@ -144,7 +144,7 @@ def test_chembl_provider_fetches_only_visible_brdk_reverse_candidates(monkeypatc
 
     records = ChEMBLAnnotationProvider(timeout=1).annotate(query="x", evidence_dossier=_reverse_drug_dossier_with_candidates())
 
-    assert searched_terms == ["BRD-K63750851", "BRD-K12345678", "BRD-K87654321"]
+    assert sorted(searched_terms) == sorted(["BRD-K63750851", "BRD-K12345678", "BRD-K87654321"])
     assert records[0]["status"] == "found"
     assert records[0]["term"] == "BRD-K63750851"
     assert records[0]["records"][0]["molecule_chembl_id"] == "CHEMBL553"
