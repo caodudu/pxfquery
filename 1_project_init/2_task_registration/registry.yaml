@@ -2095,7 +2095,7 @@ tasks:
   phase: translation
   goal: goal_paper_figure_planning
   path: 5_phase_translation/goal_paper_figure_planning/task_figure9_mcp_ai_dialog_notebook_workbench
-  status: pending
+  status: active
   executor: human
   created: '2026-07-01'
   completed: null

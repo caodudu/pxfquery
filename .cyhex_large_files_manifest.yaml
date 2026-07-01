@@ -10691,6 +10691,12 @@ excluded_from_git:
   size_mb: 0.0
 - path: 5_phase_translation/goal_paper_figure_planning/task_figure8_web_usage_notebook_figure_workbench/4_artifact/1_tmp/genes_web_tool_paper_tool_figures/ranchsatdb_pdf.bin
   size_mb: 0.0
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure9_mcp_ai_dialog_notebook_workbench/4_artifact/4_picture/opencode_tui_round1_pxfquery_answer.png
+  size_mb: 2.18
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure9_mcp_ai_dialog_notebook_workbench/4_artifact/4_picture/opencode_tui_round2_pxfquery_chat.png
+  size_mb: 2.14
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure9_mcp_ai_dialog_notebook_workbench/4_artifact/4_picture/opencode_tui_start_state.png
+  size_mb: 2.01
 - path: 5_phase_translation/goal_paper_figure_planning/task_pxfquery_new_figure3_concept_and_notebook_workbe/.DS_Store
   size_mb: 0.01
 - path: 5_phase_translation/goal_paper_figure_planning/task_pxfquery_new_figure3_concept_and_notebook_workbe/3_execution/.DS_Store
@@ -10893,12 +10899,8 @@ excluded_from_git:
   size_mb: 0.0
 - path: 5_phase_translation/goal_pending_g010/task_pxfquery_web_l5_query_server_mvp/3_execution/pxfquery_web_base_v5_l5/src/pxfquery.egg-info/PKG-INFO
   size_mb: 0.0
-- path: tmp/opencode_tui_after_round1.png
-  size_mb: 2.18
 - path: tmp/opencode_tui_after_round1_submit.png
   size_mb: 1.7
-- path: tmp/opencode_tui_after_round2.png
-  size_mb: 2.14
 - path: tmp/opencode_tui_after_round2_submit.png
   size_mb: 2.17
 - path: tmp/opencode_tui_clean_start.png
@@ -10917,8 +10919,6 @@ excluded_from_git:
   size_mb: 1.91
 - path: tmp/opencode_tui_real_started_v2.png
   size_mb: 2.61
-- path: tmp/opencode_tui_real_started_v3.png
-  size_mb: 2.01
 - path: tmp/opencode_tui_round1_check.png
   size_mb: 1.59
 - path: tmp/opencode_tui_round1_done_check.png
