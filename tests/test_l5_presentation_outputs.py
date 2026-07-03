@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 
 from pxfquery import PxFQuery, PxFQueryData
-from pxfquery.l5_presentation.figures import _symmetric_color_limits, build_figure_specs
+from pxfquery.l5_presentation.figures import _symmetric_color_limits, build_figure_specs, render_figure_matplotlib
 
 
 def sample_dossier():
@@ -89,6 +89,48 @@ def sample_dossier():
                         "top_suppressed": [
                             {"rank": 1, "label": "FUNCTION_Z", "score": -0.18, "direction": "suppressed"}
                         ],
+                    },
+                ],
+                "raw_route_results": [
+                    {
+                        "route_id": "route_x",
+                        "query_type": "forward",
+                        "modality": "cp",
+                        "status": "executed",
+                        "cell": "CONTEXT_X",
+                        "route_metadata": {
+                            "cell": "CONTEXT_X",
+                            "perturbation": "PERT_X",
+                            "cell_match_type": "user_specified_cell",
+                            "perturbation_match_type": "user_specified_perturbation",
+                        },
+                        "scores": {
+                            "aggregate": {
+                                "FUNCTION_X": 0.72,
+                                "FUNCTION_Y": 0.41,
+                                "FUNCTION_Z": -0.35,
+                            }
+                        },
+                    },
+                    {
+                        "route_id": "route_y",
+                        "query_type": "forward",
+                        "modality": "cp",
+                        "status": "executed",
+                        "cell": "CONTEXT_Y",
+                        "route_metadata": {
+                            "cell": "CONTEXT_Y",
+                            "perturbation": "PERT_X",
+                            "cell_match_type": "same_disease_cell",
+                            "perturbation_match_type": "structural_proxy",
+                        },
+                        "scores": {
+                            "aggregate": {
+                                "FUNCTION_X": 0.52,
+                                "FUNCTION_Y": 0.22,
+                                "FUNCTION_Z": -0.18,
+                            }
+                        },
                     },
                 ],
             },
@@ -186,11 +228,31 @@ def test_tl_answer_builds_single_scanpy_style_output_without_changing_l4():
     assert answer.biological_results[0]["label"] == "FUNCTION_X"
     assert {spec["kind"] for spec in answer.figures} >= {
         "evidence_match_map",
+        "forward_route_graph",
         "function_match_heatmap",
         "function_consensus_bar",
     }
     assert all("svg" not in spec for spec in answer.figures)
     assert dossier["claim_basis"]["main_claim"].endswith("CONTEXT_X.")
+
+
+def test_forward_route_graph_uses_l3_raw_aggregate_scores():
+    specs = build_figure_specs(sample_dossier())
+    graph = next(spec for spec in specs if spec["kind"] == "forward_route_graph")
+
+    assert graph["cells"] == ["CONTEXT_X", "CONTEXT_Y"]
+    assert graph["perturbations"] == ["PERT_X"]
+    assert graph["functions"] == ["FUNCTION_X", "FUNCTION_Y", "FUNCTION_Z"]
+    assert len(graph["function_edges"]) == 6
+    assert {edge["direction"] for edge in graph["function_edges"]} == {"activated", "suppressed"}
+
+    fig = render_figure_matplotlib(graph)
+    try:
+        assert fig.axes
+    finally:
+        import matplotlib.pyplot as plt
+
+        plt.close(fig)
 
 
 def test_forward_ranked_results_are_cross_match_consensus_not_first_route_only():
@@ -223,6 +285,38 @@ def test_forward_ranked_results_are_cross_match_consensus_not_first_route_only()
     assert tables["ranked_results"][0]["support_routes"] == 2
     assert tables["ranked_results"][1]["label"] == "PRIMARY_ONLY"
     assert tables["primary_route_ranked_results"][0]["label"] == "PRIMARY_ONLY"
+
+
+def test_forward_consensus_treats_suppressed_as_negative_direction():
+    pxf = PxFQuery()
+    qdata = pxf.read.query("show perturbation effects with mixed directions")
+    dossier = deepcopy(sample_dossier())
+    matrix = dossier["evidence_layer"]["matrix_evidence"]
+    matrix["primary_result"]["top_activated"] = [{"rank": 1, "label": "PROGRAM_A", "score": 1.0, "direction": "activated"}]
+    matrix["primary_result"]["top_suppressed"] = []
+    matrix["executed_routes"][0]["top_activated"] = [{"rank": 1, "label": "PROGRAM_A", "score": 1.0, "direction": "activated"}]
+    matrix["executed_routes"][0]["top_suppressed"] = []
+    matrix["executed_routes"][1]["top_activated"] = []
+    matrix["executed_routes"][1]["top_suppressed"] = [{"rank": 1, "label": "PROGRAM_A", "score": -2.0, "direction": "suppressed"}]
+    matrix["executed_routes"].append(
+        {
+            **deepcopy(matrix["executed_routes"][1]),
+            "route_id": "route_003",
+            "top_activated": [],
+            "top_suppressed": [{"rank": 1, "label": "PROGRAM_A", "score": -3.0, "direction": "suppressed"}],
+        }
+    )
+
+    qdata.uns["evidence_dossier"] = dossier
+    qdata.uns["result"] = dossier
+    pxf.tl.answer(qdata)
+    row = pxf.get.answer(qdata).tables["ranked_results"][0]
+
+    assert row["label"] == "PROGRAM_A"
+    assert row["direction"] == "suppressed"
+    assert row["activated_support_routes"] == 1
+    assert row["suppressed_support_routes"] == 2
+    assert row["score"] < 0
 
 
 def test_forward_exact_direct_evidence_anchors_consensus_with_proxy_support():
@@ -526,3 +620,86 @@ def test_tl_chat_hides_proxy_direction_calibration_from_llm_payload():
     pxf.tl.chat(qdata, "Summarize the evidence.", llm_provider=Provider(), print_response=False)
 
     assert pxf.get.chat(qdata) == "Clean response."
+
+
+def test_tl_chat_json_normalizes_direction_pool_values():
+    class Provider:
+        def request_json(self, **kwargs):
+            assert kwargs["stage"] == "l5_chat_json"
+            options = kwargs["user_payload"]["current_answer"]["structured_direction_options"]
+            assert options["allowed_activated"] == ["FUNCTION_X", "FUNCTION_Y"]
+            assert options["allowed_suppressed"] == ["FUNCTION_Z"]
+            contract = kwargs["user_payload"]["structured_json_contract"]
+            assert contract["allowed_activated"] == ["FUNCTION_X", "FUNCTION_Y"]
+            assert contract["allowed_suppressed"] == ["FUNCTION_Z"]
+            assert contract["requested_exact_count"] == 1
+            return {
+                "query_id": "Q1",
+                "activated": [" FUNCTION_X "],
+                "suppressed": ["FUNCTION_Z  "],
+            }, {"provider": "test"}
+
+    pxf = PxFQuery()
+    qdata = pxf.read.query("chat json normalization")
+    dossier = sample_dossier()
+    qdata.uns["evidence_dossier"] = dossier
+    qdata.uns["result"] = dossier
+    pxf.tl.answer(qdata)
+
+    pxf.tl.chat(
+        qdata,
+        "Return JSON with query_id, activated, suppressed. activated and suppressed must contain exactly 1 item.",
+        llm_provider=Provider(),
+        print_response=False,
+        response_mode="json",
+    )
+    payload = json.loads(pxf.get.chat(qdata))
+
+    assert payload["activated"] == ["FUNCTION_X"]
+    assert payload["suppressed"] == ["FUNCTION_Z"]
+    assert pxf.get.chat_history(qdata)[0]["provider_evidence"]["structured_direction_validation"]["status"] == "passed_after_normalization"
+
+
+def test_tl_chat_json_repairs_direction_pool_violations_with_llm():
+    class Provider:
+        def __init__(self):
+            self.stages = []
+
+        def request_json(self, **kwargs):
+            self.stages.append(kwargs["stage"])
+            if kwargs["stage"] == "l5_chat_json":
+                return {
+                    "query_id": "Q1",
+                    "activated": ["FUNCTION_Z"],
+                    "suppressed": ["FUNCTION_X"],
+                }, {"provider": "initial"}
+            assert kwargs["stage"] == "l5_chat_json_direction_repair"
+            assert kwargs["user_payload"]["allowed_activated"] == ["FUNCTION_X", "FUNCTION_Y"]
+            assert kwargs["user_payload"]["allowed_suppressed"] == ["FUNCTION_Z"]
+            return {
+                "query_id": "Q1",
+                "activated": ["FUNCTION_X"],
+                "suppressed": ["FUNCTION_Z"],
+            }, {"provider": "repair"}
+
+    provider = Provider()
+    pxf = PxFQuery()
+    qdata = pxf.read.query("chat json direction repair")
+    dossier = sample_dossier()
+    qdata.uns["evidence_dossier"] = dossier
+    qdata.uns["result"] = dossier
+    pxf.tl.answer(qdata)
+
+    pxf.tl.chat(
+        qdata,
+        "Return JSON with query_id, activated, suppressed. activated and suppressed must contain exactly 1 item.",
+        llm_provider=provider,
+        print_response=False,
+        response_mode="json",
+    )
+    payload = json.loads(pxf.get.chat(qdata))
+
+    assert provider.stages == ["l5_chat_json", "l5_chat_json_direction_repair"]
+    assert payload["activated"] == ["FUNCTION_X"]
+    assert payload["suppressed"] == ["FUNCTION_Z"]
+    assert pxf.get.chat_history(qdata)[0]["provider_evidence"]["structured_direction_validation"]["status"] == "repaired_by_llm"

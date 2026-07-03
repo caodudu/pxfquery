@@ -32,10 +32,7 @@ class PxFQuery:
             "enabled": True,
             "genetic": True,
             "drug": False,
-            "min_common_cells": 3,
-            "flip_threshold": -0.10,
-            "keep_threshold": 0.10,
-            "uncertain_proxy_weight": 0.35,
+            "direction_threshold": 0.10,
         }
         self.resources = ResourceManager(self)
         self.settings = SettingsNamespace(self)

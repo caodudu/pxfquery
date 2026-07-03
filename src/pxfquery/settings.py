@@ -99,20 +99,14 @@ class SettingsNamespace:
         enabled: bool | None = None,
         genetic: bool | None = None,
         drug: bool | None = None,
-        min_common_cells: int | None = None,
-        flip_threshold: float | None = None,
-        keep_threshold: float | None = None,
-        uncertain_proxy_weight: float | None = None,
+        direction_threshold: float | None = None,
     ) -> dict:
         config = dict(self._client.forward_proxy_direction_calibration)
         updates = {
             "enabled": enabled,
             "genetic": genetic,
             "drug": drug,
-            "min_common_cells": min_common_cells,
-            "flip_threshold": flip_threshold,
-            "keep_threshold": keep_threshold,
-            "uncertain_proxy_weight": uncertain_proxy_weight,
+            "direction_threshold": direction_threshold,
         }
         for key, value in updates.items():
             if value is not None:

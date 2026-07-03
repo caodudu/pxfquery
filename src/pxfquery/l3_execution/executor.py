@@ -373,10 +373,7 @@ DEFAULT_FORWARD_PROXY_DIRECTION_CALIBRATION = {
     "enabled": True,
     "genetic": True,
     "drug": False,
-    "min_common_cells": 3,
-    "flip_threshold": -0.10,
-    "keep_threshold": 0.10,
-    "uncertain_proxy_weight": 0.35,
+    "direction_threshold": 0.10,
 }
 
 
@@ -419,9 +416,9 @@ def _forward_proxy_direction_calibration(
         out["status"] = "disabled"
         return out
     if not target or not matched:
-        out["status"] = "uncertain"
+        out["status"] = "excluded"
         out["reason"] = "missing_target_or_matched_perturbation"
-        out["score_weight"] = _uncertain_proxy_weight(cfg)
+        out["score_weight"] = 0.0
         return out
     if _same_perturbation_name(target, matched):
         return out
@@ -437,37 +434,25 @@ def _forward_proxy_direction_calibration(
     out["n_common_cells"] = len(correlations)
     out["positive_cells"] = sum(1 for value in correlations if value > 0)
     out["negative_cells"] = sum(1 for value in correlations if value < 0)
-    min_common = int(cfg.get("min_common_cells") or 3)
-    if len(correlations) < min_common:
-        out["status"] = "uncertain"
-        out["reason"] = "insufficient_common_cells"
-        out["score_weight"] = _uncertain_proxy_weight(cfg)
+    if not correlations:
+        out["status"] = "excluded"
+        out["reason"] = "no_shared_cell_context"
+        out["score_weight"] = 0.0
         return out
     median_corr = float(np.median(np.asarray(correlations, dtype=np.float32)))
     out["median_correlation"] = median_corr
-    negative_majority = out["negative_cells"] > out["positive_cells"]
-    positive_majority = out["positive_cells"] > out["negative_cells"]
-    if median_corr <= float(cfg.get("flip_threshold", -0.10)) and negative_majority:
+    threshold = abs(float(cfg.get("direction_threshold", 0.10)))
+    if median_corr <= -threshold:
         out["status"] = "flipped"
         out["score_multiplier"] = -1
-    elif median_corr >= float(cfg.get("keep_threshold", 0.10)) and positive_majority:
+    elif median_corr >= threshold:
         out["status"] = "kept"
         out["score_multiplier"] = 1
     else:
-        out["status"] = "uncertain"
-        out["reason"] = "weak_or_ambiguous_correlation"
-        out["score_weight"] = _uncertain_proxy_weight(cfg)
+        out["status"] = "excluded"
+        out["reason"] = "below_direction_threshold"
+        out["score_weight"] = 0.0
     return out
-
-
-def _uncertain_proxy_weight(config: dict[str, Any]) -> float:
-    try:
-        weight = float(config.get("uncertain_proxy_weight", 0.35))
-    except (TypeError, ValueError):
-        weight = 0.35
-    if not np.isfinite(weight):
-        return 0.35
-    return float(min(1.0, max(0.0, weight)))
 
 
 def _target_perturbation_name(route: dict[str, Any], route_plan: dict[str, Any]) -> str:

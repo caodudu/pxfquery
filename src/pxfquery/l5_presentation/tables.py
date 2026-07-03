@@ -43,7 +43,7 @@ def _forward_function_consensus(matrix: dict[str, Any]) -> list[dict[str, Any]]:
                 score = _float_or_none(item.get("score"))
                 if score is None:
                     continue
-                signed_score = abs(score) if "activ" in direction or "up" in direction else -abs(score)
+                signed_score = _signed_forward_score(score, direction)
                 key = _function_key(str(label))
                 group = groups.setdefault(
                     key,
@@ -195,6 +195,33 @@ def _primary_forward_results(matrix: dict[str, Any]) -> list[dict[str, Any]]:
         if row not in rows:
             rows.append(row)
     return rows
+
+
+def _signed_forward_score(score: float, direction: str) -> float:
+    normalized = str(direction or "").strip().casefold().replace("-", "_")
+    activated = {
+        "activated",
+        "activation",
+        "activate",
+        "up",
+        "upregulated",
+        "up_regulated",
+        "positive",
+    }
+    suppressed = {
+        "suppressed",
+        "suppression",
+        "suppress",
+        "down",
+        "downregulated",
+        "down_regulated",
+        "negative",
+    }
+    if normalized in activated:
+        return abs(score)
+    if normalized in suppressed:
+        return -abs(score)
+    return abs(score) if score >= 0 else -abs(score)
 
 
 def _primary_route_ranked_results(matrix: dict[str, Any]) -> list[dict[str, Any]]:

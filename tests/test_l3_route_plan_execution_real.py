@@ -350,7 +350,7 @@ def test_l3_forward_genetic_proxy_direction_calibration_flips_at_moderate_negati
     assert result.rankings["top_activated"][0]["label"] == "F_NEG"
 
 
-def test_l3_forward_genetic_proxy_direction_calibration_downweights_ambiguous_proxy():
+def test_l3_forward_genetic_proxy_direction_calibration_excludes_below_threshold_proxy():
     matrix = _weak_negative_calibration_matrix("sh")
     route = {
         "route_id": "forward_001",
@@ -368,18 +368,18 @@ def test_l3_forward_genetic_proxy_direction_calibration_downweights_ambiguous_pr
         _FakeStore(matrix),
         top_n=2,
         modality="sh",
-        calibration_config={"flip_threshold": -0.95, "keep_threshold": 0.95, "uncertain_proxy_weight": 0.25},
+        calibration_config={"direction_threshold": 0.95},
     )
 
     calibration = result.scores["proxy_direction_calibration"]
-    assert calibration["status"] == "uncertain"
-    assert calibration["reason"] == "weak_or_ambiguous_correlation"
+    assert calibration["status"] == "excluded"
+    assert calibration["reason"] == "below_direction_threshold"
     assert calibration["score_multiplier"] == 1
-    assert calibration["score_weight"] == 0.25
+    assert calibration["score_weight"] == 0.0
     assert result.scores["score_multiplier"] == 1
-    assert result.scores["score_weight"] == 0.25
-    assert result.scores["effective_score_multiplier"] == 0.25
-    np.testing.assert_allclose(result.scores["aggregate"]["F_POS"], 0.5)
+    assert result.scores["score_weight"] == 0.0
+    assert result.scores["effective_score_multiplier"] == 0.0
+    np.testing.assert_allclose(result.scores["aggregate"]["F_POS"], 0.0)
 
 
 def test_l3_forward_drug_proxy_direction_calibration_is_disabled_by_default():

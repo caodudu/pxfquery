@@ -27,9 +27,21 @@ def build_chat_response(
 
     current_answer = answer or build_answer(question, dossier, mode="python")
     llm_safe_dossier = _strip_llm_hidden_fields(dossier)
+    structured_direction_options = _structured_direction_options(current_answer.tables)
     user_payload = {
         "original_question": question,
         "user_message": message,
+        "structured_json_contract": {
+            "applies_when_response_mode_is_json": True,
+            "allowed_activated": structured_direction_options.get("allowed_activated", []),
+            "allowed_suppressed": structured_direction_options.get("allowed_suppressed", []),
+            "requested_exact_count": _requested_exact_count(message),
+            "direction_rule": (
+                "For JSON fields named activated and suppressed, activated values must be "
+                "selected only from allowed_activated and suppressed values must be selected "
+                "only from allowed_suppressed."
+            ),
+        },
         "presentation_policy": {
             "audience": "researcher-facing natural language answer",
             "use_complete_evidence": True,
@@ -54,6 +66,7 @@ def build_chat_response(
             "evidence": current_answer.evidence,
             "limitations": current_answer.limitations,
             "program_direction_summary": _program_direction_context(current_answer.tables),
+            "structured_direction_options": structured_direction_options,
             "tables": current_answer.tables,
             "figures": current_answer.figures,
             "rendering_contract": current_answer.rendering_contract,
@@ -167,10 +180,16 @@ def _request_structured_json(llm_provider: Any, user_payload: dict[str, Any]) ->
         "candidate labels are allowed when requested by the user. Do not use "
         "outside biomedical knowledge. Do not add candidates that are not in the supplied "
         "allowed values. Do not include scores, prose, markdown, or explanatory fields "
-        "unless the user explicitly requests those keys."
+        "unless the user explicitly requests those keys. If current_answer contains "
+        "structured_direction_options and the requested JSON has activated and suppressed "
+        "arrays, the top-level structured_json_contract is mandatory: activated entries "
+        "must come only from structured_json_contract.allowed_activated, suppressed entries "
+        "must come only from structured_json_contract.allowed_suppressed, and table "
+        "direction overrides natural-language summaries when they disagree. Satisfy this "
+        "contract in the first response; repair is only for malformed or invalid output."
     )
     try:
-        return llm_provider.request_json(
+        result, evidence = llm_provider.request_json(
             stage="l5_chat_json",
             system_prompt=system_prompt,
             user_payload=user_payload,
@@ -181,7 +200,11 @@ def _request_structured_json(llm_provider: Any, user_payload: dict[str, Any]) ->
             "previous_error": f"{type(first_error).__name__}: {first_error}",
             "instruction": (
                 "Return exactly one valid JSON object. Follow the user's "
-                "schema and allowed values. Do not include markdown or prose."
+                "schema and allowed values. Do not include markdown or prose. "
+                "If current_answer contains structured_direction_options and the requested "
+                "JSON has activated and suppressed arrays, activated entries must come "
+                "from allowed_activated and suppressed entries must come from "
+                "allowed_suppressed."
             ),
             "original_payload": user_payload,
         }
@@ -191,7 +214,53 @@ def _request_structured_json(llm_provider: Any, user_payload: dict[str, Any]) ->
             user_payload=repair_payload,
             temperature=0,
         )
-        return result, {"initial_error": f"{type(first_error).__name__}: {first_error}", "repair": evidence}
+        evidence = {"initial_error": f"{type(first_error).__name__}: {first_error}", "repair": evidence}
+
+    normalized = _normalize_structured_direction_result(result, user_payload)
+    violations = _structured_direction_violations(normalized, user_payload)
+    if not violations:
+        if normalized is not result:
+            evidence = {**evidence, "structured_direction_validation": {"status": "passed_after_normalization"}}
+        else:
+            evidence = {**evidence, "structured_direction_validation": {"status": "passed"}}
+        return normalized, evidence
+
+    repair_context = _structured_direction_repair_context(user_payload)
+    repair_payload = {
+        "previous_response": result,
+        "normalized_previous_response": normalized,
+        "violations": violations,
+        "allowed_activated": repair_context.get("allowed_activated"),
+        "allowed_suppressed": repair_context.get("allowed_suppressed"),
+        "requested_exact_count": repair_context.get("requested_exact_count"),
+        "instruction": (
+            "Repair the JSON object only. Keep the same schema and query_id. "
+            "Do not add prose, markdown, scores, ranks, or extra keys. "
+            "Use activated entries only from allowed_activated. "
+            "Use suppressed entries only from allowed_suppressed. "
+            "Return exactly requested_exact_count activated entries and exactly "
+            "requested_exact_count suppressed entries when requested_exact_count is not null."
+        ),
+        "original_payload": user_payload,
+    }
+    repaired, repair_evidence = llm_provider.request_json(
+        stage="l5_chat_json_direction_repair",
+        system_prompt=system_prompt,
+        user_payload=repair_payload,
+        temperature=0,
+    )
+    normalized_repaired = _normalize_structured_direction_result(repaired, user_payload)
+    repaired_violations = _structured_direction_violations(normalized_repaired, user_payload)
+    if repaired_violations:
+        raise RuntimeError(f"structured JSON direction validation failed after repair: {repaired_violations}")
+    return normalized_repaired, {
+        **evidence,
+        "structured_direction_validation": {
+            "status": "repaired_by_llm",
+            "initial_violations": violations,
+            "repair_evidence": repair_evidence,
+        },
+    }
 
 
 def _presentation_policy_violations(text: str) -> list[str]:
@@ -221,6 +290,104 @@ def _program_direction_context(tables: dict[str, Any]) -> dict[str, list[str]]:
         "activated": _dedupe(activated),
         "suppressed": _dedupe(suppressed),
     }
+
+
+def _structured_direction_options(tables: dict[str, Any]) -> dict[str, list[str]]:
+    rows = list((tables or {}).get("ranked_results") or [])
+    activated: list[str] = []
+    suppressed: list[str] = []
+    for row in rows:
+        label = str(row.get("label") or row.get("function") or "").strip()
+        if not label:
+            continue
+        direction = str(row.get("direction") or row.get("kind") or "").lower()
+        if "suppress" in direction or "down" in direction:
+            suppressed.append(label)
+        elif "activ" in direction or "up" in direction:
+            activated.append(label)
+    return {
+        "allowed_activated": _dedupe(activated),
+        "allowed_suppressed": _dedupe(suppressed),
+    }
+
+
+def _normalize_structured_direction_result(result: Any, user_payload: dict[str, Any]) -> Any:
+    if not isinstance(result, dict):
+        return result
+    if not isinstance(result.get("activated"), list) or not isinstance(result.get("suppressed"), list):
+        return result
+
+    current_answer = user_payload.get("current_answer") or {}
+    options = current_answer.get("structured_direction_options") or {}
+    canonical: dict[str, str] = {}
+    for item in list(options.get("allowed_activated") or []) + list(options.get("allowed_suppressed") or []):
+        text = str(item).strip()
+        if text:
+            canonical.setdefault(_structured_value_key(text), text)
+    if not canonical:
+        return result
+
+    changed = False
+    normalized = dict(result)
+    for field in ("activated", "suppressed"):
+        values: list[Any] = []
+        for item in result.get(field) or []:
+            if not isinstance(item, str):
+                values.append(item)
+                continue
+            key = _structured_value_key(item)
+            value = canonical.get(key, item.strip())
+            if value != item:
+                changed = True
+            values.append(value)
+        normalized[field] = values
+    return normalized if changed else result
+
+
+def _structured_direction_violations(result: Any, user_payload: dict[str, Any]) -> list[dict[str, Any]]:
+    if not isinstance(result, dict):
+        return []
+    if not isinstance(result.get("activated"), list) or not isinstance(result.get("suppressed"), list):
+        return []
+
+    current_answer = user_payload.get("current_answer") or {}
+    options = current_answer.get("structured_direction_options") or {}
+    allowed_activated = {_structured_value_key(str(item)) for item in options.get("allowed_activated") or []}
+    allowed_suppressed = {_structured_value_key(str(item)) for item in options.get("allowed_suppressed") or []}
+    if not allowed_activated or not allowed_suppressed:
+        return []
+
+    violations: list[dict[str, Any]] = []
+    for item in result.get("activated") or []:
+        key = _structured_value_key(str(item))
+        if key not in allowed_activated:
+            violations.append({"field": "activated", "item": str(item), "allowed_field": "allowed_activated"})
+    for item in result.get("suppressed") or []:
+        key = _structured_value_key(str(item))
+        if key not in allowed_suppressed:
+            violations.append({"field": "suppressed", "item": str(item), "allowed_field": "allowed_suppressed"})
+    return violations
+
+
+def _structured_direction_repair_context(user_payload: dict[str, Any]) -> dict[str, Any]:
+    current_answer = user_payload.get("current_answer") or {}
+    options = current_answer.get("structured_direction_options") or {}
+    return {
+        "allowed_activated": [str(item) for item in options.get("allowed_activated") or []],
+        "allowed_suppressed": [str(item) for item in options.get("allowed_suppressed") or []],
+        "requested_exact_count": _requested_exact_count(str(user_payload.get("user_message") or "")),
+    }
+
+
+def _requested_exact_count(text: str) -> int | None:
+    matches = re.findall(r"exactly\s+(\d+)", text, flags=re.IGNORECASE)
+    if not matches:
+        return None
+    return int(matches[0])
+
+
+def _structured_value_key(text: str) -> str:
+    return re.sub(r"\s+", " ", str(text or "").strip()).casefold()
 
 
 def _evidence_boundary_context(dossier: dict[str, Any]) -> dict[str, Any]:

@@ -23,6 +23,9 @@ def build_figure_specs(dossier: dict[str, Any], *, max_items: int = 12, include_
     specs = []
     if routes and query_type != "reverse":
         specs.append(_route_evidence_map_spec(routes, query_type=query_type, dossier=dossier))
+        route_graph = _forward_route_graph_spec(routes, ranked, matrix)
+        if route_graph:
+            specs.append(route_graph)
     if query_type == "reverse":
         if target_functions:
             specs.extend(_reverse_function_ring_heatmap_specs(target_functions))
@@ -68,6 +71,8 @@ def render_figure_matplotlib(spec: dict[str, Any]):
     kind = spec.get("kind")
     if kind in {"evidence_match_map", "route_evidence_map"}:
         return _render_route_evidence_map_matplotlib(spec)
+    if kind == "forward_route_graph":
+        return _render_forward_route_graph_matplotlib(spec)
     if kind in {"function_match_heatmap", "function_route_heatmap"}:
         return _render_function_route_heatmap_matplotlib(spec)
     if kind == "program_direction_summary":
@@ -240,6 +245,122 @@ def _function_route_heatmap_spec(route_rows: list[dict[str, Any]], ranked: list[
         "ordering": ordering_method,
         "caption": "Rows are selected consensus functional programs; columns are executed evidence matches. Hierarchical clustering groups similar match/function patterns when available.",
     }
+
+
+def _forward_route_graph_spec(routes: list[dict[str, Any]], ranked: list[dict[str, Any]], matrix: dict[str, Any]) -> dict[str, Any] | None:
+    if str(matrix.get("mode") or "").lower() == "reverse":
+        return None
+    selected_functions = _top_directional_functions(ranked, per_direction=3)
+    if not selected_functions:
+        return None
+    selected_keys = {_function_match_key(item): item for item in selected_functions}
+    selected_lookup = {_function_match_key(item): item for item in selected_functions}
+
+    route_lookup = {str(route.get("route_id") or ""): route for route in routes if route.get("route_id")}
+    raw_routes = matrix.get("raw_route_results") or []
+    raw_lookup = {str(route.get("route_id") or ""): route for route in raw_routes if route.get("route_id")}
+    route_nodes: list[dict[str, Any]] = []
+    function_edges: list[dict[str, Any]] = []
+    seen_routes: set[str] = set()
+
+    for route in routes:
+        if str(route.get("status") or "") != "executed":
+            continue
+        route_id = str(route.get("route_id") or "")
+        if not route_id or route_id in seen_routes:
+            continue
+        seen_routes.add(route_id)
+        raw_route = raw_lookup.get(route_id) or {}
+        metadata = raw_route.get("route_metadata") or {}
+        cell = str(route.get("cell") or raw_route.get("cell") or metadata.get("cell") or "").strip()
+        perturbation = str(
+            route.get("perturbation")
+            or route.get("perturbation_alias")
+            or metadata.get("perturbation")
+            or ((metadata.get("perturbation_record") or {}).get("alias"))
+            or raw_route.get("perturbation")
+            or ""
+        ).strip()
+        if not cell or not perturbation:
+            continue
+        route_nodes.append(
+            {
+                "route_id": route_id,
+                "cell": _plot_label(cell, "Cell"),
+                "perturbation": _plot_label(perturbation, "Perturbation"),
+                "cell_match_type": str(route.get("cell_match_type") or metadata.get("cell_match_type") or ""),
+                "perturbation_match_type": str(route.get("perturbation_match_type") or metadata.get("perturbation_match_type") or ""),
+            }
+        )
+        aggregate = ((raw_route.get("scores") or {}).get("aggregate") or {}) if raw_route else {}
+        for function_id, score in aggregate.items():
+            key = _function_match_key(str(function_id))
+            if key not in selected_keys:
+                continue
+            score_value = _numeric(score)
+            if abs(score_value) <= 1e-12:
+                continue
+            function_edges.append(
+                {
+                    "route_id": route_id,
+                    "cell": _plot_label(cell, "Cell"),
+                    "perturbation": _plot_label(perturbation, "Perturbation"),
+                    "function": selected_lookup[key],
+                    "score": score_value,
+                    "direction": "activated" if score_value > 0 else "suppressed",
+                }
+            )
+
+    if not route_nodes or not function_edges:
+        return None
+    function_scores = {str(row.get("label") or ""): _numeric(row.get("score")) for row in ranked}
+    return {
+        "kind": "forward_route_graph",
+        "title": "Evidence Match Network",
+        "cells": _dedupe_values([item["cell"] for item in route_nodes]),
+        "perturbations": _dedupe_values([item["perturbation"] for item in route_nodes]),
+        "functions": [_plot_label(item, "Function") for item in selected_functions],
+        "routes": route_nodes,
+        "function_edges": function_edges,
+        "function_scores": function_scores,
+        "caption": "Layered view of matched cell contexts, perturbation evidence, and consensus functional programs.",
+    }
+
+
+def _top_directional_functions(ranked: list[dict[str, Any]], *, per_direction: int) -> list[str]:
+    activated: list[tuple[float, str]] = []
+    suppressed: list[tuple[float, str]] = []
+    for row in ranked:
+        label = str(row.get("label") or row.get("function") or "").strip()
+        if not label:
+            continue
+        score = _numeric(row.get("score"))
+        direction = str(row.get("direction") or row.get("kind") or "").lower()
+        if "suppress" in direction or "down" in direction or score < 0:
+            suppressed.append((score, label))
+        elif "activ" in direction or "up" in direction or score > 0:
+            activated.append((score, label))
+    activated = sorted(activated, key=lambda item: (-item[0], item[1]))[:per_direction]
+    suppressed = sorted(suppressed, key=lambda item: (item[0], item[1]))[:per_direction]
+    return _dedupe_values([label for _, label in activated + suppressed])
+
+
+def _function_match_key(value: str) -> str:
+    text = str(value or "").strip().casefold()
+    text = re.sub(r"\s+", " ", text)
+    return text
+
+
+def _dedupe_values(values: list[Any]) -> list[str]:
+    seen: set[str] = set()
+    output: list[str] = []
+    for value in values:
+        text = str(value or "").strip()
+        key = text.casefold()
+        if text and key not in seen:
+            seen.add(key)
+            output.append(text)
+    return output
 
 
 def _function_consensus_bar_spec(route_rows: list[dict[str, Any]], ordered_functions: list[str]) -> dict[str, Any]:
@@ -782,6 +903,91 @@ def _render_route_evidence_map_matplotlib(spec: dict[str, Any]):
     if perturbation_handles:
         ax.legend(handles=perturbation_handles, title="Perturbation", loc="center left", bbox_to_anchor=(1.02, 0.30), fontsize=7, title_fontsize=8, frameon=True, borderaxespad=0.0)
     fig.subplots_adjust(right=0.73)
+    return fig
+
+
+def _render_forward_route_graph_matplotlib(spec: dict[str, Any]):
+    plt = _pyplot()
+    cells = [str(item) for item in spec.get("cells", [])]
+    perturbations = [str(item) for item in spec.get("perturbations", [])]
+    functions = [str(item) for item in spec.get("functions", [])]
+    routes = list(spec.get("routes") or [])
+    edges = list(spec.get("function_edges") or [])
+    if not cells or not perturbations or not functions or not routes or not edges:
+        raise ValueError("forward route graph needs cells, perturbations, functions, routes, and function edges")
+
+    max_layer = max(len(cells), len(perturbations), len(functions), 3)
+    fig_w = min(max(6.8, 0.82 * max_layer + 2.0), 10.2)
+    fig, ax = plt.subplots(figsize=(fig_w, 6.2))
+    ax.set_axis_off()
+    ax.set_xlim(-0.08, 1.02)
+    ax.set_ylim(0.02, 0.98)
+
+    cell_pos = {f"cell:{name}": pos for name, pos in _layer_positions(cells, 0.78, x0=0.14, x1=0.94).items()}
+    pert_pos = {f"pert:{name}": pos for name, pos in _layer_positions(perturbations, 0.49, x0=0.14, x1=0.94).items()}
+    func_pos = {f"func:{name}": pos for name, pos in _layer_positions(functions, 0.18, x0=0.10, x1=0.96).items()}
+    pos = {**cell_pos, **pert_pos, **func_pos}
+
+    ax.text(-0.055, 0.78, "Cell\nContext", ha="left", va="center", fontsize=8.5, weight="bold", color="#374151")
+    ax.text(-0.055, 0.49, "Perturbation\nEvidence", ha="left", va="center", fontsize=8.5, weight="bold", color="#374151")
+    ax.text(-0.055, 0.18, "Consensus\nPrograms", ha="left", va="center", fontsize=8.5, weight="bold", color="#374151")
+
+    for route in routes:
+        c_key = f"cell:{route.get('cell')}"
+        p_key = f"pert:{route.get('perturbation')}"
+        if c_key not in pos or p_key not in pos:
+            continue
+        match_type = str(route.get("perturbation_match_type") or "")
+        linestyle = "-" if _is_direct_match_type(match_type) else "--"
+        ax.annotate(
+            "",
+            xy=pos[p_key],
+            xytext=pos[c_key],
+            arrowprops=dict(arrowstyle="-", color="#9ca3af", lw=1.25, linestyle=linestyle, alpha=0.62),
+            zorder=1,
+        )
+
+    max_abs = max([abs(_numeric(edge.get("score"))) for edge in edges] + [1.0])
+    collapsed_edges: dict[tuple[str, str], list[float]] = {}
+    for edge in edges:
+        key = (str(edge.get("perturbation") or ""), str(edge.get("function") or ""))
+        collapsed_edges.setdefault(key, []).append(_numeric(edge.get("score")))
+    for (perturbation, function), values in collapsed_edges.items():
+        p_key = f"pert:{perturbation}"
+        f_key = f"func:{_plot_label(function, 'Function')}"
+        if p_key not in pos or f_key not in pos:
+            continue
+        score = sum(values) / len(values)
+        color = "#b23a48" if score > 0 else "#33658a"
+        lw = 0.65 + 2.7 * min(abs(score) / max_abs, 1.0)
+        ax.annotate(
+            "",
+            xy=pos[f_key],
+            xytext=pos[p_key],
+            arrowprops=dict(arrowstyle="-", color=color, lw=lw, alpha=0.50),
+            zorder=2,
+        )
+
+    for cell in cells:
+        _draw_route_graph_node(ax, pos[f"cell:{cell}"], cell, "#dbeafe", "#2563eb", size=300, fs=7.7, max_line=11, yoff=0.050)
+    for perturbation in perturbations:
+        _draw_route_graph_node(ax, pos[f"pert:{perturbation}"], perturbation, "#fef3c7", "#d97706", size=320, fs=7.7, max_line=12, yoff=0.050)
+    function_scores = spec.get("function_scores") or {}
+    for function in functions:
+        raw_score = _numeric(function_scores.get(function))
+        edge_color = "#b23a48" if raw_score >= 0 else "#33658a"
+        _draw_route_graph_node(ax, pos[f"func:{function}"], function, "#f9fafb", edge_color, size=255, fs=7.0, max_line=14, yoff=0.041)
+
+    from matplotlib.lines import Line2D
+
+    handles = [
+        Line2D([0], [0], color="#9ca3af", lw=1.4, label="cell-to-perturbation match"),
+        Line2D([0], [0], color="#b23a48", lw=2.8, label="activated function edge"),
+        Line2D([0], [0], color="#33658a", lw=2.8, label="suppressed function edge"),
+    ]
+    ax.legend(handles=handles, loc="lower center", bbox_to_anchor=(0.5, -0.045), ncol=3, frameon=False, fontsize=7.8)
+    ax.set_title(str(spec.get("title") or "Evidence Match Network"), fontsize=12, weight="bold", pad=8)
+    fig.tight_layout(rect=(0, 0.03, 1, 0.96))
     return fig
 
 
@@ -1549,6 +1755,70 @@ def _palette(values: list[str]) -> dict[str, str]:
         if key not in out:
             out[key] = colors[len(out) % len(colors)]
     return out
+
+
+def _layer_positions(items: list[str], y: float, *, x0: float, x1: float) -> dict[str, tuple[float, float]]:
+    if not items:
+        return {}
+    if len(items) == 1:
+        return {items[0]: ((x0 + x1) / 2.0, y)}
+    step = (x1 - x0) / max(len(items) - 1, 1)
+    return {item: (x0 + step * idx, y) for idx, item in enumerate(items)}
+
+
+def _draw_route_graph_node(
+    ax: Any,
+    xy: tuple[float, float],
+    label: str,
+    face: str,
+    edge: str,
+    *,
+    size: int,
+    fs: float,
+    max_line: int,
+    yoff: float,
+) -> None:
+    x, y = xy
+    ax.scatter([x], [y], s=size, facecolor=face, edgecolor=edge, linewidth=1.45, zorder=4)
+    ax.text(
+        x,
+        y - yoff,
+        _wrap_label(label, max_line=max_line, max_lines=2),
+        ha="center",
+        va="top",
+        fontsize=fs,
+        zorder=5,
+        linespacing=1.02,
+        color="#111827",
+    )
+
+
+def _wrap_label(value: Any, *, max_line: int, max_lines: int) -> str:
+    text = _plot_label(str(value or ""), "Label").replace("HALLMARK_", "").replace("_", " ").strip()
+    words = text.split()
+    if not words:
+        return ""
+    lines: list[str] = []
+    current = ""
+    for word in words:
+        candidate = word if not current else f"{current} {word}"
+        if len(candidate) <= max_line:
+            current = candidate
+        else:
+            if current:
+                lines.append(current)
+            current = word
+    if current:
+        lines.append(current)
+    if len(lines) > max_lines:
+        lines = lines[:max_lines]
+        lines[-1] = lines[-1][: max(max_line - 3, 1)].rstrip() + "..."
+    return "\n".join(lines)
+
+
+def _is_direct_match_type(value: str) -> bool:
+    text = str(value or "").lower()
+    return text.startswith(("user", "normalized", "exact")) or "specified" in text
 
 
 def _safe_name(value: str) -> str:
