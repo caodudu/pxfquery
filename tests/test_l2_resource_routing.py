@@ -4,7 +4,7 @@ import time
 
 from pxfquery import PxFQuery
 from pxfquery.l1_intent import QueryIntent
-from pxfquery.l2_routing.combination import _genetic_modality_plan, _genetic_reverse_mode, _make_forward_route, _rank_routes_by_quality
+from pxfquery.l2_routing.combination import _genetic_modality_plan, _genetic_reverse_mode, _make_forward_route, _rank_routes_by_quality, _reverse_modalities
 from pxfquery.l2_routing.index.cellline_index import CellLineIndex
 from pxfquery.l2_routing.router import _expanded_tree_cells
 from pxfquery.l2_routing.router import route_intent
@@ -209,6 +209,12 @@ def test_l2_genetic_modality_plan_treats_xpr_as_crispr_lof_not_overexpression():
     assert _genetic_reverse_mode("xpr", crispr) == "perturbation_only"
     assert _genetic_reverse_mode("xpr", gof) == "activation_only"
     assert _genetic_reverse_mode("xpr", unknown) == "bidirectional"
+
+
+def test_l2_reverse_crispr_lof_uses_xpr_and_sh_evidence_sources():
+    crispr = _intent(query_type="reverse", pert_class="genetic", genetic_modality="knockout")
+
+    assert _reverse_modalities(crispr) == ["xpr", "sh"]
 
 
 def test_l2_crispr_fallback_sh_route_carries_lower_modality_quality():

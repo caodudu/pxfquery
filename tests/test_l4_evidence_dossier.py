@@ -139,7 +139,12 @@ def test_l4_keeps_rejected_candidates_out_of_default_route_evidence():
                 "modality": "cp",
                 "status": "executed",
                 "cell": "A375",
-                "route_metadata": {"tier": "exact_cell_exact_perturbation", "perturbation": "erlotinib"},
+                "route_metadata": {
+                    "tier": "exact_cell_exact_perturbation",
+                    "cell_match_type": "user_specified_cell",
+                    "perturbation_match_type": "user_specified_perturbation",
+                    "perturbation": "erlotinib",
+                },
                 "row_match": {"n_rows": 1},
                 "scores": {"requested_functions": {}},
                 "rankings": {"top_activated": [], "top_suppressed": []},
@@ -200,7 +205,12 @@ def test_l4_synthesis_payload_preserves_exact_primary_with_proxy_support_semanti
                 "modality": "cp",
                 "status": "executed",
                 "cell": "A375",
-                "route_metadata": {"tier": "exact_cell_exact_perturbation", "perturbation": "erlotinib"},
+                "route_metadata": {
+                    "tier": "exact_cell_exact_perturbation",
+                    "cell_match_type": "user_specified_cell",
+                    "perturbation_match_type": "user_specified_perturbation",
+                    "perturbation": "erlotinib",
+                },
                 "row_match": {"n_rows": 1},
                 "scores": {"requested_functions": {}},
                 "rankings": {"top_activated": [], "top_suppressed": []},
@@ -237,12 +247,76 @@ def test_l4_synthesis_payload_preserves_exact_primary_with_proxy_support_semanti
     assert "audit_context" not in provider.user_payloads[bio_stage]
     assert "claim_basis" not in provider.user_payloads[bio_stage]
     assert provider.user_payloads[bio_stage]["interpreted_intent"]["cell"] == "A375"
+    assert provider.user_payloads[bio_stage]["answer_policy"]["mode"] == "direct_anchor_with_support"
     assert provider.user_payloads["l4_execution_quality"]["audit_context"]["evidence_grade"] == "exact_primary_with_proxy_support"
     synthesis = dossier["evidence_layer"]["llm_synthesis"]
     assert synthesis["summary"] == "Erlotinib in A375 cells activates stress programs."
     assert synthesis["biological_summary"] == synthesis["summary"]
     assert synthesis["evidence_audit_summary"] == "Exact primary matrix evidence with proxy support."
     assert "all selected evidence routes were exact" in dossier["claim_basis"]["must_not_claim"]
+
+
+def test_l4_forward_payload_uses_cross_match_consensus_when_no_direct_anchor():
+    class Provider:
+        def __init__(self):
+            self.user_payloads = {}
+
+        def request_json(self, *, stage, system_prompt, user_payload, temperature=0):
+            self.user_payloads[stage] = user_payload
+            if stage.startswith("l4_forward_biological_answer"):
+                return {"answer": "Across matched models, perturbation X increases program B.", "subquestions": []}, {"provider": "fake"}
+            return {"summary": "Execution completed.", "verdict_rationale": "ok", "confidence_rationale": "ok"}, {"provider": "fake"}
+
+    provider = Provider()
+    execution = {
+        "schema_version": "l3-matrix-execution/v1",
+        "query_id": "q-consensus",
+        "query_type": "forward",
+        "execution_status": "executed",
+        "source_route_schema": "l2-route-plan/v2",
+        "executed_routes": [
+            {
+                "route_id": "forward_001",
+                "query_type": "forward",
+                "modality": "cp",
+                "status": "executed",
+                "cell": "CELL_A",
+                "route_metadata": {"cell_match_type": "concept_representative_cell", "perturbation_match_type": "mechanism_class_proxy", "perturbation": "PERT_X"},
+                "row_match": {"n_rows": 1},
+                "scores": {"requested_functions": {}},
+                "rankings": {"top_activated": [{"label": "PROGRAM_B", "score": 0.8, "direction": "activated"}], "top_suppressed": []},
+                "diagnostics": {},
+            },
+            {
+                "route_id": "forward_002",
+                "query_type": "forward",
+                "modality": "cp",
+                "status": "executed",
+                "cell": "CELL_B",
+                "route_metadata": {"cell_match_type": "concept_representative_cell", "perturbation_match_type": "mechanism_class_proxy", "perturbation": "PERT_X"},
+                "row_match": {"n_rows": 1},
+                "scores": {"requested_functions": {}},
+                "rankings": {"top_activated": [{"label": "PROGRAM_B", "score": 0.7, "direction": "activated"}], "top_suppressed": []},
+                "diagnostics": {},
+            },
+        ],
+        "skipped_routes": [],
+        "errors": [],
+        "warnings": [],
+    }
+
+    assemble_evidence(
+        execution,
+        intent={"query_type": "forward", "bio_context": "concept model set", "pert_desc": "PERT_X"},
+        route_plan={"schema_version": "l2-route-plan/v2", "route_status": "routed", "combination_route": {"selected_routes": []}},
+        llm_provider=provider,
+    )
+
+    payload = provider.user_payloads["l4_forward_biological_answer"]
+    assert payload["answer_policy"]["mode"] == "cross_match_consensus"
+    assert payload["program_summary"][0]["label"] == "PROGRAM_B"
+    assert payload["program_summary"][0]["support_profiles"] == 2
+    assert payload["program_summary"][0]["direct_support"] is False
 
 
 def test_l4_records_proxy_direction_calibration_but_hides_it_from_llm_payloads():

@@ -587,13 +587,21 @@ Role
 You are the biological answer writer for a forward functional perturbation query.
 
 Input
-You receive exactly three inputs:
+You receive exactly five inputs:
 - user_question: the user's original question.
 - interpreted_intent: parsed biological context, perturbation, modality, and primary ranked functions.
+- answer_policy: how the supplied matched evidence should be prioritized.
+- program_summary: the primary forward program summary already ranked from matched evidence.
 - evidence_profiles: one or more matched profiles. Each profile contains a cell/context, perturbation label, activated_programs, and suppressed_programs.
 
 Task
-Write the default user-facing biological answer. First identify whether user_question contains one biological question or multiple biological subquestions. Then answer using only interpreted_intent and evidence_profiles. Synthesize across all evidence_profiles; do not answer from only the first profile when multiple profiles are supplied.
+Write the default user-facing biological answer. First identify whether user_question contains one biological question or multiple biological subquestions. Then answer using only interpreted_intent, answer_policy, program_summary, and evidence_profiles.
+
+Evidence prioritization
+- Treat program_summary as the primary program ranking for the answer.
+- If answer_policy.mode is direct_anchor_with_support, make program_summary entries with direct_support the anchor of the biological answer. Other matched profiles can support, reinforce, or qualify those claims, but must not displace directly matched evidence solely because they are more numerous or have larger scores.
+- If answer_policy.mode is cross_match_consensus, no directly matched anchor is available; answer from the cross-profile consensus represented by program_summary.
+- Do not answer from only the first evidence profile unless answer_policy says the directly matched evidence is the anchor and program_summary supports that anchor.
 
 Required reasoning behavior
 - Convert raw program labels into readable biological phrases.
@@ -755,6 +763,7 @@ def _biological_answer_payload(
     primary = matrix_evidence.get("primary_result") or {}
     is_reverse = matrix_evidence.get("mode") == "reverse"
     route_scope = _reverse_route_scope(matrix_evidence) if is_reverse else {}
+    forward_policy = _forward_answer_policy(matrix_evidence) if not is_reverse else {}
     return {
         "user_question": claim_basis.get("user_question"),
         "interpreted_intent": {
@@ -773,9 +782,164 @@ def _biological_answer_payload(
             "top_suppressed": _compact_rankings(primary.get("top_suppressed", [])),
             "top_perturbations": _compact_rankings(primary.get("top_perturbations", [])) if not is_reverse else [],
         },
+        "answer_policy": forward_policy,
+        "program_summary": _forward_program_summary(matrix_evidence) if not is_reverse else [],
         "candidate_summary": _reverse_candidate_summary(matrix_evidence) if is_reverse else [],
         "evidence_profiles": _route_biology_context(matrix_evidence),
     }
+
+
+def _forward_answer_policy(matrix_evidence: dict[str, Any]) -> dict[str, Any]:
+    routes = matrix_evidence.get("executed_routes") or []
+    has_direct_anchor = any(_is_direct_forward_route(route) for route in routes)
+    if has_direct_anchor:
+        return {
+            "mode": "direct_anchor_with_support",
+            "main_answer_rule": "Anchor the answer on directly matched evidence and use other matched profiles as support or qualification.",
+        }
+    return {
+        "mode": "cross_match_consensus",
+        "main_answer_rule": "No directly matched anchor is available; answer from cross-profile consensus.",
+    }
+
+
+def _forward_program_summary(matrix_evidence: dict[str, Any], *, max_programs: int = 12) -> list[dict[str, Any]]:
+    groups: dict[str, dict[str, Any]] = {}
+    for route in matrix_evidence.get("executed_routes") or []:
+        route_id = route.get("route_id")
+        cell = route.get("cell")
+        is_direct = _is_direct_forward_route(route)
+        for direction_key, default_direction in (("top_activated", "activated"), ("top_suppressed", "suppressed")):
+            for item in route.get(direction_key) or []:
+                label = item.get("label") or item.get("function")
+                if not label:
+                    continue
+                score = _float_or_none(item.get("score"))
+                if score is None:
+                    continue
+                direction = str(item.get("direction") or default_direction).lower()
+                signed_score = _signed_forward_score(score, direction)
+                key = _function_key(str(label))
+                group = groups.setdefault(
+                    key,
+                    {
+                        "label": str(label),
+                        "scores": [],
+                        "route_ids": set(),
+                        "cells": set(),
+                        "direct_route_ids": set(),
+                        "activated_route_ids": set(),
+                        "suppressed_route_ids": set(),
+                        "best_abs_score": 0.0,
+                    },
+                )
+                group["scores"].append(signed_score)
+                if route_id:
+                    route_id_str = str(route_id)
+                    group["route_ids"].add(route_id_str)
+                    if signed_score >= 0:
+                        group["activated_route_ids"].add(route_id_str)
+                    else:
+                        group["suppressed_route_ids"].add(route_id_str)
+                    if is_direct:
+                        group["direct_route_ids"].add(route_id_str)
+                if cell:
+                    group["cells"].add(str(cell))
+                group["best_abs_score"] = max(group["best_abs_score"], abs(score))
+
+    rows: list[dict[str, Any]] = []
+    for group in groups.values():
+        scores = group.get("scores") or []
+        activated_support = len(group["activated_route_ids"])
+        suppressed_support = len(group["suppressed_route_ids"])
+        if activated_support > suppressed_support:
+            direction = "activated"
+        elif suppressed_support > activated_support:
+            direction = "suppressed"
+        else:
+            mean_signed_score = sum(scores) / len(scores) if scores else 0.0
+            if mean_signed_score > 0:
+                direction = "activated"
+            elif mean_signed_score < 0:
+                direction = "suppressed"
+            else:
+                direction = "mixed"
+        mean_signed_score = sum(scores) / len(scores) if scores else 0.0
+        mean_abs_score = sum(abs(value) for value in scores) / len(scores) if scores else 0.0
+        rows.append(
+            {
+                "label": group["label"],
+                "direction": direction,
+                "mean_score": mean_signed_score,
+                "mean_abs_score": mean_abs_score,
+                "best_abs_score": group["best_abs_score"],
+                "support_profiles": len(group["route_ids"]),
+                "support_contexts": len(group["cells"]),
+                "direct_support": bool(group["direct_route_ids"]),
+                "direct_support_profiles": len(group["direct_route_ids"]),
+                "activated_support_profiles": activated_support,
+                "suppressed_support_profiles": suppressed_support,
+                "direction_consistent": not (activated_support and suppressed_support),
+            }
+        )
+
+    has_direct_support = any(item["direct_support_profiles"] for item in rows)
+    if has_direct_support:
+        rows.sort(
+            key=lambda item: (
+                -item["direct_support_profiles"],
+                -item["support_profiles"],
+                -item["support_contexts"],
+                not item["direction_consistent"],
+                -(item.get("mean_abs_score") or 0.0),
+                -(item.get("best_abs_score") or 0.0),
+                str(item.get("label") or ""),
+            )
+        )
+    else:
+        rows.sort(
+            key=lambda item: (
+                -item["support_profiles"],
+                -item["support_contexts"],
+                not item["direction_consistent"],
+                -(item.get("mean_abs_score") or 0.0),
+                -(item.get("best_abs_score") or 0.0),
+                str(item.get("label") or ""),
+            )
+        )
+    for rank, row in enumerate(rows[:max_programs], start=1):
+        row["rank"] = rank
+    return rows[:max_programs]
+
+
+def _function_key(label: str) -> str:
+    return re.sub(r"\s+", " ", str(label).replace("_", " ").strip()).casefold()
+
+
+def _float_or_none(value: Any) -> float | None:
+    try:
+        return float(value)
+    except (TypeError, ValueError):
+        return None
+
+
+def _signed_forward_score(score: float, direction: str) -> float:
+    normalized = str(direction or "").strip().casefold().replace("-", "_")
+    if normalized in {"activated", "activation", "activate", "up", "upregulated", "up_regulated", "positive"}:
+        return abs(score)
+    if normalized in {"suppressed", "suppression", "suppress", "down", "downregulated", "down_regulated", "negative"}:
+        return -abs(score)
+    return abs(score) if score >= 0 else -abs(score)
+
+
+def _is_direct_forward_route(route: dict[str, Any]) -> bool:
+    cell_match = str(route.get("cell_match_type") or route.get("cell_role") or "").casefold()
+    pert_match = str(route.get("perturbation_match_type") or route.get("perturbation_role") or "").casefold()
+    cell_distance = _float_or_none(route.get("cell_match_distance"))
+    pert_distance = _float_or_none(route.get("perturbation_match_distance"))
+    cell_direct = "user_specified" in cell_match or "exact" in cell_match or cell_distance == 0.0
+    pert_direct = "user_specified" in pert_match or "exact" in pert_match or "mechanism" in pert_match or pert_distance == 0.0
+    return bool(cell_direct and pert_direct)
 
 
 def _route_biology_context(matrix_evidence: dict[str, Any]) -> list[dict[str, Any]]:

@@ -879,7 +879,7 @@ def _reverse_modalities(intent: QueryIntent) -> list[str]:
         if modality in {"rnai", "shrna", "sh", "sirna", "knockdown"}:
             return ["sh"]
         if modality in {"crispr", "knockout", "ko", "lof", "loss_of_function", "delete", "deletion", "xpr"}:
-            return ["xpr"]
+            return ["xpr", "sh"]
         if modality in {"overexpression", "gof", "gain_of_function"}:
             return ["xpr", "sh"]
         return ["xpr", "sh"]

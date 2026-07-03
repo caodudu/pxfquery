@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.5.24.dev0 - 2026-07-04
+
+- Fixed forward L4 biological synthesis payloads so exact/direct evidence anchors the user-facing answer when present, while non-exact concept queries use cross-match consensus.
+- Added a forward `answer_policy` and `program_summary` payload for L4 synthesis so the natural-language answer follows the same anchored-consensus semantics as L5 ranked result tables.
+- Expanded reverse genetic loss-of-function routing to use both CRISPR/xpr and shRNA evidence sources instead of limiting reverse LoF queries to xpr only.
+- Updated tests for direct-anchor synthesis, non-exact consensus synthesis, reverse LoF modality routing, and the new package version.
+
 ## 0.5.21.dev0 - 2026-07-02
 
 - Updated forward genetic route ranking so explicit CRISPR/xpr loss-of-function queries prefer requested-modality evidence before fallback shRNA evidence.
