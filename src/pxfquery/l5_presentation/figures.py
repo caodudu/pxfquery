@@ -7,7 +7,9 @@ import re
 from pathlib import Path
 from typing import Any
 
+from pxfquery.l2_routing.index.drug_index import DrugIndex
 from pxfquery.l5_presentation.tables import build_tables
+from pxfquery.resources.manager import ResourceManager
 
 
 def build_figure_specs(dossier: dict[str, Any], *, max_items: int = 12, include_svg: bool = False) -> list[dict[str, Any]]:
@@ -161,7 +163,7 @@ def _route_evidence_map_spec(routes: list[dict[str, Any]], *, query_type: str, d
                 "display_id": display_id,
                 "route_id": route_id,
                 "cell": _plot_label(str(route.get("cell") or ""), "Cell"),
-                "perturbation": _plot_label(str(route.get("perturbation") or route.get("perturbation_alias") or route.get("modality") or ""), "Perturbation"),
+                "perturbation": _plot_label(_readable_perturbation_label(route) or str(route.get("modality") or ""), "Perturbation"),
                 "cell_distance": cell_distance,
                 "y_value": y_value,
                 "route_quality_score": route_quality_score,
@@ -217,7 +219,7 @@ def _function_route_heatmap_spec(route_rows: list[dict[str, Any]], ranked: list[
         if route_id and route_id not in routes:
             routes.append(route_id)
             cell = row.get("cell")
-            pert = row.get("perturbation")
+            pert = _readable_perturbation_label(row)
             label = _short_route_label(_plot_label(str(cell or route_id), "Cell"), _plot_label(str(pert or ""), "Perturbation"))
             if label in route_label_map.values():
                 label = f"{label}-{len(routes)}"
@@ -273,14 +275,7 @@ def _forward_route_graph_spec(routes: list[dict[str, Any]], ranked: list[dict[st
         raw_route = raw_lookup.get(route_id) or {}
         metadata = raw_route.get("route_metadata") or {}
         cell = str(route.get("cell") or raw_route.get("cell") or metadata.get("cell") or "").strip()
-        perturbation = str(
-            route.get("perturbation")
-            or route.get("perturbation_alias")
-            or metadata.get("perturbation")
-            or ((metadata.get("perturbation_record") or {}).get("alias"))
-            or raw_route.get("perturbation")
-            or ""
-        ).strip()
+        perturbation = _readable_perturbation_label(route, raw_route=raw_route, metadata=metadata)
         if not cell or not perturbation:
             continue
         route_nodes.append(
@@ -1823,6 +1818,144 @@ def _is_direct_match_type(value: str) -> bool:
 
 def _safe_name(value: str) -> str:
     return "".join(ch if ch.isalnum() or ch in {"-", "_"} else "_" for ch in value).strip("_") or "figure"
+
+
+_DRUG_INDEX_CACHE: DrugIndex | None | bool = None
+_CP_PERT_NAME_CACHE: dict[str, str] | bool | None = None
+
+
+def _readable_perturbation_label(
+    route: dict[str, Any],
+    *,
+    raw_route: dict[str, Any] | None = None,
+    metadata: dict[str, Any] | None = None,
+) -> str:
+    raw_route = raw_route or {}
+    metadata = metadata or {}
+    record = metadata.get("perturbation_record") or route.get("perturbation_record") or {}
+    candidates = [
+        route.get("perturbation_alias"),
+        record.get("alias"),
+        metadata.get("perturbation_alias"),
+        raw_route.get("perturbation_alias"),
+        route.get("cmap_name"),
+        raw_route.get("cmap_name"),
+        route.get("label"),
+    ]
+    for value in candidates:
+        text = str(value or "").strip()
+        if _valid_display_text(text) and not _looks_like_brd_id(text):
+            return text
+
+    for value in [
+        route.get("perturbation"),
+        metadata.get("perturbation"),
+        raw_route.get("perturbation"),
+        route.get("pert_id"),
+        raw_route.get("pert_id"),
+    ]:
+        text = str(value or "").strip()
+        if not _valid_display_text(text):
+            continue
+        if _looks_like_brd_id(text):
+            display = _drug_display_name(text)
+            return display or text
+        return text
+
+    for value in candidates:
+        text = str(value or "").strip()
+        if _valid_display_text(text):
+            return text
+    return ""
+
+
+def _valid_display_text(value: str) -> bool:
+    text = str(value or "").strip()
+    return bool(text) and text.lower() not in {"nan", "none", "null", "<na>"}
+
+
+def _looks_like_brd_id(value: str) -> bool:
+    return bool(re.fullmatch(r"BRD-[A-Z]\d+", str(value or "").strip(), flags=re.IGNORECASE))
+
+
+def _drug_display_name(brd_id: str) -> str | None:
+    index = _load_l5_drug_index()
+    if isinstance(index, DrugIndex):
+        display = index.display_name(brd_id)
+        if display:
+            return display
+    return _cp_cmap_display_name(brd_id)
+
+
+def _load_l5_drug_index() -> DrugIndex | None:
+    global _DRUG_INDEX_CACHE
+    if isinstance(_DRUG_INDEX_CACHE, DrugIndex):
+        return _DRUG_INDEX_CACHE
+    if _DRUG_INDEX_CACHE is False:
+        return None
+    try:
+        manager = ResourceManager()
+        status = manager.status()
+        files = status.available_files
+        drug_index = files.get("l2.drug_index")
+        drug_neighbors = files.get("l2.drug_neighbors")
+        if not drug_index or not drug_neighbors:
+            _DRUG_INDEX_CACHE = False
+            return None
+        _DRUG_INDEX_CACHE = DrugIndex(drug_index, drug_neighbors)
+        return _DRUG_INDEX_CACHE
+    except Exception:
+        _DRUG_INDEX_CACHE = False
+        return None
+
+
+def _cp_cmap_display_name(brd_id: str) -> str | None:
+    mapping = _load_cp_pert_name_map()
+    if not isinstance(mapping, dict):
+        return None
+    return mapping.get(str(brd_id).strip())
+
+
+def _load_cp_pert_name_map() -> dict[str, str] | None:
+    global _CP_PERT_NAME_CACHE
+    if isinstance(_CP_PERT_NAME_CACHE, dict):
+        return _CP_PERT_NAME_CACHE
+    if _CP_PERT_NAME_CACHE is False:
+        return None
+    try:
+        import pandas as pd
+
+        manager = ResourceManager()
+        status = manager.status()
+        obs_path = status.available_files.get("l3_functional_scores.cp.obs")
+        if not obs_path:
+            _CP_PERT_NAME_CACHE = False
+            return None
+        obs = pd.read_parquet(obs_path, columns=["pert_id", "cmap_name"])
+        obs = obs.dropna()
+        mapping: dict[str, str] = {}
+        for pert_id, cmap_name in obs[["pert_id", "cmap_name"]].drop_duplicates().itertuples(index=False, name=None):
+            pert_text = str(pert_id or "").strip()
+            name_text = str(cmap_name or "").strip()
+            if not pert_text or not name_text or name_text.lower() in {"nan", "none"}:
+                continue
+            if pert_text not in mapping or _prefer_cmap_name(name_text, mapping[pert_text]):
+                mapping[pert_text] = name_text
+        _CP_PERT_NAME_CACHE = mapping
+        return mapping
+    except Exception:
+        _CP_PERT_NAME_CACHE = False
+        return None
+
+
+def _prefer_cmap_name(candidate: str, current: str) -> bool:
+    candidate = str(candidate or "").strip()
+    current = str(current or "").strip()
+    if not current:
+        return True
+    if current.upper().startswith("BRD-") and not candidate.upper().startswith("BRD-"):
+        return True
+    return len(candidate) < len(current)
 
 
 def _short(value: Any, max_len: int) -> str:

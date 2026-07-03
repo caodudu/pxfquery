@@ -255,6 +255,42 @@ def test_forward_route_graph_uses_l3_raw_aggregate_scores():
         plt.close(fig)
 
 
+def test_forward_figures_prefer_readable_drug_labels_over_brd_ids():
+    dossier = deepcopy(sample_dossier())
+    matrix = dossier["evidence_layer"]["matrix_evidence"]
+    for route in matrix["executed_routes"]:
+        route["perturbation"] = "BRD-K70301465"
+        route["perturbation_alias"] = "erlotinib"
+    for route in matrix["raw_route_results"]:
+        route["route_metadata"]["perturbation"] = "BRD-K70301465"
+        route["route_metadata"]["perturbation_record"] = {"alias": "erlotinib"}
+
+    specs = build_figure_specs(dossier)
+    evidence_map = next(spec for spec in specs if spec["kind"] == "evidence_match_map")
+    graph = next(spec for spec in specs if spec["kind"] == "forward_route_graph")
+    heatmap = next(spec for spec in specs if spec["kind"] == "function_match_heatmap")
+
+    assert {point["perturbation"] for point in evidence_map["points"]} == {"erlotinib"}
+    assert graph["perturbations"] == ["erlotinib"]
+    assert all("erlotinib" in column for column in heatmap["columns"])
+
+
+def test_forward_figures_fall_back_to_brd_id_when_no_readable_drug_label():
+    dossier = deepcopy(sample_dossier())
+    matrix = dossier["evidence_layer"]["matrix_evidence"]
+    for route in matrix["executed_routes"]:
+        route["perturbation"] = "BRD-K00000000"
+        route.pop("perturbation_alias", None)
+    for route in matrix["raw_route_results"]:
+        route["route_metadata"]["perturbation"] = "BRD-K00000000"
+        route["route_metadata"].pop("perturbation_record", None)
+
+    specs = build_figure_specs(dossier)
+    graph = next(spec for spec in specs if spec["kind"] == "forward_route_graph")
+
+    assert graph["perturbations"] == ["BRD-K00000000"]
+
+
 def test_forward_ranked_results_are_cross_match_consensus_not_first_route_only():
     pxf = PxFQuery()
     qdata = pxf.read.query("show concept-level perturbation effects")
