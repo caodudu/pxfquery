@@ -201,24 +201,34 @@ def test_l2_marks_normal_same_lineage_anchor_as_semantic_downgrade():
 
 def test_l2_genetic_modality_plan_treats_xpr_as_crispr_lof_not_overexpression():
     crispr = _intent(pert_class="genetic", genetic_modality="crispr")
+    xpr = _intent(pert_class="genetic", genetic_modality="xpr")
+    knockout = _intent(pert_class="genetic", genetic_modality="knockout")
     gof = _intent(pert_class="genetic", genetic_modality="overexpression")
     unknown = _intent(pert_class="genetic", genetic_modality=None)
 
-    assert _genetic_modality_plan(crispr) == {"primary_modalities": ["xpr"], "fallback_modalities": ["sh"]}
+    assert _genetic_modality_plan(crispr) == {"primary_modalities": ["xpr"], "fallback_modalities": []}
+    assert _genetic_modality_plan(xpr) == {"primary_modalities": ["xpr"], "fallback_modalities": []}
+    assert _genetic_modality_plan(knockout) == {"primary_modalities": ["xpr"], "fallback_modalities": ["sh"]}
     assert _genetic_modality_plan(gof) == {"primary_modalities": ["xpr", "sh"], "fallback_modalities": []}
     assert _genetic_reverse_mode("xpr", crispr) == "perturbation_only"
     assert _genetic_reverse_mode("xpr", gof) == "activation_only"
     assert _genetic_reverse_mode("xpr", unknown) == "bidirectional"
 
 
-def test_l2_reverse_crispr_lof_uses_xpr_and_sh_evidence_sources():
-    crispr = _intent(query_type="reverse", pert_class="genetic", genetic_modality="knockout")
+def test_l2_reverse_genetic_modality_sources_follow_requested_operation():
+    crispr = _intent(query_type="reverse", pert_class="genetic", genetic_modality="crispr")
+    xpr = _intent(query_type="reverse", pert_class="genetic", genetic_modality="xpr")
+    knockout = _intent(query_type="reverse", pert_class="genetic", genetic_modality="knockout")
+    lof = _intent(query_type="reverse", pert_class="genetic", genetic_modality="lof")
 
-    assert _reverse_modalities(crispr) == ["xpr", "sh"]
+    assert _reverse_modalities(crispr) == ["xpr"]
+    assert _reverse_modalities(xpr) == ["xpr"]
+    assert _reverse_modalities(knockout) == ["xpr", "sh"]
+    assert _reverse_modalities(lof) == ["xpr", "sh"]
 
 
 def test_l2_crispr_fallback_sh_route_carries_lower_modality_quality():
-    intent = _intent(pert_class="genetic", genetic_modality="crispr")
+    intent = _intent(pert_class="genetic", genetic_modality="knockout")
     cell = {"cell": "A549", "role": "exact", "cell_expansion_scope": "exact", "cell_route_distance": 0}
     pert = {"symbol": "IGF2R", "role": "exact", "rank": 1}
 
@@ -248,7 +258,7 @@ def test_l2_drug_forward_route_keeps_exact_modality_quality():
 
 
 def test_l2_crispr_primary_modality_proxy_ranks_before_fallback_exact():
-    intent = _intent(pert_class="genetic", genetic_modality="crispr")
+    intent = _intent(pert_class="genetic", genetic_modality="knockout")
     cell = {"cell": "A549", "role": "exact", "cell_expansion_scope": "exact", "cell_route_distance": 0}
     exact = {"symbol": "TARGET", "role": "exact", "rank": 1}
     proxy = {"symbol": "PROXY", "role": "supporting-semantic-neighbor", "similarity": 0.75, "rank": 1}

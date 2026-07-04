@@ -6,6 +6,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 import pickle
+import re
 
 from pxfquery.l3_execution import execute_route_plan
 from pxfquery.l4_evidence import assemble_evidence
@@ -123,7 +124,7 @@ class ToolsNamespace:
         auto_download: bool = True,
         top_n: int = 20,
         debug: bool = False,
-        annotate: bool = False,
+        annotate: bool = True,
         annotation_sources: list[str] | tuple[str, ...] = ("chembl",),
         annotation_timeout: float = 5.0,
         progress: bool | EventLog = True,
@@ -167,13 +168,8 @@ class ToolsNamespace:
                 time=_elapsed(stage_start),
             )
 
-            stage_start = perf_counter()
-            events.stage("evidence", "evidence_start", "start")
-            self.assemble(qdata, synthesize=synthesize, literature_provider=literature_provider, debug=debug)
-            dossier = qdata.uns.get("evidence_dossier") or {}
-            events.stage("evidence", "evidence_done", "done", status=_public_status(dossier.get("dossier_status")), time=_elapsed(stage_start))
-
             if annotate:
+                self.assemble(qdata, synthesize=False, literature_provider=literature_provider, debug=debug)
                 stage_start = perf_counter()
                 if _should_auto_annotate(qdata):
                     events.stage("annotation", "annotation_start", "start", sources=",".join(annotation_sources), timeout=annotation_timeout)
@@ -190,6 +186,12 @@ class ToolsNamespace:
                     )
                 else:
                     events.stage("annotation", "annotation_skipped", "skipped", reason="drug_aliases_available_or_no_compound_routes", time=_elapsed(stage_start))
+
+            stage_start = perf_counter()
+            events.stage("evidence", "evidence_start", "start")
+            self.assemble(qdata, synthesize=synthesize, literature_provider=literature_provider, debug=debug)
+            dossier = qdata.uns.get("evidence_dossier") or {}
+            events.stage("evidence", "evidence_done", "done", status=_public_status(dossier.get("dossier_status")), time=_elapsed(stage_start))
         except Exception as exc:
             events.error("pipeline", "failed", "failed", error=f"{type(exc).__name__}: {exc}")
             qdata.uns["progress_events"] = events.to_list()
@@ -235,6 +237,7 @@ class ToolsNamespace:
             execution,
             intent=target.uns.get("intent"),
             route_plan=target.uns.get("route_plan"),
+            annotation_evidence=target.uns.get("annotation_evidence"),
             llm_provider=self._client.llm_providers.get(),
             synthesize=synthesize,
             literature_provider=literature_provider,
@@ -417,11 +420,26 @@ def _copy_qdata(qdata: PxFQueryData) -> PxFQueryData:
 def _should_auto_annotate(qdata: PxFQueryData, *, limit: int = 5) -> bool:
     dossier = qdata.uns.get("evidence_dossier") or {}
     matrix = ((dossier.get("evidence_layer") or {}).get("matrix_evidence") or {})
+    if matrix.get("mode") == "reverse":
+        candidates: list[dict[str, Any]] = []
+        primary = matrix.get("primary_result") or {}
+        if primary.get("modality") == "cp":
+            candidates.extend(primary.get("top_perturbations") or [])
+        for route in matrix.get("executed_routes") or []:
+            if route.get("modality") == "cp":
+                candidates.extend(route.get("top_perturbations") or [])
+        top = candidates[:limit]
+        return any(_is_raw_brd_candidate(item) for item in top)
     routes = [route for route in matrix.get("executed_routes") or [] if route.get("modality") == "cp"]
     if not routes:
         return False
     top = routes[:limit]
     return all(not route.get("perturbation_alias") for route in top)
+
+
+def _is_raw_brd_candidate(item: dict[str, Any]) -> bool:
+    label = str(item.get("label") or item.get("cmap_name") or item.get("pert_id") or "").strip()
+    return bool(re.fullmatch(r"BRD-[A-Z][A-Z0-9-]*", label, flags=re.IGNORECASE))
 
 
 def _run_provider_with_timeout(provider: Any, *, query: str, evidence_dossier: dict[str, Any], timeout: float) -> Any:

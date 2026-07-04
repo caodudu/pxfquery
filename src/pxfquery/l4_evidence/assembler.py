@@ -13,6 +13,7 @@ def assemble_evidence(
     *,
     intent: Any | None = None,
     route_plan: Any | None = None,
+    annotation_evidence: dict[str, Any] | None = None,
     llm_provider: Any | None = None,
     synthesize: bool = True,
     literature_provider: Any | None = None,
@@ -31,7 +32,8 @@ def assemble_evidence(
     limitations = _limitations(status, intent_dict, route_dict, execution_dict, evidence_grade)
     claim_basis = _claim_basis(status, intent_dict, route_evidence, matrix_evidence, evidence_grade, limitations)
     literature_evidence = _literature_evidence(literature_provider, claim_basis, matrix_evidence)
-    llm_synthesis = _llm_synthesis(llm_provider, synthesize, claim_basis, route_evidence, matrix_evidence, literature_evidence, limitations)
+    annotation_evidence = _json_safe(annotation_evidence or {})
+    llm_synthesis = _llm_synthesis(llm_provider, synthesize, claim_basis, route_evidence, matrix_evidence, literature_evidence, limitations, annotation_evidence)
 
     dossier = {
         "schema_version": L4_SCHEMA_VERSION,
@@ -45,6 +47,7 @@ def assemble_evidence(
             "route_evidence": route_evidence,
             "matrix_evidence": matrix_evidence,
             "literature_evidence": literature_evidence,
+            "annotation_evidence": annotation_evidence,
             "llm_synthesis": llm_synthesis,
         },
         "uncertainty_layer": {
@@ -465,6 +468,7 @@ def _llm_synthesis(
     matrix_evidence: dict[str, Any],
     literature_evidence: dict[str, Any],
     limitations: list[dict[str, Any]],
+    annotation_evidence: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     if not synthesize:
         return {"status": "disabled", "summary": None, "provider_evidence": {}, "diagnostics": {"reason": "L4 LLM synthesis was not requested."}}
@@ -473,45 +477,78 @@ def _llm_synthesis(
     if not hasattr(llm_provider, "request_json"):
         return {"status": "unavailable", "summary": None, "provider_evidence": {}, "diagnostics": {"reason": "LLM provider does not expose request_json(...)."}}
 
-    biological_payload = _biological_answer_payload(claim_basis, matrix_evidence)
+    biological_payload = _biological_answer_payload(claim_basis, matrix_evidence, annotation_evidence or {})
     audit_payload = _execution_quality_payload(claim_basis, route_evidence, matrix_evidence, literature_evidence, limitations)
     provider_evidence: dict[str, Any] = {}
     diagnostics: dict[str, Any] = {}
 
-    try:
-        biological_result, biological_evidence = _request_json_with_max_tokens(
-            llm_provider,
-            max_tokens=1600,
-            stage=f"l4_{matrix_evidence.get('mode') or 'query'}_biological_answer",
-            system_prompt=_biological_answer_system_prompt(str(matrix_evidence.get("mode") or "")),
-            user_payload=biological_payload,
-        )
-    except Exception as exc:
-        biological_result = {}
-        biological_evidence = {}
-        diagnostics["biological_error"] = f"{type(exc).__name__}: {exc}"
+    query_mode = str(matrix_evidence.get("mode") or "")
+    if query_mode == "forward":
+        dimension_payload = _forward_response_dimension_payload(biological_payload)
+        try:
+            dimension_result, dimension_evidence = _request_json_with_max_tokens(
+                llm_provider,
+                max_tokens=1100,
+                stage="l4_forward_response_dimensions",
+                system_prompt=_forward_response_dimension_system_prompt(),
+                user_payload=dimension_payload,
+            )
+        except Exception as exc:
+            dimension_result = {}
+            dimension_evidence = {}
+            diagnostics["response_dimension_error"] = f"{type(exc).__name__}: {exc}"
+        provider_evidence["response_dimensions"] = _json_safe(dimension_evidence)
+        answer_payload = _forward_dimension_answer_payload(biological_payload, dimension_result if isinstance(dimension_result, dict) else {})
+        try:
+            biological_result, biological_evidence = _request_json_with_max_tokens(
+                llm_provider,
+                max_tokens=1100,
+                stage="l4_forward_biological_answer",
+                system_prompt=_forward_dimension_answer_system_prompt(),
+                user_payload=answer_payload,
+            )
+        except Exception as exc:
+            biological_result = {}
+            biological_evidence = {}
+            diagnostics["biological_error"] = f"{type(exc).__name__}: {exc}"
+    else:
+        try:
+            biological_result, biological_evidence = _request_json_with_max_tokens(
+                llm_provider,
+                max_tokens=1600,
+                stage=f"l4_{query_mode or 'query'}_biological_answer",
+                system_prompt=_biological_answer_system_prompt(query_mode),
+                user_payload=biological_payload,
+            )
+        except Exception as exc:
+            biological_result = {}
+            biological_evidence = {}
+            diagnostics["biological_error"] = f"{type(exc).__name__}: {exc}"
     provider_evidence["biological_answer"] = _json_safe(biological_evidence)
 
     if not isinstance(biological_result, dict):
         biological_result = {}
         diagnostics["biological_error"] = "L4 biological answer returned non-object JSON."
 
-    quality_flags = _biological_answer_quality_flags(biological_result, str(matrix_evidence.get("mode") or ""))
+    quality_flags = _biological_answer_quality_flags(biological_result, query_mode)
     if quality_flags:
         try:
+            repair_payload = answer_payload if query_mode == "forward" else biological_payload
+            repair_prompt = _forward_dimension_answer_system_prompt() if query_mode == "forward" else _biological_answer_system_prompt(query_mode)
             repaired, repair_evidence = _request_json_with_max_tokens(
                 llm_provider,
                 max_tokens=1600,
                 stage="l4_biological_answer_repair",
                 system_prompt=(
-                    _biological_answer_system_prompt(str(matrix_evidence.get("mode") or ""))
+                    repair_prompt
                     + " The previous JSON failed these quality checks: "
                     + ", ".join(quality_flags)
-                    + ". Rewrite only the same biological answer from the same evidence."
+                    + ". Rewrite only the same biological answer from the same evidence. "
+                    + "If a reverse answer has too many gene symbols, keep only the leading one to three genes and summarize the rest by broad candidate class without parenthetical gene-symbol examples."
                 ),
-                user_payload=biological_payload | {"previous_invalid_answer": biological_result, "quality_flags": quality_flags},
+                user_payload=repair_payload | {"previous_invalid_answer": biological_result, "quality_flags": quality_flags},
             )
-            if isinstance(repaired, dict) and not _biological_answer_quality_flags(repaired, str(matrix_evidence.get("mode") or "")):
+            if isinstance(repaired, dict) and not _biological_answer_quality_flags(repaired, query_mode):
                 biological_result = repaired
                 provider_evidence["biological_answer"] = {
                     "initial": provider_evidence["biological_answer"],
@@ -581,21 +618,116 @@ def _biological_answer_system_prompt(query_type: str) -> str:
     return _forward_biological_answer_system_prompt()
 
 
+def _forward_response_dimension_system_prompt() -> str:
+    return """
+Role
+You are a biological abstraction step.
+
+Task
+Convert increased_evidence and decreased_evidence into functional roles, not prettier pathway names.
+
+Abstraction rule
+A valid axis describes what kind of cellular behavior is changing. It must not describe the named assay label, named pathway, named gene set, named signaling module, or named subprogram.
+
+Invalid -> valid abstraction patterns
+- named immune or cytokine signaling label -> defense-like activation or immune-state activation
+- named growth regulator targets, replication, mitosis, checkpoint, or cell-cycle labels -> growth activity or proliferative drive
+- named metabolic pathway labels -> energy use, biosynthetic activity, or metabolic state
+- named secretion/extracellular labels -> communication or secretory state
+These examples are abstraction patterns, not fixed answer choices. Choose the role that best fits the supplied evidence.
+
+Hard rules
+- Use both increased_evidence and decreased_evidence.
+- No gene names in axis fields.
+- No pathway names in axis fields.
+- No label-level process names in axis fields.
+- No words copied from evidence labels except very general words such as cell, growth, immune, stress, metabolism, defense, activity, state, or drive.
+- Axis fields should be broad plain-language cellular behaviors.
+- axis_meanings must explain those broad behaviors at the same abstraction level. Do not use axis_meanings to reintroduce pathway names, gene-set names, signature names, named subprograms, or close paraphrases of evidence labels.
+- If a meaning sentence contains wording that could be traced back to an evidence label, rewrite it as a broader behavioral implication.
+- evidence_examples is the only field allowed to preserve readable evidence examples.
+
+Return exactly one JSON object:
+{
+  "promoted_axis": "broad promoted cellular behavior",
+  "suppressed_axis": "broad suppressed cellular behavior",
+  "overall_state": "short case-specific state-change concept",
+  "axis_meanings": {
+    "promoted_axis": "one sentence explaining what the promoted axis means for cell behavior, without examples",
+    "suppressed_axis": "one sentence explaining what the suppressed axis means for cell behavior, without examples",
+    "overall_state": "one sentence explaining the state change, without examples"
+  },
+  "evidence_examples": ["at most four representative readable examples from supplied programs"],
+  "dimension_notes": ["short notes about mixed or unresolved evidence, if any"]
+}
+""".strip()
+
+
+def _forward_dimension_answer_system_prompt() -> str:
+    return """
+Role
+You explain functional perturbation results to a general molecular or cancer biologist.
+
+Input
+You receive abstract state_axes and axis_meanings only. You do not receive evidence labels or evidence examples.
+
+Task
+Write exactly 3 complete sentences answering the user by using only the biological content present in state_axes and axis_meanings.
+
+Rules
+- Sentence 1 explains suppressed or decreased biology using suppressed_axis and its meaning.
+- Sentence 2 explains promoted or increased biology using promoted_axis and its meaning.
+- Sentence 3 explains the overall state change using overall_state and its meaning.
+- Each sentence must be informative; do not merely restate the axis name.
+- Each sentence must contain a biological interpretation, not only a short label statement.
+- You may elaborate only with meaning already present in axis_meanings.
+- Do not add examples.
+- The queried perturbation name is allowed.
+- Do not mention PxFquery.
+- Do not mention software, internal layers, routes, evidence grades, exact/proxy status, row counts, scores, benchmarks, missing literature, clinical efficacy, or validation status.
+- Match the language of user_question.
+
+Return exactly one JSON object:
+{
+  "answer": "Exactly 3 complete sentences. Sentence 1 covers suppressed biology, sentence 2 covers promoted biology, and sentence 3 covers overall cellular-state change.",
+  "response_theme": "short phrase for the overall perturbation response",
+  "subquestions": ["direct subquestion answers, or empty array for a single-question input"],
+  "main_program_changes": ["increased: high-level biology", "decreased: high-level biology"],
+  "evidence_examples": ["copy the supplied evidence_examples, at most four"],
+  "support_notes": ["short grounded note"]
+}
+""".strip()
+
+
 def _forward_biological_answer_system_prompt() -> str:
     return """
 Role
-You are the biological answer writer for a forward functional perturbation query.
+You explain functional perturbation results to a general molecular or cancer biologist.
 
 Input
 You receive exactly five inputs:
 - user_question: the user's original question.
-- interpreted_intent: parsed biological context, perturbation, modality, and primary ranked functions.
+- interpreted_intent: parsed biological context, perturbation, modality, score orientation, and primary ranked functions.
 - answer_policy: how the supplied matched evidence should be prioritized.
 - program_summary: the primary forward program summary already ranked from matched evidence.
 - evidence_profiles: one or more matched profiles. Each profile contains a cell/context, perturbation label, activated_programs, and suppressed_programs.
 
 Task
-Write the default user-facing biological answer. First identify whether user_question contains one biological question or multiple biological subquestions. Then answer using only interpreted_intent, answer_policy, program_summary, and evidence_profiles.
+Write the default user-facing biological answer for a forward perturbation query.
+
+The input contains consensus functional programs that changed after a perturbation. These labels are raw evidence materials, not answer text. Your job is not to translate, concatenate, or list those program labels. Your job is to infer the cellular response state implied by the activated and suppressed program groups.
+
+Use only interpreted_intent, answer_policy, program_summary, and evidence_profiles. First identify whether user_question contains one biological question or multiple biological subquestions.
+
+Default answer behavior
+- For a single-question input, write exactly 3 complete sentences that answer the user's question for a general molecular or cancer biologist.
+- Sentence 1 should describe suppressed or decreased biology, if the evidence supports a decreased direction.
+- Sentence 2 should describe promoted or increased biology, if the evidence supports an increased direction.
+- Sentence 3 should describe the overall cellular-state change implied by the first two sentences.
+- Each sentence must contain a biological interpretation, not only a short label statement.
+- The answer field must not contain evidence examples, parenthetical examples, or "including/such as/for example" clauses. Put those examples only in evidence_examples.
+- For a multi-subquestion input, first answer the main perturbation response, then include numbered answers for the user's subquestions. Each numbered answer must directly answer one biological subquestion.
+- Every subquestion must receive a clear verdict: supported, not supported, mixed, or not resolved from the supplied functional evidence.
 
 Evidence prioritization
 - Treat program_summary as the primary program ranking for the answer.
@@ -603,9 +735,22 @@ Evidence prioritization
 - If answer_policy.mode is cross_match_consensus, no directly matched anchor is available; answer from the cross-profile consensus represented by program_summary.
 - Do not answer from only the first evidence profile unless answer_policy says the directly matched evidence is the anchor and program_summary supports that anchor.
 
-Required reasoning behavior
-- Convert raw program labels into readable biological phrases.
-- Separate increased and decreased functional programs.
+Answer-level abstraction
+- Treat supplied program labels as raw materials that should normally disappear from the answer field after interpretation.
+- Before writing the answer, internally compress the supplied programs into a small number of biological response dimensions. Derive those dimensions from the supplied evidence; do not choose from a fixed vocabulary supplied by this prompt.
+- The answer field must describe these response dimensions and their overall cellular-state implication, not the underlying program-label ingredients.
+- Keep response dimensions broad enough that the answer reads like a biological conclusion, not a table caption.
+- Do not name individual supplied programs, pathway labels, gene-set labels, raw database labels, gene-centered mechanisms, or label-level sub-processes in the answer field.
+- Do not use close paraphrases of supplied program labels when they are merely components of a broader response dimension. For example, multiple cell-cycle, mitotic, replication, or growth-factor labels should usually be summarized as reduced or increased proliferative growth unless a narrower distinction is essential to answer the user's question.
+- In the answer field, the only gene or perturbation name that may be mentioned is the user's queried perturbation when needed for grammar. Gene names that appear only because they are embedded in supplied program labels must not appear in the answer field. Convert those labels into the corresponding response dimension when supported.
+- Put representative supplied-program examples only in evidence_examples.
+- The answer must be understandable if evidence_examples is hidden.
+- Use the most compact biological abstraction that preserves the user's requested distinction. Increase granularity only when the user explicitly asks about that biology or when broad categories would hide a real direction conflict.
+- Vary the wording according to the actual evidence. Do not reuse a stock sentence such as "the cells shift from a growth-promoting state toward an immune-activated and stress-responsive state" unless that is the most specific conclusion supported by this case.
+
+Required biological reasoning behavior
+- Separate increased and decreased biological processes.
+- Infer the overall cellular response state from the combination of increased and decreased processes.
 - If score_orientation says activation is inferred from loss-of-function evidence, interpret directions as a reverse-direction inference from CRISPR/RNAi loss-of-function data, not as direct overexpression measurements.
 - If the user asks whether a named program family is affected, judge it semantically from supplied program labels and directions. Use one of: supported, not supported, or not resolved.
 - If evidence is mixed across profiles, say it is mixed and describe the main directions.
@@ -613,9 +758,8 @@ Required reasoning behavior
 - Do not collapse multiple user subquestions into one paragraph. Give a separate answer for each subquestion.
 - Do not use vague frequency phrases as the main conclusion, such as "some profiles", "a subset", "partial signal", or "may be affected". Convert the evidence into a clear verdict for each subquestion: supported, not supported, mixed, or not resolved.
 - If evidence differs across profiles, explain the biological direction of the conflict instead of saying only that it is partial or heterogeneous.
-- For program-family questions, do not answer with a vague frequency statement. Say whether the family is supported, not supported, mixed, or not resolved, and name the readable labels that justify the verdict.
+- For program-family questions, do not answer with a vague frequency statement. Say whether the family is supported, not supported, mixed, or not resolved, and name the high-level biology that justifies the verdict.
 - If user_question has only one biological question, do not repeat it as a separate subquestion section. Put the full answer in the answer field and set subquestions to an empty array.
-- If user_question has multiple biological subquestions, the answer field must start with "Overall:" and then include "Subquestion answers:" with numbered answers.
 - Match the language of user_question.
 
 Forbidden in answer
@@ -624,42 +768,58 @@ Forbidden in answer
 - Do not invent mechanisms, citations, functions, cells, perturbations, or numeric values.
 - Do not expose raw program identifiers such as all-caps database IDs or numbered program codes. Use readable biological phrases instead.
 - Do not describe inferred activation evidence as direct overexpression evidence.
+- Do not turn the answer field into a comma-separated list of program labels.
+- Do not use "including", "such as", "for example", parentheses, or colon-separated examples in the answer field to smuggle evidence examples into the conclusion.
+- Do not treat supplied program labels as phrases to preserve. They are evidence ingredients; the answer field should contain the interpreted cellular response, not the ingredients.
+- Do not use a stock "Overall, the cells shift from ... toward ..." sentence pattern by default. If a third sentence is used, write a case-specific state interpretation.
 
 Output JSON schema
 Return exactly one JSON object:
 {
-  "answer": "Complete user-facing answer. Single-question inputs use one direct answer. Multi-subquestion inputs use 'Overall:' plus 'Subquestion answers:'.",
+  "answer": "Exactly 3 complete sentences. Sentence 1 covers decreased biology, sentence 2 covers increased biology, and sentence 3 covers the overall cellular-state change.",
+  "response_theme": "short phrase for the overall perturbation response",
   "subquestions": ["Short subquestion followed by its direct answer."],
-  "main_program_changes": ["activated: readable program description", "suppressed: readable program description"],
-  "support_notes": ["Short grounded note using readable biological phrases."]
+  "main_program_changes": ["increased: high-level biological process", "decreased: high-level biological process"],
+  "evidence_examples": ["At most four short representative examples from the supplied programs. These examples may name readable supplied-program categories, but must not appear in the answer field."],
+  "support_notes": ["Short grounded note using high-level biological phrases."]
 }
 
 Style example
-Input summary A: user asks one question: what programs change after perturbation X in model Y. Evidence profiles show activated labels related to program group B and suppressed labels related to program group C.
+Input summary A: user asks one question: what programs change after perturbation X in a cancer model. Evidence profiles show one coherent group of increased functional biology and one coherent group of decreased functional biology.
 Valid single-question output shape:
 {
-  "answer": "In model Y, perturbation X is associated mainly with increased program group B and decreased program group C.",
+  "answer": "Perturbation X promotes the high-level biological response inferred from the increased functional evidence. It suppresses the high-level biological response inferred from the decreased functional evidence. Together, these changes indicate the case-specific cellular state implied by those two directions.",
+  "response_theme": "case-specific response theme",
   "subquestions": [],
   "main_program_changes": [
-    "activated: program group B",
-    "suppressed: program group C"
+    "increased: high-level biology inferred from increased programs",
+    "decreased: high-level biology inferred from decreased programs"
   ],
-  "support_notes": ["The answer is based only on supplied functional program labels."]
+  "evidence_examples": [
+    "representative increased program category",
+    "representative decreased program category"
+  ],
+  "support_notes": ["The answer is based only on supplied functional program evidence."]
 }
 
-Input summary B: user asks what programs change after perturbation X in model Y, and also asks whether program family A is affected. Evidence profiles show activated labels related to program group B and suppressed labels related to program group C; no supplied label clearly maps to family A.
+Input summary B: user asks what programs change after perturbation X in model Y, and also asks whether program family A is affected. Evidence profiles support one increased biological direction and one decreased biological direction; no supplied program clearly maps to family A.
 Valid multi-subquestion output shape:
 {
-  "answer": "Overall: In model Y, perturbation X is associated mainly with increased program group B and decreased program group C. Program family A is not resolved because the changed programs do not clearly correspond to that family.\n\nSubquestion answers:\n1. What functional programs change after perturbation X? The main supported changes are increased program group B and decreased program group C.\n2. Is program family A affected? Not resolved. The supplied changed programs do not clearly map to program family A, so the evidence does not support a confident yes-or-no answer.",
+  "answer": "Perturbation X promotes the high-level biology inferred from the increased functional evidence. It suppresses the high-level biology inferred from the decreased functional evidence. Numbered answers:\n1. What functional programs change after perturbation X? Supported: the increased and decreased biological directions described above.\n2. Is program family A affected? Not resolved from the supplied functional evidence.",
+  "response_theme": "case-specific response theme",
   "subquestions": [
-    "What functional programs change after perturbation X? The main supported changes are increased program group B and decreased program group C.",
-    "Is program family A affected? Not resolved because the supplied changed programs do not clearly map to program family A."
+    "What functional programs change after perturbation X? Supported: the increased and decreased biological directions described in the answer.",
+    "Is program family A affected? Not resolved from the supplied functional evidence."
   ],
   "main_program_changes": [
-    "activated: program group B",
-    "suppressed: program group C"
+    "increased: high-level biology inferred from increased programs",
+    "decreased: high-level biology inferred from decreased programs"
   ],
-  "support_notes": ["The answer is based only on supplied functional program labels."]
+  "evidence_examples": [
+    "representative increased program category",
+    "representative decreased program category"
+  ],
+  "support_notes": ["The answer is based only on supplied functional program evidence."]
 }
 """.strip()
 
@@ -667,7 +827,7 @@ Valid multi-subquestion output shape:
 def _reverse_biological_answer_system_prompt() -> str:
     return """
 Role
-You are the biological answer writer for a reverse functional perturbation query.
+You explain reverse functional perturbation results to a general molecular or cancer biologist.
 
 Input
 You receive exactly four inputs:
@@ -677,27 +837,44 @@ You receive exactly four inputs:
 - evidence_profiles: matched profiles containing candidate_perturbations or candidate genes with their functional match evidence.
 
 Task
-Write the default user-facing biological answer. Identify what functional state the user wants, then explain which candidate perturbations or genes best match that state using only interpreted_intent, candidate_summary, and evidence_profiles.
+Write the default user-facing biological answer for a reverse query. The user is asking for candidate perturbations or genes that best match a requested functional state. Your job is to interpret the ranked candidates biologically, not to narrate the search process and not to list every cell-specific match.
 
 Required reasoning behavior
 - Start with candidate_summary, not the first evidence profile.
 - If interpreted_intent.context_scope is concept_or_disease_model_set, answer at the disease/model-set level. Do not frame the answer as "in [first cell line]" or imply the first searched cell is the user's requested model.
 - If interpreted_intent.has_user_specified_cell is true, prioritize candidates with exact_cell_support. Other cells may only be described as supporting or broader-context evidence.
 - If interpreted_intent.has_user_specified_cell is false, rank candidates by cross-profile support and mean/best functional match in candidate_summary.
-- Explain the functional direction each candidate supports.
-- Distinguish strong matches, partial matches, and unresolved candidates using the supplied evidence.
+- Name the leading readable candidates and explain what requested functional state they are predicted to move toward.
+- Prefer a small interpreted recommendation set over an exhaustive list.
+- For genetic reverse queries, name a leading group of three to five readable genes when the top candidates have tied or near-tied scores. Do not collapse tied top candidates into a single "best" gene.
+- For genetic reverse queries, if candidate_summary includes candidate_group=leading_tied_group, treat those candidates as a co-leading recommendation group.
+- For genetic reverse queries, name at most five readable genes in the answer field. Do not list a long comma-separated panel of genes.
+- For genetic reverse queries, briefly describe recognizable broad candidate classes when they are obvious from standard gene knowledge, such as kinase, transcriptional regulator, ribosomal/translation factor, metabolic enzyme, transporter, protease, receptor, or signaling adaptor. If you are not confident, do not invent a class.
+- Additional genetic candidates should be summarized as lower-ranked genes or supporting candidate groups rather than listed one by one.
+- If using a broad class such as ribosomal proteins or kinases, do not add parenthetical gene-symbol examples after the class name.
+- For genetic reverse queries, the answer field may contain at most five gene symbols total, including lower-ranked candidates and examples.
+- If several candidates have similar support, describe them as a ranked group rather than giving separate cell-by-cell paragraphs.
+- Describe searched cell lines only as evidence context, not as the main result, unless the user specified a cell line.
+- Distinguish better-supported candidates from lower-ranked candidates using ranking language only. Do not imply lower-ranked candidates are biologically inactive, clinically ineffective, or unrelated.
 - If the supplied evidence does not support a clear candidate, say not resolved from the supplied functional evidence.
 - Mention searched cell lines only when needed to explain model-set support; do not make them the headline unless the user specified a cell line.
+- Anonymous internal compound identifiers are not user-facing candidate names, but they are still real compound candidates. If a drug candidate has no readable name, refer to it as "an unnamed compound candidate" and keep the raw identifier out of the answer field.
 
 Forbidden in answer
 - Do not mention software, internal layers, routes, evidence grades, exact/proxy status, row counts, scores, benchmarks, missing literature, clinical efficacy, or validation status.
 - Do not mention PxFquery.
 - Do not invent mechanisms, citations, candidates, functions, cells, perturbations, or numeric values.
+- Do not expose raw candidate identifiers such as BRD-K*, BRD-A*, BRDN*, or other internal IDs in the answer field.
+- Do not say "weaker or no clear association", "no clear association", "not associated", or "no effect" for candidates that are merely lower ranked.
+- Do not write a cell-by-cell execution report.
+- Do not turn the answer field into a ranked table in sentence form.
+- Do not list more than five gene symbols in the answer field.
+- Do not write parenthetical gene-symbol lists such as "ribosomal proteins (A, B, C)" in the answer field.
 
 Output JSON schema
 Return exactly one JSON object:
 {
-  "answer": "A concise biological answer written in complete sentences.",
+  "answer": "Three complete sentences: sentence 1 names the leading candidate or leading candidate group, sentence 2 explains the requested functional direction they support, sentence 3 states how to treat lower-ranked candidates without dismissing them.",
   "subquestions": ["Short subquestion followed by its direct answer."],
   "candidate_interpretation": ["candidate label: readable functional interpretation"],
   "support_notes": ["Short grounded note using readable biological phrases."]
@@ -707,13 +884,13 @@ Style example
 Input summary: user asks which perturbation could produce functional state Z in model Y. Evidence profiles contain candidates X and W; X matches the requested activated program group and W is only a partial match.
 Valid output shape:
 {
-  "answer": "Candidate X is the clearest match for functional state Z in model Y because it aligns with the requested activated program group. Candidate W is a weaker, partial match because it covers only part of the requested state.",
+  "answer": "Candidate X is the clearest readable match for functional state Z in model Y. Its matched evidence supports movement toward the requested functional direction rather than the opposite state. Candidate W should be treated as a lower-ranked supporting candidate rather than as evidence of absence.",
   "subquestions": [
     "Which candidate best matches functional state Z? Candidate X is the clearest match."
   ],
   "candidate_interpretation": [
     "candidate X: matches the requested activated program group",
-    "candidate W: partial match to the requested state"
+    "candidate W: lower-ranked supporting candidate"
   ],
   "support_notes": ["Candidate interpretation is based only on supplied functional match evidence."]
 }
@@ -746,24 +923,65 @@ def _biological_answer_quality_flags(result: dict[str, Any], query_type: str = "
         if re.search(pattern, str(result.get("answer") or "")):
             flags.append("raw_program_identifier")
             break
+    if re.search(r"\bBRD-[A-Z]\d*[A-Z0-9-]*\b|\bBRDN\d+\b", str(result.get("answer") or ""), re.IGNORECASE):
+        flags.append("raw_candidate_identifier")
     vague_phrases = ("some profiles", "some cell lines", "a subset", "partial signal", "may be affected")
     for phrase in vague_phrases:
         if phrase in summary:
             flags.append(f"vague_frequency_phrase:{phrase}")
+    if query_type == "reverse":
+        reverse_forbidden = (
+            "weaker or no clear association",
+            "no clear association",
+            "not associated",
+            "no effect",
+        )
+        for phrase in reverse_forbidden:
+            if phrase in summary:
+                flags.append(f"reverse_overdismissive_phrase:{phrase}")
+        if re.search(r"\([A-Z][A-Z0-9-]{1,14}(?:,\s*[A-Z][A-Z0-9-]{1,14})+\)", str(result.get("answer") or "")):
+            flags.append("reverse_parenthetical_gene_list")
+        sentences = _answer_sentences(str(result.get("answer") or "").strip())
+        if len(sentences) != 3:
+            flags.append(f"reverse_answer_sentence_count:{len(sentences)}")
+        gene_symbols = re.findall(r"\b[A-Z][A-Z0-9]{1,9}\b", str(result.get("answer") or ""))
+        requested_terms = set(re.findall(r"\b[A-Z][A-Z0-9]{1,9}\b", str(result.get("subquestions") or "")))
+        gene_like = sorted({item for item in gene_symbols if not item.startswith("BRD") and item not in requested_terms})
+        if len(gene_like) > 5:
+            flags.append("reverse_too_many_gene_symbols")
     if query_type == "forward":
         if "subquestion answers" in summary and "overall" not in summary:
             flags.append("subquestion_section_without_overall")
+        if not result.get("subquestions"):
+            answer_text = str(result.get("answer") or "").strip()
+            sentences = _answer_sentences(answer_text)
+            if len(sentences) != 3:
+                flags.append(f"forward_answer_sentence_count:{len(sentences)}")
+            for index, sentence in enumerate(sentences, start=1):
+                if len(re.findall(r"\b[\w'-]+\b", sentence)) < 8:
+                    flags.append(f"forward_answer_sentence_too_short:{index}")
+            if re.search(r"\b(including|such as|for example)\b", answer_text, flags=re.IGNORECASE):
+                flags.append("forward_answer_contains_example_clause")
     return flags
+
+
+def _answer_sentences(text: str) -> list[str]:
+    compact = re.sub(r"\s+", " ", str(text or "")).strip()
+    if not compact:
+        return []
+    return [item.strip() for item in re.split(r"(?<=[.!?])\s+", compact) if item.strip()]
 
 
 def _biological_answer_payload(
     claim_basis: dict[str, Any],
     matrix_evidence: dict[str, Any],
+    annotation_evidence: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     primary = matrix_evidence.get("primary_result") or {}
     is_reverse = matrix_evidence.get("mode") == "reverse"
     route_scope = _reverse_route_scope(matrix_evidence) if is_reverse else {}
     forward_policy = _forward_answer_policy(matrix_evidence) if not is_reverse else {}
+    annotation_aliases = _annotation_alias_map(annotation_evidence or {})
     return {
         "user_question": claim_basis.get("user_question"),
         "interpreted_intent": {
@@ -784,9 +1002,58 @@ def _biological_answer_payload(
         },
         "answer_policy": forward_policy,
         "program_summary": _forward_program_summary(matrix_evidence) if not is_reverse else [],
-        "candidate_summary": _reverse_candidate_summary(matrix_evidence) if is_reverse else [],
-        "evidence_profiles": _route_biology_context(matrix_evidence),
+        "candidate_summary": _reverse_candidate_summary(matrix_evidence, annotation_aliases=annotation_aliases) if is_reverse else [],
+        "evidence_profiles": _route_biology_context(matrix_evidence, annotation_aliases=annotation_aliases),
     }
+
+
+def _forward_dimension_answer_payload(raw_payload: dict[str, Any], dimension_result: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "user_question": raw_payload.get("user_question"),
+        "queried_perturbation": (raw_payload.get("interpreted_intent") or {}).get("perturbation"),
+        "state_axes": {
+            "promoted_axis": dimension_result.get("promoted_axis"),
+            "suppressed_axis": dimension_result.get("suppressed_axis"),
+            "overall_state": dimension_result.get("overall_state"),
+            "axis_meanings": _json_safe(dimension_result.get("axis_meanings") or {}),
+        },
+    }
+
+
+def _forward_response_dimension_payload(raw_payload: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "user_question": raw_payload.get("user_question"),
+        "answer_policy": raw_payload.get("answer_policy"),
+        "increased_evidence": _directional_profile_evidence(raw_payload, "activated_programs", max_items=10),
+        "decreased_evidence": _directional_profile_evidence(raw_payload, "suppressed_programs", max_items=10),
+    }
+
+
+def _directional_profile_evidence(raw_payload: dict[str, Any], key: str, *, max_items: int) -> list[dict[str, Any]]:
+    groups: dict[str, dict[str, Any]] = {}
+    for profile in raw_payload.get("evidence_profiles") or []:
+        for item in profile.get(key) or []:
+            label = item.get("label") or item.get("function")
+            if not label:
+                continue
+            group = groups.setdefault(str(label), {"label": str(label), "support_profiles": 0, "scores": []})
+            group["support_profiles"] += 1
+            score = _float_or_none(item.get("score"))
+            if score is not None:
+                group["scores"].append(score)
+    rows = []
+    for group in groups.values():
+        scores = group.get("scores") or []
+        mean_score = sum(scores) / len(scores) if scores else None
+        rows.append(
+            {
+                "label": group["label"],
+                "support_profiles": group["support_profiles"],
+                "mean_score": mean_score,
+            }
+        )
+    rows.sort(key=lambda item: (-item["support_profiles"], -(abs(item["mean_score"]) if item["mean_score"] is not None else 0.0), item["label"]))
+    return rows[:max_items]
 
 
 def _forward_answer_policy(matrix_evidence: dict[str, Any]) -> dict[str, Any]:
@@ -942,7 +1209,7 @@ def _is_direct_forward_route(route: dict[str, Any]) -> bool:
     return bool(cell_direct and pert_direct)
 
 
-def _route_biology_context(matrix_evidence: dict[str, Any]) -> list[dict[str, Any]]:
+def _route_biology_context(matrix_evidence: dict[str, Any], *, annotation_aliases: dict[str, str] | None = None) -> list[dict[str, Any]]:
     profiles = []
     for route in matrix_evidence.get("executed_routes") or []:
         profile: dict[str, Any] = {
@@ -961,7 +1228,7 @@ def _route_biology_context(matrix_evidence: dict[str, Any]) -> list[dict[str, An
             if requested:
                 profile["requested_function_records"] = _json_safe(requested)
         elif matrix_evidence.get("mode") == "reverse":
-            profile["candidate_perturbations"] = _compact_reverse_candidates(route.get("top_perturbations", []), modality=route.get("modality"))
+            profile["candidate_perturbations"] = _compact_reverse_candidates(route.get("top_perturbations", []), modality=route.get("modality"), annotation_aliases=annotation_aliases or {})
         profiles.append({key: value for key, value in profile.items() if value not in (None, [], {})})
     return profiles
 
@@ -977,7 +1244,7 @@ def _reverse_route_scope(matrix_evidence: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-def _reverse_candidate_summary(matrix_evidence: dict[str, Any], *, max_candidates: int = 12) -> list[dict[str, Any]]:
+def _reverse_candidate_summary(matrix_evidence: dict[str, Any], *, max_candidates: int = 12, annotation_aliases: dict[str, str] | None = None) -> list[dict[str, Any]]:
     routes = matrix_evidence.get("executed_routes") or []
     exact_route_ids = {route.get("route_id") for route in routes if route.get("cell_match_type") == "user_specified_cell"}
     groups: dict[str, dict[str, Any]] = {}
@@ -1001,6 +1268,7 @@ def _reverse_candidate_summary(matrix_evidence: dict[str, Any], *, max_candidate
                 key,
                 {
                     "label": item.get("label") or item.get("cmap_name") or item.get("pert_id") or key,
+                    "modality": modality,
                     "scores": [],
                     "exact_scores": [],
                     "cells": set(),
@@ -1026,7 +1294,9 @@ def _reverse_candidate_summary(matrix_evidence: dict[str, Any], *, max_candidate
         mean_score = sum(scores) / len(scores)
         rows.append(
             {
-                "label": group["label"],
+                "label": _display_reverse_candidate_label(group["label"], modality=group.get("modality"), annotation_aliases=annotation_aliases or {}),
+                "raw_identifier": group["label"] if _raw_candidate_identifier(group["label"]) else None,
+                "annotation_status": _reverse_annotation_status(group["label"], modality=group.get("modality"), annotation_aliases=annotation_aliases or {}),
                 "score": exact_score if exact_score is not None else mean_score,
                 "exact_cell_support": bool(exact_scores),
                 "mean_score": mean_score,
@@ -1041,27 +1311,109 @@ def _reverse_candidate_summary(matrix_evidence: dict[str, Any], *, max_candidate
         rows.sort(key=lambda item: (not item["exact_cell_support"], -(item["score"] or 0.0), -item["support_routes"], str(item["label"])))
     else:
         rows.sort(key=lambda item: (-item["support_routes"], -item["support_cells"], -(item["score"] or 0.0), str(item["label"])))
+    _mark_reverse_candidate_groups(rows)
     for rank, row in enumerate(rows[:max_candidates], start=1):
         row["rank"] = rank
     return rows[:max_candidates]
 
 
-def _compact_reverse_candidates(items: list[dict[str, Any]], *, modality: str | None) -> list[dict[str, Any]]:
+def _mark_reverse_candidate_groups(rows: list[dict[str, Any]]) -> None:
+    if not rows:
+        return
+    top_score = _float_or_none(rows[0].get("score"))
+    if top_score is None:
+        return
+    leading_count = 0
+    for row in rows:
+        score = _float_or_none(row.get("score"))
+        if score is None:
+            break
+        if score == top_score or abs(score - top_score) <= max(0.5, abs(top_score) * 0.05):
+            leading_count += 1
+        else:
+            break
+        if leading_count >= 5:
+            break
+    if leading_count < 3:
+        leading_count = min(3, len(rows))
+    for index, row in enumerate(rows):
+        row["candidate_group"] = "leading_tied_group" if index < leading_count else "lower_ranked_support"
+
+
+def _compact_reverse_candidates(items: list[dict[str, Any]], *, modality: str | None, annotation_aliases: dict[str, str] | None = None) -> list[dict[str, Any]]:
     compact = []
     for item in items:
         if _unreadable_reverse_candidate(item, modality=modality):
             continue
-        compact.extend(_compact_rankings([item]))
+        row = _compact_rankings([item])[0]
+        label = row.get("label")
+        row["label"] = _display_reverse_candidate_label(label, modality=modality, annotation_aliases=annotation_aliases or {})
+        if _raw_candidate_identifier(label):
+            row["raw_identifier"] = label
+            row["annotation_status"] = _reverse_annotation_status(label, modality=modality, annotation_aliases=annotation_aliases or {})
+        compact.append(row)
         if len(compact) >= 8:
             break
     return compact
 
 
 def _unreadable_reverse_candidate(item: dict[str, Any], *, modality: str | None) -> bool:
-    if modality not in {"sh", "xpr"}:
-        return False
     label = str(item.get("label") or item.get("cmap_name") or item.get("pert_id") or "").strip()
-    return bool(re.fullmatch(r"BRDN\d+", label))
+    if modality in {"sh", "xpr"} and re.fullmatch(r"BRDN\d+", label):
+        return True
+    if modality in {"sh", "xpr"} and not _looks_like_gene_symbol(label):
+        return True
+    return False
+
+
+def _looks_like_gene_symbol(value: Any) -> bool:
+    text = str(value or "").strip()
+    if not text:
+        return False
+    return bool(re.fullmatch(r"[A-Z][A-Z0-9-]{1,14}", text))
+
+
+def _display_reverse_candidate_label(value: Any, *, modality: str | None, annotation_aliases: dict[str, str] | None = None) -> str:
+    label = str(value or "").strip()
+    annotated = (annotation_aliases or {}).get(label.upper())
+    if annotated:
+        return annotated
+    if modality == "cp" and _raw_candidate_identifier(label):
+        return "unnamed compound candidate"
+    return label
+
+
+def _reverse_annotation_status(value: Any, *, modality: str | None, annotation_aliases: dict[str, str] | None = None) -> str:
+    label = str(value or "").strip()
+    if not _raw_candidate_identifier(label):
+        return "not_required"
+    if modality == "cp" and (annotation_aliases or {}).get(label.upper()):
+        return "annotated"
+    if modality == "cp":
+        return "alias_missing"
+    return "not_user_facing"
+
+
+def _annotation_alias_map(annotation_evidence: dict[str, Any]) -> dict[str, str]:
+    aliases: dict[str, str] = {}
+    for block in annotation_evidence.get("records") or []:
+        if block.get("status") not in {"completed", "ok"}:
+            continue
+        for hit in block.get("records") or []:
+            term = str(hit.get("term") or "").strip().upper()
+            if not term:
+                continue
+            for record in hit.get("records") or []:
+                pref = str(record.get("pref_name") or "").strip()
+                if pref:
+                    aliases[term] = pref
+                    break
+    return aliases
+
+
+def _raw_candidate_identifier(value: Any) -> bool:
+    text = str(value or "").strip()
+    return bool(re.fullmatch(r"BRD-[A-Z][A-Z0-9-]*", text, flags=re.IGNORECASE) or re.fullmatch(r"BRDN\d+", text, flags=re.IGNORECASE))
 
 
 def _candidate_key(item: dict[str, Any]) -> str:

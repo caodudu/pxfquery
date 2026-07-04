@@ -4,6 +4,7 @@ from pathlib import Path
 
 from pxfquery import PxFQuery, PxFQueryData
 from pxfquery.l5_presentation.figures import _symmetric_color_limits, build_figure_specs, render_figure_matplotlib
+from pxfquery.l5_presentation.tables import build_tables
 
 
 def sample_dossier():
@@ -424,6 +425,52 @@ def test_reverse_ring_heatmaps_use_complete_function_universe():
     assert all(not label.lower().startswith("mp") for label in mps["functions"])
     assert sum(abs(value) > 0 for row in hallmark["values"] for value in row) == 2
     assert sum(abs(value) > 0 for row in mps["values"] for value in row) == 0
+
+
+def test_reverse_layered_route_graph_uses_top5_and_filters_disconnected_contexts():
+    dossier = reverse_sample_dossier()
+    matrix = dossier["evidence_layer"]["matrix_evidence"]
+    matrix["primary_result"]["top_perturbations"] = [
+        {"rank": idx, "label": f"TOP_{idx}", "pert_id": f"BRD-TOP-{idx}", "score": 20.0 - idx}
+        for idx in range(1, 7)
+    ]
+    matrix["executed_routes"][0]["top_perturbations"] = [
+        {"rank": 1, "label": "TOP_1", "pert_id": "BRD-TOP-1", "score": 19.0},
+        {"rank": 2, "label": "TOP_2", "pert_id": "BRD-TOP-2", "score": 18.0},
+    ]
+    matrix["executed_routes"][1]["top_perturbations"] = [
+        {"rank": 1, "label": "TOP_3", "pert_id": "BRD-TOP-3", "score": 17.0},
+        {"rank": 2, "label": "TOP_4", "pert_id": "BRD-TOP-4", "score": 16.0},
+        {"rank": 3, "label": "TOP_5", "pert_id": "BRD-TOP-5", "score": 15.0},
+    ]
+    matrix["executed_routes"].append(
+        {
+            "route_id": "reverse_003",
+            "status": "executed",
+            "cell": "T47D",
+            "cell_match_type": "same_disease_cell",
+            "modality": "cp",
+            "functions": matrix["executed_routes"][0]["functions"],
+            "top_perturbations": [
+                {"rank": 1, "label": "ROUTE_ONLY", "pert_id": "BRD-ROUTE", "score": 1.0},
+            ],
+        }
+    )
+
+    expected_top5 = [row["label"] for row in build_tables(dossier)["ranked_results"][:5]]
+    specs = build_figure_specs(dossier)
+    graph = next(spec for spec in specs if spec["kind"] == "reverse_layered_route_graph")
+
+    assert [item["label"] for item in graph["candidates"]] == expected_top5
+    assert len(graph["candidates"]) == 5
+    assert {item["label"] for item in graph["contexts"]} == {"MCF7", "BT474"}
+    assert {edge["candidate"] for edge in graph["context_candidate_edges"]}.issubset(set(expected_top5))
+    assert all(edge["context"] != "T47D" for edge in graph["context_candidate_edges"])
+
+    fig = render_figure_matplotlib(graph)
+    import matplotlib.pyplot as plt
+
+    plt.close(fig)
 
 
 def test_diverging_heatmap_color_limits_are_symmetric_around_zero():

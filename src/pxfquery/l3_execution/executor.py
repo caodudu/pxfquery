@@ -258,8 +258,10 @@ def _forward_modalities(route: dict[str, Any], route_plan: dict[str, Any]) -> li
     modality = str(((route_plan.get("intent") or {}).get("genetic_modality") or "")).lower()
     if modality in {"rnai", "shrna", "sh", "sirna", "knockdown"}:
         return ["sh"]
-    if modality in {"crispr", "knockout", "ko", "lof", "loss_of_function", "delete", "deletion", "xpr"}:
+    if modality in {"crispr", "xpr"}:
         return ["xpr"]
+    if modality in {"knockout", "ko", "lof", "loss_of_function", "delete", "deletion"}:
+        return ["xpr", "sh"]
     if modality in {"overexpression", "gof", "gain_of_function"}:
         return ["xpr", "sh"]
     pert_class = str(((route_plan.get("intent") or {}).get("pert_class") or "")).lower()

@@ -269,7 +269,9 @@ def _reverse_candidate_consensus(matrix: dict[str, Any]) -> list[dict[str, Any]]
             group = groups.setdefault(
                 key,
                 {
-                    "label": item.get("label") or item.get("cmap_name") or item.get("pert_id") or key,
+                    "label": _display_reverse_candidate_label(item.get("label") or item.get("cmap_name") or item.get("pert_id") or key, modality=modality),
+                    "raw_identifier": (item.get("label") or item.get("cmap_name") or item.get("pert_id") or key) if _raw_candidate_identifier(item.get("label") or item.get("cmap_name") or item.get("pert_id") or key) else None,
+                    "annotation_status": "alias_missing" if modality == "cp" and _raw_candidate_identifier(item.get("label") or item.get("cmap_name") or item.get("pert_id") or key) else "not_required",
                     "pert_id": item.get("pert_id"),
                     "cmap_name": item.get("cmap_name"),
                     "recommended_operation": item.get("recommended_operation"),
@@ -310,6 +312,8 @@ def _reverse_candidate_consensus(matrix: dict[str, Any]) -> list[dict[str, Any]]
         rows.append(
             {
                 "label": group.get("label"),
+                "raw_identifier": group.get("raw_identifier"),
+                "annotation_status": group.get("annotation_status"),
                 "score": exact_mean_score if exact_mean_score is not None else mean_score,
                 "mean_score": mean_score,
                 "exact_cell_score": exact_mean_score,
@@ -343,9 +347,33 @@ def _reverse_candidate_consensus(matrix: dict[str, Any]) -> list[dict[str, Any]]
         )
     else:
         rows.sort(key=lambda item: (-item["support_routes"], -item["support_cells"], -item["score"], -(item.get("best_score") or 0.0), str(item.get("label") or "")))
+    _mark_reverse_candidate_groups(rows)
     for rank, row in enumerate(rows, start=1):
         row["rank"] = rank
     return rows
+
+
+def _mark_reverse_candidate_groups(rows: list[dict[str, Any]]) -> None:
+    if not rows:
+        return
+    top_score = _float_or_none(rows[0].get("score"))
+    if top_score is None:
+        return
+    leading_count = 0
+    for row in rows:
+        score = _float_or_none(row.get("score"))
+        if score is None:
+            break
+        if score == top_score or abs(score - top_score) <= max(0.5, abs(top_score) * 0.05):
+            leading_count += 1
+        else:
+            break
+        if leading_count >= 5:
+            break
+    if leading_count < 3:
+        leading_count = min(3, len(rows))
+    for index, row in enumerate(rows):
+        row["candidate_group"] = "leading_tied_group" if index < leading_count else "lower_ranked_support"
 
 
 def _candidate_key(item: dict[str, Any]) -> str:
@@ -378,10 +406,31 @@ def _is_direct_forward_route(route: dict[str, Any]) -> bool:
 
 
 def _unreadable_reverse_candidate(item: dict[str, Any], *, modality: str | None) -> bool:
-    if modality not in {"sh", "xpr"}:
-        return False
     label = str(item.get("label") or item.get("cmap_name") or item.get("pert_id") or "").strip()
-    return bool(re.fullmatch(r"BRDN\d+", label))
+    if modality in {"sh", "xpr"} and re.fullmatch(r"BRDN\d+", label):
+        return True
+    if modality in {"sh", "xpr"} and not _looks_like_gene_symbol(label):
+        return True
+    return False
+
+
+def _looks_like_gene_symbol(value: Any) -> bool:
+    text = str(value or "").strip()
+    if not text:
+        return False
+    return bool(re.fullmatch(r"[A-Z][A-Z0-9-]{1,14}", text))
+
+
+def _display_reverse_candidate_label(value: Any, *, modality: str | None) -> str:
+    label = str(value or "").strip()
+    if modality == "cp" and _raw_candidate_identifier(label):
+        return "Unnamed compound"
+    return label
+
+
+def _raw_candidate_identifier(value: Any) -> bool:
+    text = str(value or "").strip()
+    return bool(re.fullmatch(r"BRD-[A-Z][A-Z0-9-]*", text, flags=re.IGNORECASE) or re.fullmatch(r"BRDN\d+", text, flags=re.IGNORECASE))
 
 
 def _route_summary(route: dict[str, Any], matrix: dict[str, Any]) -> list[dict[str, Any]]:

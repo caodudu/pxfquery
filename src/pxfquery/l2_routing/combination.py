@@ -841,9 +841,9 @@ def _genetic_modality_plan(intent: QueryIntent) -> dict[str, list[str]]:
         return {"primary_modalities": ["sh"], "fallback_modalities": ["xpr"]}
     if modality in {"overexpression", "gof", "gain_of_function"}:
         return {"primary_modalities": ["xpr", "sh"], "fallback_modalities": []}
-    if modality in {"crispr", "knockout", "ko", "lof", "loss_of_function", "delete", "deletion"}:
-        return {"primary_modalities": ["xpr"], "fallback_modalities": ["sh"]}
-    if modality == "xpr":
+    if modality in {"crispr", "xpr"}:
+        return {"primary_modalities": ["xpr"], "fallback_modalities": []}
+    if modality in {"knockout", "ko", "lof", "loss_of_function", "delete", "deletion"}:
         return {"primary_modalities": ["xpr"], "fallback_modalities": ["sh"]}
     return {"primary_modalities": ["sh", "xpr"], "fallback_modalities": []}
 
@@ -878,7 +878,9 @@ def _reverse_modalities(intent: QueryIntent) -> list[str]:
         modality = _normalize_genetic_modality(intent.genetic_modality)
         if modality in {"rnai", "shrna", "sh", "sirna", "knockdown"}:
             return ["sh"]
-        if modality in {"crispr", "knockout", "ko", "lof", "loss_of_function", "delete", "deletion", "xpr"}:
+        if modality in {"crispr", "xpr"}:
+            return ["xpr"]
+        if modality in {"knockout", "ko", "lof", "loss_of_function", "delete", "deletion"}:
             return ["xpr", "sh"]
         if modality in {"overexpression", "gof", "gain_of_function"}:
             return ["xpr", "sh"]

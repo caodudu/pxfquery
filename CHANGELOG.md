@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.5.25.dev0 - 2026-07-04
+
+- Added forward L4 two-step biological answer synthesis that first abstracts directional evidence into response dimensions and then writes a user-facing biological answer without leaking raw program labels.
+- Improved reverse query answers for compounds and genetic perturbations, including readable candidate groups, unnamed compound handling, ChEMBL-backed annotation hooks, and quality checks against raw ID leakage or over-dismissive wording.
+- Added the generic reverse layered route graph figure for reverse L5 outputs, with strict top-five candidate nodes, target de-duplication, disconnected-context filtering, and matrix-backed context-to-candidate edge completion.
+- Updated genetic modality routing so explicit `xpr`/`crispr` uses `xpr`, while `knockout`/`lof` uses both `xpr` and `sh`.
+- Updated tests for forward synthesis payloads, reverse genetic candidate grouping, reverse layered route graph semantics, annotation-aware reverse candidates, and modality routing.
+
 ## 0.5.24.dev0 - 2026-07-04
 
 - Fixed forward L4 biological synthesis payloads so exact/direct evidence anchors the user-facing answer when present, while non-exact concept queries use cross-match consensus.

@@ -29,6 +29,9 @@ def build_figure_specs(dossier: dict[str, Any], *, max_items: int = 12, include_
         if route_graph:
             specs.append(route_graph)
     if query_type == "reverse":
+        layered_graph = _reverse_layered_route_graph_spec(target_functions, ranked, matrix)
+        if layered_graph:
+            specs.append(layered_graph)
         if target_functions:
             specs.extend(_reverse_function_ring_heatmap_specs(target_functions))
         if ranked:
@@ -89,6 +92,8 @@ def render_figure_matplotlib(spec: dict[str, Any]):
         return _render_reverse_function_ring_heatmap_matplotlib(spec)
     if kind == "reverse_candidate_bubble":
         return _render_reverse_candidate_bubble_matplotlib(spec)
+    if kind == "reverse_layered_route_graph":
+        return _render_reverse_layered_route_graph_matplotlib(spec)
     if kind == "reverse_candidate_support_bar":
         return _render_reverse_candidate_support_bar_matplotlib(spec)
     if kind == "bar":
@@ -547,6 +552,307 @@ def _reverse_candidate_bubble_spec(rows: list[dict[str, Any]]) -> dict[str, Any]
         "caption": "Bubble x-position shows evidence support count; y-position shows ranking; size follows score value.",
     }
 
+
+def _reverse_layered_route_graph_spec(target_rows: list[dict[str, Any]], ranked: list[dict[str, Any]], matrix: dict[str, Any]) -> dict[str, Any] | None:
+    if str(matrix.get("mode") or "").lower() != "reverse":
+        return None
+    candidate_nodes = _reverse_top5_candidate_nodes(ranked)
+    if not candidate_nodes:
+        return None
+
+    routes = [
+        route
+        for route in (list(matrix.get("raw_route_results") or []) or list(matrix.get("executed_routes") or []))
+        if route.get("route_id")
+    ]
+    if not routes:
+        return None
+
+    function_nodes = _reverse_layer_function_nodes(target_rows, routes)
+    context_nodes = _reverse_layer_context_nodes(routes)
+    if not context_nodes:
+        return None
+
+    edge_scores = _reverse_direct_route_edge_scores(routes, candidate_nodes)
+    for key, edge in _reverse_layered_route_graph_matrix_edge_scores(routes, candidate_nodes).items():
+        current = edge_scores.get(key)
+        if current is None or abs(_numeric(edge.get("score"))) > abs(_numeric(current.get("score"))):
+            edge_scores[key] = edge
+    candidate_labels = {str(node.get("label") or "") for node in candidate_nodes}
+    context_nodes = [node for node in context_nodes if any(context == node.get("label") and candidate in candidate_labels for context, candidate in edge_scores)]
+    context_labels = {str(node.get("label") or "") for node in context_nodes}
+    if not context_nodes:
+        return None
+    context_candidate_edges = [
+        edge
+        for (context, candidate), edge in sorted(edge_scores.items())
+        if context in context_labels and candidate in candidate_labels
+    ]
+    function_context_edges = [
+        {
+            "function": function["label"],
+            "context": context["label"],
+            "direction": function.get("direction") or "",
+            "weight": abs(_numeric(function.get("target_weight"))) or 1.0,
+        }
+        for function in function_nodes
+        for context in context_nodes
+    ]
+    return {
+        "kind": "reverse_layered_route_graph",
+        "title": "Reverse Genetic Evidence Route",
+        "functions": function_nodes,
+        "contexts": context_nodes,
+        "candidates": candidate_nodes,
+        "function_context_edges": function_context_edges,
+        "context_candidate_edges": context_candidate_edges,
+        "caption": "Reverse query route view: requested functional state, routed evidence contexts, and the strict top five ranked genetic perturbations.",
+    }
+
+
+def _reverse_top5_candidate_nodes(ranked: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    nodes = []
+    seen_labels: set[str] = set()
+    for row in ranked:
+        raw_label = _plot_label(str(row.get("label") or row.get("cmap_name") or row.get("pert_id") or ""), "Candidate")
+        label_key = _function_match_key(raw_label)
+        if not raw_label or not label_key or label_key in seen_labels:
+            continue
+        row_keys = {
+            label_key,
+            _candidate_key_from_label(row),
+            _function_match_key(str(row.get("pert_id") or "")),
+            _function_match_key(str(row.get("cmap_name") or "")),
+            _function_match_key(str(row.get("label") or "")),
+        }
+        nodes.append(
+            {
+                "label": raw_label,
+                "raw_label": raw_label,
+                "key": label_key,
+                "match_keys": sorted(row_keys - {""}),
+                "rank": len(nodes) + 1,
+                "score": _numeric(row.get("best_score") if row.get("best_score") is not None else row.get("score")),
+                "support_routes": int(_numeric(row.get("support_routes"))) or 0,
+                "support_cells": int(_numeric(row.get("support_cells"))) or 0,
+                "cells": str(row.get("cells") or row.get("best_cell") or ""),
+                "exact_cell_support": bool(row.get("exact_cell_support")),
+            }
+        )
+        seen_labels.add(label_key)
+        if len(nodes) >= 5:
+            break
+    return nodes
+
+
+def _reverse_layer_function_nodes(target_rows: list[dict[str, Any]], routes: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    source_rows = list(target_rows) or _reverse_target_functions_from_matrix(routes)
+    nodes = []
+    seen: set[str] = set()
+    for row in source_rows:
+        label = _plot_label(str(row.get("label") or row.get("var_name") or row.get("function") or ""), "Function")
+        key = _function_match_key(label)
+        if not label or key in seen:
+            continue
+        nodes.append(
+            {
+                "label": label,
+                "direction": str(row.get("direction") or ""),
+                "target_weight": _numeric(row.get("target_weight")),
+                "source": str(row.get("source") or ""),
+            }
+        )
+        seen.add(key)
+        if len(nodes) >= 5:
+            break
+    return nodes
+
+
+def _reverse_layer_context_nodes(routes: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    nodes = []
+    seen: set[str] = set()
+    for route in routes:
+        metadata = route.get("route_metadata") or {}
+        cell = _plot_label(str(route.get("cell") or metadata.get("cell") or ""), "Cell")
+        if not cell or cell in seen:
+            continue
+        nodes.append(
+            {
+                "label": cell,
+                "route_id": str(route.get("route_id") or ""),
+                "cell": cell,
+                "modality": str(route.get("modality") or metadata.get("modality") or ""),
+                "route_quality_score": _numeric(route.get("route_quality_score")),
+                "cell_match_type": str(route.get("cell_match_type") or metadata.get("cell_role") or ""),
+            }
+        )
+        seen.add(cell)
+    return nodes
+
+
+def _reverse_direct_route_edge_scores(routes: list[dict[str, Any]], candidate_nodes: list[dict[str, Any]]) -> dict[tuple[str, str], dict[str, Any]]:
+    candidate_keys = {}
+    for node in candidate_nodes:
+        for key in node.get("match_keys") or [_function_match_key(str(node.get("label") or ""))]:
+            if key:
+                candidate_keys[str(key)] = str(node.get("label") or "")
+    out: dict[tuple[str, str], dict[str, Any]] = {}
+    for route in routes:
+        metadata = route.get("route_metadata") or {}
+        cell = _plot_label(str(route.get("cell") or metadata.get("cell") or ""), "Cell")
+        if not cell:
+            continue
+        for item in _reverse_route_candidate_items(route):
+            item_keys = {
+                _function_match_key(str(item.get("label") or "")),
+                _function_match_key(str(item.get("cmap_name") or "")),
+                _function_match_key(str(item.get("pert_id") or "")),
+            }
+            for item_key in item_keys - {""}:
+                candidate = candidate_keys.get(item_key)
+                if not candidate:
+                    continue
+                score = _numeric(item.get("score") if item.get("score") is not None else item.get("value"))
+                _merge_reverse_edge(out, cell, candidate, score, source="route_top", modality=str(route.get("modality") or metadata.get("modality") or ""))
+    return out
+
+
+def _reverse_route_candidate_items(route: dict[str, Any]) -> list[dict[str, Any]]:
+    direct = route.get("top_perturbations") or []
+    if direct:
+        return list(direct)
+    rankings = route.get("rankings") or {}
+    for key in (
+        "top_loss_of_function_perturbations",
+        "top_gain_of_function_perturbations",
+        "top_perturbations",
+        "top_candidates",
+    ):
+        values = rankings.get(key) or []
+        if values:
+            return list(values)
+    return []
+
+
+def _reverse_target_functions_from_matrix(routes: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    rows: list[dict[str, Any]] = []
+    seen: set[tuple[str, str, str]] = set()
+    for route in routes:
+        metadata = route.get("route_metadata") or {}
+        cell = route.get("cell") or metadata.get("cell")
+        for item in metadata.get("functions") or route.get("functions") or route.get("requested_function_records") or []:
+            label = str(item.get("label") or item.get("function") or item.get("var_name") or "").strip()
+            var_name = str(item.get("var_name") or item.get("function") or label).strip()
+            direction = str(item.get("direction") or "").strip()
+            key = (var_name.casefold(), direction.casefold(), str(cell).casefold())
+            if not label or key in seen:
+                continue
+            seen.add(key)
+            rows.append(
+                {
+                    "label": label,
+                    "var_name": var_name,
+                    "direction": direction,
+                    "source": str(item.get("source") or "").strip(),
+                    "target_weight": 1.0 if not direction.lower().startswith("suppress") else -1.0,
+                    "cell": cell,
+                }
+            )
+    return rows
+
+
+def _reverse_layered_route_graph_matrix_edge_scores(routes: list[dict[str, Any]], candidate_nodes: list[dict[str, Any]]) -> dict[tuple[str, str], dict[str, Any]]:
+    candidate_key_to_label = {}
+    for node in candidate_nodes:
+        label = _plot_label(str(node.get("label") or ""), "Candidate")
+        for key in node.get("match_keys") or [_function_match_key(label)]:
+            if key:
+                candidate_key_to_label[str(key)] = label
+    if not routes or not candidate_key_to_label:
+        return {}
+    try:
+        import numpy as np
+
+        from pxfquery.l3_execution.executor import (
+            _aggregate_reverse_replicates,
+            _filter_reverse_control_perturbations,
+            _row_mask,
+            _target_vector,
+        )
+        from pxfquery.l3_execution.matrix_store import FunctionalMatrixStore
+        from pxfquery.resources import ResourceManager
+    except Exception:
+        return {}
+
+    out: dict[tuple[str, str], dict[str, Any]] = {}
+    store = FunctionalMatrixStore(ResourceManager(), auto_download=False)
+    matrix_cache: dict[str, Any] = {}
+    contexts = sorted({_plot_label(str(route.get("cell") or ((route.get("route_metadata") or {}).get("cell")) or ""), "Cell") for route in routes})
+    function_records_by_cell: dict[str, list[dict[str, Any]]] = {}
+    for route in routes:
+        metadata = route.get("route_metadata") or {}
+        cell = _plot_label(str(route.get("cell") or metadata.get("cell") or ""), "Cell")
+        funcs = metadata.get("functions") or route.get("functions") or []
+        if cell and funcs and cell not in function_records_by_cell:
+            function_records_by_cell[cell] = funcs
+
+    for modality in ("xpr", "sh"):
+        try:
+            matrix = matrix_cache.get(modality)
+            if matrix is None:
+                matrix = store.load(modality)
+                matrix_cache[modality] = matrix
+        except Exception:
+            continue
+        for cell in contexts:
+            functions = function_records_by_cell.get(cell) or next(iter(function_records_by_cell.values()), [])
+            if not cell or not functions:
+                continue
+            try:
+                target, _warnings = _target_vector(functions, matrix.var_names)
+                if not np.any(target):
+                    continue
+                mask = _row_mask(matrix, cell=cell, perturbation=None)
+                if not bool(mask.any()):
+                    continue
+                X = np.nan_to_num(np.asarray(matrix.X[mask], dtype=np.float32), nan=0.0, posinf=0.0, neginf=0.0)
+                obs = matrix.obs.loc[mask].copy()
+                X, obs = _aggregate_reverse_replicates(X, obs)
+                X, obs, _control_filter = _filter_reverse_control_perturbations(X, obs, modality=modality)
+                if obs.empty:
+                    continue
+                target = np.nan_to_num(np.asarray(target, dtype=np.float32), nan=0.0, posinf=0.0, neginf=0.0)
+                projections = np.nan_to_num(np.asarray(X @ target, dtype=np.float32), nan=0.0, posinf=0.0, neginf=0.0)
+            except Exception:
+                continue
+            found: dict[str, float] = {}
+            for idx, row in obs.reset_index(drop=True).iterrows():
+                score = float(projections[int(idx)])
+                labels = {
+                    _function_match_key(str(row.get("cmap_name") or "")),
+                    _function_match_key(str(row.get("pert_id") or "")),
+                }
+                for key in labels - {""}:
+                    candidate = candidate_key_to_label.get(key)
+                    if candidate and (candidate not in found or abs(score) > abs(found[candidate])):
+                        found[candidate] = score
+            for candidate, score in found.items():
+                _merge_reverse_edge(out, cell, candidate, score, source="matrix_presence", modality=modality)
+    return out
+
+
+def _merge_reverse_edge(out: dict[tuple[str, str], dict[str, Any]], context: str, candidate: str, score: float, *, source: str, modality: str) -> None:
+    key = (context, candidate)
+    current = out.get(key)
+    if current is None or abs(score) > abs(_numeric(current.get("score"))):
+        out[key] = {
+            "context": context,
+            "candidate": candidate,
+            "score": score,
+            "supported": True,
+            "edge_source": source,
+            "modality": modality,
+        }
 
 def _target_function_map_spec(rows: list[dict[str, Any]]) -> dict[str, Any]:
     items = []
@@ -1250,6 +1556,98 @@ def _render_reverse_candidate_bubble_matplotlib(spec: dict[str, Any]):
         Line2D([0], [0], marker="o", color="white", label="Context Match Support", markerfacecolor="#33658a", markeredgecolor="#263241", markersize=7),
     ]
     ax.legend(handles=handles, loc="lower right", fontsize=7, frameon=True)
+    return fig
+
+
+def _render_reverse_layered_route_graph_matplotlib(spec: dict[str, Any]):
+    plt = _pyplot()
+    functions = list(spec.get("functions") or [])
+    contexts = list(spec.get("contexts") or [])
+    candidates = list(spec.get("candidates") or [])
+    fc_edges = list(spec.get("function_context_edges") or [])
+    cp_edges = list(spec.get("context_candidate_edges") or [])
+    if not contexts or not candidates:
+        raise ValueError("reverse layered route graph needs contexts and candidates")
+
+    max_layer = max(len(functions), len(contexts), len(candidates), 4)
+    fig_w = min(max(7.4, 0.78 * max_layer + 2.4), 12.0)
+    fig, ax = plt.subplots(figsize=(fig_w, 6.2))
+    ax.set_axis_off()
+    ax.set_xlim(-0.08, 1.02)
+    ax.set_ylim(0.02, 0.98)
+
+    function_labels = [str(item.get("label") or "") for item in functions]
+    context_labels = [str(item.get("label") or "") for item in contexts]
+    candidate_labels = [str(item.get("label") or "") for item in candidates]
+    function_pos = {f"func:{name}": pos for name, pos in _layer_positions(function_labels, 0.78, x0=0.16, x1=0.94).items()}
+    context_pos = {f"ctx:{name}": pos for name, pos in _layer_positions(context_labels, 0.50, x0=0.14, x1=0.96).items()}
+    candidate_pos = {f"cand:{name}": pos for name, pos in _layer_positions(candidate_labels, 0.18, x0=0.14, x1=0.98).items()}
+    pos = {**function_pos, **context_pos, **candidate_pos}
+
+    ax.text(-0.055, 0.78, "Target\nFunctions", ha="left", va="center", fontsize=8.5, weight="bold", color="#374151")
+    ax.text(-0.055, 0.50, "Evidence\nContexts", ha="left", va="center", fontsize=8.5, weight="bold", color="#374151")
+    ax.text(-0.055, 0.18, "Top 5 Genetic\nPerturbations", ha="left", va="center", fontsize=8.5, weight="bold", color="#374151")
+
+    max_fc_weight = max([abs(_numeric(edge.get("weight"))) for edge in fc_edges] + [1.0])
+    for edge in fc_edges:
+        f_key = f"func:{edge.get('function')}"
+        c_key = f"ctx:{edge.get('context')}"
+        if f_key not in pos or c_key not in pos:
+            continue
+        direction = str(edge.get("direction") or "")
+        color = "#b23a48" if "activ" in direction.lower() or _numeric(edge.get("weight")) >= 0 else "#33658a"
+        lw = 0.8 + 1.5 * min(abs(_numeric(edge.get("weight"))) / max_fc_weight, 1.0)
+        ax.annotate("", xy=pos[c_key], xytext=pos[f_key], arrowprops=dict(arrowstyle="-", color=color, lw=lw, alpha=0.34), zorder=1)
+
+    max_cp_score = max([abs(_numeric(edge.get("score"))) for edge in cp_edges] + [1.0])
+    for edge in cp_edges:
+        c_key = f"ctx:{edge.get('context')}"
+        p_key = f"cand:{edge.get('candidate')}"
+        if c_key not in pos or p_key not in pos:
+            continue
+        strength = min(abs(_numeric(edge.get("score"))) / max_cp_score, 1.0)
+        color = "#111827" if _numeric(edge.get("score")) >= 0 else "#64748b"
+        ax.annotate(
+            "",
+            xy=pos[p_key],
+            xytext=pos[c_key],
+            arrowprops=dict(arrowstyle="-", color=color, lw=0.65 + 4.0 * strength, alpha=0.28 + 0.44 * strength),
+            zorder=2,
+        )
+
+    function_by_label = {str(item.get("label") or ""): item for item in functions}
+    for label in function_labels:
+        item = function_by_label.get(label) or {}
+        direction = str(item.get("direction") or "")
+        edge = "#b23a48" if "activ" in direction.lower() else "#33658a"
+        _draw_route_graph_node(ax, pos[f"func:{label}"], label, "#f9fafb", edge, size=270, fs=7.0, max_line=14, yoff=0.042)
+
+    for label in context_labels:
+        _draw_route_graph_node(ax, pos[f"ctx:{label}"], label, "#dbeafe", "#2563eb", size=300, fs=7.4, max_line=12, yoff=0.048)
+
+    candidate_by_label = {str(item.get("label") or ""): item for item in candidates}
+    max_support = max([_numeric(item.get("support_routes")) for item in candidates] + [1.0])
+    max_score = max([abs(_numeric(item.get("score"))) for item in candidates] + [1.0])
+    for label in candidate_labels:
+        item = candidate_by_label.get(label) or {}
+        rank = int(_numeric(item.get("rank"))) or 1
+        support = _numeric(item.get("support_routes"))
+        score = abs(_numeric(item.get("score")))
+        size = 260 + 360 * min(max(support / max_support, score / max_score), 1.0)
+        face = "#fef3c7" if rank == 1 else "#fff7ed"
+        edge = "#d97706" if item.get("exact_cell_support") else "#f59e0b"
+        _draw_route_graph_node(ax, pos[f"cand:{label}"], label, face, edge, size=int(size), fs=7.5, max_line=12, yoff=0.052)
+    from matplotlib.lines import Line2D
+
+    handles = [
+        Line2D([0], [0], color="#b23a48", lw=2.4, label="activation target"),
+        Line2D([0], [0], color="#33658a", lw=2.4, label="suppression target"),
+        Line2D([0], [0], color="#111827", lw=3.0, label="top5 candidate evidence"),
+    ]
+    ax.legend(handles=handles, loc="lower center", bbox_to_anchor=(0.5, -0.045), ncol=3, frameon=False, fontsize=7.8)
+    ax.set_title(str(spec.get("title") or "Reverse Genetic Evidence Route"), fontsize=12, weight="bold", pad=8)
+    fig.tight_layout(rect=(0, 0.03, 1, 0.96))
+    _caption(fig, spec, y=0.01)
     return fig
 
 

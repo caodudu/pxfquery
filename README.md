@@ -356,5 +356,5 @@ print(pxfquery.__version__)
 Current package version:
 
 ```text
-0.5.24.dev0
+0.5.25.dev0
 ```

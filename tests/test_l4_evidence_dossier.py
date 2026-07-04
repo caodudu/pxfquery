@@ -242,12 +242,16 @@ def test_l4_synthesis_payload_preserves_exact_primary_with_proxy_support_semanti
 
     assert dossier["evidence_layer"]["evidence_grade"] == "exact_primary_with_proxy_support"
     bio_stage = "l4_forward_biological_answer"
-    assert "biological answer writer" in provider.system_prompts[bio_stage]
+    assert "general molecular or cancer biologist" in provider.system_prompts[bio_stage]
     assert "Do not mention PxFquery" in provider.system_prompts[bio_stage]
     assert "audit_context" not in provider.user_payloads[bio_stage]
     assert "claim_basis" not in provider.user_payloads[bio_stage]
-    assert provider.user_payloads[bio_stage]["interpreted_intent"]["cell"] == "A375"
-    assert provider.user_payloads[bio_stage]["answer_policy"]["mode"] == "direct_anchor_with_support"
+    assert provider.user_payloads[bio_stage]["user_question"] is None
+    assert "interpreted_intent" not in provider.user_payloads[bio_stage]
+    assert "program_summary" not in provider.user_payloads[bio_stage]
+    assert "evidence_profiles" not in provider.user_payloads[bio_stage]
+    assert "state_axes" in provider.user_payloads[bio_stage]
+    assert provider.user_payloads["l4_forward_response_dimensions"]["answer_policy"]["mode"] == "direct_anchor_with_support"
     assert provider.user_payloads["l4_execution_quality"]["audit_context"]["evidence_grade"] == "exact_primary_with_proxy_support"
     synthesis = dossier["evidence_layer"]["llm_synthesis"]
     assert synthesis["summary"] == "Erlotinib in A375 cells activates stress programs."
@@ -312,11 +316,16 @@ def test_l4_forward_payload_uses_cross_match_consensus_when_no_direct_anchor():
         llm_provider=provider,
     )
 
-    payload = provider.user_payloads["l4_forward_biological_answer"]
-    assert payload["answer_policy"]["mode"] == "cross_match_consensus"
-    assert payload["program_summary"][0]["label"] == "PROGRAM_B"
-    assert payload["program_summary"][0]["support_profiles"] == 2
-    assert payload["program_summary"][0]["direct_support"] is False
+    dimension_payload = provider.user_payloads["l4_forward_response_dimensions"]
+    assert dimension_payload["answer_policy"]["mode"] == "cross_match_consensus"
+    assert dimension_payload["increased_evidence"][0]["label"] == "PROGRAM_B"
+    assert dimension_payload["increased_evidence"][0]["support_profiles"] == 2
+
+    answer_payload = provider.user_payloads["l4_forward_biological_answer"]
+    assert "answer_policy" not in answer_payload
+    assert "program_summary" not in answer_payload
+    assert "evidence_profiles" not in answer_payload
+    assert "state_axes" in answer_payload
 
 
 def test_l4_records_proxy_direction_calibration_but_hides_it_from_llm_payloads():
@@ -519,7 +528,11 @@ def test_l4_synthesis_repairs_quality_report_style_summary():
                 }, {"provider": "fake", "final_status": "ok", "attempts": [], "parsed_json_hash": "bad"}
             if stage == "l4_biological_answer_repair":
                 return {
-                    "answer": "Erlotinib in A375 cells activates stress programs and suppresses cholesterol homeostasis.",
+                    "answer": (
+                        "Erlotinib in A375 cells suppresses the decreased response axis from the supplied state summary. "
+                        "It activates the increased response axis from the supplied state summary. "
+                        "Together, these changes define the overall cellular state described by the state summary."
+                    ),
                     "subquestions": [],
                 }, {"provider": "fake", "final_status": "ok", "attempts": [], "parsed_json_hash": "repair"}
             return {
@@ -568,8 +581,8 @@ def test_l4_synthesis_repairs_quality_report_style_summary():
     )
     synthesis = dossier["evidence_layer"]["llm_synthesis"]
 
-    assert provider.stages == ["l4_forward_biological_answer", "l4_biological_answer_repair", "l4_execution_quality"]
-    assert synthesis["summary"].startswith("Erlotinib in A375 cells")
+    assert provider.stages == ["l4_forward_response_dimensions", "l4_forward_biological_answer", "l4_biological_answer_repair", "l4_execution_quality"]
+    assert synthesis["summary"].startswith("Erlotinib in A375 cells suppresses")
     assert synthesis["biological_summary"] == synthesis["summary"]
     assert synthesis["evidence_audit_summary"].startswith("Exact primary matrix evidence")
     assert synthesis["diagnostics"]["biological_quality_flags"] == []
