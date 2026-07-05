@@ -606,7 +606,6 @@ def _reverse_layered_route_graph_spec(target_rows: list[dict[str, Any]], ranked:
         "candidates": candidate_nodes,
         "function_context_edges": function_context_edges,
         "context_candidate_edges": context_candidate_edges,
-        "caption": "Reverse query route view: requested functional state, routed evidence contexts, and the strict top five ranked genetic perturbations.",
     }
 
 
@@ -1622,23 +1621,18 @@ def _render_reverse_layered_route_graph_matplotlib(spec: dict[str, Any]):
         item = function_by_label.get(label) or {}
         direction = str(item.get("direction") or "")
         edge = "#b23a48" if "activ" in direction.lower() else "#33658a"
-        _draw_route_graph_node(ax, pos[f"func:{label}"], label, "#f9fafb", edge, size=270, fs=7.0, max_line=14, yoff=0.042)
+        _draw_route_graph_node(ax, pos[f"func:{label}"], label, "#f9fafb", edge, size=290, fs=7.0, max_line=14, yoff=0.045, lw=0.85)
 
     for label in context_labels:
-        _draw_route_graph_node(ax, pos[f"ctx:{label}"], label, "#dbeafe", "#2563eb", size=300, fs=7.4, max_line=12, yoff=0.048)
+        _draw_route_graph_node(ax, pos[f"ctx:{label}"], label, "#dbeafe", "#2563eb", size=290, fs=7.4, max_line=12, yoff=0.050, lw=0.85)
 
     candidate_by_label = {str(item.get("label") or ""): item for item in candidates}
-    max_support = max([_numeric(item.get("support_routes")) for item in candidates] + [1.0])
-    max_score = max([abs(_numeric(item.get("score"))) for item in candidates] + [1.0])
     for label in candidate_labels:
         item = candidate_by_label.get(label) or {}
         rank = int(_numeric(item.get("rank"))) or 1
-        support = _numeric(item.get("support_routes"))
-        score = abs(_numeric(item.get("score")))
-        size = 260 + 360 * min(max(support / max_support, score / max_score), 1.0)
         face = "#fef3c7" if rank == 1 else "#fff7ed"
         edge = "#d97706" if item.get("exact_cell_support") else "#f59e0b"
-        _draw_route_graph_node(ax, pos[f"cand:{label}"], label, face, edge, size=int(size), fs=7.5, max_line=12, yoff=0.052)
+        _draw_route_graph_node(ax, pos[f"cand:{label}"], label, face, edge, size=290, fs=7.5, max_line=12, yoff=0.050, lw=0.85)
     from matplotlib.lines import Line2D
 
     handles = [
@@ -1649,7 +1643,6 @@ def _render_reverse_layered_route_graph_matplotlib(spec: dict[str, Any]):
     ax.legend(handles=handles, loc="lower center", bbox_to_anchor=(0.5, -0.045), ncol=3, frameon=False, fontsize=7.8)
     ax.set_title(str(spec.get("title") or "Reverse Genetic Evidence Route"), fontsize=12, weight="bold", pad=8)
     fig.tight_layout(rect=(0, 0.03, 1, 0.96))
-    _caption(fig, spec, y=0.01)
     return fig
 
 
@@ -1959,7 +1952,6 @@ def _render_evidence_panel_matplotlib(spec: dict[str, Any]):
 
 def _svg_shell(spec: dict[str, Any], width: int, height: int, body: str, *, defs: str = "") -> str:
     title = _esc(str(spec.get("title") or "PxFquery figure"))
-    caption = _esc(str(spec.get("caption") or ""))
     return f'''<svg xmlns="http://www.w3.org/2000/svg" role="img" width="{width}" height="{height}" viewBox="0 0 {width} {height}">
 <title>{title}</title>
 {defs}
@@ -1973,7 +1965,6 @@ def _svg_shell(spec: dict[str, Any], width: int, height: int, body: str, *, defs
 <rect x="0" y="0" width="{width}" height="{height}" fill="#fbfcfd" rx="8"/>
 <text x="20" y="28" class="title">{title}</text>
 {body}
-<text x="20" y="{height - 12}" class="value">{caption}</text>
 </svg>'''
 
 
@@ -2172,9 +2163,10 @@ def _draw_route_graph_node(
     fs: float,
     max_line: int,
     yoff: float,
+    lw: float = 1.45,
 ) -> None:
     x, y = xy
-    ax.scatter([x], [y], s=size, facecolor=face, edgecolor=edge, linewidth=1.45, zorder=4)
+    ax.scatter([x], [y], s=size, facecolor=face, edgecolor=edge, linewidth=lw, zorder=4)
     ax.text(
         x,
         y - yoff,
@@ -2403,10 +2395,7 @@ def _pyplot():
 
 
 def _caption(fig: Any, spec: dict[str, Any], *, y: float = 0.01) -> None:
-    caption = str(spec.get("caption") or "")
-    if caption:
-        fig.text(0.01, y, caption, fontsize=8, color="#4b5563")
-    fig.tight_layout(rect=(0, 0.04, 1, 0.96))
+    fig.tight_layout(rect=(0, 0, 1, 0.96))
 
 
 def _close_matplotlib_figure(fig: Any) -> None:
