@@ -508,6 +508,34 @@ def test_reverse_l5_tables_hide_unreadable_genetic_reagent_candidates():
     assert [row["label"] for row in tables["primary_route_ranked_results"]] == ["AURKA"]
 
 
+def test_reverse_l5_tables_resolve_brd_compound_labels_from_packaged_index():
+    dossier = reverse_sample_dossier()
+    matrix = dossier["evidence_layer"]["matrix_evidence"]
+    matrix["primary_result"]["modality"] = "cp"
+    matrix["primary_result"]["top_perturbations"] = []
+    matrix["executed_routes"] = [
+        {
+            "route_id": "reverse_cp_001",
+            "status": "executed",
+            "cell": "A549",
+            "modality": "cp",
+            "top_perturbations": [
+                {"rank": 1, "label": "BRD-K05674516", "pert_id": "BRD-K05674516", "score": 10.0},
+                {"rank": 2, "label": "BRD-K99999999", "pert_id": "BRD-K99999999", "score": 8.0},
+            ],
+        }
+    ]
+
+    rows = build_tables(dossier)["ranked_results"]
+
+    assert rows[0]["label"] != "Unnamed compound"
+    assert rows[0]["label"] != "BRD-K05674516"
+    assert rows[0]["raw_identifier"] == "BRD-K05674516"
+    assert rows[0]["annotation_status"] == "alias_resolved"
+    assert rows[1]["label"] == "BRD-K99999999"
+    assert rows[1]["annotation_status"] == "alias_missing_brd_fallback"
+
+
 def test_tl_answer_html_mode_can_write_report(tmp_path):
     pxf = PxFQuery()
     qdata = pxf.read.query("render report")

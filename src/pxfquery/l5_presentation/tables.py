@@ -1,7 +1,12 @@
 from __future__ import annotations
 
+from functools import lru_cache
 import re
+from pathlib import Path
 from typing import Any
+
+from pxfquery.l2_routing.index.drug_index import DrugIndex
+from pxfquery.resources.manager import ResourceManager
 
 
 def build_tables(dossier: dict[str, Any]) -> dict[str, list[dict[str, Any]]]:
@@ -271,7 +276,7 @@ def _reverse_candidate_consensus(matrix: dict[str, Any]) -> list[dict[str, Any]]
                 {
                     "label": _display_reverse_candidate_label(item.get("label") or item.get("cmap_name") or item.get("pert_id") or key, modality=modality),
                     "raw_identifier": (item.get("label") or item.get("cmap_name") or item.get("pert_id") or key) if _raw_candidate_identifier(item.get("label") or item.get("cmap_name") or item.get("pert_id") or key) else None,
-                    "annotation_status": "alias_missing" if modality == "cp" and _raw_candidate_identifier(item.get("label") or item.get("cmap_name") or item.get("pert_id") or key) else "not_required",
+                    "annotation_status": _reverse_candidate_annotation_status(item.get("label") or item.get("cmap_name") or item.get("pert_id") or key, modality=modality),
                     "pert_id": item.get("pert_id"),
                     "cmap_name": item.get("cmap_name"),
                     "recommended_operation": item.get("recommended_operation"),
@@ -424,13 +429,46 @@ def _looks_like_gene_symbol(value: Any) -> bool:
 def _display_reverse_candidate_label(value: Any, *, modality: str | None) -> str:
     label = str(value or "").strip()
     if modality == "cp" and _raw_candidate_identifier(label):
-        return "Unnamed compound"
+        return _compound_display_name(label) or label
     return label
 
 
 def _raw_candidate_identifier(value: Any) -> bool:
     text = str(value or "").strip()
     return bool(re.fullmatch(r"BRD-[A-Z][A-Z0-9-]*", text, flags=re.IGNORECASE) or re.fullmatch(r"BRDN\d+", text, flags=re.IGNORECASE))
+
+
+def _reverse_candidate_annotation_status(value: Any, *, modality: str | None) -> str:
+    if modality != "cp" or not _raw_candidate_identifier(value):
+        return "not_required"
+    return "alias_resolved" if _compound_display_name(value) else "alias_missing_brd_fallback"
+
+
+def _compound_display_name(value: Any) -> str | None:
+    text = str(value or "").strip()
+    if not re.fullmatch(r"BRD-[A-Z][A-Z0-9-]*", text, flags=re.IGNORECASE):
+        return None
+    index = _load_l5_table_drug_index()
+    if not isinstance(index, DrugIndex):
+        return None
+    return index.display_name(text)
+
+
+@lru_cache(maxsize=1)
+def _load_l5_table_drug_index() -> DrugIndex | None:
+    try:
+        status = ResourceManager().status()
+        drug_index = status.available_files.get("l2.drug_index")
+        drug_neighbors = status.available_files.get("l2.drug_neighbors")
+        if not drug_index or not drug_neighbors:
+            return None
+        index_path = Path(drug_index)
+        neighbors_path = Path(drug_neighbors)
+        if not index_path.exists() or not neighbors_path.exists():
+            return None
+        return DrugIndex(index_path, neighbors_path)
+    except Exception:
+        return None
 
 
 def _route_summary(route: dict[str, Any], matrix: dict[str, Any]) -> list[dict[str, Any]]:
