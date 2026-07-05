@@ -1599,19 +1599,21 @@ def _render_reverse_layered_route_graph_matplotlib(spec: dict[str, Any]):
         lw = 0.8 + 1.5 * min(abs(_numeric(edge.get("weight"))) / max_fc_weight, 1.0)
         ax.annotate("", xy=pos[c_key], xytext=pos[f_key], arrowprops=dict(arrowstyle="-", color=color, lw=lw, alpha=0.34), zorder=1)
 
-    max_cp_score = max([abs(_numeric(edge.get("score"))) for edge in cp_edges] + [1.0])
+    cp_scores = [abs(_numeric(edge.get("score"))) for edge in cp_edges]
+    min_cp_score = min(cp_scores) if cp_scores else 0.0
+    max_cp_score = max(cp_scores) if cp_scores else 1.0
+    cp_span = max(max_cp_score - min_cp_score, 1e-9)
     for edge in cp_edges:
         c_key = f"ctx:{edge.get('context')}"
         p_key = f"cand:{edge.get('candidate')}"
         if c_key not in pos or p_key not in pos:
             continue
-        strength = min(abs(_numeric(edge.get("score"))) / max_cp_score, 1.0)
-        color = "#111827" if _numeric(edge.get("score")) >= 0 else "#64748b"
+        strength = min(max((abs(_numeric(edge.get("score"))) - min_cp_score) / cp_span, 0.0), 1.0)
         ax.annotate(
             "",
             xy=pos[p_key],
             xytext=pos[c_key],
-            arrowprops=dict(arrowstyle="-", color=color, lw=0.65 + 4.0 * strength, alpha=0.28 + 0.44 * strength),
+            arrowprops=dict(arrowstyle="-", color="#334155", lw=0.65 + 4.2 * strength, alpha=0.30 + 0.46 * strength),
             zorder=2,
         )
 
@@ -1642,7 +1644,7 @@ def _render_reverse_layered_route_graph_matplotlib(spec: dict[str, Any]):
     handles = [
         Line2D([0], [0], color="#b23a48", lw=2.4, label="activation target"),
         Line2D([0], [0], color="#33658a", lw=2.4, label="suppression target"),
-        Line2D([0], [0], color="#111827", lw=3.0, label="top5 candidate evidence"),
+        Line2D([0], [0], color="#334155", lw=2.6, alpha=0.64, label="candidate evidence"),
     ]
     ax.legend(handles=handles, loc="lower center", bbox_to_anchor=(0.5, -0.045), ncol=3, frameon=False, fontsize=7.8)
     ax.set_title(str(spec.get("title") or "Reverse Genetic Evidence Route"), fontsize=12, weight="bold", pad=8)
