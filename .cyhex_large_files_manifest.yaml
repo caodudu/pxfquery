@@ -10617,6 +10617,8 @@ excluded_from_git:
   size_mb: 410.06
 - path: 5_phase_translation/goal_paper_figure_planning/task_figure4_forward_genetic_query_notebook_figure_wo/3_execution/t144_latest_package_source_0_5_21/src/pxfquery.egg-info/PKG-INFO
   size_mb: 0.0
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure4_forward_genetic_query_notebook_figure_wo/4_artifact/.DS_Store
+  size_mb: 0.01
 - path: 5_phase_translation/goal_paper_figure_planning/task_figure4_forward_genetic_query_notebook_figure_wo/4_artifact/4_picture/.DS_Store
   size_mb: 0.01
 - path: 5_phase_translation/goal_paper_figure_planning/task_figure4_forward_genetic_query_notebook_figure_wo/4_artifact/4_picture/figure4/.DS_Store

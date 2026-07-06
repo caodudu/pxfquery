@@ -2104,7 +2104,7 @@ tasks:
   phase: translation
   goal: goal_cyhex_outline_draft_biopaper
   path: 5_phase_translation/goal_cyhex_outline_draft_biopaper/task_pxfquery_pre_writing_materials_hub
-  status: pending
+  status: active
   executor: human
   created: '2026-07-06'
   completed: null
