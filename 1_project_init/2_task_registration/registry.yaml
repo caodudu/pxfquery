@@ -2117,3 +2117,12 @@ tasks:
   executor: human
   created: '2026-07-07'
   completed: null
+- id: T-157
+  name: pxfquery_manuscript_introduction_draft
+  phase: translation
+  goal: goal_cyhex_outline_draft_biopaper
+  path: 5_phase_translation/goal_cyhex_outline_draft_biopaper/task_pxfquery_manuscript_introduction_draft
+  status: pending
+  executor: hybrid
+  created: '2026-07-07'
+  completed: null

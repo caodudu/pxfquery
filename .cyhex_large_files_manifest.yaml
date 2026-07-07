@@ -181,6 +181,8 @@ excluded_from_git:
   size_mb: 332.8
 - path: 2_project_asset/1_raw_material/legacy_flat_asset_library_v20260614/results/gsea_tables/M-0238_xpr_gsea_100terms.csv
   size_mb: 232.99
+- path: 2_project_asset/1_raw_material/wxy投稿文件/.~nuscript_v8.docx
+  size_mb: 0.0
 - path: 2_project_asset/1_raw_material/wxy投稿文件/Figures.zip
   size_mb: 7.27
 - path: 2_project_asset/1_raw_material/wxy投稿文件/Supplementary Figure.docx
@@ -1876,6 +1878,10 @@ excluded_from_git:
   size_mb: 0.0
 - path: 3_phase_digestion/goal_submission_rules/task_mdpi_submission_package_and_guide/5_report/cli_sessions/deliver/20260626_031657_opencode_cli_aa63797abbeb/stdout.log
   size_mb: 0.08
+- path: 3_phase_digestion/goal_template_paper_digestion/.DS_Store
+  size_mb: 0.01
+- path: 3_phase_digestion/goal_template_paper_digestion/task_digest_wxy_genes_template_paper/.DS_Store
+  size_mb: 0.01
 - path: 3_phase_digestion/goal_template_paper_digestion/task_digest_wxy_genes_template_paper/1_asset/Figures.zip
   size_mb: 7.27
 - path: 3_phase_digestion/goal_template_paper_digestion/task_digest_wxy_genes_template_paper/1_asset/Supplementary
@@ -8495,6 +8501,18 @@ excluded_from_git:
   size_mb: 0.19
 - path: 5_phase_translation/.DS_Store
   size_mb: 0.01
+- path: 5_phase_translation/goal_cyhex_outline_draft_biopaper/task_pxfquery_manuscript_writing_design/.DS_Store
+  size_mb: 0.01
+- path: 5_phase_translation/goal_cyhex_outline_draft_biopaper/task_pxfquery_manuscript_writing_design/3_execution/.DS_Store
+  size_mb: 0.01
+- path: 5_phase_translation/goal_cyhex_outline_draft_biopaper/task_pxfquery_manuscript_writing_design/3_execution/01_word_template/genes_official_template_v20260619.dot
+  size_mb: 0.08
+- path: 5_phase_translation/goal_cyhex_outline_draft_biopaper/task_pxfquery_manuscript_writing_design/3_execution/01_word_template/pxfquery_genes_manuscript_template_working_copy.docx
+  size_mb: 0.01
+- path: 5_phase_translation/goal_cyhex_outline_draft_biopaper/task_pxfquery_manuscript_writing_design/3_execution/02_word_base/.~nuscript_20260707.docx
+  size_mb: 0.0
+- path: 5_phase_translation/goal_cyhex_outline_draft_biopaper/task_pxfquery_manuscript_writing_design/3_execution/02_word_base/manuscript_20260707.docx
+  size_mb: 0.07
 - path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_algorithm_method_story/1_asset/ms6_evidence_claim_mapping.csv
   size_mb: 0.0
 - path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_algorithm_method_story/5_report/cli_sessions/check/20260627_070649_opencode_cli_b60d8415eaf4/stderr.log
