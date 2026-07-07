@@ -2108,3 +2108,12 @@ tasks:
   executor: human
   created: '2026-07-06'
   completed: null
+- id: T-156
+  name: pxfquery_manuscript_writing_design
+  phase: translation
+  goal: goal_cyhex_outline_draft_biopaper
+  path: 5_phase_translation/goal_cyhex_outline_draft_biopaper/task_pxfquery_manuscript_writing_design
+  status: pending
+  executor: human
+  created: '2026-07-07'
+  completed: null
