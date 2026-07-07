@@ -10729,6 +10729,8 @@ excluded_from_git:
   size_mb: 0.01
 - path: 5_phase_translation/goal_paper_figure_planning/task_figure5_forward_drug_query_notebook_figure_workb/3_execution/t144_package_source_for_figure5a_round5/src/pxfquery.egg-info/PKG-INFO
   size_mb: 0.0
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure5_forward_drug_query_notebook_figure_workb/4_artifact/.DS_Store
+  size_mb: 0.01
 - path: 5_phase_translation/goal_paper_figure_planning/task_figure5_forward_drug_query_notebook_figure_workb/4_artifact/1_tmp/pdf_render_check/r15c01/page-1.png
   size_mb: 0.31
 - path: 5_phase_translation/goal_paper_figure_planning/task_figure5_forward_drug_query_notebook_figure_workb/4_artifact/4_picture/figure5/panel_a_candidate_previews/FD01/pdf/fd01_01_evidence_match_map.pdf
@@ -13347,6 +13349,8 @@ excluded_from_git:
   size_mb: 0.19
 - path: 5_phase_translation/goal_paper_figure_planning/task_figure6_reverse_genetic_query_concept_notebook_workbench/4_artifact/1_tmp/rg15_current_top5_qdata/RG12_qdata.pkl
   size_mb: 0.19
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure6_reverse_genetic_query_concept_notebook_workbench/4_artifact/3_figure/.DS_Store
+  size_mb: 0.01
 - path: 5_phase_translation/goal_paper_figure_planning/task_figure6_reverse_genetic_query_concept_notebook_workbench/4_artifact/3_figure/RGN2B_evidence_route_editable.pdf
   size_mb: 0.07
 - path: 5_phase_translation/goal_paper_figure_planning/task_figure6_reverse_genetic_query_concept_notebook_workbench/4_artifact/3_figure/RGN2B_evidence_route_editable_v2_true_circles.pdf
@@ -17843,6 +17847,8 @@ excluded_from_git:
   size_mb: 0.59
 - path: 5_phase_translation/goal_paper_figure_planning/task_figure8_web_usage_notebook_figure_workbench/3_execution/illustrator/figure8_v1.png
   size_mb: 0.18
+- path: 5_phase_translation/goal_paper_figure_planning/task_figure8_web_usage_notebook_figure_workbench/4_artifact/.DS_Store
+  size_mb: 0.01
 - path: 5_phase_translation/goal_paper_figure_planning/task_figure8_web_usage_notebook_figure_workbench/4_artifact/1_tmp/genes_web_tool_actual_site_screenshots/crossmp_actual_home.png
   size_mb: 0.15
 - path: 5_phase_translation/goal_paper_figure_planning/task_figure8_web_usage_notebook_figure_workbench/4_artifact/1_tmp/genes_web_tool_actual_site_screenshots/dtvf_github_actual_code_page.png
@@ -19363,6 +19369,26 @@ excluded_from_git:
   size_mb: 2.25
 - path: tmp/opencode_tui_state_before_prompt.png
   size_mb: 2.23
+- path: tmp/pdfs/current_figures_render/contact_sheet.png
+  size_mb: 0.22
+- path: tmp/pdfs/current_figures_render/fig1.png
+  size_mb: 0.11
+- path: tmp/pdfs/current_figures_render/fig2.png
+  size_mb: 0.21
+- path: tmp/pdfs/current_figures_render/fig3.png
+  size_mb: 0.11
+- path: tmp/pdfs/current_figures_render/fig4.png
+  size_mb: 0.27
+- path: tmp/pdfs/current_figures_render/fig5.png
+  size_mb: 0.24
+- path: tmp/pdfs/current_figures_render/fig6.png
+  size_mb: 0.17
+- path: tmp/pdfs/current_figures_render/fig7.png
+  size_mb: 0.17
+- path: tmp/pdfs/current_figures_render/fig8.png
+  size_mb: 0.1
+- path: tmp/pdfs/current_figures_render/fig9.png
+  size_mb: 0.13
 - path: tmp/pdfs/fig2d_top100_pdf_render.png
   size_mb: 0.02
 - path: tmp/pxfquery_mcp_recent_qdata.pkl
