@@ -8507,6 +8507,10 @@ excluded_from_git:
   size_mb: 0.01
 - path: 5_phase_translation/goal_cyhex_outline_draft_biopaper/task_pxfquery_manuscript_introduction_draft/4_artifact/3_document/manuscript_20260707_t157_v1.docx
   size_mb: 0.07
+- path: 5_phase_translation/goal_cyhex_outline_draft_biopaper/task_pxfquery_manuscript_methods_draft/1_asset/t158_manuscript_word_copy.docx
+  size_mb: 0.07
+- path: 5_phase_translation/goal_cyhex_outline_draft_biopaper/task_pxfquery_manuscript_methods_draft/3_execution/02_word_base/manuscript_20260707_t158_v1.docx
+  size_mb: 0.07
 - path: 5_phase_translation/goal_cyhex_outline_draft_biopaper/task_pxfquery_manuscript_writing_design/.DS_Store
   size_mb: 0.01
 - path: 5_phase_translation/goal_cyhex_outline_draft_biopaper/task_pxfquery_manuscript_writing_design/3_execution/.DS_Store
