@@ -2144,3 +2144,12 @@ tasks:
   executor: human
   created: '2026-07-07'
   completed: null
+- id: T-160
+  name: pxfquery_supplementary_tables_materials
+  phase: translation
+  goal: goal_cyhex_outline_draft_biopaper
+  path: 5_phase_translation/goal_cyhex_outline_draft_biopaper/task_pxfquery_supplementary_tables_materials
+  status: pending
+  executor: human
+  created: '2026-07-07'
+  completed: null

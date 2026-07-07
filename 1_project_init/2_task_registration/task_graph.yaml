@@ -2174,6 +2174,22 @@ edges:
   to: goal_cyhex_outline_draft_biopaper/task_pxfquery_manuscript_methods_draft
   dep_id: T-157
   gate: may
+- from: goal_cyhex_outline_draft_biopaper/task_pxfquery_pre_writing_materials_hub
+  to: goal_cyhex_outline_draft_biopaper/task_pxfquery_manuscript_results_draft
+  dep_id: T-155
+  gate: reference
+- from: goal_cyhex_outline_draft_biopaper/task_pxfquery_manuscript_writing_design
+  to: goal_cyhex_outline_draft_biopaper/task_pxfquery_manuscript_results_draft
+  dep_id: T-156
+  gate: may
+- from: goal_cyhex_outline_draft_biopaper/task_pxfquery_manuscript_introduction_draft
+  to: goal_cyhex_outline_draft_biopaper/task_pxfquery_manuscript_results_draft
+  dep_id: T-157
+  gate: may
+- from: goal_cyhex_outline_draft_biopaper/task_pxfquery_manuscript_methods_draft
+  to: goal_cyhex_outline_draft_biopaper/task_pxfquery_manuscript_results_draft
+  dep_id: T-158
+  gate: may
 labels:
 - id: label_mqpofuno
   phase: digestion
