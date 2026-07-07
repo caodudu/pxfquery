@@ -2,9 +2,9 @@ project_id: P-012
 name: PxFquery
 created: '2026-06-13'
 target_delivery: ''
-current_phase: development
+current_phase: translation
 status: active
-focus: 4_phase_development/goal_algorithm_function_review/task_mvp_algorithm_run-through_review
-notes: Entering development phase. Current focus is configuring T-013 under G-005
-  for MVP algorithm run-through review; G-006 is reserved for later algorithm version
-  development.
+focus: 5_phase_translation/goal_cyhex_outline_draft_biopaper/task_pxfquery_manuscript_writing_design
+notes: T-155 pre-writing materials hub has prepared the reusable writing-material
+  context. Next focus is T-156 manuscript writing design under G-012, using T-155
+  materials as non-blocking reference context.

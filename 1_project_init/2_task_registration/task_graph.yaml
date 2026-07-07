@@ -2144,6 +2144,15 @@ edges:
   to: goal_paper_figure_planning/task_figure9_mcp_ai_dialog_notebook_workbench
   dep_id: T-144
   gate: may
+- from: goal_cyhex_outline_draft_biopaper/task_pxfquery_pre_writing_materials_hub
+  to: goal_cyhex_outline_draft_biopaper/task_pxfquery_manuscript_writing_design
+  dep_id: T-155
+  relation: reference
+  relation_label: T155 pre-writing materials inform T156 manuscript design
+  scale: task
+  nature: lineage
+  note: T156 should read the T155 materials README and focused Markdown files as non-blocking writing-design context.
+  gate: reference
 labels:
 - id: label_mqpofuno
   phase: digestion
