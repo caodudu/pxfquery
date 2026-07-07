@@ -4,7 +4,7 @@ created: '2026-06-13'
 target_delivery: ''
 current_phase: translation
 status: active
-focus: 5_phase_translation/goal_cyhex_outline_draft_biopaper/task_pxfquery_manuscript_writing_design
-notes: T-155 pre-writing materials hub has prepared the reusable writing-material
-  context. Next focus is T-156 manuscript writing design under G-012, using T-155
-  materials as non-blocking reference context.
+focus: 5_phase_translation/goal_cyhex_outline_draft_biopaper/task_pxfquery_manuscript_introduction_draft
+notes: T-157 pxfquery_manuscript_introduction_draft has been created under G-012 for
+  the next Introduction-writing step. It uses T-155 pre-writing materials as the main
+  context and treats T-156 manuscript design as a may input if available.
