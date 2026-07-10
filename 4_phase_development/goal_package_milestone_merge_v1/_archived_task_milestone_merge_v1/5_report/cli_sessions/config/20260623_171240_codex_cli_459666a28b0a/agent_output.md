@@ -1,5 +1,0 @@
-I’ll first load the live CyHex protocol through the local API, then read the project/task/predecessor files before touching the configuration outputs.
-The API is available and reports CyHex protocol v2.11. I’m reading that protocol now, then I’ll inspect the task shape and predecessor registries to decide the asset contract.
-The project protocol frames this as a controlled current-workspace package milestone, with legacy material only as registered source material. I’m continuing through the CyHex protocol and then I’ll read the current task plus the selected predecessor outputs.
-The current task is active/configuring and its registration is empty, so this is a real asset-selection pass rather than a no-asset task. I’m reading the task format reference and sampling the registered predecessor outputs now.
-The existing protocol already has the right general shape, but the asset rule references assets that are not actually registered in the current task. I’m going through each required predecessor’s protocol, asset rule, asset registration, artifact registry, and completion evidence so the final registration matches real upstream files.

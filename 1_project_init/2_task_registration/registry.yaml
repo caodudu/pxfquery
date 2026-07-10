@@ -2,8 +2,8 @@ tasks:
 - id: T-001
   name: Digest legacy assets
   phase: digestion
-  goal: goal_legacy_asset_migration
-  path: 3_phase_digestion/goal_legacy_asset_migration/task_audit_legacy_assets
+  goal: G-001_legacy_asset_migration
+  path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets
   status: done
   executor: hybrid
   created: '2026-06-13'
@@ -11,8 +11,8 @@ tasks:
 - id: T-002
   name: Plan migration map
   phase: digestion
-  goal: goal_legacy_asset_migration
-  path: 3_phase_digestion/goal_legacy_asset_migration/task_plan_migration_map
+  goal: G-001_legacy_asset_migration
+  path: 3_phase_digestion/G-001_legacy_asset_migration/T-002_plan_migration_map
   status: done
   executor: hybrid
   created: '2026-06-14'
@@ -20,8 +20,8 @@ tasks:
 - id: T-003
   name: Normalize project protocol from migrated context
   phase: digestion
-  goal: goal_legacy_asset_migration
-  path: 3_phase_digestion/goal_legacy_asset_migration/task_normalize_project_protocol_from_migrated_context
+  goal: G-001_legacy_asset_migration
+  path: 3_phase_digestion/G-001_legacy_asset_migration/T-003_normalize_project_protocol_from_migrated_context
   status: done
   executor: hybrid
   created: '2026-06-16'
@@ -29,8 +29,8 @@ tasks:
 - id: T-004
   name: Systematic Genes literature survey
   phase: digestion
-  goal: goal_magazine_research
-  path: 3_phase_digestion/goal_magazine_research/task_systematic_genes_literature_survey
+  goal: G-003_magazine_research
+  path: 3_phase_digestion/G-003_magazine_research/T-004_systematic_genes_literature_survey
   status: done
   executor: hybrid
   created: '2026-06-16'
@@ -38,8 +38,8 @@ tasks:
 - id: T-005
   name: Genes bioinformatics reference digestion and PxFquery adjustment preparation
   phase: digestion
-  goal: goal_magazine_research
-  path: 3_phase_digestion/goal_magazine_research/task_design_genes_adjustment
+  goal: G-003_magazine_research
+  path: 3_phase_digestion/G-003_magazine_research/T-005_design_genes_adjustment
   status: done
   executor: hybrid
   created: '2026-06-17'
@@ -47,8 +47,8 @@ tasks:
 - id: T-006
   name: Genes affiliation country and hospital-source timing analysis
   phase: digestion
-  goal: goal_magazine_research
-  path: 3_phase_digestion/goal_magazine_research/task_genes_affiliation_bias_analysis
+  goal: G-003_magazine_research
+  path: 3_phase_digestion/G-003_magazine_research/T-006_genes_affiliation_bias_analysis
   status: done
   executor: hybrid
   created: '2026-06-17'
@@ -56,8 +56,8 @@ tasks:
 - id: T-007
   name: Digest PxFquery development state
   phase: digestion
-  goal: goal_development_asset_digestion
-  path: 3_phase_digestion/goal_development_asset_digestion/task_digest_pxfquery_development_state
+  goal: G-002_development_asset_digestion
+  path: 3_phase_digestion/G-002_development_asset_digestion/T-007_digest_pxfquery_development_state
   status: done
   executor: hybrid
   created: '2026-06-17'
@@ -65,8 +65,8 @@ tasks:
 - id: T-011
   name: Frontiers in Genetics publication timing survey
   phase: digestion
-  goal: goal_magazine_research
-  path: 3_phase_digestion/goal_magazine_research/task_frontiers_in_genetics_publication_timing
+  goal: G-003_magazine_research
+  path: 3_phase_digestion/G-003_magazine_research/T-011_frontiers_in_genetics_publication_timing
   status: done
   executor: hybrid
   created: '2026-06-18'
@@ -74,8 +74,8 @@ tasks:
 - id: T-008
   name: MDPI cross-journal affiliation and PUMCH publication landscape
   phase: digestion
-  goal: goal_magazine_research
-  path: 3_phase_digestion/goal_magazine_research/task_mdpi_cross_journal_affiliation_landscape
+  goal: G-003_magazine_research
+  path: 3_phase_digestion/G-003_magazine_research/T-008_mdpi_cross_journal_affiliation_landscape
   status: done
   executor: hybrid
   created: '2026-06-17'
@@ -83,8 +83,8 @@ tasks:
 - id: T-009
   name: Frontiers in Genetics affiliation and PUMCH publication landscape
   phase: digestion
-  goal: goal_magazine_research
-  path: 3_phase_digestion/goal_magazine_research/task_frontiers_in_genetics_affiliation_landscape
+  goal: G-003_magazine_research
+  path: 3_phase_digestion/G-003_magazine_research/T-009_frontiers_in_genetics_affiliation_landscape
   status: done
   executor: hybrid
   created: '2026-06-17'
@@ -92,8 +92,8 @@ tasks:
 - id: T-010
   name: Genes same-journal citation pattern and observable outcome study
   phase: digestion
-  goal: goal_citation_research
-  path: 3_phase_digestion/goal_citation_research/task_genes_same_journal_citation_effect
+  goal: G-004_citation_research
+  path: 3_phase_digestion/G-004_citation_research/T-010_genes_same_journal_citation_effect
   status: pending
   executor: hybrid
   created: '2026-06-18'
@@ -101,8 +101,8 @@ tasks:
 - id: T-012
   name: Genes bioinformatics deliverable paper catalog
   phase: digestion
-  goal: goal_magazine_research
-  path: 3_phase_digestion/goal_magazine_research/task_genes_bioinformatics_deliverable_catalog
+  goal: G-003_magazine_research
+  path: 3_phase_digestion/G-003_magazine_research/T-012_genes_bioinformatics_deliverable_catalog
   status: done
   executor: hybrid
   created: '2026-06-18'
@@ -110,8 +110,8 @@ tasks:
 - id: T-013
   name: MVP algorithm run-through review
   phase: development
-  goal: goal_algorithm_function_review
-  path: 4_phase_development/goal_algorithm_function_review/task_mvp_algorithm_run-through_review
+  goal: G-005_algorithm_function_review
+  path: 4_phase_development/G-005_algorithm_function_review/T-013_mvp_algorithm_run-through_review
   status: done
   executor: hybrid
   created: '2026-06-18'
@@ -119,8 +119,8 @@ tasks:
 - id: T-014
   name: Understand PxFquery precomputed data
   phase: development
-  goal: goal_precomputed_data_exploration
-  path: 4_phase_development/goal_precomputed_data_exploration/task_understand_pxfquery_precomputed_data
+  goal: G-007_precomputed_data_exploration
+  path: 4_phase_development/G-007_precomputed_data_exploration/T-014_understand_pxfquery_precomputed_data
   status: done
   executor: hybrid
   created: '2026-06-18'
@@ -129,8 +129,8 @@ tasks:
 - id: T-015
   name: MDPI submission package and guide
   phase: digestion
-  goal: goal_submission_rules
-  path: 3_phase_digestion/goal_submission_rules/task_mdpi_submission_package_and_guide
+  goal: G-008_submission_rules
+  path: 3_phase_digestion/G-008_submission_rules/T-015_mdpi_submission_package_and_guide
   status: done
   executor: hybrid
   created: '2026-06-19'
@@ -139,8 +139,8 @@ tasks:
 - id: T-016
   name: Digest WXY Genes template paper package
   phase: digestion
-  goal: goal_template_paper_digestion
-  path: 3_phase_digestion/goal_template_paper_digestion/task_digest_wxy_genes_template_paper
+  goal: G-009_template_paper_digestion
+  path: 3_phase_digestion/G-009_template_paper_digestion/T-016_digest_wxy_genes_template_paper
   status: done
   executor: hybrid
   created: '2026-06-19'
@@ -148,8 +148,8 @@ tasks:
 - id: T-017
   name: mdpi引用格式
   phase: digestion
-  goal: goal_citation_research
-  path: 3_phase_digestion/goal_citation_research/task_pending_t017
+  goal: G-004_citation_research
+  path: 3_phase_digestion/G-004_citation_research/T-017_pending_t017
   status: done
   executor: hybrid
   created: '2026-06-23'
@@ -175,8 +175,8 @@ tasks:
 - id: T-018
   name: 生信论文模板拆解
   phase: digestion
-  goal: goal_template_paper_digestion
-  path: 3_phase_digestion/goal_template_paper_digestion/task_pending_t018
+  goal: G-009_template_paper_digestion
+  path: 3_phase_digestion/G-009_template_paper_digestion/T-018_pending_t018
   status: done
   executor: hybrid
   created: '2026-06-23'
@@ -201,8 +201,8 @@ tasks:
 - id: T-019
   name: bioinformatics_website_hosting_options
   phase: translation
-  goal: goal_pending_g010
-  path: 5_phase_translation/goal_pending_g010/task_pending_t019
+  goal: G-010_pending_g010
+  path: 5_phase_translation/G-010_pending_g010/T-019_pending_t019
   status: active
   executor: hybrid
   created: '2026-06-23'
@@ -210,8 +210,8 @@ tasks:
 - id: T-021
   name: standard_resources_optimal_formats
   phase: development
-  goal: goal_precomputed_data_exploration
-  path: 4_phase_development/goal_precomputed_data_exploration/task_standard_resources_optimal_formats
+  goal: G-007_precomputed_data_exploration
+  path: 4_phase_development/G-007_precomputed_data_exploration/T-021_standard_resources_optimal_formats
   status: done
   executor: hybrid
   created: '2026-06-23'
@@ -219,8 +219,8 @@ tasks:
 - id: T-022
   name: 论文figure1示意图设计
   phase: translation
-  goal: goal_paper_figure_planning
-  path: 5_phase_translation/goal_paper_figure_planning/task_figure1
+  goal: G-011_paper_figure_planning
+  path: 5_phase_translation/G-011_paper_figure_planning/T-022_figure1
   status: pending
   executor: hybrid
   created: '2026-06-23'
@@ -228,8 +228,8 @@ tasks:
 - id: T-023
   name: gap_repair_stage_planning
   phase: development
-  goal: goal_algorithm_version_development
-  path: 4_phase_development/goal_algorithm_version_development/task_gap_repair_stage_planning
+  goal: G-006_algorithm_version_development
+  path: 4_phase_development/G-006_algorithm_version_development/T-023_gap_repair_stage_planning
   status: pending
   executor: hybrid
   created: '2026-06-23'
@@ -238,7 +238,7 @@ tasks:
   name: package_architecture_contract
   phase: development
   goal: goal_python_package_milestone
-  path: 4_phase_development/goal_python_package_milestone/task_package_architecture_contract
+  path: 4_phase_development/G-020_package_foundation_v1/T-024_workspace_package_v1
   status: superseded
   executor: hybrid
   created: '2026-06-23'
@@ -246,14 +246,14 @@ tasks:
   previous_status: done
   superseded_by:
     id: T-024
-    path: 4_phase_development/goal_package_foundation_v1/task_workspace_package_v1
+    path: 4_phase_development/G-020_package_foundation_v1/T-024_workspace_package_v1
   superseded_at: '2026-06-24T00:55:16'
   notes: Auto-superseded by registry normalization; duplicate current row for T-024.
 - id: T-025
   name: fast_package_milestone_v0
   phase: development
   goal: goal_python_package_milestone
-  path: 4_phase_development/goal_python_package_milestone/task_fast_package_milestone_v0
+  path: 4_phase_development/G-021_resource_index_packs_v1/T-025_resource_manifest_v1
   status: superseded
   executor: hybrid
   created: '2026-06-23'
@@ -266,13 +266,13 @@ tasks:
   previous_status: done
   superseded_by:
     id: T-025
-    path: 4_phase_development/goal_resource_index_packs_v1/task_resource_manifest_v1
+    path: 4_phase_development/G-021_resource_index_packs_v1/T-025_resource_manifest_v1
   superseded_at: '2026-06-24T00:55:16'
 - id: T-026
   name: workspace_package_t026
   phase: development
   goal: goal_package_foundation_v0
-  path: 4_phase_development/goal_package_foundation_v0/task_workspace_package_t026
+  path: 4_phase_development/G-021_resource_index_packs_v1/T-026_matrix_loader_v1
   status: superseded
   executor: hybrid
   created: '2026-06-23'
@@ -284,13 +284,13 @@ tasks:
   previous_status: done
   superseded_by:
     id: T-026
-    path: 4_phase_development/goal_resource_index_packs_v1/task_matrix_loader_v1
+    path: 4_phase_development/G-021_resource_index_packs_v1/T-026_matrix_loader_v1
   superseded_at: '2026-06-24T00:55:16'
 - id: T-027
   name: resource_manifest_t027
   phase: development
   goal: goal_resource_index_packs_v0
-  path: 4_phase_development/goal_resource_index_packs_v0/task_resource_manifest_t027
+  path: 4_phase_development/G-021_resource_index_packs_v1/T-027_index_name_normalizer_v1
   status: superseded
   executor: hybrid
   created: '2026-06-23'
@@ -302,13 +302,13 @@ tasks:
   previous_status: done
   superseded_by:
     id: T-027
-    path: 4_phase_development/goal_resource_index_packs_v1/task_index_name_normalizer_v1
+    path: 4_phase_development/G-021_resource_index_packs_v1/T-027_index_name_normalizer_v1
   superseded_at: '2026-06-24T00:55:16'
 - id: T-028
   name: matrix_loader_t028
   phase: development
   goal: goal_resource_index_packs_v0
-  path: 4_phase_development/goal_resource_index_packs_v0/task_matrix_loader_t028
+  path: 4_phase_development/G-021_resource_index_packs_v1/T-028_function_index_pack_v1
   status: superseded
   executor: hybrid
   created: '2026-06-23'
@@ -319,13 +319,13 @@ tasks:
   previous_status: done
   superseded_by:
     id: T-028
-    path: 4_phase_development/goal_resource_index_packs_v1/task_function_index_pack_v1
+    path: 4_phase_development/G-021_resource_index_packs_v1/T-028_function_index_pack_v1
   superseded_at: '2026-06-24T00:55:16'
 - id: T-029
   name: index_name_normalizer_t029
   phase: development
   goal: goal_resource_index_packs_v0
-  path: 4_phase_development/goal_resource_index_packs_v0/task_index_name_normalizer_t029
+  path: 4_phase_development/G-022_deterministic_query_engines_v1/T-029_forward_query_engine_v1
   status: superseded
   executor: hybrid
   created: '2026-06-23'
@@ -337,13 +337,13 @@ tasks:
   previous_status: done
   superseded_by:
     id: T-029
-    path: 4_phase_development/goal_deterministic_query_engines_v1/task_forward_query_engine_v1
+    path: 4_phase_development/G-022_deterministic_query_engines_v1/T-029_forward_query_engine_v1
   superseded_at: '2026-06-24T00:55:16'
 - id: T-030
   name: function_index_pack_t030
   phase: development
   goal: goal_resource_index_packs_v0
-  path: 4_phase_development/goal_resource_index_packs_v0/task_function_index_pack_t030
+  path: 4_phase_development/G-022_deterministic_query_engines_v1/T-030_reverse_query_engine_v1
   status: superseded
   executor: hybrid
   created: '2026-06-23'
@@ -355,13 +355,13 @@ tasks:
   previous_status: done
   superseded_by:
     id: T-030
-    path: 4_phase_development/goal_deterministic_query_engines_v1/task_reverse_query_engine_v1
+    path: 4_phase_development/G-022_deterministic_query_engines_v1/T-030_reverse_query_engine_v1
   superseded_at: '2026-06-24T00:55:16'
 - id: T-031
   name: forward_query_engine_t031
   phase: development
   goal: goal_deterministic_query_engines_v0
-  path: 4_phase_development/goal_deterministic_query_engines_v0/task_forward_query_engine_t031
+  path: 4_phase_development/G-022_deterministic_query_engines_v1/T-031_no_hit_guard_v1
   status: superseded
   executor: hybrid
   created: '2026-06-23'
@@ -372,13 +372,13 @@ tasks:
   previous_status: done
   superseded_by:
     id: T-031
-    path: 4_phase_development/goal_deterministic_query_engines_v1/task_no_hit_guard_v1
+    path: 4_phase_development/G-022_deterministic_query_engines_v1/T-031_no_hit_guard_v1
   superseded_at: '2026-06-24T00:55:16'
 - id: T-032
   name: reverse_query_engine_t032
   phase: development
   goal: goal_deterministic_query_engines_v0
-  path: 4_phase_development/goal_deterministic_query_engines_v0/task_reverse_query_engine_t032
+  path: 4_phase_development/G-022_deterministic_query_engines_v1/T-032_reverse_stability_guard_v1
   status: superseded
   executor: hybrid
   created: '2026-06-23'
@@ -389,13 +389,13 @@ tasks:
   previous_status: done
   superseded_by:
     id: T-032
-    path: 4_phase_development/goal_deterministic_query_engines_v1/task_reverse_stability_guard_v1
+    path: 4_phase_development/G-022_deterministic_query_engines_v1/T-032_reverse_stability_guard_v1
   superseded_at: '2026-06-24T00:55:16'
 - id: T-033
   name: no_hit_guard_t033
   phase: development
   goal: goal_deterministic_query_engines_v0
-  path: 4_phase_development/goal_deterministic_query_engines_v0/task_no_hit_guard_t033
+  path: 4_phase_development/G-023_resolver_optional_layer_v1/T-033_hybrid_fast_resolver_v1
   status: superseded
   executor: hybrid
   created: '2026-06-23'
@@ -407,13 +407,13 @@ tasks:
   previous_status: active
   superseded_by:
     id: T-033
-    path: 4_phase_development/goal_resolver_optional_layer_v1/task_hybrid_fast_resolver_v1
+    path: 4_phase_development/G-023_resolver_optional_layer_v1/T-033_hybrid_fast_resolver_v1
   superseded_at: '2026-06-24T00:55:16'
 - id: T-034
   name: reverse_stability_guard_t034
   phase: development
   goal: goal_deterministic_query_engines_v0
-  path: 4_phase_development/goal_deterministic_query_engines_v0/task_reverse_stability_guard_t034
+  path: 4_phase_development/G-023_resolver_optional_layer_v1/T-034_llm_flash_adapter_v1
   status: superseded
   executor: hybrid
   created: '2026-06-23'
@@ -425,13 +425,13 @@ tasks:
   previous_status: done
   superseded_by:
     id: T-034
-    path: 4_phase_development/goal_resolver_optional_layer_v1/task_llm_flash_adapter_v1
+    path: 4_phase_development/G-023_resolver_optional_layer_v1/T-034_llm_flash_adapter_v1
   superseded_at: '2026-06-24T00:55:16'
 - id: T-035
   name: hybrid_fast_resolver_t035
   phase: development
   goal: goal_resolver_optional_layer_v0
-  path: 4_phase_development/goal_resolver_optional_layer_v0/task_hybrid_fast_resolver_t035
+  path: 4_phase_development/G-024_package_milestone_merge_v1/T-035_smoke_tests_v1
   status: superseded
   executor: hybrid
   created: '2026-06-23'
@@ -442,13 +442,13 @@ tasks:
   previous_status: done
   superseded_by:
     id: T-035
-    path: 4_phase_development/goal_package_milestone_merge_v1/task_smoke_tests_v1
+    path: 4_phase_development/G-024_package_milestone_merge_v1/T-035_smoke_tests_v1
   superseded_at: '2026-06-24T00:55:16'
 - id: T-036
   name: llm_flash_adapter_t036
   phase: development
   goal: goal_resolver_optional_layer_v0
-  path: 4_phase_development/goal_resolver_optional_layer_v0/task_llm_flash_adapter_t036
+  path: 4_phase_development/G-024_package_milestone_merge_v1/T-036_demo_cli_v1
   status: superseded
   executor: hybrid
   created: '2026-06-23'
@@ -459,13 +459,13 @@ tasks:
   previous_status: done
   superseded_by:
     id: T-036
-    path: 4_phase_development/goal_package_milestone_merge_v1/task_demo_cli_v1
+    path: 4_phase_development/G-024_package_milestone_merge_v1/T-036_demo_cli_v1
   superseded_at: '2026-06-24T00:55:16'
 - id: T-037
   name: smoke_tests_t037
   phase: development
   goal: goal_package_milestone_merge_v0
-  path: 4_phase_development/goal_package_milestone_merge_v0/task_smoke_tests_t037
+  path: 4_phase_development/G-024_package_milestone_merge_v1/T-040_milestone_package_core_parallel_v1
   status: pending
   executor: codex
   created: '2026-06-23'
@@ -484,7 +484,7 @@ tasks:
   name: demo_cli_t038
   phase: development
   goal: goal_package_milestone_merge_v0
-  path: 4_phase_development/goal_package_milestone_merge_v0/task_demo_cli_t038
+  path: 4_phase_development/G-024_package_milestone_merge_v1/T-038_milestone_reverse_demo_reports_v1
   status: blocked
   executor: codex
   created: '2026-06-23'
@@ -503,7 +503,7 @@ tasks:
   name: milestone_merge_t039
   phase: development
   goal: goal_package_milestone_merge_v0
-  path: 4_phase_development/goal_package_milestone_merge_v0/task_milestone_merge_t039
+  path: 4_phase_development/G-024_package_milestone_merge_v1/T-039_milestone_final_aggregation_v1
   status: blocked
   executor: codex
   created: '2026-06-23'
@@ -521,7 +521,7 @@ tasks:
   name: probe_root_temporary
   phase: development
   goal: goal_cyhex_123_probe
-  path: 4_phase_development/goal_cyhex_123_probe/task_probe_root_temporary
+  path: 4_phase_development/G-020_package_foundation_v1/T-024_workspace_package_v1
   status: superseded
   executor: hybrid
   created: '2026-06-23'
@@ -529,14 +529,14 @@ tasks:
   previous_status: done
   superseded_by:
     id: T-024
-    path: 4_phase_development/goal_package_foundation_v1/task_workspace_package_v1
+    path: 4_phase_development/G-020_package_foundation_v1/T-024_workspace_package_v1
   superseded_at: '2026-06-24T00:55:16'
   notes: Auto-superseded by registry normalization; duplicate current row for T-024.
 - id: T-025
   name: probe_child_waiting_temporary
   phase: development
   goal: goal_cyhex_123_probe
-  path: 4_phase_development/goal_cyhex_123_probe/task_probe_child_waiting_temporary
+  path: 4_phase_development/G-021_resource_index_packs_v1/T-025_resource_manifest_v1
   status: superseded
   executor: hybrid
   created: '2026-06-23'
@@ -544,14 +544,14 @@ tasks:
   previous_status: done
   superseded_by:
     id: T-025
-    path: 4_phase_development/goal_resource_index_packs_v1/task_resource_manifest_v1
+    path: 4_phase_development/G-021_resource_index_packs_v1/T-025_resource_manifest_v1
   superseded_at: '2026-06-24T00:55:16'
   notes: Auto-superseded by registry normalization; duplicate current row for T-025.
 - id: T-024
   name: workspace_package_v1
   phase: development
-  goal: goal_package_foundation_v1
-  path: 4_phase_development/goal_package_foundation_v1/task_workspace_package_v1
+  goal: G-020_package_foundation_v1
+  path: 4_phase_development/G-020_package_foundation_v1/T-024_workspace_package_v1
   status: blocked
   executor: hybrid
   created: '2026-06-23'
@@ -559,8 +559,8 @@ tasks:
 - id: T-025
   name: resource_manifest_v1
   phase: development
-  goal: goal_resource_index_packs_v1
-  path: 4_phase_development/goal_resource_index_packs_v1/task_resource_manifest_v1
+  goal: G-021_resource_index_packs_v1
+  path: 4_phase_development/G-021_resource_index_packs_v1/T-025_resource_manifest_v1
   status: done
   executor: hybrid
   created: '2026-06-23'
@@ -568,8 +568,8 @@ tasks:
 - id: T-026
   name: matrix_loader_v1
   phase: development
-  goal: goal_resource_index_packs_v1
-  path: 4_phase_development/goal_resource_index_packs_v1/task_matrix_loader_v1
+  goal: G-021_resource_index_packs_v1
+  path: 4_phase_development/G-021_resource_index_packs_v1/T-026_matrix_loader_v1
   status: blocked
   executor: hybrid
   created: '2026-06-23'
@@ -577,8 +577,8 @@ tasks:
 - id: T-027
   name: index_name_normalizer_v1
   phase: development
-  goal: goal_resource_index_packs_v1
-  path: 4_phase_development/goal_resource_index_packs_v1/task_index_name_normalizer_v1
+  goal: G-021_resource_index_packs_v1
+  path: 4_phase_development/G-021_resource_index_packs_v1/T-027_index_name_normalizer_v1
   status: blocked
   executor: hybrid
   created: '2026-06-23'
@@ -586,8 +586,8 @@ tasks:
 - id: T-028
   name: function_index_pack_v1
   phase: development
-  goal: goal_resource_index_packs_v1
-  path: 4_phase_development/goal_resource_index_packs_v1/task_function_index_pack_v1
+  goal: G-021_resource_index_packs_v1
+  path: 4_phase_development/G-021_resource_index_packs_v1/T-028_function_index_pack_v1
   status: done
   executor: hybrid
   created: '2026-06-23'
@@ -596,8 +596,8 @@ tasks:
 - id: T-029
   name: forward_query_engine_v1
   phase: development
-  goal: goal_deterministic_query_engines_v1
-  path: 4_phase_development/goal_deterministic_query_engines_v1/task_forward_query_engine_v1
+  goal: G-022_deterministic_query_engines_v1
+  path: 4_phase_development/G-022_deterministic_query_engines_v1/T-029_forward_query_engine_v1
   status: blocked
   executor: hybrid
   created: '2026-06-23'
@@ -605,8 +605,8 @@ tasks:
 - id: T-030
   name: reverse_query_engine_v1
   phase: development
-  goal: goal_deterministic_query_engines_v1
-  path: 4_phase_development/goal_deterministic_query_engines_v1/task_reverse_query_engine_v1
+  goal: G-022_deterministic_query_engines_v1
+  path: 4_phase_development/G-022_deterministic_query_engines_v1/T-030_reverse_query_engine_v1
   status: blocked
   executor: hybrid
   created: '2026-06-23'
@@ -614,8 +614,8 @@ tasks:
 - id: T-031
   name: no_hit_guard_v1
   phase: development
-  goal: goal_deterministic_query_engines_v1
-  path: 4_phase_development/goal_deterministic_query_engines_v1/task_no_hit_guard_v1
+  goal: G-022_deterministic_query_engines_v1
+  path: 4_phase_development/G-022_deterministic_query_engines_v1/T-031_no_hit_guard_v1
   status: done
   executor: hybrid
   created: '2026-06-23'
@@ -624,8 +624,8 @@ tasks:
 - id: T-032
   name: reverse_stability_guard_v1
   phase: development
-  goal: goal_deterministic_query_engines_v1
-  path: 4_phase_development/goal_deterministic_query_engines_v1/task_reverse_stability_guard_v1
+  goal: G-022_deterministic_query_engines_v1
+  path: 4_phase_development/G-022_deterministic_query_engines_v1/T-032_reverse_stability_guard_v1
   status: blocked
   executor: hybrid
   created: '2026-06-23'
@@ -634,8 +634,8 @@ tasks:
 - id: T-033
   name: hybrid_fast_resolver_v1
   phase: development
-  goal: goal_resolver_optional_layer_v1
-  path: 4_phase_development/goal_resolver_optional_layer_v1/task_hybrid_fast_resolver_v1
+  goal: G-023_resolver_optional_layer_v1
+  path: 4_phase_development/G-023_resolver_optional_layer_v1/T-033_hybrid_fast_resolver_v1
   status: blocked
   executor: hybrid
   created: '2026-06-23'
@@ -643,8 +643,8 @@ tasks:
 - id: T-034
   name: llm_flash_adapter_v1
   phase: development
-  goal: goal_resolver_optional_layer_v1
-  path: 4_phase_development/goal_resolver_optional_layer_v1/task_llm_flash_adapter_v1
+  goal: G-023_resolver_optional_layer_v1
+  path: 4_phase_development/G-023_resolver_optional_layer_v1/T-034_llm_flash_adapter_v1
   status: blocked
   executor: hybrid
   created: '2026-06-23'
@@ -652,8 +652,8 @@ tasks:
 - id: T-035
   name: smoke_tests_v1
   phase: development
-  goal: goal_package_milestone_merge_v1
-  path: 4_phase_development/goal_package_milestone_merge_v1/task_smoke_tests_v1
+  goal: G-024_package_milestone_merge_v1
+  path: 4_phase_development/G-024_package_milestone_merge_v1/T-035_smoke_tests_v1
   status: blocked
   executor: hybrid
   created: '2026-06-23'
@@ -662,8 +662,8 @@ tasks:
 - id: T-036
   name: demo_cli_v1
   phase: development
-  goal: goal_package_milestone_merge_v1
-  path: 4_phase_development/goal_package_milestone_merge_v1/task_demo_cli_v1
+  goal: G-024_package_milestone_merge_v1
+  path: 4_phase_development/G-024_package_milestone_merge_v1/T-036_demo_cli_v1
   status: blocked
   executor: hybrid
   created: '2026-06-23'
@@ -672,8 +672,8 @@ tasks:
 - id: T-037
   name: milestone_merge_v1
   phase: development
-  goal: goal_package_milestone_merge_v1
-  path: 4_phase_development/goal_package_milestone_merge_v1/task_milestone_merge_v1
+  goal: G-024_package_milestone_merge_v1
+  path: 4_phase_development/G-024_package_milestone_merge_v1/T-037_milestone_merge_v1
   status: superseded
   executor: codex
   created: '2026-06-23'
@@ -693,13 +693,13 @@ tasks:
   previous_status: pending
   superseded_by:
     id: T-037
-    path: 4_phase_development/goal_package_milestone_merge_v0/task_smoke_tests_t037
+    path: 4_phase_development/G-024_package_milestone_merge_v1/T-040_milestone_package_core_parallel_v1
   superseded_at: '2026-06-24T00:55:16'
 - id: T-038
   name: milestone_reverse_demo_reports_v1
   phase: development
-  goal: goal_package_milestone_merge_v1
-  path: 4_phase_development/goal_package_milestone_merge_v1/task_milestone_reverse_demo_reports_v1
+  goal: G-024_package_milestone_merge_v1
+  path: 4_phase_development/G-024_package_milestone_merge_v1/T-038_milestone_reverse_demo_reports_v1
   status: blocked
   executor: codex
   created: '2026-06-23'
@@ -717,8 +717,8 @@ tasks:
 - id: T-039
   name: milestone_final_aggregation_v1
   phase: development
-  goal: goal_package_milestone_merge_v1
-  path: 4_phase_development/goal_package_milestone_merge_v1/task_milestone_final_aggregation_v1
+  goal: G-024_package_milestone_merge_v1
+  path: 4_phase_development/G-024_package_milestone_merge_v1/T-039_milestone_final_aggregation_v1
   status: blocked
   executor: codex
   created: '2026-06-23'
@@ -735,8 +735,8 @@ tasks:
 - id: T-040
   name: milestone_package_core_parallel_v1
   phase: development
-  goal: goal_package_milestone_merge_v1
-  path: 4_phase_development/goal_package_milestone_merge_v1/task_milestone_package_core_parallel_v1
+  goal: G-024_package_milestone_merge_v1
+  path: 4_phase_development/G-024_package_milestone_merge_v1/T-040_milestone_package_core_parallel_v1
   status: blocked
   executor: codex
   created: '2026-06-23'
@@ -748,8 +748,8 @@ tasks:
 - id: T-041
   name: legacy_source_digest_for_m1
   phase: digestion
-  goal: goal_development_asset_digestion
-  path: 3_phase_digestion/goal_development_asset_digestion/task_legacy_source_digest_for_m1
+  goal: G-002_development_asset_digestion
+  path: 3_phase_digestion/G-002_development_asset_digestion/T-041_legacy_source_digest_for_m1
   status: done
   executor: hybrid
   created: '2026-06-24'
@@ -765,8 +765,8 @@ tasks:
 - id: T-042
   name: contract_and_demo_spec_m1
   phase: development
-  goal: goal_m1_python_package_v2
-  path: 4_phase_development/goal_m1_python_package_v2/task_contract_and_demo_spec_m1
+  goal: G-025_m1_python_package_v2
+  path: 4_phase_development/G-025_m1_python_package_v2/T-042_contract_and_demo_spec_m1
   status: done
   executor: hybrid
   created: '2026-06-24'
@@ -784,8 +784,8 @@ tasks:
 - id: T-043
   name: data_manifest_fixture_m1
   phase: development
-  goal: goal_m1_python_package_v2
-  path: 4_phase_development/goal_m1_python_package_v2/task_data_manifest_fixture_m1
+  goal: G-025_m1_python_package_v2
+  path: 4_phase_development/G-025_m1_python_package_v2/T-043_data_manifest_fixture_m1
   status: done
   executor: hybrid
   created: '2026-06-24'
@@ -803,8 +803,8 @@ tasks:
 - id: T-044
   name: package_skeleton_m1
   phase: development
-  goal: goal_m1_python_package_v2
-  path: 4_phase_development/goal_m1_python_package_v2/task_package_skeleton_m1
+  goal: G-025_m1_python_package_v2
+  path: 4_phase_development/G-025_m1_python_package_v2/T-044_package_skeleton_m1
   status: done
   executor: hybrid
   created: '2026-06-24'
@@ -822,8 +822,8 @@ tasks:
 - id: T-045
   name: index_health_check_m1
   phase: development
-  goal: goal_m1_python_package_v2
-  path: 4_phase_development/goal_m1_python_package_v2/task_index_health_check_m1
+  goal: G-025_m1_python_package_v2
+  path: 4_phase_development/G-025_m1_python_package_v2/T-045_index_health_check_m1
   status: done
   executor: hybrid
   created: '2026-06-24'
@@ -840,8 +840,8 @@ tasks:
 - id: T-046
   name: m1_fixture_loader
   phase: development
-  goal: goal_m1_python_package_v2
-  path: 4_phase_development/goal_m1_python_package_v2/task_m1_fixture_loader
+  goal: G-025_m1_python_package_v2
+  path: 4_phase_development/G-025_m1_python_package_v2/T-046_m1_fixture_loader
   status: done
   executor: hybrid
   created: '2026-06-24'
@@ -858,8 +858,8 @@ tasks:
 - id: T-047
   name: resource_loader_hardening_m1
   phase: development
-  goal: goal_m1_python_package_v2
-  path: 4_phase_development/goal_m1_python_package_v2/task_resource_loader_hardening_m1
+  goal: G-025_m1_python_package_v2
+  path: 4_phase_development/G-025_m1_python_package_v2/T-047_resource_loader_hardening_m1
   status: done
   executor: hybrid
   created: '2026-06-24'
@@ -876,8 +876,8 @@ tasks:
 - id: T-048
   name: forward_query_core_m1
   phase: development
-  goal: goal_m1_python_package_v2
-  path: 4_phase_development/goal_m1_python_package_v2/task_forward_query_core_m1
+  goal: G-025_m1_python_package_v2
+  path: 4_phase_development/G-025_m1_python_package_v2/T-048_forward_query_core_m1
   status: blocked
   executor: hybrid
   created: '2026-06-24'
@@ -895,8 +895,8 @@ tasks:
 - id: T-049
   name: reverse_query_core_m1
   phase: development
-  goal: goal_m1_python_package_v2
-  path: 4_phase_development/goal_m1_python_package_v2/task_reverse_query_core_m1
+  goal: G-025_m1_python_package_v2
+  path: 4_phase_development/G-025_m1_python_package_v2/T-049_reverse_query_core_m1
   status: blocked
   executor: hybrid
   created: '2026-06-24'
@@ -914,8 +914,8 @@ tasks:
 - id: T-050
   name: forward_validation_m1
   phase: development
-  goal: goal_m1_python_package_v2
-  path: 4_phase_development/goal_m1_python_package_v2/task_forward_validation_m1
+  goal: G-025_m1_python_package_v2
+  path: 4_phase_development/G-025_m1_python_package_v2/T-050_forward_validation_m1
   status: done
   executor: hybrid
   created: '2026-06-24'
@@ -933,8 +933,8 @@ tasks:
 - id: T-051
   name: reverse_validation_m1
   phase: development
-  goal: goal_m1_python_package_v2
-  path: 4_phase_development/goal_m1_python_package_v2/task_reverse_validation_m1
+  goal: G-025_m1_python_package_v2
+  path: 4_phase_development/G-025_m1_python_package_v2/T-051_reverse_validation_m1
   status: done
   executor: hybrid
   created: '2026-06-24'
@@ -951,8 +951,8 @@ tasks:
 - id: T-052
   name: package_assembly_m1
   phase: development
-  goal: goal_m1_python_package_v2
-  path: 4_phase_development/goal_m1_python_package_v2/task_package_assembly_m1
+  goal: G-025_m1_python_package_v2
+  path: 4_phase_development/G-025_m1_python_package_v2/T-052_package_assembly_m1
   status: done
   executor: hybrid
   created: '2026-06-24'
@@ -969,8 +969,8 @@ tasks:
 - id: T-053
   name: m1_python_package_milestone
   phase: development
-  goal: goal_m1_python_package_v2
-  path: 4_phase_development/goal_m1_python_package_v2/task_m1_python_package_milestone
+  goal: G-025_m1_python_package_v2
+  path: 4_phase_development/G-025_m1_python_package_v2/T-053_m1_python_package_milestone
   status: done
   executor: hybrid
   created: '2026-06-24'
@@ -989,8 +989,8 @@ tasks:
 - id: T-054
   name: large_asset_reading_rules_probe
   phase: development
-  goal: goal_m1_python_package_v2
-  path: 4_phase_development/goal_m1_python_package_v2/task_large_asset_reading_rules_probe
+  goal: G-025_m1_python_package_v2
+  path: 4_phase_development/G-025_m1_python_package_v2/T-054_large_asset_reading_rules_probe
   status: pending
   executor: hybrid
   created: '2026-06-24'
@@ -1013,8 +1013,8 @@ tasks:
 - id: T-055
   name: 01_legacy_stress_test_source_map
   phase: digestion
-  goal: goal_legacy_stress_test_asset_digestion
-  path: 3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_01_legacy_stress_test_source_map
+  goal: G-026_legacy_stress_test_asset_digestion
+  path: 3_phase_digestion/G-026_legacy_stress_test_asset_digestion/T-055_01_legacy_stress_test_source_map
   status: done
   executor: opencode
   created: '2026-06-24'
@@ -1026,8 +1026,8 @@ tasks:
 - id: T-056
   name: 02_stress_query_scenario_inventory
   phase: digestion
-  goal: goal_legacy_stress_test_asset_digestion
-  path: 3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_02_stress_query_scenario_inventory
+  goal: G-026_legacy_stress_test_asset_digestion
+  path: 3_phase_digestion/G-026_legacy_stress_test_asset_digestion/T-056_02_stress_query_scenario_inventory
   status: done
   executor: opencode
   created: '2026-06-24'
@@ -1039,8 +1039,8 @@ tasks:
 - id: T-057
   name: 03_legacy_stress_logic_reuse_boundary
   phase: digestion
-  goal: goal_legacy_stress_test_asset_digestion
-  path: 3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_03_legacy_stress_logic_reuse_boundary
+  goal: G-026_legacy_stress_test_asset_digestion
+  path: 3_phase_digestion/G-026_legacy_stress_test_asset_digestion/T-057_03_legacy_stress_logic_reuse_boundary
   status: done
   executor: opencode
   created: '2026-06-24'
@@ -1052,8 +1052,8 @@ tasks:
 - id: T-058
   name: 04_stress_test_development_handoff_pack
   phase: digestion
-  goal: goal_legacy_stress_test_asset_digestion
-  path: 3_phase_digestion/goal_legacy_stress_test_asset_digestion/task_04_stress_test_development_handoff_pack
+  goal: G-026_legacy_stress_test_asset_digestion
+  path: 3_phase_digestion/G-026_legacy_stress_test_asset_digestion/T-058_04_stress_test_development_handoff_pack
   status: done
   executor: opencode
   created: '2026-06-24'
@@ -1065,8 +1065,8 @@ tasks:
 - id: T-059
   name: forward_query_core_repair_m1
   phase: development
-  goal: goal_m1_python_package_v2
-  path: 4_phase_development/goal_m1_python_package_v2/task_forward_query_core_repair_m1
+  goal: G-025_m1_python_package_v2
+  path: 4_phase_development/G-025_m1_python_package_v2/T-059_forward_query_core_repair_m1
   status: done
   executor: hybrid
   created: '2026-06-24'
@@ -1083,8 +1083,8 @@ tasks:
 - id: T-060
   name: reverse_query_core_repair_m1
   phase: development
-  goal: goal_m1_python_package_v2
-  path: 4_phase_development/goal_m1_python_package_v2/task_reverse_query_core_repair_m1
+  goal: G-025_m1_python_package_v2
+  path: 4_phase_development/G-025_m1_python_package_v2/T-060_reverse_query_core_repair_m1
   status: done
   executor: hybrid
   created: '2026-06-24'
@@ -1102,8 +1102,8 @@ tasks:
 - id: T-061
   name: legacy_source_digest_repair_m1
   phase: digestion
-  goal: goal_development_asset_digestion
-  path: 3_phase_digestion/goal_development_asset_digestion/task_legacy_source_digest_repair_m1
+  goal: G-002_development_asset_digestion
+  path: 3_phase_digestion/G-002_development_asset_digestion/T-061_legacy_source_digest_repair_m1
   status: done
   executor: hybrid
   created: '2026-06-24'
@@ -1119,8 +1119,8 @@ tasks:
 - id: T-062
   name: algorithm_package_delivery_anchor
   phase: digestion
-  goal: goal_project_delivery_anchor
-  path: 3_phase_digestion/goal_project_delivery_anchor/task_algorithm_package_delivery_anchor
+  goal: G-027_project_delivery_anchor
+  path: 3_phase_digestion/G-027_project_delivery_anchor/T-062_algorithm_package_delivery_anchor
   status: done
   executor: hybrid
   created: '2026-06-25'
@@ -1136,8 +1136,8 @@ tasks:
 - id: T-063
   name: llm_resolver_capability_anchor
   phase: digestion
-  goal: goal_project_delivery_anchor
-  path: 3_phase_digestion/goal_project_delivery_anchor/task_llm_resolver_capability_anchor
+  goal: G-027_project_delivery_anchor
+  path: 3_phase_digestion/G-027_project_delivery_anchor/T-063_llm_resolver_capability_anchor
   status: done
   executor: hybrid
   created: '2026-06-25'
@@ -1153,8 +1153,8 @@ tasks:
 - id: T-064
   name: evidence_routing_anchor
   phase: digestion
-  goal: goal_project_delivery_anchor
-  path: 3_phase_digestion/goal_project_delivery_anchor/task_evidence_routing_anchor
+  goal: G-027_project_delivery_anchor
+  path: 3_phase_digestion/G-027_project_delivery_anchor/T-064_evidence_routing_anchor
   status: done
   executor: hybrid
   created: '2026-06-25'
@@ -1169,8 +1169,8 @@ tasks:
 - id: T-065
   name: m1_vs_delivery_anchor_review
   phase: digestion
-  goal: goal_project_delivery_anchor
-  path: 3_phase_digestion/goal_project_delivery_anchor/task_m1_vs_delivery_anchor_review
+  goal: G-027_project_delivery_anchor
+  path: 3_phase_digestion/G-027_project_delivery_anchor/T-065_m1_vs_delivery_anchor_review
   status: done
   executor: hybrid
   created: '2026-06-25'
@@ -1185,8 +1185,8 @@ tasks:
 - id: T-066
   name: ms3_no_downgrade_acceptance_contract
   phase: development
-  goal: goal_ms3_foundation_resources
-  path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_no_downgrade_acceptance_contract
+  goal: G-028_ms3_foundation_resources
+  path: 4_phase_development/G-028_ms3_foundation_resources/T-066_ms3_no_downgrade_acceptance_contract
   status: done
   executor: hybrid
   created: '2026-06-26'
@@ -1204,8 +1204,8 @@ tasks:
 - id: T-067
   name: ms3_safe_resource_access_contract
   phase: development
-  goal: goal_ms3_foundation_resources
-  path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_safe_resource_access_contract
+  goal: G-028_ms3_foundation_resources
+  path: 4_phase_development/G-028_ms3_foundation_resources/T-067_ms3_safe_resource_access_contract
   status: done
   executor: hybrid
   created: '2026-06-26'
@@ -1221,8 +1221,8 @@ tasks:
 - id: T-068
   name: ms3_runtime_resource_pack
   phase: development
-  goal: goal_ms3_foundation_resources
-  path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_runtime_resource_pack
+  goal: G-028_ms3_foundation_resources
+  path: 4_phase_development/G-028_ms3_foundation_resources/T-068_ms3_runtime_resource_pack
   status: done
   executor: hybrid
   created: '2026-06-26'
@@ -1237,8 +1237,8 @@ tasks:
 - id: T-069
   name: ms3_package_core_workspace
   phase: development
-  goal: goal_ms3_foundation_resources
-  path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_package_core_workspace
+  goal: G-028_ms3_foundation_resources
+  path: 4_phase_development/G-028_ms3_foundation_resources/T-069_ms3_package_core_workspace
   status: done
   executor: hybrid
   created: '2026-06-26'
@@ -1253,8 +1253,8 @@ tasks:
 - id: T-070
   name: ms3_route_metadata_engine
   phase: development
-  goal: goal_ms3_foundation_resources
-  path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_route_metadata_engine
+  goal: G-028_ms3_foundation_resources
+  path: 4_phase_development/G-028_ms3_foundation_resources/T-070_ms3_route_metadata_engine
   status: done
   executor: hybrid
   created: '2026-06-26'
@@ -1269,8 +1269,8 @@ tasks:
 - id: T-071
   name: ms3_demo_acceptance_corpus
   phase: development
-  goal: goal_ms3_foundation_resources
-  path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_demo_acceptance_corpus
+  goal: G-028_ms3_foundation_resources
+  path: 4_phase_development/G-028_ms3_foundation_resources/T-071_ms3_demo_acceptance_corpus
   status: done
   executor: hybrid
   created: '2026-06-26'
@@ -1285,8 +1285,8 @@ tasks:
 - id: T-072
   name: ms3_proxy_transfer_strategy_spike
   phase: development
-  goal: goal_ms3_foundation_resources
-  path: 4_phase_development/goal_ms3_foundation_resources/task_ms3_proxy_transfer_strategy_spike
+  goal: G-028_ms3_foundation_resources
+  path: 4_phase_development/G-028_ms3_foundation_resources/T-072_ms3_proxy_transfer_strategy_spike
   status: done
   executor: hybrid
   created: '2026-06-26'
@@ -1300,8 +1300,8 @@ tasks:
 - id: T-073
   name: ms3_resource_demo_coverage_freeze
   phase: development
-  goal: goal_ms3_core_runtime
-  path: 4_phase_development/goal_ms3_core_runtime/task_ms3_resource_demo_coverage_freeze
+  goal: G-029_ms3_core_runtime
+  path: 4_phase_development/G-029_ms3_core_runtime/T-073_ms3_resource_demo_coverage_freeze
   status: done
   executor: hybrid
   created: '2026-06-26'
@@ -1317,8 +1317,8 @@ tasks:
 - id: T-074
   name: ms3_forward_query_engine
   phase: development
-  goal: goal_ms3_core_runtime
-  path: 4_phase_development/goal_ms3_core_runtime/task_ms3_forward_query_engine
+  goal: G-029_ms3_core_runtime
+  path: 4_phase_development/G-029_ms3_core_runtime/T-074_ms3_forward_query_engine
   status: done
   executor: hybrid
   created: '2026-06-26'
@@ -1333,8 +1333,8 @@ tasks:
 - id: T-075
   name: ms3_reverse_query_engine
   phase: development
-  goal: goal_ms3_core_runtime
-  path: 4_phase_development/goal_ms3_core_runtime/task_ms3_reverse_query_engine
+  goal: G-029_ms3_core_runtime
+  path: 4_phase_development/G-029_ms3_core_runtime/T-075_ms3_reverse_query_engine
   status: done
   executor: hybrid
   created: '2026-06-26'
@@ -1350,8 +1350,8 @@ tasks:
 - id: T-076
   name: ms3_resolver_llm_provider_layer
   phase: development
-  goal: goal_ms3_core_runtime
-  path: 4_phase_development/goal_ms3_core_runtime/task_ms3_resolver_llm_provider_layer
+  goal: G-029_ms3_core_runtime
+  path: 4_phase_development/G-029_ms3_core_runtime/T-076_ms3_resolver_llm_provider_layer
   status: done
   executor: hybrid
   created: '2026-06-26'
@@ -1367,8 +1367,8 @@ tasks:
 - id: T-077
   name: ms3_user_api_cli_surface
   phase: development
-  goal: goal_ms3_release_quality
-  path: 4_phase_development/goal_ms3_release_quality/task_ms3_user_api_cli_surface
+  goal: G-030_ms3_release_quality
+  path: 4_phase_development/G-030_ms3_release_quality/T-077_ms3_user_api_cli_surface
   status: done
   executor: hybrid
   created: '2026-06-26'
@@ -1383,8 +1383,8 @@ tasks:
 - id: T-078
   name: ms3_functional_test_and_release_iteration
   phase: development
-  goal: goal_ms3_release_quality
-  path: 4_phase_development/goal_ms3_release_quality/task_ms3_functional_test_and_release_iteration
+  goal: G-030_ms3_release_quality
+  path: 4_phase_development/G-030_ms3_release_quality/T-078_ms3_functional_test_and_release_iteration
   status: done
   executor: hybrid
   created: '2026-06-26'
@@ -1400,8 +1400,8 @@ tasks:
 - id: T-079
   name: ms3_no_downgrade_quality_gate
   phase: development
-  goal: goal_ms3_release_quality
-  path: 4_phase_development/goal_ms3_release_quality/task_ms3_no_downgrade_quality_gate
+  goal: G-030_ms3_release_quality
+  path: 4_phase_development/G-030_ms3_release_quality/T-079_ms3_no_downgrade_quality_gate
   status: done
   executor: hybrid
   created: '2026-06-26'
@@ -1415,8 +1415,8 @@ tasks:
 - id: T-080
   name: ms3_quality_anchor
   phase: digestion
-  goal: goal_m6_ms_anchors_and_stress_assets
-  path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms3_quality_anchor
+  goal: G-031_m6_ms_anchors_and_stress_assets
+  path: 3_phase_digestion/G-031_m6_ms_anchors_and_stress_assets/T-080_ms3_quality_anchor
   status: done
   executor: hybrid
   created: '2026-06-27'
@@ -1424,8 +1424,8 @@ tasks:
 - id: T-081
   name: ms4_usable_package_anchor
   phase: digestion
-  goal: goal_m6_ms_anchors_and_stress_assets
-  path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms4_usable_package_anchor
+  goal: G-031_m6_ms_anchors_and_stress_assets
+  path: 3_phase_digestion/G-031_m6_ms_anchors_and_stress_assets/T-081_ms4_usable_package_anchor
   status: done
   executor: hybrid
   created: '2026-06-27'
@@ -1436,8 +1436,8 @@ tasks:
 - id: T-082
   name: ms4_stress_source_inventory
   phase: digestion
-  goal: goal_m6_ms_anchors_and_stress_assets
-  path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms4_stress_source_inventory
+  goal: G-031_m6_ms_anchors_and_stress_assets
+  path: 3_phase_digestion/G-031_m6_ms_anchors_and_stress_assets/T-082_ms4_stress_source_inventory
   status: done
   executor: hybrid
   created: '2026-06-27'
@@ -1445,8 +1445,8 @@ tasks:
 - id: T-083
   name: ms5_large_stress_and_case_anchor
   phase: digestion
-  goal: goal_m6_ms_anchors_and_stress_assets
-  path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms5_large_stress_and_case_anchor
+  goal: G-031_m6_ms_anchors_and_stress_assets
+  path: 3_phase_digestion/G-031_m6_ms_anchors_and_stress_assets/T-083_ms5_large_stress_and_case_anchor
   status: done
   executor: hybrid
   created: '2026-06-27'
@@ -1454,8 +1454,8 @@ tasks:
 - id: T-084
   name: ms6_manuscript_figure_anchor
   phase: digestion
-  goal: goal_m6_ms_anchors_and_stress_assets
-  path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms6_manuscript_figure_anchor
+  goal: G-031_m6_ms_anchors_and_stress_assets
+  path: 3_phase_digestion/G-031_m6_ms_anchors_and_stress_assets/T-084_ms6_manuscript_figure_anchor
   status: done
   executor: hybrid
   created: '2026-06-27'
@@ -1463,8 +1463,8 @@ tasks:
 - id: T-085
   name: ms4_ground_truth_scenario_builder
   phase: digestion
-  goal: goal_m6_ms_anchors_and_stress_assets
-  path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms4_ground_truth_scenario_builder
+  goal: G-031_m6_ms_anchors_and_stress_assets
+  path: 3_phase_digestion/G-031_m6_ms_anchors_and_stress_assets/T-085_ms4_ground_truth_scenario_builder
   status: done
   executor: hybrid
   created: '2026-06-27'
@@ -1472,8 +1472,8 @@ tasks:
 - id: T-086
   name: ms4_forward_nl_stress_set
   phase: digestion
-  goal: goal_m6_ms_anchors_and_stress_assets
-  path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms4_forward_nl_stress_set
+  goal: G-031_m6_ms_anchors_and_stress_assets
+  path: 3_phase_digestion/G-031_m6_ms_anchors_and_stress_assets/T-086_ms4_forward_nl_stress_set
   status: done
   executor: hybrid
   created: '2026-06-27'
@@ -1481,8 +1481,8 @@ tasks:
 - id: T-087
   name: ms4_reverse_nl_stress_set
   phase: digestion
-  goal: goal_m6_ms_anchors_and_stress_assets
-  path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms4_reverse_nl_stress_set
+  goal: G-031_m6_ms_anchors_and_stress_assets
+  path: 3_phase_digestion/G-031_m6_ms_anchors_and_stress_assets/T-087_ms4_reverse_nl_stress_set
   status: done
   executor: hybrid
   created: '2026-06-27'
@@ -1490,8 +1490,8 @@ tasks:
 - id: T-088
   name: ms3_quality_digest_and_asset_map
   phase: development
-  goal: goal_ms3_ms4_quality_and_repair
-  path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms3_quality_digest_and_asset_map
+  goal: G-032_ms3_ms4_quality_and_repair
+  path: 4_phase_development/G-032_ms3_ms4_quality_and_repair/T-088_ms3_quality_digest_and_asset_map
   status: done
   executor: hybrid
   created: '2026-06-27'
@@ -1499,8 +1499,8 @@ tasks:
 - id: T-089
   name: ms5_large_nl_corpus_expansion
   phase: digestion
-  goal: goal_m6_ms_anchors_and_stress_assets
-  path: 3_phase_digestion/goal_m6_ms_anchors_and_stress_assets/task_ms5_large_nl_corpus_expansion
+  goal: G-031_m6_ms_anchors_and_stress_assets
+  path: 3_phase_digestion/G-031_m6_ms_anchors_and_stress_assets/T-089_ms5_large_nl_corpus_expansion
   status: done
   executor: hybrid
   created: '2026-06-27'
@@ -1511,8 +1511,8 @@ tasks:
 - id: T-090
   name: ms3_entry_to_ms4_comparison_review
   phase: development
-  goal: goal_ms3_ms4_quality_and_repair
-  path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms3_entry_to_ms4_comparison_review
+  goal: G-032_ms3_ms4_quality_and_repair
+  path: 4_phase_development/G-032_ms3_ms4_quality_and_repair/T-090_ms3_entry_to_ms4_comparison_review
   status: done
   executor: hybrid
   created: '2026-06-27'
@@ -1522,8 +1522,8 @@ tasks:
 - id: T-091
   name: ms6_package_capability_narrative
   phase: translation
-  goal: goal_ms6_manuscript_foundation
-  path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_package_capability_narrative
+  goal: G-033_ms6_manuscript_foundation
+  path: 5_phase_translation/G-033_ms6_manuscript_foundation/T-091_ms6_package_capability_narrative
   status: done
   executor: hybrid
   created: '2026-06-27'
@@ -1531,8 +1531,8 @@ tasks:
 - id: T-092
   name: ms6_algorithm_method_story
   phase: translation
-  goal: goal_ms6_manuscript_foundation
-  path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_algorithm_method_story
+  goal: G-033_ms6_manuscript_foundation
+  path: 5_phase_translation/G-033_ms6_manuscript_foundation/T-092_ms6_algorithm_method_story
   status: done
   executor: hybrid
   created: '2026-06-27'
@@ -1540,8 +1540,8 @@ tasks:
 - id: T-093
   name: ms6_internal_data_figure2_assets
   phase: translation
-  goal: goal_ms6_manuscript_foundation
-  path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_internal_data_figure2_assets
+  goal: G-033_ms6_manuscript_foundation
+  path: 5_phase_translation/G-033_ms6_manuscript_foundation/T-093_ms6_internal_data_figure2_assets
   status: done
   executor: hybrid
   created: '2026-06-27'
@@ -1549,8 +1549,8 @@ tasks:
 - id: T-094
   name: ms4_route_execution_matrix
   phase: development
-  goal: goal_ms3_ms4_quality_and_repair
-  path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_route_execution_matrix
+  goal: G-032_ms3_ms4_quality_and_repair
+  path: 4_phase_development/G-032_ms3_ms4_quality_and_repair/T-094_ms4_route_execution_matrix
   status: done
   executor: hybrid
   created: '2026-06-27'
@@ -1562,8 +1562,8 @@ tasks:
 - id: T-095
   name: ms4_parser_llm_failure_diagnosis
   phase: development
-  goal: goal_ms3_ms4_quality_and_repair
-  path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_parser_llm_failure_diagnosis
+  goal: G-032_ms3_ms4_quality_and_repair
+  path: 4_phase_development/G-032_ms3_ms4_quality_and_repair/T-095_ms4_parser_llm_failure_diagnosis
   status: done
   executor: human
   created: '2026-06-27'
@@ -1574,8 +1574,8 @@ tasks:
 - id: T-096
   name: ms4_resolver_route_failure_diagnosis
   phase: development
-  goal: goal_ms3_ms4_quality_and_repair
-  path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_resolver_route_failure_diagnosis
+  goal: G-032_ms3_ms4_quality_and_repair
+  path: 4_phase_development/G-032_ms3_ms4_quality_and_repair/T-096_ms4_resolver_route_failure_diagnosis
   status: done
   executor: human
   created: '2026-06-27'
@@ -1586,8 +1586,8 @@ tasks:
 - id: T-097
   name: ms4_engine_output_failure_diagnosis
   phase: development
-  goal: goal_ms3_ms4_quality_and_repair
-  path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_engine_output_failure_diagnosis
+  goal: G-032_ms3_ms4_quality_and_repair
+  path: 4_phase_development/G-032_ms3_ms4_quality_and_repair/T-097_ms4_engine_output_failure_diagnosis
   status: done
   executor: human
   created: '2026-06-27'
@@ -1598,8 +1598,8 @@ tasks:
 - id: T-098
   name: ms4_parser_resolver_route_repair_version
   phase: development
-  goal: goal_ms3_ms4_quality_and_repair
-  path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_parser_resolver_route_repair_version
+  goal: G-032_ms3_ms4_quality_and_repair
+  path: 4_phase_development/G-032_ms3_ms4_quality_and_repair/T-098_ms4_parser_resolver_route_repair_version
   status: done
   executor: human
   created: '2026-06-27'
@@ -1610,8 +1610,8 @@ tasks:
 - id: T-099
   name: ms4_reverse_engine_output_repair_version
   phase: development
-  goal: goal_ms3_ms4_quality_and_repair
-  path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_reverse_engine_output_repair_version
+  goal: G-032_ms3_ms4_quality_and_repair
+  path: 4_phase_development/G-032_ms3_ms4_quality_and_repair/T-099_ms4_reverse_engine_output_repair_version
   status: done
   executor: human
   created: '2026-06-27'
@@ -1622,8 +1622,8 @@ tasks:
 - id: T-100
   name: ms5_demo_case_selection_and_repro_plan
   phase: development
-  goal: goal_ms3_ms4_quality_and_repair
-  path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms5_demo_case_selection_and_repro_plan
+  goal: G-032_ms3_ms4_quality_and_repair
+  path: 4_phase_development/G-032_ms3_ms4_quality_and_repair/T-100_ms5_demo_case_selection_and_repro_plan
   status: done
   executor: human
   created: '2026-06-27'
@@ -1634,8 +1634,8 @@ tasks:
 - id: T-101
   name: ms5_application_scene_candidate_map
   phase: development
-  goal: goal_ms3_ms4_quality_and_repair
-  path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms5_application_scene_candidate_map
+  goal: G-032_ms3_ms4_quality_and_repair
+  path: 4_phase_development/G-032_ms3_ms4_quality_and_repair/T-101_ms5_application_scene_candidate_map
   status: done
   executor: human
   created: '2026-06-27'
@@ -1646,8 +1646,8 @@ tasks:
 - id: T-102
   name: ms4_repaired_package_verification_gate
   phase: development
-  goal: goal_ms3_ms4_quality_and_repair
-  path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_repaired_package_verification_gate
+  goal: G-032_ms3_ms4_quality_and_repair
+  path: 4_phase_development/G-032_ms3_ms4_quality_and_repair/T-102_ms4_repaired_package_verification_gate
   status: done
   executor: human
   created: '2026-06-27'
@@ -1658,8 +1658,8 @@ tasks:
 - id: T-103
   name: ms4_anchor_comparison_and_release_pack
   phase: development
-  goal: goal_ms3_ms4_quality_and_repair
-  path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms4_anchor_comparison_and_release_pack
+  goal: G-032_ms3_ms4_quality_and_repair
+  path: 4_phase_development/G-032_ms3_ms4_quality_and_repair/T-103_ms4_anchor_comparison_and_release_pack
   status: done
   executor: human
   created: '2026-06-27'
@@ -1670,8 +1670,8 @@ tasks:
 - id: T-104
   name: ms5_large_nl_pressure_execution
   phase: development
-  goal: goal_ms3_ms4_quality_and_repair
-  path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms5_large_nl_pressure_execution
+  goal: G-032_ms3_ms4_quality_and_repair
+  path: 4_phase_development/G-032_ms3_ms4_quality_and_repair/T-104_ms5_large_nl_pressure_execution
   status: done
   executor: human
   created: '2026-06-27'
@@ -1682,8 +1682,8 @@ tasks:
 - id: T-105
   name: ms5_anchor_comparison_demo_aggregate
   phase: development
-  goal: goal_ms3_ms4_quality_and_repair
-  path: 4_phase_development/goal_ms3_ms4_quality_and_repair/task_ms5_anchor_comparison_demo_aggregate
+  goal: G-032_ms3_ms4_quality_and_repair
+  path: 4_phase_development/G-032_ms3_ms4_quality_and_repair/T-105_ms5_anchor_comparison_demo_aggregate
   status: done
   executor: human
   created: '2026-06-27'
@@ -1694,8 +1694,8 @@ tasks:
 - id: T-106
   name: ms6_writing_figure_resource_pack
   phase: translation
-  goal: goal_ms6_manuscript_foundation
-  path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_writing_figure_resource_pack
+  goal: G-033_ms6_manuscript_foundation
+  path: 5_phase_translation/G-033_ms6_manuscript_foundation/T-106_ms6_writing_figure_resource_pack
   status: done
   executor: human
   created: '2026-06-27'
@@ -1706,8 +1706,8 @@ tasks:
 - id: T-107
   name: ms6_anchor_comparison_writing_handoff
   phase: translation
-  goal: goal_ms6_manuscript_foundation
-  path: 5_phase_translation/goal_ms6_manuscript_foundation/task_ms6_anchor_comparison_writing_handoff
+  goal: G-033_ms6_manuscript_foundation
+  path: 5_phase_translation/G-033_ms6_manuscript_foundation/T-107_ms6_anchor_comparison_writing_handoff
   status: done
   executor: human
   created: '2026-06-27'
@@ -1718,8 +1718,8 @@ tasks:
 - id: T-108
   name: ms3_m6_corrective_gap_closure
   phase: development
-  goal: goal_ms3_release_quality
-  path: 4_phase_development/goal_ms3_release_quality/task_ms3_m6_corrective_gap_closure
+  goal: G-030_ms3_release_quality
+  path: 4_phase_development/G-030_ms3_release_quality/T-108_ms3_m6_corrective_gap_closure
   status: done
   executor: human
   created: '2026-06-27'
@@ -1730,8 +1730,8 @@ tasks:
 - id: T-109
   name: ms3_corrected_final_review_after_m6
   phase: development
-  goal: goal_ms3_release_quality
-  path: 4_phase_development/goal_ms3_release_quality/task_ms3_corrected_final_review_after_m6
+  goal: G-030_ms3_release_quality
+  path: 4_phase_development/G-030_ms3_release_quality/T-109_ms3_corrected_final_review_after_m6
   status: done
   executor: human
   created: '2026-06-27'
@@ -1742,8 +1742,8 @@ tasks:
 - id: T-110
   name: ms7_anti_loophole_rule_lock_2
   phase: development
-  goal: goal_ms7_recovery_package
-  path: 4_phase_development/goal_ms7_recovery_package/task_ms7_anti_loophole_rule_lock_2
+  goal: G-034_ms7_recovery_package
+  path: 4_phase_development/G-034_ms7_recovery_package/T-110_ms7_anti_loophole_rule_lock_2
   status: pending
   executor: hybrid
   created: '2026-06-27'
@@ -1751,8 +1751,8 @@ tasks:
 - id: T-111
   name: ms7_recovery_anchor_2
   phase: development
-  goal: goal_ms7_recovery_package
-  path: 4_phase_development/goal_ms7_recovery_package/task_ms7_recovery_anchor_2
+  goal: G-034_ms7_recovery_package
+  path: 4_phase_development/G-034_ms7_recovery_package/T-111_ms7_recovery_anchor_2
   status: pending
   executor: hybrid
   created: '2026-06-27'
@@ -1760,8 +1760,8 @@ tasks:
 - id: T-112
   name: ms7_legacy_quarantine_audit_2
   phase: development
-  goal: goal_ms7_recovery_package
-  path: 4_phase_development/goal_ms7_recovery_package/task_ms7_legacy_quarantine_audit_2
+  goal: G-034_ms7_recovery_package
+  path: 4_phase_development/G-034_ms7_recovery_package/T-112_ms7_legacy_quarantine_audit_2
   status: pending
   executor: hybrid
   created: '2026-06-27'
@@ -1769,8 +1769,8 @@ tasks:
 - id: T-113
   name: ms7_current_package_baseline_2
   phase: development
-  goal: goal_ms7_recovery_package
-  path: 4_phase_development/goal_ms7_recovery_package/task_ms7_current_package_baseline_2
+  goal: G-034_ms7_recovery_package
+  path: 4_phase_development/G-034_ms7_recovery_package/T-113_ms7_current_package_baseline_2
   status: pending
   executor: hybrid
   created: '2026-06-27'
@@ -1778,8 +1778,8 @@ tasks:
 - id: T-114
   name: ms7_execution_corpus_build_2
   phase: development
-  goal: goal_ms7_recovery_package
-  path: 4_phase_development/goal_ms7_recovery_package/task_ms7_execution_corpus_build_2
+  goal: G-034_ms7_recovery_package
+  path: 4_phase_development/G-034_ms7_recovery_package/T-114_ms7_execution_corpus_build_2
   status: pending
   executor: hybrid
   created: '2026-06-27'
@@ -1787,8 +1787,8 @@ tasks:
 - id: T-115
   name: ms7_acceptance_matrix_spec_2
   phase: development
-  goal: goal_ms7_recovery_package
-  path: 4_phase_development/goal_ms7_recovery_package/task_ms7_acceptance_matrix_spec_2
+  goal: G-034_ms7_recovery_package
+  path: 4_phase_development/G-034_ms7_recovery_package/T-115_ms7_acceptance_matrix_spec_2
   status: pending
   executor: hybrid
   created: '2026-06-27'
@@ -1796,8 +1796,8 @@ tasks:
 - id: T-116
   name: ms7_acceptance_gate_prebuild_2
   phase: development
-  goal: goal_ms7_recovery_package
-  path: 4_phase_development/goal_ms7_recovery_package/task_ms7_acceptance_gate_prebuild_2
+  goal: G-034_ms7_recovery_package
+  path: 4_phase_development/G-034_ms7_recovery_package/T-116_ms7_acceptance_gate_prebuild_2
   status: pending
   executor: hybrid
   created: '2026-06-27'
@@ -1805,8 +1805,8 @@ tasks:
 - id: T-117
   name: ms7_manual_build_repair_package_2
   phase: development
-  goal: goal_ms7_recovery_package
-  path: 4_phase_development/goal_ms7_recovery_package/task_ms7_manual_build_repair_package_2
+  goal: G-034_ms7_recovery_package
+  path: 4_phase_development/G-034_ms7_recovery_package/T-117_ms7_manual_build_repair_package_2
   status: pending
   executor: hybrid
   created: '2026-06-27'
@@ -1814,8 +1814,8 @@ tasks:
 - id: T-118
   name: ms7_build_verification_2
   phase: development
-  goal: goal_ms7_recovery_package
-  path: 4_phase_development/goal_ms7_recovery_package/task_ms7_build_verification_2
+  goal: G-034_ms7_recovery_package
+  path: 4_phase_development/G-034_ms7_recovery_package/T-118_ms7_build_verification_2
   status: pending
   executor: hybrid
   created: '2026-06-27'
@@ -1823,8 +1823,8 @@ tasks:
 - id: T-119
   name: ms7_llm_provider_route_verification_2
   phase: development
-  goal: goal_ms7_recovery_package
-  path: 4_phase_development/goal_ms7_recovery_package/task_ms7_llm_provider_route_verification_2
+  goal: G-034_ms7_recovery_package
+  path: 4_phase_development/G-034_ms7_recovery_package/T-119_ms7_llm_provider_route_verification_2
   status: pending
   executor: hybrid
   created: '2026-06-27'
@@ -1832,8 +1832,8 @@ tasks:
 - id: T-120
   name: ms7_integrated_recovery_matrix_2
   phase: development
-  goal: goal_ms7_recovery_package
-  path: 4_phase_development/goal_ms7_recovery_package/task_ms7_integrated_recovery_matrix_2
+  goal: G-034_ms7_recovery_package
+  path: 4_phase_development/G-034_ms7_recovery_package/T-120_ms7_integrated_recovery_matrix_2
   status: pending
   executor: hybrid
   created: '2026-06-27'
@@ -1841,8 +1841,8 @@ tasks:
 - id: T-121
   name: ms7_release_candidate_pack_2
   phase: development
-  goal: goal_ms7_recovery_package
-  path: 4_phase_development/goal_ms7_recovery_package/task_ms7_release_candidate_pack_2
+  goal: G-034_ms7_recovery_package
+  path: 4_phase_development/G-034_ms7_recovery_package/T-121_ms7_release_candidate_pack_2
   status: pending
   executor: hybrid
   created: '2026-06-27'
@@ -1850,8 +1850,8 @@ tasks:
 - id: T-122
   name: ms7_cleanroom_reproduction_2
   phase: development
-  goal: goal_ms7_recovery_package
-  path: 4_phase_development/goal_ms7_recovery_package/task_ms7_cleanroom_reproduction_2
+  goal: G-034_ms7_recovery_package
+  path: 4_phase_development/G-034_ms7_recovery_package/T-122_ms7_cleanroom_reproduction_2
   status: pending
   executor: hybrid
   created: '2026-06-27'
@@ -1859,8 +1859,8 @@ tasks:
 - id: T-123
   name: ms7_anchor_comparison_final_gate_2
   phase: development
-  goal: goal_ms7_recovery_package
-  path: 4_phase_development/goal_ms7_recovery_package/task_ms7_anchor_comparison_final_gate_2
+  goal: G-034_ms7_recovery_package
+  path: 4_phase_development/G-034_ms7_recovery_package/T-123_ms7_anchor_comparison_final_gate_2
   status: pending
   executor: hybrid
   created: '2026-06-27'
@@ -1868,8 +1868,8 @@ tasks:
 - id: T-124
   name: ms7_version_governance_v011
   phase: development
-  goal: goal_ms7_recovery_package
-  path: 4_phase_development/goal_ms7_recovery_package/task_ms7_version_governance_v011
+  goal: G-034_ms7_recovery_package
+  path: 4_phase_development/G-034_ms7_recovery_package/T-124_ms7_version_governance_v011
   status: pending
   executor: human
   created: '2026-06-27'
@@ -1877,8 +1877,8 @@ tasks:
 - id: T-125
   name: ms7_public_api_single_class_v012
   phase: development
-  goal: goal_ms7_recovery_package
-  path: 4_phase_development/goal_ms7_recovery_package/task_ms7_public_api_single_class_v012
+  goal: G-034_ms7_recovery_package
+  path: 4_phase_development/G-034_ms7_recovery_package/T-125_ms7_public_api_single_class_v012
   status: pending
   executor: human
   created: '2026-06-27'
@@ -1886,8 +1886,8 @@ tasks:
 - id: T-126
   name: ms7_scverse_style_api_workflow_v013
   phase: development
-  goal: goal_ms7_recovery_package
-  path: 4_phase_development/goal_ms7_recovery_package/task_ms7_scverse_style_api_workflow_v013
+  goal: G-034_ms7_recovery_package
+  path: 4_phase_development/G-034_ms7_recovery_package/T-126_ms7_scverse_style_api_workflow_v013
   status: pending
   executor: human
   created: '2026-06-27'
@@ -1895,8 +1895,8 @@ tasks:
 - id: T-127
   name: ms7_internal_parse_pipeline_events_warnings_v014
   phase: development
-  goal: goal_ms7_recovery_package
-  path: 4_phase_development/goal_ms7_recovery_package/task_ms7_internal_parse_pipeline_events_warnings_v014
+  goal: G-034_ms7_recovery_package
+  path: 4_phase_development/G-034_ms7_recovery_package/T-127_ms7_internal_parse_pipeline_events_warnings_v014
   status: pending
   executor: human
   created: '2026-06-27'
@@ -1904,8 +1904,8 @@ tasks:
 - id: T-128
   name: ms8_00_external_context_digest
   phase: development
-  goal: goal_goal_ms8_human_usable_package
-  path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_00_external_context_digest
+  goal: G-035_goal_ms8_human_usable_package
+  path: 4_phase_development/G-035_goal_ms8_human_usable_package/T-128_ms8_00_external_context_digest
   status: done
   executor: hybrid
   created: '2026-06-27'
@@ -1913,8 +1913,8 @@ tasks:
 - id: T-129
   name: ms8_01_human_acceptable_delivery_anchor
   phase: development
-  goal: goal_goal_ms8_human_usable_package
-  path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_01_human_acceptable_delivery_anchor
+  goal: G-035_goal_ms8_human_usable_package
+  path: 4_phase_development/G-035_goal_ms8_human_usable_package/T-129_ms8_01_human_acceptable_delivery_anchor
   status: done
   executor: hybrid
   created: '2026-06-27'
@@ -1922,8 +1922,8 @@ tasks:
 - id: T-130
   name: ms8_02_layered_interface_kernel_refactor
   phase: development
-  goal: goal_goal_ms8_human_usable_package
-  path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_02_layered_interface_kernel_refactor
+  goal: G-035_goal_ms8_human_usable_package
+  path: 4_phase_development/G-035_goal_ms8_human_usable_package/T-130_ms8_02_layered_interface_kernel_refactor
   status: done
   executor: hybrid
   created: '2026-06-27'
@@ -1931,8 +1931,8 @@ tasks:
 - id: T-131
   name: ms8_03_demo_notebooks_and_github_observation
   phase: development
-  goal: goal_goal_ms8_human_usable_package
-  path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_03_demo_notebooks_and_github_observation
+  goal: G-035_goal_ms8_human_usable_package
+  path: 4_phase_development/G-035_goal_ms8_human_usable_package/T-131_ms8_03_demo_notebooks_and_github_observation
   status: done
   executor: human
   created: '2026-06-27'
@@ -1940,8 +1940,8 @@ tasks:
 - id: T-132
   name: ms8_04_real_layered_source_refactor
   phase: development
-  goal: goal_goal_ms8_human_usable_package
-  path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_04_real_layered_source_refactor
+  goal: G-035_goal_ms8_human_usable_package
+  path: 4_phase_development/G-035_goal_ms8_human_usable_package/T-132_ms8_04_real_layered_source_refactor
   status: pending
   executor: human
   created: '2026-06-27'
@@ -1949,8 +1949,8 @@ tasks:
 - id: T-133
   name: ms8_05_code_honesty_discipline_anchor
   phase: development
-  goal: goal_goal_ms8_human_usable_package
-  path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_05_code_honesty_discipline_anchor
+  goal: G-035_goal_ms8_human_usable_package
+  path: 4_phase_development/G-035_goal_ms8_human_usable_package/T-133_ms8_05_code_honesty_discipline_anchor
   status: pending
   executor: human
   created: '2026-06-27'
@@ -1958,8 +1958,8 @@ tasks:
 - id: T-137
   name: ms8_09_l1_real_llm_gate_repair
   phase: development
-  goal: goal_goal_ms8_human_usable_package
-  path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_09_l1_real_llm_gate_repair
+  goal: G-035_goal_ms8_human_usable_package
+  path: 4_phase_development/G-035_goal_ms8_human_usable_package/T-137_ms8_09_l1_real_llm_gate_repair
   status: pending
   executor: hybrid
   created: '2026-06-28'
@@ -1967,8 +1967,8 @@ tasks:
 - id: T-138
   name: ms8_10_l2_resource_routing_repair
   phase: development
-  goal: goal_goal_ms8_human_usable_package
-  path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_10_l2_resource_routing_repair
+  goal: G-035_goal_ms8_human_usable_package
+  path: 4_phase_development/G-035_goal_ms8_human_usable_package/T-138_ms8_10_l2_resource_routing_repair
   status: pending
   executor: hybrid
   created: '2026-06-28'
@@ -1976,8 +1976,8 @@ tasks:
 - id: T-139
   name: ms8_11_l3_resource_pack_query_execution_repair
   phase: development
-  goal: goal_goal_ms8_human_usable_package
-  path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_11_l3_resource_pack_query_execution_repair
+  goal: G-035_goal_ms8_human_usable_package
+  path: 4_phase_development/G-035_goal_ms8_human_usable_package/T-139_ms8_11_l3_resource_pack_query_execution_repair
   status: pending
   executor: human
   created: '2026-06-28'
@@ -1985,8 +1985,8 @@ tasks:
 - id: T-140
   name: ms8_12_l4_evidence_dossier_plan
   phase: development
-  goal: goal_goal_ms8_human_usable_package
-  path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_12_l4_evidence_dossier_plan
+  goal: G-035_goal_ms8_human_usable_package
+  path: 4_phase_development/G-035_goal_ms8_human_usable_package/T-140_ms8_12_l4_evidence_dossier_plan
   status: pending
   executor: human
   created: '2026-06-28'
@@ -1994,8 +1994,8 @@ tasks:
 - id: T-141
   name: ms8_13_l5_presentation_output_layer_plan
   phase: development
-  goal: goal_goal_ms8_human_usable_package
-  path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_13_l5_presentation_output_layer_plan
+  goal: G-035_goal_ms8_human_usable_package
+  path: 4_phase_development/G-035_goal_ms8_human_usable_package/T-141_ms8_13_l5_presentation_output_layer_plan
   status: pending
   executor: human
   created: '2026-06-29'
@@ -2003,8 +2003,8 @@ tasks:
 - id: T-142
   name: pxfquery_web_l5_query_server_mvp
   phase: translation
-  goal: goal_pending_g010
-  path: 5_phase_translation/goal_pending_g010/task_pxfquery_web_l5_query_server_mvp
+  goal: G-010_pending_g010
+  path: 5_phase_translation/G-010_pending_g010/T-142_pxfquery_web_l5_query_server_mvp
   status: pending
   executor: human
   created: '2026-06-29'
@@ -2012,8 +2012,8 @@ tasks:
 - id: T-143
   name: pxfquery_paper_translation_anchor
   phase: translation
-  goal: goal_paper_figure_planning
-  path: 5_phase_translation/goal_paper_figure_planning/task_pxfquery_paper_translation_anchor
+  goal: G-011_paper_figure_planning
+  path: 5_phase_translation/G-011_paper_figure_planning/T-143_pxfquery_paper_translation_anchor
   status: active
   executor: human
   created: '2026-06-29'
@@ -2021,8 +2021,8 @@ tasks:
 - id: T-144
   name: ms8_14_user_value_l5_output_rework
   phase: development
-  goal: goal_goal_ms8_human_usable_package
-  path: 4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_14_user_value_l5_output_rework
+  goal: G-035_goal_ms8_human_usable_package
+  path: 4_phase_development/G-035_goal_ms8_human_usable_package/T-144_ms8_14_user_value_l5_output_rework
   status: pending
   executor: hybrid
   created: '2026-06-29'
@@ -2030,8 +2030,8 @@ tasks:
 - id: T-145
   name: figure2_data_and_notebook_figure_workbench
   phase: translation
-  goal: goal_paper_figure_planning
-  path: 5_phase_translation/goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench
+  goal: G-011_paper_figure_planning
+  path: 5_phase_translation/G-011_paper_figure_planning/T-145_figure2_data_and_notebook_figure_workbench
   status: pending
   executor: human
   created: '2026-06-29'
@@ -2039,8 +2039,8 @@ tasks:
 - id: T-146
   name: figure1_concept_notebook_pdf_workbench
   phase: translation
-  goal: goal_paper_figure_planning
-  path: 5_phase_translation/goal_paper_figure_planning/task_figure1_concept_notebook_pdf_workbench
+  goal: G-011_paper_figure_planning
+  path: 5_phase_translation/G-011_paper_figure_planning/T-146_figure1_concept_notebook_pdf_workbench
   status: pending
   executor: human
   created: '2026-06-29'
@@ -2048,8 +2048,8 @@ tasks:
 - id: T-147
   name: figure4_forward_genetic_query_notebook_figure_workbench
   phase: translation
-  goal: goal_paper_figure_planning
-  path: 5_phase_translation/goal_paper_figure_planning/task_figure4_forward_genetic_query_notebook_figure_wo
+  goal: G-011_paper_figure_planning
+  path: 5_phase_translation/G-011_paper_figure_planning/T-147_figure4_forward_genetic_query_notebook_figure_wo
   status: pending
   executor: human
   created: '2026-06-29'
@@ -2057,8 +2057,8 @@ tasks:
 - id: T-148
   name: pxfquery_new_figure3_concept_and_notebook_workbench
   phase: translation
-  goal: goal_paper_figure_planning
-  path: 5_phase_translation/goal_paper_figure_planning/task_pxfquery_new_figure3_concept_and_notebook_workbe
+  goal: G-011_paper_figure_planning
+  path: 5_phase_translation/G-011_paper_figure_planning/T-148_pxfquery_new_figure3_concept_and_notebook_workbe
   status: pending
   executor: human
   created: '2026-06-30'
@@ -2066,8 +2066,8 @@ tasks:
 - id: T-149
   name: figure5_forward_drug_query_notebook_figure_workbench
   phase: translation
-  goal: goal_paper_figure_planning
-  path: 5_phase_translation/goal_paper_figure_planning/task_figure5_forward_drug_query_notebook_figure_workb
+  goal: G-011_paper_figure_planning
+  path: 5_phase_translation/G-011_paper_figure_planning/T-149_figure5_forward_drug_query_notebook_figure_workb
   status: pending
   executor: human
   created: '2026-06-30'
@@ -2075,8 +2075,8 @@ tasks:
 - id: T-150
   name: figure7_reverse_drug_query_notebook_figure_workbench
   phase: translation
-  goal: goal_paper_figure_planning
-  path: 5_phase_translation/goal_paper_figure_planning/task_figure7_reverse_drug_query_notebook_figure_workb
+  goal: G-011_paper_figure_planning
+  path: 5_phase_translation/G-011_paper_figure_planning/T-150_figure7_reverse_drug_query_notebook_figure_workb
   status: pending
   executor: human
   created: '2026-06-30'
@@ -2084,8 +2084,8 @@ tasks:
 - id: T-151
   name: figure8_web_usage_notebook_figure_workbench
   phase: translation
-  goal: goal_paper_figure_planning
-  path: 5_phase_translation/goal_paper_figure_planning/task_figure8_web_usage_notebook_figure_workbench
+  goal: G-011_paper_figure_planning
+  path: 5_phase_translation/G-011_paper_figure_planning/T-151_figure8_web_usage_notebook_figure_workbench
   status: pending
   executor: human
   created: '2026-06-30'
@@ -2093,8 +2093,8 @@ tasks:
 - id: T-153
   name: figure9_mcp_ai_dialog_notebook_workbench
   phase: translation
-  goal: goal_paper_figure_planning
-  path: 5_phase_translation/goal_paper_figure_planning/task_figure9_mcp_ai_dialog_notebook_workbench
+  goal: G-011_paper_figure_planning
+  path: 5_phase_translation/G-011_paper_figure_planning/T-153_figure9_mcp_ai_dialog_notebook_workbench
   status: active
   executor: human
   created: '2026-07-01'
@@ -2102,8 +2102,8 @@ tasks:
 - id: T-155
   name: pxfquery_pre_writing_materials_hub
   phase: translation
-  goal: goal_cyhex_outline_draft_biopaper
-  path: 5_phase_translation/goal_cyhex_outline_draft_biopaper/task_pxfquery_pre_writing_materials_hub
+  goal: G-012_cyhex_outline_draft_biopaper
+  path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-155_pxfquery_pre_writing_materials_hub
   status: active
   executor: human
   created: '2026-07-06'
@@ -2111,8 +2111,8 @@ tasks:
 - id: T-156
   name: pxfquery_manuscript_writing_design
   phase: translation
-  goal: goal_cyhex_outline_draft_biopaper
-  path: 5_phase_translation/goal_cyhex_outline_draft_biopaper/task_pxfquery_manuscript_writing_design
+  goal: G-012_cyhex_outline_draft_biopaper
+  path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-156_pxfquery_manuscript_writing_design
   status: pending
   executor: human
   created: '2026-07-07'
@@ -2120,8 +2120,8 @@ tasks:
 - id: T-157
   name: pxfquery_manuscript_introduction_draft
   phase: translation
-  goal: goal_cyhex_outline_draft_biopaper
-  path: 5_phase_translation/goal_cyhex_outline_draft_biopaper/task_pxfquery_manuscript_introduction_draft
+  goal: G-012_cyhex_outline_draft_biopaper
+  path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-157_pxfquery_manuscript_introduction_draft
   status: pending
   executor: hybrid
   created: '2026-07-07'
@@ -2129,8 +2129,8 @@ tasks:
 - id: T-158
   name: pxfquery_manuscript_methods_draft
   phase: translation
-  goal: goal_cyhex_outline_draft_biopaper
-  path: 5_phase_translation/goal_cyhex_outline_draft_biopaper/task_pxfquery_manuscript_methods_draft
+  goal: G-012_cyhex_outline_draft_biopaper
+  path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-158_pxfquery_manuscript_methods_draft
   status: pending
   executor: human
   created: '2026-07-07'
@@ -2138,8 +2138,8 @@ tasks:
 - id: T-159
   name: pxfquery_manuscript_results_draft
   phase: translation
-  goal: goal_cyhex_outline_draft_biopaper
-  path: 5_phase_translation/goal_cyhex_outline_draft_biopaper/task_pxfquery_manuscript_results_draft
+  goal: G-012_cyhex_outline_draft_biopaper
+  path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-159_pxfquery_manuscript_results_draft
   status: pending
   executor: human
   created: '2026-07-07'
@@ -2147,9 +2147,18 @@ tasks:
 - id: T-160
   name: pxfquery_supplementary_tables_materials
   phase: translation
-  goal: goal_cyhex_outline_draft_biopaper
-  path: 5_phase_translation/goal_cyhex_outline_draft_biopaper/task_pxfquery_supplementary_tables_materials
+  goal: G-012_cyhex_outline_draft_biopaper
+  path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-160_pxfquery_supplementary_tables_materials
   status: pending
   executor: human
   created: '2026-07-07'
+  completed: null
+- id: T-161
+  name: pxfquery_manuscript_discussion_docx_assembly
+  phase: translation
+  goal: G-012_cyhex_outline_draft_biopaper
+  path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/task_pxfquery_manuscript_discussion_docx_assembly
+  status: pending
+  executor: hybrid
+  created: '2026-07-10'
   completed: null

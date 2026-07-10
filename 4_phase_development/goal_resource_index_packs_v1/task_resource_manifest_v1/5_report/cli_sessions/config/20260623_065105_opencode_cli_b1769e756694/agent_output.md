@@ -1,1 +1,0 @@
-This is a protocol update directive, not a standalone prompt. It's telling me to repair defects discovered during execution — in this case, the relative path `../../../task_standard_resources_optimal_formats/...` in the T-025 configuration does not resolve correctly. The actual sibling is `../goal_precomputed_data_exploration/task_standard_resources_optimal_formats/`.

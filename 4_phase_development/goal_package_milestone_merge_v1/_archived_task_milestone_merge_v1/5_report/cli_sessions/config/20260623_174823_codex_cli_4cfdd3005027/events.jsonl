@@ -1,1 +1,0 @@
-{"type": "dry_run", "cmd": ["/opt/homebrew/bin/codex", "exec", "--dangerously-bypass-approvals-and-sandbox", "--json", "-C", "/Users/dudu/Documents/3_Project/12_PxFquery", "-"]}

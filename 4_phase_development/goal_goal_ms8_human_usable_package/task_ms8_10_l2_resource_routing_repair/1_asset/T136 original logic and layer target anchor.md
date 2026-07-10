@@ -1,1 +1,0 @@
-/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_08_original_logic_and_layer_target_anchor/4_artifact/3_document/original_logic_and_layer_target_anchor_v20260627.md

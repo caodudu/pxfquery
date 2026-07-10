@@ -1,1 +1,0 @@
-I’ll configure this task only. I’ll confirm the local CyHex version, then read the allowed predecessor meta/registry files and only escalate to the permitted completion reports if the handoffs are missing enough context to select assets.

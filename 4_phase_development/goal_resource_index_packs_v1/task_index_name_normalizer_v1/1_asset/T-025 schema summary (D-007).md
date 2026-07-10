@@ -1,1 +1,0 @@
-../../task_resource_manifest_v1/4_artifact/2_persist/pxfquery_T025_schema_summary_v20260623.md

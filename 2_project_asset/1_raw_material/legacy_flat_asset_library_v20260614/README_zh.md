@@ -33,7 +33,7 @@
 大文件阈值是 `100MB`。大文件目前不是实体拷贝，而是软链接。你验收目录结构后，再执行：
 
 ```bash
-3_phase_digestion/goal_legacy_asset_migration/task_plan_migration_map/4_artifact/2_persist/replace_symlinks_with_copies_v20260614.sh
+3_phase_digestion/G-001_legacy_asset_migration/T-002_plan_migration_map/4_artifact/2_persist/replace_symlinks_with_copies_v20260614.sh
 ```
 
 把 18 个软链接替换为硬拷贝。
@@ -273,7 +273,7 @@ results/gsea_tables/M-0238_xpr_gsea_100terms.csv
 任务产出的登记和清单文件在：
 
 ```text
-3_phase_digestion/goal_legacy_asset_migration/task_plan_migration_map/4_artifact/5_table/
+3_phase_digestion/G-001_legacy_asset_migration/T-002_plan_migration_map/4_artifact/5_table/
 ```
 
 包括：

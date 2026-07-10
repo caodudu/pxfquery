@@ -1,7 +1,0 @@
-{"action": "task_note_add", "note_id": "N-1782148990590", "ts": "2026-06-23T01:23:10"}
-{"action": "fast_pass_approve", "from": "config_review", "to": "config_approved", "actor": "fast_pass_permission", "ts": "2026-06-23T03:23:57"}
-{"action": "fast_pass_approve", "from": "check_review", "to": "check_approved", "actor": "fast_pass_permission", "ts": "2026-06-23T03:43:46"}
-{"action": "artifact_pin", "id": "ART-002", "pinned": true, "ts": "2026-06-23T04:04:43"}
-{"action": "artifact_pin", "id": "ART-001", "pinned": true, "ts": "2026-06-23T04:06:48"}
-{"action": "artifact_pin", "id": "ART-004", "pinned": true, "ts": "2026-06-23T04:07:12"}
-{"action": "status_change", "from": "active", "to": "done", "actor": "ui", "ts": "2026-06-23T04:07:34"}

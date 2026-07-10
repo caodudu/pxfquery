@@ -1,6 +1,0 @@
-{"action": "status_change", "from": "pending", "to": "active", "actor": "ui", "ts": "2026-06-23T18:09:30"}
-{"action": "fast_pass_approve", "from": "config_review", "to": "config_approved", "actor": "fast_pass_permission", "ts": "2026-06-23T18:15:33"}
-{"action": "fast_pass_approve", "from": "check_review", "to": "check_approved", "actor": "fast_pass_permission", "ts": "2026-06-23T18:20:06"}
-{"action": "status_change", "from": "active", "to": "blocked", "actor": "ui", "ts": "2026-06-24T00:34:32"}
-{"action": "status_change", "from": "blocked", "to": "pending", "actor": "ui", "ts": "2026-06-24T00:35:15"}
-{"action": "status_change", "from": "pending", "to": "blocked", "actor": "ui", "ts": "2026-06-24T00:35:18"}

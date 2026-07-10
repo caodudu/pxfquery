@@ -1,5 +1,0 @@
-{"action": "status_change", "from": "pending", "to": "active", "actor": "ui", "ts": "2026-06-24T03:18:25"}
-{"action": "dependency_released", "completed_dependency": "T-046", "actor": "dependency_scheduler", "ts": "2026-06-24T04:47:46"}
-{"action": "fast_pass_approve", "from": "config_review", "to": "config_approved", "actor": "fast_pass_permission", "ts": "2026-06-24T04:52:01"}
-{"action": "fast_pass_approve", "from": "check_review", "to": "check_approved", "actor": "fast_pass_permission", "ts": "2026-06-24T04:54:55"}
-{"action": "status_change", "from": "active", "to": "blocked", "actor": "ui", "ts": "2026-06-24T17:41:52"}

@@ -1,1 +1,0 @@
-{"ts":"2026-06-28T00:00:00+08:00","event":"artifact_update","status":"done","summary":"Deprecated the English monolithic L2 note and added split Chinese L2 design documents covering boundary, cell routing, perturbation routing, function routing, combination routing, and T007-vs-T135 analysis. This is a design clarification artifact, not an implementation completion claim."}

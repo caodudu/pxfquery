@@ -1,5 +1,0 @@
-{"action": "status_change", "from": "pending", "to": "active", "actor": "ui", "ts": "2026-06-24T05:06:13"}
-{"action": "fast_pass_approve", "from": "config_review", "to": "config_approved", "actor": "fast_pass_permission", "ts": "2026-06-24T05:10:27"}
-{"action": "fast_pass_approve", "from": "check_review", "to": "check_approved", "actor": "fast_pass_permission", "ts": "2026-06-24T05:11:44"}
-{"action": "fast_pass_accept_delivery", "from": "delivery_review", "to": "done", "actor": "fast_pass_permission", "ts": "2026-06-24T07:04:47"}
-{"action": "task_note_add", "note_id": "N-1782743702698", "tags": ["task_note_add"], "ts": "2026-06-29T22:35:02", "type": "task_note_add"}

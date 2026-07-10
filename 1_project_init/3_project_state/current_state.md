@@ -4,16 +4,16 @@ Updated: 2026-06-22
 
 ## Project Status
 
-PxFquery is an active CyHex project migrated from legacy functional-query materials. The project is in development, with current focus on `4_phase_development/goal_algorithm_function_review/task_mvp_algorithm_run-through_review`.
+PxFquery is an active CyHex project migrated from legacy functional-query materials. The project is in development, with current focus on `4_phase_development/G-005_algorithm_function_review/T-013_mvp_algorithm_run-through_review`.
 
 The project currently has no final external deliverable registered in `6_project_deliverable/`. Existing outputs are task-level digestion, review, evidence, and preparation artifacts under each task's `4_artifact/`.
 
 ## Active Tasks Needing Human Review Or Continuation
 
-- T-012 `task_genes_bioinformatics_deliverable_catalog`: delivered catalogs/supplements and remains active pending acceptance.
-- T-013 `task_mvp_algorithm_run-through_review`: delivered MVP review evidence and remains active pending acceptance or follow-up decision.
-- T-014 `task_understand_pxfquery_precomputed_data`: delivered precomputed-data understanding package and remains active pending acceptance.
-- T-015 `task_mdpi_submission_package_and_guide`: delivered submission-rule package and remains active pending acceptance.
+- T-012 `T-012_genes_bioinformatics_deliverable_catalog`: delivered catalogs/supplements and remains active pending acceptance.
+- T-013 `T-013_mvp_algorithm_run-through_review`: delivered MVP review evidence and remains active pending acceptance or follow-up decision.
+- T-014 `T-014_understand_pxfquery_precomputed_data`: delivered precomputed-data understanding package and remains active pending acceptance.
+- T-015 `T-015_mdpi_submission_package_and_guide`: delivered submission-rule package and remains active pending acceptance.
 
 ## Current Rules
 

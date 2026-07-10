@@ -3,872 +3,872 @@ updated: '2026-06-26'
 notes: Task dependency and artifact lineage backfilled from existing P-012 asset registrations,
   artifact registries, and completion reports. Task outputs are unchanged.
 nodes:
-- id: goal:goal_m6_ms_anchors_and_stress_assets
+- id: goal:G-031_m6_ms_anchors_and_stress_assets
   x: 738
   color: '#f97316'
   locked: false
   tasks_collapsed: false
-- id: goal:goal_project_delivery_anchor
+- id: goal:G-027_project_delivery_anchor
   x: 574
   color: '#f59e0b'
   locked: false
   tasks_collapsed: false
-- id: goal:goal_legacy_stress_test_asset_digestion
+- id: goal:G-026_legacy_stress_test_asset_digestion
   x: 102
   color: '#8b5cf6'
   locked: false
   tasks_collapsed: false
-- id: goal:goal_template_paper_digestion
+- id: goal:G-009_template_paper_digestion
   x: 382
   color: '#34d399'
   locked: false
   tasks_collapsed: false
-- id: goal:goal_submission_rules
+- id: goal:G-008_submission_rules
   x: 316
   color: '#f87171'
   locked: true
   tasks_collapsed: false
-- id: goal:goal_citation_research
+- id: goal:G-004_citation_research
   x: 414
   color: '#facc15'
   locked: true
   tasks_collapsed: false
-- id: goal:goal_magazine_research
+- id: goal:G-003_magazine_research
   x: 346
   color: '#f59e0b'
   locked: true
   tasks_collapsed: false
-- id: goal:goal_development_asset_digestion
+- id: goal:G-002_development_asset_digestion
   x: 546
   color: '#8b5cf6'
   locked: false
   tasks_collapsed: false
-- id: goal:goal_legacy_asset_migration
+- id: goal:G-001_legacy_asset_migration
   x: 135
   color: '#3b82f6'
   locked: true
   tasks_collapsed: false
-- id: goal:goal_goal_ms8_human_usable_package
+- id: goal:G-035_goal_ms8_human_usable_package
   x: 929
   color: '#38bdf8'
   locked: false
   tasks_collapsed: false
-- id: goal:goal_ms7_recovery_package
+- id: goal:G-034_ms7_recovery_package
   x: 382
   color: '#fb923c'
   locked: false
   tasks_collapsed: true
-- id: goal:goal_ms3_ms4_quality_and_repair
+- id: goal:G-032_ms3_ms4_quality_and_repair
   x: 479
   color: '#a78bfa'
   locked: false
   tasks_collapsed: true
-- id: goal:goal_ms3_release_quality
+- id: goal:G-030_ms3_release_quality
   x: 525
   color: '#84cc16'
   locked: false
   tasks_collapsed: true
-- id: goal:goal_ms3_core_runtime
+- id: goal:G-029_ms3_core_runtime
   x: 605
   color: '#06b6d4'
   locked: false
   tasks_collapsed: true
-- id: goal:goal_ms3_foundation_resources
+- id: goal:G-028_ms3_foundation_resources
   x: 560
   color: '#ec4899'
   locked: false
   tasks_collapsed: true
-- id: goal:goal_m1_python_package_v2
+- id: goal:G-025_m1_python_package_v2
   x: 425
   color: '#3b82f6'
   locked: false
   tasks_collapsed: true
-- id: goal:goal_package_milestone_merge_v1
+- id: goal:G-024_package_milestone_merge_v1
   x: 455
   color: '#10b981'
   locked: false
   tasks_collapsed: true
-- id: goal:goal_resolver_optional_layer_v1
+- id: goal:G-023_resolver_optional_layer_v1
   x: 453
   color: '#38bdf8'
   locked: false
   tasks_collapsed: true
-- id: goal:goal_deterministic_query_engines_v1
+- id: goal:G-022_deterministic_query_engines_v1
   x: 419
   color: '#fb923c'
   locked: false
   tasks_collapsed: false
-- id: goal:goal_resource_index_packs_v1
+- id: goal:G-021_resource_index_packs_v1
   x: 438
   color: '#34d399'
   locked: false
   tasks_collapsed: true
-- id: goal:goal_package_foundation_v1
+- id: goal:G-020_package_foundation_v1
   x: 457
   color: '#a78bfa'
   locked: false
   tasks_collapsed: true
-- id: goal:goal_precomputed_data_exploration
+- id: goal:G-007_precomputed_data_exploration
   x: 78
   color: '#f97316'
   locked: true
   tasks_collapsed: false
-- id: goal:goal_algorithm_version_development
+- id: goal:G-006_algorithm_version_development
   x: 265
   color: '#84cc16'
   locked: false
   tasks_collapsed: false
-- id: goal:goal_algorithm_function_review
+- id: goal:G-005_algorithm_function_review
   x: 294
   color: '#06b6d4'
   locked: false
   tasks_collapsed: false
-- id: goal:goal_ms6_manuscript_foundation
+- id: goal:G-033_ms6_manuscript_foundation
   x: 596
   color: '#34d399'
   locked: false
   tasks_collapsed: false
-- id: goal:goal_cyhex_outline_draft_biopaper
+- id: goal:G-012_cyhex_outline_draft_biopaper
   x: 491
   color: '#10b981'
   locked: false
   tasks_collapsed: false
-- id: goal:goal_paper_figure_planning
+- id: goal:G-011_paper_figure_planning
   x: 293
   color: '#38bdf8'
   locked: false
   tasks_collapsed: false
-- id: goal:goal_pending_g010
+- id: goal:G-010_pending_g010
   x: 95
   color: '#fb923c'
   locked: true
   tasks_collapsed: false
 edges:
-- from: goal_legacy_asset_migration/task_audit_legacy_assets
-  to: goal_legacy_asset_migration/task_plan_migration_map
+- from: G-001_legacy_asset_migration/T-001_audit_legacy_assets
+  to: G-001_legacy_asset_migration/T-002_plan_migration_map
   dep_id: T-001
   relation: extract
   relation_label: 旧资产审计生成迁移图
   scale: task
   nature: lineage
   artifact_in:
-  - task: goal_legacy_asset_migration/task_audit_legacy_assets
+  - task: G-001_legacy_asset_migration/T-001_audit_legacy_assets
     artifact_id: D-001
     role: source
   artifact_out:
-  - task: goal_legacy_asset_migration/task_plan_migration_map
+  - task: G-001_legacy_asset_migration/T-002_plan_migration_map
     artifact_id: D-006
     role: core
   note: Migration planning uses the T001 semantic registry and legacy source audit.
   gate: must
-- from: goal_legacy_asset_migration/task_audit_legacy_assets
-  to: goal_legacy_asset_migration/task_normalize_project_protocol_from_migrated_context
+- from: G-001_legacy_asset_migration/T-001_audit_legacy_assets
+  to: G-001_legacy_asset_migration/T-003_normalize_project_protocol_from_migrated_context
   dep_id: T-001
   relation: extract
   relation_label: 旧项目背景进入当前协议
   scale: task
   nature: lineage
   artifact_in:
-  - task: goal_legacy_asset_migration/task_audit_legacy_assets
+  - task: G-001_legacy_asset_migration/T-001_audit_legacy_assets
     artifact_id: D-001
     role: source
   artifact_out:
-  - task: goal_legacy_asset_migration/task_normalize_project_protocol_from_migrated_context
+  - task: G-001_legacy_asset_migration/T-003_normalize_project_protocol_from_migrated_context
     artifact_id: T003-A-001
     role: core
   note: Project protocol normalization reads T001 project background and authority
     outputs.
   gate: must
-- from: goal_legacy_asset_migration/task_plan_migration_map
-  to: goal_legacy_asset_migration/task_normalize_project_protocol_from_migrated_context
+- from: G-001_legacy_asset_migration/T-002_plan_migration_map
+  to: G-001_legacy_asset_migration/T-003_normalize_project_protocol_from_migrated_context
   dep_id: T-002
   relation: integrate
   relation_label: 迁移资产库进入当前协议
   scale: task
   nature: lineage
   artifact_in:
-  - task: goal_legacy_asset_migration/task_plan_migration_map
+  - task: G-001_legacy_asset_migration/T-002_plan_migration_map
     artifact_id: D-006
     role: source
   artifact_out:
-  - task: goal_legacy_asset_migration/task_normalize_project_protocol_from_migrated_context
+  - task: G-001_legacy_asset_migration/T-003_normalize_project_protocol_from_migrated_context
     artifact_id: T003-A-001
     role: core
   note: Project protocol normalization integrates the flat migrated asset library
     and migration map.
   gate: must
-- from: goal_legacy_asset_migration/task_audit_legacy_assets
-  to: goal_development_asset_digestion/task_digest_pxfquery_development_state
+- from: G-001_legacy_asset_migration/T-001_audit_legacy_assets
+  to: G-002_development_asset_digestion/T-007_digest_pxfquery_development_state
   dep_id: T-001
   relation: extract
   relation_label: 旧开发状态来源
   scale: task
   nature: lineage
   artifact_in:
-  - task: goal_legacy_asset_migration/task_audit_legacy_assets
+  - task: G-001_legacy_asset_migration/T-001_audit_legacy_assets
     artifact_id: D-001
     role: source
   artifact_out:
-  - task: goal_development_asset_digestion/task_digest_pxfquery_development_state
+  - task: G-002_development_asset_digestion/T-007_digest_pxfquery_development_state
     artifact_id: D-001
     role: core
   note: Development state digestion reads T001 authority/source reports.
   gate: must
-- from: goal_legacy_asset_migration/task_plan_migration_map
-  to: goal_development_asset_digestion/task_digest_pxfquery_development_state
+- from: G-001_legacy_asset_migration/T-002_plan_migration_map
+  to: G-002_development_asset_digestion/T-007_digest_pxfquery_development_state
   dep_id: T-002
   relation: integrate
   relation_label: 迁移代码数据进入开发状态
   scale: task
   nature: lineage
   artifact_in:
-  - task: goal_legacy_asset_migration/task_plan_migration_map
+  - task: G-001_legacy_asset_migration/T-002_plan_migration_map
     artifact_id: D-006
     role: source
   artifact_out:
-  - task: goal_development_asset_digestion/task_digest_pxfquery_development_state
+  - task: G-002_development_asset_digestion/T-007_digest_pxfquery_development_state
     artifact_id: D-001
     role: core
   note: Development state digestion uses the migrated flat library and migration manifest.
   gate: must
-- from: goal_legacy_asset_migration/task_normalize_project_protocol_from_migrated_context
-  to: goal_development_asset_digestion/task_digest_pxfquery_development_state
+- from: G-001_legacy_asset_migration/T-003_normalize_project_protocol_from_migrated_context
+  to: G-002_development_asset_digestion/T-007_digest_pxfquery_development_state
   dep_id: T-003
   relation: integrate
   relation_label: 项目定位约束开发消化
   scale: task
   nature: lineage
   artifact_in:
-  - task: goal_legacy_asset_migration/task_normalize_project_protocol_from_migrated_context
+  - task: G-001_legacy_asset_migration/T-003_normalize_project_protocol_from_migrated_context
     artifact_id: T003-A-001
     role: source
   artifact_out:
-  - task: goal_development_asset_digestion/task_digest_pxfquery_development_state
+  - task: G-002_development_asset_digestion/T-007_digest_pxfquery_development_state
     artifact_id: D-001
     role: core
   note: Development state digestion aligns with normalized project positioning.
   gate: must
-- from: goal_legacy_asset_migration/task_normalize_project_protocol_from_migrated_context
-  to: goal_magazine_research/task_systematic_genes_literature_survey
+- from: G-001_legacy_asset_migration/T-003_normalize_project_protocol_from_migrated_context
+  to: G-003_magazine_research/T-004_systematic_genes_literature_survey
   dep_id: T-003
   relation: integrate
   relation_label: 项目投稿定位约束 Genes 调研
   scale: task
   nature: lineage
   artifact_in:
-  - task: goal_legacy_asset_migration/task_normalize_project_protocol_from_migrated_context
+  - task: G-001_legacy_asset_migration/T-003_normalize_project_protocol_from_migrated_context
     artifact_id: T003-A-001
     role: source
   artifact_out:
-  - task: goal_magazine_research/task_systematic_genes_literature_survey
+  - task: G-003_magazine_research/T-004_systematic_genes_literature_survey
     artifact_id: D-001
     role: core
   note: Systematic Genes literature survey uses normalized project positioning.
   gate: must
-- from: goal_legacy_asset_migration/task_plan_migration_map
-  to: goal_magazine_research/task_systematic_genes_literature_survey
+- from: G-001_legacy_asset_migration/T-002_plan_migration_map
+  to: G-003_magazine_research/T-004_systematic_genes_literature_survey
   dep_id: T-002
   relation: extract
   relation_label: 旧 Genes 策略进入调研
   scale: task
   nature: lineage
   artifact_in:
-  - task: goal_legacy_asset_migration/task_plan_migration_map
+  - task: G-001_legacy_asset_migration/T-002_plan_migration_map
     artifact_id: D-006
     role: source
   artifact_out:
-  - task: goal_magazine_research/task_systematic_genes_literature_survey
+  - task: G-003_magazine_research/T-004_systematic_genes_literature_survey
     artifact_id: D-001
     role: core
   note: Systematic Genes survey uses migrated legacy Genes strategy/materials.
   gate: must
-- from: goal_magazine_research/task_systematic_genes_literature_survey
-  to: goal_magazine_research/task_design_genes_adjustment
+- from: G-003_magazine_research/T-004_systematic_genes_literature_survey
+  to: G-003_magazine_research/T-005_design_genes_adjustment
   dep_id: T-004
   relation: refine
   relation_label: Genes 调研细化生信参考
   scale: task
   nature: lineage
   artifact_in:
-  - task: goal_magazine_research/task_systematic_genes_literature_survey
+  - task: G-003_magazine_research/T-004_systematic_genes_literature_survey
     artifact_id: D-001
     role: source
   artifact_out:
-  - task: goal_magazine_research/task_design_genes_adjustment
+  - task: G-003_magazine_research/T-005_design_genes_adjustment
     artifact_id: D-012
     role: core
   note: Genes design adjustment refines T004 systematic survey into bioinformatics
     reference categories.
   gate: must
-- from: goal_magazine_research/task_systematic_genes_literature_survey
-  to: goal_magazine_research/task_genes_affiliation_bias_analysis
+- from: G-003_magazine_research/T-004_systematic_genes_literature_survey
+  to: G-003_magazine_research/T-006_genes_affiliation_bias_analysis
   dep_id: T-004
   relation: extract
   relation_label: Genes 语料进入机构时间分析
   scale: task
   nature: lineage
   artifact_in:
-  - task: goal_magazine_research/task_systematic_genes_literature_survey
+  - task: G-003_magazine_research/T-004_systematic_genes_literature_survey
     artifact_id: D-001
     role: source
   artifact_out:
-  - task: goal_magazine_research/task_genes_affiliation_bias_analysis
+  - task: G-003_magazine_research/T-006_genes_affiliation_bias_analysis
     artifact_id: D-001
     role: core
   note: Affiliation bias analysis uses the T004 Genes metadata/timing corpus.
   gate: must
-- from: goal_magazine_research/task_genes_affiliation_bias_analysis
-  to: goal_magazine_research/task_mdpi_cross_journal_affiliation_landscape
+- from: G-003_magazine_research/T-006_genes_affiliation_bias_analysis
+  to: G-003_magazine_research/T-008_mdpi_cross_journal_affiliation_landscape
   dep_id: T-006
   relation: transform
   relation_label: Genes 机构分析扩展到 MDPI 横向景观
   scale: task
   nature: lineage
   artifact_in:
-  - task: goal_magazine_research/task_genes_affiliation_bias_analysis
+  - task: G-003_magazine_research/T-006_genes_affiliation_bias_analysis
     artifact_id: D-001
     role: source
   artifact_out:
-  - task: goal_magazine_research/task_mdpi_cross_journal_affiliation_landscape
+  - task: G-003_magazine_research/T-008_mdpi_cross_journal_affiliation_landscape
     artifact_id: D-001
     role: core
   note: MDPI cross-journal landscape reuses T006 affiliation/timing schema and PUMCH
     records.
   gate: must
-- from: goal_magazine_research/task_systematic_genes_literature_survey
-  to: goal_magazine_research/task_mdpi_cross_journal_affiliation_landscape
+- from: G-003_magazine_research/T-004_systematic_genes_literature_survey
+  to: G-003_magazine_research/T-008_mdpi_cross_journal_affiliation_landscape
   dep_id: T-004
   relation: extract
   relation_label: Genes 语料支撑 MDPI 横向比较
   scale: task
   nature: lineage
   artifact_in:
-  - task: goal_magazine_research/task_systematic_genes_literature_survey
+  - task: G-003_magazine_research/T-004_systematic_genes_literature_survey
     artifact_id: D-001
     role: source
   artifact_out:
-  - task: goal_magazine_research/task_mdpi_cross_journal_affiliation_landscape
+  - task: G-003_magazine_research/T-008_mdpi_cross_journal_affiliation_landscape
     artifact_id: D-001
     role: core
   note: MDPI cross-journal landscape uses T004 Genes corpus as reference.
   gate: must
-- from: goal_magazine_research/task_genes_affiliation_bias_analysis
-  to: goal_magazine_research/task_frontiers_in_genetics_affiliation_landscape
+- from: G-003_magazine_research/T-006_genes_affiliation_bias_analysis
+  to: G-003_magazine_research/T-009_frontiers_in_genetics_affiliation_landscape
   dep_id: T-006
   relation: transform
   relation_label: Genes 机构分析迁移到 Frontiers
   scale: task
   nature: lineage
   artifact_in:
-  - task: goal_magazine_research/task_genes_affiliation_bias_analysis
+  - task: G-003_magazine_research/T-006_genes_affiliation_bias_analysis
     artifact_id: D-001
     role: source
   artifact_out:
-  - task: goal_magazine_research/task_frontiers_in_genetics_affiliation_landscape
+  - task: G-003_magazine_research/T-009_frontiers_in_genetics_affiliation_landscape
     artifact_id: D-001
     role: core
   note: Frontiers landscape reuses T006 affiliation/timing schema and PUMCH records.
   gate: must
-- from: goal_magazine_research/task_frontiers_in_genetics_affiliation_landscape
-  to: goal_magazine_research/task_frontiers_in_genetics_publication_timing
+- from: G-003_magazine_research/T-009_frontiers_in_genetics_affiliation_landscape
+  to: G-003_magazine_research/T-011_frontiers_in_genetics_publication_timing
   dep_id: T-009
   relation: refine
   relation_label: Frontiers 机构景观细化为发表周期
   scale: task
   nature: lineage
   artifact_in:
-  - task: goal_magazine_research/task_frontiers_in_genetics_affiliation_landscape
+  - task: G-003_magazine_research/T-009_frontiers_in_genetics_affiliation_landscape
     artifact_id: D-001
     role: source
   artifact_out:
-  - task: goal_magazine_research/task_frontiers_in_genetics_publication_timing
+  - task: G-003_magazine_research/T-011_frontiers_in_genetics_publication_timing
     artifact_id: D-001
     role: core
   note: Frontiers timing survey refines the Frontiers affiliation landscape corpus.
   gate: must
-- from: goal_magazine_research/task_systematic_genes_literature_survey
-  to: goal_magazine_research/task_frontiers_in_genetics_publication_timing
+- from: G-003_magazine_research/T-004_systematic_genes_literature_survey
+  to: G-003_magazine_research/T-011_frontiers_in_genetics_publication_timing
   dep_id: T-004
   relation: extract
   relation_label: Genes 发表周期作为 Frontiers 对照
   scale: task
   nature: lineage
   artifact_in:
-  - task: goal_magazine_research/task_systematic_genes_literature_survey
+  - task: G-003_magazine_research/T-004_systematic_genes_literature_survey
     artifact_id: D-001
     role: source
   artifact_out:
-  - task: goal_magazine_research/task_frontiers_in_genetics_publication_timing
+  - task: G-003_magazine_research/T-011_frontiers_in_genetics_publication_timing
     artifact_id: D-001
     role: core
   note: Frontiers timing survey uses T004 publication timing as comparative context.
   gate: must
-- from: goal_magazine_research/task_systematic_genes_literature_survey
-  to: goal_magazine_research/task_genes_bioinformatics_deliverable_catalog
+- from: G-003_magazine_research/T-004_systematic_genes_literature_survey
+  to: G-003_magazine_research/T-012_genes_bioinformatics_deliverable_catalog
   dep_id: T-004
   relation: extract
   relation_label: Genes 语料进入交付物目录
   scale: task
   nature: lineage
   artifact_in:
-  - task: goal_magazine_research/task_systematic_genes_literature_survey
+  - task: G-003_magazine_research/T-004_systematic_genes_literature_survey
     artifact_id: D-001
     role: source
   artifact_out:
-  - task: goal_magazine_research/task_genes_bioinformatics_deliverable_catalog
+  - task: G-003_magazine_research/T-012_genes_bioinformatics_deliverable_catalog
     artifact_id: D-001
     role: core
   note: T012 catalog screens the T004 Genes survey outputs for artifact-like deliverables.
   gate: must
-- from: goal_magazine_research/task_design_genes_adjustment
-  to: goal_magazine_research/task_genes_bioinformatics_deliverable_catalog
+- from: G-003_magazine_research/T-005_design_genes_adjustment
+  to: G-003_magazine_research/T-012_genes_bioinformatics_deliverable_catalog
   dep_id: T-005
   relation: refine
   relation_label: 生信参考细化为交付物目录
   scale: task
   nature: lineage
   artifact_in:
-  - task: goal_magazine_research/task_design_genes_adjustment
+  - task: G-003_magazine_research/T-005_design_genes_adjustment
     artifact_id: D-012
     role: source
   artifact_out:
-  - task: goal_magazine_research/task_genes_bioinformatics_deliverable_catalog
+  - task: G-003_magazine_research/T-012_genes_bioinformatics_deliverable_catalog
     artifact_id: D-001
     role: core
   note: T012 refines T005 bioinformatics reference digestion into a per-paper deliverable
     catalog.
   gate: must
-- from: goal_magazine_research/task_systematic_genes_literature_survey
-  to: goal_submission_rules/task_mdpi_submission_package_and_guide
+- from: G-003_magazine_research/T-004_systematic_genes_literature_survey
+  to: G-008_submission_rules/T-015_mdpi_submission_package_and_guide
   dep_id: T-004
   relation: extract
   relation_label: Genes/MDPI 调研支撑投稿规则
   scale: task
   nature: lineage
   artifact_in:
-  - task: goal_magazine_research/task_systematic_genes_literature_survey
+  - task: G-003_magazine_research/T-004_systematic_genes_literature_survey
     artifact_id: D-001
     role: source
   artifact_out:
-  - task: goal_submission_rules/task_mdpi_submission_package_and_guide
+  - task: G-008_submission_rules/T-015_mdpi_submission_package_and_guide
     artifact_id: D-001
     role: core
   note: Submission rules task uses prior Genes research as optional journal context
     while official rules remain authoritative.
   gate: must
-- from: goal_magazine_research/task_genes_bioinformatics_deliverable_catalog
-  to: goal_submission_rules/task_mdpi_submission_package_and_guide
+- from: G-003_magazine_research/T-012_genes_bioinformatics_deliverable_catalog
+  to: G-008_submission_rules/T-015_mdpi_submission_package_and_guide
   dep_id: T-012
   relation: integrate
   relation_label: 生信论文目录支撑投稿准备
   scale: task
   nature: lineage
   artifact_in:
-  - task: goal_magazine_research/task_genes_bioinformatics_deliverable_catalog
+  - task: G-003_magazine_research/T-012_genes_bioinformatics_deliverable_catalog
     artifact_id: D-001
     role: source
   artifact_out:
-  - task: goal_submission_rules/task_mdpi_submission_package_and_guide
+  - task: G-008_submission_rules/T-015_mdpi_submission_package_and_guide
     artifact_id: D-001
     role: core
   note: Submission package can reuse the T012 deliverable catalog as manuscript-preparation
     context.
   gate: must
-- from: goal_development_asset_digestion/task_digest_pxfquery_development_state
-  to: goal_algorithm_function_review/task_mvp_algorithm_run-through_review
+- from: G-002_development_asset_digestion/T-007_digest_pxfquery_development_state
+  to: G-005_algorithm_function_review/T-013_mvp_algorithm_run-through_review
   dep_id: T-007
   relation: extract
   relation_label: 开发状态进入 MVP 审查
   scale: task
   nature: lineage
   artifact_in:
-  - task: goal_development_asset_digestion/task_digest_pxfquery_development_state
+  - task: G-002_development_asset_digestion/T-007_digest_pxfquery_development_state
     artifact_id: D-001
     role: source
   artifact_out:
-  - task: goal_algorithm_function_review/task_mvp_algorithm_run-through_review
+  - task: G-005_algorithm_function_review/T-013_mvp_algorithm_run-through_review
     artifact_id: D-001
     role: core
   note: MVP run-through review uses T007 development state and evidence outputs.
   gate: must
-- from: goal_development_asset_digestion/task_digest_pxfquery_development_state
-  to: goal_precomputed_data_exploration/task_understand_pxfquery_precomputed_data
+- from: G-002_development_asset_digestion/T-007_digest_pxfquery_development_state
+  to: G-007_precomputed_data_exploration/T-014_understand_pxfquery_precomputed_data
   dep_id: T-007
   relation: extract
   relation_label: 开发状态进入预计算数据理解
   scale: task
   nature: lineage
   artifact_in:
-  - task: goal_development_asset_digestion/task_digest_pxfquery_development_state
+  - task: G-002_development_asset_digestion/T-007_digest_pxfquery_development_state
     artifact_id: D-001
     role: source
   artifact_out:
-  - task: goal_precomputed_data_exploration/task_understand_pxfquery_precomputed_data
+  - task: G-007_precomputed_data_exploration/T-014_understand_pxfquery_precomputed_data
     artifact_id: D-001
     role: core
   note: Precomputed data exploration uses T007 development state and registered data
     evidence.
   gate: must
-- from: goal_precomputed_data_exploration/task_understand_pxfquery_precomputed_data
-  to: goal_algorithm_function_review/task_mvp_algorithm_run-through_review
+- from: G-007_precomputed_data_exploration/T-014_understand_pxfquery_precomputed_data
+  to: G-005_algorithm_function_review/T-013_mvp_algorithm_run-through_review
   dep_id: T-014
   relation: integrate
   relation_label: 数据理解支撑 MVP 审查解释
   scale: task
   nature: lineage
   artifact_in:
-  - task: goal_precomputed_data_exploration/task_understand_pxfquery_precomputed_data
+  - task: G-007_precomputed_data_exploration/T-014_understand_pxfquery_precomputed_data
     artifact_id: D-001
     role: source
   artifact_out:
-  - task: goal_algorithm_function_review/task_mvp_algorithm_run-through_review
+  - task: G-005_algorithm_function_review/T-013_mvp_algorithm_run-through_review
     artifact_id: D-001
     role: core
   note: MVP review can interpret run-through results against the T014 precomputed
     data understanding.
   gate: must
-- from: goal_submission_rules/task_mdpi_submission_package_and_guide
-  to: goal_citation_research/task_pending_t017
+- from: G-008_submission_rules/T-015_mdpi_submission_package_and_guide
+  to: G-004_citation_research/T-017_pending_t017
   dep_id: T-015
   gate: must
-- from: goal_magazine_research/task_mdpi_cross_journal_affiliation_landscape
-  to: goal_citation_research/task_pending_t017
+- from: G-003_magazine_research/T-008_mdpi_cross_journal_affiliation_landscape
+  to: G-004_citation_research/T-017_pending_t017
   dep_id: T-008
   gate: must
-- from: goal_template_paper_digestion/task_digest_wxy_genes_template_paper
-  to: goal_citation_research/task_pending_t017
+- from: G-009_template_paper_digestion/T-016_digest_wxy_genes_template_paper
+  to: G-004_citation_research/T-017_pending_t017
   dep_id: T-016
   gate: must
-- from: goal_magazine_research/task_genes_bioinformatics_deliverable_catalog
-  to: goal_template_paper_digestion/task_pending_t018
+- from: G-003_magazine_research/T-012_genes_bioinformatics_deliverable_catalog
+  to: G-009_template_paper_digestion/T-018_pending_t018
   dep_id: T-012
   gate: must
-- from: goal_development_asset_digestion/task_digest_pxfquery_development_state
-  to: goal_pending_g010/task_pending_t019
+- from: G-002_development_asset_digestion/T-007_digest_pxfquery_development_state
+  to: G-010_pending_g010/T-019_pending_t019
   dep_id: T-007
   gate: must
-- from: goal_algorithm_function_review/task_mvp_algorithm_run-through_review
-  to: goal_algorithm_version_development/task_gap_repair_stage_planning
+- from: G-005_algorithm_function_review/T-013_mvp_algorithm_run-through_review
+  to: G-006_algorithm_version_development/T-023_gap_repair_stage_planning
   dep_id: T-013
   gate: must
-- from: goal_development_asset_digestion/task_digest_pxfquery_development_state
-  to: goal_algorithm_version_development/task_gap_repair_stage_planning
+- from: G-002_development_asset_digestion/T-007_digest_pxfquery_development_state
+  to: G-006_algorithm_version_development/T-023_gap_repair_stage_planning
   dep_id: T-007
   gate: must
-- from: goal_magazine_research/task_genes_bioinformatics_deliverable_catalog
-  to: goal_algorithm_version_development/task_gap_repair_stage_planning
+- from: G-003_magazine_research/T-012_genes_bioinformatics_deliverable_catalog
+  to: G-006_algorithm_version_development/T-023_gap_repair_stage_planning
   dep_id: T-012
   gate: must
-- from: goal_development_asset_digestion/task_digest_pxfquery_development_state
-  to: goal_package_foundation_v1/task_workspace_package_v1
+- from: G-002_development_asset_digestion/T-007_digest_pxfquery_development_state
+  to: G-020_package_foundation_v1/T-024_workspace_package_v1
   dep_id: T-007
   gate: must
-- from: goal_algorithm_function_review/task_mvp_algorithm_run-through_review
-  to: goal_package_foundation_v1/task_workspace_package_v1
+- from: G-005_algorithm_function_review/T-013_mvp_algorithm_run-through_review
+  to: G-020_package_foundation_v1/T-024_workspace_package_v1
   dep_id: T-013
   gate: must
-- from: goal_precomputed_data_exploration/task_standard_resources_optimal_formats
-  to: goal_resource_index_packs_v1/task_resource_manifest_v1
+- from: G-007_precomputed_data_exploration/T-021_standard_resources_optimal_formats
+  to: G-021_resource_index_packs_v1/T-025_resource_manifest_v1
   dep_id: T-021
   gate: must
-- from: goal_resource_index_packs_v1/task_resource_manifest_v1
-  to: goal_resource_index_packs_v1/task_matrix_loader_v1
+- from: G-021_resource_index_packs_v1/T-025_resource_manifest_v1
+  to: G-021_resource_index_packs_v1/T-026_matrix_loader_v1
   dep_id: T-025
   gate: must
-- from: goal_precomputed_data_exploration/task_standard_resources_optimal_formats
-  to: goal_resource_index_packs_v1/task_matrix_loader_v1
+- from: G-007_precomputed_data_exploration/T-021_standard_resources_optimal_formats
+  to: G-021_resource_index_packs_v1/T-026_matrix_loader_v1
   dep_id: T-021
   gate: must
-- from: goal_resource_index_packs_v1/task_resource_manifest_v1
-  to: goal_resource_index_packs_v1/task_index_name_normalizer_v1
+- from: G-021_resource_index_packs_v1/T-025_resource_manifest_v1
+  to: G-021_resource_index_packs_v1/T-027_index_name_normalizer_v1
   dep_id: T-025
   gate: must
-- from: goal_precomputed_data_exploration/task_standard_resources_optimal_formats
-  to: goal_resource_index_packs_v1/task_index_name_normalizer_v1
+- from: G-007_precomputed_data_exploration/T-021_standard_resources_optimal_formats
+  to: G-021_resource_index_packs_v1/T-027_index_name_normalizer_v1
   dep_id: T-021
   gate: must
-- from: goal_resource_index_packs_v1/task_matrix_loader_v1
-  to: goal_resource_index_packs_v1/task_function_index_pack_v1
+- from: G-021_resource_index_packs_v1/T-026_matrix_loader_v1
+  to: G-021_resource_index_packs_v1/T-028_function_index_pack_v1
   dep_id: T-026
   gate: must
-- from: goal_resource_index_packs_v1/task_index_name_normalizer_v1
-  to: goal_resource_index_packs_v1/task_function_index_pack_v1
+- from: G-021_resource_index_packs_v1/T-027_index_name_normalizer_v1
+  to: G-021_resource_index_packs_v1/T-028_function_index_pack_v1
   dep_id: T-027
   gate: must
-- from: goal_algorithm_function_review/task_mvp_algorithm_run-through_review
-  to: goal_resource_index_packs_v1/task_function_index_pack_v1
+- from: G-005_algorithm_function_review/T-013_mvp_algorithm_run-through_review
+  to: G-021_resource_index_packs_v1/T-028_function_index_pack_v1
   dep_id: T-013
   gate: must
-- from: goal_package_foundation_v1/task_workspace_package_v1
-  to: goal_deterministic_query_engines_v1/task_forward_query_engine_v1
+- from: G-020_package_foundation_v1/T-024_workspace_package_v1
+  to: G-022_deterministic_query_engines_v1/T-029_forward_query_engine_v1
   dep_id: T-024
   gate: must
-- from: goal_resource_index_packs_v1/task_matrix_loader_v1
-  to: goal_deterministic_query_engines_v1/task_forward_query_engine_v1
+- from: G-021_resource_index_packs_v1/T-026_matrix_loader_v1
+  to: G-022_deterministic_query_engines_v1/T-029_forward_query_engine_v1
   dep_id: T-026
   gate: must
-- from: goal_algorithm_function_review/task_mvp_algorithm_run-through_review
-  to: goal_deterministic_query_engines_v1/task_forward_query_engine_v1
+- from: G-005_algorithm_function_review/T-013_mvp_algorithm_run-through_review
+  to: G-022_deterministic_query_engines_v1/T-029_forward_query_engine_v1
   dep_id: T-013
   gate: must
-- from: goal_package_foundation_v1/task_workspace_package_v1
-  to: goal_deterministic_query_engines_v1/task_reverse_query_engine_v1
+- from: G-020_package_foundation_v1/T-024_workspace_package_v1
+  to: G-022_deterministic_query_engines_v1/T-030_reverse_query_engine_v1
   dep_id: T-024
   gate: must
-- from: goal_resource_index_packs_v1/task_matrix_loader_v1
-  to: goal_deterministic_query_engines_v1/task_reverse_query_engine_v1
+- from: G-021_resource_index_packs_v1/T-026_matrix_loader_v1
+  to: G-022_deterministic_query_engines_v1/T-030_reverse_query_engine_v1
   dep_id: T-026
   gate: must
-- from: goal_algorithm_function_review/task_mvp_algorithm_run-through_review
-  to: goal_deterministic_query_engines_v1/task_reverse_query_engine_v1
+- from: G-005_algorithm_function_review/T-013_mvp_algorithm_run-through_review
+  to: G-022_deterministic_query_engines_v1/T-030_reverse_query_engine_v1
   dep_id: T-013
   gate: must
-- from: goal_deterministic_query_engines_v1/task_forward_query_engine_v1
-  to: goal_deterministic_query_engines_v1/task_no_hit_guard_v1
+- from: G-022_deterministic_query_engines_v1/T-029_forward_query_engine_v1
+  to: G-022_deterministic_query_engines_v1/T-031_no_hit_guard_v1
   dep_id: T-029
   gate: must
-- from: goal_algorithm_function_review/task_mvp_algorithm_run-through_review
-  to: goal_deterministic_query_engines_v1/task_no_hit_guard_v1
+- from: G-005_algorithm_function_review/T-013_mvp_algorithm_run-through_review
+  to: G-022_deterministic_query_engines_v1/T-031_no_hit_guard_v1
   dep_id: T-013
   gate: must
-- from: goal_deterministic_query_engines_v1/task_reverse_query_engine_v1
-  to: goal_deterministic_query_engines_v1/task_reverse_stability_guard_v1
+- from: G-022_deterministic_query_engines_v1/T-030_reverse_query_engine_v1
+  to: G-022_deterministic_query_engines_v1/T-032_reverse_stability_guard_v1
   dep_id: T-030
   gate: must
-- from: goal_algorithm_function_review/task_mvp_algorithm_run-through_review
-  to: goal_deterministic_query_engines_v1/task_reverse_stability_guard_v1
+- from: G-005_algorithm_function_review/T-013_mvp_algorithm_run-through_review
+  to: G-022_deterministic_query_engines_v1/T-032_reverse_stability_guard_v1
   dep_id: T-013
   gate: must
-- from: goal_resource_index_packs_v1/task_index_name_normalizer_v1
-  to: goal_resolver_optional_layer_v1/task_hybrid_fast_resolver_v1
+- from: G-021_resource_index_packs_v1/T-027_index_name_normalizer_v1
+  to: G-023_resolver_optional_layer_v1/T-033_hybrid_fast_resolver_v1
   dep_id: T-027
   gate: must
-- from: goal_resource_index_packs_v1/task_function_index_pack_v1
-  to: goal_resolver_optional_layer_v1/task_hybrid_fast_resolver_v1
+- from: G-021_resource_index_packs_v1/T-028_function_index_pack_v1
+  to: G-023_resolver_optional_layer_v1/T-033_hybrid_fast_resolver_v1
   dep_id: T-028
   gate: must
-- from: goal_deterministic_query_engines_v1/task_no_hit_guard_v1
-  to: goal_resolver_optional_layer_v1/task_hybrid_fast_resolver_v1
+- from: G-022_deterministic_query_engines_v1/T-031_no_hit_guard_v1
+  to: G-023_resolver_optional_layer_v1/T-033_hybrid_fast_resolver_v1
   dep_id: T-031
   gate: must
-- from: goal_deterministic_query_engines_v1/task_reverse_stability_guard_v1
-  to: goal_resolver_optional_layer_v1/task_hybrid_fast_resolver_v1
+- from: G-022_deterministic_query_engines_v1/T-032_reverse_stability_guard_v1
+  to: G-023_resolver_optional_layer_v1/T-033_hybrid_fast_resolver_v1
   dep_id: T-032
   gate: must
-- from: goal_package_foundation_v1/task_workspace_package_v1
-  to: goal_resolver_optional_layer_v1/task_llm_flash_adapter_v1
+- from: G-020_package_foundation_v1/T-024_workspace_package_v1
+  to: G-023_resolver_optional_layer_v1/T-034_llm_flash_adapter_v1
   dep_id: T-024
   gate: must
-- from: goal_algorithm_function_review/task_mvp_algorithm_run-through_review
-  to: goal_resolver_optional_layer_v1/task_llm_flash_adapter_v1
+- from: G-005_algorithm_function_review/T-013_mvp_algorithm_run-through_review
+  to: G-023_resolver_optional_layer_v1/T-034_llm_flash_adapter_v1
   dep_id: T-013
   gate: must
-- from: goal_deterministic_query_engines_v1/task_forward_query_engine_v1
-  to: goal_package_milestone_merge_v1/task_smoke_tests_v1
+- from: G-022_deterministic_query_engines_v1/T-029_forward_query_engine_v1
+  to: G-024_package_milestone_merge_v1/T-035_smoke_tests_v1
   dep_id: T-029
   gate: must
-- from: goal_deterministic_query_engines_v1/task_reverse_query_engine_v1
-  to: goal_package_milestone_merge_v1/task_smoke_tests_v1
+- from: G-022_deterministic_query_engines_v1/T-030_reverse_query_engine_v1
+  to: G-024_package_milestone_merge_v1/T-035_smoke_tests_v1
   dep_id: T-030
   gate: must
-- from: goal_deterministic_query_engines_v1/task_no_hit_guard_v1
-  to: goal_package_milestone_merge_v1/task_smoke_tests_v1
+- from: G-022_deterministic_query_engines_v1/T-031_no_hit_guard_v1
+  to: G-024_package_milestone_merge_v1/T-035_smoke_tests_v1
   dep_id: T-031
   gate: must
-- from: goal_deterministic_query_engines_v1/task_reverse_stability_guard_v1
-  to: goal_package_milestone_merge_v1/task_smoke_tests_v1
+- from: G-022_deterministic_query_engines_v1/T-032_reverse_stability_guard_v1
+  to: G-024_package_milestone_merge_v1/T-035_smoke_tests_v1
   dep_id: T-032
   gate: must
-- from: goal_deterministic_query_engines_v1/task_forward_query_engine_v1
-  to: goal_package_milestone_merge_v1/task_demo_cli_v1
+- from: G-022_deterministic_query_engines_v1/T-029_forward_query_engine_v1
+  to: G-024_package_milestone_merge_v1/T-036_demo_cli_v1
   dep_id: T-029
   gate: must
-- from: goal_deterministic_query_engines_v1/task_reverse_query_engine_v1
-  to: goal_package_milestone_merge_v1/task_demo_cli_v1
+- from: G-022_deterministic_query_engines_v1/T-030_reverse_query_engine_v1
+  to: G-024_package_milestone_merge_v1/T-036_demo_cli_v1
   dep_id: T-030
   gate: must
-- from: goal_package_milestone_merge_v1/task_smoke_tests_v1
-  to: goal_package_milestone_merge_v1/task_demo_cli_v1
+- from: G-024_package_milestone_merge_v1/T-035_smoke_tests_v1
+  to: G-024_package_milestone_merge_v1/T-036_demo_cli_v1
   dep_id: T-035
   gate: must
-- from: goal_package_foundation_v1/task_workspace_package_v1
-  to: goal_package_milestone_merge_v1/task_milestone_merge_v1
+- from: G-020_package_foundation_v1/T-024_workspace_package_v1
+  to: G-024_package_milestone_merge_v1/T-037_milestone_merge_v1
   dep_id: T-024
   gate: must
-- from: goal_resource_index_packs_v1/task_matrix_loader_v1
-  to: goal_package_milestone_merge_v1/task_milestone_merge_v1
+- from: G-021_resource_index_packs_v1/T-026_matrix_loader_v1
+  to: G-024_package_milestone_merge_v1/T-037_milestone_merge_v1
   dep_id: T-026
   gate: must
-- from: goal_deterministic_query_engines_v1/task_forward_query_engine_v1
-  to: goal_package_milestone_merge_v1/task_milestone_merge_v1
+- from: G-022_deterministic_query_engines_v1/T-029_forward_query_engine_v1
+  to: G-024_package_milestone_merge_v1/T-037_milestone_merge_v1
   dep_id: T-029
   gate: must
-- from: goal_deterministic_query_engines_v1/task_no_hit_guard_v1
-  to: goal_package_milestone_merge_v1/task_milestone_merge_v1
+- from: G-022_deterministic_query_engines_v1/T-031_no_hit_guard_v1
+  to: G-024_package_milestone_merge_v1/T-037_milestone_merge_v1
   dep_id: T-031
   gate: must
-- from: goal_package_foundation_v1/task_workspace_package_v1
-  to: goal_package_milestone_merge_v1/task_milestone_package_core_parallel_v1
+- from: G-020_package_foundation_v1/T-024_workspace_package_v1
+  to: G-024_package_milestone_merge_v1/T-040_milestone_package_core_parallel_v1
   dep_id: T-024
   gate: must
-- from: goal_resource_index_packs_v1/task_matrix_loader_v1
-  to: goal_package_milestone_merge_v1/task_milestone_package_core_parallel_v1
+- from: G-021_resource_index_packs_v1/T-026_matrix_loader_v1
+  to: G-024_package_milestone_merge_v1/T-040_milestone_package_core_parallel_v1
   dep_id: T-026
   gate: must
-- from: goal_deterministic_query_engines_v1/task_forward_query_engine_v1
-  to: goal_package_milestone_merge_v1/task_milestone_package_core_parallel_v1
+- from: G-022_deterministic_query_engines_v1/T-029_forward_query_engine_v1
+  to: G-024_package_milestone_merge_v1/T-040_milestone_package_core_parallel_v1
   dep_id: T-029
   gate: must
-- from: goal_deterministic_query_engines_v1/task_no_hit_guard_v1
-  to: goal_package_milestone_merge_v1/task_milestone_package_core_parallel_v1
+- from: G-022_deterministic_query_engines_v1/T-031_no_hit_guard_v1
+  to: G-024_package_milestone_merge_v1/T-040_milestone_package_core_parallel_v1
   dep_id: T-031
   gate: must
-- from: goal_package_milestone_merge_v1/task_milestone_package_core_parallel_v1
-  to: goal_package_milestone_merge_v1/task_milestone_final_aggregation_v1
+- from: G-024_package_milestone_merge_v1/T-040_milestone_package_core_parallel_v1
+  to: G-024_package_milestone_merge_v1/T-039_milestone_final_aggregation_v1
   dep_id: T-040
   gate: must
-- from: goal_package_milestone_merge_v1/task_milestone_reverse_demo_reports_v1
-  to: goal_package_milestone_merge_v1/task_milestone_final_aggregation_v1
+- from: G-024_package_milestone_merge_v1/T-038_milestone_reverse_demo_reports_v1
+  to: G-024_package_milestone_merge_v1/T-039_milestone_final_aggregation_v1
   dep_id: T-038
   gate: must
-- from: goal_deterministic_query_engines_v1/task_reverse_query_engine_v1
-  to: goal_package_milestone_merge_v1/task_milestone_reverse_demo_reports_v1
+- from: G-022_deterministic_query_engines_v1/T-030_reverse_query_engine_v1
+  to: G-024_package_milestone_merge_v1/T-038_milestone_reverse_demo_reports_v1
   dep_id: T-030
   gate: must
-- from: goal_deterministic_query_engines_v1/task_reverse_stability_guard_v1
-  to: goal_package_milestone_merge_v1/task_milestone_reverse_demo_reports_v1
+- from: G-022_deterministic_query_engines_v1/T-032_reverse_stability_guard_v1
+  to: G-024_package_milestone_merge_v1/T-038_milestone_reverse_demo_reports_v1
   dep_id: T-032
   gate: must
-- from: goal_package_milestone_merge_v1/task_smoke_tests_v1
-  to: goal_package_milestone_merge_v1/task_milestone_reverse_demo_reports_v1
+- from: G-024_package_milestone_merge_v1/T-035_smoke_tests_v1
+  to: G-024_package_milestone_merge_v1/T-038_milestone_reverse_demo_reports_v1
   dep_id: T-035
   gate: must
-- from: goal_package_milestone_merge_v1/task_demo_cli_v1
-  to: goal_package_milestone_merge_v1/task_milestone_reverse_demo_reports_v1
+- from: G-024_package_milestone_merge_v1/T-036_demo_cli_v1
+  to: G-024_package_milestone_merge_v1/T-038_milestone_reverse_demo_reports_v1
   dep_id: T-036
   gate: must
-- from: goal_development_asset_digestion/task_digest_pxfquery_development_state
-  to: goal_development_asset_digestion/task_legacy_source_digest_for_m1
+- from: G-002_development_asset_digestion/T-007_digest_pxfquery_development_state
+  to: G-002_development_asset_digestion/T-041_legacy_source_digest_for_m1
   dep_id: T-007
   gate: must
-- from: goal_development_asset_digestion/task_digest_pxfquery_development_state
-  to: goal_m1_python_package_v2/task_contract_and_demo_spec_m1
+- from: G-002_development_asset_digestion/T-007_digest_pxfquery_development_state
+  to: G-025_m1_python_package_v2/T-042_contract_and_demo_spec_m1
   dep_id: T-007
   gate: must
-- from: goal_algorithm_function_review/task_mvp_algorithm_run-through_review
-  to: goal_m1_python_package_v2/task_contract_and_demo_spec_m1
+- from: G-005_algorithm_function_review/T-013_mvp_algorithm_run-through_review
+  to: G-025_m1_python_package_v2/T-042_contract_and_demo_spec_m1
   dep_id: T-013
   gate: must
-- from: goal_precomputed_data_exploration/task_understand_pxfquery_precomputed_data
-  to: goal_m1_python_package_v2/task_data_manifest_fixture_m1
+- from: G-007_precomputed_data_exploration/T-014_understand_pxfquery_precomputed_data
+  to: G-025_m1_python_package_v2/T-043_data_manifest_fixture_m1
   dep_id: T-014
   gate: must
-- from: goal_precomputed_data_exploration/task_standard_resources_optimal_formats
-  to: goal_m1_python_package_v2/task_data_manifest_fixture_m1
+- from: G-007_precomputed_data_exploration/T-021_standard_resources_optimal_formats
+  to: G-025_m1_python_package_v2/T-043_data_manifest_fixture_m1
   dep_id: T-021
   gate: must
-- from: goal_development_asset_digestion/task_digest_pxfquery_development_state
-  to: goal_m1_python_package_v2/task_package_skeleton_m1
+- from: G-002_development_asset_digestion/T-007_digest_pxfquery_development_state
+  to: G-025_m1_python_package_v2/T-044_package_skeleton_m1
   dep_id: T-007
   gate: must
-- from: goal_precomputed_data_exploration/task_standard_resources_optimal_formats
-  to: goal_m1_python_package_v2/task_index_health_check_m1
+- from: G-007_precomputed_data_exploration/T-021_standard_resources_optimal_formats
+  to: G-025_m1_python_package_v2/T-045_index_health_check_m1
   dep_id: T-021
   gate: must
-- from: goal_m1_python_package_v2/task_data_manifest_fixture_m1
-  to: goal_m1_python_package_v2/task_m1_fixture_loader
+- from: G-025_m1_python_package_v2/T-043_data_manifest_fixture_m1
+  to: G-025_m1_python_package_v2/T-046_m1_fixture_loader
   dep_id: T-043
   gate: must
-- from: goal_m1_python_package_v2/task_data_manifest_fixture_m1
-  to: goal_m1_python_package_v2/task_resource_loader_hardening_m1
+- from: G-025_m1_python_package_v2/T-043_data_manifest_fixture_m1
+  to: G-025_m1_python_package_v2/T-047_resource_loader_hardening_m1
   dep_id: T-043
   gate: must
-- from: goal_m1_python_package_v2/task_index_health_check_m1
-  to: goal_m1_python_package_v2/task_resource_loader_hardening_m1
+- from: G-025_m1_python_package_v2/T-045_index_health_check_m1
+  to: G-025_m1_python_package_v2/T-047_resource_loader_hardening_m1
   dep_id: T-045
   gate: must
-- from: goal_development_asset_digestion/task_legacy_source_digest_for_m1
-  to: goal_m1_python_package_v2/task_resource_loader_hardening_m1
+- from: G-002_development_asset_digestion/T-041_legacy_source_digest_for_m1
+  to: G-025_m1_python_package_v2/T-047_resource_loader_hardening_m1
   dep_id: T-041
   gate: may
-- from: goal_m1_python_package_v2/task_contract_and_demo_spec_m1
-  to: goal_m1_python_package_v2/task_forward_query_core_m1
+- from: G-025_m1_python_package_v2/T-042_contract_and_demo_spec_m1
+  to: G-025_m1_python_package_v2/T-048_forward_query_core_m1
   dep_id: T-042
   gate: must
-- from: goal_m1_python_package_v2/task_m1_fixture_loader
-  to: goal_m1_python_package_v2/task_forward_query_core_m1
+- from: G-025_m1_python_package_v2/T-046_m1_fixture_loader
+  to: G-025_m1_python_package_v2/T-048_forward_query_core_m1
   dep_id: T-046
   gate: must
-- from: goal_m1_python_package_v2/task_resource_loader_hardening_m1
-  to: goal_m1_python_package_v2/task_forward_query_core_m1
+- from: G-025_m1_python_package_v2/T-047_resource_loader_hardening_m1
+  to: G-025_m1_python_package_v2/T-048_forward_query_core_m1
   dep_id: T-047
   gate: may
-- from: goal_development_asset_digestion/task_legacy_source_digest_for_m1
-  to: goal_m1_python_package_v2/task_forward_query_core_m1
+- from: G-002_development_asset_digestion/T-041_legacy_source_digest_for_m1
+  to: G-025_m1_python_package_v2/T-048_forward_query_core_m1
   dep_id: T-041
   gate: may
-- from: goal_m1_python_package_v2/task_contract_and_demo_spec_m1
-  to: goal_m1_python_package_v2/task_reverse_query_core_m1
+- from: G-025_m1_python_package_v2/T-042_contract_and_demo_spec_m1
+  to: G-025_m1_python_package_v2/T-049_reverse_query_core_m1
   dep_id: T-042
   gate: must
-- from: goal_m1_python_package_v2/task_m1_fixture_loader
-  to: goal_m1_python_package_v2/task_reverse_query_core_m1
+- from: G-025_m1_python_package_v2/T-046_m1_fixture_loader
+  to: G-025_m1_python_package_v2/T-049_reverse_query_core_m1
   dep_id: T-046
   gate: must
-- from: goal_m1_python_package_v2/task_resource_loader_hardening_m1
-  to: goal_m1_python_package_v2/task_reverse_query_core_m1
+- from: G-025_m1_python_package_v2/T-047_resource_loader_hardening_m1
+  to: G-025_m1_python_package_v2/T-049_reverse_query_core_m1
   dep_id: T-047
   gate: may
-- from: goal_development_asset_digestion/task_legacy_source_digest_for_m1
-  to: goal_m1_python_package_v2/task_reverse_query_core_m1
+- from: G-002_development_asset_digestion/T-041_legacy_source_digest_for_m1
+  to: G-025_m1_python_package_v2/T-049_reverse_query_core_m1
   dep_id: T-041
   gate: may
-- from: goal_m1_python_package_v2/task_forward_query_core_m1
-  to: goal_m1_python_package_v2/task_forward_validation_m1
+- from: G-025_m1_python_package_v2/T-048_forward_query_core_m1
+  to: G-025_m1_python_package_v2/T-050_forward_validation_m1
   dep_id: T-048
   gate: may
   note: Demoted after T-048 execute_config_mismatch; T-059 is the must replacement.
-- from: goal_m1_python_package_v2/task_reverse_query_core_m1
-  to: goal_m1_python_package_v2/task_reverse_validation_m1
+- from: G-025_m1_python_package_v2/T-049_reverse_query_core_m1
+  to: G-025_m1_python_package_v2/T-051_reverse_validation_m1
   dep_id: T-049
   gate: may
   note: Demoted after T-049 execute_config_mismatch; T-060 is the must replacement.
-- from: goal_m1_python_package_v2/task_package_skeleton_m1
-  to: goal_m1_python_package_v2/task_package_assembly_m1
+- from: G-025_m1_python_package_v2/T-044_package_skeleton_m1
+  to: G-025_m1_python_package_v2/T-052_package_assembly_m1
   dep_id: T-044
   gate: must
-- from: goal_m1_python_package_v2/task_forward_query_core_m1
-  to: goal_m1_python_package_v2/task_package_assembly_m1
+- from: G-025_m1_python_package_v2/T-048_forward_query_core_m1
+  to: G-025_m1_python_package_v2/T-052_package_assembly_m1
   dep_id: T-048
   gate: may
   note: Demoted after T-048 execute_config_mismatch; T-059 is the must replacement.
-- from: goal_m1_python_package_v2/task_reverse_query_core_m1
-  to: goal_m1_python_package_v2/task_package_assembly_m1
+- from: G-025_m1_python_package_v2/T-049_reverse_query_core_m1
+  to: G-025_m1_python_package_v2/T-052_package_assembly_m1
   dep_id: T-049
   gate: may
   note: Demoted after T-049 execute_config_mismatch; T-060 is the must replacement.
-- from: goal_m1_python_package_v2/task_forward_validation_m1
-  to: goal_m1_python_package_v2/task_m1_python_package_milestone
+- from: G-025_m1_python_package_v2/T-050_forward_validation_m1
+  to: G-025_m1_python_package_v2/T-053_m1_python_package_milestone
   dep_id: T-050
   gate: must
-- from: goal_m1_python_package_v2/task_reverse_validation_m1
-  to: goal_m1_python_package_v2/task_m1_python_package_milestone
+- from: G-025_m1_python_package_v2/T-051_reverse_validation_m1
+  to: G-025_m1_python_package_v2/T-053_m1_python_package_milestone
   dep_id: T-051
   gate: must
-- from: goal_m1_python_package_v2/task_package_assembly_m1
-  to: goal_m1_python_package_v2/task_m1_python_package_milestone
+- from: G-025_m1_python_package_v2/T-052_package_assembly_m1
+  to: G-025_m1_python_package_v2/T-053_m1_python_package_milestone
   dep_id: T-052
   gate: must
-- from: goal_m1_python_package_v2/task_data_manifest_fixture_m1
-  to: goal_m1_python_package_v2/task_large_asset_reading_rules_probe
+- from: G-025_m1_python_package_v2/T-043_data_manifest_fixture_m1
+  to: G-025_m1_python_package_v2/T-054_large_asset_reading_rules_probe
   dep_id: T-043
   gate: must
-- from: goal_m1_python_package_v2/task_index_health_check_m1
-  to: goal_m1_python_package_v2/task_large_asset_reading_rules_probe
+- from: G-025_m1_python_package_v2/T-045_index_health_check_m1
+  to: G-025_m1_python_package_v2/T-054_large_asset_reading_rules_probe
   dep_id: T-045
   gate: must
-- from: goal_m1_python_package_v2/task_resource_loader_hardening_m1
-  to: goal_m1_python_package_v2/task_large_asset_reading_rules_probe
+- from: G-025_m1_python_package_v2/T-047_resource_loader_hardening_m1
+  to: G-025_m1_python_package_v2/T-054_large_asset_reading_rules_probe
   dep_id: T-047
   gate: reference
   relation: refine
@@ -877,116 +877,116 @@ edges:
   nature: reference
   note: T054 only references the T047 execute_stalled incident as a failure mode to
     avoid; this edge must not block T054 or include T047 as required input.
-- from: goal_legacy_asset_migration/task_audit_legacy_assets
-  to: goal_legacy_stress_test_asset_digestion/task_01_legacy_stress_test_source_map
+- from: G-001_legacy_asset_migration/T-001_audit_legacy_assets
+  to: G-026_legacy_stress_test_asset_digestion/T-055_01_legacy_stress_test_source_map
   dep_id: T-001
   gate: must
-- from: goal_legacy_asset_migration/task_plan_migration_map
-  to: goal_legacy_stress_test_asset_digestion/task_01_legacy_stress_test_source_map
+- from: G-001_legacy_asset_migration/T-002_plan_migration_map
+  to: G-026_legacy_stress_test_asset_digestion/T-055_01_legacy_stress_test_source_map
   dep_id: T-002
   gate: must
-- from: goal_development_asset_digestion/task_digest_pxfquery_development_state
-  to: goal_legacy_stress_test_asset_digestion/task_01_legacy_stress_test_source_map
+- from: G-002_development_asset_digestion/T-007_digest_pxfquery_development_state
+  to: G-026_legacy_stress_test_asset_digestion/T-055_01_legacy_stress_test_source_map
   dep_id: T-007
   gate: must
-- from: goal_development_asset_digestion/task_digest_pxfquery_development_state
-  to: goal_legacy_stress_test_asset_digestion/task_02_stress_query_scenario_inventory
+- from: G-002_development_asset_digestion/T-007_digest_pxfquery_development_state
+  to: G-026_legacy_stress_test_asset_digestion/T-056_02_stress_query_scenario_inventory
   dep_id: T-007
   gate: must
-- from: goal_development_asset_digestion/task_legacy_source_digest_for_m1
-  to: goal_legacy_stress_test_asset_digestion/task_02_stress_query_scenario_inventory
+- from: G-002_development_asset_digestion/T-041_legacy_source_digest_for_m1
+  to: G-026_legacy_stress_test_asset_digestion/T-056_02_stress_query_scenario_inventory
   dep_id: T-041
   gate: may
-- from: goal_legacy_asset_migration/task_audit_legacy_assets
-  to: goal_legacy_stress_test_asset_digestion/task_03_legacy_stress_logic_reuse_boundary
+- from: G-001_legacy_asset_migration/T-001_audit_legacy_assets
+  to: G-026_legacy_stress_test_asset_digestion/T-057_03_legacy_stress_logic_reuse_boundary
   dep_id: T-001
   gate: must
-- from: goal_legacy_asset_migration/task_plan_migration_map
-  to: goal_legacy_stress_test_asset_digestion/task_03_legacy_stress_logic_reuse_boundary
+- from: G-001_legacy_asset_migration/T-002_plan_migration_map
+  to: G-026_legacy_stress_test_asset_digestion/T-057_03_legacy_stress_logic_reuse_boundary
   dep_id: T-002
   gate: must
-- from: goal_development_asset_digestion/task_digest_pxfquery_development_state
-  to: goal_legacy_stress_test_asset_digestion/task_03_legacy_stress_logic_reuse_boundary
+- from: G-002_development_asset_digestion/T-007_digest_pxfquery_development_state
+  to: G-026_legacy_stress_test_asset_digestion/T-057_03_legacy_stress_logic_reuse_boundary
   dep_id: T-007
   gate: must
-- from: goal_development_asset_digestion/task_legacy_source_digest_for_m1
-  to: goal_legacy_stress_test_asset_digestion/task_03_legacy_stress_logic_reuse_boundary
+- from: G-002_development_asset_digestion/T-041_legacy_source_digest_for_m1
+  to: G-026_legacy_stress_test_asset_digestion/T-057_03_legacy_stress_logic_reuse_boundary
   dep_id: T-041
   gate: may
-- from: goal_legacy_stress_test_asset_digestion/task_01_legacy_stress_test_source_map
-  to: goal_legacy_stress_test_asset_digestion/task_04_stress_test_development_handoff_pack
+- from: G-026_legacy_stress_test_asset_digestion/T-055_01_legacy_stress_test_source_map
+  to: G-026_legacy_stress_test_asset_digestion/T-058_04_stress_test_development_handoff_pack
   dep_id: T-055
   gate: must
-- from: goal_legacy_stress_test_asset_digestion/task_02_stress_query_scenario_inventory
-  to: goal_legacy_stress_test_asset_digestion/task_04_stress_test_development_handoff_pack
+- from: G-026_legacy_stress_test_asset_digestion/T-056_02_stress_query_scenario_inventory
+  to: G-026_legacy_stress_test_asset_digestion/T-058_04_stress_test_development_handoff_pack
   dep_id: T-056
   gate: must
-- from: goal_legacy_stress_test_asset_digestion/task_03_legacy_stress_logic_reuse_boundary
-  to: goal_legacy_stress_test_asset_digestion/task_04_stress_test_development_handoff_pack
+- from: G-026_legacy_stress_test_asset_digestion/T-057_03_legacy_stress_logic_reuse_boundary
+  to: G-026_legacy_stress_test_asset_digestion/T-058_04_stress_test_development_handoff_pack
   dep_id: T-057
   gate: must
-- from: goal_development_asset_digestion/task_digest_pxfquery_development_state
-  to: goal_legacy_stress_test_asset_digestion/task_04_stress_test_development_handoff_pack
+- from: G-002_development_asset_digestion/T-007_digest_pxfquery_development_state
+  to: G-026_legacy_stress_test_asset_digestion/T-058_04_stress_test_development_handoff_pack
   dep_id: T-007
   gate: must
-- from: goal_m1_python_package_v2/task_contract_and_demo_spec_m1
-  to: goal_m1_python_package_v2/task_forward_query_core_repair_m1
+- from: G-025_m1_python_package_v2/T-042_contract_and_demo_spec_m1
+  to: G-025_m1_python_package_v2/T-059_forward_query_core_repair_m1
   dep_id: T-042
   gate: must
-- from: goal_m1_python_package_v2/task_data_manifest_fixture_m1
-  to: goal_m1_python_package_v2/task_forward_query_core_repair_m1
+- from: G-025_m1_python_package_v2/T-043_data_manifest_fixture_m1
+  to: G-025_m1_python_package_v2/T-059_forward_query_core_repair_m1
   dep_id: T-043
   gate: must
-- from: goal_m1_python_package_v2/task_package_skeleton_m1
-  to: goal_m1_python_package_v2/task_forward_query_core_repair_m1
+- from: G-025_m1_python_package_v2/T-044_package_skeleton_m1
+  to: G-025_m1_python_package_v2/T-059_forward_query_core_repair_m1
   dep_id: T-044
   gate: must
-- from: goal_m1_python_package_v2/task_m1_fixture_loader
-  to: goal_m1_python_package_v2/task_forward_query_core_repair_m1
+- from: G-025_m1_python_package_v2/T-046_m1_fixture_loader
+  to: G-025_m1_python_package_v2/T-059_forward_query_core_repair_m1
   dep_id: T-046
   gate: must
-- from: goal_m1_python_package_v2/task_index_health_check_m1
-  to: goal_m1_python_package_v2/task_forward_query_core_repair_m1
+- from: G-025_m1_python_package_v2/T-045_index_health_check_m1
+  to: G-025_m1_python_package_v2/T-059_forward_query_core_repair_m1
   dep_id: T-045
   gate: may
-- from: goal_m1_python_package_v2/task_resource_loader_hardening_m1
-  to: goal_m1_python_package_v2/task_forward_query_core_repair_m1
+- from: G-025_m1_python_package_v2/T-047_resource_loader_hardening_m1
+  to: G-025_m1_python_package_v2/T-059_forward_query_core_repair_m1
   dep_id: T-047
   gate: may
-- from: goal_development_asset_digestion/task_legacy_source_digest_for_m1
-  to: goal_m1_python_package_v2/task_forward_query_core_repair_m1
+- from: G-002_development_asset_digestion/T-041_legacy_source_digest_for_m1
+  to: G-025_m1_python_package_v2/T-059_forward_query_core_repair_m1
   dep_id: T-041
   gate: may
-- from: goal_m1_python_package_v2/task_contract_and_demo_spec_m1
-  to: goal_m1_python_package_v2/task_reverse_query_core_repair_m1
+- from: G-025_m1_python_package_v2/T-042_contract_and_demo_spec_m1
+  to: G-025_m1_python_package_v2/T-060_reverse_query_core_repair_m1
   dep_id: T-042
   gate: must
-- from: goal_m1_python_package_v2/task_data_manifest_fixture_m1
-  to: goal_m1_python_package_v2/task_reverse_query_core_repair_m1
+- from: G-025_m1_python_package_v2/T-043_data_manifest_fixture_m1
+  to: G-025_m1_python_package_v2/T-060_reverse_query_core_repair_m1
   dep_id: T-043
   gate: must
-- from: goal_m1_python_package_v2/task_package_skeleton_m1
-  to: goal_m1_python_package_v2/task_reverse_query_core_repair_m1
+- from: G-025_m1_python_package_v2/T-044_package_skeleton_m1
+  to: G-025_m1_python_package_v2/T-060_reverse_query_core_repair_m1
   dep_id: T-044
   gate: must
-- from: goal_m1_python_package_v2/task_m1_fixture_loader
-  to: goal_m1_python_package_v2/task_reverse_query_core_repair_m1
+- from: G-025_m1_python_package_v2/T-046_m1_fixture_loader
+  to: G-025_m1_python_package_v2/T-060_reverse_query_core_repair_m1
   dep_id: T-046
   gate: must
-- from: goal_m1_python_package_v2/task_index_health_check_m1
-  to: goal_m1_python_package_v2/task_reverse_query_core_repair_m1
+- from: G-025_m1_python_package_v2/T-045_index_health_check_m1
+  to: G-025_m1_python_package_v2/T-060_reverse_query_core_repair_m1
   dep_id: T-045
   gate: may
-- from: goal_m1_python_package_v2/task_resource_loader_hardening_m1
-  to: goal_m1_python_package_v2/task_reverse_query_core_repair_m1
+- from: G-025_m1_python_package_v2/T-047_resource_loader_hardening_m1
+  to: G-025_m1_python_package_v2/T-060_reverse_query_core_repair_m1
   dep_id: T-047
   gate: may
-- from: goal_development_asset_digestion/task_legacy_source_digest_for_m1
-  to: goal_m1_python_package_v2/task_reverse_query_core_repair_m1
+- from: G-002_development_asset_digestion/T-041_legacy_source_digest_for_m1
+  to: G-025_m1_python_package_v2/T-060_reverse_query_core_repair_m1
   dep_id: T-041
   gate: may
-- from: goal_m1_python_package_v2/task_forward_query_core_repair_m1
-  to: goal_m1_python_package_v2/task_forward_validation_m1
+- from: G-025_m1_python_package_v2/T-059_forward_query_core_repair_m1
+  to: G-025_m1_python_package_v2/T-050_forward_validation_m1
   dep_id: T-059
   relation: repair
   relation_label: 旁路修复
@@ -994,8 +994,8 @@ edges:
   nature: lineage
   note: Forward validation must consume T-059 as the replacement for failed T-048.
   gate: must
-- from: goal_m1_python_package_v2/task_forward_query_core_repair_m1
-  to: goal_m1_python_package_v2/task_package_assembly_m1
+- from: G-025_m1_python_package_v2/T-059_forward_query_core_repair_m1
+  to: G-025_m1_python_package_v2/T-052_package_assembly_m1
   dep_id: T-059
   relation: repair
   relation_label: 旁路修复
@@ -1004,8 +1004,8 @@ edges:
   note: Package assembly must consume T-059 as the replacement forward implementation
     and repair substrate.
   gate: must
-- from: goal_m1_python_package_v2/task_reverse_query_core_repair_m1
-  to: goal_m1_python_package_v2/task_reverse_validation_m1
+- from: G-025_m1_python_package_v2/T-060_reverse_query_core_repair_m1
+  to: G-025_m1_python_package_v2/T-051_reverse_validation_m1
   dep_id: T-060
   relation: repair
   relation_label: 旁路修复
@@ -1013,8 +1013,8 @@ edges:
   nature: lineage
   note: Reverse validation must consume T-060 as the replacement for failed T-049.
   gate: must
-- from: goal_m1_python_package_v2/task_reverse_query_core_repair_m1
-  to: goal_m1_python_package_v2/task_package_assembly_m1
+- from: G-025_m1_python_package_v2/T-060_reverse_query_core_repair_m1
+  to: G-025_m1_python_package_v2/T-052_package_assembly_m1
   dep_id: T-060
   relation: repair
   relation_label: 旁路修复
@@ -1023,8 +1023,8 @@ edges:
   note: Package assembly must consume T-060 as the replacement reverse implementation
     and repair substrate.
   gate: must
-- from: goal_m1_python_package_v2/task_forward_query_core_m1
-  to: goal_m1_python_package_v2/task_forward_query_core_repair_m1
+- from: G-025_m1_python_package_v2/T-048_forward_query_core_m1
+  to: G-025_m1_python_package_v2/T-059_forward_query_core_repair_m1
   dep_id: T-048
   relation: reference
   relation_label: 错误参考
@@ -1033,8 +1033,8 @@ edges:
   note: T-059 should read T-048 only as the incident/reference case explaining the
     missing EGFR/A549/xpr substrate.
   gate: reference
-- from: goal_m1_python_package_v2/task_reverse_query_core_m1
-  to: goal_m1_python_package_v2/task_reverse_query_core_repair_m1
+- from: G-025_m1_python_package_v2/T-049_reverse_query_core_m1
+  to: G-025_m1_python_package_v2/T-060_reverse_query_core_repair_m1
   dep_id: T-049
   relation: reference
   relation_label: 错误参考
@@ -1043,12 +1043,12 @@ edges:
   note: T-060 should read T-049 only as the incident/reference case explaining the
     missing HALLMARK_MYC_TARGETS_V1 substrate.
   gate: reference
-- from: goal_development_asset_digestion/task_digest_pxfquery_development_state
-  to: goal_development_asset_digestion/task_legacy_source_digest_repair_m1
+- from: G-002_development_asset_digestion/T-007_digest_pxfquery_development_state
+  to: G-002_development_asset_digestion/T-061_legacy_source_digest_repair_m1
   dep_id: T-007
   gate: must
-- from: goal_development_asset_digestion/task_legacy_source_digest_for_m1
-  to: goal_development_asset_digestion/task_legacy_source_digest_repair_m1
+- from: G-002_development_asset_digestion/T-041_legacy_source_digest_for_m1
+  to: G-002_development_asset_digestion/T-061_legacy_source_digest_repair_m1
   dep_id: T-041
   relation: refine
   relation_label: T041异常历史供旁路修复参考
@@ -1059,1093 +1059,1093 @@ edges:
   artifact_out: []
   note: T061 is a same-layer bypass replacement for failed T041. T041 is reference-only
     and must not block or provide authoritative assets.
-- from: goal_legacy_asset_migration/task_normalize_project_protocol_from_migrated_context
-  to: goal_project_delivery_anchor/task_algorithm_package_delivery_anchor
+- from: G-001_legacy_asset_migration/T-003_normalize_project_protocol_from_migrated_context
+  to: G-027_project_delivery_anchor/T-062_algorithm_package_delivery_anchor
   dep_id: T-003
   gate: must
-- from: goal_development_asset_digestion/task_digest_pxfquery_development_state
-  to: goal_project_delivery_anchor/task_algorithm_package_delivery_anchor
+- from: G-002_development_asset_digestion/T-007_digest_pxfquery_development_state
+  to: G-027_project_delivery_anchor/T-062_algorithm_package_delivery_anchor
   dep_id: T-007
   gate: must
-- from: goal_algorithm_function_review/task_mvp_algorithm_run-through_review
-  to: goal_project_delivery_anchor/task_algorithm_package_delivery_anchor
+- from: G-005_algorithm_function_review/T-013_mvp_algorithm_run-through_review
+  to: G-027_project_delivery_anchor/T-062_algorithm_package_delivery_anchor
   dep_id: T-013
   gate: must
-- from: goal_precomputed_data_exploration/task_standard_resources_optimal_formats
-  to: goal_project_delivery_anchor/task_algorithm_package_delivery_anchor
+- from: G-007_precomputed_data_exploration/T-021_standard_resources_optimal_formats
+  to: G-027_project_delivery_anchor/T-062_algorithm_package_delivery_anchor
   dep_id: T-021
   gate: must
-- from: goal_development_asset_digestion/task_digest_pxfquery_development_state
-  to: goal_project_delivery_anchor/task_llm_resolver_capability_anchor
+- from: G-002_development_asset_digestion/T-007_digest_pxfquery_development_state
+  to: G-027_project_delivery_anchor/T-063_llm_resolver_capability_anchor
   dep_id: T-007
   gate: must
-- from: goal_algorithm_function_review/task_mvp_algorithm_run-through_review
-  to: goal_project_delivery_anchor/task_llm_resolver_capability_anchor
+- from: G-005_algorithm_function_review/T-013_mvp_algorithm_run-through_review
+  to: G-027_project_delivery_anchor/T-063_llm_resolver_capability_anchor
   dep_id: T-013
   gate: must
-- from: goal_development_asset_digestion/task_legacy_source_digest_repair_m1
-  to: goal_project_delivery_anchor/task_llm_resolver_capability_anchor
+- from: G-002_development_asset_digestion/T-061_legacy_source_digest_repair_m1
+  to: G-027_project_delivery_anchor/T-063_llm_resolver_capability_anchor
   dep_id: T-061
   gate: must
-- from: goal_project_delivery_anchor/task_algorithm_package_delivery_anchor
-  to: goal_project_delivery_anchor/task_llm_resolver_capability_anchor
+- from: G-027_project_delivery_anchor/T-062_algorithm_package_delivery_anchor
+  to: G-027_project_delivery_anchor/T-063_llm_resolver_capability_anchor
   dep_id: T-062
   gate: must
-- from: goal_development_asset_digestion/task_digest_pxfquery_development_state
-  to: goal_project_delivery_anchor/task_evidence_routing_anchor
+- from: G-002_development_asset_digestion/T-007_digest_pxfquery_development_state
+  to: G-027_project_delivery_anchor/T-064_evidence_routing_anchor
   dep_id: T-007
   gate: must
-- from: goal_algorithm_function_review/task_mvp_algorithm_run-through_review
-  to: goal_project_delivery_anchor/task_evidence_routing_anchor
+- from: G-005_algorithm_function_review/T-013_mvp_algorithm_run-through_review
+  to: G-027_project_delivery_anchor/T-064_evidence_routing_anchor
   dep_id: T-013
   gate: must
-- from: goal_precomputed_data_exploration/task_standard_resources_optimal_formats
-  to: goal_project_delivery_anchor/task_evidence_routing_anchor
+- from: G-007_precomputed_data_exploration/T-021_standard_resources_optimal_formats
+  to: G-027_project_delivery_anchor/T-064_evidence_routing_anchor
   dep_id: T-021
   gate: must
-- from: goal_legacy_stress_test_asset_digestion/task_04_stress_test_development_handoff_pack
-  to: goal_project_delivery_anchor/task_evidence_routing_anchor
+- from: G-026_legacy_stress_test_asset_digestion/T-058_04_stress_test_development_handoff_pack
+  to: G-027_project_delivery_anchor/T-064_evidence_routing_anchor
   dep_id: T-058
   gate: must
-- from: goal_m1_python_package_v2/task_m1_python_package_milestone
-  to: goal_project_delivery_anchor/task_m1_vs_delivery_anchor_review
+- from: G-025_m1_python_package_v2/T-053_m1_python_package_milestone
+  to: G-027_project_delivery_anchor/T-065_m1_vs_delivery_anchor_review
   dep_id: T-053
   gate: must
-- from: goal_project_delivery_anchor/task_algorithm_package_delivery_anchor
-  to: goal_project_delivery_anchor/task_m1_vs_delivery_anchor_review
+- from: G-027_project_delivery_anchor/T-062_algorithm_package_delivery_anchor
+  to: G-027_project_delivery_anchor/T-065_m1_vs_delivery_anchor_review
   dep_id: T-062
   gate: must
-- from: goal_project_delivery_anchor/task_llm_resolver_capability_anchor
-  to: goal_project_delivery_anchor/task_m1_vs_delivery_anchor_review
+- from: G-027_project_delivery_anchor/T-063_llm_resolver_capability_anchor
+  to: G-027_project_delivery_anchor/T-065_m1_vs_delivery_anchor_review
   dep_id: T-063
   gate: must
-- from: goal_project_delivery_anchor/task_evidence_routing_anchor
-  to: goal_project_delivery_anchor/task_m1_vs_delivery_anchor_review
+- from: G-027_project_delivery_anchor/T-064_evidence_routing_anchor
+  to: G-027_project_delivery_anchor/T-065_m1_vs_delivery_anchor_review
   dep_id: T-064
   gate: must
-- from: goal_project_delivery_anchor/task_algorithm_package_delivery_anchor
-  to: goal_ms3_foundation_resources/task_ms3_no_downgrade_acceptance_contract
+- from: G-027_project_delivery_anchor/T-062_algorithm_package_delivery_anchor
+  to: G-028_ms3_foundation_resources/T-066_ms3_no_downgrade_acceptance_contract
   dep_id: T-062
   gate: must
-- from: goal_project_delivery_anchor/task_llm_resolver_capability_anchor
-  to: goal_ms3_foundation_resources/task_ms3_no_downgrade_acceptance_contract
+- from: G-027_project_delivery_anchor/T-063_llm_resolver_capability_anchor
+  to: G-028_ms3_foundation_resources/T-066_ms3_no_downgrade_acceptance_contract
   dep_id: T-063
   gate: must
-- from: goal_project_delivery_anchor/task_evidence_routing_anchor
-  to: goal_ms3_foundation_resources/task_ms3_no_downgrade_acceptance_contract
+- from: G-027_project_delivery_anchor/T-064_evidence_routing_anchor
+  to: G-028_ms3_foundation_resources/T-066_ms3_no_downgrade_acceptance_contract
   dep_id: T-064
   gate: must
-- from: goal_project_delivery_anchor/task_m1_vs_delivery_anchor_review
-  to: goal_ms3_foundation_resources/task_ms3_no_downgrade_acceptance_contract
+- from: G-027_project_delivery_anchor/T-065_m1_vs_delivery_anchor_review
+  to: G-028_ms3_foundation_resources/T-066_ms3_no_downgrade_acceptance_contract
   dep_id: T-065
   gate: must
-- from: goal_precomputed_data_exploration/task_understand_pxfquery_precomputed_data
-  to: goal_ms3_foundation_resources/task_ms3_safe_resource_access_contract
+- from: G-007_precomputed_data_exploration/T-014_understand_pxfquery_precomputed_data
+  to: G-028_ms3_foundation_resources/T-067_ms3_safe_resource_access_contract
   dep_id: T-014
   gate: must
-- from: goal_precomputed_data_exploration/task_standard_resources_optimal_formats
-  to: goal_ms3_foundation_resources/task_ms3_safe_resource_access_contract
+- from: G-007_precomputed_data_exploration/T-021_standard_resources_optimal_formats
+  to: G-028_ms3_foundation_resources/T-067_ms3_safe_resource_access_contract
   dep_id: T-021
   gate: must
-- from: goal_m1_python_package_v2/task_index_health_check_m1
-  to: goal_ms3_foundation_resources/task_ms3_safe_resource_access_contract
+- from: G-025_m1_python_package_v2/T-045_index_health_check_m1
+  to: G-028_ms3_foundation_resources/T-067_ms3_safe_resource_access_contract
   dep_id: T-045
   gate: must
-- from: goal_m1_python_package_v2/task_resource_loader_hardening_m1
-  to: goal_ms3_foundation_resources/task_ms3_safe_resource_access_contract
+- from: G-025_m1_python_package_v2/T-047_resource_loader_hardening_m1
+  to: G-028_ms3_foundation_resources/T-067_ms3_safe_resource_access_contract
   dep_id: T-047
   gate: must
-- from: goal_project_delivery_anchor/task_m1_vs_delivery_anchor_review
-  to: goal_ms3_foundation_resources/task_ms3_safe_resource_access_contract
+- from: G-027_project_delivery_anchor/T-065_m1_vs_delivery_anchor_review
+  to: G-028_ms3_foundation_resources/T-067_ms3_safe_resource_access_contract
   dep_id: T-065
   gate: must
-- from: goal_precomputed_data_exploration/task_standard_resources_optimal_formats
-  to: goal_ms3_foundation_resources/task_ms3_runtime_resource_pack
+- from: G-007_precomputed_data_exploration/T-021_standard_resources_optimal_formats
+  to: G-028_ms3_foundation_resources/T-068_ms3_runtime_resource_pack
   dep_id: T-021
   gate: must
-- from: goal_m1_python_package_v2/task_resource_loader_hardening_m1
-  to: goal_ms3_foundation_resources/task_ms3_runtime_resource_pack
+- from: G-025_m1_python_package_v2/T-047_resource_loader_hardening_m1
+  to: G-028_ms3_foundation_resources/T-068_ms3_runtime_resource_pack
   dep_id: T-047
   gate: must
-- from: goal_project_delivery_anchor/task_m1_vs_delivery_anchor_review
-  to: goal_ms3_foundation_resources/task_ms3_runtime_resource_pack
+- from: G-027_project_delivery_anchor/T-065_m1_vs_delivery_anchor_review
+  to: G-028_ms3_foundation_resources/T-068_ms3_runtime_resource_pack
   dep_id: T-065
   gate: must
-- from: goal_m1_python_package_v2/task_m1_python_package_milestone
-  to: goal_ms3_foundation_resources/task_ms3_runtime_resource_pack
+- from: G-025_m1_python_package_v2/T-053_m1_python_package_milestone
+  to: G-028_ms3_foundation_resources/T-068_ms3_runtime_resource_pack
   dep_id: T-053
   gate: reference
   reason: M1 package is context only; standard resources and T-047 loader evidence
     remain authoritative.
-- from: goal_m1_python_package_v2/task_m1_python_package_milestone
-  to: goal_ms3_foundation_resources/task_ms3_package_core_workspace
+- from: G-025_m1_python_package_v2/T-053_m1_python_package_milestone
+  to: G-028_ms3_foundation_resources/T-069_ms3_package_core_workspace
   dep_id: T-053
   gate: must
-- from: goal_project_delivery_anchor/task_m1_vs_delivery_anchor_review
-  to: goal_ms3_foundation_resources/task_ms3_package_core_workspace
+- from: G-027_project_delivery_anchor/T-065_m1_vs_delivery_anchor_review
+  to: G-028_ms3_foundation_resources/T-069_ms3_package_core_workspace
   dep_id: T-065
   gate: must
-- from: goal_development_asset_digestion/task_legacy_source_digest_repair_m1
-  to: goal_ms3_foundation_resources/task_ms3_package_core_workspace
+- from: G-002_development_asset_digestion/T-061_legacy_source_digest_repair_m1
+  to: G-028_ms3_foundation_resources/T-069_ms3_package_core_workspace
   dep_id: T-061
   gate: reference
   reason: Clean legacy source digest is background context for workspace design only.
-- from: goal_project_delivery_anchor/task_evidence_routing_anchor
-  to: goal_ms3_foundation_resources/task_ms3_route_metadata_engine
+- from: G-027_project_delivery_anchor/T-064_evidence_routing_anchor
+  to: G-028_ms3_foundation_resources/T-070_ms3_route_metadata_engine
   dep_id: T-064
   gate: must
-- from: goal_project_delivery_anchor/task_m1_vs_delivery_anchor_review
-  to: goal_ms3_foundation_resources/task_ms3_route_metadata_engine
+- from: G-027_project_delivery_anchor/T-065_m1_vs_delivery_anchor_review
+  to: G-028_ms3_foundation_resources/T-070_ms3_route_metadata_engine
   dep_id: T-065
   gate: must
-- from: goal_legacy_stress_test_asset_digestion/task_04_stress_test_development_handoff_pack
-  to: goal_ms3_foundation_resources/task_ms3_route_metadata_engine
+- from: G-026_legacy_stress_test_asset_digestion/T-058_04_stress_test_development_handoff_pack
+  to: G-028_ms3_foundation_resources/T-070_ms3_route_metadata_engine
   dep_id: T-058
   gate: reference
   reason: Stress handoff informs edge-case route semantics without blocking metadata
     implementation.
-- from: goal_project_delivery_anchor/task_llm_resolver_capability_anchor
-  to: goal_ms3_foundation_resources/task_ms3_demo_acceptance_corpus
+- from: G-027_project_delivery_anchor/T-063_llm_resolver_capability_anchor
+  to: G-028_ms3_foundation_resources/T-071_ms3_demo_acceptance_corpus
   dep_id: T-063
   gate: must
-- from: goal_project_delivery_anchor/task_evidence_routing_anchor
-  to: goal_ms3_foundation_resources/task_ms3_demo_acceptance_corpus
+- from: G-027_project_delivery_anchor/T-064_evidence_routing_anchor
+  to: G-028_ms3_foundation_resources/T-071_ms3_demo_acceptance_corpus
   dep_id: T-064
   gate: must
-- from: goal_project_delivery_anchor/task_m1_vs_delivery_anchor_review
-  to: goal_ms3_foundation_resources/task_ms3_demo_acceptance_corpus
+- from: G-027_project_delivery_anchor/T-065_m1_vs_delivery_anchor_review
+  to: G-028_ms3_foundation_resources/T-071_ms3_demo_acceptance_corpus
   dep_id: T-065
   gate: must
-- from: goal_legacy_stress_test_asset_digestion/task_04_stress_test_development_handoff_pack
-  to: goal_ms3_foundation_resources/task_ms3_demo_acceptance_corpus
+- from: G-026_legacy_stress_test_asset_digestion/T-058_04_stress_test_development_handoff_pack
+  to: G-028_ms3_foundation_resources/T-071_ms3_demo_acceptance_corpus
   dep_id: T-058
   gate: reference
   reason: Stress scenarios inform candidate corpus coverage only.
-- from: goal_project_delivery_anchor/task_evidence_routing_anchor
-  to: goal_ms3_foundation_resources/task_ms3_proxy_transfer_strategy_spike
+- from: G-027_project_delivery_anchor/T-064_evidence_routing_anchor
+  to: G-028_ms3_foundation_resources/T-072_ms3_proxy_transfer_strategy_spike
   dep_id: T-064
   gate: must
-- from: goal_project_delivery_anchor/task_m1_vs_delivery_anchor_review
-  to: goal_ms3_foundation_resources/task_ms3_proxy_transfer_strategy_spike
+- from: G-027_project_delivery_anchor/T-065_m1_vs_delivery_anchor_review
+  to: G-028_ms3_foundation_resources/T-072_ms3_proxy_transfer_strategy_spike
   dep_id: T-065
   gate: must
-- from: goal_legacy_stress_test_asset_digestion/task_04_stress_test_development_handoff_pack
-  to: goal_ms3_foundation_resources/task_ms3_proxy_transfer_strategy_spike
+- from: G-026_legacy_stress_test_asset_digestion/T-058_04_stress_test_development_handoff_pack
+  to: G-028_ms3_foundation_resources/T-072_ms3_proxy_transfer_strategy_spike
   dep_id: T-058
   gate: reference
   reason: Stress handoff is exploratory context for proxy/transfer spike.
-- from: goal_ms3_foundation_resources/task_ms3_safe_resource_access_contract
-  to: goal_ms3_core_runtime/task_ms3_resource_demo_coverage_freeze
+- from: G-028_ms3_foundation_resources/T-067_ms3_safe_resource_access_contract
+  to: G-029_ms3_core_runtime/T-073_ms3_resource_demo_coverage_freeze
   dep_id: T-067
   gate: must
-- from: goal_ms3_foundation_resources/task_ms3_runtime_resource_pack
-  to: goal_ms3_core_runtime/task_ms3_resource_demo_coverage_freeze
+- from: G-028_ms3_foundation_resources/T-068_ms3_runtime_resource_pack
+  to: G-029_ms3_core_runtime/T-073_ms3_resource_demo_coverage_freeze
   dep_id: T-068
   gate: must
-- from: goal_ms3_foundation_resources/task_ms3_route_metadata_engine
-  to: goal_ms3_core_runtime/task_ms3_resource_demo_coverage_freeze
+- from: G-028_ms3_foundation_resources/T-070_ms3_route_metadata_engine
+  to: G-029_ms3_core_runtime/T-073_ms3_resource_demo_coverage_freeze
   dep_id: T-070
   gate: must
-- from: goal_ms3_foundation_resources/task_ms3_demo_acceptance_corpus
-  to: goal_ms3_core_runtime/task_ms3_resource_demo_coverage_freeze
+- from: G-028_ms3_foundation_resources/T-071_ms3_demo_acceptance_corpus
+  to: G-029_ms3_core_runtime/T-073_ms3_resource_demo_coverage_freeze
   dep_id: T-071
   gate: must
-- from: goal_ms3_foundation_resources/task_ms3_proxy_transfer_strategy_spike
-  to: goal_ms3_core_runtime/task_ms3_resource_demo_coverage_freeze
+- from: G-028_ms3_foundation_resources/T-072_ms3_proxy_transfer_strategy_spike
+  to: G-029_ms3_core_runtime/T-073_ms3_resource_demo_coverage_freeze
   dep_id: T-072
   gate: may
   reason: Successful spike output may improve final frozen cases; failure must not
     block freeze.
-- from: goal_ms3_foundation_resources/task_ms3_runtime_resource_pack
-  to: goal_ms3_core_runtime/task_ms3_forward_query_engine
+- from: G-028_ms3_foundation_resources/T-068_ms3_runtime_resource_pack
+  to: G-029_ms3_core_runtime/T-074_ms3_forward_query_engine
   dep_id: T-068
   gate: must
-- from: goal_ms3_foundation_resources/task_ms3_package_core_workspace
-  to: goal_ms3_core_runtime/task_ms3_forward_query_engine
+- from: G-028_ms3_foundation_resources/T-069_ms3_package_core_workspace
+  to: G-029_ms3_core_runtime/T-074_ms3_forward_query_engine
   dep_id: T-069
   gate: must
-- from: goal_ms3_foundation_resources/task_ms3_route_metadata_engine
-  to: goal_ms3_core_runtime/task_ms3_forward_query_engine
+- from: G-028_ms3_foundation_resources/T-070_ms3_route_metadata_engine
+  to: G-029_ms3_core_runtime/T-074_ms3_forward_query_engine
   dep_id: T-070
   gate: must
-- from: goal_ms3_core_runtime/task_ms3_resource_demo_coverage_freeze
-  to: goal_ms3_core_runtime/task_ms3_forward_query_engine
+- from: G-029_ms3_core_runtime/T-073_ms3_resource_demo_coverage_freeze
+  to: G-029_ms3_core_runtime/T-074_ms3_forward_query_engine
   dep_id: T-073
   gate: must
-- from: goal_ms3_foundation_resources/task_ms3_proxy_transfer_strategy_spike
-  to: goal_ms3_core_runtime/task_ms3_forward_query_engine
+- from: G-028_ms3_foundation_resources/T-072_ms3_proxy_transfer_strategy_spike
+  to: G-029_ms3_core_runtime/T-074_ms3_forward_query_engine
   dep_id: T-072
   gate: may
   reason: Successful spike output may improve strategy; T-074 still owns minimum proxy/transfer
     implementation.
-- from: goal_ms3_foundation_resources/task_ms3_runtime_resource_pack
-  to: goal_ms3_core_runtime/task_ms3_reverse_query_engine
+- from: G-028_ms3_foundation_resources/T-068_ms3_runtime_resource_pack
+  to: G-029_ms3_core_runtime/T-075_ms3_reverse_query_engine
   dep_id: T-068
   gate: must
-- from: goal_ms3_foundation_resources/task_ms3_package_core_workspace
-  to: goal_ms3_core_runtime/task_ms3_reverse_query_engine
+- from: G-028_ms3_foundation_resources/T-069_ms3_package_core_workspace
+  to: G-029_ms3_core_runtime/T-075_ms3_reverse_query_engine
   dep_id: T-069
   gate: must
-- from: goal_ms3_foundation_resources/task_ms3_route_metadata_engine
-  to: goal_ms3_core_runtime/task_ms3_reverse_query_engine
+- from: G-028_ms3_foundation_resources/T-070_ms3_route_metadata_engine
+  to: G-029_ms3_core_runtime/T-075_ms3_reverse_query_engine
   dep_id: T-070
   gate: must
-- from: goal_ms3_core_runtime/task_ms3_resource_demo_coverage_freeze
-  to: goal_ms3_core_runtime/task_ms3_reverse_query_engine
+- from: G-029_ms3_core_runtime/T-073_ms3_resource_demo_coverage_freeze
+  to: G-029_ms3_core_runtime/T-075_ms3_reverse_query_engine
   dep_id: T-073
   gate: must
-- from: goal_ms3_foundation_resources/task_ms3_proxy_transfer_strategy_spike
-  to: goal_ms3_core_runtime/task_ms3_reverse_query_engine
+- from: G-028_ms3_foundation_resources/T-072_ms3_proxy_transfer_strategy_spike
+  to: G-029_ms3_core_runtime/T-075_ms3_reverse_query_engine
   dep_id: T-072
   gate: may
   reason: Successful spike output may improve strategy; T-075 still owns minimum proxy/transfer/ambiguous
     implementation.
-- from: goal_ms3_foundation_resources/task_ms3_package_core_workspace
-  to: goal_ms3_core_runtime/task_ms3_resolver_llm_provider_layer
+- from: G-028_ms3_foundation_resources/T-069_ms3_package_core_workspace
+  to: G-029_ms3_core_runtime/T-076_ms3_resolver_llm_provider_layer
   dep_id: T-069
   gate: must
-- from: goal_ms3_foundation_resources/task_ms3_route_metadata_engine
-  to: goal_ms3_core_runtime/task_ms3_resolver_llm_provider_layer
+- from: G-028_ms3_foundation_resources/T-070_ms3_route_metadata_engine
+  to: G-029_ms3_core_runtime/T-076_ms3_resolver_llm_provider_layer
   dep_id: T-070
   gate: must
-- from: goal_ms3_foundation_resources/task_ms3_demo_acceptance_corpus
-  to: goal_ms3_core_runtime/task_ms3_resolver_llm_provider_layer
+- from: G-028_ms3_foundation_resources/T-071_ms3_demo_acceptance_corpus
+  to: G-029_ms3_core_runtime/T-076_ms3_resolver_llm_provider_layer
   dep_id: T-071
   gate: must
-- from: goal_ms3_core_runtime/task_ms3_resource_demo_coverage_freeze
-  to: goal_ms3_core_runtime/task_ms3_resolver_llm_provider_layer
+- from: G-029_ms3_core_runtime/T-073_ms3_resource_demo_coverage_freeze
+  to: G-029_ms3_core_runtime/T-076_ms3_resolver_llm_provider_layer
   dep_id: T-073
   gate: must
-- from: goal_ms3_foundation_resources/task_ms3_proxy_transfer_strategy_spike
-  to: goal_ms3_core_runtime/task_ms3_resolver_llm_provider_layer
+- from: G-028_ms3_foundation_resources/T-072_ms3_proxy_transfer_strategy_spike
+  to: G-029_ms3_core_runtime/T-076_ms3_resolver_llm_provider_layer
   dep_id: T-072
   gate: may
   reason: Successful spike output may improve explanation strategy; resolver/LLM route
     remains required.
-- from: goal_ms3_core_runtime/task_ms3_resource_demo_coverage_freeze
-  to: goal_ms3_release_quality/task_ms3_user_api_cli_surface
+- from: G-029_ms3_core_runtime/T-073_ms3_resource_demo_coverage_freeze
+  to: G-030_ms3_release_quality/T-077_ms3_user_api_cli_surface
   dep_id: T-073
   gate: must
-- from: goal_ms3_core_runtime/task_ms3_forward_query_engine
-  to: goal_ms3_release_quality/task_ms3_user_api_cli_surface
+- from: G-029_ms3_core_runtime/T-074_ms3_forward_query_engine
+  to: G-030_ms3_release_quality/T-077_ms3_user_api_cli_surface
   dep_id: T-074
   gate: must
-- from: goal_ms3_core_runtime/task_ms3_reverse_query_engine
-  to: goal_ms3_release_quality/task_ms3_user_api_cli_surface
+- from: G-029_ms3_core_runtime/T-075_ms3_reverse_query_engine
+  to: G-030_ms3_release_quality/T-077_ms3_user_api_cli_surface
   dep_id: T-075
   gate: must
-- from: goal_ms3_core_runtime/task_ms3_resolver_llm_provider_layer
-  to: goal_ms3_release_quality/task_ms3_user_api_cli_surface
+- from: G-029_ms3_core_runtime/T-076_ms3_resolver_llm_provider_layer
+  to: G-030_ms3_release_quality/T-077_ms3_user_api_cli_surface
   dep_id: T-076
   gate: must
-- from: goal_ms3_foundation_resources/task_ms3_route_metadata_engine
-  to: goal_ms3_release_quality/task_ms3_user_api_cli_surface
+- from: G-028_ms3_foundation_resources/T-070_ms3_route_metadata_engine
+  to: G-030_ms3_release_quality/T-077_ms3_user_api_cli_surface
   dep_id: T-070
   gate: must
-- from: goal_ms3_release_quality/task_ms3_user_api_cli_surface
-  to: goal_ms3_release_quality/task_ms3_functional_test_and_release_iteration
+- from: G-030_ms3_release_quality/T-077_ms3_user_api_cli_surface
+  to: G-030_ms3_release_quality/T-078_ms3_functional_test_and_release_iteration
   dep_id: T-077
   gate: must
-- from: goal_ms3_core_runtime/task_ms3_resource_demo_coverage_freeze
-  to: goal_ms3_release_quality/task_ms3_functional_test_and_release_iteration
+- from: G-029_ms3_core_runtime/T-073_ms3_resource_demo_coverage_freeze
+  to: G-030_ms3_release_quality/T-078_ms3_functional_test_and_release_iteration
   dep_id: T-073
   gate: must
-- from: goal_ms3_foundation_resources/task_ms3_proxy_transfer_strategy_spike
-  to: goal_ms3_release_quality/task_ms3_functional_test_and_release_iteration
+- from: G-028_ms3_foundation_resources/T-072_ms3_proxy_transfer_strategy_spike
+  to: G-030_ms3_release_quality/T-078_ms3_functional_test_and_release_iteration
   dep_id: T-072
   gate: may
   reason: If spike succeeded, include those cases in functional tests; otherwise test
     minimum mainline proxy/transfer behavior.
-- from: goal_ms3_foundation_resources/task_ms3_no_downgrade_acceptance_contract
-  to: goal_ms3_release_quality/task_ms3_no_downgrade_quality_gate
+- from: G-028_ms3_foundation_resources/T-066_ms3_no_downgrade_acceptance_contract
+  to: G-030_ms3_release_quality/T-079_ms3_no_downgrade_quality_gate
   dep_id: T-066
   gate: must
-- from: goal_ms3_core_runtime/task_ms3_resource_demo_coverage_freeze
-  to: goal_ms3_release_quality/task_ms3_no_downgrade_quality_gate
+- from: G-029_ms3_core_runtime/T-073_ms3_resource_demo_coverage_freeze
+  to: G-030_ms3_release_quality/T-079_ms3_no_downgrade_quality_gate
   dep_id: T-073
   gate: must
-- from: goal_ms3_release_quality/task_ms3_functional_test_and_release_iteration
-  to: goal_ms3_release_quality/task_ms3_no_downgrade_quality_gate
+- from: G-030_ms3_release_quality/T-078_ms3_functional_test_and_release_iteration
+  to: G-030_ms3_release_quality/T-079_ms3_no_downgrade_quality_gate
   dep_id: T-078
   gate: must
-- from: goal_project_delivery_anchor/task_m1_vs_delivery_anchor_review
-  to: goal_ms3_release_quality/task_ms3_no_downgrade_quality_gate
+- from: G-027_project_delivery_anchor/T-065_m1_vs_delivery_anchor_review
+  to: G-030_ms3_release_quality/T-079_ms3_no_downgrade_quality_gate
   dep_id: T-065
   gate: must
-- from: goal_ms3_foundation_resources/task_ms3_no_downgrade_acceptance_contract
-  to: goal_m6_ms_anchors_and_stress_assets/task_ms3_quality_anchor
+- from: G-028_ms3_foundation_resources/T-066_ms3_no_downgrade_acceptance_contract
+  to: G-031_m6_ms_anchors_and_stress_assets/T-080_ms3_quality_anchor
   dep_id: T-066
   gate: must
-- from: goal_ms3_core_runtime/task_ms3_resource_demo_coverage_freeze
-  to: goal_m6_ms_anchors_and_stress_assets/task_ms3_quality_anchor
+- from: G-029_ms3_core_runtime/T-073_ms3_resource_demo_coverage_freeze
+  to: G-031_m6_ms_anchors_and_stress_assets/T-080_ms3_quality_anchor
   dep_id: T-073
   gate: must
-- from: goal_project_delivery_anchor/task_algorithm_package_delivery_anchor
-  to: goal_m6_ms_anchors_and_stress_assets/task_ms4_usable_package_anchor
+- from: G-027_project_delivery_anchor/T-062_algorithm_package_delivery_anchor
+  to: G-031_m6_ms_anchors_and_stress_assets/T-081_ms4_usable_package_anchor
   dep_id: T-062
   gate: must
-- from: goal_project_delivery_anchor/task_llm_resolver_capability_anchor
-  to: goal_m6_ms_anchors_and_stress_assets/task_ms4_usable_package_anchor
+- from: G-027_project_delivery_anchor/T-063_llm_resolver_capability_anchor
+  to: G-031_m6_ms_anchors_and_stress_assets/T-081_ms4_usable_package_anchor
   dep_id: T-063
   gate: must
-- from: goal_project_delivery_anchor/task_evidence_routing_anchor
-  to: goal_m6_ms_anchors_and_stress_assets/task_ms4_usable_package_anchor
+- from: G-027_project_delivery_anchor/T-064_evidence_routing_anchor
+  to: G-031_m6_ms_anchors_and_stress_assets/T-081_ms4_usable_package_anchor
   dep_id: T-064
   gate: must
-- from: goal_project_delivery_anchor/task_m1_vs_delivery_anchor_review
-  to: goal_m6_ms_anchors_and_stress_assets/task_ms4_usable_package_anchor
+- from: G-027_project_delivery_anchor/T-065_m1_vs_delivery_anchor_review
+  to: G-031_m6_ms_anchors_and_stress_assets/T-081_ms4_usable_package_anchor
   dep_id: T-065
   gate: must
-- from: goal_legacy_stress_test_asset_digestion/task_04_stress_test_development_handoff_pack
-  to: goal_m6_ms_anchors_and_stress_assets/task_ms4_usable_package_anchor
+- from: G-026_legacy_stress_test_asset_digestion/T-058_04_stress_test_development_handoff_pack
+  to: G-031_m6_ms_anchors_and_stress_assets/T-081_ms4_usable_package_anchor
   dep_id: T-058
   gate: must
-- from: goal_legacy_stress_test_asset_digestion/task_01_legacy_stress_test_source_map
-  to: goal_m6_ms_anchors_and_stress_assets/task_ms4_stress_source_inventory
+- from: G-026_legacy_stress_test_asset_digestion/T-055_01_legacy_stress_test_source_map
+  to: G-031_m6_ms_anchors_and_stress_assets/T-082_ms4_stress_source_inventory
   dep_id: T-055
   gate: must
-- from: goal_legacy_stress_test_asset_digestion/task_02_stress_query_scenario_inventory
-  to: goal_m6_ms_anchors_and_stress_assets/task_ms4_stress_source_inventory
+- from: G-026_legacy_stress_test_asset_digestion/T-056_02_stress_query_scenario_inventory
+  to: G-031_m6_ms_anchors_and_stress_assets/T-082_ms4_stress_source_inventory
   dep_id: T-056
   gate: must
-- from: goal_legacy_stress_test_asset_digestion/task_03_legacy_stress_logic_reuse_boundary
-  to: goal_m6_ms_anchors_and_stress_assets/task_ms4_stress_source_inventory
+- from: G-026_legacy_stress_test_asset_digestion/T-057_03_legacy_stress_logic_reuse_boundary
+  to: G-031_m6_ms_anchors_and_stress_assets/T-082_ms4_stress_source_inventory
   dep_id: T-057
   gate: must
-- from: goal_legacy_stress_test_asset_digestion/task_04_stress_test_development_handoff_pack
-  to: goal_m6_ms_anchors_and_stress_assets/task_ms4_stress_source_inventory
+- from: G-026_legacy_stress_test_asset_digestion/T-058_04_stress_test_development_handoff_pack
+  to: G-031_m6_ms_anchors_and_stress_assets/T-082_ms4_stress_source_inventory
   dep_id: T-058
   gate: must
-- from: goal_magazine_research/task_genes_bioinformatics_deliverable_catalog
-  to: goal_m6_ms_anchors_and_stress_assets/task_ms5_large_stress_and_case_anchor
+- from: G-003_magazine_research/T-012_genes_bioinformatics_deliverable_catalog
+  to: G-031_m6_ms_anchors_and_stress_assets/T-083_ms5_large_stress_and_case_anchor
   dep_id: T-012
   gate: must
-- from: goal_project_delivery_anchor/task_algorithm_package_delivery_anchor
-  to: goal_m6_ms_anchors_and_stress_assets/task_ms5_large_stress_and_case_anchor
+- from: G-027_project_delivery_anchor/T-062_algorithm_package_delivery_anchor
+  to: G-031_m6_ms_anchors_and_stress_assets/T-083_ms5_large_stress_and_case_anchor
   dep_id: T-062
   gate: must
-- from: goal_project_delivery_anchor/task_llm_resolver_capability_anchor
-  to: goal_m6_ms_anchors_and_stress_assets/task_ms5_large_stress_and_case_anchor
+- from: G-027_project_delivery_anchor/T-063_llm_resolver_capability_anchor
+  to: G-031_m6_ms_anchors_and_stress_assets/T-083_ms5_large_stress_and_case_anchor
   dep_id: T-063
   gate: must
-- from: goal_project_delivery_anchor/task_evidence_routing_anchor
-  to: goal_m6_ms_anchors_and_stress_assets/task_ms5_large_stress_and_case_anchor
+- from: G-027_project_delivery_anchor/T-064_evidence_routing_anchor
+  to: G-031_m6_ms_anchors_and_stress_assets/T-083_ms5_large_stress_and_case_anchor
   dep_id: T-064
   gate: must
-- from: goal_magazine_research/task_genes_bioinformatics_deliverable_catalog
-  to: goal_m6_ms_anchors_and_stress_assets/task_ms6_manuscript_figure_anchor
+- from: G-003_magazine_research/T-012_genes_bioinformatics_deliverable_catalog
+  to: G-031_m6_ms_anchors_and_stress_assets/T-084_ms6_manuscript_figure_anchor
   dep_id: T-012
   gate: must
-- from: goal_submission_rules/task_mdpi_submission_package_and_guide
-  to: goal_m6_ms_anchors_and_stress_assets/task_ms6_manuscript_figure_anchor
+- from: G-008_submission_rules/T-015_mdpi_submission_package_and_guide
+  to: G-031_m6_ms_anchors_and_stress_assets/T-084_ms6_manuscript_figure_anchor
   dep_id: T-015
   gate: must
-- from: goal_template_paper_digestion/task_pending_t018
-  to: goal_m6_ms_anchors_and_stress_assets/task_ms6_manuscript_figure_anchor
+- from: G-009_template_paper_digestion/T-018_pending_t018
+  to: G-031_m6_ms_anchors_and_stress_assets/T-084_ms6_manuscript_figure_anchor
   dep_id: T-018
   gate: must
-- from: goal_project_delivery_anchor/task_algorithm_package_delivery_anchor
-  to: goal_m6_ms_anchors_and_stress_assets/task_ms6_manuscript_figure_anchor
+- from: G-027_project_delivery_anchor/T-062_algorithm_package_delivery_anchor
+  to: G-031_m6_ms_anchors_and_stress_assets/T-084_ms6_manuscript_figure_anchor
   dep_id: T-062
   gate: must
-- from: goal_m6_ms_anchors_and_stress_assets/task_ms4_usable_package_anchor
-  to: goal_m6_ms_anchors_and_stress_assets/task_ms4_ground_truth_scenario_builder
+- from: G-031_m6_ms_anchors_and_stress_assets/T-081_ms4_usable_package_anchor
+  to: G-031_m6_ms_anchors_and_stress_assets/T-085_ms4_ground_truth_scenario_builder
   dep_id: T-081
   gate: must
-- from: goal_m6_ms_anchors_and_stress_assets/task_ms4_stress_source_inventory
-  to: goal_m6_ms_anchors_and_stress_assets/task_ms4_ground_truth_scenario_builder
+- from: G-031_m6_ms_anchors_and_stress_assets/T-082_ms4_stress_source_inventory
+  to: G-031_m6_ms_anchors_and_stress_assets/T-085_ms4_ground_truth_scenario_builder
   dep_id: T-082
   gate: must
-- from: goal_m6_ms_anchors_and_stress_assets/task_ms4_usable_package_anchor
-  to: goal_m6_ms_anchors_and_stress_assets/task_ms4_forward_nl_stress_set
+- from: G-031_m6_ms_anchors_and_stress_assets/T-081_ms4_usable_package_anchor
+  to: G-031_m6_ms_anchors_and_stress_assets/T-086_ms4_forward_nl_stress_set
   dep_id: T-081
   gate: must
-- from: goal_m6_ms_anchors_and_stress_assets/task_ms4_usable_package_anchor
-  to: goal_m6_ms_anchors_and_stress_assets/task_ms4_reverse_nl_stress_set
+- from: G-031_m6_ms_anchors_and_stress_assets/T-081_ms4_usable_package_anchor
+  to: G-031_m6_ms_anchors_and_stress_assets/T-087_ms4_reverse_nl_stress_set
   dep_id: T-081
   gate: must
-- from: goal_ms3_core_runtime/task_ms3_resource_demo_coverage_freeze
-  to: goal_ms3_ms4_quality_and_repair/task_ms3_quality_digest_and_asset_map
+- from: G-029_ms3_core_runtime/T-073_ms3_resource_demo_coverage_freeze
+  to: G-032_ms3_ms4_quality_and_repair/T-088_ms3_quality_digest_and_asset_map
   dep_id: T-073
   gate: must
-- from: goal_ms3_core_runtime/task_ms3_forward_query_engine
-  to: goal_ms3_ms4_quality_and_repair/task_ms3_quality_digest_and_asset_map
+- from: G-029_ms3_core_runtime/T-074_ms3_forward_query_engine
+  to: G-032_ms3_ms4_quality_and_repair/T-088_ms3_quality_digest_and_asset_map
   dep_id: T-074
   gate: must
-- from: goal_ms3_core_runtime/task_ms3_reverse_query_engine
-  to: goal_ms3_ms4_quality_and_repair/task_ms3_quality_digest_and_asset_map
+- from: G-029_ms3_core_runtime/T-075_ms3_reverse_query_engine
+  to: G-032_ms3_ms4_quality_and_repair/T-088_ms3_quality_digest_and_asset_map
   dep_id: T-075
   gate: must
-- from: goal_ms3_core_runtime/task_ms3_resolver_llm_provider_layer
-  to: goal_ms3_ms4_quality_and_repair/task_ms3_quality_digest_and_asset_map
+- from: G-029_ms3_core_runtime/T-076_ms3_resolver_llm_provider_layer
+  to: G-032_ms3_ms4_quality_and_repair/T-088_ms3_quality_digest_and_asset_map
   dep_id: T-076
   gate: must
-- from: goal_m6_ms_anchors_and_stress_assets/task_ms5_large_stress_and_case_anchor
-  to: goal_m6_ms_anchors_and_stress_assets/task_ms5_large_nl_corpus_expansion
+- from: G-031_m6_ms_anchors_and_stress_assets/T-083_ms5_large_stress_and_case_anchor
+  to: G-031_m6_ms_anchors_and_stress_assets/T-089_ms5_large_nl_corpus_expansion
   dep_id: T-083
   gate: must
-- from: goal_m6_ms_anchors_and_stress_assets/task_ms4_ground_truth_scenario_builder
-  to: goal_m6_ms_anchors_and_stress_assets/task_ms5_large_nl_corpus_expansion
+- from: G-031_m6_ms_anchors_and_stress_assets/T-085_ms4_ground_truth_scenario_builder
+  to: G-031_m6_ms_anchors_and_stress_assets/T-089_ms5_large_nl_corpus_expansion
   dep_id: T-085
   gate: may
-- from: goal_m6_ms_anchors_and_stress_assets/task_ms4_forward_nl_stress_set
-  to: goal_m6_ms_anchors_and_stress_assets/task_ms5_large_nl_corpus_expansion
+- from: G-031_m6_ms_anchors_and_stress_assets/T-086_ms4_forward_nl_stress_set
+  to: G-031_m6_ms_anchors_and_stress_assets/T-089_ms5_large_nl_corpus_expansion
   dep_id: T-086
   gate: may
-- from: goal_m6_ms_anchors_and_stress_assets/task_ms4_reverse_nl_stress_set
-  to: goal_m6_ms_anchors_and_stress_assets/task_ms5_large_nl_corpus_expansion
+- from: G-031_m6_ms_anchors_and_stress_assets/T-087_ms4_reverse_nl_stress_set
+  to: G-031_m6_ms_anchors_and_stress_assets/T-089_ms5_large_nl_corpus_expansion
   dep_id: T-087
   gate: may
-- from: goal_m6_ms_anchors_and_stress_assets/task_ms3_quality_anchor
-  to: goal_ms3_ms4_quality_and_repair/task_ms3_entry_to_ms4_comparison_review
+- from: G-031_m6_ms_anchors_and_stress_assets/T-080_ms3_quality_anchor
+  to: G-032_ms3_ms4_quality_and_repair/T-090_ms3_entry_to_ms4_comparison_review
   dep_id: T-080
   gate: must
-- from: goal_ms3_ms4_quality_and_repair/task_ms3_quality_digest_and_asset_map
-  to: goal_ms3_ms4_quality_and_repair/task_ms3_entry_to_ms4_comparison_review
+- from: G-032_ms3_ms4_quality_and_repair/T-088_ms3_quality_digest_and_asset_map
+  to: G-032_ms3_ms4_quality_and_repair/T-090_ms3_entry_to_ms4_comparison_review
   dep_id: T-088
   gate: must
-- from: goal_ms3_release_quality/task_ms3_no_downgrade_quality_gate
-  to: goal_ms3_ms4_quality_and_repair/task_ms3_entry_to_ms4_comparison_review
+- from: G-030_ms3_release_quality/T-079_ms3_no_downgrade_quality_gate
+  to: G-032_ms3_ms4_quality_and_repair/T-090_ms3_entry_to_ms4_comparison_review
   dep_id: T-079
   gate: must
-- from: goal_ms3_release_quality/task_ms3_functional_test_and_release_iteration
-  to: goal_ms3_ms4_quality_and_repair/task_ms3_entry_to_ms4_comparison_review
+- from: G-030_ms3_release_quality/T-078_ms3_functional_test_and_release_iteration
+  to: G-032_ms3_ms4_quality_and_repair/T-090_ms3_entry_to_ms4_comparison_review
   dep_id: T-078
   gate: may
-- from: goal_m6_ms_anchors_and_stress_assets/task_ms6_manuscript_figure_anchor
-  to: goal_ms6_manuscript_foundation/task_ms6_package_capability_narrative
+- from: G-031_m6_ms_anchors_and_stress_assets/T-084_ms6_manuscript_figure_anchor
+  to: G-033_ms6_manuscript_foundation/T-091_ms6_package_capability_narrative
   dep_id: T-084
   gate: must
-- from: goal_m6_ms_anchors_and_stress_assets/task_ms6_manuscript_figure_anchor
-  to: goal_ms6_manuscript_foundation/task_ms6_algorithm_method_story
+- from: G-031_m6_ms_anchors_and_stress_assets/T-084_ms6_manuscript_figure_anchor
+  to: G-033_ms6_manuscript_foundation/T-092_ms6_algorithm_method_story
   dep_id: T-084
   gate: must
-- from: goal_m6_ms_anchors_and_stress_assets/task_ms6_manuscript_figure_anchor
-  to: goal_ms6_manuscript_foundation/task_ms6_internal_data_figure2_assets
+- from: G-031_m6_ms_anchors_and_stress_assets/T-084_ms6_manuscript_figure_anchor
+  to: G-033_ms6_manuscript_foundation/T-093_ms6_internal_data_figure2_assets
   dep_id: T-084
   gate: must
-- from: goal_ms3_ms4_quality_and_repair/task_ms3_entry_to_ms4_comparison_review
-  to: goal_ms3_ms4_quality_and_repair/task_ms4_route_execution_matrix
+- from: G-032_ms3_ms4_quality_and_repair/T-090_ms3_entry_to_ms4_comparison_review
+  to: G-032_ms3_ms4_quality_and_repair/T-094_ms4_route_execution_matrix
   dep_id: T-090
   gate: must
-- from: goal_m6_ms_anchors_and_stress_assets/task_ms4_ground_truth_scenario_builder
-  to: goal_ms3_ms4_quality_and_repair/task_ms4_route_execution_matrix
+- from: G-031_m6_ms_anchors_and_stress_assets/T-085_ms4_ground_truth_scenario_builder
+  to: G-032_ms3_ms4_quality_and_repair/T-094_ms4_route_execution_matrix
   dep_id: T-085
   gate: must
-- from: goal_m6_ms_anchors_and_stress_assets/task_ms4_forward_nl_stress_set
-  to: goal_ms3_ms4_quality_and_repair/task_ms4_route_execution_matrix
+- from: G-031_m6_ms_anchors_and_stress_assets/T-086_ms4_forward_nl_stress_set
+  to: G-032_ms3_ms4_quality_and_repair/T-094_ms4_route_execution_matrix
   dep_id: T-086
   gate: must
-- from: goal_m6_ms_anchors_and_stress_assets/task_ms4_reverse_nl_stress_set
-  to: goal_ms3_ms4_quality_and_repair/task_ms4_route_execution_matrix
+- from: G-031_m6_ms_anchors_and_stress_assets/T-087_ms4_reverse_nl_stress_set
+  to: G-032_ms3_ms4_quality_and_repair/T-094_ms4_route_execution_matrix
   dep_id: T-087
   gate: must
-- from: goal_ms3_ms4_quality_and_repair/task_ms4_route_execution_matrix
-  to: goal_ms3_ms4_quality_and_repair/task_ms4_parser_llm_failure_diagnosis
+- from: G-032_ms3_ms4_quality_and_repair/T-094_ms4_route_execution_matrix
+  to: G-032_ms3_ms4_quality_and_repair/T-095_ms4_parser_llm_failure_diagnosis
   dep_id: T-094
   gate: must
-- from: goal_ms3_ms4_quality_and_repair/task_ms4_route_execution_matrix
-  to: goal_ms3_ms4_quality_and_repair/task_ms4_resolver_route_failure_diagnosis
+- from: G-032_ms3_ms4_quality_and_repair/T-094_ms4_route_execution_matrix
+  to: G-032_ms3_ms4_quality_and_repair/T-096_ms4_resolver_route_failure_diagnosis
   dep_id: T-094
   gate: must
-- from: goal_ms3_ms4_quality_and_repair/task_ms4_route_execution_matrix
-  to: goal_ms3_ms4_quality_and_repair/task_ms4_engine_output_failure_diagnosis
+- from: G-032_ms3_ms4_quality_and_repair/T-094_ms4_route_execution_matrix
+  to: G-032_ms3_ms4_quality_and_repair/T-097_ms4_engine_output_failure_diagnosis
   dep_id: T-094
   gate: must
-- from: goal_ms3_ms4_quality_and_repair/task_ms4_route_execution_matrix
-  to: goal_ms3_ms4_quality_and_repair/task_ms4_parser_resolver_route_repair_version
+- from: G-032_ms3_ms4_quality_and_repair/T-094_ms4_route_execution_matrix
+  to: G-032_ms3_ms4_quality_and_repair/T-098_ms4_parser_resolver_route_repair_version
   dep_id: T-094
   gate: must
-- from: goal_ms3_ms4_quality_and_repair/task_ms4_parser_llm_failure_diagnosis
-  to: goal_ms3_ms4_quality_and_repair/task_ms4_parser_resolver_route_repair_version
+- from: G-032_ms3_ms4_quality_and_repair/T-095_ms4_parser_llm_failure_diagnosis
+  to: G-032_ms3_ms4_quality_and_repair/T-098_ms4_parser_resolver_route_repair_version
   dep_id: T-095
   gate: must
-- from: goal_ms3_ms4_quality_and_repair/task_ms4_resolver_route_failure_diagnosis
-  to: goal_ms3_ms4_quality_and_repair/task_ms4_parser_resolver_route_repair_version
+- from: G-032_ms3_ms4_quality_and_repair/T-096_ms4_resolver_route_failure_diagnosis
+  to: G-032_ms3_ms4_quality_and_repair/T-098_ms4_parser_resolver_route_repair_version
   dep_id: T-096
   gate: must
-- from: goal_ms3_ms4_quality_and_repair/task_ms4_route_execution_matrix
-  to: goal_ms3_ms4_quality_and_repair/task_ms4_reverse_engine_output_repair_version
+- from: G-032_ms3_ms4_quality_and_repair/T-094_ms4_route_execution_matrix
+  to: G-032_ms3_ms4_quality_and_repair/T-099_ms4_reverse_engine_output_repair_version
   dep_id: T-094
   gate: must
-- from: goal_ms3_ms4_quality_and_repair/task_ms4_resolver_route_failure_diagnosis
-  to: goal_ms3_ms4_quality_and_repair/task_ms4_reverse_engine_output_repair_version
+- from: G-032_ms3_ms4_quality_and_repair/T-096_ms4_resolver_route_failure_diagnosis
+  to: G-032_ms3_ms4_quality_and_repair/T-099_ms4_reverse_engine_output_repair_version
   dep_id: T-096
   gate: must
-- from: goal_ms3_ms4_quality_and_repair/task_ms4_engine_output_failure_diagnosis
-  to: goal_ms3_ms4_quality_and_repair/task_ms4_reverse_engine_output_repair_version
+- from: G-032_ms3_ms4_quality_and_repair/T-097_ms4_engine_output_failure_diagnosis
+  to: G-032_ms3_ms4_quality_and_repair/T-099_ms4_reverse_engine_output_repair_version
   dep_id: T-097
   gate: must
-- from: goal_m6_ms_anchors_and_stress_assets/task_ms5_large_stress_and_case_anchor
-  to: goal_ms3_ms4_quality_and_repair/task_ms5_demo_case_selection_and_repro_plan
+- from: G-031_m6_ms_anchors_and_stress_assets/T-083_ms5_large_stress_and_case_anchor
+  to: G-032_ms3_ms4_quality_and_repair/T-100_ms5_demo_case_selection_and_repro_plan
   dep_id: T-083
   gate: must
-- from: goal_m6_ms_anchors_and_stress_assets/task_ms5_large_nl_corpus_expansion
-  to: goal_ms3_ms4_quality_and_repair/task_ms5_demo_case_selection_and_repro_plan
+- from: G-031_m6_ms_anchors_and_stress_assets/T-089_ms5_large_nl_corpus_expansion
+  to: G-032_ms3_ms4_quality_and_repair/T-100_ms5_demo_case_selection_and_repro_plan
   dep_id: T-089
   gate: must
-- from: goal_ms3_ms4_quality_and_repair/task_ms4_route_execution_matrix
-  to: goal_ms3_ms4_quality_and_repair/task_ms5_demo_case_selection_and_repro_plan
+- from: G-032_ms3_ms4_quality_and_repair/T-094_ms4_route_execution_matrix
+  to: G-032_ms3_ms4_quality_and_repair/T-100_ms5_demo_case_selection_and_repro_plan
   dep_id: T-094
   gate: must
-- from: goal_ms3_ms4_quality_and_repair/task_ms4_parser_llm_failure_diagnosis
-  to: goal_ms3_ms4_quality_and_repair/task_ms5_demo_case_selection_and_repro_plan
+- from: G-032_ms3_ms4_quality_and_repair/T-095_ms4_parser_llm_failure_diagnosis
+  to: G-032_ms3_ms4_quality_and_repair/T-100_ms5_demo_case_selection_and_repro_plan
   dep_id: T-095
   gate: must
-- from: goal_ms3_ms4_quality_and_repair/task_ms4_engine_output_failure_diagnosis
-  to: goal_ms3_ms4_quality_and_repair/task_ms5_demo_case_selection_and_repro_plan
+- from: G-032_ms3_ms4_quality_and_repair/T-097_ms4_engine_output_failure_diagnosis
+  to: G-032_ms3_ms4_quality_and_repair/T-100_ms5_demo_case_selection_and_repro_plan
   dep_id: T-097
   gate: must
-- from: goal_m6_ms_anchors_and_stress_assets/task_ms5_large_stress_and_case_anchor
-  to: goal_ms3_ms4_quality_and_repair/task_ms5_application_scene_candidate_map
+- from: G-031_m6_ms_anchors_and_stress_assets/T-083_ms5_large_stress_and_case_anchor
+  to: G-032_ms3_ms4_quality_and_repair/T-101_ms5_application_scene_candidate_map
   dep_id: T-083
   gate: must
-- from: goal_m6_ms_anchors_and_stress_assets/task_ms5_large_nl_corpus_expansion
-  to: goal_ms3_ms4_quality_and_repair/task_ms5_application_scene_candidate_map
+- from: G-031_m6_ms_anchors_and_stress_assets/T-089_ms5_large_nl_corpus_expansion
+  to: G-032_ms3_ms4_quality_and_repair/T-101_ms5_application_scene_candidate_map
   dep_id: T-089
   gate: must
-- from: goal_ms6_manuscript_foundation/task_ms6_package_capability_narrative
-  to: goal_ms3_ms4_quality_and_repair/task_ms5_application_scene_candidate_map
+- from: G-033_ms6_manuscript_foundation/T-091_ms6_package_capability_narrative
+  to: G-032_ms3_ms4_quality_and_repair/T-101_ms5_application_scene_candidate_map
   dep_id: T-091
   gate: must
-- from: goal_ms6_manuscript_foundation/task_ms6_algorithm_method_story
-  to: goal_ms3_ms4_quality_and_repair/task_ms5_application_scene_candidate_map
+- from: G-033_ms6_manuscript_foundation/T-092_ms6_algorithm_method_story
+  to: G-032_ms3_ms4_quality_and_repair/T-101_ms5_application_scene_candidate_map
   dep_id: T-092
   gate: must
-- from: goal_ms6_manuscript_foundation/task_ms6_internal_data_figure2_assets
-  to: goal_ms3_ms4_quality_and_repair/task_ms5_application_scene_candidate_map
+- from: G-033_ms6_manuscript_foundation/T-093_ms6_internal_data_figure2_assets
+  to: G-032_ms3_ms4_quality_and_repair/T-101_ms5_application_scene_candidate_map
   dep_id: T-093
   gate: must
-- from: goal_ms3_ms4_quality_and_repair/task_ms4_route_execution_matrix
-  to: goal_ms3_ms4_quality_and_repair/task_ms4_repaired_package_verification_gate
+- from: G-032_ms3_ms4_quality_and_repair/T-094_ms4_route_execution_matrix
+  to: G-032_ms3_ms4_quality_and_repair/T-102_ms4_repaired_package_verification_gate
   dep_id: T-094
   gate: must
-- from: goal_ms3_ms4_quality_and_repair/task_ms4_parser_resolver_route_repair_version
-  to: goal_ms3_ms4_quality_and_repair/task_ms4_repaired_package_verification_gate
+- from: G-032_ms3_ms4_quality_and_repair/T-098_ms4_parser_resolver_route_repair_version
+  to: G-032_ms3_ms4_quality_and_repair/T-102_ms4_repaired_package_verification_gate
   dep_id: T-098
   gate: must
-- from: goal_ms3_ms4_quality_and_repair/task_ms4_reverse_engine_output_repair_version
-  to: goal_ms3_ms4_quality_and_repair/task_ms4_repaired_package_verification_gate
+- from: G-032_ms3_ms4_quality_and_repair/T-099_ms4_reverse_engine_output_repair_version
+  to: G-032_ms3_ms4_quality_and_repair/T-102_ms4_repaired_package_verification_gate
   dep_id: T-099
   gate: must
-- from: goal_m6_ms_anchors_and_stress_assets/task_ms4_usable_package_anchor
-  to: goal_ms3_ms4_quality_and_repair/task_ms4_anchor_comparison_and_release_pack
+- from: G-031_m6_ms_anchors_and_stress_assets/T-081_ms4_usable_package_anchor
+  to: G-032_ms3_ms4_quality_and_repair/T-103_ms4_anchor_comparison_and_release_pack
   dep_id: T-081
   gate: must
-- from: goal_ms3_ms4_quality_and_repair/task_ms4_route_execution_matrix
-  to: goal_ms3_ms4_quality_and_repair/task_ms4_anchor_comparison_and_release_pack
+- from: G-032_ms3_ms4_quality_and_repair/T-094_ms4_route_execution_matrix
+  to: G-032_ms3_ms4_quality_and_repair/T-103_ms4_anchor_comparison_and_release_pack
   dep_id: T-094
   gate: must
-- from: goal_ms3_ms4_quality_and_repair/task_ms4_parser_resolver_route_repair_version
-  to: goal_ms3_ms4_quality_and_repair/task_ms4_anchor_comparison_and_release_pack
+- from: G-032_ms3_ms4_quality_and_repair/T-098_ms4_parser_resolver_route_repair_version
+  to: G-032_ms3_ms4_quality_and_repair/T-103_ms4_anchor_comparison_and_release_pack
   dep_id: T-098
   gate: must
-- from: goal_ms3_ms4_quality_and_repair/task_ms4_reverse_engine_output_repair_version
-  to: goal_ms3_ms4_quality_and_repair/task_ms4_anchor_comparison_and_release_pack
+- from: G-032_ms3_ms4_quality_and_repair/T-099_ms4_reverse_engine_output_repair_version
+  to: G-032_ms3_ms4_quality_and_repair/T-103_ms4_anchor_comparison_and_release_pack
   dep_id: T-099
   gate: must
-- from: goal_ms3_ms4_quality_and_repair/task_ms4_repaired_package_verification_gate
-  to: goal_ms3_ms4_quality_and_repair/task_ms4_anchor_comparison_and_release_pack
+- from: G-032_ms3_ms4_quality_and_repair/T-102_ms4_repaired_package_verification_gate
+  to: G-032_ms3_ms4_quality_and_repair/T-103_ms4_anchor_comparison_and_release_pack
   dep_id: T-102
   gate: must
-- from: goal_m6_ms_anchors_and_stress_assets/task_ms5_large_nl_corpus_expansion
-  to: goal_ms3_ms4_quality_and_repair/task_ms5_large_nl_pressure_execution
+- from: G-031_m6_ms_anchors_and_stress_assets/T-089_ms5_large_nl_corpus_expansion
+  to: G-032_ms3_ms4_quality_and_repair/T-104_ms5_large_nl_pressure_execution
   dep_id: T-089
   gate: must
-- from: goal_ms3_ms4_quality_and_repair/task_ms4_anchor_comparison_and_release_pack
-  to: goal_ms3_ms4_quality_and_repair/task_ms5_large_nl_pressure_execution
+- from: G-032_ms3_ms4_quality_and_repair/T-103_ms4_anchor_comparison_and_release_pack
+  to: G-032_ms3_ms4_quality_and_repair/T-104_ms5_large_nl_pressure_execution
   dep_id: T-103
   gate: must
-- from: goal_ms3_ms4_quality_and_repair/task_ms5_demo_case_selection_and_repro_plan
-  to: goal_ms3_ms4_quality_and_repair/task_ms5_large_nl_pressure_execution
+- from: G-032_ms3_ms4_quality_and_repair/T-100_ms5_demo_case_selection_and_repro_plan
+  to: G-032_ms3_ms4_quality_and_repair/T-104_ms5_large_nl_pressure_execution
   dep_id: T-100
   gate: must
-- from: goal_ms3_ms4_quality_and_repair/task_ms5_application_scene_candidate_map
-  to: goal_ms3_ms4_quality_and_repair/task_ms5_large_nl_pressure_execution
+- from: G-032_ms3_ms4_quality_and_repair/T-101_ms5_application_scene_candidate_map
+  to: G-032_ms3_ms4_quality_and_repair/T-104_ms5_large_nl_pressure_execution
   dep_id: T-101
   gate: must
-- from: goal_m6_ms_anchors_and_stress_assets/task_ms5_large_stress_and_case_anchor
-  to: goal_ms3_ms4_quality_and_repair/task_ms5_anchor_comparison_demo_aggregate
+- from: G-031_m6_ms_anchors_and_stress_assets/T-083_ms5_large_stress_and_case_anchor
+  to: G-032_ms3_ms4_quality_and_repair/T-105_ms5_anchor_comparison_demo_aggregate
   dep_id: T-083
   gate: must
-- from: goal_ms3_ms4_quality_and_repair/task_ms5_demo_case_selection_and_repro_plan
-  to: goal_ms3_ms4_quality_and_repair/task_ms5_anchor_comparison_demo_aggregate
+- from: G-032_ms3_ms4_quality_and_repair/T-100_ms5_demo_case_selection_and_repro_plan
+  to: G-032_ms3_ms4_quality_and_repair/T-105_ms5_anchor_comparison_demo_aggregate
   dep_id: T-100
   gate: must
-- from: goal_ms3_ms4_quality_and_repair/task_ms5_application_scene_candidate_map
-  to: goal_ms3_ms4_quality_and_repair/task_ms5_anchor_comparison_demo_aggregate
+- from: G-032_ms3_ms4_quality_and_repair/T-101_ms5_application_scene_candidate_map
+  to: G-032_ms3_ms4_quality_and_repair/T-105_ms5_anchor_comparison_demo_aggregate
   dep_id: T-101
   gate: must
-- from: goal_ms3_ms4_quality_and_repair/task_ms4_anchor_comparison_and_release_pack
-  to: goal_ms3_ms4_quality_and_repair/task_ms5_anchor_comparison_demo_aggregate
+- from: G-032_ms3_ms4_quality_and_repair/T-103_ms4_anchor_comparison_and_release_pack
+  to: G-032_ms3_ms4_quality_and_repair/T-105_ms5_anchor_comparison_demo_aggregate
   dep_id: T-103
   gate: must
-- from: goal_ms3_ms4_quality_and_repair/task_ms5_large_nl_pressure_execution
-  to: goal_ms3_ms4_quality_and_repair/task_ms5_anchor_comparison_demo_aggregate
+- from: G-032_ms3_ms4_quality_and_repair/T-104_ms5_large_nl_pressure_execution
+  to: G-032_ms3_ms4_quality_and_repair/T-105_ms5_anchor_comparison_demo_aggregate
   dep_id: T-104
   gate: must
-- from: goal_m6_ms_anchors_and_stress_assets/task_ms6_manuscript_figure_anchor
-  to: goal_ms6_manuscript_foundation/task_ms6_writing_figure_resource_pack
+- from: G-031_m6_ms_anchors_and_stress_assets/T-084_ms6_manuscript_figure_anchor
+  to: G-033_ms6_manuscript_foundation/T-106_ms6_writing_figure_resource_pack
   dep_id: T-084
   gate: must
-- from: goal_ms6_manuscript_foundation/task_ms6_package_capability_narrative
-  to: goal_ms6_manuscript_foundation/task_ms6_writing_figure_resource_pack
+- from: G-033_ms6_manuscript_foundation/T-091_ms6_package_capability_narrative
+  to: G-033_ms6_manuscript_foundation/T-106_ms6_writing_figure_resource_pack
   dep_id: T-091
   gate: must
-- from: goal_ms6_manuscript_foundation/task_ms6_algorithm_method_story
-  to: goal_ms6_manuscript_foundation/task_ms6_writing_figure_resource_pack
+- from: G-033_ms6_manuscript_foundation/T-092_ms6_algorithm_method_story
+  to: G-033_ms6_manuscript_foundation/T-106_ms6_writing_figure_resource_pack
   dep_id: T-092
   gate: must
-- from: goal_ms6_manuscript_foundation/task_ms6_internal_data_figure2_assets
-  to: goal_ms6_manuscript_foundation/task_ms6_writing_figure_resource_pack
+- from: G-033_ms6_manuscript_foundation/T-093_ms6_internal_data_figure2_assets
+  to: G-033_ms6_manuscript_foundation/T-106_ms6_writing_figure_resource_pack
   dep_id: T-093
   gate: must
-- from: goal_ms3_ms4_quality_and_repair/task_ms5_anchor_comparison_demo_aggregate
-  to: goal_ms6_manuscript_foundation/task_ms6_writing_figure_resource_pack
+- from: G-032_ms3_ms4_quality_and_repair/T-105_ms5_anchor_comparison_demo_aggregate
+  to: G-033_ms6_manuscript_foundation/T-106_ms6_writing_figure_resource_pack
   dep_id: T-105
   gate: must
-- from: goal_m6_ms_anchors_and_stress_assets/task_ms6_manuscript_figure_anchor
-  to: goal_ms6_manuscript_foundation/task_ms6_anchor_comparison_writing_handoff
+- from: G-031_m6_ms_anchors_and_stress_assets/T-084_ms6_manuscript_figure_anchor
+  to: G-033_ms6_manuscript_foundation/T-107_ms6_anchor_comparison_writing_handoff
   dep_id: T-084
   gate: must
-- from: goal_ms6_manuscript_foundation/task_ms6_package_capability_narrative
-  to: goal_ms6_manuscript_foundation/task_ms6_anchor_comparison_writing_handoff
+- from: G-033_ms6_manuscript_foundation/T-091_ms6_package_capability_narrative
+  to: G-033_ms6_manuscript_foundation/T-107_ms6_anchor_comparison_writing_handoff
   dep_id: T-091
   gate: must
-- from: goal_ms6_manuscript_foundation/task_ms6_algorithm_method_story
-  to: goal_ms6_manuscript_foundation/task_ms6_anchor_comparison_writing_handoff
+- from: G-033_ms6_manuscript_foundation/T-092_ms6_algorithm_method_story
+  to: G-033_ms6_manuscript_foundation/T-107_ms6_anchor_comparison_writing_handoff
   dep_id: T-092
   gate: must
-- from: goal_ms6_manuscript_foundation/task_ms6_internal_data_figure2_assets
-  to: goal_ms6_manuscript_foundation/task_ms6_anchor_comparison_writing_handoff
+- from: G-033_ms6_manuscript_foundation/T-093_ms6_internal_data_figure2_assets
+  to: G-033_ms6_manuscript_foundation/T-107_ms6_anchor_comparison_writing_handoff
   dep_id: T-093
   gate: must
-- from: goal_ms6_manuscript_foundation/task_ms6_writing_figure_resource_pack
-  to: goal_ms6_manuscript_foundation/task_ms6_anchor_comparison_writing_handoff
+- from: G-033_ms6_manuscript_foundation/T-106_ms6_writing_figure_resource_pack
+  to: G-033_ms6_manuscript_foundation/T-107_ms6_anchor_comparison_writing_handoff
   dep_id: T-106
   gate: must
-- from: goal_ms3_release_quality/task_ms3_functional_test_and_release_iteration
-  to: goal_ms3_release_quality/task_ms3_m6_corrective_gap_closure
+- from: G-030_ms3_release_quality/T-078_ms3_functional_test_and_release_iteration
+  to: G-030_ms3_release_quality/T-108_ms3_m6_corrective_gap_closure
   dep_id: T-078
   gate: must
-- from: goal_ms3_release_quality/task_ms3_no_downgrade_quality_gate
-  to: goal_ms3_release_quality/task_ms3_m6_corrective_gap_closure
+- from: G-030_ms3_release_quality/T-079_ms3_no_downgrade_quality_gate
+  to: G-030_ms3_release_quality/T-108_ms3_m6_corrective_gap_closure
   dep_id: T-079
   gate: must
-- from: goal_ms3_ms4_quality_and_repair/task_ms3_entry_to_ms4_comparison_review
-  to: goal_ms3_release_quality/task_ms3_m6_corrective_gap_closure
+- from: G-032_ms3_ms4_quality_and_repair/T-090_ms3_entry_to_ms4_comparison_review
+  to: G-030_ms3_release_quality/T-108_ms3_m6_corrective_gap_closure
   dep_id: T-090
   gate: must
-- from: goal_ms3_ms4_quality_and_repair/task_ms4_anchor_comparison_and_release_pack
-  to: goal_ms3_release_quality/task_ms3_m6_corrective_gap_closure
+- from: G-032_ms3_ms4_quality_and_repair/T-103_ms4_anchor_comparison_and_release_pack
+  to: G-030_ms3_release_quality/T-108_ms3_m6_corrective_gap_closure
   dep_id: T-103
   gate: must
-- from: goal_ms3_ms4_quality_and_repair/task_ms5_anchor_comparison_demo_aggregate
-  to: goal_ms3_release_quality/task_ms3_m6_corrective_gap_closure
+- from: G-032_ms3_ms4_quality_and_repair/T-105_ms5_anchor_comparison_demo_aggregate
+  to: G-030_ms3_release_quality/T-108_ms3_m6_corrective_gap_closure
   dep_id: T-105
   gate: must
-- from: goal_ms3_release_quality/task_ms3_no_downgrade_quality_gate
-  to: goal_ms3_release_quality/task_ms3_corrected_final_review_after_m6
+- from: G-030_ms3_release_quality/T-079_ms3_no_downgrade_quality_gate
+  to: G-030_ms3_release_quality/T-109_ms3_corrected_final_review_after_m6
   dep_id: T-079
   gate: must
-- from: goal_ms3_ms4_quality_and_repair/task_ms3_entry_to_ms4_comparison_review
-  to: goal_ms3_release_quality/task_ms3_corrected_final_review_after_m6
+- from: G-032_ms3_ms4_quality_and_repair/T-090_ms3_entry_to_ms4_comparison_review
+  to: G-030_ms3_release_quality/T-109_ms3_corrected_final_review_after_m6
   dep_id: T-090
   gate: must
-- from: goal_ms3_ms4_quality_and_repair/task_ms4_anchor_comparison_and_release_pack
-  to: goal_ms3_release_quality/task_ms3_corrected_final_review_after_m6
+- from: G-032_ms3_ms4_quality_and_repair/T-103_ms4_anchor_comparison_and_release_pack
+  to: G-030_ms3_release_quality/T-109_ms3_corrected_final_review_after_m6
   dep_id: T-103
   gate: must
-- from: goal_ms7_recovery_package/task_ms7_anti_loophole_rule_lock_2
-  to: goal_ms7_recovery_package/task_ms7_recovery_anchor_2
+- from: G-034_ms7_recovery_package/T-110_ms7_anti_loophole_rule_lock_2
+  to: G-034_ms7_recovery_package/T-111_ms7_recovery_anchor_2
   dep_id: T-110
   gate: must
-- from: goal_ms7_recovery_package/task_ms7_anti_loophole_rule_lock_2
-  to: goal_ms7_recovery_package/task_ms7_legacy_quarantine_audit_2
+- from: G-034_ms7_recovery_package/T-110_ms7_anti_loophole_rule_lock_2
+  to: G-034_ms7_recovery_package/T-112_ms7_legacy_quarantine_audit_2
   dep_id: T-110
   gate: must
-- from: goal_ms7_recovery_package/task_ms7_anti_loophole_rule_lock_2
-  to: goal_ms7_recovery_package/task_ms7_current_package_baseline_2
+- from: G-034_ms7_recovery_package/T-110_ms7_anti_loophole_rule_lock_2
+  to: G-034_ms7_recovery_package/T-113_ms7_current_package_baseline_2
   dep_id: T-110
   gate: must
-- from: goal_ms7_recovery_package/task_ms7_anti_loophole_rule_lock_2
-  to: goal_ms7_recovery_package/task_ms7_execution_corpus_build_2
+- from: G-034_ms7_recovery_package/T-110_ms7_anti_loophole_rule_lock_2
+  to: G-034_ms7_recovery_package/T-114_ms7_execution_corpus_build_2
   dep_id: T-110
   gate: must
-- from: goal_ms7_recovery_package/task_ms7_anti_loophole_rule_lock_2
-  to: goal_ms7_recovery_package/task_ms7_acceptance_matrix_spec_2
+- from: G-034_ms7_recovery_package/T-110_ms7_anti_loophole_rule_lock_2
+  to: G-034_ms7_recovery_package/T-115_ms7_acceptance_matrix_spec_2
   dep_id: T-110
   gate: must
-- from: goal_ms7_recovery_package/task_ms7_anti_loophole_rule_lock_2
-  to: goal_ms7_recovery_package/task_ms7_acceptance_gate_prebuild_2
+- from: G-034_ms7_recovery_package/T-110_ms7_anti_loophole_rule_lock_2
+  to: G-034_ms7_recovery_package/T-116_ms7_acceptance_gate_prebuild_2
   dep_id: T-110
   gate: must
-- from: goal_ms7_recovery_package/task_ms7_anti_loophole_rule_lock_2
-  to: goal_ms7_recovery_package/task_ms7_manual_build_repair_package_2
+- from: G-034_ms7_recovery_package/T-110_ms7_anti_loophole_rule_lock_2
+  to: G-034_ms7_recovery_package/T-117_ms7_manual_build_repair_package_2
   dep_id: T-110
   gate: must
-- from: goal_ms7_recovery_package/task_ms7_anti_loophole_rule_lock_2
-  to: goal_ms7_recovery_package/task_ms7_build_verification_2
+- from: G-034_ms7_recovery_package/T-110_ms7_anti_loophole_rule_lock_2
+  to: G-034_ms7_recovery_package/T-118_ms7_build_verification_2
   dep_id: T-110
   gate: must
-- from: goal_ms7_recovery_package/task_ms7_anti_loophole_rule_lock_2
-  to: goal_ms7_recovery_package/task_ms7_llm_provider_route_verification_2
+- from: G-034_ms7_recovery_package/T-110_ms7_anti_loophole_rule_lock_2
+  to: G-034_ms7_recovery_package/T-119_ms7_llm_provider_route_verification_2
   dep_id: T-110
   gate: must
-- from: goal_ms7_recovery_package/task_ms7_anti_loophole_rule_lock_2
-  to: goal_ms7_recovery_package/task_ms7_integrated_recovery_matrix_2
+- from: G-034_ms7_recovery_package/T-110_ms7_anti_loophole_rule_lock_2
+  to: G-034_ms7_recovery_package/T-120_ms7_integrated_recovery_matrix_2
   dep_id: T-110
   gate: must
-- from: goal_ms7_recovery_package/task_ms7_anti_loophole_rule_lock_2
-  to: goal_ms7_recovery_package/task_ms7_release_candidate_pack_2
+- from: G-034_ms7_recovery_package/T-110_ms7_anti_loophole_rule_lock_2
+  to: G-034_ms7_recovery_package/T-121_ms7_release_candidate_pack_2
   dep_id: T-110
   gate: must
-- from: goal_ms7_recovery_package/task_ms7_anti_loophole_rule_lock_2
-  to: goal_ms7_recovery_package/task_ms7_cleanroom_reproduction_2
+- from: G-034_ms7_recovery_package/T-110_ms7_anti_loophole_rule_lock_2
+  to: G-034_ms7_recovery_package/T-122_ms7_cleanroom_reproduction_2
   dep_id: T-110
   gate: must
-- from: goal_ms7_recovery_package/task_ms7_anti_loophole_rule_lock_2
-  to: goal_ms7_recovery_package/task_ms7_anchor_comparison_final_gate_2
+- from: G-034_ms7_recovery_package/T-110_ms7_anti_loophole_rule_lock_2
+  to: G-034_ms7_recovery_package/T-123_ms7_anchor_comparison_final_gate_2
   dep_id: T-110
   gate: must
-- from: goal_ms7_recovery_package/task_ms7_recovery_anchor_2
-  to: goal_ms7_recovery_package/task_ms7_legacy_quarantine_audit_2
+- from: G-034_ms7_recovery_package/T-111_ms7_recovery_anchor_2
+  to: G-034_ms7_recovery_package/T-112_ms7_legacy_quarantine_audit_2
   dep_id: T-111
   gate: must
   relation: refine
   relation_label: anchor_defines_legacy_quarantine_scope
   note: Legacy quarantine must classify old assets against the binding MS7 recovery
     anchor.
-- from: goal_ms7_recovery_package/task_ms7_recovery_anchor_2
-  to: goal_ms7_recovery_package/task_ms7_current_package_baseline_2
+- from: G-034_ms7_recovery_package/T-111_ms7_recovery_anchor_2
+  to: G-034_ms7_recovery_package/T-113_ms7_current_package_baseline_2
   dep_id: T-111
   gate: must
   relation: refine
   relation_label: anchor_defines_current_baseline_gap_scope
   note: Current package baseline must compare root package state against the binding
     MS7 recovery anchor.
-- from: goal_ms7_recovery_package/task_ms7_recovery_anchor_2
-  to: goal_ms7_recovery_package/task_ms7_execution_corpus_build_2
+- from: G-034_ms7_recovery_package/T-111_ms7_recovery_anchor_2
+  to: G-034_ms7_recovery_package/T-114_ms7_execution_corpus_build_2
   dep_id: T-111
   gate: must
   relation: refine
   relation_label: anchor_defines_corpus_scope
   note: Corpus build must preserve NL, route, forward/reverse, fallback, negative,
     and provider coverage from the anchor.
-- from: goal_ms7_recovery_package/task_ms7_legacy_quarantine_audit_2
-  to: goal_ms7_recovery_package/task_ms7_execution_corpus_build_2
+- from: G-034_ms7_recovery_package/T-112_ms7_legacy_quarantine_audit_2
+  to: G-034_ms7_recovery_package/T-114_ms7_execution_corpus_build_2
   dep_id: T-112
   gate: must
   relation: extract
   relation_label: quarantined_legacy_seeds_feed_corpus
   note: Corpus may only consume legacy stress seeds after T-112 quarantine classification.
-- from: goal_ms7_recovery_package/task_ms7_recovery_anchor_2
-  to: goal_ms7_recovery_package/task_ms7_acceptance_matrix_spec_2
+- from: G-034_ms7_recovery_package/T-111_ms7_recovery_anchor_2
+  to: G-034_ms7_recovery_package/T-115_ms7_acceptance_matrix_spec_2
   dep_id: T-111
   gate: must
   relation: refine
   relation_label: anchor_to_acceptance_matrix
   note: Acceptance matrix must directly prove the binding MS7 anchor.
-- from: goal_ms7_recovery_package/task_ms7_current_package_baseline_2
-  to: goal_ms7_recovery_package/task_ms7_acceptance_matrix_spec_2
+- from: G-034_ms7_recovery_package/T-113_ms7_current_package_baseline_2
+  to: G-034_ms7_recovery_package/T-115_ms7_acceptance_matrix_spec_2
   dep_id: T-113
   gate: may
   relation: extract
   relation_label: baseline_gaps_inform_acceptance_commands
   note: Baseline gaps should inform command-level acceptance without reducing anchor
     scope.
-- from: goal_ms7_recovery_package/task_ms7_execution_corpus_build_2
-  to: goal_ms7_recovery_package/task_ms7_acceptance_matrix_spec_2
+- from: G-034_ms7_recovery_package/T-114_ms7_execution_corpus_build_2
+  to: G-034_ms7_recovery_package/T-115_ms7_acceptance_matrix_spec_2
   dep_id: T-114
   gate: may
   relation: integrate
   relation_label: corpus_manifest_informs_acceptance_matrix
   note: Audited corpus cases can populate acceptance commands once available.
-- from: goal_ms7_recovery_package/task_ms7_recovery_anchor_2
-  to: goal_ms7_recovery_package/task_ms7_acceptance_gate_prebuild_2
+- from: G-034_ms7_recovery_package/T-111_ms7_recovery_anchor_2
+  to: G-034_ms7_recovery_package/T-116_ms7_acceptance_gate_prebuild_2
   dep_id: T-111
   gate: must
   relation: refine
   relation_label: anchor_to_prebuild_gate
   note: Prebuild gate must prove rules, anchor, baseline, corpus, and acceptance spec
     are coherent before build/repair.
-- from: goal_ms7_recovery_package/task_ms7_current_package_baseline_2
-  to: goal_ms7_recovery_package/task_ms7_acceptance_gate_prebuild_2
+- from: G-034_ms7_recovery_package/T-113_ms7_current_package_baseline_2
+  to: G-034_ms7_recovery_package/T-116_ms7_acceptance_gate_prebuild_2
   dep_id: T-113
   gate: must
   relation: integrate
   relation_label: baseline_gap_matrix_to_prebuild_gate
   note: Build/repair cannot start until current root package gaps are known.
-- from: goal_ms7_recovery_package/task_ms7_acceptance_matrix_spec_2
-  to: goal_ms7_recovery_package/task_ms7_acceptance_gate_prebuild_2
+- from: G-034_ms7_recovery_package/T-115_ms7_acceptance_matrix_spec_2
+  to: G-034_ms7_recovery_package/T-116_ms7_acceptance_gate_prebuild_2
   dep_id: T-115
   gate: must
   relation: integrate
   relation_label: acceptance_spec_to_prebuild_gate
   note: Prebuild gate requires command-level acceptance spec.
-- from: goal_ms7_recovery_package/task_ms7_acceptance_gate_prebuild_2
-  to: goal_ms7_recovery_package/task_ms7_manual_build_repair_package_2
+- from: G-034_ms7_recovery_package/T-116_ms7_acceptance_gate_prebuild_2
+  to: G-034_ms7_recovery_package/T-117_ms7_manual_build_repair_package_2
   dep_id: T-116
   gate: must
   relation: refine
   relation_label: trust_gate_to_build_repair
   note: Package build/repair starts only after prebuild trust gate.
-- from: goal_ms7_recovery_package/task_ms7_acceptance_matrix_spec_2
-  to: goal_ms7_recovery_package/task_ms7_manual_build_repair_package_2
+- from: G-034_ms7_recovery_package/T-115_ms7_acceptance_matrix_spec_2
+  to: G-034_ms7_recovery_package/T-117_ms7_manual_build_repair_package_2
   dep_id: T-115
   gate: must
   relation: refine
   relation_label: acceptance_spec_drives_build
   note: Build/repair must target the command-level acceptance matrix.
-- from: goal_ms7_recovery_package/task_ms7_manual_build_repair_package_2
-  to: goal_ms7_recovery_package/task_ms7_build_verification_2
+- from: G-034_ms7_recovery_package/T-117_ms7_manual_build_repair_package_2
+  to: G-034_ms7_recovery_package/T-118_ms7_build_verification_2
   dep_id: T-117
   gate: must
   relation: refine
   relation_label: build_to_verification
   note: Build verification checks package produced by T-117.
-- from: goal_ms7_recovery_package/task_ms7_manual_build_repair_package_2
-  to: goal_ms7_recovery_package/task_ms7_llm_provider_route_verification_2
+- from: G-034_ms7_recovery_package/T-117_ms7_manual_build_repair_package_2
+  to: G-034_ms7_recovery_package/T-119_ms7_llm_provider_route_verification_2
   dep_id: T-117
   gate: must
   relation: refine
   relation_label: build_to_provider_verification
   note: Provider route verification runs against repaired package/provider interface.
-- from: goal_ms7_recovery_package/task_ms7_build_verification_2
-  to: goal_ms7_recovery_package/task_ms7_integrated_recovery_matrix_2
+- from: G-034_ms7_recovery_package/T-118_ms7_build_verification_2
+  to: G-034_ms7_recovery_package/T-120_ms7_integrated_recovery_matrix_2
   dep_id: T-118
   gate: must
   relation: integrate
   relation_label: build_verification_to_integrated_matrix
   note: Integrated matrix requires verified build.
-- from: goal_ms7_recovery_package/task_ms7_llm_provider_route_verification_2
-  to: goal_ms7_recovery_package/task_ms7_integrated_recovery_matrix_2
+- from: G-034_ms7_recovery_package/T-119_ms7_llm_provider_route_verification_2
+  to: G-034_ms7_recovery_package/T-120_ms7_integrated_recovery_matrix_2
   dep_id: T-119
   gate: must
   relation: integrate
   relation_label: provider_verification_to_integrated_matrix
   note: Integrated matrix must include real provider route or documented human-decision
     path.
-- from: goal_ms7_recovery_package/task_ms7_execution_corpus_build_2
-  to: goal_ms7_recovery_package/task_ms7_integrated_recovery_matrix_2
+- from: G-034_ms7_recovery_package/T-114_ms7_execution_corpus_build_2
+  to: G-034_ms7_recovery_package/T-120_ms7_integrated_recovery_matrix_2
   dep_id: T-114
   gate: must
   relation: integrate
   relation_label: corpus_to_integrated_matrix
   note: Integrated matrix must run the audited MS7 corpus.
-- from: goal_ms7_recovery_package/task_ms7_integrated_recovery_matrix_2
-  to: goal_ms7_recovery_package/task_ms7_release_candidate_pack_2
+- from: G-034_ms7_recovery_package/T-120_ms7_integrated_recovery_matrix_2
+  to: G-034_ms7_recovery_package/T-121_ms7_release_candidate_pack_2
   dep_id: T-120
   gate: must
   relation: refine
   relation_label: integrated_matrix_to_release_candidate
   note: Release candidate can be packed only after integrated matrix evidence exists.
-- from: goal_ms7_recovery_package/task_ms7_release_candidate_pack_2
-  to: goal_ms7_recovery_package/task_ms7_cleanroom_reproduction_2
+- from: G-034_ms7_recovery_package/T-121_ms7_release_candidate_pack_2
+  to: G-034_ms7_recovery_package/T-122_ms7_cleanroom_reproduction_2
   dep_id: T-121
   gate: must
   relation: refine
   relation_label: release_candidate_to_cleanroom
   note: Cleanroom reproduction runs from the release candidate package.
-- from: goal_ms7_recovery_package/task_ms7_cleanroom_reproduction_2
-  to: goal_ms7_recovery_package/task_ms7_anchor_comparison_final_gate_2
+- from: G-034_ms7_recovery_package/T-122_ms7_cleanroom_reproduction_2
+  to: G-034_ms7_recovery_package/T-123_ms7_anchor_comparison_final_gate_2
   dep_id: T-122
   gate: must
   relation: integrate
   relation_label: cleanroom_to_final_gate
   note: Final gate requires clean-command reproduction evidence.
-- from: goal_ms7_recovery_package/task_ms7_release_candidate_pack_2
-  to: goal_ms7_recovery_package/task_ms7_anchor_comparison_final_gate_2
+- from: G-034_ms7_recovery_package/T-121_ms7_release_candidate_pack_2
+  to: G-034_ms7_recovery_package/T-123_ms7_anchor_comparison_final_gate_2
   dep_id: T-121
   gate: must
   relation: integrate
   relation_label: release_candidate_to_final_gate
   note: Final gate compares the release candidate package against the MS7 anchor.
-- from: goal_ms7_recovery_package/task_ms7_recovery_anchor_2
-  to: goal_ms7_recovery_package/task_ms7_anchor_comparison_final_gate_2
+- from: G-034_ms7_recovery_package/T-111_ms7_recovery_anchor_2
+  to: G-034_ms7_recovery_package/T-123_ms7_anchor_comparison_final_gate_2
   dep_id: T-111
   gate: must
   relation: refine
   relation_label: anchor_to_final_gate
   note: Final gate must compare evidence to the binding MS7 anchor.
-- from: goal_ms7_recovery_package/task_ms7_anchor_comparison_final_gate_2
-  to: goal_ms7_recovery_package/task_ms7_version_governance_v011
+- from: G-034_ms7_recovery_package/T-123_ms7_anchor_comparison_final_gate_2
+  to: G-034_ms7_recovery_package/T-124_ms7_version_governance_v011
   dep_id: T-123
   gate: must
-- from: goal_ms7_recovery_package/task_ms7_version_governance_v011
-  to: goal_ms7_recovery_package/task_ms7_public_api_single_class_v012
+- from: G-034_ms7_recovery_package/T-124_ms7_version_governance_v011
+  to: G-034_ms7_recovery_package/T-125_ms7_public_api_single_class_v012
   dep_id: T-124
   gate: must
-- from: goal_ms7_recovery_package/task_ms7_public_api_single_class_v012
-  to: goal_ms7_recovery_package/task_ms7_scverse_style_api_workflow_v013
+- from: G-034_ms7_recovery_package/T-125_ms7_public_api_single_class_v012
+  to: G-034_ms7_recovery_package/T-126_ms7_scverse_style_api_workflow_v013
   dep_id: T-125
   gate: must
-- from: goal_ms7_recovery_package/task_ms7_scverse_style_api_workflow_v013
-  to: goal_ms7_recovery_package/task_ms7_internal_parse_pipeline_events_warnings_v014
+- from: G-034_ms7_recovery_package/T-126_ms7_scverse_style_api_workflow_v013
+  to: G-034_ms7_recovery_package/T-127_ms7_internal_parse_pipeline_events_warnings_v014
   dep_id: T-126
   gate: must
-- from: goal_goal_ms8_human_usable_package/task_ms8_00_external_context_digest
-  to: goal_goal_ms8_human_usable_package/task_ms8_01_human_acceptable_delivery_anchor
+- from: G-035_goal_ms8_human_usable_package/T-128_ms8_00_external_context_digest
+  to: G-035_goal_ms8_human_usable_package/T-129_ms8_01_human_acceptable_delivery_anchor
   dep_id: T-128
   gate: must
-- from: goal_goal_ms8_human_usable_package/task_ms8_01_human_acceptable_delivery_anchor
-  to: goal_goal_ms8_human_usable_package/task_ms8_02_layered_interface_kernel_refactor
+- from: G-035_goal_ms8_human_usable_package/T-129_ms8_01_human_acceptable_delivery_anchor
+  to: G-035_goal_ms8_human_usable_package/T-130_ms8_02_layered_interface_kernel_refactor
   dep_id: T-129
   gate: must
-- from: goal_goal_ms8_human_usable_package/task_ms8_02_layered_interface_kernel_refactor
-  to: goal_goal_ms8_human_usable_package/task_ms8_03_demo_notebooks_and_github_observation
+- from: G-035_goal_ms8_human_usable_package/T-130_ms8_02_layered_interface_kernel_refactor
+  to: G-035_goal_ms8_human_usable_package/T-131_ms8_03_demo_notebooks_and_github_observation
   dep_id: T-130
   gate: must
-- from: goal_goal_ms8_human_usable_package/task_ms8_02_layered_interface_kernel_refactor
-  to: goal_goal_ms8_human_usable_package/task_ms8_04_real_layered_source_refactor
+- from: G-035_goal_ms8_human_usable_package/T-130_ms8_02_layered_interface_kernel_refactor
+  to: G-035_goal_ms8_human_usable_package/T-132_ms8_04_real_layered_source_refactor
   dep_id: T-130
   gate: must
-- from: goal_goal_ms8_human_usable_package/task_ms8_03_demo_notebooks_and_github_observation
-  to: goal_goal_ms8_human_usable_package/task_ms8_04_real_layered_source_refactor
+- from: G-035_goal_ms8_human_usable_package/T-131_ms8_03_demo_notebooks_and_github_observation
+  to: G-035_goal_ms8_human_usable_package/T-132_ms8_04_real_layered_source_refactor
   dep_id: T-131
   gate: must
-- from: goal_goal_ms8_human_usable_package/task_ms8_04_real_layered_source_refactor
-  to: goal_goal_ms8_human_usable_package/task_ms8_05_code_honesty_discipline_anchor
+- from: G-035_goal_ms8_human_usable_package/T-132_ms8_04_real_layered_source_refactor
+  to: G-035_goal_ms8_human_usable_package/T-133_ms8_05_code_honesty_discipline_anchor
   dep_id: T-132
   gate: must
-- from: goal_goal_ms8_human_usable_package/task_ms8_05_code_honesty_discipline_anchor
-  to: goal_goal_ms8_human_usable_package/task_ms8_06_l1_nlu_alignment
+- from: G-035_goal_ms8_human_usable_package/T-133_ms8_05_code_honesty_discipline_anchor
+  to: G-035_goal_ms8_human_usable_package/T-134_ms8_06_l1_nlu_alignment
   dep_id: T-133
   gate: must
-- from: goal_goal_ms8_human_usable_package/task_ms8_02_layered_interface_kernel_refactor
-  to: goal_goal_ms8_human_usable_package/task_ms8_07_legacy_core_layered_recovery
+- from: G-035_goal_ms8_human_usable_package/T-130_ms8_02_layered_interface_kernel_refactor
+  to: G-035_goal_ms8_human_usable_package/T-135_ms8_07_legacy_core_layered_recovery
   dep_id: T-130
   gate: reference
-- from: goal_goal_ms8_human_usable_package/task_ms8_06_l1_nlu_alignment
-  to: goal_goal_ms8_human_usable_package/task_ms8_07_legacy_core_layered_recovery
+- from: G-035_goal_ms8_human_usable_package/T-134_ms8_06_l1_nlu_alignment
+  to: G-035_goal_ms8_human_usable_package/T-135_ms8_07_legacy_core_layered_recovery
   dep_id: T-134
   gate: reference
-- from: goal_goal_ms8_human_usable_package/task_ms8_05_code_honesty_discipline_anchor
-  to: goal_goal_ms8_human_usable_package/task_ms8_07_legacy_core_layered_recovery
+- from: G-035_goal_ms8_human_usable_package/T-133_ms8_05_code_honesty_discipline_anchor
+  to: G-035_goal_ms8_human_usable_package/T-135_ms8_07_legacy_core_layered_recovery
   dep_id: T-133
   gate: reference
-- from: goal_goal_ms8_human_usable_package/task_ms8_07_legacy_core_layered_recovery
-  to: goal_goal_ms8_human_usable_package/task_ms8_08_original_logic_and_layer_target_anchor
+- from: G-035_goal_ms8_human_usable_package/T-135_ms8_07_legacy_core_layered_recovery
+  to: G-035_goal_ms8_human_usable_package/T-136_ms8_08_original_logic_and_layer_target_anchor
   dep_id: T-135
   gate: must
-- from: goal_goal_ms8_human_usable_package/task_ms8_02_layered_interface_kernel_refactor
-  to: goal_goal_ms8_human_usable_package/task_ms8_08_original_logic_and_layer_target_anchor
+- from: G-035_goal_ms8_human_usable_package/T-130_ms8_02_layered_interface_kernel_refactor
+  to: G-035_goal_ms8_human_usable_package/T-136_ms8_08_original_logic_and_layer_target_anchor
   dep_id: T-130
   gate: reference
-- from: goal_goal_ms8_human_usable_package/task_ms8_07_legacy_core_layered_recovery
-  to: goal_goal_ms8_human_usable_package/task_ms8_09_l1_real_llm_gate_repair
+- from: G-035_goal_ms8_human_usable_package/T-135_ms8_07_legacy_core_layered_recovery
+  to: G-035_goal_ms8_human_usable_package/T-137_ms8_09_l1_real_llm_gate_repair
   dep_id: T-135
   gate: must
-- from: goal_goal_ms8_human_usable_package/task_ms8_08_original_logic_and_layer_target_anchor
-  to: goal_goal_ms8_human_usable_package/task_ms8_09_l1_real_llm_gate_repair
+- from: G-035_goal_ms8_human_usable_package/T-136_ms8_08_original_logic_and_layer_target_anchor
+  to: G-035_goal_ms8_human_usable_package/T-137_ms8_09_l1_real_llm_gate_repair
   dep_id: T-136
   gate: must
-- from: goal_goal_ms8_human_usable_package/task_ms8_07_legacy_core_layered_recovery
-  to: goal_goal_ms8_human_usable_package/task_ms8_10_l2_resource_routing_repair
+- from: G-035_goal_ms8_human_usable_package/T-135_ms8_07_legacy_core_layered_recovery
+  to: G-035_goal_ms8_human_usable_package/T-138_ms8_10_l2_resource_routing_repair
   dep_id: T-135
   gate: must
-- from: goal_goal_ms8_human_usable_package/task_ms8_08_original_logic_and_layer_target_anchor
-  to: goal_goal_ms8_human_usable_package/task_ms8_10_l2_resource_routing_repair
+- from: G-035_goal_ms8_human_usable_package/T-136_ms8_08_original_logic_and_layer_target_anchor
+  to: G-035_goal_ms8_human_usable_package/T-138_ms8_10_l2_resource_routing_repair
   dep_id: T-136
   gate: must
-- from: goal_goal_ms8_human_usable_package/task_ms8_07_legacy_core_layered_recovery
-  to: goal_goal_ms8_human_usable_package/task_ms8_11_l3_resource_pack_query_execution_repair
+- from: G-035_goal_ms8_human_usable_package/T-135_ms8_07_legacy_core_layered_recovery
+  to: G-035_goal_ms8_human_usable_package/T-139_ms8_11_l3_resource_pack_query_execution_repair
   dep_id: T-135
   gate: must
-- from: goal_goal_ms8_human_usable_package/task_ms8_08_original_logic_and_layer_target_anchor
-  to: goal_goal_ms8_human_usable_package/task_ms8_11_l3_resource_pack_query_execution_repair
+- from: G-035_goal_ms8_human_usable_package/T-136_ms8_08_original_logic_and_layer_target_anchor
+  to: G-035_goal_ms8_human_usable_package/T-139_ms8_11_l3_resource_pack_query_execution_repair
   dep_id: T-136
   gate: must
-- from: goal_goal_ms8_human_usable_package/task_ms8_09_l1_real_llm_gate_repair
-  to: goal_goal_ms8_human_usable_package/task_ms8_11_l3_resource_pack_query_execution_repair
+- from: G-035_goal_ms8_human_usable_package/T-137_ms8_09_l1_real_llm_gate_repair
+  to: G-035_goal_ms8_human_usable_package/T-139_ms8_11_l3_resource_pack_query_execution_repair
   dep_id: T-137
   gate: may
-- from: goal_goal_ms8_human_usable_package/task_ms8_10_l2_resource_routing_repair
-  to: goal_goal_ms8_human_usable_package/task_ms8_11_l3_resource_pack_query_execution_repair
+- from: G-035_goal_ms8_human_usable_package/T-138_ms8_10_l2_resource_routing_repair
+  to: G-035_goal_ms8_human_usable_package/T-139_ms8_11_l3_resource_pack_query_execution_repair
   dep_id: T-138
   gate: may
-- from: goal_goal_ms8_human_usable_package/task_ms8_07_legacy_core_layered_recovery
-  to: goal_goal_ms8_human_usable_package/task_ms8_12_l4_evidence_dossier_plan
+- from: G-035_goal_ms8_human_usable_package/T-135_ms8_07_legacy_core_layered_recovery
+  to: G-035_goal_ms8_human_usable_package/T-140_ms8_12_l4_evidence_dossier_plan
   dep_id: T-135
   gate: must
-- from: goal_goal_ms8_human_usable_package/task_ms8_08_original_logic_and_layer_target_anchor
-  to: goal_goal_ms8_human_usable_package/task_ms8_12_l4_evidence_dossier_plan
+- from: G-035_goal_ms8_human_usable_package/T-136_ms8_08_original_logic_and_layer_target_anchor
+  to: G-035_goal_ms8_human_usable_package/T-140_ms8_12_l4_evidence_dossier_plan
   dep_id: T-136
   gate: must
-- from: goal_goal_ms8_human_usable_package/task_ms8_09_l1_real_llm_gate_repair
-  to: goal_goal_ms8_human_usable_package/task_ms8_12_l4_evidence_dossier_plan
+- from: G-035_goal_ms8_human_usable_package/T-137_ms8_09_l1_real_llm_gate_repair
+  to: G-035_goal_ms8_human_usable_package/T-140_ms8_12_l4_evidence_dossier_plan
   dep_id: T-137
   gate: may
-- from: goal_goal_ms8_human_usable_package/task_ms8_10_l2_resource_routing_repair
-  to: goal_goal_ms8_human_usable_package/task_ms8_12_l4_evidence_dossier_plan
+- from: G-035_goal_ms8_human_usable_package/T-138_ms8_10_l2_resource_routing_repair
+  to: G-035_goal_ms8_human_usable_package/T-140_ms8_12_l4_evidence_dossier_plan
   dep_id: T-138
   gate: may
-- from: goal_goal_ms8_human_usable_package/task_ms8_11_l3_resource_pack_query_execution_repair
-  to: goal_goal_ms8_human_usable_package/task_ms8_12_l4_evidence_dossier_plan
+- from: G-035_goal_ms8_human_usable_package/T-139_ms8_11_l3_resource_pack_query_execution_repair
+  to: G-035_goal_ms8_human_usable_package/T-140_ms8_12_l4_evidence_dossier_plan
   dep_id: T-139
   gate: may
-- from: goal_goal_ms8_human_usable_package/task_ms8_12_l4_evidence_dossier_plan
-  to: goal_goal_ms8_human_usable_package/task_ms8_13_l5_presentation_output_layer_plan
+- from: G-035_goal_ms8_human_usable_package/T-140_ms8_12_l4_evidence_dossier_plan
+  to: G-035_goal_ms8_human_usable_package/T-141_ms8_13_l5_presentation_output_layer_plan
   dep_id: T-140
   gate: may
-- from: goal_goal_ms8_human_usable_package/task_ms8_12_l4_evidence_dossier_plan
-  to: goal_pending_g010/task_pxfquery_web_l5_query_server_mvp
+- from: G-035_goal_ms8_human_usable_package/T-140_ms8_12_l4_evidence_dossier_plan
+  to: G-010_pending_g010/T-142_pxfquery_web_l5_query_server_mvp
   dep_id: T-140
   gate: must
-- from: goal_pending_g010/task_pending_t019
-  to: goal_pending_g010/task_pxfquery_web_l5_query_server_mvp
+- from: G-010_pending_g010/T-019_pending_t019
+  to: G-010_pending_g010/T-142_pxfquery_web_l5_query_server_mvp
   dep_id: T-019
   gate: may
-- from: goal_goal_ms8_human_usable_package/task_ms8_13_l5_presentation_output_layer_plan
-  to: goal_goal_ms8_human_usable_package/task_ms8_14_user_value_l5_output_rework
+- from: G-035_goal_ms8_human_usable_package/T-141_ms8_13_l5_presentation_output_layer_plan
+  to: G-035_goal_ms8_human_usable_package/T-144_ms8_14_user_value_l5_output_rework
   dep_id: T-141
   gate: must
-- from: goal_paper_figure_planning/task_pxfquery_paper_translation_anchor
-  to: goal_paper_figure_planning/task_figure2_data_and_notebook_figure_workbench
+- from: G-011_paper_figure_planning/T-143_pxfquery_paper_translation_anchor
+  to: G-011_paper_figure_planning/T-145_figure2_data_and_notebook_figure_workbench
   dep_id: T-143
   gate: may
-- from: goal_paper_figure_planning/task_pxfquery_paper_translation_anchor
-  to: goal_paper_figure_planning/task_figure1_concept_notebook_pdf_workbench
+- from: G-011_paper_figure_planning/T-143_pxfquery_paper_translation_anchor
+  to: G-011_paper_figure_planning/T-146_figure1_concept_notebook_pdf_workbench
   dep_id: T-143
   gate: must
-- from: goal_goal_ms8_human_usable_package/task_ms8_14_user_value_l5_output_rework
-  to: goal_paper_figure_planning/task_figure1_concept_notebook_pdf_workbench
+- from: G-035_goal_ms8_human_usable_package/T-144_ms8_14_user_value_l5_output_rework
+  to: G-011_paper_figure_planning/T-146_figure1_concept_notebook_pdf_workbench
   dep_id: T-144
   gate: may
-- from: goal_paper_figure_planning/task_pxfquery_paper_translation_anchor
-  to: goal_paper_figure_planning/task_figure4_forward_genetic_query_notebook_figure_wo
+- from: G-011_paper_figure_planning/T-143_pxfquery_paper_translation_anchor
+  to: G-011_paper_figure_planning/T-147_figure4_forward_genetic_query_notebook_figure_wo
   dep_id: T-143
   gate: must
-- from: goal_paper_figure_planning/task_pxfquery_paper_translation_anchor
-  to: goal_paper_figure_planning/task_pxfquery_new_figure3_concept_and_notebook_workbe
+- from: G-011_paper_figure_planning/T-143_pxfquery_paper_translation_anchor
+  to: G-011_paper_figure_planning/T-148_pxfquery_new_figure3_concept_and_notebook_workbe
   dep_id: T-143
   gate: must
-- from: goal_paper_figure_planning/task_pxfquery_paper_translation_anchor
-  to: goal_paper_figure_planning/task_figure5_forward_drug_query_notebook_figure_workb
+- from: G-011_paper_figure_planning/T-143_pxfquery_paper_translation_anchor
+  to: G-011_paper_figure_planning/T-149_figure5_forward_drug_query_notebook_figure_workb
   dep_id: T-143
   gate: must
-- from: goal_paper_figure_planning/task_pxfquery_paper_translation_anchor
-  to: goal_paper_figure_planning/task_figure7_reverse_drug_query_notebook_figure_workb
+- from: G-011_paper_figure_planning/T-143_pxfquery_paper_translation_anchor
+  to: G-011_paper_figure_planning/T-150_figure7_reverse_drug_query_notebook_figure_workb
   dep_id: T-143
   gate: may
-- from: goal_goal_ms8_human_usable_package/task_ms8_14_user_value_l5_output_rework
-  to: goal_paper_figure_planning/task_figure7_reverse_drug_query_notebook_figure_workb
+- from: G-035_goal_ms8_human_usable_package/T-144_ms8_14_user_value_l5_output_rework
+  to: G-011_paper_figure_planning/T-150_figure7_reverse_drug_query_notebook_figure_workb
   dep_id: T-144
   gate: may
-- from: goal_paper_figure_planning/task_pxfquery_paper_translation_anchor
-  to: goal_paper_figure_planning/task_figure8_web_usage_notebook_figure_workbench
+- from: G-011_paper_figure_planning/T-143_pxfquery_paper_translation_anchor
+  to: G-011_paper_figure_planning/T-151_figure8_web_usage_notebook_figure_workbench
   dep_id: T-143
   gate: must
-- from: goal_paper_figure_planning/task_pxfquery_paper_translation_anchor
-  to: goal_paper_figure_planning/task_figure9_mcp_ai_dialog_notebook_workbench
+- from: G-011_paper_figure_planning/T-143_pxfquery_paper_translation_anchor
+  to: G-011_paper_figure_planning/T-153_figure9_mcp_ai_dialog_notebook_workbench
   dep_id: T-143
   gate: may
-- from: goal_goal_ms8_human_usable_package/task_ms8_14_user_value_l5_output_rework
-  to: goal_paper_figure_planning/task_figure9_mcp_ai_dialog_notebook_workbench
+- from: G-035_goal_ms8_human_usable_package/T-144_ms8_14_user_value_l5_output_rework
+  to: G-011_paper_figure_planning/T-153_figure9_mcp_ai_dialog_notebook_workbench
   dep_id: T-144
   gate: may
-- from: goal_cyhex_outline_draft_biopaper/task_pxfquery_pre_writing_materials_hub
-  to: goal_cyhex_outline_draft_biopaper/task_pxfquery_manuscript_writing_design
+- from: G-012_cyhex_outline_draft_biopaper/T-155_pxfquery_pre_writing_materials_hub
+  to: G-012_cyhex_outline_draft_biopaper/T-156_pxfquery_manuscript_writing_design
   dep_id: T-155
   relation: reference
   relation_label: T155 pre-writing materials inform T156 manuscript design
@@ -2154,41 +2154,49 @@ edges:
   note: T156 should read the T155 materials README and focused Markdown files as non-blocking
     writing-design context.
   gate: reference
-- from: goal_cyhex_outline_draft_biopaper/task_pxfquery_pre_writing_materials_hub
-  to: goal_cyhex_outline_draft_biopaper/task_pxfquery_manuscript_introduction_draft
+- from: G-012_cyhex_outline_draft_biopaper/T-155_pxfquery_pre_writing_materials_hub
+  to: G-012_cyhex_outline_draft_biopaper/T-157_pxfquery_manuscript_introduction_draft
   dep_id: T-155
   gate: may
-- from: goal_cyhex_outline_draft_biopaper/task_pxfquery_manuscript_writing_design
-  to: goal_cyhex_outline_draft_biopaper/task_pxfquery_manuscript_introduction_draft
+- from: G-012_cyhex_outline_draft_biopaper/T-156_pxfquery_manuscript_writing_design
+  to: G-012_cyhex_outline_draft_biopaper/T-157_pxfquery_manuscript_introduction_draft
   dep_id: T-156
   gate: may
-- from: goal_cyhex_outline_draft_biopaper/task_pxfquery_pre_writing_materials_hub
-  to: goal_cyhex_outline_draft_biopaper/task_pxfquery_manuscript_methods_draft
+- from: G-012_cyhex_outline_draft_biopaper/T-155_pxfquery_pre_writing_materials_hub
+  to: G-012_cyhex_outline_draft_biopaper/T-158_pxfquery_manuscript_methods_draft
   dep_id: T-155
   gate: must
-- from: goal_cyhex_outline_draft_biopaper/task_pxfquery_manuscript_writing_design
-  to: goal_cyhex_outline_draft_biopaper/task_pxfquery_manuscript_methods_draft
+- from: G-012_cyhex_outline_draft_biopaper/T-156_pxfquery_manuscript_writing_design
+  to: G-012_cyhex_outline_draft_biopaper/T-158_pxfquery_manuscript_methods_draft
   dep_id: T-156
   gate: may
-- from: goal_cyhex_outline_draft_biopaper/task_pxfquery_manuscript_introduction_draft
-  to: goal_cyhex_outline_draft_biopaper/task_pxfquery_manuscript_methods_draft
+- from: G-012_cyhex_outline_draft_biopaper/T-157_pxfquery_manuscript_introduction_draft
+  to: G-012_cyhex_outline_draft_biopaper/T-158_pxfquery_manuscript_methods_draft
   dep_id: T-157
   gate: may
-- from: goal_cyhex_outline_draft_biopaper/task_pxfquery_pre_writing_materials_hub
-  to: goal_cyhex_outline_draft_biopaper/task_pxfquery_manuscript_results_draft
+- from: G-012_cyhex_outline_draft_biopaper/T-155_pxfquery_pre_writing_materials_hub
+  to: G-012_cyhex_outline_draft_biopaper/T-159_pxfquery_manuscript_results_draft
   dep_id: T-155
   gate: reference
-- from: goal_cyhex_outline_draft_biopaper/task_pxfquery_manuscript_writing_design
-  to: goal_cyhex_outline_draft_biopaper/task_pxfquery_manuscript_results_draft
+- from: G-012_cyhex_outline_draft_biopaper/T-156_pxfquery_manuscript_writing_design
+  to: G-012_cyhex_outline_draft_biopaper/T-159_pxfquery_manuscript_results_draft
   dep_id: T-156
   gate: may
-- from: goal_cyhex_outline_draft_biopaper/task_pxfquery_manuscript_introduction_draft
-  to: goal_cyhex_outline_draft_biopaper/task_pxfquery_manuscript_results_draft
+- from: G-012_cyhex_outline_draft_biopaper/T-157_pxfquery_manuscript_introduction_draft
+  to: G-012_cyhex_outline_draft_biopaper/T-159_pxfquery_manuscript_results_draft
   dep_id: T-157
   gate: may
-- from: goal_cyhex_outline_draft_biopaper/task_pxfquery_manuscript_methods_draft
-  to: goal_cyhex_outline_draft_biopaper/task_pxfquery_manuscript_results_draft
+- from: G-012_cyhex_outline_draft_biopaper/T-158_pxfquery_manuscript_methods_draft
+  to: G-012_cyhex_outline_draft_biopaper/T-159_pxfquery_manuscript_results_draft
   dep_id: T-158
+  gate: may
+- from: G-012_cyhex_outline_draft_biopaper/T-155_pxfquery_pre_writing_materials_hub
+  to: G-012_cyhex_outline_draft_biopaper/T-160_pxfquery_supplementary_tables_materials
+  dep_id: T-155
+  gate: reference
+- from: G-012_cyhex_outline_draft_biopaper/T-156_pxfquery_manuscript_writing_design
+  to: G-012_cyhex_outline_draft_biopaper/T-160_pxfquery_supplementary_tables_materials
+  dep_id: T-156
   gate: may
 labels:
 - id: label_mqpofuno

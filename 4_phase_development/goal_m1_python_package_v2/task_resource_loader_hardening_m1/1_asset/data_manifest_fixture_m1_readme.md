@@ -1,1 +1,0 @@
-/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_m1_python_package_v2/task_data_manifest_fixture_m1/4_artifact/2_persist/data_manifest_fixture_m1_readme.md

@@ -1,3 +1,0 @@
-{"action": "status_change", "from": "pending", "to": "active", "actor": "ui", "ts": "2026-06-23T06:35:36"}
-{"action": "dependency_released", "completed_dependency": "T-036", "actor": "dependency_scheduler", "ts": "2026-06-23T16:57:58"}
-{"action": "status_change", "from": "active", "to": "pending", "actor": "ui", "ts": "2026-06-23T17:52:00"}

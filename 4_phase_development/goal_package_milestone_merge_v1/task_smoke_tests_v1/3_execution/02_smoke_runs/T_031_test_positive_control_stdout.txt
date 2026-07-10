@@ -1,5 +1,0 @@
-PASS: EGFR/A549 -> found=True activated=20 suppressed=20 n_obs=5
-PASS: TP53/MCF7 -> found=True activated=20 suppressed=20 n_obs=2
-
-Positive-control evidence written to /Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/goal_deterministic_query_engines_v1/task_no_hit_guard_v1/4_artifact/5_table/pxfquery_T031_positive_control_evidence.json
-Passed: 2/2

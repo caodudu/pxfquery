@@ -1,1 +1,0 @@
-# task_reverse_query_core_m1
