@@ -4,8 +4,7 @@ created: '2026-06-13'
 target_delivery: ''
 current_phase: translation
 status: active
-focus: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-158_pxfquery_manuscript_methods_draft
-notes: 'T-158 pxfquery_manuscript_methods_draft has been created under G-012 for Materials
-  and Methods writing. The workflow is discussion-first: draft English and Chinese
-  Markdown, revise from user edits and source evidence, then insert the approved English
-  text into the task-owned manuscript_20260707_t158_v1.docx copy.'
+focus: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-161_pxfquery_manuscript_discussion_docx_assembly
+notes: 'T-161 pxfquery_manuscript_discussion_docx_assembly is the discussion-first
+  manuscript assembly task: user-approved English revisions will be merged only into
+  a task-owned copy of the Genes Word base and visually QA-rendered after each update.'
