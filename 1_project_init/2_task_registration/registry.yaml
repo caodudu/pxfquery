@@ -2162,3 +2162,12 @@ tasks:
   executor: hybrid
   created: '2026-07-10'
   completed: null
+- id: T-162
+  name: pxfquery_manuscript_figure_captions
+  phase: translation
+  goal: goal_cyhex_outline_draft_biopaper
+  path: 5_phase_translation/goal_cyhex_outline_draft_biopaper/task_pxfquery_manuscript_figure_captions
+  status: pending
+  executor: hybrid
+  created: '2026-07-12'
+  completed: null
