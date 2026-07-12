@@ -4,7 +4,7 @@ created: '2026-06-13'
 target_delivery: ''
 current_phase: translation
 status: active
-focus: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-162_pxfquery_manuscript_figure_captions
-notes: T-162 is the user-directed caption discussion task. It uses the canonical numbered
-  project path and remains red-light/pending until discussion configuration is explicitly
-  started; captions require figure-by-figure user confirmation.
+focus: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-161_pxfquery_manuscript_discussion_docx_assembly
+notes: 'T-161 pxfquery_manuscript_discussion_docx_assembly is the discussion-first
+  manuscript assembly task: user-approved English revisions are collected as components,
+  while Word assembly and layout remain human-operated.'

@@ -2157,7 +2157,7 @@ tasks:
   name: pxfquery_manuscript_discussion_docx_assembly
   phase: translation
   goal: G-012_cyhex_outline_draft_biopaper
-  path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/task_pxfquery_manuscript_discussion_docx_assembly
+  path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-161_pxfquery_manuscript_discussion_docx_assembly
   status: pending
   executor: hybrid
   created: '2026-07-10'
