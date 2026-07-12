@@ -2180,3 +2180,12 @@ tasks:
   executor: hybrid
   created: '2026-07-12'
   completed: null
+- id: T-164
+  name: pxfquery_manuscript_abstract_discussion
+  phase: translation
+  goal: G-012_cyhex_outline_draft_biopaper
+  path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-164_pxfquery_manuscript_abstract_discussion
+  status: pending
+  executor: human
+  created: '2026-07-12'
+  completed: null
