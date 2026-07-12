@@ -2165,8 +2165,8 @@ tasks:
 - id: T-162
   name: pxfquery_manuscript_figure_captions
   phase: translation
-  goal: goal_cyhex_outline_draft_biopaper
-  path: 5_phase_translation/goal_cyhex_outline_draft_biopaper/task_pxfquery_manuscript_figure_captions
+  goal: G-012_cyhex_outline_draft_biopaper
+  path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-162_pxfquery_manuscript_figure_captions
   status: pending
   executor: hybrid
   created: '2026-07-12'
