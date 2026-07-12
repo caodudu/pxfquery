@@ -2185,7 +2185,9 @@ tasks:
   phase: translation
   goal: G-012_cyhex_outline_draft_biopaper
   path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-164_pxfquery_manuscript_abstract_discussion
-  status: pending
+  status: active
   executor: human
   created: '2026-07-12'
   completed: null
+  notes: Discussion-first abstract drafting task; T-155 and T-156 are registered as
+    read-only context. No prose is approved until the user explicitly confirms it.
