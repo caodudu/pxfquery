@@ -4,7 +4,7 @@ created: '2026-06-13'
 target_delivery: ''
 current_phase: translation
 status: active
-focus: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-161_pxfquery_manuscript_discussion_docx_assembly
-notes: 'T-161 pxfquery_manuscript_discussion_docx_assembly is the discussion-first
-  manuscript assembly task: user-approved English revisions are collected as components,
-  while Word assembly and layout remain human-operated.'
+focus: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-164_pxfquery_manuscript_abstract_discussion
+notes: T-164 is active as the discussion-first PxFquery manuscript abstract task.
+  It uses T-155 materials and T-156 design as read-only sources; final prose remains
+  subject to explicit user confirmation.
