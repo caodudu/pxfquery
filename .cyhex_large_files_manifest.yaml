@@ -8561,13 +8561,13 @@ excluded_from_git:
 - path: 5_phase_translation/G-011_paper_figure_planning/T-145_figure2_data_and_notebook_figure_workbench/3_execution/illustrators/figure2_v1.png
   size_mb: 0.31
 - path: 5_phase_translation/G-011_paper_figure_planning/T-145_figure2_data_and_notebook_figure_workbench/3_execution/illustrators/s1_v1.ai
-  size_mb: 0.52
+  size_mb: 0.5
 - path: 5_phase_translation/G-011_paper_figure_planning/T-145_figure2_data_and_notebook_figure_workbench/3_execution/illustrators/s1_v1.pdf
   size_mb: 0.48
 - path: 5_phase_translation/G-011_paper_figure_planning/T-145_figure2_data_and_notebook_figure_workbench/3_execution/illustrators/s1_v1.png
   size_mb: 0.09
 - path: 5_phase_translation/G-011_paper_figure_planning/T-145_figure2_data_and_notebook_figure_workbench/3_execution/illustrators/s2_v2.ai
-  size_mb: 0.38
+  size_mb: 0.37
 - path: 5_phase_translation/G-011_paper_figure_planning/T-145_figure2_data_and_notebook_figure_workbench/3_execution/illustrators/s2_v2.png
   size_mb: 0.03
 - path: 5_phase_translation/G-011_paper_figure_planning/T-145_figure2_data_and_notebook_figure_workbench/3_execution/illustrators/s3_v1.ai
@@ -16665,7 +16665,7 @@ excluded_from_git:
 - path: 5_phase_translation/G-011_paper_figure_planning/T-151_figure8_web_usage_notebook_figure_workbench/3_execution/.DS_Store
   size_mb: 0.01
 - path: 5_phase_translation/G-011_paper_figure_planning/T-151_figure8_web_usage_notebook_figure_workbench/3_execution/illustrator/figure8_v1.ai
-  size_mb: 0.65
+  size_mb: 0.63
 - path: 5_phase_translation/G-011_paper_figure_planning/T-151_figure8_web_usage_notebook_figure_workbench/3_execution/illustrator/figure8_v1.pdf
   size_mb: 0.59
 - path: 5_phase_translation/G-011_paper_figure_planning/T-151_figure8_web_usage_notebook_figure_workbench/3_execution/illustrator/figure8_v1.png
@@ -19486,6 +19486,10 @@ excluded_from_git:
   size_mb: 0.18
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-161_pxfquery_manuscript_discussion_docx_assembly/3_execution/1_material/figure09_main.png
   size_mb: 0.22
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-161_pxfquery_manuscript_discussion_docx_assembly/3_execution/1_material/s1_v1.png
+  size_mb: 0.09
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-161_pxfquery_manuscript_discussion_docx_assembly/3_execution/1_material/s2_v2.png
+  size_mb: 0.03
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-162_pxfquery_manuscript_figure_captions/4_artifact/.DS_Store
   size_mb: 0.01
 - path: 5_phase_translation/G-033_ms6_manuscript_foundation/T-091_ms6_package_capability_narrative/1_asset/ms6_evidence_claim_mapping.csv
