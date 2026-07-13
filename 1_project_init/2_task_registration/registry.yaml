@@ -2207,7 +2207,9 @@ tasks:
   phase: translation
   goal: G-012_cyhex_outline_draft_biopaper
   path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-166_pxfquery_manuscript_back_matter_discussion
-  status: pending
+  status: active
   executor: human
   created: '2026-07-13'
   completed: null
+  notes: Discussion-driven manuscript back-matter task. Scope and every candidate
+    passage require explicit user confirmation; T-155 and T-156 remain read-only context.
