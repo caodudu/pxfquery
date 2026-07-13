@@ -623,7 +623,7 @@ def _llm_route_drug(
         llm_provider,
         stage="drug_normalization",
         system_prompt=(
-            "You are PxFquery L2 drug normalization. Return one JSON object. "
+            "You are PxFquery drug normalization. Return one JSON object. "
             "Choose selected_alias only from candidate_aliases if one matches the user drug. "
             "If none is good, return selected_alias=null and up to five hypothesis_names. "
             "If the user input is a mechanism class rather than a named compound, hypothesize concrete representative compound names instead of generic class labels. "
@@ -716,7 +716,7 @@ def _llm_route_gene(
         llm_provider,
         stage="gene_normalization",
         system_prompt=(
-            "You are PxFquery L2 gene normalization. Return one JSON object. "
+            "You are PxFquery gene normalization. Return one JSON object. "
             "Choose selected_symbol only from candidate_symbols if one matches the user gene. "
             "If none is good, return selected_symbol=null and up to five hypothesis_symbols. "
             "Use official gene symbols when hypothesizing. Do not answer biology."
@@ -789,7 +789,7 @@ def _llm_route_functions(
         llm_provider,
         stage="function_mapping",
         system_prompt=(
-            "You are PxFquery L2 function routing. Return one JSON object with selected_var_names. "
+            "You are PxFquery function routing. Return one JSON object with selected_var_names. "
             "Select only exact var_name strings from the provided fixed_function_index. "
             "For narrow terms choose 1-2, for ambiguous terms choose up to 5. Do not create new functions."
         ),
@@ -847,7 +847,7 @@ def _llm_route_reverse_functions(
             stage=f"function_reverse_mapping_{perspective}",
             temperature=temperature,
             system_prompt=(
-                "You are PxFquery L2 reverse function routing. Return one JSON object with selected_var_names. "
+                "You are PxFquery reverse function routing. Return one JSON object with selected_var_names. "
                 "Use the requested perspective, but select only exact var_name strings from fixed_function_index. "
                 "Select up to three functions. Do not create new functions."
             ),
@@ -1197,7 +1197,7 @@ def _llm_choose_option(
     options: list[str],
 ) -> tuple[str | None, dict[str, Any]]:
     prompt = (
-        "You are PxFquery L2 cell-context routing. Return one JSON object. "
+        "You are PxFquery cell-context routing. Return one JSON object. "
         "Choose selected_option exactly from options. Do not invent options. "
         "Use null only if no option is defensible. Never return an empty object."
     )
@@ -1417,7 +1417,7 @@ def _llm_extract_reverse_function_terms(intent: QueryIntent, llm_provider: Any) 
         llm_provider,
         stage="reverse_function_term_extraction",
         system_prompt=(
-            "You are PxFquery L2 reverse-query repair. Return one JSON object with activate and suppress arrays. "
+            "You are PxFquery reverse-query repair. Return one JSON object with activate and suppress arrays. "
             "Extract only biological functions or cell states from the user query. "
             "Do not extract cell context, perturbation modality, or words like genetic/drug/perturbation."
         ),

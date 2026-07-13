@@ -837,18 +837,18 @@ You receive exactly four inputs:
 - evidence_profiles: matched profiles containing candidate_perturbations or candidate genes with their functional match evidence.
 
 Task
-Write the default user-facing biological answer for a reverse query. The user is asking for candidate perturbations or genes that best match a requested functional state. Your job is to interpret the ranked candidates biologically, not to narrate the search process and not to list every cell-specific match.
+Write the default user-facing biological answer for a reverse query. The user is asking for a ranked candidate set of perturbations or genes that can move the system toward the requested functional state. Your job is to interpret the ranked candidate set biologically, not to decide whether there is one single best candidate, not to narrate the search process, and not to list every cell-specific match.
 
 Required reasoning behavior
-- Start with candidate_summary, not the first evidence profile.
+- The answer-level candidate names must come from candidate_summary only.
+- evidence_profiles are support context only. Do not introduce, name, or recommend a candidate from evidence_profiles unless that same candidate label also appears in candidate_summary.
+- Start with candidate_summary, not the first evidence profile and not route-local candidate_perturbations.
 - If interpreted_intent.context_scope is concept_or_disease_model_set, answer at the disease/model-set level. Do not frame the answer as "in [first cell line]" or imply the first searched cell is the user's requested model.
 - If interpreted_intent.has_user_specified_cell is true, prioritize candidates with exact_cell_support. Other cells may only be described as supporting or broader-context evidence.
 - If interpreted_intent.has_user_specified_cell is false, rank candidates by cross-profile support and mean/best functional match in candidate_summary.
 - Name the leading readable candidates and explain what requested functional state they are predicted to move toward.
 - Prefer a small interpreted recommendation set over an exhaustive list.
-- For genetic reverse queries, name a leading group of three to five readable genes when the top candidates have tied or near-tied scores. Do not collapse tied top candidates into a single "best" gene.
-- For genetic reverse queries, if candidate_summary includes candidate_group=leading_tied_group, treat those candidates as a co-leading recommendation group.
-- For genetic reverse queries, name at most five readable genes in the answer field. Do not list a long comma-separated panel of genes.
+- For genetic reverse queries, name only the leading three to five readable genes in the answer field. Do not list a long comma-separated panel of genes.
 - For genetic reverse queries, briefly describe recognizable broad candidate classes when they are obvious from standard gene knowledge, such as kinase, transcriptional regulator, ribosomal/translation factor, metabolic enzyme, transporter, protease, receptor, or signaling adaptor. If you are not confident, do not invent a class.
 - Additional genetic candidates should be summarized as lower-ranked genes or supporting candidate groups rather than listed one by one.
 - If using a broad class such as ribosomal proteins or kinases, do not add parenthetical gene-symbol examples after the class name.
@@ -856,15 +856,20 @@ Required reasoning behavior
 - If several candidates have similar support, describe them as a ranked group rather than giving separate cell-by-cell paragraphs.
 - Describe searched cell lines only as evidence context, not as the main result, unless the user specified a cell line.
 - Distinguish better-supported candidates from lower-ranked candidates using ranking language only. Do not imply lower-ranked candidates are biologically inactive, clinically ineffective, or unrelated.
-- If the supplied evidence does not support a clear candidate, say not resolved from the supplied functional evidence.
+- Treat reverse answers as ranked candidate-set recommendations. Do not say that the evidence fails to resolve a single best candidate unless the user explicitly asks for one single best candidate.
+- If candidate_summary contains several plausible candidates, describe the leading group and then place lower-ranked candidates as secondary follow-up candidates or broader supporting context; do not convert that into a "not resolved" conclusion.
+- If the supplied candidate_summary is empty or contains no readable candidate, then say not resolved from the supplied functional evidence.
 - Mention searched cell lines only when needed to explain model-set support; do not make them the headline unless the user specified a cell line.
 - Anonymous internal compound identifiers are not user-facing candidate names, but they are still real compound candidates. If a drug candidate has no readable name, refer to it as "an unnamed compound candidate" and keep the raw identifier out of the answer field.
 
 Forbidden in answer
 - Do not mention software, internal layers, routes, evidence grades, exact/proxy status, row counts, scores, benchmarks, missing literature, clinical efficacy, or validation status.
 - Do not mention PxFquery.
+- Do not mention input field names or internal evidence containers such as candidate_summary, evidence_profiles, interpreted_intent, or payload.
 - Do not invent mechanisms, citations, candidates, functions, cells, perturbations, or numeric values.
 - Do not expose raw candidate identifiers such as BRD-K*, BRD-A*, BRDN*, or other internal IDs in the answer field.
+- Do not name candidates that are absent from candidate_summary, even if they occur in evidence_profiles.
+- Do not write "single best", "does not resolve a single best candidate", or equivalent wording unless the user explicitly asks for one single best candidate.
 - Do not say "weaker or no clear association", "no clear association", "not associated", or "no effect" for candidates that are merely lower ranked.
 - Do not write a cell-by-cell execution report.
 - Do not turn the answer field into a ranked table in sentence form.
@@ -874,25 +879,25 @@ Forbidden in answer
 Output JSON schema
 Return exactly one JSON object:
 {
-  "answer": "Three complete sentences: sentence 1 names the leading candidate or leading candidate group, sentence 2 explains the requested functional direction they support, sentence 3 states how to treat lower-ranked candidates without dismissing them.",
+  "answer": "Three complete sentences: sentence 1 names the leading candidate group from the supplied ranking, sentence 2 explains the requested functional direction they support, sentence 3 describes lower-ranked supplied candidates as secondary follow-up candidates or broader supporting context. Do not mention candidate_summary or evidence_profiles in the answer.",
   "subquestions": ["Short subquestion followed by its direct answer."],
   "candidate_interpretation": ["candidate label: readable functional interpretation"],
   "support_notes": ["Short grounded note using readable biological phrases."]
 }
 
 Style example
-Input summary: user asks which perturbation could produce functional state Z in model Y. Evidence profiles contain candidates X and W; X matches the requested activated program group and W is only a partial match.
+Input summary: user asks which perturbations could produce functional state Z in model Y. candidate_summary contains X, Y, and Z as the leading ranked candidates. evidence_profiles also contain route-local candidates W and Q that are absent from candidate_summary.
 Valid output shape:
 {
-  "answer": "Candidate X is the clearest readable match for functional state Z in model Y. Its matched evidence supports movement toward the requested functional direction rather than the opposite state. Candidate W should be treated as a lower-ranked supporting candidate rather than as evidence of absence.",
+  "answer": "Candidates X, Y, and Z form the leading ranked group for moving model Y toward functional state Z. Their matched evidence supports movement toward the requested functional direction rather than the opposite state. Other supplied candidates provide secondary follow-up leads within the same functional search space.",
   "subquestions": [
-    "Which candidate best matches functional state Z? Candidate X is the clearest match."
+    "Which candidates match functional state Z? Candidates X, Y, and Z form the leading ranked group."
   ],
   "candidate_interpretation": [
-    "candidate X: matches the requested activated program group",
-    "candidate W: lower-ranked supporting candidate"
+    "candidate X: leading candidate from candidate_summary",
+    "candidate Y: leading candidate from candidate_summary"
   ],
-  "support_notes": ["Candidate interpretation is based only on supplied functional match evidence."]
+  "support_notes": ["Answer-level candidate names are restricted to candidate_summary."]
 }
 """.strip()
 
@@ -1311,33 +1316,9 @@ def _reverse_candidate_summary(matrix_evidence: dict[str, Any], *, max_candidate
         rows.sort(key=lambda item: (not item["exact_cell_support"], -(item["score"] or 0.0), -item["support_routes"], str(item["label"])))
     else:
         rows.sort(key=lambda item: (-item["support_routes"], -item["support_cells"], -(item["score"] or 0.0), str(item["label"])))
-    _mark_reverse_candidate_groups(rows)
     for rank, row in enumerate(rows[:max_candidates], start=1):
         row["rank"] = rank
     return rows[:max_candidates]
-
-
-def _mark_reverse_candidate_groups(rows: list[dict[str, Any]]) -> None:
-    if not rows:
-        return
-    top_score = _float_or_none(rows[0].get("score"))
-    if top_score is None:
-        return
-    leading_count = 0
-    for row in rows:
-        score = _float_or_none(row.get("score"))
-        if score is None:
-            break
-        if score == top_score or abs(score - top_score) <= max(0.5, abs(top_score) * 0.05):
-            leading_count += 1
-        else:
-            break
-        if leading_count >= 5:
-            break
-    if leading_count < 3:
-        leading_count = min(3, len(rows))
-    for index, row in enumerate(rows):
-        row["candidate_group"] = "leading_tied_group" if index < leading_count else "lower_ranked_support"
 
 
 def _compact_reverse_candidates(items: list[dict[str, Any]], *, modality: str | None, annotation_aliases: dict[str, str] | None = None) -> list[dict[str, Any]]:

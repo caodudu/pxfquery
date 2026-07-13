@@ -106,7 +106,7 @@ def build_chat_response(
 def _request_chat_json(llm_provider: Any, user_payload: dict[str, Any]) -> tuple[Any, dict[str, Any]]:
     system_prompt = (
         "You answer a follow-up question for a researcher-facing biomedical result. "
-        "Use the complete supplied evidence context, including tables and L4 evidence, but "
+        "Use the complete supplied evidence context, including tables and evidence, but "
         "produce only a clean user-facing natural-language answer. The presentation_policy "
         "is mandatory. Do not infer from outside knowledge. If the follow-up asks whether a "
         "program is activated, judge support from the supplied evidence and the program "
@@ -151,7 +151,7 @@ def _request_chat_json(llm_provider: Any, user_payload: dict[str, Any]) -> tuple
         repair_payload = {
             "previous_error": f"{type(first_error).__name__}: {first_error}",
             "instruction": (
-                "The previous L5 chat response could not be parsed as valid JSON. "
+                "The previous chat response could not be parsed as valid JSON. "
                 "Return one valid JSON object only. Use normal UTF-8 text in the response; "
                 "do not emit malformed backslash escape sequences. Keep the same evidence limits."
             ),
@@ -173,7 +173,7 @@ def _request_chat_json(llm_provider: Any, user_payload: dict[str, Any]) -> tuple
 def _request_structured_json(llm_provider: Any, user_payload: dict[str, Any]) -> tuple[Any, dict[str, Any]]:
     system_prompt = (
         "You are filling a structured JSON answer for PxFquery. Use only the supplied "
-        "current_answer, tables, and L4 evidence. The user's follow-up message defines "
+        "current_answer, tables, and supplied evidence. The user's follow-up message defines "
         "the exact JSON schema and allowed candidates. Return exactly one valid JSON "
         "object that follows that schema. In this JSON mode, raw JSON, exact "
         "function identifiers, option IDs, route-derived candidates, and table-derived "

@@ -356,7 +356,7 @@ def _env_first(*names: str) -> str | None:
 def _system_prompt(schema: dict[str, Any]) -> str:
     return "\n".join(
         [
-            "You are PxFquery L1 intent parsing.",
+            "You are PxFquery intent parsing.",
             "Return exactly one JSON object and no markdown.",
             "Do not answer the biomedical question.",
             "Do not list perturbation candidates, genes, drugs, scores, citations, route plans, or evidence.",

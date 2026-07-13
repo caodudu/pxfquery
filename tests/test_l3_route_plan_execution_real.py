@@ -13,7 +13,7 @@ from pxfquery.l3_execution.matrix_store import FunctionalMatrix
 
 DEFAULT_STANDARD_RESOURCES = Path(
     "/Users/dudu/Documents/3_Project/12_PxFquery/4_phase_development/"
-    "goal_precomputed_data_exploration/task_standard_resources_optimal_formats/"
+    "G-007_precomputed_data_exploration/T-021_standard_resources_optimal_formats/"
     "4_artifact/2_persist/standard_resources"
 )
 

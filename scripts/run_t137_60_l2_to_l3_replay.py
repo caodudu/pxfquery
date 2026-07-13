@@ -14,20 +14,20 @@ from pxfquery.resources import ResourceManager
 ROOT = Path("/Users/dudu/Documents/3_Project/12_PxFquery")
 L2_REPORT = (
     ROOT
-    / "4_phase_development/goal_goal_ms8_human_usable_package/"
-    "task_ms8_10_l2_resource_routing_repair/4_artifact/5_table/"
+    / "4_phase_development/G-035_goal_ms8_human_usable_package/"
+    "T-138_ms8_10_l2_resource_routing_repair/4_artifact/5_table/"
     "t137_60_l2_validation_latest.json"
 )
 L3_RESOURCES = (
     ROOT
-    / "4_phase_development/goal_goal_ms8_human_usable_package/"
-    "task_ms8_11_l3_resource_pack_query_execution_repair/1_asset/"
+    / "4_phase_development/G-035_goal_ms8_human_usable_package/"
+    "T-139_ms8_11_l3_resource_pack_query_execution_repair/1_asset/"
     "l3_light_resource_pack"
 )
 OUT_DIR = (
     ROOT
-    / "4_phase_development/goal_goal_ms8_human_usable_package/"
-    "task_ms8_11_l3_resource_pack_query_execution_repair/4_artifact/5_table"
+    / "4_phase_development/G-035_goal_ms8_human_usable_package/"
+    "T-139_ms8_11_l3_resource_pack_query_execution_repair/4_artifact/5_table"
 )
 
 

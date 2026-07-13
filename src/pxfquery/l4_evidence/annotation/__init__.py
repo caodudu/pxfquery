@@ -1,5 +1,6 @@
 from pxfquery.l4_evidence.annotation.providers import (
     ChEMBLAnnotationProvider,
+    GeneCardsHarmonizomeAnnotationProvider,
     PubChemAnnotationProvider,
     PubMedAnnotationProvider,
     default_annotation_providers,
@@ -7,6 +8,7 @@ from pxfquery.l4_evidence.annotation.providers import (
 
 __all__ = [
     "ChEMBLAnnotationProvider",
+    "GeneCardsHarmonizomeAnnotationProvider",
     "PubChemAnnotationProvider",
     "PubMedAnnotationProvider",
     "default_annotation_providers",

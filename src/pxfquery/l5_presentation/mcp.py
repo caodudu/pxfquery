@@ -46,7 +46,7 @@ def build_mcp_payload(answer: PxFQueryAnswer, *, detail: str = "compact", result
         payload["figure_specs"] = answer.figures
         payload["l4_evidence"] = _mcp_safe_value(answer.structured_result)
         payload["assistant_instruction"] = (
-            "Use the supplied L4 evidence and L5 rendering contract. Do not add candidates, "
+            "Use the supplied evidence and rendering contract. Do not add candidates, "
             "change scores, invent citations, expose raw program identifiers, or upgrade "
             "weak/proxy/no-hit evidence. Use readable biological phrases in the final answer. "
             "Do not mention PxFquery, MCP, backend tools, internal evidence objects, row counts, "

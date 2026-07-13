@@ -588,6 +588,9 @@ def _reverse_layered_route_graph_spec(target_rows: list[dict[str, Any]], ranked:
         for (context, candidate), edge in sorted(edge_scores.items())
         if context in context_labels and candidate in candidate_labels
     ]
+    modalities = {str(node.get("modality") or "").lower() for node in context_nodes}
+    candidate_layer_label = "Top 5 Candidate\nCompounds" if "cp" in modalities else "Top 5 Genetic\nPerturbations"
+    title = "Reverse Drug Evidence Route" if "cp" in modalities else "Reverse Genetic Evidence Route"
     function_context_edges = [
         {
             "function": function["label"],
@@ -600,7 +603,8 @@ def _reverse_layered_route_graph_spec(target_rows: list[dict[str, Any]], ranked:
     ]
     return {
         "kind": "reverse_layered_route_graph",
-        "title": "Reverse Genetic Evidence Route",
+        "title": title,
+        "candidate_layer_label": candidate_layer_label,
         "functions": function_nodes,
         "contexts": context_nodes,
         "candidates": candidate_nodes,
@@ -1585,7 +1589,7 @@ def _render_reverse_layered_route_graph_matplotlib(spec: dict[str, Any]):
 
     ax.text(-0.055, 0.78, "Target\nFunctions", ha="left", va="center", fontsize=8.5, weight="bold", color="#374151")
     ax.text(-0.055, 0.50, "Evidence\nContexts", ha="left", va="center", fontsize=8.5, weight="bold", color="#374151")
-    ax.text(-0.055, 0.18, "Top 5 Genetic\nPerturbations", ha="left", va="center", fontsize=8.5, weight="bold", color="#374151")
+    ax.text(-0.055, 0.18, str(spec.get("candidate_layer_label") or "Top 5 Genetic\nPerturbations"), ha="left", va="center", fontsize=8.5, weight="bold", color="#374151")
 
     max_fc_weight = max([abs(_numeric(edge.get("weight"))) for edge in fc_edges] + [1.0])
     for edge in fc_edges:
@@ -1641,7 +1645,7 @@ def _render_reverse_layered_route_graph_matplotlib(spec: dict[str, Any]):
         Line2D([0], [0], color="#334155", lw=2.6, alpha=0.64, label="candidate evidence"),
     ]
     ax.legend(handles=handles, loc="lower center", bbox_to_anchor=(0.5, -0.045), ncol=3, frameon=False, fontsize=7.8)
-    ax.set_title(str(spec.get("title") or "Reverse Genetic Evidence Route"), fontsize=12, weight="bold", pad=8)
+    ax.set_title(str(spec.get("title") or "Reverse Evidence Route"), fontsize=12, weight="bold", pad=8)
     fig.tight_layout(rect=(0, 0.03, 1, 0.96))
     return fig
 

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import copy
 from typing import Any
 
 from pxfquery.l5_presentation.figures import build_figure_specs
@@ -22,6 +23,8 @@ def build_answer(question: str, structured: dict[str, Any], *, mode: str = "pyth
     synthesis = evidence_layer.get("llm_synthesis") or {}
     uncertainty = dossier.get("uncertainty_layer") or {}
     tables = build_tables(dossier)
+    summary = _resolve_unnamed_compound_summary(_summary(basis, synthesis), tables)
+    structured_result = _resolve_unnamed_compound_structured_result(dossier, tables)
     figures = build_figure_specs(dossier)
     limitations = _limitations(dossier)
     contract = _rendering_contract(dossier, mode)
@@ -30,7 +33,7 @@ def build_answer(question: str, structured: dict[str, Any], *, mode: str = "pyth
         question=question,
         interpreted_question=_interpreted_question(intent, matrix),
         headline=_headline(basis),
-        summary=_summary(basis, synthesis),
+        summary=summary,
         summary_source=_summary_source(basis, synthesis),
         biological_results=tables["ranked_results"],
         evidence=_evidence(dossier, route, matrix, synthesis),
@@ -38,7 +41,7 @@ def build_answer(question: str, structured: dict[str, Any], *, mode: str = "pyth
         tables=tables,
         figures=figures,
         rendering_contract=contract,
-        structured_result=dossier,
+        structured_result=structured_result,
         engineering={
             "dossier_status": dossier.get("dossier_status"),
             "confidence": uncertainty.get("confidence"),
@@ -68,6 +71,73 @@ def _summary(basis: dict[str, Any], synthesis: dict[str, Any]) -> str:
     if biological_summary:
         return str(biological_summary)
     return ""
+
+
+def _resolve_unnamed_compound_summary(summary: str, tables: dict[str, list[dict[str, Any]]]) -> str:
+    if not summary or "unnamed compound" not in summary.lower():
+        return summary
+    ranked = tables.get("ranked_results") or []
+    top_label = ""
+    for row in ranked:
+        label = str(row.get("label") or "").strip()
+        if label and label != "Unnamed compound":
+            top_label = label
+            break
+    if not top_label:
+        return summary.replace("unnamed compound candidate", "BRD-labeled compound candidate").replace("Unnamed compound candidate", "BRD-labeled compound candidate")
+    replacements = {
+        "The unnamed compound candidate (rank 1)": top_label,
+        "the unnamed compound candidate (rank 1)": top_label,
+        "The unnamed compound candidate": top_label,
+        "the unnamed compound candidate": top_label,
+        "An unnamed compound candidate": top_label,
+        "an unnamed compound candidate": top_label,
+        "Unnamed compound candidate": top_label,
+        "unnamed compound candidate": top_label,
+    }
+    text = summary
+    for old, new in replacements.items():
+        text = text.replace(old, new)
+    return text
+
+
+def _resolve_unnamed_compound_structured_result(dossier: dict[str, Any], tables: dict[str, list[dict[str, Any]]]) -> dict[str, Any]:
+    top_label = _top_resolved_candidate_label(tables)
+    replacement = top_label or "BRD-labeled compound candidate"
+    return _replace_unnamed_compound_strings(copy.deepcopy(dossier), replacement)
+
+
+def _top_resolved_candidate_label(tables: dict[str, list[dict[str, Any]]]) -> str:
+    for row in tables.get("ranked_results") or []:
+        label = str(row.get("label") or "").strip()
+        if label and label != "Unnamed compound":
+            return label
+    return ""
+
+
+def _replace_unnamed_compound_strings(value: Any, replacement: str) -> Any:
+    if isinstance(value, dict):
+        return {key: _replace_unnamed_compound_strings(item, replacement) for key, item in value.items()}
+    if isinstance(value, list):
+        return [_replace_unnamed_compound_strings(item, replacement) for item in value]
+    if not isinstance(value, str) or "unnamed compound" not in value.lower():
+        return value
+    text = value
+    replacements = {
+        "The unnamed compound candidate (rank 1)": replacement,
+        "the unnamed compound candidate (rank 1)": replacement,
+        "The unnamed compound candidate": replacement,
+        "the unnamed compound candidate": replacement,
+        "An unnamed compound candidate": replacement,
+        "an unnamed compound candidate": replacement,
+        "Unnamed compound candidate": replacement,
+        "unnamed compound candidate": replacement,
+        "Unnamed compound": replacement,
+        "unnamed compound": replacement,
+    }
+    for old, new in replacements.items():
+        text = text.replace(old, new)
+    return text
 
 
 def _summary_source(basis: dict[str, Any], synthesis: dict[str, Any]) -> str:

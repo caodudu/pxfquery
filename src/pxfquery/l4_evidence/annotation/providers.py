@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import time
 import urllib.error
 import urllib.parse
@@ -31,6 +32,8 @@ def default_annotation_providers(
             providers.append(PubChemAnnotationProvider(timeout=timeout))
         elif key == "chembl":
             providers.append(ChEMBLAnnotationProvider(timeout=timeout))
+        elif key in {"genecards_harmonizome", "harmonizome"}:
+            providers.append(GeneCardsHarmonizomeAnnotationProvider(timeout=timeout))
         elif key == "drugbank":
             providers.append(DrugBankUnavailableProvider())
         else:
@@ -216,6 +219,40 @@ class ChEMBLAnnotationProvider:
 
 
 @dataclass
+class GeneCardsHarmonizomeAnnotationProvider:
+    timeout: float = DEFAULT_TIMEOUT
+    max_terms: int = 5
+    include_associations: bool = False
+    name: str = "genecards_harmonizome"
+
+    def annotate(self, *, query: str, evidence_dossier: dict[str, Any]) -> list[dict[str, Any]]:
+        records = []
+        for symbol in _gene_terms(evidence_dossier, max_terms=self.max_terms):
+            hit = self._annotate_gene(symbol)
+            if hit:
+                records.append(hit)
+        return records
+
+    def _annotate_gene(self, symbol: str) -> dict[str, Any]:
+        clean = _clean_gene_symbol(symbol)
+        if not clean:
+            return {"source": self.name, "status": "skipped", "term": symbol, "records": []}
+        params = {"showAssociations": "true"} if self.include_associations else {}
+        query = ("?" + urllib.parse.urlencode(params)) if params else ""
+        url = f"https://maayanlab.cloud/Harmonizome/api/1.0/gene/{urllib.parse.quote(clean, safe='')}{query}"
+        try:
+            payload = _http_json(url, timeout=self.timeout)
+        except urllib.error.HTTPError as exc:
+            return {"source": self.name, "status": "http_error", "term": clean, "http_status": exc.code, "url": url, "records": []}
+        except Exception as exc:
+            return {"source": self.name, "status": "failed", "term": clean, "reason": f"{type(exc).__name__}: {exc}", "url": url, "records": []}
+        if not isinstance(payload, dict) or payload.get("status") == 404:
+            return {"source": self.name, "status": "no_hits", "term": clean, "url": url, "records": []}
+        record = _normalize_harmonizome_gene_record(clean, payload, url)
+        return {"source": self.name, "status": "found", "term": clean, "records": [record]}
+
+
+@dataclass
 class DrugBankUnavailableProvider:
     name: str = "drugbank"
 
@@ -297,6 +334,55 @@ def _compound_terms(evidence_dossier: dict[str, Any], *, max_terms: int) -> list
             terms.append(term)
 
     return [item["term"] for item in _dedupe_terms([{"term": term, "role": "compound"} for term in terms])[:max_terms]]
+
+
+def _gene_terms(evidence_dossier: dict[str, Any], *, max_terms: int) -> list[str]:
+    layer = evidence_dossier.get("evidence_layer") or {}
+    intent = layer.get("intent_evidence") or {}
+    matrix = layer.get("matrix_evidence") or {}
+    terms: list[str] = []
+    if str(intent.get("pert_class") or "").lower() == "genetic" and intent.get("pert_desc"):
+        terms.append(str(intent["pert_desc"]))
+    primary = matrix.get("primary_result") or {}
+    if primary.get("modality") in {"sh", "xpr"}:
+        for value in [primary.get("perturbation"), primary.get("cmap_name"), primary.get("label")]:
+            if value:
+                terms.append(str(value))
+        for item in primary.get("top_perturbations") or []:
+            label = item.get("label") or item.get("cmap_name") or item.get("pert_id")
+            if label:
+                terms.append(str(label))
+    for route in matrix.get("executed_routes") or []:
+        if route.get("modality") not in {"sh", "xpr"}:
+            continue
+        for value in [route.get("perturbation"), route.get("cmap_name"), route.get("label")]:
+            if value:
+                terms.append(str(value))
+        for item in route.get("top_perturbations") or []:
+            label = item.get("label") or item.get("cmap_name") or item.get("pert_id")
+            if label:
+                terms.append(str(label))
+    clean_terms = []
+    for term in terms:
+        clean = _clean_gene_symbol(term)
+        if clean:
+            clean_terms.append(clean)
+    return [item["term"] for item in _dedupe_terms([{"term": term, "role": "gene"} for term in clean_terms])[:max_terms]]
+
+
+def _clean_gene_symbol(value: Any) -> str | None:
+    text = str(value or "").strip()
+    if not text:
+        return None
+    if text.upper().startswith(("BRD-", "BRDN", "TRCN", "CSS001", "CGS001")):
+        return None
+    if "_" in text:
+        parts = [part for part in text.split("_") if part]
+        text = parts[-1] if parts else text
+    text = text.strip()
+    if not re.fullmatch(r"[A-Za-z][A-Za-z0-9-]{1,14}", text):
+        return None
+    return text.upper()
 
 
 def _chembl_brdk_candidate_terms(evidence_dossier: dict[str, Any], *, max_terms: int) -> list[str]:
@@ -392,6 +478,25 @@ def _escape_pubmed_term(term: str) -> str:
     return '"' + str(term).replace('"', "").strip() + '"'
 
 
+def _normalize_harmonizome_gene_record(symbol: str, payload: dict[str, Any], url: str) -> dict[str, Any]:
+    if not isinstance(payload, dict):
+        return {"symbol": symbol, "raw": payload, "url": url}
+    associations = payload.get("associations") or []
+    return {
+        "symbol": payload.get("symbol") or symbol,
+        "display_name": payload.get("name") or payload.get("symbol") or symbol,
+        "summary": payload.get("description") or "",
+        "aliases": payload.get("synonyms") if isinstance(payload.get("synonyms"), list) else [],
+        "ncbi_entrez_gene_id": payload.get("ncbiEntrezGeneId"),
+        "ncbi_entrez_gene_url": payload.get("ncbiEntrezGeneUrl"),
+        "proteins": payload.get("proteins") or [],
+        "association_count": len(associations) if isinstance(associations, list) else None,
+        "associations": associations[:20] if isinstance(associations, list) else [],
+        "url": url,
+        "raw": payload,
+    }
+
+
 def _dedupe_terms(terms: list[dict[str, str]]) -> list[dict[str, str]]:
     seen = set()
     out = []
@@ -425,3 +530,4 @@ def _http_json(url: str, *, timeout: float = DEFAULT_TIMEOUT, retries: int = 1) 
             if attempt < retries:
                 time.sleep(0.5 * (attempt + 1))
     raise RuntimeError(f"annotation_http_json_failed: {last_error}")
+

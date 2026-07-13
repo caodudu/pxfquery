@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.5.29.dev0 - 2026-07-13
+
+- Added `genecards_harmonizome` as the gene external annotation source for `pxf.tl.anno(...)`, backed by the live Harmonizome gene API.
+- Kept gene annotation opt-in so default drug annotation, forward queries, and reverse queries are not changed by the new source.
+- Removed non-running direct GeneCards/LifeMap provider paths from the public annotation provider registry.
+- Updated provider tests and verified a live BRD4 lookup through `genecards_harmonizome`.
+
 ## 0.5.25.dev0 - 2026-07-04
 
 - Added forward L4 two-step biological answer synthesis that first abstracts directional evidence into response dimensions and then writes a user-facing biological answer without leaking raw program labels.

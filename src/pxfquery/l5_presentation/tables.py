@@ -352,33 +352,9 @@ def _reverse_candidate_consensus(matrix: dict[str, Any]) -> list[dict[str, Any]]
         )
     else:
         rows.sort(key=lambda item: (-item["support_routes"], -item["support_cells"], -item["score"], -(item.get("best_score") or 0.0), str(item.get("label") or "")))
-    _mark_reverse_candidate_groups(rows)
     for rank, row in enumerate(rows, start=1):
         row["rank"] = rank
     return rows
-
-
-def _mark_reverse_candidate_groups(rows: list[dict[str, Any]]) -> None:
-    if not rows:
-        return
-    top_score = _float_or_none(rows[0].get("score"))
-    if top_score is None:
-        return
-    leading_count = 0
-    for row in rows:
-        score = _float_or_none(row.get("score"))
-        if score is None:
-            break
-        if score == top_score or abs(score - top_score) <= max(0.5, abs(top_score) * 0.05):
-            leading_count += 1
-        else:
-            break
-        if leading_count >= 5:
-            break
-    if leading_count < 3:
-        leading_count = min(3, len(rows))
-    for index, row in enumerate(rows):
-        row["candidate_group"] = "leading_tied_group" if index < leading_count else "lower_ranked_support"
 
 
 def _candidate_key(item: dict[str, Any]) -> str:
@@ -458,17 +434,17 @@ def _compound_display_name(value: Any) -> str | None:
 def _load_l5_table_drug_index() -> DrugIndex | None:
     try:
         status = ResourceManager().status()
-        drug_index = status.available_files.get("l2.drug_index")
-        drug_neighbors = status.available_files.get("l2.drug_neighbors")
-        if not drug_index or not drug_neighbors:
-            return None
-        index_path = Path(drug_index)
-        neighbors_path = Path(drug_neighbors)
-        if not index_path.exists() or not neighbors_path.exists():
-            return None
-        return DrugIndex(index_path, neighbors_path)
     except Exception:
         return None
+    drug_index = status.available_files.get("l2.drug_index")
+    drug_neighbors = status.available_files.get("l2.drug_neighbors")
+    if not drug_index or not drug_neighbors:
+        return None
+    index_path = Path(drug_index)
+    neighbors_path = Path(drug_neighbors)
+    if not index_path.exists() or not neighbors_path.exists():
+        return None
+    return DrugIndex(index_path, neighbors_path)
 
 
 def _route_summary(route: dict[str, Any], matrix: dict[str, Any]) -> list[dict[str, Any]]:

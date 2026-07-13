@@ -1,6 +1,12 @@
 from urllib.parse import parse_qs, urlparse
 
-from pxfquery.l4_evidence.annotation import ChEMBLAnnotationProvider, PubChemAnnotationProvider, PubMedAnnotationProvider, default_annotation_providers
+from pxfquery.l4_evidence.annotation import (
+    ChEMBLAnnotationProvider,
+    GeneCardsHarmonizomeAnnotationProvider,
+    PubChemAnnotationProvider,
+    PubMedAnnotationProvider,
+    default_annotation_providers,
+)
 from pxfquery.l4_evidence.annotation import providers as provider_module
 
 
@@ -34,6 +40,13 @@ def test_default_annotation_providers_include_real_public_sources_and_drugbank_u
 
     assert [provider.name for provider in providers] == ["pubmed", "pubchem", "chembl", "drugbank"]
     assert providers[-1].annotate(query="x", evidence_dossier=_dossier())[0]["status"] == "unavailable"
+
+
+def test_default_annotation_providers_include_gene_external_sources():
+    providers = default_annotation_providers(("genecards_harmonizome",), timeout=1)
+
+    assert [provider.name for provider in providers] == ["genecards_harmonizome"]
+    assert isinstance(providers[0], GeneCardsHarmonizomeAnnotationProvider)
 
 
 def test_pubmed_provider_uses_eutils_search_and_summary(monkeypatch):
@@ -213,3 +226,52 @@ def test_compound_terms_skip_genetic_routes_and_prefer_alias_over_brd():
     drug_terms = provider_module._compound_terms(drug, max_terms=5)
     assert "doxorubicin" in drug_terms
     assert "BRD-K61468417" not in drug_terms
+
+
+def test_gene_terms_clean_symbols_and_skip_reagent_ids():
+    dossier = _dossier()
+    dossier["evidence_layer"]["intent_evidence"]["pert_class"] = "genetic"
+    dossier["evidence_layer"]["intent_evidence"]["pert_desc"] = "KRAS-2B"
+    dossier["evidence_layer"]["matrix_evidence"] = {
+        "mode": "reverse",
+        "primary_result": {
+            "cell": "A549",
+            "modality": "sh",
+            "top_perturbations": [
+                {"label": "TSAI_VEGFA"},
+                {"label": "TRCN0000001"},
+                {"label": "BRDN0000733847"},
+            ],
+        },
+        "executed_routes": [
+            {"cell": "A549", "modality": "xpr", "perturbation": "MYC"},
+        ],
+    }
+
+    assert provider_module._gene_terms(dossier, max_terms=10) == ["KRAS-2B", "VEGFA", "MYC"]
+
+
+def test_genecards_harmonizome_provider_uses_harmonizome_gene_endpoint(monkeypatch):
+    def fake_http_json(url, *, timeout=20.0, retries=1):
+        assert url == "https://maayanlab.cloud/Harmonizome/api/1.0/gene/MYC"
+        return {
+            "symbol": "MYC",
+            "name": "MYC proto-oncogene",
+            "description": "MYC encodes a transcription factor.",
+            "synonyms": ["BHLHE39", "C-MYC"],
+            "ncbiEntrezGeneId": 4609,
+            "ncbiEntrezGeneUrl": "http://www.ncbi.nlm.nih.gov/gene/4609",
+            "proteins": [{"symbol": "MYC_HUMAN"}],
+        }
+
+    monkeypatch.setattr(provider_module, "_http_json", fake_http_json)
+    dossier = _dossier()
+    dossier["evidence_layer"]["intent_evidence"]["pert_class"] = "genetic"
+    dossier["evidence_layer"]["intent_evidence"]["pert_desc"] = "MYC"
+
+    records = GeneCardsHarmonizomeAnnotationProvider(timeout=1).annotate(query="x", evidence_dossier=dossier)
+
+    assert records[0]["status"] == "found"
+    assert records[0]["records"][0]["display_name"] == "MYC proto-oncogene"
+    assert records[0]["records"][0]["aliases"] == ["BHLHE39", "C-MYC"]
+    assert records[0]["records"][0]["ncbi_entrez_gene_id"] == 4609

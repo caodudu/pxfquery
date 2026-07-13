@@ -41,8 +41,8 @@ def main(argv: list[str] | None = None) -> int:
         "failures": [],
     }
 
-    t140_60 = project_root / "4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_12_l4_evidence_dossier_plan/4_artifact/5_table/t137_60_l1_to_l4_parallel_latest.json"
-    t139_50_l3 = project_root / "4_phase_development/goal_goal_ms8_human_usable_package/task_ms8_11_l3_resource_pack_query_execution_repair/4_artifact/5_table/generalization_50_l1_l2_to_l3_replay_latest.json"
+    t140_60 = project_root / "4_phase_development/G-035_goal_ms8_human_usable_package/T-140_ms8_12_l4_evidence_dossier_plan/4_artifact/5_table/t137_60_l1_to_l4_parallel_latest.json"
+    t139_50_l3 = project_root / "4_phase_development/G-035_goal_ms8_human_usable_package/T-139_ms8_11_l3_resource_pack_query_execution_repair/4_artifact/5_table/generalization_50_l1_l2_to_l3_replay_latest.json"
     report["datasets"]["t140_60_l4"] = _validate_dataset(
         "t140_60_l4",
         t140_60,
