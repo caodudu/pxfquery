@@ -2240,7 +2240,10 @@ tasks:
   phase: translation
   goal: G-010_pending_g010
   path: 5_phase_translation/G-010_pending_g010/T-169_pxfquery_website_optimization_dialogue
-  status: pending
+  status: active
   executor: human
   created: '2026-07-14'
   completed: null
+  notes: Direct-conversation task. User will provide materials and instructions incrementally.
+    Scope is limited to the currently specified intermediate asset; no website implementation
+    or final deliverables are authorized until explicitly requested.
