@@ -2223,3 +2223,12 @@ tasks:
   created: '2026-07-14'
   completed: null
   notes: 用户指定：论文引用工作采用逐步讨论；当前仅完成基础配置，未经明确指令不得检索、筛选或写入引用。
+- id: T-168
+  name: pxfquery_manuscript_terminology_abbreviations
+  phase: translation
+  goal: G-012_cyhex_outline_draft_biopaper
+  path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-168_pxfquery_manuscript_terminology_abbreviations
+  status: pending
+  executor: human
+  created: '2026-07-14'
+  completed: null
