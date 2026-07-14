@@ -2228,7 +2228,10 @@ tasks:
   phase: translation
   goal: G-012_cyhex_outline_draft_biopaper
   path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-168_pxfquery_manuscript_terminology_abbreviations
-  status: pending
+  status: active
   executor: human
   created: '2026-07-14'
   completed: null
+  notes: Quick-conversation workspace. Scope is limited to user-directed, incremental
+    terminology consistency and abbreviation work; materials will be registered only
+    when provided.
