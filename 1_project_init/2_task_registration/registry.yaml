@@ -2235,3 +2235,12 @@ tasks:
   notes: Quick-conversation workspace. Scope is limited to user-directed, incremental
     terminology consistency and abbreviation work; materials will be registered only
     when provided.
+- id: T-169
+  name: pxfquery_website_optimization_dialogue
+  phase: translation
+  goal: G-010_pending_g010
+  path: 5_phase_translation/G-010_pending_g010/T-169_pxfquery_website_optimization_dialogue
+  status: pending
+  executor: human
+  created: '2026-07-14'
+  completed: null
