@@ -19467,7 +19467,7 @@ excluded_from_git:
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-161_pxfquery_manuscript_discussion_docx_assembly/3_execution/02_word_base/manuscript_20260710_t161_v1.docx
   size_mb: 0.16
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-161_pxfquery_manuscript_discussion_docx_assembly/3_execution/02_word_base/manuscript_20260712_t161_v1.docx
-  size_mb: 0.16
+  size_mb: 2.33
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-161_pxfquery_manuscript_discussion_docx_assembly/3_execution/1_material/figure01_main.png
   size_mb: 0.11
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-161_pxfquery_manuscript_discussion_docx_assembly/3_execution/1_material/figure02_main.png
@@ -19491,6 +19491,22 @@ excluded_from_git:
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-161_pxfquery_manuscript_discussion_docx_assembly/3_execution/1_material/s2_v2.png
   size_mb: 0.03
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-162_pxfquery_manuscript_figure_captions/4_artifact/.DS_Store
+  size_mb: 0.01
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-163_pxfquery_manuscript_discussion_draft/.DS_Store
+  size_mb: 0.01
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-163_pxfquery_manuscript_discussion_draft/3_execution/04_text/.DS_Store
+  size_mb: 0.01
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-164_pxfquery_manuscript_abstract_discussion/.DS_Store
+  size_mb: 0.01
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-164_pxfquery_manuscript_abstract_discussion/3_execution/.DS_Store
+  size_mb: 0.01
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-165_pxfquery_manuscript_front_page/.DS_Store
+  size_mb: 0.01
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-165_pxfquery_manuscript_front_page/3_execution/.DS_Store
+  size_mb: 0.01
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-166_pxfquery_manuscript_back_matter_discussion/.DS_Store
+  size_mb: 0.01
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-166_pxfquery_manuscript_back_matter_discussion/3_execution/.DS_Store
   size_mb: 0.01
 - path: 5_phase_translation/G-033_ms6_manuscript_foundation/T-091_ms6_package_capability_narrative/1_asset/ms6_evidence_claim_mapping.csv
   size_mb: 0.0
