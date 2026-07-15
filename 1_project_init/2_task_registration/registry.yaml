@@ -2259,3 +2259,12 @@ tasks:
   notes: 'Quick-conversation task for user-directed, incremental cover-letter discussion.
     Setup only: no input materials registered and no cover-letter draft or research
     authorized.'
+- id: T-171
+  name: pxfquery_github_repository_readme_dialogue
+  phase: translation
+  goal: G-010_pending_g010
+  path: 5_phase_translation/G-010_pending_g010/T-171_pxfquery_github_repository_readme_dialogue
+  status: pending
+  executor: human
+  created: '2026-07-15'
+  completed: null
