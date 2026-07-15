@@ -19481,7 +19481,7 @@ excluded_from_git:
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-160_pxfquery_supplementary_tables_materials/3_execution/01_build_tables/build_table_s4_standalone.mjs
   size_mb: 0.01
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-160_pxfquery_supplementary_tables_materials/3_execution/01_build_tables/table_s4_preview.png
-  size_mb: 0.46
+  size_mb: 1.37
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-160_pxfquery_supplementary_tables_materials/3_execution/02_appendix_figures_from_t161/.DS_Store
   size_mb: 0.01
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-160_pxfquery_supplementary_tables_materials/3_execution/02_appendix_figures_from_t161/Figure_S1_coverage_density.png
@@ -19529,9 +19529,9 @@ excluded_from_git:
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-160_pxfquery_supplementary_tables_materials/4_artifact/5_table/table_s3_v20260715.xlsx
   size_mb: 0.01
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-160_pxfquery_supplementary_tables_materials/4_artifact/5_table/table_s4_v20260715.xlsx
-  size_mb: 0.03
+  size_mb: 0.05
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-160_pxfquery_supplementary_tables_materials/4_artifact/5_table/table_s4_v20260715.xlsx.inspect.ndjson
-  size_mb: 0.69
+  size_mb: 0.7
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-160_pxfquery_supplementary_tables_materials/4_artifact/6_archive/misplaced_legacy_path_20260712/Prompt_Appendix_readable_preview.png
   size_mb: 1.04
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-160_pxfquery_supplementary_tables_materials/4_artifact/6_archive/misplaced_legacy_path_20260712/pxfquery_internal_prompts_preview_v20260710.csv
