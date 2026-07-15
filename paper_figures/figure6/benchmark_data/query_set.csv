@@ -1,0 +1,4 @@
+  File "<string>", line 1
+    import pandas as pd\nfrom pathlib import Path\nbase=Path("/Users/dudu/Documents/3_Project/12_PxFquery/5_phase_translation/G-011_paper_figure_planning/T-154_pxfquery_genes_benchmark_discussion_execution/4_artifact/5_table")\noriginal=pd.read_csv(base/"non_fg_batch100_latest_t144/filtered_batch_query_set.csv")\nreplacement=pd.read_csv(base/"rg010_replacement_latest_t144/filtered_batch_query_set.csv")\nout=pd.concat([original[(original.task_type=="reverse_genetic") & (original.query_id!="B100_RG_010")], replacement], ignore_index=True)\nprint(out.to_csv(index=False), end="")
+                        ^
+SyntaxError: unexpected character after line continuation character

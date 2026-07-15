@@ -1,0 +1,669 @@
+query_id,task_type,field,system,median_rank_percentile,mean_rank_percentile,n_found
+B100_RG_001,reverse_genetic,recommendations_top1,Direct LLM,79.42687212760205,79.42687212760205,1
+B100_RG_001,reverse_genetic,recommendations_top1,PxFquery,0.0540686672073533,0.0540686672073533,1
+B100_RG_001,reverse_genetic,recommendations_top10,Direct LLM,47.41822114084887,45.89753987564207,8
+B100_RG_001,reverse_genetic,recommendations_top10,PxFquery,0.1486888348202216,0.1486888348202216,10
+B100_RG_001,reverse_genetic,recommendations_top3,Direct LLM,59.12408759124087,53.53699197981436,3
+B100_RG_001,reverse_genetic,recommendations_top3,PxFquery,0.0540686672073533,0.0540686672073532,3
+B100_RG_001,reverse_genetic,recommendations_top5,Direct LLM,61.678832116788314,56.211138145444714,4
+B100_RG_001,reverse_genetic,recommendations_top5,PxFquery,0.08110300081103,0.1027304676939713,5
+B100_RG_002,reverse_genetic,recommendations_top1,PxFquery,0.182434193380245,0.182434193380245,1
+B100_RG_002,reverse_genetic,recommendations_top10,Direct LLM,65.24628616106332,55.11076361740943,10
+B100_RG_002,reverse_genetic,recommendations_top10,PxFquery,0.1954652071931196,0.2058900182434193,10
+B100_RG_002,reverse_genetic,recommendations_top3,PxFquery,0.182434193380245,0.2258709060898271,3
+B100_RG_002,reverse_genetic,recommendations_top5,Direct LLM,71.56632786030754,73.57310398749023,3
+B100_RG_002,reverse_genetic,recommendations_top5,PxFquery,0.2084962210059942,0.2501954652071931,5
+B100_RG_003,reverse_genetic,recommendations_top1,Direct LLM,93.44708209693373,93.44708209693373,1
+B100_RG_003,reverse_genetic,recommendations_top1,PxFquery,0.0247279920870425,0.0247279920870425,1
+B100_RG_003,reverse_genetic,recommendations_top10,Direct LLM,75.09891196834818,61.79030662710189,10
+B100_RG_003,reverse_genetic,recommendations_top10,PxFquery,0.1854599406528189,0.1755687438180019,10
+B100_RG_003,reverse_genetic,recommendations_top3,Direct LLM,82.34421364985164,85.17969007583251,3
+B100_RG_003,reverse_genetic,recommendations_top3,PxFquery,0.0741839762611275,0.0659413122321133,3
+B100_RG_003,reverse_genetic,recommendations_top5,Direct LLM,20.12858555885262,46.404549950544016,5
+B100_RG_003,reverse_genetic,recommendations_top5,PxFquery,0.0989119683481701,17.571711177052425,5
+B100_RG_004,reverse_genetic,recommendations_top1,PxFquery,0.4612546125461255,0.4612546125461255,1
+B100_RG_004,reverse_genetic,recommendations_top10,Direct LLM,17.804428044280442,17.804428044280442,1
+B100_RG_004,reverse_genetic,recommendations_top10,PxFquery,0.507380073800738,0.507380073800738,10
+B100_RG_004,reverse_genetic,recommendations_top3,PxFquery,0.1845018450184501,0.2460024600246001,3
+B100_RG_004,reverse_genetic,recommendations_top5,PxFquery,0.2767527675276753,0.3136531365313653,5
+B100_RG_005,reverse_genetic,recommendations_top1,Direct LLM,6.297229219143577,6.297229219143577,1
+B100_RG_005,reverse_genetic,recommendations_top1,PxFquery,0.0279876854184158,0.0279876854184158,1
+B100_RG_005,reverse_genetic,recommendations_top10,Direct LLM,25.468793730758463,30.752868737755385,10
+B100_RG_005,reverse_genetic,recommendations_top10,PxFquery,0.1539322698012873,0.1539322698012873,10
+B100_RG_005,reverse_genetic,recommendations_top3,Direct LLM,2.434928631402183,3.190596137699412,3
+B100_RG_005,reverse_genetic,recommendations_top3,PxFquery,0.0559753708368317,0.0559753708368317,3
+B100_RG_005,reverse_genetic,recommendations_top5,Direct LLM,6.297229219143577,13.52364959417856,5
+B100_RG_005,reverse_genetic,recommendations_top5,PxFquery,0.0839630562552476,0.0839630562552476,5
+B100_RG_006,reverse_genetic,recommendations_top1,Direct LLM,73.83918459796149,73.83918459796149,1
+B100_RG_006,reverse_genetic,recommendations_top1,PxFquery,0.1698754246885617,0.1698754246885617,1
+B100_RG_006,reverse_genetic,recommendations_top10,Direct LLM,74.4620611551529,72.15175537938845,10
+B100_RG_006,reverse_genetic,recommendations_top10,PxFquery,0.1840317100792751,0.1727066817667044,10
+B100_RG_006,reverse_genetic,recommendations_top3,Direct LLM,86.72140430351075,82.53114382785957,3
+B100_RG_006,reverse_genetic,recommendations_top3,PxFquery,0.1698754246885617,0.1321253303133257,3
+B100_RG_006,reverse_genetic,recommendations_top5,Direct LLM,73.83918459796149,67.67836919592298,5
+B100_RG_006,reverse_genetic,recommendations_top5,PxFquery,0.1698754246885617,0.1359003397508493,5
+B100_RG_007,reverse_genetic,recommendations_top1,PxFquery,1.4072310023814678,1.4072310023814678,1
+B100_RG_007,reverse_genetic,recommendations_top10,PxFquery,2.0025979649274737,2.0653821173414157,10
+B100_RG_007,reverse_genetic,recommendations_top3,PxFquery,1.970123403334055,2.0639388034928197,3
+B100_RG_007,reverse_genetic,recommendations_top5,PxFquery,1.970123403334055,2.026412643429314,5
+B100_RG_008,reverse_genetic,recommendations_top1,Direct LLM,41.02496016994158,41.02496016994158,1
+B100_RG_008,reverse_genetic,recommendations_top1,PxFquery,0.0265533722782793,0.0265533722782793,1
+B100_RG_008,reverse_genetic,recommendations_top10,Direct LLM,41.21083377588954,47.61351566648965,8
+B100_RG_008,reverse_genetic,recommendations_top10,PxFquery,0.1725969198088156,0.1619755708975039,10
+B100_RG_008,reverse_genetic,recommendations_top3,PxFquery,0.1062134891131173,0.115064613205877,3
+B100_RG_008,reverse_genetic,recommendations_top5,Direct LLM,41.02496016994158,36.48433351035582,5
+B100_RG_008,reverse_genetic,recommendations_top5,PxFquery,0.079660116834838,0.1009028146574614,5
+B100_RG_009,reverse_genetic,recommendations_top1,PxFquery,0.7869884575026233,0.7869884575026233,1
+B100_RG_009,reverse_genetic,recommendations_top10,Direct LLM,6.558237145855195,25.99247988807275,6
+B100_RG_009,reverse_genetic,recommendations_top10,PxFquery,0.6951731374606506,0.674186778593914,10
+B100_RG_009,reverse_genetic,recommendations_top3,Direct LLM,68.99265477439664,50.358516963973415,3
+B100_RG_009,reverse_genetic,recommendations_top3,PxFquery,0.7869884575026233,0.7957327736970968,3
+B100_RG_009,reverse_genetic,recommendations_top5,Direct LLM,2.085519412381952,18.47455403987408,4
+B100_RG_009,reverse_genetic,recommendations_top5,PxFquery,0.9181532004197271,1.0178384050367262,5
+B100_RG_011,reverse_genetic,recommendations_top1,PxFquery,0.0265181649429859,0.0265181649429859,1
+B100_RG_011,reverse_genetic,recommendations_top10,Direct LLM,57.96870856536728,55.741182710156465,3
+B100_RG_011,reverse_genetic,recommendations_top10,PxFquery,0.5568814638027049,0.9122248740387164,10
+B100_RG_011,reverse_genetic,recommendations_top3,PxFquery,0.3447361442588172,0.2563422611155307,3
+B100_RG_011,reverse_genetic,recommendations_top5,Direct LLM,57.96870856536728,55.741182710156465,3
+B100_RG_011,reverse_genetic,recommendations_top5,PxFquery,0.3977724741447891,0.4455051710421639,5
+B100_RG_012,reverse_genetic,recommendations_top1,Direct LLM,62.42227629088943,62.42227629088943,1
+B100_RG_012,reverse_genetic,recommendations_top1,PxFquery,1.973506353068397,1.973506353068397,1
+B100_RG_012,reverse_genetic,recommendations_top10,Direct LLM,58.9213300892133,52.960259529602595,10
+B100_RG_012,reverse_genetic,recommendations_top10,PxFquery,0.9597188429305216,1.143552311435523,10
+B100_RG_012,reverse_genetic,recommendations_top3,Direct LLM,62.42227629088943,50.49112372713345,3
+B100_RG_012,reverse_genetic,recommendations_top3,PxFquery,1.29764801297648,1.396773902856628,3
+B100_RG_012,reverse_genetic,recommendations_top5,Direct LLM,62.42227629088943,55.23655041903216,5
+B100_RG_012,reverse_genetic,recommendations_top5,PxFquery,0.9462016761286834,1.1300351446336847,5
+B100_RG_013,reverse_genetic,recommendations_top1,PxFquery,0.0741839762611275,0.0741839762611275,1
+B100_RG_013,reverse_genetic,recommendations_top10,Direct LLM,65.78882294757665,57.81095450049456,8
+B100_RG_013,reverse_genetic,recommendations_top10,PxFquery,0.1854599406528189,0.1706231454005934,10
+B100_RG_013,reverse_genetic,recommendations_top3,PxFquery,0.0741839762611275,0.09891196834817,3
+B100_RG_013,reverse_genetic,recommendations_top5,PxFquery,0.0741839762611275,0.0939663699307615,5
+B100_RG_014,reverse_genetic,recommendations_top1,PxFquery,0.0279876854184158,0.0279876854184158,1
+B100_RG_014,reverse_genetic,recommendations_top10,PxFquery,0.2099076406381191,0.1987125664707528,10
+B100_RG_014,reverse_genetic,recommendations_top3,PxFquery,0.0839630562552476,0.0932922847280529,3
+B100_RG_014,reverse_genetic,recommendations_top5,PxFquery,0.1679261125104953,0.1399384270920794,5
+B100_RG_015,reverse_genetic,recommendations_top1,PxFquery,0.0559753708368317,0.0559753708368317,1
+B100_RG_015,reverse_genetic,recommendations_top10,Direct LLM,78.72935908200392,76.86617888129224,7
+B100_RG_015,reverse_genetic,recommendations_top10,PxFquery,0.1819199552197032,0.1819199552197032,10
+B100_RG_015,reverse_genetic,recommendations_top3,PxFquery,0.0839630562552476,0.1026215132008582,3
+B100_RG_015,reverse_genetic,recommendations_top5,PxFquery,0.1119507416736635,0.1231458158410298,5
+B100_RG_016,reverse_genetic,recommendations_top1,PxFquery,0.0566251415628539,0.0566251415628539,1
+B100_RG_016,reverse_genetic,recommendations_top10,PxFquery,0.1840317100792751,0.175537938844847,10
+B100_RG_016,reverse_genetic,recommendations_top3,PxFquery,0.0566251415628539,0.0566251415628538,3
+B100_RG_016,reverse_genetic,recommendations_top5,PxFquery,0.0849377123442808,0.1075877689694223,5
+B100_RG_017,reverse_genetic,recommendations_top1,PxFquery,0.1892403352257367,0.1892403352257367,1
+B100_RG_017,reverse_genetic,recommendations_top10,Direct LLM,47.40470397404704,48.57258718572587,10
+B100_RG_017,reverse_genetic,recommendations_top10,PxFquery,0.1486888348202216,0.1486888348202216,10
+B100_RG_017,reverse_genetic,recommendations_top3,PxFquery,0.1351716680183833,0.1351716680183833,3
+B100_RG_017,reverse_genetic,recommendations_top5,Direct LLM,68.18058934847257,57.447958907812925,5
+B100_RG_017,reverse_genetic,recommendations_top5,PxFquery,0.1081373344147066,0.1135442011354419,5
+B100_RG_018,reverse_genetic,recommendations_top1,Direct LLM,36.20015637216576,36.20015637216576,1
+B100_RG_018,reverse_genetic,recommendations_top1,PxFquery,0.1563721657544957,0.1563721657544957,1
+B100_RG_018,reverse_genetic,recommendations_top10,Direct LLM,26.3617409434454,27.91894709408392,8
+B100_RG_018,reverse_genetic,recommendations_top10,PxFquery,0.1954652071931196,0.1954652071931196,10
+B100_RG_018,reverse_genetic,recommendations_top3,Direct LLM,37.06020328381548,46.68577882025888,3
+B100_RG_018,reverse_genetic,recommendations_top3,PxFquery,0.1563721657544957,0.1389974806706628,3
+B100_RG_018,reverse_genetic,recommendations_top5,Direct LLM,36.20015637216576,38.55616366953349,5
+B100_RG_018,reverse_genetic,recommendations_top5,PxFquery,0.1563721657544957,0.1511597602293458,5
+B100_RG_019,reverse_genetic,recommendations_top1,Direct LLM,33.579335793357934,33.579335793357934,1
+B100_RG_019,reverse_genetic,recommendations_top1,PxFquery,1.014760147601476,1.014760147601476,1
+B100_RG_019,reverse_genetic,recommendations_top10,Direct LLM,33.579335793357934,33.579335793357934,1
+B100_RG_019,reverse_genetic,recommendations_top10,PxFquery,0.7380073800738007,0.7103321033210331,10
+B100_RG_019,reverse_genetic,recommendations_top3,Direct LLM,33.579335793357934,33.579335793357934,1
+B100_RG_019,reverse_genetic,recommendations_top3,PxFquery,1.014760147601476,0.9532595325953258,3
+B100_RG_019,reverse_genetic,recommendations_top5,Direct LLM,33.579335793357934,33.579335793357934,1
+B100_RG_019,reverse_genetic,recommendations_top5,PxFquery,0.8302583025830258,0.8118081180811808,5
+B100_RG_020,reverse_genetic,recommendations_top1,Direct LLM,40.723100238146785,40.723100238146785,1
+B100_RG_020,reverse_genetic,recommendations_top1,PxFquery,0.2597964927473479,0.2597964927473479,1
+B100_RG_020,reverse_genetic,recommendations_top10,Direct LLM,40.127733275600775,42.754564480046184,6
+B100_RG_020,reverse_genetic,recommendations_top10,PxFquery,0.7793894782420436,0.952587140073609,10
+B100_RG_020,reverse_genetic,recommendations_top3,PxFquery,0.5195929854946958,0.6783575088402972,3
+B100_RG_020,reverse_genetic,recommendations_top5,Direct LLM,40.723100238146785,46.03449520098146,3
+B100_RG_020,reverse_genetic,recommendations_top5,PxFquery,0.9092877246157176,0.7880493613336219,5
+B100_RG_021,reverse_genetic,recommendations_top1,Direct LLM,84.96221005994266,84.96221005994266,1
+B100_RG_021,reverse_genetic,recommendations_top1,PxFquery,0.0260620276257492,0.0260620276257492,1
+B100_RG_021,reverse_genetic,recommendations_top10,Direct LLM,55.52514985665884,55.360959082616624,10
+B100_RG_021,reverse_genetic,recommendations_top10,PxFquery,0.1694031795673703,0.1589783685170706,10
+B100_RG_021,reverse_genetic,recommendations_top3,Direct LLM,63.04404482668752,68.95143775519068,3
+B100_RG_021,reverse_genetic,recommendations_top3,PxFquery,0.0521240552514985,0.0521240552514985,3
+B100_RG_021,reverse_genetic,recommendations_top5,Direct LLM,59.34323690383112,63.6799583007558,5
+B100_RG_021,reverse_genetic,recommendations_top5,PxFquery,0.0781860828772478,0.0833984884023976,5
+B100_RG_022,reverse_genetic,recommendations_top1,PxFquery,0.4595836712625034,0.4595836712625034,1
+B100_RG_022,reverse_genetic,recommendations_top10,Direct LLM,40.13246823465802,43.74155177074885,10
+B100_RG_022,reverse_genetic,recommendations_top10,PxFquery,0.8245471749121385,0.8110300081103,10
+B100_RG_022,reverse_genetic,recommendations_top3,Direct LLM,39.11868072452014,27.809317833648738,3
+B100_RG_022,reverse_genetic,recommendations_top3,PxFquery,0.8650986753176534,0.738938451833829,3
+B100_RG_022,reverse_genetic,recommendations_top5,Direct LLM,41.146255744795894,50.54879697215463,5
+B100_RG_022,reverse_genetic,recommendations_top5,PxFquery,0.5136523384698567,0.6217896728845634,5
+B100_RG_023,reverse_genetic,recommendations_top1,Direct LLM,85.71428571428571,85.71428571428571,1
+B100_RG_023,reverse_genetic,recommendations_top1,PxFquery,0.0265533722782793,0.0265533722782793,1
+B100_RG_023,reverse_genetic,recommendations_top10,Direct LLM,6.532129580456718,21.29580456718003,3
+B100_RG_023,reverse_genetic,recommendations_top10,PxFquery,0.1725969198088156,0.1619755708975039,10
+B100_RG_023,reverse_genetic,recommendations_top3,Direct LLM,57.79341476367498,57.79341476367498,2
+B100_RG_023,reverse_genetic,recommendations_top3,PxFquery,0.0531067445565586,0.0796601168348379,3
+B100_RG_023,reverse_genetic,recommendations_top5,Direct LLM,58.41741901221455,58.00141617985483,3
+B100_RG_023,reverse_genetic,recommendations_top5,PxFquery,0.159320233669676,0.1274561869357407,5
+B100_RG_024,reverse_genetic,recommendations_top1,Direct LLM,4.701931150293871,4.701931150293871,1
+B100_RG_024,reverse_genetic,recommendations_top1,PxFquery,0.0279876854184158,0.0279876854184158,1
+B100_RG_024,reverse_genetic,recommendations_top10,Direct LLM,45.88581024349286,45.61293031066331,8
+B100_RG_024,reverse_genetic,recommendations_top10,PxFquery,0.1539322698012873,0.1539322698012873,10
+B100_RG_024,reverse_genetic,recommendations_top3,Direct LLM,36.132101875174925,32.157850545759864,3
+B100_RG_024,reverse_genetic,recommendations_top3,PxFquery,0.0559753708368317,0.0559753708368317,3
+B100_RG_024,reverse_genetic,recommendations_top5,Direct LLM,36.132101875174925,32.157850545759864,3
+B100_RG_024,reverse_genetic,recommendations_top5,PxFquery,0.0839630562552476,0.0895605933389307,5
+B100_RG_025,reverse_genetic,recommendations_top1,PxFquery,0.092250922509225,0.092250922509225,1
+B100_RG_025,reverse_genetic,recommendations_top10,PxFquery,0.5996309963099631,0.5719557195571956,10
+B100_RG_025,reverse_genetic,recommendations_top3,PxFquery,0.1845018450184501,0.2460024600246002,3
+B100_RG_025,reverse_genetic,recommendations_top5,PxFquery,0.4612546125461255,0.3874538745387453,5
+B100_RG_026,reverse_genetic,recommendations_top1,PxFquery,0.1730959446092977,0.1730959446092977,1
+B100_RG_026,reverse_genetic,recommendations_top10,Direct LLM,26.45895153313551,30.325791295746782,8
+B100_RG_026,reverse_genetic,recommendations_top10,PxFquery,0.1360039564787338,0.1360039564787338,10
+B100_RG_026,reverse_genetic,recommendations_top3,PxFquery,0.049455984174085,0.0824266402901417,3
+B100_RG_026,reverse_genetic,recommendations_top5,Direct LLM,36.07814045499506,36.98318496538081,5
+B100_RG_026,reverse_genetic,recommendations_top5,PxFquery,0.0741839762611275,0.0840751730959445,5
+B100_RG_027,reverse_genetic,recommendations_top1,PxFquery,0.4329941545789131,0.4329941545789131,1
+B100_RG_027,reverse_genetic,recommendations_top10,PxFquery,0.4979432777657501,0.5563974886339034,10
+B100_RG_027,reverse_genetic,recommendations_top3,PxFquery,0.4329941545789131,0.4907267085227682,3
+B100_RG_027,reverse_genetic,recommendations_top5,PxFquery,0.5845421086815328,0.5585624594067979,5
+B100_RG_028,reverse_genetic,recommendations_top1,Direct LLM,98.89580973952437,98.89580973952437,1
+B100_RG_028,reverse_genetic,recommendations_top1,PxFquery,0.0566251415628539,0.0566251415628539,1
+B100_RG_028,reverse_genetic,recommendations_top10,Direct LLM,35.758776896942244,47.88914055618473,9
+B100_RG_028,reverse_genetic,recommendations_top10,PxFquery,0.1840317100792751,0.1727066817667044,10
+B100_RG_028,reverse_genetic,recommendations_top3,PxFquery,0.0566251415628539,0.0566251415628538,3
+B100_RG_028,reverse_genetic,recommendations_top5,Direct LLM,96.82899207248018,66.13816534541337,5
+B100_RG_028,reverse_genetic,recommendations_top5,PxFquery,0.0849377123442808,0.0906002265005662,5
+B100_RG_029,reverse_genetic,recommendations_top1,PxFquery,0.2164970772894565,0.2164970772894565,1
+B100_RG_029,reverse_genetic,recommendations_top10,Direct LLM,45.193764884174065,50.73879627625027,8
+B100_RG_029,reverse_genetic,recommendations_top10,PxFquery,0.2273219311539293,0.2273219311539294,10
+B100_RG_029,reverse_genetic,recommendations_top3,PxFquery,0.2164970772894565,0.2020639388034927,3
+B100_RG_029,reverse_genetic,recommendations_top5,PxFquery,0.2597964927473479,0.2468066681099804,5
+B100_RG_030,reverse_genetic,recommendations_top1,Direct LLM,87.90661070304303,87.90661070304303,1
+B100_RG_030,reverse_genetic,recommendations_top1,PxFquery,0.1573976915005246,0.1573976915005246,1
+B100_RG_030,reverse_genetic,recommendations_top10,Direct LLM,77.6364113326338,73.3254634487583,6
+B100_RG_030,reverse_genetic,recommendations_top10,PxFquery,0.170514165792235,0.1600209863588667,10
+B100_RG_030,reverse_genetic,recommendations_top3,Direct LLM,93.6647429171039,93.6647429171039,2
+B100_RG_030,reverse_genetic,recommendations_top3,PxFquery,0.1836306400839454,0.1836306400839454,3
+B100_RG_030,reverse_genetic,recommendations_top5,Direct LLM,87.90661070304303,82.31024833857992,3
+B100_RG_030,reverse_genetic,recommendations_top5,PxFquery,0.1836306400839454,0.1626442812172087,5
+B100_RG_031,reverse_genetic,recommendations_top1,PxFquery,0.1698754246885617,0.1698754246885617,1
+B100_RG_031,reverse_genetic,recommendations_top10,Direct LLM,42.78029445073612,42.78029445073612,2
+B100_RG_031,reverse_genetic,recommendations_top10,PxFquery,0.1840317100792751,0.1727066817667044,10
+B100_RG_031,reverse_genetic,recommendations_top3,PxFquery,0.1698754246885617,0.1415628539071347,3
+B100_RG_031,reverse_genetic,recommendations_top5,Direct LLM,71.06455266138165,71.06455266138165,1
+B100_RG_031,reverse_genetic,recommendations_top5,PxFquery,0.1698754246885617,0.1472253680634201,5
+B100_RG_032,reverse_genetic,recommendations_top1,Direct LLM,64.55124800849708,64.55124800849708,1
+B100_RG_032,reverse_genetic,recommendations_top1,PxFquery,0.159320233669676,0.159320233669676,1
+B100_RG_032,reverse_genetic,recommendations_top10,Direct LLM,71.62772172065851,68.41476367498672,8
+B100_RG_032,reverse_genetic,recommendations_top10,PxFquery,0.1460435475305363,0.1460435475305363,10
+B100_RG_032,reverse_genetic,recommendations_top3,Direct LLM,83.76261285183219,83.76261285183219,2
+B100_RG_032,reverse_genetic,recommendations_top3,PxFquery,0.1062134891131173,0.1062134891131173,3
+B100_RG_032,reverse_genetic,recommendations_top5,Direct LLM,79.88582049920339,61.590546999468934,4
+B100_RG_032,reverse_genetic,recommendations_top5,PxFquery,0.1062134891131173,0.1062134891131173,5
+B100_RG_033,reverse_genetic,recommendations_top1,Direct LLM,38.740200054068666,38.740200054068666,1
+B100_RG_033,reverse_genetic,recommendations_top1,PxFquery,0.0270343336036766,0.0270343336036766,1
+B100_RG_033,reverse_genetic,recommendations_top10,Direct LLM,70.64071370640714,62.01946472019465,10
+B100_RG_033,reverse_genetic,recommendations_top10,PxFquery,0.1757231684238983,0.1649094349824276,10
+B100_RG_033,reverse_genetic,recommendations_top3,Direct LLM,38.740200054068666,51.725691628368025,3
+B100_RG_033,reverse_genetic,recommendations_top3,PxFquery,0.0540686672073533,0.0811030008110299,3
+B100_RG_033,reverse_genetic,recommendations_top5,Direct LLM,55.58258988915923,55.85834009191673,5
+B100_RG_033,reverse_genetic,recommendations_top5,PxFquery,0.16220600162206,0.1297648012976479,5
+B100_RG_034,reverse_genetic,recommendations_top1,Direct LLM,94.4768985661179,94.4768985661179,1
+B100_RG_034,reverse_genetic,recommendations_top1,PxFquery,0.0265533722782793,0.0265533722782793,1
+B100_RG_034,reverse_genetic,recommendations_top10,Direct LLM,83.59001593202336,54.741252139021654,9
+B100_RG_034,reverse_genetic,recommendations_top10,PxFquery,0.1460435475305363,0.1460435475305363,10
+B100_RG_034,reverse_genetic,recommendations_top3,Direct LLM,47.849176845459375,43.87502212781023,3
+B100_RG_034,reverse_genetic,recommendations_top3,PxFquery,0.0531067445565586,0.0796601168348379,3
+B100_RG_034,reverse_genetic,recommendations_top5,Direct LLM,46.98619224641529,48.386882634094526,4
+B100_RG_034,reverse_genetic,recommendations_top5,PxFquery,0.079660116834838,0.1009028146574614,5
+B100_RG_035,reverse_genetic,recommendations_top1,PxFquery,0.0283125707814269,0.0283125707814269,1
+B100_RG_035,reverse_genetic,recommendations_top10,Direct LLM,63.84484711211778,57.299924499811254,6
+B100_RG_035,reverse_genetic,recommendations_top10,PxFquery,0.1840317100792751,0.1727066817667044,10
+B100_RG_035,reverse_genetic,recommendations_top3,Direct LLM,54.99716874292186,54.99716874292186,2
+B100_RG_035,reverse_genetic,recommendations_top3,PxFquery,0.0566251415628539,0.0566251415628538,3
+B100_RG_035,reverse_genetic,recommendations_top5,Direct LLM,21.82899207248018,34.89052472631182,3
+B100_RG_035,reverse_genetic,recommendations_top5,PxFquery,0.0849377123442808,0.0906002265005662,5
+B100_RG_036,reverse_genetic,recommendations_top1,PxFquery,0.3247456159341849,0.3247456159341849,1
+B100_RG_036,reverse_genetic,recommendations_top10,Direct LLM,52.608789781337954,50.81804967061516,7
+B100_RG_036,reverse_genetic,recommendations_top10,PxFquery,0.2273219311539293,0.2273219311539294,10
+B100_RG_036,reverse_genetic,recommendations_top3,Direct LLM,62.048062351158265,62.048062351158265,2
+B100_RG_036,reverse_genetic,recommendations_top3,PxFquery,0.3030959082052392,0.3030959082052392,3
+B100_RG_036,reverse_genetic,recommendations_top5,Direct LLM,62.048062351158265,62.048062351158265,2
+B100_RG_036,reverse_genetic,recommendations_top5,PxFquery,0.1731976618315652,0.2121671357436674,5
+B100_RG_037,reverse_genetic,recommendations_top1,PxFquery,0.1298982463736739,0.1298982463736739,1
+B100_RG_037,reverse_genetic,recommendations_top10,PxFquery,0.2273219311539293,0.2273219311539294,10
+B100_RG_037,reverse_genetic,recommendations_top3,PxFquery,0.1515479541026196,0.1515479541026195,3
+B100_RG_037,reverse_genetic,recommendations_top5,PxFquery,0.1731976618315652,0.1731976618315652,5
+B100_RG_038,reverse_genetic,recommendations_top1,Direct LLM,78.00389694739121,78.00389694739121,1
+B100_RG_038,reverse_genetic,recommendations_top1,PxFquery,0.1298982463736739,0.1298982463736739,1
+B100_RG_038,reverse_genetic,recommendations_top10,Direct LLM,33.81684347261312,40.80660625367272,7
+B100_RG_038,reverse_genetic,recommendations_top10,PxFquery,0.2273219311539293,0.2273219311539294,10
+B100_RG_038,reverse_genetic,recommendations_top3,Direct LLM,78.00389694739121,59.608861947030384,3
+B100_RG_038,reverse_genetic,recommendations_top3,PxFquery,0.1515479541026196,0.1515479541026195,3
+B100_RG_038,reverse_genetic,recommendations_top5,Direct LLM,40.842173630655985,45.62675903875298,4
+B100_RG_038,reverse_genetic,recommendations_top5,PxFquery,0.1731976618315652,0.1775276033773543,5
+B100_RG_039,reverse_genetic,recommendations_top1,Direct LLM,26.997185537995236,26.997185537995236,1
+B100_RG_039,reverse_genetic,recommendations_top1,PxFquery,0.0649491231868369,0.0649491231868369,1
+B100_RG_039,reverse_genetic,recommendations_top10,Direct LLM,65.1006711409396,55.00469077000794,9
+B100_RG_039,reverse_genetic,recommendations_top10,PxFquery,1.0608356787183373,0.8248538644728296,10
+B100_RG_039,reverse_genetic,recommendations_top3,Direct LLM,26.997185537995236,39.80659594428808,3
+B100_RG_039,reverse_genetic,recommendations_top3,PxFquery,0.0865988309157826,0.0938154001587644,3
+B100_RG_039,reverse_genetic,recommendations_top5,Direct LLM,66.29140506603161,51.76012123836328,5
+B100_RG_039,reverse_genetic,recommendations_top5,PxFquery,0.1298982463736739,0.5888720502273219,5
+B100_RG_040,reverse_genetic,recommendations_top1,Direct LLM,19.89726953230603,19.89726953230603,1
+B100_RG_040,reverse_genetic,recommendations_top1,PxFquery,0.16220600162206,0.16220600162206,1
+B100_RG_040,reverse_genetic,recommendations_top10,Direct LLM,21.005677210056778,38.14882400648824,8
+B100_RG_040,reverse_genetic,recommendations_top10,PxFquery,0.2297918356312517,0.2297918356312516,10
+B100_RG_040,reverse_genetic,recommendations_top3,Direct LLM,19.89726953230603,23.898350905650176,3
+B100_RG_040,reverse_genetic,recommendations_top3,PxFquery,0.1351716680183833,0.1351716680183833,3
+B100_RG_040,reverse_genetic,recommendations_top5,Direct LLM,19.89726953230603,25.195998918626657,3
+B100_RG_040,reverse_genetic,recommendations_top5,PxFquery,0.16220600162206,0.2162746688294133,5
+B100_RG_041,reverse_genetic,recommendations_top1,Direct LLM,67.44852749543915,67.44852749543915,1
+B100_RG_041,reverse_genetic,recommendations_top1,PxFquery,0.0521240552514985,0.0521240552514985,1
+B100_RG_041,reverse_genetic,recommendations_top10,Direct LLM,43.31508991399531,49.312252048764954,9
+B100_RG_041,reverse_genetic,recommendations_top10,PxFquery,0.143341151941621,0.143341151941621,10
+B100_RG_041,reverse_genetic,recommendations_top3,Direct LLM,67.44852749543915,55.1038137433759,3
+B100_RG_041,reverse_genetic,recommendations_top3,PxFquery,0.0521240552514985,0.0521240552514985,3
+B100_RG_041,reverse_genetic,recommendations_top5,Direct LLM,55.38180870471723,52.156632786030755,4
+B100_RG_041,reverse_genetic,recommendations_top5,PxFquery,0.0781860828772478,0.0990357049778472,5
+B100_RG_042,reverse_genetic,recommendations_top1,Direct LLM,81.31352619233776,81.31352619233776,1
+B100_RG_042,reverse_genetic,recommendations_top1,PxFquery,1.6940317956737034,1.6940317956737034,1
+B100_RG_042,reverse_genetic,recommendations_top10,Direct LLM,48.227782121449046,54.50873077925462,10
+B100_RG_042,reverse_genetic,recommendations_top10,PxFquery,0.8209538702111024,0.8131352619233777,10
+B100_RG_042,reverse_genetic,recommendations_top3,Direct LLM,81.31352619233776,79.21118929719398,3
+B100_RG_042,reverse_genetic,recommendations_top3,PxFquery,0.3388063591347406,0.7471114586048128,3
+B100_RG_042,reverse_genetic,recommendations_top5,Direct LLM,81.31352619233776,78.20693249934845,5
+B100_RG_042,reverse_genetic,recommendations_top5,PxFquery,0.3388063591347406,0.656763096168882,5
+B100_RG_043,reverse_genetic,recommendations_top1,Direct LLM,10.966542750929367,10.966542750929367,1
+B100_RG_043,reverse_genetic,recommendations_top1,PxFquery,0.079660116834838,0.079660116834838,1
+B100_RG_043,reverse_genetic,recommendations_top10,Direct LLM,8.603292618162506,13.866171003717472,5
+B100_RG_043,reverse_genetic,recommendations_top10,PxFquery,0.1725969198088156,0.1911842804036111,10
+B100_RG_043,reverse_genetic,recommendations_top3,Direct LLM,10.966542750929367,17.71995043370508,3
+B100_RG_043,reverse_genetic,recommendations_top3,PxFquery,0.1062134891131173,0.115064613205877,3
+B100_RG_043,reverse_genetic,recommendations_top5,Direct LLM,9.26712692511949,15.181890600106213,4
+B100_RG_043,reverse_genetic,recommendations_top5,PxFquery,0.1062134891131173,0.1115241635687731,5
+B100_RG_044,reverse_genetic,recommendations_top1,PxFquery,0.16220600162206,0.16220600162206,1
+B100_RG_044,reverse_genetic,recommendations_top10,Direct LLM,75.30413625304136,63.530683968640176,10
+B100_RG_044,reverse_genetic,recommendations_top10,PxFquery,0.1486888348202216,0.1486888348202216,10
+B100_RG_044,reverse_genetic,recommendations_top3,PxFquery,0.16220600162206,0.1531945570875011,3
+B100_RG_044,reverse_genetic,recommendations_top5,PxFquery,0.1351716680183833,0.1405785347391186,5
+B100_RG_045,reverse_genetic,recommendations_top1,Direct LLM,80.94825719852783,80.94825719852783,1
+B100_RG_045,reverse_genetic,recommendations_top1,PxFquery,0.1515479541026196,0.1515479541026196,1
+B100_RG_045,reverse_genetic,recommendations_top10,Direct LLM,47.391210218662046,48.09843400447428,9
+B100_RG_045,reverse_genetic,recommendations_top10,PxFquery,0.2273219311539293,0.2273219311539294,10
+B100_RG_045,reverse_genetic,recommendations_top3,Direct LLM,80.94825719852783,71.00382478169878,3
+B100_RG_045,reverse_genetic,recommendations_top3,PxFquery,0.1515479541026196,0.1587645233456014,3
+B100_RG_045,reverse_genetic,recommendations_top5,Direct LLM,56.743883957566574,57.64451179909071,5
+B100_RG_045,reverse_genetic,recommendations_top5,PxFquery,0.1731976618315652,0.1731976618315652,5
+B100_RG_046,reverse_genetic,recommendations_top1,Direct LLM,38.897131552917905,38.897131552917905,1
+B100_RG_046,reverse_genetic,recommendations_top1,PxFquery,0.0247279920870425,0.0247279920870425,1
+B100_RG_046,reverse_genetic,recommendations_top10,Direct LLM,64.04549950544016,54.28893284976371,9
+B100_RG_046,reverse_genetic,recommendations_top10,PxFquery,0.234915924826904,0.234915924826904,10
+B100_RG_046,reverse_genetic,recommendations_top3,Direct LLM,64.91097922848665,66.40290141773822,3
+B100_RG_046,reverse_genetic,recommendations_top3,PxFquery,0.1483679525222551,0.1153972964061984,3
+B100_RG_046,reverse_genetic,recommendations_top5,PxFquery,0.1730959446092977,0.1533135509396636,5
+B100_RG_047,reverse_genetic,recommendations_top1,Direct LLM,72.28980805623141,72.28980805623141,1
+B100_RG_047,reverse_genetic,recommendations_top1,PxFquery,1.29764801297648,1.29764801297648,1
+B100_RG_047,reverse_genetic,recommendations_top10,Direct LLM,36.33414436334144,42.46793427653119,9
+B100_RG_047,reverse_genetic,recommendations_top10,PxFquery,0.5542038388753717,0.7948094079480941,10
+B100_RG_047,reverse_genetic,recommendations_top3,Direct LLM,36.33414436334144,37.27133459493556,3
+B100_RG_047,reverse_genetic,recommendations_top3,PxFquery,1.2165450121654502,1.0273046769397134,3
+B100_RG_047,reverse_genetic,recommendations_top5,Direct LLM,24.655312246553123,30.386590970532573,5
+B100_RG_047,reverse_genetic,recommendations_top5,PxFquery,0.5677210056772101,0.8272506082725061,5
+B100_RG_048,reverse_genetic,recommendations_top1,Direct LLM,78.00113250283125,78.00113250283125,1
+B100_RG_048,reverse_genetic,recommendations_top1,PxFquery,0.2831257078142695,0.2831257078142695,1
+B100_RG_048,reverse_genetic,recommendations_top10,Direct LLM,73.13137032842582,62.645101925254814,8
+B100_RG_048,reverse_genetic,recommendations_top10,PxFquery,0.2123442808607021,0.2123442808607021,10
+B100_RG_048,reverse_genetic,recommendations_top3,Direct LLM,73.66930917327294,54.681011702529254,3
+B100_RG_048,reverse_genetic,recommendations_top3,PxFquery,0.1132502831257078,0.1415628539071347,3
+B100_RG_048,reverse_genetic,recommendations_top5,Direct LLM,64.79331823329558,54.9900906002265,4
+B100_RG_048,reverse_genetic,recommendations_top5,PxFquery,0.1415628539071347,0.1868629671574178,5
+B100_RG_049,reverse_genetic,recommendations_top1,Direct LLM,81.01433882103026,81.01433882103026,1
+B100_RG_049,reverse_genetic,recommendations_top1,PxFquery,0.0265533722782793,0.0265533722782793,1
+B100_RG_049,reverse_genetic,recommendations_top10,Direct LLM,72.9952203929899,58.98979170354635,9
+B100_RG_049,reverse_genetic,recommendations_top10,PxFquery,0.1725969198088156,0.1646309081253318,10
+B100_RG_049,reverse_genetic,recommendations_top3,PxFquery,0.0531067445565586,0.0531067445565586,3
+B100_RG_049,reverse_genetic,recommendations_top5,PxFquery,0.079660116834838,0.1009028146574614,5
+B100_RG_050,reverse_genetic,recommendations_top1,PxFquery,0.5535055350553506,0.5535055350553506,1
+B100_RG_050,reverse_genetic,recommendations_top10,Direct LLM,88.74538745387454,88.74538745387454,1
+B100_RG_050,reverse_genetic,recommendations_top10,PxFquery,0.5996309963099631,0.5627306273062731,10
+B100_RG_050,reverse_genetic,recommendations_top3,PxFquery,0.5535055350553506,0.4305043050430504,3
+B100_RG_050,reverse_genetic,recommendations_top5,PxFquery,0.5535055350553506,0.4428044280442804,5
+B100_RG_051,reverse_genetic,recommendations_top1,PxFquery,0.1298982463736739,0.1298982463736739,1
+B100_RG_051,reverse_genetic,recommendations_top10,PxFquery,1.1690842173630658,1.1539294219528036,10
+B100_RG_051,reverse_genetic,recommendations_top3,PxFquery,0.2164970772894565,0.570108970195569,3
+B100_RG_051,reverse_genetic,recommendations_top5,Direct LLM,33.60034639532367,39.14808400086599,4
+B100_RG_051,reverse_genetic,recommendations_top5,PxFquery,0.9309374323446632,0.6408313487767915,5
+B100_RG_052,reverse_genetic,recommendations_top1,Direct LLM,41.675687378220395,41.675687378220395,1
+B100_RG_052,reverse_genetic,recommendations_top1,PxFquery,0.7144403550552068,0.7144403550552068,1
+B100_RG_052,reverse_genetic,recommendations_top10,Direct LLM,47.531933318900194,55.38265858410912,8
+B100_RG_052,reverse_genetic,recommendations_top10,PxFquery,0.7036155011907339,0.5910370210002165,10
+B100_RG_052,reverse_genetic,recommendations_top3,Direct LLM,73.47910803204157,75.88222558995453,3
+B100_RG_052,reverse_genetic,recommendations_top3,PxFquery,0.7144403550552068,0.6134083856534603,3
+B100_RG_052,reverse_genetic,recommendations_top5,Direct LLM,63.56354189218445,64.04416540376704,5
+B100_RG_052,reverse_genetic,recommendations_top5,PxFquery,0.757739770513098,0.6754708811431046,5
+B100_RG_053,reverse_genetic,recommendations_top1,Direct LLM,23.00629590766002,23.00629590766002,1
+B100_RG_053,reverse_genetic,recommendations_top1,PxFquery,0.1573976915005246,0.1573976915005246,1
+B100_RG_053,reverse_genetic,recommendations_top10,Direct LLM,47.12749213011543,51.74777019937041,8
+B100_RG_053,reverse_genetic,recommendations_top10,PxFquery,0.236096537250787,0.2833158447009444,10
+B100_RG_053,reverse_genetic,recommendations_top3,Direct LLM,23.00629590766002,21.913256383350824,3
+B100_RG_053,reverse_genetic,recommendations_top3,PxFquery,0.1836306400839454,0.3322840153899964,3
+B100_RG_053,reverse_genetic,recommendations_top5,Direct LLM,24.711437565582372,48.85099685204617,5
+B100_RG_053,reverse_genetic,recommendations_top5,PxFquery,0.2098635886673662,0.2990556138509968,5
+B100_RG_054,reverse_genetic,recommendations_top1,PxFquery,0.3030959082052392,0.3030959082052392,1
+B100_RG_054,reverse_genetic,recommendations_top10,PxFquery,0.248971638882875,0.2446416973370859,10
+B100_RG_054,reverse_genetic,recommendations_top3,PxFquery,0.2814462004762936,0.2742296312333117,3
+B100_RG_054,reverse_genetic,recommendations_top5,PxFquery,0.2597964927473479,0.2554665512015587,5
+B100_RG_055,reverse_genetic,recommendations_top1,Direct LLM,32.82955499580185,32.82955499580185,1
+B100_RG_055,reverse_genetic,recommendations_top1,PxFquery,0.0279876854184158,0.0279876854184158,1
+B100_RG_055,reverse_genetic,recommendations_top10,Direct LLM,50.895605933389305,57.756087321578505,8
+B100_RG_055,reverse_genetic,recommendations_top10,PxFquery,0.237895326056535,0.2211027148054855,10
+B100_RG_055,reverse_genetic,recommendations_top3,Direct LLM,62.8743352924713,62.8743352924713,2
+B100_RG_055,reverse_genetic,recommendations_top3,PxFquery,0.1679261125104953,0.1306091986192741,3
+B100_RG_055,reverse_genetic,recommendations_top5,Direct LLM,50.895605933389305,56.88497061293031,4
+B100_RG_055,reverse_genetic,recommendations_top5,PxFquery,0.1959137979289112,0.1735236495941785,5
+B100_RG_056,reverse_genetic,recommendations_top1,Direct LLM,22.03659506762132,22.03659506762132,1
+B100_RG_056,reverse_genetic,recommendations_top1,PxFquery,0.0265181649429859,0.0265181649429859,1
+B100_RG_056,reverse_genetic,recommendations_top10,Direct LLM,68.45664280031822,58.591885441527445,8
+B100_RG_056,reverse_genetic,recommendations_top10,PxFquery,0.1988862370723945,0.1935826040837973,10
+B100_RG_056,reverse_genetic,recommendations_top3,Direct LLM,53.04958896844338,53.04958896844338,2
+B100_RG_056,reverse_genetic,recommendations_top3,PxFquery,0.1060726597719437,0.0883938831432864,3
+B100_RG_056,reverse_genetic,recommendations_top5,Direct LLM,55.76770087509944,53.955626270662066,3
+B100_RG_056,reverse_genetic,recommendations_top5,PxFquery,0.1325908247149297,0.1219835587377353,5
+B100_RG_057,reverse_genetic,recommendations_top1,PxFquery,0.0283125707814269,0.0283125707814269,1
+B100_RG_057,reverse_genetic,recommendations_top10,Direct LLM,64.32616081540203,64.32616081540203,1
+B100_RG_057,reverse_genetic,recommendations_top10,PxFquery,0.240656851642129,0.2236693091732728,10
+B100_RG_057,reverse_genetic,recommendations_top3,PxFquery,0.1698754246885617,0.1321253303133257,3
+B100_RG_057,reverse_genetic,recommendations_top5,PxFquery,0.1981879954699886,0.175537938844847,5
+B100_RG_058,reverse_genetic,recommendations_top1,PxFquery,0.1327668613913967,0.1327668613913967,1
+B100_RG_058,reverse_genetic,recommendations_top10,Direct LLM,44.76898566117897,48.79919749808226,9
+B100_RG_058,reverse_genetic,recommendations_top10,PxFquery,0.1460435475305363,0.1460435475305363,10
+B100_RG_058,reverse_genetic,recommendations_top3,Direct LLM,44.76898566117897,41.41440963002301,3
+B100_RG_058,reverse_genetic,recommendations_top3,PxFquery,0.079660116834838,0.079660116834838,3
+B100_RG_058,reverse_genetic,recommendations_top5,Direct LLM,44.76898566117897,51.253319171534784,5
+B100_RG_058,reverse_genetic,recommendations_top5,PxFquery,0.079660116834838,0.0796601168348379,5
+B100_RG_059,reverse_genetic,recommendations_top1,Direct LLM,10.843714609286524,10.843714609286524,1
+B100_RG_059,reverse_genetic,recommendations_top1,PxFquery,0.0283125707814269,0.0283125707814269,1
+B100_RG_059,reverse_genetic,recommendations_top10,Direct LLM,26.203284258210644,35.73518308795772,6
+B100_RG_059,reverse_genetic,recommendations_top10,PxFquery,0.2123442808607021,0.2010192525481313,10
+B100_RG_059,reverse_genetic,recommendations_top3,Direct LLM,10.574745186862968,10.574745186862968,2
+B100_RG_059,reverse_genetic,recommendations_top3,PxFquery,0.0566251415628539,0.0849377123442808,3
+B100_RG_059,reverse_genetic,recommendations_top5,Direct LLM,10.843714609286524,15.524726311815778,3
+B100_RG_059,reverse_genetic,recommendations_top5,PxFquery,0.1415628539071347,0.1189127972819931,5
+B100_RG_060,reverse_genetic,recommendations_top1,Direct LLM,90.61256961018296,90.61256961018296,1
+B100_RG_060,reverse_genetic,recommendations_top1,PxFquery,0.0265181649429859,0.0265181649429859,1
+B100_RG_060,reverse_genetic,recommendations_top10,Direct LLM,43.66215857862636,48.0542296473084,8
+B100_RG_060,reverse_genetic,recommendations_top10,PxFquery,0.1988862370723945,0.182975338106603,10
+B100_RG_060,reverse_genetic,recommendations_top3,Direct LLM,46.91063378414213,46.91063378414213,2
+B100_RG_060,reverse_genetic,recommendations_top3,PxFquery,0.1591089896579156,0.123751436400601,3
+B100_RG_060,reverse_genetic,recommendations_top5,Direct LLM,46.91063378414213,47.60673561389552,4
+B100_RG_060,reverse_genetic,recommendations_top5,PxFquery,0.1591089896579156,0.1272871917263324,5
+B100_RG_061,reverse_genetic,recommendations_top1,PxFquery,0.0781860828772478,0.0781860828772478,1
+B100_RG_061,reverse_genetic,recommendations_top10,Direct LLM,59.34323690383111,59.10346624967423,10
+B100_RG_061,reverse_genetic,recommendations_top10,PxFquery,0.1954652071931196,0.17982799061767,10
+B100_RG_061,reverse_genetic,recommendations_top3,PxFquery,0.0521240552514985,0.0521240552514985,3
+B100_RG_061,reverse_genetic,recommendations_top5,PxFquery,0.0781860828772478,0.0990357049778472,5
+B100_RG_062,reverse_genetic,recommendations_top1,PxFquery,0.0265533722782793,0.0265533722782793,1
+B100_RG_062,reverse_genetic,recommendations_top10,Direct LLM,49.86723313860861,49.30076119667198,9
+B100_RG_062,reverse_genetic,recommendations_top10,PxFquery,0.2257036643653743,0.2124269782262347,10
+B100_RG_062,reverse_genetic,recommendations_top3,Direct LLM,37.86510886882634,43.83076650734643,3
+B100_RG_062,reverse_genetic,recommendations_top3,PxFquery,0.159320233669676,0.1239157372986368,3
+B100_RG_062,reverse_genetic,recommendations_top5,Direct LLM,33.35103558151885,40.082315454062666,4
+B100_RG_062,reverse_genetic,recommendations_top5,PxFquery,0.1858736059479553,0.1646309081253318,5
+B100_RG_063,reverse_genetic,recommendations_top1,PxFquery,0.3918275958578225,0.3918275958578225,1
+B100_RG_063,reverse_genetic,recommendations_top10,Direct LLM,52.86873775538763,52.35796249650154,4
+B100_RG_063,reverse_genetic,recommendations_top10,PxFquery,0.2099076406381191,0.237895326056535,10
+B100_RG_063,reverse_genetic,recommendations_top3,Direct LLM,34.648754547998884,34.648754547998884,1
+B100_RG_063,reverse_genetic,recommendations_top3,PxFquery,0.2239014833473271,0.2705476257113536,3
+B100_RG_063,reverse_genetic,recommendations_top5,PxFquery,0.2239014833473271,0.2686817800167925,5
+B100_RG_064,reverse_genetic,recommendations_top1,Direct LLM,2.597061909758657,2.597061909758657,1
+B100_RG_064,reverse_genetic,recommendations_top1,PxFquery,0.0786988457502623,0.0786988457502623,1
+B100_RG_064,reverse_genetic,recommendations_top10,Direct LLM,37.972193074501575,43.693599160545645,10
+B100_RG_064,reverse_genetic,recommendations_top10,PxFquery,0.1967471143756557,0.1967471143756558,10
+B100_RG_064,reverse_genetic,recommendations_top3,Direct LLM,6.977964323189926,34.33018537950333,3
+B100_RG_064,reverse_genetic,recommendations_top3,PxFquery,0.1049317943336831,0.1136761105281566,3
+B100_RG_064,reverse_genetic,recommendations_top5,Direct LLM,43.96642182581322,41.56348373557188,5
+B100_RG_064,reverse_genetic,recommendations_top5,PxFquery,0.1573976915005246,0.1469045120671563,5
+B100_RG_065,reverse_genetic,recommendations_top1,Direct LLM,67.64783876955714,67.64783876955714,1
+B100_RG_065,reverse_genetic,recommendations_top1,PxFquery,0.0265181649429859,0.0265181649429859,1
+B100_RG_065,reverse_genetic,recommendations_top10,Direct LLM,66.24237602757889,54.97745955979847,10
+B100_RG_065,reverse_genetic,recommendations_top10,PxFquery,0.1458499071864226,0.1458499071864226,10
+B100_RG_065,reverse_genetic,recommendations_top3,Direct LLM,67.64783876955714,67.71855387607177,3
+B100_RG_065,reverse_genetic,recommendations_top3,PxFquery,0.1591089896579156,0.123751436400601,3
+B100_RG_065,reverse_genetic,recommendations_top5,Direct LLM,64.83691328560063,53.47122779103686,5
+B100_RG_065,reverse_genetic,recommendations_top5,PxFquery,0.1591089896579156,0.1272871917263324,5
+B100_RG_066,reverse_genetic,recommendations_top1,Direct LLM,94.8471121177803,94.8471121177803,1
+B100_RG_066,reverse_genetic,recommendations_top1,PxFquery,0.0849377123442808,0.0849377123442808,1
+B100_RG_066,reverse_genetic,recommendations_top10,Direct LLM,46.574178935447335,47.47209189451546,7
+B100_RG_066,reverse_genetic,recommendations_top10,PxFquery,0.2123442808607021,0.2123442808607021,10
+B100_RG_066,reverse_genetic,recommendations_top3,Direct LLM,62.13193657984145,62.13193657984145,2
+B100_RG_066,reverse_genetic,recommendations_top3,PxFquery,0.1132502831257078,0.1226878067195167,3
+B100_RG_066,reverse_genetic,recommendations_top5,Direct LLM,29.416761041902603,46.4326160815402,3
+B100_RG_066,reverse_genetic,recommendations_top5,PxFquery,0.1698754246885617,0.1585503963759909,5
+B100_RG_067,reverse_genetic,recommendations_top1,PxFquery,0.092250922509225,0.092250922509225,1
+B100_RG_067,reverse_genetic,recommendations_top10,Direct LLM,65.59040590405904,65.59040590405904,1
+B100_RG_067,reverse_genetic,recommendations_top10,PxFquery,0.5996309963099631,0.5627306273062731,10
+B100_RG_067,reverse_genetic,recommendations_top3,PxFquery,0.1845018450184501,0.1845018450184501,3
+B100_RG_067,reverse_genetic,recommendations_top5,PxFquery,0.2767527675276753,0.2952029520295202,5
+B100_RG_068,reverse_genetic,recommendations_top1,Direct LLM,99.6309963099631,99.6309963099631,1
+B100_RG_068,reverse_genetic,recommendations_top1,PxFquery,0.092250922509225,0.092250922509225,1
+B100_RG_068,reverse_genetic,recommendations_top10,Direct LLM,78.73616236162361,78.73616236162361,2
+B100_RG_068,reverse_genetic,recommendations_top10,PxFquery,0.6918819188191883,0.6457564575645757,10
+B100_RG_068,reverse_genetic,recommendations_top3,Direct LLM,99.6309963099631,99.6309963099631,1
+B100_RG_068,reverse_genetic,recommendations_top3,PxFquery,0.1845018450184501,0.1845018450184501,3
+B100_RG_068,reverse_genetic,recommendations_top5,Direct LLM,99.6309963099631,99.6309963099631,1
+B100_RG_068,reverse_genetic,recommendations_top5,PxFquery,0.2767527675276753,0.3505535055350554,5
+B100_RG_069,reverse_genetic,recommendations_top1,PxFquery,0.0849377123442808,0.0849377123442808,1
+B100_RG_069,reverse_genetic,recommendations_top10,Direct LLM,52.05266138165345,51.17969044922612,6
+B100_RG_069,reverse_genetic,recommendations_top10,PxFquery,0.1557191392978482,0.1557191392978482,10
+B100_RG_069,reverse_genetic,recommendations_top3,Direct LLM,75.22650056625142,75.22650056625142,1
+B100_RG_069,reverse_genetic,recommendations_top3,PxFquery,0.0566251415628539,0.0566251415628538,3
+B100_RG_069,reverse_genetic,recommendations_top5,Direct LLM,48.78255945639864,53.24650811627029,3
+B100_RG_069,reverse_genetic,recommendations_top5,PxFquery,0.0849377123442808,0.0906002265005662,5
+B100_RG_070,reverse_genetic,recommendations_top1,Direct LLM,0.4979432777657501,0.4979432777657501,1
+B100_RG_070,reverse_genetic,recommendations_top1,PxFquery,0.3247456159341849,0.3247456159341849,1
+B100_RG_070,reverse_genetic,recommendations_top10,Direct LLM,61.74496644295302,56.45161290322581,10
+B100_RG_070,reverse_genetic,recommendations_top10,PxFquery,0.2706213466118207,0.2922710543407664,10
+B100_RG_070,reverse_genetic,recommendations_top3,Direct LLM,52.58714007360901,38.428231218878544,3
+B100_RG_070,reverse_genetic,recommendations_top3,PxFquery,0.3247456159341849,0.3391787544201486,3
+B100_RG_070,reverse_genetic,recommendations_top5,Direct LLM,52.58714007360901,41.515479541026195,5
+B100_RG_070,reverse_genetic,recommendations_top5,PxFquery,0.2814462004762936,0.3074258497510283,5
+B100_RG_071,reverse_genetic,recommendations_top1,PxFquery,0.092250922509225,0.092250922509225,1
+B100_RG_071,reverse_genetic,recommendations_top10,Direct LLM,26.24538745387454,31.82656826568266,4
+B100_RG_071,reverse_genetic,recommendations_top10,PxFquery,0.507380073800738,0.507380073800738,10
+B100_RG_071,reverse_genetic,recommendations_top3,PxFquery,0.3690036900369003,0.3382533825338252,3
+B100_RG_071,reverse_genetic,recommendations_top5,PxFquery,0.4612546125461255,0.4243542435424354,5
+B100_RG_072,reverse_genetic,recommendations_top1,Direct LLM,81.94106515274399,81.94106515274399,1
+B100_RG_072,reverse_genetic,recommendations_top1,PxFquery,0.0270343336036766,0.0270343336036766,1
+B100_RG_072,reverse_genetic,recommendations_top10,Direct LLM,40.497431738307654,46.20940022399877,7
+B100_RG_072,reverse_genetic,recommendations_top10,PxFquery,0.1486888348202216,0.1486888348202216,10
+B100_RG_072,reverse_genetic,recommendations_top3,Direct LLM,48.3779399837794,48.3779399837794,2
+B100_RG_072,reverse_genetic,recommendations_top3,PxFquery,0.1081373344147066,0.0991258898801477,3
+B100_RG_072,reverse_genetic,recommendations_top5,Direct LLM,23.195458231954586,35.786699107866994,4
+B100_RG_072,reverse_genetic,recommendations_top5,PxFquery,0.08110300081103,0.0865098675317653,5
+B100_RG_073,reverse_genetic,recommendations_top1,PxFquery,0.1325908247149297,0.1325908247149297,1
+B100_RG_073,reverse_genetic,recommendations_top10,Direct LLM,58.817289843542824,51.33916732962079,7
+B100_RG_073,reverse_genetic,recommendations_top10,PxFquery,0.2121453195438875,0.2227525855210819,10
+B100_RG_073,reverse_genetic,recommendations_top3,PxFquery,0.2916998143728454,0.2475028728012021,3
+B100_RG_073,reverse_genetic,recommendations_top5,Direct LLM,58.817289843542824,53.000972332714575,3
+B100_RG_073,reverse_genetic,recommendations_top5,PxFquery,0.2916998143728454,0.2651816494298594,5
+B100_RG_074,reverse_genetic,recommendations_top1,Direct LLM,14.92299522039299,14.92299522039299,1
+B100_RG_074,reverse_genetic,recommendations_top1,PxFquery,0.0531067445565586,0.0531067445565586,1
+B100_RG_074,reverse_genetic,recommendations_top10,Direct LLM,70.57886351566648,58.51983916243076,7
+B100_RG_074,reverse_genetic,recommendations_top10,PxFquery,0.2257036643653743,0.2150823154540626,10
+B100_RG_074,reverse_genetic,recommendations_top3,Direct LLM,42.75092936802974,42.75092936802974,2
+B100_RG_074,reverse_genetic,recommendations_top3,PxFquery,0.159320233669676,0.1327668613913966,3
+B100_RG_074,reverse_genetic,recommendations_top5,Direct LLM,42.75092936802974,45.3332448220924,4
+B100_RG_074,reverse_genetic,recommendations_top5,PxFquery,0.1858736059479553,0.1699415825809877,5
+B100_RG_075,reverse_genetic,recommendations_top1,PxFquery,0.0262329485834207,0.0262329485834207,1
+B100_RG_075,reverse_genetic,recommendations_top10,PxFquery,0.1442812172088142,0.1442812172088142,10
+B100_RG_075,reverse_genetic,recommendations_top3,PxFquery,0.0524658971668415,0.0524658971668415,3
+B100_RG_075,reverse_genetic,recommendations_top5,PxFquery,0.0786988457502623,0.0839454354669464,5
+B100_RG_076,reverse_genetic,recommendations_top1,PxFquery,0.092250922509225,0.092250922509225,1
+B100_RG_076,reverse_genetic,recommendations_top10,PxFquery,0.6918819188191883,0.6365313653136532,10
+B100_RG_076,reverse_genetic,recommendations_top3,PxFquery,0.1845018450184501,0.2767527675276752,3
+B100_RG_076,reverse_genetic,recommendations_top5,PxFquery,0.5535055350553506,0.4428044280442804,5
+B100_RG_077,reverse_genetic,recommendations_top1,PxFquery,0.2767527675276753,0.2767527675276753,1
+B100_RG_077,reverse_genetic,recommendations_top10,Direct LLM,51.01476014760148,51.01476014760148,1
+B100_RG_077,reverse_genetic,recommendations_top10,PxFquery,0.5996309963099631,0.5719557195571956,10
+B100_RG_077,reverse_genetic,recommendations_top3,PxFquery,0.1845018450184501,0.1845018450184501,3
+B100_RG_077,reverse_genetic,recommendations_top5,PxFquery,0.2767527675276753,0.3505535055350554,5
+B100_RG_078,reverse_genetic,recommendations_top1,PxFquery,0.1845018450184501,0.1845018450184501,1
+B100_RG_078,reverse_genetic,recommendations_top10,Direct LLM,12.177121771217712,12.177121771217712,1
+B100_RG_078,reverse_genetic,recommendations_top10,PxFquery,0.6918819188191883,0.6642066420664208,10
+B100_RG_078,reverse_genetic,recommendations_top3,PxFquery,0.5535055350553506,0.4612546125461255,3
+B100_RG_078,reverse_genetic,recommendations_top5,Direct LLM,12.177121771217712,12.177121771217712,1
+B100_RG_078,reverse_genetic,recommendations_top5,PxFquery,0.5535055350553506,0.4797047970479705,5
+B100_RG_079,reverse_genetic,recommendations_top1,PxFquery,2.121771217712177,2.121771217712177,1
+B100_RG_079,reverse_genetic,recommendations_top10,Direct LLM,54.981549815498155,54.981549815498155,1
+B100_RG_079,reverse_genetic,recommendations_top10,PxFquery,1.0608856088560883,1.0977859778597785,10
+B100_RG_079,reverse_genetic,recommendations_top3,PxFquery,1.6605166051660516,1.4760147601476017,3
+B100_RG_079,reverse_genetic,recommendations_top5,PxFquery,1.5682656826568266,1.4206642066420665,5
+B100_RG_080,reverse_genetic,recommendations_top1,Direct LLM,92.26013847675569,92.26013847675569,1
+B100_RG_080,reverse_genetic,recommendations_top1,PxFquery,0.1483679525222551,0.1483679525222551,1
+B100_RG_080,reverse_genetic,recommendations_top10,Direct LLM,65.0593471810089,51.23993217465028,7
+B100_RG_080,reverse_genetic,recommendations_top10,PxFquery,0.1607319485657763,0.1632047477744806,10
+B100_RG_080,reverse_genetic,recommendations_top3,Direct LLM,90.8753709198813,82.7316188592153,3
+B100_RG_080,reverse_genetic,recommendations_top3,PxFquery,0.049455984174085,0.0741839762611275,3
+B100_RG_080,reverse_genetic,recommendations_top5,Direct LLM,90.8753709198813,69.16913946587536,5
+B100_RG_080,reverse_genetic,recommendations_top5,PxFquery,0.1236399604352126,0.108803165182987,5
+B100_RG_081,reverse_genetic,recommendations_top1,Direct LLM,9.000989119683481,9.000989119683481,1
+B100_RG_081,reverse_genetic,recommendations_top1,PxFquery,0.4698318496538081,0.4698318496538081,1
+B100_RG_081,reverse_genetic,recommendations_top10,Direct LLM,33.35806132542037,40.77920650620947,9
+B100_RG_081,reverse_genetic,recommendations_top10,PxFquery,0.3956478733926805,0.4104846686449059,10
+B100_RG_081,reverse_genetic,recommendations_top3,PxFquery,0.4698318496538081,0.4451038575667655,3
+B100_RG_081,reverse_genetic,recommendations_top5,Direct LLM,14.83679525222552,36.30563798219585,5
+B100_RG_081,reverse_genetic,recommendations_top5,PxFquery,0.6923837784371909,0.5984174085064293,5
+B100_RG_082,reverse_genetic,recommendations_top1,PxFquery,0.0265181649429859,0.0265181649429859,1
+B100_RG_082,reverse_genetic,recommendations_top10,PxFquery,0.1458499071864226,0.1458499071864226,10
+B100_RG_082,reverse_genetic,recommendations_top3,PxFquery,0.0530363298859718,0.0795544948289577,3
+B100_RG_082,reverse_genetic,recommendations_top5,PxFquery,0.0795544948289578,0.1007690267833465,5
+B100_RG_083,reverse_genetic,recommendations_top1,Direct LLM,64.47158789166224,64.47158789166224,1
+B100_RG_083,reverse_genetic,recommendations_top1,PxFquery,0.0265533722782793,0.0265533722782793,1
+B100_RG_083,reverse_genetic,recommendations_top10,Direct LLM,58.56346255974509,55.03518321826872,8
+B100_RG_083,reverse_genetic,recommendations_top10,PxFquery,0.199150292087095,0.1832182687201274,10
+B100_RG_083,reverse_genetic,recommendations_top3,PxFquery,0.159320233669676,0.1239157372986368,3
+B100_RG_083,reverse_genetic,recommendations_top5,Direct LLM,52.655337227827935,52.198619224641526,5
+B100_RG_083,reverse_genetic,recommendations_top5,PxFquery,0.1858736059479553,0.1646309081253318,5
+B100_RG_084,reverse_genetic,recommendations_top1,PxFquery,0.0283125707814269,0.0283125707814269,1
+B100_RG_084,reverse_genetic,recommendations_top10,Direct LLM,36.268403171007925,47.7916194790487,7
+B100_RG_084,reverse_genetic,recommendations_top10,PxFquery,0.1840317100792751,0.1783691959229897,10
+B100_RG_084,reverse_genetic,recommendations_top3,Direct LLM,7.191392978482447,32.0403926009815,3
+B100_RG_084,reverse_genetic,recommendations_top3,PxFquery,0.0566251415628539,0.0660626651566628,3
+B100_RG_084,reverse_genetic,recommendations_top5,Direct LLM,16.647791619479047,30.55634201585504,4
+B100_RG_084,reverse_genetic,recommendations_top5,PxFquery,0.1132502831257078,0.101925254813137,5
+B100_RG_085,reverse_genetic,recommendations_top1,Direct LLM,1.6158457127964556,1.6158457127964556,1
+B100_RG_085,reverse_genetic,recommendations_top1,PxFquery,0.1303101381287464,0.1303101381287464,1
+B100_RG_085,reverse_genetic,recommendations_top10,Direct LLM,55.720615063851966,48.468855876987234,8
+B100_RG_085,reverse_genetic,recommendations_top10,PxFquery,0.143341151941621,0.143341151941621,10
+B100_RG_085,reverse_genetic,recommendations_top3,Direct LLM,68.28251237946313,56.5806619755017,3
+B100_RG_085,reverse_genetic,recommendations_top3,PxFquery,0.1042481105029971,0.0868734254191642,3
+B100_RG_085,reverse_genetic,recommendations_top5,Direct LLM,68.28251237946313,57.117539744592136,5
+B100_RG_085,reverse_genetic,recommendations_top5,PxFquery,0.1042481105029971,0.0990357049778472,5
+B100_RG_086,reverse_genetic,recommendations_top1,Direct LLM,91.6998143728454,91.6998143728454,1
+B100_RG_086,reverse_genetic,recommendations_top1,PxFquery,0.0530363298859718,0.0530363298859718,1
+B100_RG_086,reverse_genetic,recommendations_top10,Direct LLM,38.358525590029174,49.50941394855476,6
+B100_RG_086,reverse_genetic,recommendations_top10,PxFquery,0.1458499071864226,0.1458499071864226,10
+B100_RG_086,reverse_genetic,recommendations_top3,Direct LLM,82.85600636435959,82.85600636435959,2
+B100_RG_086,reverse_genetic,recommendations_top3,PxFquery,0.0530363298859718,0.0530363298859718,3
+B100_RG_086,reverse_genetic,recommendations_top5,Direct LLM,54.640678865022544,56.05940068947229,4
+B100_RG_086,reverse_genetic,recommendations_top5,PxFquery,0.0795544948289578,0.0848581278175549,5
+B100_RG_087,reverse_genetic,recommendations_top1,Direct LLM,95.51843012463536,95.51843012463536,1
+B100_RG_087,reverse_genetic,recommendations_top1,PxFquery,0.0265181649429859,0.0265181649429859,1
+B100_RG_087,reverse_genetic,recommendations_top10,Direct LLM,55.489260143198095,56.519048881817376,6
+B100_RG_087,reverse_genetic,recommendations_top10,PxFquery,0.1988862370723945,0.182975338106603,10
+B100_RG_087,reverse_genetic,recommendations_top3,Direct LLM,52.70485282418456,52.70485282418456,2
+B100_RG_087,reverse_genetic,recommendations_top3,PxFquery,0.0530363298859718,0.0530363298859718,3
+B100_RG_087,reverse_genetic,recommendations_top5,Direct LLM,27.552373375762397,40.12861309997348,4
+B100_RG_087,reverse_genetic,recommendations_top5,PxFquery,0.0795544948289578,0.1007690267833465,5
+B100_RG_088,reverse_genetic,recommendations_top1,Direct LLM,10.38118410381184,10.38118410381184,1
+B100_RG_088,reverse_genetic,recommendations_top1,PxFquery,0.0270343336036766,0.0270343336036766,1
+B100_RG_088,reverse_genetic,recommendations_top10,Direct LLM,52.473641524736415,56.58586404734012,9
+B100_RG_088,reverse_genetic,recommendations_top10,PxFquery,0.1757231684238983,0.1649094349824276,10
+B100_RG_088,reverse_genetic,recommendations_top3,Direct LLM,26.791024601243578,29.40434351626566,3
+B100_RG_088,reverse_genetic,recommendations_top3,PxFquery,0.0540686672073533,0.0630801117419121,3
+B100_RG_088,reverse_genetic,recommendations_top5,Direct LLM,26.791024601243578,44.03892944038929,5
+B100_RG_088,reverse_genetic,recommendations_top5,PxFquery,0.08110300081103,0.0865098675317653,5
+B100_RG_089,reverse_genetic,recommendations_top1,PxFquery,0.1042481105029971,0.1042481105029971,1
+B100_RG_089,reverse_genetic,recommendations_top10,Direct LLM,67.50065155069065,61.09590826166276,8
+B100_RG_089,reverse_genetic,recommendations_top10,PxFquery,0.4039614281991138,0.3883242116236643,10
+B100_RG_089,reverse_genetic,recommendations_top3,Direct LLM,22.63487099296325,22.63487099296325,2
+B100_RG_089,reverse_genetic,recommendations_top3,PxFquery,0.36486838676049,0.3474937016766571,3
+B100_RG_089,reverse_genetic,recommendations_top5,Direct LLM,40.94344540005213,44.78107896794371,4
+B100_RG_089,reverse_genetic,recommendations_top5,PxFquery,0.2866823038832421,0.2814698983580922,5
+B100_RG_090,reverse_genetic,recommendations_top1,Direct LLM,52.12177121771218,52.12177121771218,1
+B100_RG_090,reverse_genetic,recommendations_top1,PxFquery,0.4612546125461255,0.4612546125461255,1
+B100_RG_090,reverse_genetic,recommendations_top10,Direct LLM,9.178966789667896,9.178966789667896,2
+B100_RG_090,reverse_genetic,recommendations_top10,PxFquery,5.1660516605166045,10.6549815498155,10
+B100_RG_090,reverse_genetic,recommendations_top3,Direct LLM,52.12177121771218,52.12177121771218,1
+B100_RG_090,reverse_genetic,recommendations_top3,PxFquery,0.4612546125461255,0.4305043050430504,3
+B100_RG_090,reverse_genetic,recommendations_top5,Direct LLM,50.59963099630997,50.59963099630997,2
+B100_RG_090,reverse_genetic,recommendations_top5,PxFquery,0.4612546125461255,0.4243542435424354,5
+B100_RG_091,reverse_genetic,recommendations_top1,PxFquery,0.0265533722782793,0.0265533722782793,1
+B100_RG_091,reverse_genetic,recommendations_top10,Direct LLM,34.014869888475836,49.72561515312445,3
+B100_RG_091,reverse_genetic,recommendations_top10,PxFquery,0.1725969198088156,0.1619755708975039,10
+B100_RG_091,reverse_genetic,recommendations_top3,PxFquery,0.0531067445565586,0.0531067445565586,3
+B100_RG_091,reverse_genetic,recommendations_top5,PxFquery,0.079660116834838,0.0849707912904938,5
+B100_RG_092,reverse_genetic,recommendations_top1,Direct LLM,1.2165450121654502,1.2165450121654502,1
+B100_RG_092,reverse_genetic,recommendations_top1,PxFquery,0.0270343336036766,0.0270343336036766,1
+B100_RG_092,reverse_genetic,recommendations_top10,Direct LLM,26.96674776966748,42.06001622060016,10
+B100_RG_092,reverse_genetic,recommendations_top10,PxFquery,0.1486888348202216,0.1486888348202216,10
+B100_RG_092,reverse_genetic,recommendations_top3,Direct LLM,12.435793457691268,9.732360097323602,3
+B100_RG_092,reverse_genetic,recommendations_top3,PxFquery,0.0540686672073533,0.0540686672073532,3
+B100_RG_092,reverse_genetic,recommendations_top5,Direct LLM,15.544741822114084,30.537983238713167,5
+B100_RG_092,reverse_genetic,recommendations_top5,PxFquery,0.08110300081103,0.1027304676939713,5
+B100_RG_093,reverse_genetic,recommendations_top1,PxFquery,0.1845018450184501,0.1845018450184501,1
+B100_RG_093,reverse_genetic,recommendations_top10,PxFquery,0.6918819188191883,0.6642066420664208,10
+B100_RG_093,reverse_genetic,recommendations_top3,PxFquery,0.2767527675276753,0.2767527675276752,3
+B100_RG_093,reverse_genetic,recommendations_top5,PxFquery,0.3690036900369003,0.4059040590405904,5
+B100_RG_094,reverse_genetic,recommendations_top1,Direct LLM,97.05736894164194,97.05736894164194,1
+B100_RG_094,reverse_genetic,recommendations_top1,PxFquery,0.0741839762611275,0.0741839762611275,1
+B100_RG_094,reverse_genetic,recommendations_top10,Direct LLM,59.02571711177052,57.71204253214639,8
+B100_RG_094,reverse_genetic,recommendations_top10,PxFquery,0.1854599406528189,0.1706231454005934,10
+B100_RG_094,reverse_genetic,recommendations_top3,PxFquery,0.0741839762611275,0.0906693043191558,3
+B100_RG_094,reverse_genetic,recommendations_top5,PxFquery,0.0741839762611275,0.0939663699307615,5
+B100_RG_095,reverse_genetic,recommendations_top1,PxFquery,0.1062134891131173,0.1062134891131173,1
+B100_RG_095,reverse_genetic,recommendations_top10,Direct LLM,68.9458311205523,62.93945831120552,10
+B100_RG_095,reverse_genetic,recommendations_top10,PxFquery,0.1460435475305363,0.1460435475305363,10
+B100_RG_095,reverse_genetic,recommendations_top3,PxFquery,0.1062134891131173,0.115064613205877,3
+B100_RG_095,reverse_genetic,recommendations_top5,Direct LLM,71.90653212958046,70.52575677110993,5
+B100_RG_095,reverse_genetic,recommendations_top5,PxFquery,0.1062134891131173,0.116834838024429,5
+B100_RG_096,reverse_genetic,recommendations_top1,Direct LLM,88.74538745387454,88.74538745387454,1
+B100_RG_096,reverse_genetic,recommendations_top1,PxFquery,1.1070110701107012,1.1070110701107012,1
+B100_RG_096,reverse_genetic,recommendations_top10,Direct LLM,61.43911439114392,61.43911439114392,2
+B100_RG_096,reverse_genetic,recommendations_top10,PxFquery,2.35239852398524,1.955719557195572,10
+B100_RG_096,reverse_genetic,recommendations_top3,Direct LLM,88.74538745387454,88.74538745387454,1
+B100_RG_096,reverse_genetic,recommendations_top3,PxFquery,1.1070110701107012,1.2300123001230012,3
+B100_RG_096,reverse_genetic,recommendations_top5,Direct LLM,61.43911439114392,61.43911439114392,2
+B100_RG_096,reverse_genetic,recommendations_top5,PxFquery,1.1070110701107012,1.5498154981549814,5
+B100_RG_097,reverse_genetic,recommendations_top1,PxFquery,0.0283125707814269,0.0283125707814269,1
+B100_RG_097,reverse_genetic,recommendations_top10,Direct LLM,67.92185730464325,57.95583238958097,6
+B100_RG_097,reverse_genetic,recommendations_top10,PxFquery,0.240656851642129,0.2236693091732728,10
+B100_RG_097,reverse_genetic,recommendations_top3,Direct LLM,72.19705549263873,72.19705549263873,2
+B100_RG_097,reverse_genetic,recommendations_top3,PxFquery,0.1698754246885617,0.1321253303133257,3
+B100_RG_097,reverse_genetic,recommendations_top5,Direct LLM,77.29331823329558,77.4065685164213,3
+B100_RG_097,reverse_genetic,recommendations_top5,PxFquery,0.1698754246885617,0.1359003397508493,5
+B100_RG_098,reverse_genetic,recommendations_top1,Direct LLM,27.19203290755575,27.19203290755575,1
+B100_RG_098,reverse_genetic,recommendations_top1,PxFquery,0.5195929854946958,0.5195929854946958,1
+B100_RG_098,reverse_genetic,recommendations_top10,Direct LLM,37.88698852565491,40.795265930576605,9
+B100_RG_098,reverse_genetic,recommendations_top10,PxFquery,2.154145919030093,1.9246590171032696,10
+B100_RG_098,reverse_genetic,recommendations_top3,Direct LLM,32.99415457891318,38.594212311467125,3
+B100_RG_098,reverse_genetic,recommendations_top3,PxFquery,2.229919896081403,1.7464097568016168,3
+B100_RG_098,reverse_genetic,recommendations_top5,Direct LLM,27.19203290755575,33.82983329725049,5
+B100_RG_098,reverse_genetic,recommendations_top5,PxFquery,2.1866204806235117,1.8532149815977488,5
+B100_RG_099,reverse_genetic,recommendations_top1,PxFquery,0.1731976618315652,0.1731976618315652,1
+B100_RG_099,reverse_genetic,recommendations_top10,PxFquery,0.2273219311539293,0.2273219311539294,10
+B100_RG_099,reverse_genetic,recommendations_top3,PxFquery,0.1515479541026196,0.1515479541026195,3
+B100_RG_099,reverse_genetic,recommendations_top5,PxFquery,0.1731976618315652,0.1731976618315652,5
+B100_RG_100,reverse_genetic,recommendations_top1,Direct LLM,14.630908125331915,14.630908125331915,1
+B100_RG_100,reverse_genetic,recommendations_top1,PxFquery,0.2655337227827934,0.2655337227827934,1
+B100_RG_100,reverse_genetic,recommendations_top10,Direct LLM,19.76898566117897,24.28305894848646,8
+B100_RG_100,reverse_genetic,recommendations_top10,PxFquery,0.8231545406266596,0.8178438661710038,10
+B100_RG_100,reverse_genetic,recommendations_top3,PxFquery,0.5576208178438662,0.6107275624004248,3
+B100_RG_100,reverse_genetic,recommendations_top5,Direct LLM,19.76898566117897,17.83722782793415,4
+B100_RG_100,reverse_genetic,recommendations_top5,PxFquery,0.5576208178438662,0.7169410515135423,5
+B100_RG_REPL_010,reverse_genetic,recommendations_top1,PxFquery,0.5535055350553506,0.5535055350553506,1
+B100_RG_REPL_010,reverse_genetic,recommendations_top10,Direct LLM,41.09778597785978,41.09778597785978,2
+B100_RG_REPL_010,reverse_genetic,recommendations_top10,PxFquery,0.507380073800738,0.507380073800738,10
+B100_RG_REPL_010,reverse_genetic,recommendations_top3,PxFquery,0.4612546125461255,0.3690036900369003,3
+B100_RG_REPL_010,reverse_genetic,recommendations_top5,PxFquery,0.4612546125461255,0.4243542435424354,5
