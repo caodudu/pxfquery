@@ -215,6 +215,48 @@ excluded_from_git:
   size_mb: 42.02
 - path: 2_project_asset/1_raw_material/投稿文件.zip
   size_mb: 13.55
+- path: 3_execution/docx_render_qa/manuscript_20260715_t161_v1.pdf
+  size_mb: 4.08
+- path: 3_execution/docx_render_qa/page-1.png
+  size_mb: 0.45
+- path: 3_execution/docx_render_qa/page-10.png
+  size_mb: 0.67
+- path: 3_execution/docx_render_qa/page-11.png
+  size_mb: 0.65
+- path: 3_execution/docx_render_qa/page-12.png
+  size_mb: 0.56
+- path: 3_execution/docx_render_qa/page-13.png
+  size_mb: 0.59
+- path: 3_execution/docx_render_qa/page-14.png
+  size_mb: 0.52
+- path: 3_execution/docx_render_qa/page-15.png
+  size_mb: 0.47
+- path: 3_execution/docx_render_qa/page-16.png
+  size_mb: 0.5
+- path: 3_execution/docx_render_qa/page-17.png
+  size_mb: 0.31
+- path: 3_execution/docx_render_qa/page-18.png
+  size_mb: 0.66
+- path: 3_execution/docx_render_qa/page-19.png
+  size_mb: 0.62
+- path: 3_execution/docx_render_qa/page-2.png
+  size_mb: 0.58
+- path: 3_execution/docx_render_qa/page-20.png
+  size_mb: 0.06
+- path: 3_execution/docx_render_qa/page-3.png
+  size_mb: 0.1
+- path: 3_execution/docx_render_qa/page-4.png
+  size_mb: 0.46
+- path: 3_execution/docx_render_qa/page-5.png
+  size_mb: 0.49
+- path: 3_execution/docx_render_qa/page-6.png
+  size_mb: 0.48
+- path: 3_execution/docx_render_qa/page-7.png
+  size_mb: 0.5
+- path: 3_execution/docx_render_qa/page-8.png
+  size_mb: 0.57
+- path: 3_execution/docx_render_qa/page-9.png
+  size_mb: 0.48
 - path: 3_phase_digestion/.DS_Store
   size_mb: 0.01
 - path: 3_phase_digestion/G-001_legacy_asset_migration/.DS_Store
@@ -8528,6 +8570,8 @@ excluded_from_git:
   size_mb: 0.0
 - path: 5_phase_translation/.DS_Store
   size_mb: 0.01
+- path: 5_phase_translation/G-010_pending_g010/.DS_Store
+  size_mb: 0.01
 - path: 5_phase_translation/G-010_pending_g010/T-019_pending_t019/5_report/cli_sessions/check/20260623_034938_opencode_cli_859768c74307/stderr.log
   size_mb: 0.0
 - path: 5_phase_translation/G-010_pending_g010/T-019_pending_t019/5_report/cli_sessions/check/20260623_034938_opencode_cli_859768c74307/stdout.log
@@ -8614,6 +8658,10 @@ excluded_from_git:
   size_mb: 0.4
 - path: 5_phase_translation/G-010_pending_g010/T-169_pxfquery_website_optimization_dialogue/4_artifact/3_document/ui_preview/20260715_hf_online_header_default.png
   size_mb: 0.16
+- path: 5_phase_translation/G-010_pending_g010/T-171_pxfquery_github_repository_readme_dialogue/.DS_Store
+  size_mb: 0.01
+- path: 5_phase_translation/G-010_pending_g010/T-171_pxfquery_github_repository_readme_dialogue/3_execution/.DS_Store
+  size_mb: 0.01
 - path: 5_phase_translation/G-010_pending_g010/T-171_pxfquery_github_repository_readme_dialogue/3_execution/remote_github_audit/.pytest_cache/CACHEDIR.TAG
   size_mb: 0.0
 - path: 5_phase_translation/G-010_pending_g010/T-171_pxfquery_github_repository_readme_dialogue/3_execution/remote_github_audit/.pytest_cache/v/cache/lastfailed
@@ -8633,21 +8681,27 @@ excluded_from_git:
 - path: 5_phase_translation/G-011_paper_figure_planning/T-145_figure2_data_and_notebook_figure_workbench/3_execution/illustrators/.DS_Store
   size_mb: 0.01
 - path: 5_phase_translation/G-011_paper_figure_planning/T-145_figure2_data_and_notebook_figure_workbench/3_execution/illustrators/figure2_v1.ai
-  size_mb: 1.03
+  size_mb: 1.05
 - path: 5_phase_translation/G-011_paper_figure_planning/T-145_figure2_data_and_notebook_figure_workbench/3_execution/illustrators/figure2_v1.pdf
   size_mb: 0.72
 - path: 5_phase_translation/G-011_paper_figure_planning/T-145_figure2_data_and_notebook_figure_workbench/3_execution/illustrators/figure2_v1.png
   size_mb: 0.31
+- path: 5_phase_translation/G-011_paper_figure_planning/T-145_figure2_data_and_notebook_figure_workbench/3_execution/illustrators/figure2_v1.tif
+  size_mb: 9.21
 - path: 5_phase_translation/G-011_paper_figure_planning/T-145_figure2_data_and_notebook_figure_workbench/3_execution/illustrators/s1_v1.ai
   size_mb: 0.5
 - path: 5_phase_translation/G-011_paper_figure_planning/T-145_figure2_data_and_notebook_figure_workbench/3_execution/illustrators/s1_v1.pdf
   size_mb: 0.48
 - path: 5_phase_translation/G-011_paper_figure_planning/T-145_figure2_data_and_notebook_figure_workbench/3_execution/illustrators/s1_v1.png
   size_mb: 0.09
+- path: 5_phase_translation/G-011_paper_figure_planning/T-145_figure2_data_and_notebook_figure_workbench/3_execution/illustrators/s1_v1.tif
+  size_mb: 6.58
 - path: 5_phase_translation/G-011_paper_figure_planning/T-145_figure2_data_and_notebook_figure_workbench/3_execution/illustrators/s2_v2.ai
   size_mb: 0.37
 - path: 5_phase_translation/G-011_paper_figure_planning/T-145_figure2_data_and_notebook_figure_workbench/3_execution/illustrators/s2_v2.png
   size_mb: 0.03
+- path: 5_phase_translation/G-011_paper_figure_planning/T-145_figure2_data_and_notebook_figure_workbench/3_execution/illustrators/s2_v2.tif
+  size_mb: 4.06
 - path: 5_phase_translation/G-011_paper_figure_planning/T-145_figure2_data_and_notebook_figure_workbench/3_execution/illustrators/s3_v1.ai
   size_mb: 0.85
 - path: 5_phase_translation/G-011_paper_figure_planning/T-145_figure2_data_and_notebook_figure_workbench/3_execution/server_scripts/fig2d_cellline_signature_similarity/09_plot_lung_cancer_strength.sbatch
@@ -8979,11 +9033,13 @@ excluded_from_git:
 - path: 5_phase_translation/G-011_paper_figure_planning/T-146_figure1_concept_notebook_pdf_workbench/3_execution/figure1_illustrator/figure1_v2.ai
   size_mb: 0.44
 - path: 5_phase_translation/G-011_paper_figure_planning/T-146_figure1_concept_notebook_pdf_workbench/3_execution/figure1_illustrator/figure1_v3.ai
-  size_mb: 0.43
+  size_mb: 0.42
 - path: 5_phase_translation/G-011_paper_figure_planning/T-146_figure1_concept_notebook_pdf_workbench/3_execution/figure1_illustrator/figure1_v3.pdf
   size_mb: 0.42
 - path: 5_phase_translation/G-011_paper_figure_planning/T-146_figure1_concept_notebook_pdf_workbench/3_execution/figure1_illustrator/figure1_v3.png
   size_mb: 0.11
+- path: 5_phase_translation/G-011_paper_figure_planning/T-146_figure1_concept_notebook_pdf_workbench/3_execution/figure1_illustrator/figure1_v3.tif
+  size_mb: 5.9
 - path: 5_phase_translation/G-011_paper_figure_planning/T-147_figure4_forward_genetic_query_notebook_figure_wo/.DS_Store
   size_mb: 0.01
 - path: 5_phase_translation/G-011_paper_figure_planning/T-147_figure4_forward_genetic_query_notebook_figure_wo/3_execution/.DS_Store
@@ -10792,6 +10848,8 @@ excluded_from_git:
   size_mb: 0.49
 - path: 5_phase_translation/G-011_paper_figure_planning/T-148_pxfquery_new_figure3_concept_and_notebook_workbe/3_execution/illustrators/f3_v1.png
   size_mb: 0.13
+- path: 5_phase_translation/G-011_paper_figure_planning/T-148_pxfquery_new_figure3_concept_and_notebook_workbe/3_execution/illustrators/f3_v1.tif
+  size_mb: 7.24
 - path: 5_phase_translation/G-011_paper_figure_planning/T-148_pxfquery_new_figure3_concept_and_notebook_workbe/4_artifact/.DS_Store
   size_mb: 0.01
 - path: 5_phase_translation/G-011_paper_figure_planning/T-148_pxfquery_new_figure3_concept_and_notebook_workbe/4_artifact/4_picture/figure3_composite_draft.pdf
@@ -19780,8 +19838,18 @@ excluded_from_git:
   size_mb: 0.48
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-168_pxfquery_manuscript_terminology_abbreviations/4_artifact/3_document/PxFquery_abbreviations_for_copy.docx
   size_mb: 0.04
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-170_pxfquery_cover_letter_discussion/1_asset/cover_letter_GENES_v1.docx
+  size_mb: 0.08
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-170_pxfquery_cover_letter_discussion/1_asset/manuscript_20260715_t161_v1.docx
   size_mb: 2.38
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-170_pxfquery_cover_letter_discussion/1_asset/t161_manuscript_docx_v1.docx
+  size_mb: 2.38
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-170_pxfquery_cover_letter_discussion/3_execution/04_wjy_cover_letter_analysis/rendered/cover_letter_GENES_v1.pdf
+  size_mb: 0.11
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-170_pxfquery_cover_letter_discussion/3_execution/04_wjy_cover_letter_analysis/rendered/page-1.png
+  size_mb: 0.43
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-170_pxfquery_cover_letter_discussion/3_execution/04_wjy_cover_letter_analysis/rendered/page-2.png
+  size_mb: 0.18
 - path: 5_phase_translation/G-033_ms6_manuscript_foundation/T-091_ms6_package_capability_narrative/1_asset/ms6_evidence_claim_mapping.csv
   size_mb: 0.0
 - path: 5_phase_translation/G-033_ms6_manuscript_foundation/T-091_ms6_package_capability_narrative/5_report/cli_sessions/check/20260627_070654_opencode_cli_b49e7b862596/stderr.log
