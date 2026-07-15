@@ -2264,7 +2264,10 @@ tasks:
   phase: translation
   goal: G-010_pending_g010
   path: 5_phase_translation/G-010_pending_g010/T-171_pxfquery_github_repository_readme_dialogue
-  status: pending
+  status: active
   executor: human
   created: '2026-07-15'
   completed: null
+  notes: Direct-conversation task. The user will provide materials and instructions
+    incrementally. Scope is limited to the current user-authorized intermediate asset;
+    no repository or README change is authorized at setup.
