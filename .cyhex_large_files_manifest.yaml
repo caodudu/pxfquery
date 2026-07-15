@@ -19780,6 +19780,8 @@ excluded_from_git:
   size_mb: 0.48
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-168_pxfquery_manuscript_terminology_abbreviations/4_artifact/3_document/PxFquery_abbreviations_for_copy.docx
   size_mb: 0.04
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-170_pxfquery_cover_letter_discussion/1_asset/manuscript_20260715_t161_v1.docx
+  size_mb: 2.38
 - path: 5_phase_translation/G-033_ms6_manuscript_foundation/T-091_ms6_package_capability_narrative/1_asset/ms6_evidence_claim_mapping.csv
   size_mb: 0.0
 - path: 5_phase_translation/G-033_ms6_manuscript_foundation/T-091_ms6_package_capability_narrative/5_report/cli_sessions/check/20260627_070654_opencode_cli_b49e7b862596/stderr.log
