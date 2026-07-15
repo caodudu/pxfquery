@@ -8528,6 +8528,8 @@ excluded_from_git:
   size_mb: 0.17
 - path: 5_phase_translation/G-010_pending_g010/T-142_pxfquery_web_l5_query_server_mvp/1_asset/.env
   size_mb: 0.0
+- path: 5_phase_translation/G-010_pending_g010/T-142_pxfquery_web_l5_query_server_mvp/1_asset/.hf.env
+  size_mb: 0.0
 - path: 5_phase_translation/G-010_pending_g010/T-142_pxfquery_web_l5_query_server_mvp/3_execution/hf_space_pxfquery_web/assets/fig1_query_forward.png
   size_mb: 0.07
 - path: 5_phase_translation/G-010_pending_g010/T-142_pxfquery_web_l5_query_server_mvp/3_execution/hf_space_pxfquery_web/assets/fig1_query_modes.png
@@ -8546,6 +8548,48 @@ excluded_from_git:
   size_mb: 0.08
 - path: 5_phase_translation/G-010_pending_g010/T-142_pxfquery_web_l5_query_server_mvp/3_execution/pxfquery_web_base_v5_l5/web_space/assets/fig1_workflow.png
   size_mb: 0.05
+- path: 5_phase_translation/G-010_pending_g010/T-169_pxfquery_website_optimization_dialogue/3_execution/.env
+  size_mb: 0.0
+- path: 5_phase_translation/G-010_pending_g010/T-169_pxfquery_website_optimization_dialogue/3_execution/01_t144_package_source_v0_5_29/.pytest_cache/CACHEDIR.TAG
+  size_mb: 0.0
+- path: 5_phase_translation/G-010_pending_g010/T-169_pxfquery_website_optimization_dialogue/3_execution/01_t144_package_source_v0_5_29/.pytest_cache/v/cache/lastfailed
+  size_mb: 0.0
+- path: 5_phase_translation/G-010_pending_g010/T-169_pxfquery_website_optimization_dialogue/3_execution/01_t144_package_source_v0_5_29/.pytest_cache/v/cache/nodeids
+  size_mb: 0.01
+- path: 5_phase_translation/G-010_pending_g010/T-169_pxfquery_website_optimization_dialogue/3_execution/01_t144_package_source_v0_5_29/src/pxfquery.egg-info/PKG-INFO
+  size_mb: 0.0
+- path: 5_phase_translation/G-010_pending_g010/T-169_pxfquery_website_optimization_dialogue/3_execution/02_t142_hf_space_candidate/assets/fig1_query_forward.png
+  size_mb: 0.07
+- path: 5_phase_translation/G-010_pending_g010/T-169_pxfquery_website_optimization_dialogue/3_execution/02_t142_hf_space_candidate/assets/fig1_query_modes.png
+  size_mb: 0.15
+- path: 5_phase_translation/G-010_pending_g010/T-169_pxfquery_website_optimization_dialogue/3_execution/02_t142_hf_space_candidate/assets/fig1_query_reverse.png
+  size_mb: 0.08
+- path: 5_phase_translation/G-010_pending_g010/T-169_pxfquery_website_optimization_dialogue/3_execution/02_t142_hf_space_candidate/assets/fig1_workflow.png
+  size_mb: 0.05
+- path: 5_phase_translation/G-010_pending_g010/T-169_pxfquery_website_optimization_dialogue/4_artifact/3_document/ui_preview/20260714_action_icons_local.png
+  size_mb: 0.11
+- path: 5_phase_translation/G-010_pending_g010/T-169_pxfquery_website_optimization_dialogue/4_artifact/3_document/ui_preview/20260714_browser_clicked_reverse_real.png
+  size_mb: 0.17
+- path: 5_phase_translation/G-010_pending_g010/T-169_pxfquery_website_optimization_dialogue/4_artifact/3_document/ui_preview/20260714_browser_real_reverse_complete.png
+  size_mb: 0.17
+- path: 5_phase_translation/G-010_pending_g010/T-169_pxfquery_website_optimization_dialogue/4_artifact/3_document/ui_preview/20260714_browser_real_reverse_completed.png
+  size_mb: 0.4
+- path: 5_phase_translation/G-010_pending_g010/T-169_pxfquery_website_optimization_dialogue/4_artifact/3_document/ui_preview/20260714_completed_layout_preview.png
+  size_mb: 0.11
+- path: 5_phase_translation/G-010_pending_g010/T-169_pxfquery_website_optimization_dialogue/4_artifact/3_document/ui_preview/20260714_example_dialog_local.png
+  size_mb: 0.14
+- path: 5_phase_translation/G-010_pending_g010/T-169_pxfquery_website_optimization_dialogue/4_artifact/3_document/ui_preview/20260714_example_entry_local.png
+  size_mb: 0.13
+- path: 5_phase_translation/G-010_pending_g010/T-169_pxfquery_website_optimization_dialogue/4_artifact/3_document/ui_preview/20260714_real_query_completed_layout.png
+  size_mb: 0.25
+- path: 5_phase_translation/G-010_pending_g010/T-169_pxfquery_website_optimization_dialogue/4_artifact/3_document/ui_preview/20260715_browser_real_forward_all_plots_lower.png
+  size_mb: 0.4
+- path: 5_phase_translation/G-010_pending_g010/T-169_pxfquery_website_optimization_dialogue/4_artifact/3_document/ui_preview/20260715_browser_real_forward_all_plots_lower_heatmap.png
+  size_mb: 0.4
+- path: 5_phase_translation/G-010_pending_g010/T-169_pxfquery_website_optimization_dialogue/4_artifact/3_document/ui_preview/20260715_browser_real_forward_completed.png
+  size_mb: 0.4
+- path: 5_phase_translation/G-010_pending_g010/T-169_pxfquery_website_optimization_dialogue/4_artifact/3_document/ui_preview/20260715_browser_real_forward_spaced.png
+  size_mb: 0.41
 - path: 5_phase_translation/G-011_paper_figure_planning/.DS_Store
   size_mb: 0.03
 - path: 5_phase_translation/G-011_paper_figure_planning/T-145_figure2_data_and_notebook_figure_workbench/.DS_Store
@@ -19512,6 +19556,8 @@ excluded_from_git:
   size_mb: 0.01
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-166_pxfquery_manuscript_back_matter_discussion/3_execution/.DS_Store
   size_mb: 0.01
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-168_pxfquery_manuscript_terminology_abbreviations/1_asset/manuscript_20260714_t161_v2.docx
+  size_mb: 2.38
 - path: 5_phase_translation/G-033_ms6_manuscript_foundation/T-091_ms6_package_capability_narrative/1_asset/ms6_evidence_claim_mapping.csv
   size_mb: 0.0
 - path: 5_phase_translation/G-033_ms6_manuscript_foundation/T-091_ms6_package_capability_narrative/5_report/cli_sessions/check/20260627_070654_opencode_cli_b49e7b862596/stderr.log
