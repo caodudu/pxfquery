@@ -181,12 +181,28 @@ excluded_from_git:
   size_mb: 332.8
 - path: 2_project_asset/1_raw_material/legacy_flat_asset_library_v20260614/results/gsea_tables/M-0238_xpr_gsea_100terms.csv
   size_mb: 232.99
-- path: 2_project_asset/1_raw_material/wxy投稿文件/.~Supplementary table 0611.xlsx
-  size_mb: 0.0
+- path: 2_project_asset/1_raw_material/wxy投稿文件/.DS_Store
+  size_mb: 0.01
 - path: 2_project_asset/1_raw_material/wxy投稿文件/.~nuscript_v8.docx
   size_mb: 0.0
 - path: 2_project_asset/1_raw_material/wxy投稿文件/Figures.zip
   size_mb: 7.27
+- path: 2_project_asset/1_raw_material/wxy投稿文件/Figures/Figure_1.tif
+  size_mb: 4.48
+- path: 2_project_asset/1_raw_material/wxy投稿文件/Figures/Figure_2.tif
+  size_mb: 15.84
+- path: 2_project_asset/1_raw_material/wxy投稿文件/Figures/Figure_3.tif
+  size_mb: 6.6
+- path: 2_project_asset/1_raw_material/wxy投稿文件/Figures/Figure_4.tif
+  size_mb: 14.92
+- path: 2_project_asset/1_raw_material/wxy投稿文件/Figures/Figure_S1.tif
+  size_mb: 11.45
+- path: 2_project_asset/1_raw_material/wxy投稿文件/Figures/Figure_S2.tif
+  size_mb: 5.88
+- path: 2_project_asset/1_raw_material/wxy投稿文件/Figures/Figure_S3.tif
+  size_mb: 5.83
+- path: 2_project_asset/1_raw_material/wxy投稿文件/Figures/Figure_S4.tif
+  size_mb: 6.06
 - path: 2_project_asset/1_raw_material/wxy投稿文件/Supplementary Figure.docx
   size_mb: 0.79
 - path: 2_project_asset/1_raw_material/wxy投稿文件/Supplementary table 0611.xlsx
@@ -8598,6 +8614,16 @@ excluded_from_git:
   size_mb: 0.4
 - path: 5_phase_translation/G-010_pending_g010/T-169_pxfquery_website_optimization_dialogue/4_artifact/3_document/ui_preview/20260715_hf_online_header_default.png
   size_mb: 0.16
+- path: 5_phase_translation/G-010_pending_g010/T-171_pxfquery_github_repository_readme_dialogue/3_execution/remote_github_audit/.pytest_cache/CACHEDIR.TAG
+  size_mb: 0.0
+- path: 5_phase_translation/G-010_pending_g010/T-171_pxfquery_github_repository_readme_dialogue/3_execution/remote_github_audit/.pytest_cache/v/cache/lastfailed
+  size_mb: 0.0
+- path: 5_phase_translation/G-010_pending_g010/T-171_pxfquery_github_repository_readme_dialogue/3_execution/remote_github_audit/.pytest_cache/v/cache/nodeids
+  size_mb: 0.01
+- path: 5_phase_translation/G-010_pending_g010/T-171_pxfquery_github_repository_readme_dialogue/3_execution/remote_github_audit/LICENSE
+  size_mb: 0.0
+- path: 5_phase_translation/G-010_pending_g010/T-171_pxfquery_github_repository_readme_dialogue/3_execution/remote_github_audit/docs/pxfquery_core_idea.png
+  size_mb: 0.22
 - path: 5_phase_translation/G-011_paper_figure_planning/.DS_Store
   size_mb: 0.03
 - path: 5_phase_translation/G-011_paper_figure_planning/T-145_figure2_data_and_notebook_figure_workbench/.DS_Store
@@ -19480,8 +19506,20 @@ excluded_from_git:
   size_mb: 0.02
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-160_pxfquery_supplementary_tables_materials/3_execution/01_build_tables/build_table_s4_standalone.mjs
   size_mb: 0.01
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-160_pxfquery_supplementary_tables_materials/3_execution/01_build_tables/build_table_s5_standalone.mjs
+  size_mb: 0.01
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-160_pxfquery_supplementary_tables_materials/3_execution/01_build_tables/ordered_table_previews/Table_S1.png
+  size_mb: 0.06
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-160_pxfquery_supplementary_tables_materials/3_execution/01_build_tables/ordered_table_previews/Table_S2.png
+  size_mb: 6.73
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-160_pxfquery_supplementary_tables_materials/3_execution/01_build_tables/ordered_table_previews/Table_S3.png
+  size_mb: 0.28
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-160_pxfquery_supplementary_tables_materials/3_execution/01_build_tables/ordered_table_previews/Table_S4.png
+  size_mb: 0.8
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-160_pxfquery_supplementary_tables_materials/3_execution/01_build_tables/table_s4_preview.png
-  size_mb: 1.37
+  size_mb: 1.39
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-160_pxfquery_supplementary_tables_materials/3_execution/01_build_tables/table_s5_preview.png
+  size_mb: 0.8
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-160_pxfquery_supplementary_tables_materials/3_execution/02_appendix_figures_from_t161/.DS_Store
   size_mb: 0.01
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-160_pxfquery_supplementary_tables_materials/3_execution/02_appendix_figures_from_t161/Figure_S1_coverage_density.png
@@ -19496,6 +19534,8 @@ excluded_from_git:
   size_mb: 0.29
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-160_pxfquery_supplementary_tables_materials/3_execution/02_appendix_figures_from_t161/render_qa_v1/page-1.png
   size_mb: 0.39
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-160_pxfquery_supplementary_tables_materials/4_artifact/.DS_Store
+  size_mb: 0.01
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-160_pxfquery_supplementary_tables_materials/4_artifact/1_tmp/t160_preview/Prompt_Appendix_readable_preview.png
   size_mb: 1.04
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-160_pxfquery_supplementary_tables_materials/4_artifact/1_tmp/t160_preview/Table_S1.png
@@ -19510,14 +19550,14 @@ excluded_from_git:
   size_mb: 0.0
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-160_pxfquery_supplementary_tables_materials/4_artifact/5_table/.~pxfquery_t160_supplementary_tables_v20260707.xlsx
   size_mb: 0.0
-- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-160_pxfquery_supplementary_tables_materials/4_artifact/5_table/.~table_s4_v20260715.xlsx
-  size_mb: 0.0
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-160_pxfquery_supplementary_tables_materials/4_artifact/5_table/pxfquery_internal_prompts_preview_v20260710.csv
   size_mb: 0.03
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-160_pxfquery_supplementary_tables_materials/4_artifact/5_table/pxfquery_internal_prompts_readable_preview_v20260710.xlsx
   size_mb: 0.01
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-160_pxfquery_supplementary_tables_materials/4_artifact/5_table/pxfquery_internal_prompts_readable_preview_v20260710.xlsx.inspect.ndjson
   size_mb: 0.0
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-160_pxfquery_supplementary_tables_materials/4_artifact/5_table/pxfquery_supplementary_tables_ordered_v20260715.xlsx
+  size_mb: 0.1
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-160_pxfquery_supplementary_tables_materials/4_artifact/5_table/pxfquery_t160_supplementary_tables_v20260707.xlsx
   size_mb: 0.05
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-160_pxfquery_supplementary_tables_materials/4_artifact/5_table/pxfquery_t160_supplementary_tables_v20260707.xlsx.inspect.ndjson
@@ -19532,6 +19572,10 @@ excluded_from_git:
   size_mb: 0.05
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-160_pxfquery_supplementary_tables_materials/4_artifact/5_table/table_s4_v20260715.xlsx.inspect.ndjson
   size_mb: 0.7
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-160_pxfquery_supplementary_tables_materials/4_artifact/5_table/table_s5_v20260715.xlsx
+  size_mb: 0.01
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-160_pxfquery_supplementary_tables_materials/4_artifact/5_table/table_s5_v20260715.xlsx.inspect.ndjson
+  size_mb: 0.05
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-160_pxfquery_supplementary_tables_materials/4_artifact/6_archive/misplaced_legacy_path_20260712/Prompt_Appendix_readable_preview.png
   size_mb: 1.04
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-160_pxfquery_supplementary_tables_materials/4_artifact/6_archive/misplaced_legacy_path_20260712/pxfquery_internal_prompts_preview_v20260710.csv
@@ -19546,7 +19590,7 @@ excluded_from_git:
   size_mb: 0.01
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-161_pxfquery_manuscript_discussion_docx_assembly/3_execution/02_word_base/.~nuscript_20260710_t161_v1.docx
   size_mb: 0.0
-- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-161_pxfquery_manuscript_discussion_docx_assembly/3_execution/02_word_base/.~nuscript_20260714_t161_v2.docx
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-161_pxfquery_manuscript_discussion_docx_assembly/3_execution/02_word_base/.~nuscript_20260715_t161_v1.docx
   size_mb: 0.0
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-161_pxfquery_manuscript_discussion_docx_assembly/3_execution/02_word_base/manuscript_20260710_t161_v1.docx
   size_mb: 0.16
@@ -19555,6 +19599,8 @@ excluded_from_git:
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-161_pxfquery_manuscript_discussion_docx_assembly/3_execution/02_word_base/manuscript_20260714_t161_v1.docx
   size_mb: 2.38
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-161_pxfquery_manuscript_discussion_docx_assembly/3_execution/02_word_base/manuscript_20260714_t161_v2.docx
+  size_mb: 2.38
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-161_pxfquery_manuscript_discussion_docx_assembly/3_execution/02_word_base/manuscript_20260715_t161_v1.docx
   size_mb: 2.38
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-161_pxfquery_manuscript_discussion_docx_assembly/3_execution/1_material/figure01_main.png
   size_mb: 0.11
@@ -19581,6 +19627,9 @@ excluded_from_git:
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-161_pxfquery_manuscript_discussion_docx_assembly/3_execution/supplementary/Supplementary
     Figure_20260715_v1.docx
   size_mb: 0.14
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-161_pxfquery_manuscript_discussion_docx_assembly/3_execution/supplementary/Supplementary
+    table.xlsx
+  size_mb: 0.1
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-162_pxfquery_manuscript_figure_captions/4_artifact/.DS_Store
   size_mb: 0.01
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-163_pxfquery_manuscript_discussion_draft/.DS_Store
@@ -19603,6 +19652,48 @@ excluded_from_git:
   size_mb: 2.38
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-168_pxfquery_manuscript_terminology_abbreviations/1_asset/manuscript_20260714_t161_v2.docx
   size_mb: 2.38
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-168_pxfquery_manuscript_terminology_abbreviations/3_execution/abbr_complete_rendered/page-1.png
+  size_mb: 0.45
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-168_pxfquery_manuscript_terminology_abbreviations/3_execution/abbr_complete_rendered/page-10.png
+  size_mb: 0.67
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-168_pxfquery_manuscript_terminology_abbreviations/3_execution/abbr_complete_rendered/page-11.png
+  size_mb: 0.65
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-168_pxfquery_manuscript_terminology_abbreviations/3_execution/abbr_complete_rendered/page-12.png
+  size_mb: 0.56
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-168_pxfquery_manuscript_terminology_abbreviations/3_execution/abbr_complete_rendered/page-13.png
+  size_mb: 0.59
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-168_pxfquery_manuscript_terminology_abbreviations/3_execution/abbr_complete_rendered/page-14.png
+  size_mb: 0.52
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-168_pxfquery_manuscript_terminology_abbreviations/3_execution/abbr_complete_rendered/page-15.png
+  size_mb: 0.47
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-168_pxfquery_manuscript_terminology_abbreviations/3_execution/abbr_complete_rendered/page-16.png
+  size_mb: 0.5
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-168_pxfquery_manuscript_terminology_abbreviations/3_execution/abbr_complete_rendered/page-17.png
+  size_mb: 0.29
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-168_pxfquery_manuscript_terminology_abbreviations/3_execution/abbr_complete_rendered/page-18.png
+  size_mb: 0.66
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-168_pxfquery_manuscript_terminology_abbreviations/3_execution/abbr_complete_rendered/page-19.png
+  size_mb: 0.62
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-168_pxfquery_manuscript_terminology_abbreviations/3_execution/abbr_complete_rendered/page-2.png
+  size_mb: 0.58
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-168_pxfquery_manuscript_terminology_abbreviations/3_execution/abbr_complete_rendered/page-20.png
+  size_mb: 0.06
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-168_pxfquery_manuscript_terminology_abbreviations/3_execution/abbr_complete_rendered/page-3.png
+  size_mb: 0.1
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-168_pxfquery_manuscript_terminology_abbreviations/3_execution/abbr_complete_rendered/page-4.png
+  size_mb: 0.46
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-168_pxfquery_manuscript_terminology_abbreviations/3_execution/abbr_complete_rendered/page-5.png
+  size_mb: 0.49
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-168_pxfquery_manuscript_terminology_abbreviations/3_execution/abbr_complete_rendered/page-6.png
+  size_mb: 0.48
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-168_pxfquery_manuscript_terminology_abbreviations/3_execution/abbr_complete_rendered/page-7.png
+  size_mb: 0.5
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-168_pxfquery_manuscript_terminology_abbreviations/3_execution/abbr_complete_rendered/page-8.png
+  size_mb: 0.57
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-168_pxfquery_manuscript_terminology_abbreviations/3_execution/abbr_complete_rendered/page-9.png
+  size_mb: 0.48
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-168_pxfquery_manuscript_terminology_abbreviations/3_execution/abbreviations_word_rendered/page-1.png
+  size_mb: 0.12
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-168_pxfquery_manuscript_terminology_abbreviations/3_execution/rendered_source/manuscript_20260714_t161_v2.pdf
   size_mb: 3.94
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-168_pxfquery_manuscript_terminology_abbreviations/3_execution/rendered_source/page-1.png
@@ -19645,6 +19736,50 @@ excluded_from_git:
   size_mb: 0.58
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-168_pxfquery_manuscript_terminology_abbreviations/3_execution/rendered_source/page-9.png
   size_mb: 0.48
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-168_pxfquery_manuscript_terminology_abbreviations/3_execution/typo_review_rendered/manuscript_20260714_t161_v2.pdf
+  size_mb: 3.96
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-168_pxfquery_manuscript_terminology_abbreviations/3_execution/typo_review_rendered/page-1.png
+  size_mb: 0.45
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-168_pxfquery_manuscript_terminology_abbreviations/3_execution/typo_review_rendered/page-10.png
+  size_mb: 0.63
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-168_pxfquery_manuscript_terminology_abbreviations/3_execution/typo_review_rendered/page-11.png
+  size_mb: 0.65
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-168_pxfquery_manuscript_terminology_abbreviations/3_execution/typo_review_rendered/page-12.png
+  size_mb: 0.56
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-168_pxfquery_manuscript_terminology_abbreviations/3_execution/typo_review_rendered/page-13.png
+  size_mb: 0.59
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-168_pxfquery_manuscript_terminology_abbreviations/3_execution/typo_review_rendered/page-14.png
+  size_mb: 0.52
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-168_pxfquery_manuscript_terminology_abbreviations/3_execution/typo_review_rendered/page-15.png
+  size_mb: 0.47
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-168_pxfquery_manuscript_terminology_abbreviations/3_execution/typo_review_rendered/page-16.png
+  size_mb: 0.52
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-168_pxfquery_manuscript_terminology_abbreviations/3_execution/typo_review_rendered/page-17.png
+  size_mb: 0.43
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-168_pxfquery_manuscript_terminology_abbreviations/3_execution/typo_review_rendered/page-18.png
+  size_mb: 0.66
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-168_pxfquery_manuscript_terminology_abbreviations/3_execution/typo_review_rendered/page-19.png
+  size_mb: 0.62
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-168_pxfquery_manuscript_terminology_abbreviations/3_execution/typo_review_rendered/page-2.png
+  size_mb: 0.57
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-168_pxfquery_manuscript_terminology_abbreviations/3_execution/typo_review_rendered/page-20.png
+  size_mb: 0.06
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-168_pxfquery_manuscript_terminology_abbreviations/3_execution/typo_review_rendered/page-3.png
+  size_mb: 0.1
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-168_pxfquery_manuscript_terminology_abbreviations/3_execution/typo_review_rendered/page-4.png
+  size_mb: 0.46
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-168_pxfquery_manuscript_terminology_abbreviations/3_execution/typo_review_rendered/page-5.png
+  size_mb: 0.5
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-168_pxfquery_manuscript_terminology_abbreviations/3_execution/typo_review_rendered/page-6.png
+  size_mb: 0.47
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-168_pxfquery_manuscript_terminology_abbreviations/3_execution/typo_review_rendered/page-7.png
+  size_mb: 0.5
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-168_pxfquery_manuscript_terminology_abbreviations/3_execution/typo_review_rendered/page-8.png
+  size_mb: 0.58
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-168_pxfquery_manuscript_terminology_abbreviations/3_execution/typo_review_rendered/page-9.png
+  size_mb: 0.48
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-168_pxfquery_manuscript_terminology_abbreviations/4_artifact/3_document/PxFquery_abbreviations_for_copy.docx
+  size_mb: 0.04
 - path: 5_phase_translation/G-033_ms6_manuscript_foundation/T-091_ms6_package_capability_narrative/1_asset/ms6_evidence_claim_mapping.csv
   size_mb: 0.0
 - path: 5_phase_translation/G-033_ms6_manuscript_foundation/T-091_ms6_package_capability_narrative/5_report/cli_sessions/check/20260627_070654_opencode_cli_b49e7b862596/stderr.log
