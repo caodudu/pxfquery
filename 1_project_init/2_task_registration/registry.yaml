@@ -2247,3 +2247,12 @@ tasks:
   notes: Direct-conversation task. User will provide materials and instructions incrementally.
     Scope is limited to the currently specified intermediate asset; no website implementation
     or final deliverables are authorized until explicitly requested.
+- id: T-170
+  name: pxfquery_cover_letter_discussion
+  phase: translation
+  goal: G-012_cyhex_outline_draft_biopaper
+  path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-170_pxfquery_cover_letter_discussion
+  status: pending
+  executor: human
+  created: '2026-07-15'
+  completed: null
