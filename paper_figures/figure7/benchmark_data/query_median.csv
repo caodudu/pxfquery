@@ -1,0 +1,696 @@
+query_id,task_type,field,system,median_rank_percentile,mean_rank_percentile,n_found
+B100_RD_001,reverse_drug,recommendations_top1,Direct LLM,95.44478527607362,95.44478527607362,1
+B100_RD_001,reverse_drug,recommendations_top1,PxFquery,1.503067484662577,1.503067484662577,1
+B100_RD_001,reverse_drug,recommendations_top10,Direct LLM,87.93711656441718,85.27415644171779,8
+B100_RD_001,reverse_drug,recommendations_top10,PxFquery,1.142638036809816,1.3082822085889572,10
+B100_RD_001,reverse_drug,recommendations_top3,Direct LLM,91.18098159509202,91.31390593047036,3
+B100_RD_001,reverse_drug,recommendations_top3,PxFquery,0.4754601226993865,0.7208588957055215,3
+B100_RD_001,reverse_drug,recommendations_top5,Direct LLM,89.24846625766871,90.03834355828221,4
+B100_RD_001,reverse_drug,recommendations_top5,PxFquery,0.4754601226993865,1.0245398773006136,5
+B100_RD_002,reverse_drug,recommendations_top1,Direct LLM,25.071225071225072,25.071225071225072,1
+B100_RD_002,reverse_drug,recommendations_top1,PxFquery,11.452991452991451,11.452991452991451,1
+B100_RD_002,reverse_drug,recommendations_top10,Direct LLM,11.396011396011396,14.112060778727445,6
+B100_RD_002,reverse_drug,recommendations_top10,PxFquery,11.48148148148148,11.48148148148148,10
+B100_RD_002,reverse_drug,recommendations_top3,Direct LLM,18.34757834757835,18.34757834757835,2
+B100_RD_002,reverse_drug,recommendations_top3,PxFquery,11.68091168091168,11.623931623931623,3
+B100_RD_002,reverse_drug,recommendations_top5,Direct LLM,16.096866096866098,16.80911680911681,4
+B100_RD_002,reverse_drug,recommendations_top5,PxFquery,11.623931623931623,11.612535612535613,5
+B100_RD_003,reverse_drug,recommendations_top1,PxFquery,2.805755395683453,2.805755395683453,1
+B100_RD_003,reverse_drug,recommendations_top10,Direct LLM,92.01438848920864,92.01438848920864,1
+B100_RD_003,reverse_drug,recommendations_top10,PxFquery,2.985611510791367,17.73381294964029,10
+B100_RD_003,reverse_drug,recommendations_top3,PxFquery,1.0071942446043165,1.4868105515587529,3
+B100_RD_003,reverse_drug,recommendations_top5,Direct LLM,92.01438848920864,92.01438848920864,1
+B100_RD_003,reverse_drug,recommendations_top5,PxFquery,2.805755395683453,11.237410071942444,5
+B100_RD_004,reverse_drug,recommendations_top1,Direct LLM,95.293917770982,95.293917770982,1
+B100_RD_004,reverse_drug,recommendations_top1,PxFquery,0.8324838600067958,0.8324838600067958,1
+B100_RD_004,reverse_drug,recommendations_top10,Direct LLM,75.56065239551478,66.94699286442406,6
+B100_RD_004,reverse_drug,recommendations_top10,PxFquery,1.851851851851852,1.7023445463812437,10
+B100_RD_004,reverse_drug,recommendations_top3,Direct LLM,87.29187903499832,87.29187903499832,2
+B100_RD_004,reverse_drug,recommendations_top3,PxFquery,0.8324838600067958,1.1439574130705632,3
+B100_RD_004,reverse_drug,recommendations_top5,Direct LLM,80.00339789330616,79.46398233095482,4
+B100_RD_004,reverse_drug,recommendations_top5,PxFquery,1.325178389398573,1.7193340129119945,5
+B100_RD_005,reverse_drug,recommendations_top1,Direct LLM,7.800421644413212,7.800421644413212,1
+B100_RD_005,reverse_drug,recommendations_top1,PxFquery,0.4919184820801124,0.4919184820801124,1
+B100_RD_005,reverse_drug,recommendations_top10,Direct LLM,51.75685172171468,50.43335675802296,6
+B100_RD_005,reverse_drug,recommendations_top10,PxFquery,0.7378777231201686,0.7449051300070273,10
+B100_RD_005,reverse_drug,recommendations_top3,Direct LLM,42.76177090653549,42.76177090653549,2
+B100_RD_005,reverse_drug,recommendations_top3,PxFquery,0.4919184820801124,0.4919184820801123,3
+B100_RD_005,reverse_drug,recommendations_top5,Direct LLM,56.50035137034435,49.77160927617709,4
+B100_RD_005,reverse_drug,recommendations_top5,PxFquery,0.5621925509486999,0.5621925509486999,5
+B100_RD_006,reverse_drug,recommendations_top1,PxFquery,95.93428014480646,95.93428014480646,1
+B100_RD_006,reverse_drug,recommendations_top10,Direct LLM,12.252854358117515,17.519990452321277,7
+B100_RD_006,reverse_drug,recommendations_top10,PxFquery,64.53634085213034,56.521860206070734,10
+B100_RD_006,reverse_drug,recommendations_top3,Direct LLM,18.08688387635756,18.08688387635756,2
+B100_RD_006,reverse_drug,recommendations_top3,PxFquery,71.62350320245056,77.30437204121415,3
+B100_RD_006,reverse_drug,recommendations_top5,Direct LLM,31.57894736842105,28.060892973173676,3
+B100_RD_006,reverse_drug,recommendations_top5,PxFquery,71.62350320245056,74.61988304093568,5
+B100_RD_007,reverse_drug,recommendations_top1,Direct LLM,29.877492193129953,29.877492193129953,1
+B100_RD_007,reverse_drug,recommendations_top1,PxFquery,5.500840739851069,5.500840739851069,1
+B100_RD_007,reverse_drug,recommendations_top10,Direct LLM,32.64232524621667,41.85923612779246,4
+B100_RD_007,reverse_drug,recommendations_top10,PxFquery,9.274561614220511,9.51525342301225,10
+B100_RD_007,reverse_drug,recommendations_top3,Direct LLM,29.877492193129953,29.877492193129953,1
+B100_RD_007,reverse_drug,recommendations_top3,PxFquery,9.257746817199136,9.04475938826167,3
+B100_RD_007,reverse_drug,recommendations_top5,Direct LLM,36.706701897669944,36.706701897669944,2
+B100_RD_007,reverse_drug,recommendations_top5,PxFquery,9.26255104491953,9.132836896468891,5
+B100_RD_008,reverse_drug,recommendations_top1,PxFquery,0.9540846750149076,0.9540846750149076,1
+B100_RD_008,reverse_drug,recommendations_top10,Direct LLM,9.898628503279664,38.04412641621944,5
+B100_RD_008,reverse_drug,recommendations_top10,PxFquery,5.515802027429935,4.382826475849732,10
+B100_RD_008,reverse_drug,recommendations_top3,Direct LLM,6.618962432915922,6.618962432915922,2
+B100_RD_008,reverse_drug,recommendations_top3,PxFquery,1.0137149672033392,2.484595507851322,3
+B100_RD_008,reverse_drug,recommendations_top5,Direct LLM,9.719737626714371,7.712184456370502,3
+B100_RD_008,reverse_drug,recommendations_top5,PxFquery,2.5641025641025643,3.1127012522361364,5
+B100_RD_009,reverse_drug,recommendations_top1,Direct LLM,98.74723655121592,98.74723655121592,1
+B100_RD_009,reverse_drug,recommendations_top1,PxFquery,1.3264554163596167,1.3264554163596167,1
+B100_RD_009,reverse_drug,recommendations_top10,Direct LLM,88.65143699336772,69.84524686809138,5
+B100_RD_009,reverse_drug,recommendations_top10,PxFquery,1.2896094325718497,1.5622697126013263,10
+B100_RD_009,reverse_drug,recommendations_top3,Direct LLM,98.74723655121592,98.74723655121592,1
+B100_RD_009,reverse_drug,recommendations_top3,PxFquery,1.0316875460574797,1.105379513633014,3
+B100_RD_009,reverse_drug,recommendations_top5,Direct LLM,98.74723655121592,98.74723655121592,1
+B100_RD_009,reverse_drug,recommendations_top5,PxFquery,1.105379513633014,1.4296241709653648,5
+B100_RD_010,reverse_drug,recommendations_top1,PxFquery,1.787891101178383,1.787891101178383,1
+B100_RD_010,reverse_drug,recommendations_top10,Direct LLM,21.47501015847217,21.47501015847217,2
+B100_RD_010,reverse_drug,recommendations_top10,PxFquery,2.133279154815116,1.8569687119057292,10
+B100_RD_010,reverse_drug,recommendations_top3,PxFquery,1.787891101178383,1.8827035080590544,3
+B100_RD_010,reverse_drug,recommendations_top5,PxFquery,2.478667208451849,2.145469321414059,5
+B100_RD_011,reverse_drug,recommendations_top1,Direct LLM,14.49888285987871,14.49888285987871,1
+B100_RD_011,reverse_drug,recommendations_top1,PxFquery,0.0558570060644749,0.0558570060644749,1
+B100_RD_011,reverse_drug,recommendations_top10,Direct LLM,82.65240983083307,59.78409557247732,7
+B100_RD_011,reverse_drug,recommendations_top10,PxFquery,0.3431216086817746,0.3598787105011171,10
+B100_RD_011,reverse_drug,recommendations_top3,Direct LLM,48.575646345355885,48.575646345355885,2
+B100_RD_011,reverse_drug,recommendations_top3,PxFquery,0.1835301627832748,0.3271624640919247,3
+B100_RD_011,reverse_drug,recommendations_top5,Direct LLM,84.39993616342164,69.54396744334504,4
+B100_RD_011,reverse_drug,recommendations_top5,PxFquery,0.1835301627832748,0.3319502074688796,5
+B100_RD_012,reverse_drug,recommendations_top1,Direct LLM,36.37062668204537,36.37062668204537,1
+B100_RD_012,reverse_drug,recommendations_top1,PxFquery,2.037677816224529,2.037677816224529,1
+B100_RD_012,reverse_drug,recommendations_top10,Direct LLM,51.42252979623222,51.42252979623222,2
+B100_RD_012,reverse_drug,recommendations_top10,PxFquery,1.6724336793540946,1.7301038062283738,10
+B100_RD_012,reverse_drug,recommendations_top3,Direct LLM,36.37062668204537,36.37062668204537,1
+B100_RD_012,reverse_drug,recommendations_top3,PxFquery,1.6916570549788543,1.7941817249775724,3
+B100_RD_012,reverse_drug,recommendations_top5,Direct LLM,60.84198385236448,60.84198385236448,2
+B100_RD_012,reverse_drug,recommendations_top5,PxFquery,1.6916570549788543,1.8685121107266436,5
+B100_RD_013,reverse_drug,recommendations_top1,Direct LLM,97.35269000853972,97.35269000853972,1
+B100_RD_013,reverse_drug,recommendations_top1,PxFquery,7.514944491887276,7.514944491887276,1
+B100_RD_013,reverse_drug,recommendations_top10,Direct LLM,75.70452604611444,62.66723598064333,3
+B100_RD_013,reverse_drug,recommendations_top10,PxFquery,4.931682322801025,4.598633646456021,10
+B100_RD_013,reverse_drug,recommendations_top3,Direct LLM,86.52860802732708,86.52860802732708,2
+B100_RD_013,reverse_drug,recommendations_top3,PxFquery,4.995730145175064,5.792769712496441,3
+B100_RD_013,reverse_drug,recommendations_top5,Direct LLM,86.52860802732708,86.52860802732708,2
+B100_RD_013,reverse_drug,recommendations_top5,PxFquery,4.995730145175064,5.815542271562768,5
+B100_RD_014,reverse_drug,recommendations_top1,Direct LLM,49.05761981690899,49.05761981690899,1
+B100_RD_014,reverse_drug,recommendations_top1,PxFquery,7.215939687668282,7.215939687668282,1
+B100_RD_014,reverse_drug,recommendations_top10,Direct LLM,50.88852988691437,50.88852988691437,2
+B100_RD_014,reverse_drug,recommendations_top10,PxFquery,7.0274636510500805,6.515885837372106,10
+B100_RD_014,reverse_drug,recommendations_top3,Direct LLM,49.05761981690899,49.05761981690899,1
+B100_RD_014,reverse_drug,recommendations_top3,PxFquery,6.946688206785137,7.018488601687309,3
+B100_RD_014,reverse_drug,recommendations_top5,Direct LLM,49.05761981690899,49.05761981690899,1
+B100_RD_014,reverse_drug,recommendations_top5,PxFquery,7.000538502961766,7.04361873990307,5
+B100_RD_015,reverse_drug,recommendations_top1,Direct LLM,0.0741350906095551,0.0741350906095551,1
+B100_RD_015,reverse_drug,recommendations_top1,PxFquery,3.327841845140033,3.327841845140033,1
+B100_RD_015,reverse_drug,recommendations_top10,Direct LLM,5.745469522240527,15.334431630971997,10
+B100_RD_015,reverse_drug,recommendations_top10,PxFquery,3.35667215815486,2.517298187808896,10
+B100_RD_015,reverse_drug,recommendations_top3,Direct LLM,7.257001647446458,5.27732015376167,3
+B100_RD_015,reverse_drug,recommendations_top3,PxFquery,3.327841845140033,3.1356397583745195,3
+B100_RD_015,reverse_drug,recommendations_top5,Direct LLM,21.92339373970346,34.34719934102142,4
+B100_RD_015,reverse_drug,recommendations_top5,PxFquery,2.6606260296540363,2.169686985172982,5
+B100_RD_016,reverse_drug,recommendations_top1,PxFquery,10.914826498422713,10.914826498422713,1
+B100_RD_016,reverse_drug,recommendations_top10,Direct LLM,55.58359621451105,51.52996845425867,4
+B100_RD_016,reverse_drug,recommendations_top10,PxFquery,3.9432176656151423,5.17981072555205,10
+B100_RD_016,reverse_drug,recommendations_top3,PxFquery,4.037854889589905,6.309148264984227,3
+B100_RD_016,reverse_drug,recommendations_top5,PxFquery,4.037854889589905,6.548895899053628,5
+B100_RD_017,reverse_drug,recommendations_top1,PxFquery,1.9726858877086495,1.9726858877086495,1
+B100_RD_017,reverse_drug,recommendations_top10,Direct LLM,61.98786039453718,61.98786039453718,1
+B100_RD_017,reverse_drug,recommendations_top10,PxFquery,1.9347496206373291,2.109256449165402,10
+B100_RD_017,reverse_drug,recommendations_top3,PxFquery,1.7450682852807284,1.7956499747091552,3
+B100_RD_017,reverse_drug,recommendations_top5,PxFquery,1.8209408194233687,1.9423368740515936,5
+B100_RD_018,reverse_drug,recommendations_top1,Direct LLM,46.7915956842703,46.7915956842703,1
+B100_RD_018,reverse_drug,recommendations_top1,PxFquery,1.0221465076660987,1.0221465076660987,1
+B100_RD_018,reverse_drug,recommendations_top10,Direct LLM,46.7915956842703,51.70925610448609,5
+B100_RD_018,reverse_drug,recommendations_top10,PxFquery,2.072685973878478,1.8398637137989775,10
+B100_RD_018,reverse_drug,recommendations_top3,PxFquery,2.441794434980125,2.195722127579027,3
+B100_RD_018,reverse_drug,recommendations_top5,Direct LLM,56.30323679727428,58.21976149914821,4
+B100_RD_018,reverse_drug,recommendations_top5,PxFquery,1.8171493469619535,1.805792163543441,5
+B100_RD_019,reverse_drug,recommendations_top1,Direct LLM,34.416204853812346,34.416204853812346,1
+B100_RD_019,reverse_drug,recommendations_top1,PxFquery,0.8025988916491497,0.8025988916491497,1
+B100_RD_019,reverse_drug,recommendations_top10,Direct LLM,34.416204853812346,38.694002347738255,7
+B100_RD_019,reverse_drug,recommendations_top10,PxFquery,1.8440665010510224,1.4542327536785782,10
+B100_RD_019,reverse_drug,recommendations_top3,Direct LLM,54.423848652780435,54.423848652780435,2
+B100_RD_019,reverse_drug,recommendations_top3,PxFquery,1.891840244601567,1.5542391235110518,3
+B100_RD_019,reverse_drug,recommendations_top5,Direct LLM,29.2279763042232,36.73323141601376,4
+B100_RD_019,reverse_drug,recommendations_top5,PxFquery,1.2803363271545958,1.3185553219950314,5
+B100_RD_020,reverse_drug,recommendations_top1,Direct LLM,0.2158428663932657,0.2158428663932657,1
+B100_RD_020,reverse_drug,recommendations_top1,PxFquery,0.6835024102453414,0.6835024102453414,1
+B100_RD_020,reverse_drug,recommendations_top10,Direct LLM,12.882221742571408,33.509605007554505,6
+B100_RD_020,reverse_drug,recommendations_top10,PxFquery,1.133175048564645,2.0807252320310816,10
+B100_RD_020,reverse_drug,recommendations_top3,Direct LLM,0.7194762213108856,0.7194762213108856,2
+B100_RD_020,reverse_drug,recommendations_top3,PxFquery,0.6835024102453414,1.5876441950260212,3
+B100_RD_020,reverse_drug,recommendations_top5,Direct LLM,1.2231095762285056,2.4222366117466483,3
+B100_RD_020,reverse_drug,recommendations_top5,PxFquery,1.5828476868839485,2.0318008489819412,5
+B100_RD_021,reverse_drug,recommendations_top1,PxFquery,1.4685205436650524,1.4685205436650524,1
+B100_RD_021,reverse_drug,recommendations_top10,Direct LLM,69.20403062021559,60.999583398427326,6
+B100_RD_021,reverse_drug,recommendations_top10,PxFquery,1.5271051398219029,1.4685205436650524,10
+B100_RD_021,reverse_drug,recommendations_top3,Direct LLM,63.732229339165755,46.039681299796904,3
+B100_RD_021,reverse_drug,recommendations_top3,PxFquery,1.4685205436650524,1.158673123991043,3
+B100_RD_021,reverse_drug,recommendations_top5,Direct LLM,63.732229339165755,46.039681299796904,3
+B100_RD_021,reverse_drug,recommendations_top5,PxFquery,1.5856897359787534,1.4528979846898922,5
+B100_RD_022,reverse_drug,recommendations_top1,Direct LLM,57.45896363051175,57.45896363051175,1
+B100_RD_022,reverse_drug,recommendations_top1,PxFquery,0.3620856131316382,0.3620856131316382,1
+B100_RD_022,reverse_drug,recommendations_top10,Direct LLM,95.39346636626972,85.40124450166292,6
+B100_RD_022,reverse_drug,recommendations_top10,PxFquery,1.51673640167364,1.1997103315094946,10
+B100_RD_022,reverse_drug,recommendations_top3,Direct LLM,77.97714837463792,77.97714837463792,2
+B100_RD_022,reverse_drug,recommendations_top3,PxFquery,0.482780817508851,0.8368200836820083,3
+B100_RD_022,reverse_drug,recommendations_top5,Direct LLM,98.49533311876408,84.93455637807102,3
+B100_RD_022,reverse_drug,recommendations_top5,PxFquery,1.6655938204055358,1.173157386546508,5
+B100_RD_023,reverse_drug,recommendations_top1,Direct LLM,1.1818356991457384,1.1818356991457384,1
+B100_RD_023,reverse_drug,recommendations_top1,PxFquery,3.911619243368232,3.911619243368232,1
+B100_RD_023,reverse_drug,recommendations_top10,Direct LLM,8.947267004945726,30.991072002055365,6
+B100_RD_023,reverse_drug,recommendations_top10,PxFquery,3.4523733059284476,5.570685336245103,10
+B100_RD_023,reverse_drug,recommendations_top3,Direct LLM,6.474404264885349,6.474404264885349,2
+B100_RD_023,reverse_drug,recommendations_top3,PxFquery,3.429892735564262,3.5883272314642345,3
+B100_RD_023,reverse_drug,recommendations_top5,Direct LLM,7.810392446528358,7.710835634915537,4
+B100_RD_023,reverse_drug,recommendations_top5,PxFquery,3.436315755668315,4.91746419166292,5
+B100_RD_024,reverse_drug,recommendations_top1,Direct LLM,93.77300613496932,93.77300613496932,1
+B100_RD_024,reverse_drug,recommendations_top1,PxFquery,0.7515337423312883,0.7515337423312883,1
+B100_RD_024,reverse_drug,recommendations_top10,Direct LLM,93.16717791411044,77.3517382413088,6
+B100_RD_024,reverse_drug,recommendations_top10,PxFquery,3.105828220858896,2.9217791411042944,10
+B100_RD_024,reverse_drug,recommendations_top3,Direct LLM,96.25766871165644,96.25766871165644,2
+B100_RD_024,reverse_drug,recommendations_top3,PxFquery,0.7975460122699386,2.188139059304703,3
+B100_RD_024,reverse_drug,recommendations_top5,Direct LLM,96.25766871165644,96.07745398773004,4
+B100_RD_024,reverse_drug,recommendations_top5,PxFquery,2.5,2.690184049079755,5
+B100_RD_025,reverse_drug,recommendations_top1,PxFquery,0.7977207977207977,0.7977207977207977,1
+B100_RD_025,reverse_drug,recommendations_top10,PxFquery,0.9401709401709402,0.9743589743589742,10
+B100_RD_025,reverse_drug,recommendations_top3,PxFquery,0.7407407407407407,0.5698005698005698,3
+B100_RD_025,reverse_drug,recommendations_top5,PxFquery,0.7977207977207977,0.8774928774928774,5
+B100_RD_026,reverse_drug,recommendations_top1,PxFquery,0.6961849067112225,0.6961849067112225,1
+B100_RD_026,reverse_drug,recommendations_top10,Direct LLM,78.91952102478419,81.8249327021257,3
+B100_RD_026,reverse_drug,recommendations_top10,PxFquery,0.5987190197716513,0.6154274575327207,10
+B100_RD_026,reverse_drug,recommendations_top3,PxFquery,0.6961849067112225,0.6404901141743247,3
+B100_RD_026,reverse_drug,recommendations_top5,Direct LLM,83.27763854079643,83.27763854079643,2
+B100_RD_026,reverse_drug,recommendations_top5,PxFquery,0.5847953216374269,0.5903648008911166,5
+B100_RD_027,reverse_drug,recommendations_top1,Direct LLM,77.23926380368098,77.23926380368098,1
+B100_RD_027,reverse_drug,recommendations_top1,PxFquery,1.8098159509202456,1.8098159509202456,1
+B100_RD_027,reverse_drug,recommendations_top10,Direct LLM,78.86503067484662,74.65746421267893,9
+B100_RD_027,reverse_drug,recommendations_top10,PxFquery,1.8788343558282208,3.688650306748466,10
+B100_RD_027,reverse_drug,recommendations_top3,Direct LLM,79.37116564417178,83.0879345603272,3
+B100_RD_027,reverse_drug,recommendations_top3,PxFquery,1.8251533742331287,2.7556237218813906,3
+B100_RD_027,reverse_drug,recommendations_top5,Direct LLM,79.5398773006135,82.20552147239263,5
+B100_RD_027,reverse_drug,recommendations_top5,PxFquery,1.8404907975460123,2.3926380368098163,5
+B100_RD_028,reverse_drug,recommendations_top1,Direct LLM,92.65081391637408,92.65081391637408,1
+B100_RD_028,reverse_drug,recommendations_top1,PxFquery,0.5426109160548994,0.5426109160548994,1
+B100_RD_028,reverse_drug,recommendations_top10,Direct LLM,88.56926268751995,68.38174273858922,10
+B100_RD_028,reverse_drug,recommendations_top10,PxFquery,0.8977018831790615,0.9639323332269388,10
+B100_RD_028,reverse_drug,recommendations_top3,Direct LLM,89.93775933609959,64.35259070113842,3
+B100_RD_028,reverse_drug,recommendations_top3,PxFquery,0.5426109160548994,0.5000531971486328,3
+B100_RD_028,reverse_drug,recommendations_top5,Direct LLM,92.65081391637408,78.13597191190553,5
+B100_RD_028,reverse_drug,recommendations_top5,PxFquery,0.8458346632620491,0.7612511969358442,5
+B100_RD_029,reverse_drug,recommendations_top1,Direct LLM,12.841214917339483,12.841214917339483,1
+B100_RD_029,reverse_drug,recommendations_top1,PxFquery,3.3833141099577086,3.3833141099577086,1
+B100_RD_029,reverse_drug,recommendations_top10,Direct LLM,34.79430988081507,39.853902345251825,5
+B100_RD_029,reverse_drug,recommendations_top10,PxFquery,1.8646674356016917,1.9992310649750096,10
+B100_RD_029,reverse_drug,recommendations_top3,Direct LLM,12.841214917339483,12.841214917339483,1
+B100_RD_029,reverse_drug,recommendations_top3,PxFquery,1.9992310649750096,2.447776496219402,3
+B100_RD_029,reverse_drug,recommendations_top5,Direct LLM,12.841214917339483,12.841214917339483,1
+B100_RD_029,reverse_drug,recommendations_top5,PxFquery,1.96078431372549,2.229911572472126,5
+B100_RD_030,reverse_drug,recommendations_top1,Direct LLM,10.8732585796806,10.8732585796806,1
+B100_RD_030,reverse_drug,recommendations_top1,PxFquery,7.64525993883792,7.64525993883792,1
+B100_RD_030,reverse_drug,recommendations_top10,Direct LLM,8.392796466190962,6.7753992524634725,5
+B100_RD_030,reverse_drug,recommendations_top10,PxFquery,7.432891607203533,7.1440706761807675,10
+B100_RD_030,reverse_drug,recommendations_top3,Direct LLM,8.392796466190962,6.795786612300375,3
+B100_RD_030,reverse_drug,recommendations_top3,PxFquery,5.2667346245327895,5.023218937592026,3
+B100_RD_030,reverse_drug,recommendations_top5,Direct LLM,6.600407747196739,6.600407747196739,2
+B100_RD_030,reverse_drug,recommendations_top5,PxFquery,5.2667346245327895,5.4706082229018005,5
+B100_RD_031,reverse_drug,recommendations_top1,Direct LLM,28.08586762075134,28.08586762075134,1
+B100_RD_031,reverse_drug,recommendations_top1,PxFquery,0.5963029218843172,0.5963029218843172,1
+B100_RD_031,reverse_drug,recommendations_top10,Direct LLM,28.08586762075134,39.8529119459352,3
+B100_RD_031,reverse_drug,recommendations_top10,PxFquery,1.2224209898628504,1.2999403697078116,10
+B100_RD_031,reverse_drug,recommendations_top3,Direct LLM,46.720333929636254,46.720333929636254,2
+B100_RD_031,reverse_drug,recommendations_top3,PxFquery,1.1926058437686344,1.0137149672033392,3
+B100_RD_031,reverse_drug,recommendations_top5,Direct LLM,46.720333929636254,46.720333929636254,2
+B100_RD_031,reverse_drug,recommendations_top5,PxFquery,1.2522361359570662,1.311866428145498,5
+B100_RD_032,reverse_drug,recommendations_top1,PxFquery,2.8296901273120345,2.8296901273120345,1
+B100_RD_032,reverse_drug,recommendations_top10,Direct LLM,41.090559692529425,49.63607975018016,4
+B100_RD_032,reverse_drug,recommendations_top10,PxFquery,2.7408119144847465,2.369925534470334,10
+B100_RD_032,reverse_drug,recommendations_top3,PxFquery,3.449435503242854,3.2668748498678837,3
+B100_RD_032,reverse_drug,recommendations_top5,Direct LLM,40.93682440547682,40.93682440547682,1
+B100_RD_032,reverse_drug,recommendations_top5,PxFquery,3.146769156858035,3.0429978380975258,5
+B100_RD_033,reverse_drug,recommendations_top1,Direct LLM,34.53237410071942,34.53237410071942,1
+B100_RD_033,reverse_drug,recommendations_top1,PxFquery,0.7913669064748201,0.7913669064748201,1
+B100_RD_033,reverse_drug,recommendations_top10,Direct LLM,94.6043165467626,75.431654676259,8
+B100_RD_033,reverse_drug,recommendations_top10,PxFquery,1.618705035971223,1.6762589928057554,10
+B100_RD_033,reverse_drug,recommendations_top3,Direct LLM,67.23021582733813,67.23021582733813,2
+B100_RD_033,reverse_drug,recommendations_top3,PxFquery,1.0071942446043165,1.4868105515587529,3
+B100_RD_033,reverse_drug,recommendations_top5,Direct LLM,66.15107913669065,60.719424460431654,4
+B100_RD_033,reverse_drug,recommendations_top5,PxFquery,0.935251798561151,1.2517985611510791,5
+B100_RD_034,reverse_drug,recommendations_top1,PxFquery,0.3620161514898357,0.3620161514898357,1
+B100_RD_034,reverse_drug,recommendations_top10,Direct LLM,53.272069061542744,45.02923976608187,5
+B100_RD_034,reverse_drug,recommendations_top10,PxFquery,0.6265664160401002,0.6766917293233081,10
+B100_RD_034,reverse_drug,recommendations_top3,Direct LLM,36.95349484823169,36.95349484823169,1
+B100_RD_034,reverse_drug,recommendations_top3,PxFquery,1.0303536619326092,0.8447043534762834,3
+B100_RD_034,reverse_drug,recommendations_top5,Direct LLM,36.95349484823169,35.440452984312635,3
+B100_RD_034,reverse_drug,recommendations_top5,PxFquery,0.9189640768588136,0.7685881370091896,5
+B100_RD_035,reverse_drug,recommendations_top1,Direct LLM,88.41726618705036,88.41726618705036,1
+B100_RD_035,reverse_drug,recommendations_top1,PxFquery,8.776978417266188,8.776978417266188,1
+B100_RD_035,reverse_drug,recommendations_top10,Direct LLM,7.410071942446043,34.00479616306954,6
+B100_RD_035,reverse_drug,recommendations_top10,PxFquery,1.762589928057554,3.683453237410072,10
+B100_RD_035,reverse_drug,recommendations_top3,Direct LLM,88.41726618705036,88.41726618705036,1
+B100_RD_035,reverse_drug,recommendations_top3,PxFquery,1.7985611510791366,4.028776978417266,3
+B100_RD_035,reverse_drug,recommendations_top5,Direct LLM,49.31654676258993,49.31654676258993,2
+B100_RD_035,reverse_drug,recommendations_top5,PxFquery,1.5827338129496402,3.0215827338129495,5
+B100_RD_036,reverse_drug,recommendations_top1,Direct LLM,0.1113895850737956,0.1113895850737956,1
+B100_RD_036,reverse_drug,recommendations_top1,PxFquery,2.9796714007240324,2.9796714007240324,1
+B100_RD_036,reverse_drug,recommendations_top10,Direct LLM,3.592314118629908,23.617686190785605,9
+B100_RD_036,reverse_drug,recommendations_top10,PxFquery,2.172096908939014,2.1303258145363406,10
+B100_RD_036,reverse_drug,recommendations_top3,Direct LLM,47.78613199665831,48.74222593520839,3
+B100_RD_036,reverse_drug,recommendations_top3,PxFquery,2.8682818156502368,2.53411306042885,3
+B100_RD_036,reverse_drug,recommendations_top5,Direct LLM,1.058201058201058,19.053188526872734,5
+B100_RD_036,reverse_drug,recommendations_top5,PxFquery,2.78473962684489,2.578668894458368,5
+B100_RD_037,reverse_drug,recommendations_top1,PxFquery,8.49002849002849,8.49002849002849,1
+B100_RD_037,reverse_drug,recommendations_top10,Direct LLM,39.43019943019943,39.116809116809115,4
+B100_RD_037,reverse_drug,recommendations_top10,PxFquery,5.156695156695156,6.0,10
+B100_RD_037,reverse_drug,recommendations_top3,Direct LLM,48.49002849002849,48.49002849002849,1
+B100_RD_037,reverse_drug,recommendations_top3,PxFquery,5.413105413105413,5.698005698005698,3
+B100_RD_037,reverse_drug,recommendations_top5,Direct LLM,48.49002849002849,48.49002849002849,1
+B100_RD_037,reverse_drug,recommendations_top5,PxFquery,5.413105413105413,6.062678062678063,5
+B100_RD_038,reverse_drug,recommendations_top1,PxFquery,1.7159361196058445,1.7159361196058445,1
+B100_RD_038,reverse_drug,recommendations_top10,PxFquery,1.5035677879714575,1.4135236153584778,10
+B100_RD_038,reverse_drug,recommendations_top3,PxFquery,1.7159361196058445,1.523388832257334,3
+B100_RD_038,reverse_drug,recommendations_top5,PxFquery,1.291199456337071,1.4169215086646278,5
+B100_RD_039,reverse_drug,recommendations_top1,Direct LLM,91.96462898885044,91.96462898885044,1
+B100_RD_039,reverse_drug,recommendations_top1,PxFquery,0.2691272587466359,0.2691272587466359,1
+B100_RD_039,reverse_drug,recommendations_top10,Direct LLM,28.83506343713956,39.06958861976163,5
+B100_RD_039,reverse_drug,recommendations_top10,PxFquery,0.4036908881199539,0.4036908881199538,10
+B100_RD_039,reverse_drug,recommendations_top3,Direct LLM,49.09650134563629,49.09650134563629,2
+B100_RD_039,reverse_drug,recommendations_top3,PxFquery,0.2691272587466359,0.2691272587466359,3
+B100_RD_039,reverse_drug,recommendations_top5,Direct LLM,43.483275663206456,46.28988850442138,4
+B100_RD_039,reverse_drug,recommendations_top5,PxFquery,0.3075740099961553,0.3075740099961553,5
+B100_RD_040,reverse_drug,recommendations_top1,PxFquery,6.892837910608509,6.892837910608509,1
+B100_RD_040,reverse_drug,recommendations_top10,Direct LLM,75.57889068389876,75.57889068389876,2
+B100_RD_040,reverse_drug,recommendations_top10,PxFquery,4.065697361335488,3.4625740441572432,10
+B100_RD_040,reverse_drug,recommendations_top3,Direct LLM,65.15885837372106,65.15885837372106,1
+B100_RD_040,reverse_drug,recommendations_top3,PxFquery,1.0231556273559506,2.961766289714594,3
+B100_RD_040,reverse_drug,recommendations_top5,Direct LLM,65.15885837372106,65.15885837372106,1
+B100_RD_040,reverse_drug,recommendations_top5,PxFquery,4.146472805600431,3.4464189553042544,5
+B100_RD_041,reverse_drug,recommendations_top1,Direct LLM,91.52388797364084,91.52388797364084,1
+B100_RD_041,reverse_drug,recommendations_top1,PxFquery,1.383855024711697,1.383855024711697,1
+B100_RD_041,reverse_drug,recommendations_top10,Direct LLM,87.39703459637562,70.93904448105437,7
+B100_RD_041,reverse_drug,recommendations_top10,PxFquery,1.9810543657331137,1.9530477759472815,10
+B100_RD_041,reverse_drug,recommendations_top3,Direct LLM,91.52388797364084,91.52388797364084,1
+B100_RD_041,reverse_drug,recommendations_top3,PxFquery,1.383855024711697,1.5211422295442067,3
+B100_RD_041,reverse_drug,recommendations_top5,Direct LLM,87.39703459637562,61.91652937946183,3
+B100_RD_041,reverse_drug,recommendations_top5,PxFquery,1.9192751235584844,1.682042833607908,5
+B100_RD_042,reverse_drug,recommendations_top1,Direct LLM,18.512898330804248,18.512898330804248,1
+B100_RD_042,reverse_drug,recommendations_top1,PxFquery,1.9726858877086495,1.9726858877086495,1
+B100_RD_042,reverse_drug,recommendations_top10,Direct LLM,19.878603945371776,41.527567020738495,3
+B100_RD_042,reverse_drug,recommendations_top10,PxFquery,1.669195751138088,1.5250379362670714,10
+B100_RD_042,reverse_drug,recommendations_top3,Direct LLM,19.195751138088013,19.195751138088013,2
+B100_RD_042,reverse_drug,recommendations_top3,PxFquery,1.9726858877086495,1.5680323722812342,3
+B100_RD_042,reverse_drug,recommendations_top5,Direct LLM,19.195751138088013,19.195751138088013,2
+B100_RD_042,reverse_drug,recommendations_top5,PxFquery,1.5174506828528074,1.4415781487101669,5
+B100_RD_043,reverse_drug,recommendations_top1,Direct LLM,2.498580352072686,2.498580352072686,1
+B100_RD_043,reverse_drug,recommendations_top1,PxFquery,4.713231118682566,4.713231118682566,1
+B100_RD_043,reverse_drug,recommendations_top10,Direct LLM,9.085746734809767,8.782888510316107,3
+B100_RD_043,reverse_drug,recommendations_top10,PxFquery,2.129471890971039,2.6632595116411126,10
+B100_RD_043,reverse_drug,recommendations_top3,Direct LLM,2.498580352072686,2.498580352072686,1
+B100_RD_043,reverse_drug,recommendations_top3,PxFquery,3.975014196479273,3.08536816202915,3
+B100_RD_043,reverse_drug,recommendations_top5,Direct LLM,9.085746734809767,8.782888510316107,3
+B100_RD_043,reverse_drug,recommendations_top5,PxFquery,4.031800113571834,3.475298126064736,5
+B100_RD_044,reverse_drug,recommendations_top1,PxFquery,11.865095489638358,11.865095489638358,1
+B100_RD_044,reverse_drug,recommendations_top10,PxFquery,2.9053230394148724,4.68915075172694,10
+B100_RD_044,reverse_drug,recommendations_top3,PxFquery,10.158472165786266,10.713801977515914,3
+B100_RD_044,reverse_drug,recommendations_top5,PxFquery,10.11783827712312,7.249085737505079,5
+B100_RD_045,reverse_drug,recommendations_top1,Direct LLM,84.37730287398674,84.37730287398674,1
+B100_RD_045,reverse_drug,recommendations_top1,PxFquery,3.021370670596905,3.021370670596905,1
+B100_RD_045,reverse_drug,recommendations_top10,Direct LLM,32.313927781871776,42.38516335052813,6
+B100_RD_045,reverse_drug,recommendations_top10,PxFquery,2.542372881355932,2.4981577008106113,10
+B100_RD_045,reverse_drug,recommendations_top3,Direct LLM,84.37730287398674,84.37730287398674,1
+B100_RD_045,reverse_drug,recommendations_top3,PxFquery,3.021370670596905,2.6529108327192334,3
+B100_RD_045,reverse_drug,recommendations_top5,Direct LLM,52.0265291083272,52.0265291083272,2
+B100_RD_045,reverse_drug,recommendations_top5,PxFquery,2.4318349299926307,2.328666175386883,5
+B100_RD_046,reverse_drug,recommendations_top1,PxFquery,0.8432888264230499,0.8432888264230499,1
+B100_RD_046,reverse_drug,recommendations_top10,Direct LLM,94.62403373155306,92.32255797610682,4
+B100_RD_046,reverse_drug,recommendations_top10,PxFquery,1.1595221363316937,1.1384399156711174,10
+B100_RD_046,reverse_drug,recommendations_top3,PxFquery,1.0541110330288124,1.0541110330288124,3
+B100_RD_046,reverse_drug,recommendations_top5,Direct LLM,90.79409697821504,90.27875380651206,3
+B100_RD_046,reverse_drug,recommendations_top5,PxFquery,0.9838369641602248,0.9276177090653548,5
+B100_RD_047,reverse_drug,recommendations_top1,PxFquery,1.9677996422182469,1.9677996422182469,1
+B100_RD_047,reverse_drug,recommendations_top10,Direct LLM,79.1293977340489,79.1293977340489,2
+B100_RD_047,reverse_drug,recommendations_top10,PxFquery,1.7590936195587357,1.7113893858079905,10
+B100_RD_047,reverse_drug,recommendations_top3,PxFquery,1.9677996422182469,2.2063208109719734,3
+B100_RD_047,reverse_drug,recommendations_top5,PxFquery,1.8485390578413832,1.8127608825283243,5
+B100_RD_048,reverse_drug,recommendations_top1,PxFquery,4.539894956471689,4.539894956471689,1
+B100_RD_048,reverse_drug,recommendations_top10,Direct LLM,32.82969997841571,30.694294553565005,5
+B100_RD_048,reverse_drug,recommendations_top10,PxFquery,2.586517015612634,3.2815310453989497,10
+B100_RD_048,reverse_drug,recommendations_top3,Direct LLM,32.82969997841571,32.82969997841571,1
+B100_RD_048,reverse_drug,recommendations_top3,PxFquery,2.5901143967191884,3.2376429958989856,3
+B100_RD_048,reverse_drug,recommendations_top5,Direct LLM,62.58363911072739,62.58363911072739,2
+B100_RD_048,reverse_drug,recommendations_top5,PxFquery,2.5901143967191884,3.4837038635873085,5
+B100_RD_049,reverse_drug,recommendations_top1,Direct LLM,89.51566951566952,89.51566951566952,1
+B100_RD_049,reverse_drug,recommendations_top1,PxFquery,3.532763532763533,3.532763532763533,1
+B100_RD_049,reverse_drug,recommendations_top10,Direct LLM,33.61823361823362,39.78632478632478,4
+B100_RD_049,reverse_drug,recommendations_top10,PxFquery,2.6495726495726495,2.364672364672365,10
+B100_RD_049,reverse_drug,recommendations_top3,Direct LLM,89.51566951566952,89.51566951566952,1
+B100_RD_049,reverse_drug,recommendations_top3,PxFquery,3.304843304843305,3.3618233618233617,3
+B100_RD_049,reverse_drug,recommendations_top5,Direct LLM,33.39031339031339,51.452991452991455,3
+B100_RD_049,reverse_drug,recommendations_top5,PxFquery,3.247863247863248,2.5413105413105415,5
+B100_RD_050,reverse_drug,recommendations_top1,PxFquery,1.7266187050359711,1.7266187050359711,1
+B100_RD_050,reverse_drug,recommendations_top10,PxFquery,1.3669064748201438,1.266187050359712,10
+B100_RD_050,reverse_drug,recommendations_top3,PxFquery,1.5107913669064748,1.2470023980815348,3
+B100_RD_050,reverse_drug,recommendations_top5,PxFquery,1.4388489208633093,1.20863309352518,5
+B100_RD_051,reverse_drug,recommendations_top1,PxFquery,13.234794427454975,13.234794427454975,1
+B100_RD_051,reverse_drug,recommendations_top10,Direct LLM,30.65749235474006,29.41726129799525,4
+B100_RD_051,reverse_drug,recommendations_top10,PxFquery,13.515120625212369,12.599388379204893,10
+B100_RD_051,reverse_drug,recommendations_top3,Direct LLM,31.889228678219503,31.889228678219503,1
+B100_RD_051,reverse_drug,recommendations_top3,PxFquery,13.472646958885491,13.399025937252237,3
+B100_RD_051,reverse_drug,recommendations_top5,Direct LLM,23.25857968059803,28.281798618190056,3
+B100_RD_051,reverse_drug,recommendations_top5,PxFquery,13.472646958885491,11.65817193340129,5
+B100_RD_052,reverse_drug,recommendations_top1,Direct LLM,17.28706624605678,17.28706624605678,1
+B100_RD_052,reverse_drug,recommendations_top1,PxFquery,17.160883280757098,17.160883280757098,1
+B100_RD_052,reverse_drug,recommendations_top10,Direct LLM,48.170347003154575,48.170347003154575,2
+B100_RD_052,reverse_drug,recommendations_top10,PxFquery,5.899053627760253,9.476340694006309,10
+B100_RD_052,reverse_drug,recommendations_top3,Direct LLM,17.28706624605678,17.28706624605678,1
+B100_RD_052,reverse_drug,recommendations_top3,PxFquery,5.930599369085174,9.589905362776024,3
+B100_RD_052,reverse_drug,recommendations_top5,Direct LLM,48.170347003154575,48.170347003154575,2
+B100_RD_052,reverse_drug,recommendations_top5,PxFquery,5.930599369085174,10.422712933753944,5
+B100_RD_053,reverse_drug,recommendations_top1,Direct LLM,7.09823963657013,7.09823963657013,1
+B100_RD_053,reverse_drug,recommendations_top1,PxFquery,21.80579216354344,21.80579216354344,1
+B100_RD_053,reverse_drug,recommendations_top10,Direct LLM,28.05224304372516,37.89040318001136,4
+B100_RD_053,reverse_drug,recommendations_top10,PxFquery,5.934128336172629,10.034071550255536,10
+B100_RD_053,reverse_drug,recommendations_top3,Direct LLM,12.663259511641114,36.040128714745414,3
+B100_RD_053,reverse_drug,recommendations_top3,PxFquery,5.9625212947189095,11.224682945296232,3
+B100_RD_053,reverse_drug,recommendations_top5,Direct LLM,47.72856331629756,47.72856331629756,2
+B100_RD_053,reverse_drug,recommendations_top5,PxFquery,5.9625212947189095,10.800681431005112,5
+B100_RD_054,reverse_drug,recommendations_top1,PxFquery,8.169350029815146,8.169350029815146,1
+B100_RD_054,reverse_drug,recommendations_top10,Direct LLM,28.3840190816935,28.3840190816935,2
+B100_RD_054,reverse_drug,recommendations_top10,PxFquery,3.45855694692904,4.370900417412045,10
+B100_RD_054,reverse_drug,recommendations_top3,PxFquery,2.206320810971974,4.174120453190221,3
+B100_RD_054,reverse_drug,recommendations_top5,Direct LLM,16.63685152057245,16.63685152057245,1
+B100_RD_054,reverse_drug,recommendations_top5,PxFquery,2.265951103160406,4.197972570065593,5
+B100_RD_055,reverse_drug,recommendations_top1,PxFquery,1.884760366182014,1.884760366182014,1
+B100_RD_055,reverse_drug,recommendations_top10,PxFquery,1.5347334410339255,1.4054927302100162,10
+B100_RD_055,reverse_drug,recommendations_top3,Direct LLM,38.933764135702745,38.933764135702745,1
+B100_RD_055,reverse_drug,recommendations_top3,PxFquery,1.884760366182014,1.5078082929456114,3
+B100_RD_055,reverse_drug,recommendations_top5,PxFquery,1.4539579967689822,1.292407108239095,5
+B100_RD_056,reverse_drug,recommendations_top1,Direct LLM,77.28565623730191,77.28565623730191,1
+B100_RD_056,reverse_drug,recommendations_top1,PxFquery,2.844372206420154,2.844372206420154,1
+B100_RD_056,reverse_drug,recommendations_top10,Direct LLM,77.28565623730191,69.4676960585128,5
+B100_RD_056,reverse_drug,recommendations_top10,PxFquery,2.2348638764729785,1.8569687119057292,10
+B100_RD_056,reverse_drug,recommendations_top3,Direct LLM,63.18569687119057,63.18569687119057,2
+B100_RD_056,reverse_drug,recommendations_top3,PxFquery,2.844372206420154,2.6412027631044293,3
+B100_RD_056,reverse_drug,recommendations_top5,Direct LLM,77.28565623730191,72.27414330218069,3
+B100_RD_056,reverse_drug,recommendations_top5,PxFquery,2.3161316537992684,2.503047541649736,5
+B100_RD_057,reverse_drug,recommendations_top1,PxFquery,22.01892744479495,22.01892744479495,1
+B100_RD_057,reverse_drug,recommendations_top10,Direct LLM,11.167192429022082,14.397476340694004,5
+B100_RD_057,reverse_drug,recommendations_top10,PxFquery,16.624605678233436,15.186119873817034,10
+B100_RD_057,reverse_drug,recommendations_top3,Direct LLM,6.246056782334385,6.246056782334385,1
+B100_RD_057,reverse_drug,recommendations_top3,PxFquery,16.529968454258675,17.58149316508938,3
+B100_RD_057,reverse_drug,recommendations_top5,Direct LLM,14.889589905362776,14.889589905362776,2
+B100_RD_057,reverse_drug,recommendations_top5,PxFquery,16.529968454258675,16.0,5
+B100_RD_058,reverse_drug,recommendations_top1,Direct LLM,67.46517159361196,67.46517159361196,1
+B100_RD_058,reverse_drug,recommendations_top1,PxFquery,36.03465851172273,36.03465851172273,1
+B100_RD_058,reverse_drug,recommendations_top10,Direct LLM,78.2195039075773,74.47545022086307,8
+B100_RD_058,reverse_drug,recommendations_top10,PxFquery,20.37037037037037,21.8280665987088,10
+B100_RD_058,reverse_drug,recommendations_top3,Direct LLM,67.46517159361196,58.89681730660323,3
+B100_RD_058,reverse_drug,recommendations_top3,PxFquery,36.03465851172273,39.46653075093442,3
+B100_RD_058,reverse_drug,recommendations_top5,Direct LLM,75.65409446143391,69.47332653754673,5
+B100_RD_058,reverse_drug,recommendations_top5,PxFquery,30.411145090044172,28.909276248725792,5
+B100_RD_059,reverse_drug,recommendations_top1,PxFquery,3.2295050640168164,3.2295050640168164,1
+B100_RD_059,reverse_drug,recommendations_top10,Direct LLM,61.13128224727689,55.175488884642334,6
+B100_RD_059,reverse_drug,recommendations_top10,PxFquery,1.2230078348939424,1.5918211351041467,10
+B100_RD_059,reverse_drug,recommendations_top3,Direct LLM,97.5348748327919,97.5348748327919,1
+B100_RD_059,reverse_drug,recommendations_top3,PxFquery,3.2295050640168164,2.8027262882986173,3
+B100_RD_059,reverse_drug,recommendations_top5,Direct LLM,97.5348748327919,83.8333651824957,3
+B100_RD_059,reverse_drug,recommendations_top5,PxFquery,2.197592203325053,2.3504681826867952,5
+B100_RD_060,reverse_drug,recommendations_top1,Direct LLM,95.99971220951149,95.99971220951149,1
+B100_RD_060,reverse_drug,recommendations_top1,PxFquery,0.3885171595078782,0.3885171595078782,1
+B100_RD_060,reverse_drug,recommendations_top10,Direct LLM,67.5947909921577,59.70813247955488,6
+B100_RD_060,reverse_drug,recommendations_top10,PxFquery,0.3453485862292251,0.4158572559176918,10
+B100_RD_060,reverse_drug,recommendations_top3,Direct LLM,81.25404705374487,81.25404705374487,2
+B100_RD_060,reverse_drug,recommendations_top3,PxFquery,0.3885171595078782,0.5539966904093819,3
+B100_RD_060,reverse_drug,recommendations_top5,Direct LLM,80.13526152960645,80.88111854569873,3
+B100_RD_060,reverse_drug,recommendations_top5,PxFquery,0.3237642995898985,0.4144183034750701,5
+B100_RD_061,reverse_drug,recommendations_top1,PxFquery,1.0765090349865436,1.0765090349865436,1
+B100_RD_061,reverse_drug,recommendations_top10,Direct LLM,94.34832756632063,94.34832756632063,1
+B100_RD_061,reverse_drug,recommendations_top10,PxFquery,0.595924644367551,0.6228373702422145,10
+B100_RD_061,reverse_drug,recommendations_top3,PxFquery,0.3460207612456747,0.5767012687427912,3
+B100_RD_061,reverse_drug,recommendations_top5,PxFquery,0.7689350249903883,0.6997308727412533,5
+B100_RD_062,reverse_drug,recommendations_top1,PxFquery,0.3314917127071823,0.3314917127071823,1
+B100_RD_062,reverse_drug,recommendations_top10,PxFquery,1.4148450636560173,1.2625510449195292,10
+B100_RD_062,reverse_drug,recommendations_top3,PxFquery,1.1337977420129717,1.0008807750820723,3
+B100_RD_062,reverse_drug,recommendations_top5,PxFquery,1.1337977420129717,1.1337977420129717,5
+B100_RD_063,reverse_drug,recommendations_top1,PxFquery,2.140263711064399,2.140263711064399,1
+B100_RD_063,reverse_drug,recommendations_top10,PxFquery,1.2134530861838333,1.2019873877317029,10
+B100_RD_063,reverse_drug,recommendations_top3,Direct LLM,21.60328683355628,21.60328683355628,2
+B100_RD_063,reverse_drug,recommendations_top3,PxFquery,1.375883814255685,1.5223899611440217,3
+B100_RD_063,reverse_drug,recommendations_top5,PxFquery,1.375883814255685,1.3032677240588573,5
+B100_RD_064,reverse_drug,recommendations_top1,Direct LLM,95.7361963190184,95.7361963190184,1
+B100_RD_064,reverse_drug,recommendations_top1,PxFquery,3.665644171779141,3.665644171779141,1
+B100_RD_064,reverse_drug,recommendations_top10,Direct LLM,83.86503067484662,72.91411042944785,7
+B100_RD_064,reverse_drug,recommendations_top10,PxFquery,2.5536809815950923,2.3128834355828216,10
+B100_RD_064,reverse_drug,recommendations_top3,Direct LLM,96.80981595092024,96.80981595092024,2
+B100_RD_064,reverse_drug,recommendations_top3,PxFquery,0.9049079754601228,1.7484662576687118,3
+B100_RD_064,reverse_drug,recommendations_top5,Direct LLM,96.44171779141104,93.6579754601227,4
+B100_RD_064,reverse_drug,recommendations_top5,PxFquery,2.561349693251534,2.0766871165644174,5
+B100_RD_065,reverse_drug,recommendations_top1,Direct LLM,67.9439941046426,67.9439941046426,1
+B100_RD_065,reverse_drug,recommendations_top1,PxFquery,0.2210759027266028,0.2210759027266028,1
+B100_RD_065,reverse_drug,recommendations_top10,Direct LLM,67.9439941046426,62.903463522476045,5
+B100_RD_065,reverse_drug,recommendations_top10,PxFquery,0.7000736919675755,0.6853352984524687,10
+B100_RD_065,reverse_drug,recommendations_top3,Direct LLM,52.50552689756817,52.50552689756817,2
+B100_RD_065,reverse_drug,recommendations_top3,PxFquery,0.4421518054532056,0.5649717514124294,3
+B100_RD_065,reverse_drug,recommendations_top5,Direct LLM,56.22697126013264,53.74600835175632,3
+B100_RD_065,reverse_drug,recommendations_top5,PxFquery,0.5895357406042742,0.5747973470891673,5
+B100_RD_066,reverse_drug,recommendations_top1,Direct LLM,82.4383718708198,82.4383718708198,1
+B100_RD_066,reverse_drug,recommendations_top1,PxFquery,0.5541754251863176,0.5541754251863176,1
+B100_RD_066,reverse_drug,recommendations_top10,Direct LLM,44.200267532963885,50.636346264093255,10
+B100_RD_066,reverse_drug,recommendations_top10,PxFquery,1.5860882858780814,2.1249761131282248,10
+B100_RD_066,reverse_drug,recommendations_top3,Direct LLM,82.4383718708198,72.61609019682783,3
+B100_RD_066,reverse_drug,recommendations_top3,PxFquery,2.4269061723676666,2.528823491942162,3
+B100_RD_066,reverse_drug,recommendations_top5,Direct LLM,82.4383718708198,65.43091916682592,5
+B100_RD_066,reverse_drug,recommendations_top5,PxFquery,1.1847888400535065,1.845977450793044,5
+B100_RD_067,reverse_drug,recommendations_top1,PxFquery,0.4216444132115249,0.4216444132115249,1
+B100_RD_067,reverse_drug,recommendations_top10,Direct LLM,47.926914968376664,52.98664792691497,4
+B100_RD_067,reverse_drug,recommendations_top10,PxFquery,0.7378777231201686,0.7378777231201686,10
+B100_RD_067,reverse_drug,recommendations_top3,Direct LLM,38.299367533380185,38.299367533380185,1
+B100_RD_067,reverse_drug,recommendations_top3,PxFquery,0.4919184820801124,0.515343171702975,3
+B100_RD_067,reverse_drug,recommendations_top5,Direct LLM,38.299367533380185,38.299367533380185,1
+B100_RD_067,reverse_drug,recommendations_top5,PxFquery,0.5621925509486999,0.5621925509486999,5
+B100_RD_068,reverse_drug,recommendations_top1,PxFquery,1.062215477996965,1.062215477996965,1
+B100_RD_068,reverse_drug,recommendations_top10,Direct LLM,70.71320182094082,70.71320182094082,1
+B100_RD_068,reverse_drug,recommendations_top10,PxFquery,1.289833080424886,1.3657056145675266,10
+B100_RD_068,reverse_drug,recommendations_top3,PxFquery,1.669195751138088,1.5680323722812342,3
+B100_RD_068,reverse_drug,recommendations_top5,Direct LLM,70.71320182094082,70.71320182094082,1
+B100_RD_068,reverse_drug,recommendations_top5,PxFquery,1.1380880121396055,1.1532625189681336,5
+B100_RD_069,reverse_drug,recommendations_top1,PxFquery,1.1790714812085483,1.1790714812085483,1
+B100_RD_069,reverse_drug,recommendations_top10,Direct LLM,5.453205600589536,5.453205600589536,1
+B100_RD_069,reverse_drug,recommendations_top10,PxFquery,2.0633750921149594,1.982313927781872,10
+B100_RD_069,reverse_drug,recommendations_top3,PxFquery,1.1790714812085483,0.9579955784819456,3
+B100_RD_069,reverse_drug,recommendations_top5,Direct LLM,5.453205600589536,5.453205600589536,1
+B100_RD_069,reverse_drug,recommendations_top5,PxFquery,1.1790714812085483,1.1790714812085483,5
+B100_RD_070,reverse_drug,recommendations_top1,Direct LLM,66.30914826498423,66.30914826498423,1
+B100_RD_070,reverse_drug,recommendations_top1,PxFquery,2.77602523659306,2.77602523659306,1
+B100_RD_070,reverse_drug,recommendations_top10,Direct LLM,55.83596214511041,58.97791798107255,5
+B100_RD_070,reverse_drug,recommendations_top10,PxFquery,3.249211356466877,3.1671924290220823,10
+B100_RD_070,reverse_drug,recommendations_top3,Direct LLM,61.07255520504732,61.07255520504732,2
+B100_RD_070,reverse_drug,recommendations_top3,PxFquery,3.911671924290221,3.848580441640379,3
+B100_RD_070,reverse_drug,recommendations_top5,Direct LLM,55.83596214511041,58.44374342797056,3
+B100_RD_070,reverse_drug,recommendations_top5,PxFquery,3.217665615141956,3.583596214511042,5
+B100_RD_071,reverse_drug,recommendations_top1,Direct LLM,94.6302312249188,94.6302312249188,1
+B100_RD_071,reverse_drug,recommendations_top1,PxFquery,4.414293904070323,4.414293904070323,1
+B100_RD_071,reverse_drug,recommendations_top10,Direct LLM,72.11924326390216,60.32103955665966,5
+B100_RD_071,reverse_drug,recommendations_top10,PxFquery,3.5830307662908467,3.4760175807376266,10
+B100_RD_071,reverse_drug,recommendations_top3,Direct LLM,83.37473724441048,83.37473724441048,2
+B100_RD_071,reverse_drug,recommendations_top3,PxFquery,3.55436652016052,3.2295050640168164,3
+B100_RD_071,reverse_drug,recommendations_top5,Direct LLM,94.6302312249188,87.33677304286897,3
+B100_RD_071,reverse_drug,recommendations_top5,PxFquery,3.55436652016052,3.0880947831072043,5
+B100_RD_072,reverse_drug,recommendations_top1,PxFquery,2.9888983774551665,2.9888983774551665,1
+B100_RD_072,reverse_drug,recommendations_top10,Direct LLM,70.75149444918873,70.75149444918873,1
+B100_RD_072,reverse_drug,recommendations_top10,PxFquery,3.757472245943638,3.5781383432963283,10
+B100_RD_072,reverse_drug,recommendations_top3,Direct LLM,70.75149444918873,70.75149444918873,1
+B100_RD_072,reverse_drug,recommendations_top3,PxFquery,2.9888983774551665,3.00313122687162,3
+B100_RD_072,reverse_drug,recommendations_top5,Direct LLM,60.78138343296328,60.78138343296328,2
+B100_RD_072,reverse_drug,recommendations_top5,PxFquery,2.9888983774551665,3.4329632792485056,5
+B100_RD_073,reverse_drug,recommendations_top1,PxFquery,1.4415781487101669,1.4415781487101669,1
+B100_RD_073,reverse_drug,recommendations_top10,Direct LLM,86.22913505311078,86.22913505311078,2
+B100_RD_073,reverse_drug,recommendations_top10,PxFquery,3.1487101669195754,3.3915022761760243,10
+B100_RD_073,reverse_drug,recommendations_top3,PxFquery,3.110773899848255,3.2878098128477493,3
+B100_RD_073,reverse_drug,recommendations_top5,Direct LLM,99.46889226100151,99.46889226100151,1
+B100_RD_073,reverse_drug,recommendations_top5,PxFquery,5.311077389984826,4.203338391502276,5
+B100_RD_074,reverse_drug,recommendations_top1,Direct LLM,95.565749235474,95.565749235474,1
+B100_RD_074,reverse_drug,recommendations_top1,PxFquery,0.6965681277607884,0.6965681277607884,1
+B100_RD_074,reverse_drug,recommendations_top10,Direct LLM,28.941556235134215,40.53969872012686,6
+B100_RD_074,reverse_drug,recommendations_top10,PxFquery,0.9259259259259258,0.8613659531090724,10
+B100_RD_074,reverse_drug,recommendations_top3,Direct LLM,63.336731226639486,56.96001812209763,3
+B100_RD_074,reverse_drug,recommendations_top3,PxFquery,0.9174311926605504,1.0137048363348058,3
+B100_RD_074,reverse_drug,recommendations_top5,Direct LLM,40.927624872579,47.349643221202854,4
+B100_RD_074,reverse_drug,recommendations_top5,PxFquery,0.9174311926605504,0.9887869520897044,5
+B100_RD_075,reverse_drug,recommendations_top1,PxFquery,1.7663817663817665,1.7663817663817665,1
+B100_RD_075,reverse_drug,recommendations_top10,Direct LLM,6.7236467236467234,6.7236467236467234,2
+B100_RD_075,reverse_drug,recommendations_top10,PxFquery,1.4245014245014245,1.3903133903133902,10
+B100_RD_075,reverse_drug,recommendations_top3,PxFquery,1.4814814814814814,1.4814814814814816,3
+B100_RD_075,reverse_drug,recommendations_top5,PxFquery,1.4814814814814814,1.47008547008547,5
+B100_RD_076,reverse_drug,recommendations_top1,Direct LLM,10.832719233603536,10.832719233603536,1
+B100_RD_076,reverse_drug,recommendations_top1,PxFquery,1.400147383935151,1.400147383935151,1
+B100_RD_076,reverse_drug,recommendations_top10,Direct LLM,43.69933677229182,53.5214233077166,7
+B100_RD_076,reverse_drug,recommendations_top10,PxFquery,1.658069270449521,1.6654384672070743,10
+B100_RD_076,reverse_drug,recommendations_top3,Direct LLM,17.39130434782609,17.39130434782609,2
+B100_RD_076,reverse_drug,recommendations_top3,PxFquery,1.915991156963891,1.9159911569638908,3
+B100_RD_076,reverse_drug,recommendations_top5,Direct LLM,23.94988946204864,24.981577008106115,3
+B100_RD_076,reverse_drug,recommendations_top5,PxFquery,1.400147383935151,1.606484893146647,5
+B100_RD_077,reverse_drug,recommendations_top1,Direct LLM,47.7652127086699,47.7652127086699,1
+B100_RD_077,reverse_drug,recommendations_top1,PxFquery,3.823371028540657,3.823371028540657,1
+B100_RD_077,reverse_drug,recommendations_top10,Direct LLM,55.89660743134087,47.24017232094776,4
+B100_RD_077,reverse_drug,recommendations_top10,PxFquery,2.88099084544965,2.563274098007539,10
+B100_RD_077,reverse_drug,recommendations_top3,Direct LLM,55.89660743134087,55.89660743134087,2
+B100_RD_077,reverse_drug,recommendations_top3,PxFquery,2.8002154011847065,3.1233171782444806,3
+B100_RD_077,reverse_drug,recommendations_top5,Direct LLM,64.02800215401184,60.868784778316275,3
+B100_RD_077,reverse_drug,recommendations_top5,PxFquery,2.8002154011847065,2.595584275713517,5
+B100_RD_078,reverse_drug,recommendations_top1,PxFquery,3.0920590302178494,3.0920590302178494,1
+B100_RD_078,reverse_drug,recommendations_top10,Direct LLM,90.58327477160928,77.37174982431483,6
+B100_RD_078,reverse_drug,recommendations_top10,PxFquery,2.073085031623331,2.059030217849614,10
+B100_RD_078,reverse_drug,recommendations_top3,Direct LLM,90.65354884047788,90.65354884047788,1
+B100_RD_078,reverse_drug,recommendations_top3,PxFquery,2.037947997189037,2.272194893417662,3
+B100_RD_078,reverse_drug,recommendations_top5,Direct LLM,81.76387912860156,70.57273366127899,4
+B100_RD_078,reverse_drug,recommendations_top5,PxFquery,2.1784961349262124,2.4455375966268447,5
+B100_RD_079,reverse_drug,recommendations_top1,PxFquery,2.871219843696908,2.871219843696908,1
+B100_RD_079,reverse_drug,recommendations_top10,Direct LLM,98.35202174651717,93.55079850492696,5
+B100_RD_079,reverse_drug,recommendations_top10,PxFquery,2.8967040434930347,2.893306150186884,10
+B100_RD_079,reverse_drug,recommendations_top3,Direct LLM,98.41997961264016,98.41997961264016,1
+B100_RD_079,reverse_drug,recommendations_top3,PxFquery,2.888209310227659,3.307282817986182,3
+B100_RD_079,reverse_drug,recommendations_top5,Direct LLM,94.79272850832484,94.79272850832484,2
+B100_RD_079,reverse_drug,recommendations_top5,PxFquery,2.871219843696908,2.3275569147128783,5
+B100_RD_080,reverse_drug,recommendations_top1,PxFquery,0.5895357406042742,0.5895357406042742,1
+B100_RD_080,reverse_drug,recommendations_top10,Direct LLM,61.86440677966101,67.00442151805453,4
+B100_RD_080,reverse_drug,recommendations_top10,PxFquery,1.1422254974207813,1.2085482682387618,10
+B100_RD_080,reverse_drug,recommendations_top3,Direct LLM,57.995578481945465,57.995578481945465,1
+B100_RD_080,reverse_drug,recommendations_top3,PxFquery,1.0316875460574797,0.908867600098256,3
+B100_RD_080,reverse_drug,recommendations_top5,Direct LLM,51.91599115696389,51.91599115696389,2
+B100_RD_080,reverse_drug,recommendations_top5,PxFquery,1.105379513633014,1.2969786293294032,5
+B100_RD_081,reverse_drug,recommendations_top1,PxFquery,6.1198738170347005,6.1198738170347005,1
+B100_RD_081,reverse_drug,recommendations_top10,Direct LLM,56.782334384858046,60.94637223974764,7
+B100_RD_081,reverse_drug,recommendations_top10,PxFquery,5.899053627760253,5.697160883280757,10
+B100_RD_081,reverse_drug,recommendations_top3,Direct LLM,25.80441640378549,25.80441640378549,1
+B100_RD_081,reverse_drug,recommendations_top3,PxFquery,6.246056782334385,6.309148264984227,3
+B100_RD_081,reverse_drug,recommendations_top5,Direct LLM,60.34700315457414,60.34700315457414,2
+B100_RD_081,reverse_drug,recommendations_top5,PxFquery,6.1198738170347005,5.955835962145111,5
+B100_RD_082,reverse_drug,recommendations_top1,PxFquery,2.8181041844577286,2.8181041844577286,1
+B100_RD_082,reverse_drug,recommendations_top10,PxFquery,3.2664389410760033,3.531169940222033,10
+B100_RD_082,reverse_drug,recommendations_top3,PxFquery,3.373185311699402,3.202391118701964,3
+B100_RD_082,reverse_drug,recommendations_top5,PxFquery,3.330486763450043,3.2450896669513236,5
+B100_RD_083,reverse_drug,recommendations_top1,PxFquery,0.6246450880181715,0.6246450880181715,1
+B100_RD_083,reverse_drug,recommendations_top10,PxFquery,0.9653605905735376,0.9369676320272572,10
+B100_RD_083,reverse_drug,recommendations_top3,PxFquery,0.9085746734809768,0.8517887563884156,3
+B100_RD_083,reverse_drug,recommendations_top5,PxFquery,1.0221465076660987,1.0562180579216354,5
+B100_RD_084,reverse_drug,recommendations_top1,PxFquery,1.038062283737024,1.038062283737024,1
+B100_RD_084,reverse_drug,recommendations_top10,Direct LLM,48.09688581314879,47.23824170190952,3
+B100_RD_084,reverse_drug,recommendations_top10,PxFquery,0.6728181468665897,0.718954248366013,10
+B100_RD_084,reverse_drug,recommendations_top3,PxFquery,0.7304882737408689,0.6920415224913494,3
+B100_RD_084,reverse_drug,recommendations_top5,Direct LLM,71.54940407535564,71.54940407535564,1
+B100_RD_084,reverse_drug,recommendations_top5,PxFquery,0.6920415224913494,0.6305267204921183,5
+B100_RD_085,reverse_drug,recommendations_top1,Direct LLM,72.37479806138934,72.37479806138934,1
+B100_RD_085,reverse_drug,recommendations_top1,PxFquery,7.754442649434572,7.754442649434572,1
+B100_RD_085,reverse_drug,recommendations_top10,Direct LLM,51.26548196015078,47.11900915455035,4
+B100_RD_085,reverse_drug,recommendations_top10,PxFquery,8.077544426494345,7.415185783521809,10
+B100_RD_085,reverse_drug,recommendations_top3,Direct LLM,72.37479806138934,72.37479806138934,1
+B100_RD_085,reverse_drug,recommendations_top3,PxFquery,7.700592353257943,6.6415365284509065,3
+B100_RD_085,reverse_drug,recommendations_top5,Direct LLM,42.97253634894992,42.97253634894992,2
+B100_RD_085,reverse_drug,recommendations_top5,PxFquery,7.754442649434572,7.862143241787829,5
+B100_RD_086,reverse_drug,recommendations_top1,Direct LLM,98.52424455375966,98.52424455375966,1
+B100_RD_086,reverse_drug,recommendations_top1,PxFquery,1.5460295151089247,1.5460295151089247,1
+B100_RD_086,reverse_drug,recommendations_top10,Direct LLM,27.40688685874912,48.69992972593113,5
+B100_RD_086,reverse_drug,recommendations_top10,PxFquery,0.7378777231201686,0.7940969782150387,10
+B100_RD_086,reverse_drug,recommendations_top3,Direct LLM,98.52424455375966,98.52424455375966,1
+B100_RD_086,reverse_drug,recommendations_top3,PxFquery,0.9838369641602248,0.9604122745373624,3
+B100_RD_086,reverse_drug,recommendations_top5,Direct LLM,98.52424455375966,74.95900679315999,3
+B100_RD_086,reverse_drug,recommendations_top5,PxFquery,0.7730147575544624,0.8151791988756149,5
+B100_RD_087,reverse_drug,recommendations_top1,Direct LLM,11.985688729874775,11.985688729874775,1
+B100_RD_087,reverse_drug,recommendations_top1,PxFquery,9.958258795468096,9.958258795468096,1
+B100_RD_087,reverse_drug,recommendations_top10,Direct LLM,11.985688729874775,14.51401311866428,5
+B100_RD_087,reverse_drug,recommendations_top10,PxFquery,7.036374478234944,6.177698270721526,10
+B100_RD_087,reverse_drug,recommendations_top3,Direct LLM,11.985688729874775,11.647783740806997,3
+B100_RD_087,reverse_drug,recommendations_top3,PxFquery,9.36195587358378,9.540846750149074,3
+B100_RD_087,reverse_drug,recommendations_top5,Direct LLM,11.985688729874775,11.647783740806997,3
+B100_RD_087,reverse_drug,recommendations_top5,PxFquery,9.30232558139535,6.273106738223016,5
+B100_RD_088,reverse_drug,recommendations_top1,PxFquery,4.114490161001789,4.114490161001789,1
+B100_RD_088,reverse_drug,recommendations_top10,Direct LLM,28.68217054263566,47.386205525740415,3
+B100_RD_088,reverse_drug,recommendations_top10,PxFquery,4.3231961836613,3.917710196779964,10
+B100_RD_088,reverse_drug,recommendations_top3,Direct LLM,97.67441860465117,97.67441860465117,1
+B100_RD_088,reverse_drug,recommendations_top3,PxFquery,4.531902206320811,4.452395150069568,3
+B100_RD_088,reverse_drug,recommendations_top5,Direct LLM,97.67441860465117,97.67441860465117,1
+B100_RD_088,reverse_drug,recommendations_top5,PxFquery,4.531902206320811,4.329159212880143,5
+B100_RD_089,reverse_drug,recommendations_top1,PxFquery,5.584045584045584,5.584045584045584,1
+B100_RD_089,reverse_drug,recommendations_top10,PxFquery,5.726495726495727,4.843304843304844,10
+B100_RD_089,reverse_drug,recommendations_top3,Direct LLM,95.6125356125356,95.6125356125356,1
+B100_RD_089,reverse_drug,recommendations_top3,PxFquery,5.584045584045584,4.881291547958215,3
+B100_RD_089,reverse_drug,recommendations_top5,PxFquery,5.754985754985755,5.447293447293448,5
+B100_RD_090,reverse_drug,recommendations_top1,Direct LLM,84.18928657218352,84.18928657218352,1
+B100_RD_090,reverse_drug,recommendations_top1,PxFquery,5.837136680278645,5.837136680278645,1
+B100_RD_090,reverse_drug,recommendations_top10,Direct LLM,84.38385779485948,84.56161422051406,4
+B100_RD_090,reverse_drug,recommendations_top10,PxFquery,3.997117463367763,5.4571222675954845,10
+B100_RD_090,reverse_drug,recommendations_top3,Direct LLM,84.18928657218352,84.18928657218352,1
+B100_RD_090,reverse_drug,recommendations_top3,PxFquery,2.1426855632957,3.3725678597165505,3
+B100_RD_090,reverse_drug,recommendations_top5,Direct LLM,84.3742493394187,84.3742493394187,2
+B100_RD_090,reverse_drug,recommendations_top5,PxFquery,2.147489791016094,3.684842661542157,5
+B100_RD_091,reverse_drug,recommendations_top1,PxFquery,3.39658899831852,3.39658899831852,1
+B100_RD_091,reverse_drug,recommendations_top10,Direct LLM,8.522699975978862,12.31683881815998,4
+B100_RD_091,reverse_drug,recommendations_top10,PxFquery,11.311554167667548,10.966130194571225,10
+B100_RD_091,reverse_drug,recommendations_top3,Direct LLM,0.0864760989670909,0.0864760989670909,2
+B100_RD_091,reverse_drug,recommendations_top3,PxFquery,11.299543598366563,12.788854191688683,3
+B100_RD_091,reverse_drug,recommendations_top5,PxFquery,11.304347826086955,12.196012490992072,5
+B100_RD_092,reverse_drug,recommendations_top1,PxFquery,13.165379926859,13.165379926859,1
+B100_RD_092,reverse_drug,recommendations_top10,Direct LLM,34.01056481105242,37.180008126777736,4
+B100_RD_092,reverse_drug,recommendations_top10,PxFquery,5.830963023161317,6.156034132466477,10
+B100_RD_092,reverse_drug,recommendations_top3,Direct LLM,71.27184071515644,71.27184071515644,1
+B100_RD_092,reverse_drug,recommendations_top3,PxFquery,9.22389272653393,10.52417716375457,3
+B100_RD_092,reverse_drug,recommendations_top5,Direct LLM,71.27184071515644,71.27184071515644,1
+B100_RD_092,reverse_drug,recommendations_top5,PxFquery,9.183258837870785,8.167411621292157,5
+B100_RD_093,reverse_drug,recommendations_top1,PxFquery,0.5767012687427913,0.5767012687427913,1
+B100_RD_093,reverse_drug,recommendations_top10,Direct LLM,82.89119569396387,60.915032679738566,5
+B100_RD_093,reverse_drug,recommendations_top10,PxFquery,1.2879661668589004,1.2879661668589004,10
+B100_RD_093,reverse_drug,recommendations_top3,Direct LLM,49.86543637062669,49.86543637062669,2
+B100_RD_093,reverse_drug,recommendations_top3,PxFquery,1.268742791234141,1.0508778674868642,3
+B100_RD_093,reverse_drug,recommendations_top5,Direct LLM,78.18146866589774,64.02345251826222,4
+B100_RD_093,reverse_drug,recommendations_top5,PxFquery,1.268742791234141,1.1764705882352942,5
+B100_RD_094,reverse_drug,recommendations_top1,PxFquery,1.0826210826210827,1.0826210826210827,1
+B100_RD_094,reverse_drug,recommendations_top10,Direct LLM,61.36752136752136,61.36752136752136,2
+B100_RD_094,reverse_drug,recommendations_top10,PxFquery,2.364672364672365,2.364672364672365,10
+B100_RD_094,reverse_drug,recommendations_top3,PxFquery,2.336182336182336,1.9373219373219377,3
+B100_RD_094,reverse_drug,recommendations_top5,Direct LLM,67.06552706552706,67.06552706552706,1
+B100_RD_094,reverse_drug,recommendations_top5,PxFquery,2.336182336182336,2.005698005698006,5
+B100_RD_095,reverse_drug,recommendations_top1,PxFquery,0.7913669064748201,0.7913669064748201,1
+B100_RD_095,reverse_drug,recommendations_top10,Direct LLM,98.63309352517986,98.63309352517986,1
+B100_RD_095,reverse_drug,recommendations_top10,PxFquery,0.6834532374100719,0.6546762589928058,10
+B100_RD_095,reverse_drug,recommendations_top3,PxFquery,0.5755395683453237,0.4796163069544364,3
+B100_RD_095,reverse_drug,recommendations_top5,Direct LLM,98.63309352517986,98.63309352517986,1
+B100_RD_095,reverse_drug,recommendations_top5,PxFquery,0.5755395683453237,0.5611510791366906,5
+B100_RD_096,reverse_drug,recommendations_top1,PxFquery,2.8404344193817876,2.8404344193817876,1
+B100_RD_096,reverse_drug,recommendations_top10,Direct LLM,10.122528543581174,10.122528543581174,2
+B100_RD_096,reverse_drug,recommendations_top10,PxFquery,3.397382344750766,3.5004177109440264,10
+B100_RD_096,reverse_drug,recommendations_top3,Direct LLM,0.1392369813422445,0.1392369813422445,1
+B100_RD_096,reverse_drug,recommendations_top3,PxFquery,2.8404344193817876,3.555184256938643,3
+B100_RD_096,reverse_drug,recommendations_top5,Direct LLM,7.755499860763019,7.755499860763019,2
+B100_RD_096,reverse_drug,recommendations_top5,PxFquery,1.670843776106934,2.7958785853522694,5
+B100_RD_097,reverse_drug,recommendations_top1,PxFquery,0.7751937984496124,0.7751937984496124,1
+B100_RD_097,reverse_drug,recommendations_top10,PxFquery,0.9242695289206916,0.9242695289206916,10
+B100_RD_097,reverse_drug,recommendations_top3,PxFquery,1.073345259391771,1.1528523156430133,3
+B100_RD_097,reverse_drug,recommendations_top5,PxFquery,0.8944543828264758,0.9540846750149076,5
+B100_RD_098,reverse_drug,recommendations_top1,PxFquery,2.896584743057772,2.896584743057772,1
+B100_RD_098,reverse_drug,recommendations_top10,Direct LLM,95.19629747845516,90.91240709497971,7
+B100_RD_098,reverse_drug,recommendations_top10,PxFquery,2.47765719757421,2.1999680817108205,10
+B100_RD_098,reverse_drug,recommendations_top3,Direct LLM,97.01563996169806,97.01563996169806,1
+B100_RD_098,reverse_drug,recommendations_top3,PxFquery,2.7130545802744974,2.098627513565273,3
+B100_RD_098,reverse_drug,recommendations_top5,Direct LLM,96.10596872007662,96.10596872007662,2
+B100_RD_098,reverse_drug,recommendations_top5,PxFquery,2.7130545802744974,2.2949249920204275,5
+B100_RD_099,reverse_drug,recommendations_top1,Direct LLM,7.913669064748201,7.913669064748201,1
+B100_RD_099,reverse_drug,recommendations_top1,PxFquery,2.3741007194244603,2.3741007194244603,1
+B100_RD_099,reverse_drug,recommendations_top10,Direct LLM,52.87769784172662,44.00479616306955,3
+B100_RD_099,reverse_drug,recommendations_top10,PxFquery,2.7338129496402876,2.5035971223021583,10
+B100_RD_099,reverse_drug,recommendations_top3,Direct LLM,39.568345323741006,39.568345323741006,2
+B100_RD_099,reverse_drug,recommendations_top3,PxFquery,3.237410071942446,2.9736211031175057,3
+B100_RD_099,reverse_drug,recommendations_top5,Direct LLM,52.87769784172662,44.00479616306955,3
+B100_RD_099,reverse_drug,recommendations_top5,PxFquery,3.1654676258992804,2.6906474820143886,5
+B100_RD_100,reverse_drug,recommendations_top1,Direct LLM,23.154574132492115,23.154574132492115,1
+B100_RD_100,reverse_drug,recommendations_top1,PxFquery,1.2618296529968454,1.2618296529968454,1
+B100_RD_100,reverse_drug,recommendations_top10,Direct LLM,45.488958990536275,36.52996845425868,5
+B100_RD_100,reverse_drug,recommendations_top10,PxFquery,0.7570977917981072,0.8138801261829652,10
+B100_RD_100,reverse_drug,recommendations_top3,Direct LLM,45.488958990536275,41.976866456361726,3
+B100_RD_100,reverse_drug,recommendations_top3,PxFquery,0.8832807570977917,0.92534174553102,3
+B100_RD_100,reverse_drug,recommendations_top5,Direct LLM,51.38801261829653,41.13564668769716,4
+B100_RD_100,reverse_drug,recommendations_top5,PxFquery,0.8832807570977917,0.8958990536277602,5
