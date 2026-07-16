@@ -1284,6 +1284,8 @@ excluded_from_git:
   size_mb: 0.0
 - path: 3_phase_digestion/G-003_magazine_research/T-012_genes_bioinformatics_deliverable_catalog/5_report/cli_sessions/deliver/20260626_031338_opencode_cli_61d9e1f09cc6/stdout.log
   size_mb: 0.16
+- path: 3_phase_digestion/G-003_magazine_research/T-172_pxfquery_submission_research_dialogue/1_asset/genes_2023-06-16_to_2026-06-16_metadata_and_timing_v20260616.xlsx
+  size_mb: 5.37
 - path: 3_phase_digestion/G-004_citation_research/T-017_pending_t017/1_asset/WXY manuscript_v8.docx
   size_mb: 42.02
 - path: 3_phase_digestion/G-004_citation_research/T-017_pending_t017/4_artifact/6_archive/multidisciplinary-digital-publishing-institute.csl
