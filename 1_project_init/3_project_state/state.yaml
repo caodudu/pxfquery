@@ -2,10 +2,10 @@ project_id: P-012
 name: PxFquery
 created: '2026-06-13'
 target_delivery: ''
-current_phase: translation
+current_phase: digestion
 status: active
-focus: 5_phase_translation/G-010_pending_g010/T-171_pxfquery_github_repository_readme_dialogue
+focus: 3_phase_digestion/G-003_magazine_research/T-172_pxfquery_submission_research_dialogue
 notes: 'Current direct-conversation focus: user-directed incremental discussion and
-  intermediate-asset work for PxFquery pre-submission GitHub repository and README
-  preparation. No materials are registered and no repository, README, release plan,
-  or final deliverable is authorized at this stage.'
+  intermediate-asset work for PxFquery submission research. No materials are registered
+  and no journal selection, broad research, submission package, or final recommendation
+  is authorized at this stage.'
