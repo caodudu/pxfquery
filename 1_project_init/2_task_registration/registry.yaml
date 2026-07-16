@@ -2276,7 +2276,11 @@ tasks:
   phase: digestion
   goal: G-003_magazine_research
   path: 3_phase_digestion/G-003_magazine_research/T-172_pxfquery_submission_research_dialogue
-  status: pending
+  status: active
   executor: human
   created: '2026-07-16'
   completed: null
+  notes: 'Current direct-conversation focus: user-directed incremental discussion
+    and intermediate-asset work for PxFquery submission research. No materials are
+    registered and no journal selection, broad research, submission package, or final
+    recommendation is authorized at this stage.'
