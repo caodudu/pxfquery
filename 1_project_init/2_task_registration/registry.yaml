@@ -2271,3 +2271,12 @@ tasks:
   notes: Direct-conversation task. The user will provide materials and instructions
     incrementally. Scope is limited to the current user-authorized intermediate asset;
     no repository or README change is authorized at setup.
+- id: T-172
+  name: pxfquery_submission_research_dialogue
+  phase: digestion
+  goal: G-003_magazine_research
+  path: 3_phase_digestion/G-003_magazine_research/T-172_pxfquery_submission_research_dialogue
+  status: pending
+  executor: human
+  created: '2026-07-16'
+  completed: null
