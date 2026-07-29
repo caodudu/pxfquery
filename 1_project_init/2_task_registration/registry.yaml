@@ -2289,7 +2289,12 @@ tasks:
   phase: digestion
   goal: G-036_hospital_material_registration
   path: 3_phase_digestion/G-036_hospital_material_registration/T-173_hospital_materials_registration_discussion
-  status: pending
+  status: active
   executor: human
   created: '2026-07-29'
   completed: null
+  notes: Initial configuration only. This task is an incremental, human-led discussion
+    for hospital-related material registration. No hospital-related material, prior-task
+    record, source, artifact, or project file has been independently read, searched,
+    scanned, linked, copied, registered, classified, analyzed, transformed, or modified.
+    The human will supply or explicitly authorize each material and action.
