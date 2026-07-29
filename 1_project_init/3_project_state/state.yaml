@@ -4,7 +4,7 @@ created: '2026-06-13'
 target_delivery: ''
 current_phase: digestion
 status: active
-focus: 3_phase_digestion/G-036_hospital_material_registration/T-173_hospital_materials_registration_discussion
+focus: 3_phase_digestion/G-036_hospital_material_registration/T-173_hospital_materials_registration
 notes: 'Current direct-conversation focus: user-directed, incremental hospital-related
   material registration for PxFquery. No hospital material is in scope unless the
   human supplies or explicitly authorizes the specific material and action.'
