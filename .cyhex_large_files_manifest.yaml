@@ -13,6 +13,222 @@ excluded_from_git:
   size_mb: 0.01
 - path: 2_project_asset/.DS_Store
   size_mb: 0.01
+- path: 2_project_asset/0_legacy_original_archive/.DS_Store
+  size_mb: 0.01
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720.manifest.tsv
+  size_mb: 0.08
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720.tar.zst
+  size_mb: 4189.76
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/.DS_Store
+  size_mb: 0.01
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/00_meta/.DS_Store
+  size_mb: 0.01
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/10_phase_A_understand_genes/.DS_Store
+  size_mb: 0.01
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/10_phase_A_understand_genes/analysis/.DS_Store
+  size_mb: 0.01
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/10_phase_A_understand_genes/references/.DS_Store
+  size_mb: 0.01
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/30_phase_C_minimal_results/.DS_Store
+  size_mb: 0.01
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/.DS_Store
+  size_mb: 0.01
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/.DS_Store
+  size_mb: 0.01
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/0_materials/.DS_Store
+  size_mb: 0.01
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/0_materials/1_research/.DS_Store
+  size_mb: 0.01
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/0_materials/1_research/input/JCRImpactFactors2025.xlsx
+  size_mb: 3.48
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/0_materials/1_research/input/gene_attribute_matrix_standardized.txt.gz
+  size_mb: 1052.04
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/0_materials/1_research/script/.DS_Store
+  size_mb: 0.01
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/0_materials/1_research/script/ref_tutorial/.DS_Store
+  size_mb: 0.01
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/0_materials/1_research/script/ref_tutorial/5_tools/.DS_Store
+  size_mb: 0.01
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/0_materials/2_PxFquery/.DS_Store
+  size_mb: 0.01
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/0_materials/2_PxFquery/script/.DS_Store
+  size_mb: 0.01
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/0_materials/2_PxFquery/script/PxFquery/.DS_Store
+  size_mb: 0.01
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/0_materials/3_work/input/cellline_meta_sub.csv
+  size_mb: 0.01
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/0_materials/3_work/input/cmap_cp_ad.h5ad
+  size_mb: 4.16
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/0_materials/3_work/input/cmap_sh_ad.h5ad
+  size_mb: 1.91
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/0_materials/3_work/input/cmap_sh_ad_unique.h5ad
+  size_mb: 5.97
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/0_materials/3_work/input/cmap_xpr_ad.h5ad
+  size_mb: 6.56
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/0_materials/3_work/input/cmap_xpr_ad_unique.h5ad
+  size_mb: 13.16
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/0_materials/3_work/input/cp_meta_unique.csv
+  size_mb: 1.36
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/0_materials/3_work/input/genesets/merged.gmt
+  size_mb: 0.06
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/0_materials/3_work/output/picture/umap_umap_cp_gsea_all.pdf
+  size_mb: 0.46
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/0_materials/3_work/output/picture/umap_umap_sh_gsea_all.pdf
+  size_mb: 1.38
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/0_materials/3_work/output/picture/umap_umap_xpr_gsea_all.pdf
+  size_mb: 1.2
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/0_materials/3_work/output/store/gsea_anndata/cp_func_ad.h5ad
+  size_mb: 569.43
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/0_materials/3_work/output/store/gsea_anndata/sh_func_ad.h5ad
+  size_mb: 533.24
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/0_materials/3_work/output/store/gsea_anndata/xpr_func_ad.h5ad
+  size_mb: 370.31
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/0_materials/3_work/output/store/gsea_res/cp_gsea_res_15.pkl
+  size_mb: 23.15
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/0_materials/3_work/output/store/gsea_res/cp_gsea_res_54.pkl
+  size_mb: 23.13
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/0_materials/3_work/output/store/gsea_res/cp_gsea_res_59.pkl
+  size_mb: 23.28
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/0_materials/3_work/output/store/gsea_res/cp_gsea_res_60.pkl
+  size_mb: 23.45
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/0_materials/3_work/output/store/gsea_res/cp_gsea_res_7.pkl
+  size_mb: 5.16
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/0_materials/3_work/output/store/gsea_res/cp_gsea_res_8.pkl
+  size_mb: 24.42
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/0_materials/3_work/output/table/gsea_res/cp_gsea_100terms.csv
+  size_mb: 355.17
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/0_materials/3_work/output/table/gsea_res/sh_gsea_100terms.csv
+  size_mb: 332.8
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/0_materials/3_work/output/table/gsea_res/xpr_gsea_100terms.csv
+  size_mb: 232.99
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/0_materials/3_work/report/log.out/cp_gsea.err
+  size_mb: 0.17
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/0_materials/3_work/report/log.out/cp_gsea.out
+  size_mb: 0.0
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/0_materials/3_work/report/log.out/cp_umap.err
+  size_mb: 0.0
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/0_materials/3_work/report/log.out/cp_umap.out
+  size_mb: 0.0
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/0_materials/3_work/report/log.out/sh_gsea.err
+  size_mb: 3.25
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/0_materials/3_work/report/log.out/sh_gsea.out
+  size_mb: 0.01
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/0_materials/3_work/report/log.out/sh_umap.err
+  size_mb: 0.0
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/0_materials/3_work/report/log.out/sh_umap.out
+  size_mb: 0.0
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/0_materials/3_work/report/log.out/xpr_gsea.err
+  size_mb: 9.3
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/0_materials/3_work/report/log.out/xpr_gsea.out
+  size_mb: 0.01
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/0_materials/3_work/report/log.out/xpr_umap.err
+  size_mb: 0.0
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/0_materials/3_work/report/log.out/xpr_umap.out
+  size_mb: 0.0
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/1_claude/.DS_Store
+  size_mb: 0.01
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/1_claude/backup/1_claude_backup_no_input_output_20260410_120924.zip
+  size_mb: 1.47
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/1_claude/backup/1_claude_backup_pre_progressive_context_20260410_144136.zip
+  size_mb: 1.5
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/1_claude/markdown/.DS_Store
+  size_mb: 0.01
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/1_claude/workspace/.DS_Store
+  size_mb: 0.01
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/1_claude/workspace/.env
+  size_mb: 0.0
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/1_claude/workspace/context/.DS_Store
+  size_mb: 0.01
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/1_claude/workspace/input/cellline_meta_sub.csv
+  size_mb: 0.01
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/1_claude/workspace/input/cmap/cellline_info_beta.csv
+  size_mb: 0.03
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/1_claude/workspace/input/cmap/cp_info_beta.csv
+  size_mb: 4.23
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/1_claude/workspace/input/cmap/gene_info_beta.csv
+  size_mb: 1.1
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/1_claude/workspace/input/cp_meta_unique.csv
+  size_mb: 1.36
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/1_claude/workspace/input/genePT/GPT-3-large_homo_sapiens_embedding_3072d.npz
+  size_mb: 224.88
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/1_claude/workspace/input/genePT/GPT-ada-002_homo_sapiens_embedding_1536d.npz
+  size_mb: 111.28
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/1_claude/workspace/input/genePT/GenePT_gene_embedding_ada_text.pickle
+  size_mb: 439.45
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/1_claude/workspace/input/genePT/GenePT_gene_protein_embedding_model_3_text.pickle
+  size_mb: 867.06
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/1_claude/workspace/input/genePT/gencode.v49.annotation.gtf.gz
+  size_mb: 89.05
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/1_claude/workspace/input/genePT/gene_names.csv
+  size_mb: 0.11
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/1_claude/workspace/input/genesets/merged.gmt
+  size_mb: 0.06
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/1_claude/workspace/output/store/genePT/gene_embedding_m3_filtered.npz
+  size_mb: 316.24
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/1_claude/workspace/output/store/genePT/gene_names_m3_filtered.csv
+  size_mb: 0.28
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/1_claude/workspace/output/store/gsea_anndata/cp_func_ad.h5ad
+  size_mb: 569.43
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/1_claude/workspace/output/store/gsea_anndata/sh_func_ad.h5ad
+  size_mb: 533.24
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/1_claude/workspace/output/store/gsea_anndata/xpr_func_ad.h5ad
+  size_mb: 370.31
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/1_claude/workspace/output/store/query_index/gene_neighbors_simple.json
+  size_mb: 19.5
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/1_claude/workspace/output/store/query_index/tmp/gene_index.json
+  size_mb: 6.12
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/1_claude/workspace/output/store/query_index/tmp/gene_neighbors.json
+  size_mb: 21.76
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/1_claude/workspace/output/table/cellline_meta_enriched.csv
+  size_mb: 0.02
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/1_claude/workspace/output/table/cp_meta_enriched.csv
+  size_mb: 0.93
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/1_claude/workspace/output/table/gsea_res/cp_gsea_100terms.csv
+  size_mb: 355.17
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/1_claude/workspace/output/table/gsea_res/sh_gsea_100terms.csv
+  size_mb: 332.8
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/1_claude/workspace/output/table/gsea_res/xpr_gsea_100terms.csv
+  size_mb: 232.99
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/1_claude/workspace/report/02_steps/2_cp_index/logs/2_cp_index.log
+  size_mb: 0.0
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/1_claude/workspace/report/02_steps/3_gene_index/logs/3_gene_index.log
+  size_mb: 0.0
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/1_claude/workspace/report/02_steps/3_gene_index/logs/3_gene_index_demo.log
+  size_mb: 0.0
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/1_claude/workspace/report/02_steps/5_function_index/logs/5_function_index.log
+  size_mb: 0.0
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/1_claude/workspace/report/04_management/logs/loggerdemo_01_normal_technical_2026-04-10.log
+  size_mb: 0.0
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/1_claude/workspace/report/04_management/logs/loggerdemo_02_quiet_minimal_2026-04-10.log
+  size_mb: 0.0
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/1_claude/workspace/report/04_management/logs/loggerdemo_03_debug_with_io_2026-04-10.log
+  size_mb: 0.0
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/1_claude/workspace/report/04_management/logs/loggerdemo_04_normal_human_2026-04-10.log
+  size_mb: 0.0
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/1_claude/workspace/report/04_management/logs/loggerdemo_05_live_llm_2026-04-10.log
+  size_mb: 0.0
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/1_claude/workspace/report/04_management/logs/pxfquery_2026-04-10.log
+  size_mb: 0.0
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/1_claude/workspace/script/.DS_Store
+  size_mb: 0.01
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/1_claude/workspace/script/word_new/.DS_Store
+  size_mb: 0.01
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/2_ppt/PxFquery.pptx
+  size_mb: 0.43
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/3_result/genes_mdpi_timing/genes_latest_100_timing.csv
+  size_mb: 0.03
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/4_figures/F1-SSR.ai
+  size_mb: 0.53
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/5_manuscript/manuscript_20260117.docx
+  size_mb: 0.01
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/6_articles/1-s2.0-S2352711025003334-main.pdf
+  size_mb: 3.88
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/6_articles/2503.23278v3.pdf
+  size_mb: 1.85
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/90_archive/20260429_pre_restructure/tools/collect_genes_mdpi_timing.mjs
+  size_mb: 0.01
+- path: 2_project_asset/0_legacy_original_archive/functional_query_p008_legacy_dedup_20260720/functional_query.code-workspace
+  size_mb: 0.0
 - path: 2_project_asset/1_raw_material/.DS_Store
   size_mb: 0.01
 - path: 2_project_asset/1_raw_material/legacy_flat_asset_library_v20260614/.DS_Store
@@ -183,8 +399,6 @@ excluded_from_git:
   size_mb: 232.99
 - path: 2_project_asset/1_raw_material/wxy投稿文件/.DS_Store
   size_mb: 0.01
-- path: 2_project_asset/1_raw_material/wxy投稿文件/.~nuscript_v8.docx
-  size_mb: 0.0
 - path: 2_project_asset/1_raw_material/wxy投稿文件/Figures.zip
   size_mb: 7.27
 - path: 2_project_asset/1_raw_material/wxy投稿文件/Figures/Figure_1.tif
@@ -215,48 +429,6 @@ excluded_from_git:
   size_mb: 42.02
 - path: 2_project_asset/1_raw_material/投稿文件.zip
   size_mb: 13.55
-- path: 3_execution/docx_render_qa/manuscript_20260715_t161_v1.pdf
-  size_mb: 4.08
-- path: 3_execution/docx_render_qa/page-1.png
-  size_mb: 0.45
-- path: 3_execution/docx_render_qa/page-10.png
-  size_mb: 0.67
-- path: 3_execution/docx_render_qa/page-11.png
-  size_mb: 0.65
-- path: 3_execution/docx_render_qa/page-12.png
-  size_mb: 0.56
-- path: 3_execution/docx_render_qa/page-13.png
-  size_mb: 0.59
-- path: 3_execution/docx_render_qa/page-14.png
-  size_mb: 0.52
-- path: 3_execution/docx_render_qa/page-15.png
-  size_mb: 0.47
-- path: 3_execution/docx_render_qa/page-16.png
-  size_mb: 0.5
-- path: 3_execution/docx_render_qa/page-17.png
-  size_mb: 0.31
-- path: 3_execution/docx_render_qa/page-18.png
-  size_mb: 0.66
-- path: 3_execution/docx_render_qa/page-19.png
-  size_mb: 0.62
-- path: 3_execution/docx_render_qa/page-2.png
-  size_mb: 0.58
-- path: 3_execution/docx_render_qa/page-20.png
-  size_mb: 0.06
-- path: 3_execution/docx_render_qa/page-3.png
-  size_mb: 0.1
-- path: 3_execution/docx_render_qa/page-4.png
-  size_mb: 0.46
-- path: 3_execution/docx_render_qa/page-5.png
-  size_mb: 0.49
-- path: 3_execution/docx_render_qa/page-6.png
-  size_mb: 0.48
-- path: 3_execution/docx_render_qa/page-7.png
-  size_mb: 0.5
-- path: 3_execution/docx_render_qa/page-8.png
-  size_mb: 0.57
-- path: 3_execution/docx_render_qa/page-9.png
-  size_mb: 0.48
 - path: 3_phase_digestion/.DS_Store
   size_mb: 0.01
 - path: 3_phase_digestion/G-001_legacy_asset_migration/.DS_Store
@@ -307,30 +479,6 @@ excluded_from_git:
   size_mb: 3.48
 - path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/PxFquery.pptx
   size_mb: 0.43
-- path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/__init__.cpython-310.pyc
-  size_mb: 0.0
-- path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/__init__.cpython-310_a_312.pyc
-  size_mb: 0.0
-- path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/__init__.cpython-310_a_316.pyc
-  size_mb: 0.0
-- path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/__init__.cpython-310_a_326.pyc
-  size_mb: 0.0
-- path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/__init__.cpython-310_a_334.pyc
-  size_mb: 0.0
-- path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/__init__.cpython-310_a_343.pyc
-  size_mb: 0.0
-- path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/__init__.cpython-312.pyc
-  size_mb: 0.0
-- path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/__init__.cpython-312_a_097.pyc
-  size_mb: 0.0
-- path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/__init__.cpython-312_a_347.pyc
-  size_mb: 0.0
-- path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/__init__.cpython-312_a_351.pyc
-  size_mb: 0.0
-- path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/build_drug_index.cpython-310.pyc
-  size_mb: 0.01
-- path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/cellline_index.cpython-310.pyc
-  size_mb: 0.01
 - path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/cellline_info_beta.csv
   size_mb: 0.03
 - path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/cellline_meta_enriched.csv
@@ -338,12 +486,6 @@ excluded_from_git:
 - path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/cellline_meta_sub.csv
   size_mb: 0.01
 - path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/cellline_meta_sub_a_194.csv
-  size_mb: 0.01
-- path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/check_link.cpython-312.pyc
-  size_mb: 0.0
-- path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/check_link.cpython-312_a_352.pyc
-  size_mb: 0.0
-- path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/client.cpython-310.pyc
   size_mb: 0.01
 - path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/cmap_cp_ad.h5ad
   size_mb: 4.16
@@ -356,8 +498,6 @@ excluded_from_git:
 - path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/cmap_xpr_ad_unique.h5ad
   size_mb: 13.16
 - path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/collect_genes_mdpi_timing.mjs
-  size_mb: 0.01
-- path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/core.cpython-310.pyc
   size_mb: 0.01
 - path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/cp_func_ad.h5ad
   size_mb: 569.43
@@ -395,14 +535,6 @@ excluded_from_git:
   size_mb: 0.0
 - path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/cp_umap.out
   size_mb: 0.0
-- path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/demo_logger_capabilities.cpython-310.pyc
-  size_mb: 0.01
-- path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/drug_index.cpython-310.pyc
-  size_mb: 0.01
-- path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/forward.cpython-310.pyc
-  size_mb: 0.01
-- path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/function_index.cpython-310.pyc
-  size_mb: 0.01
 - path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/functional_query.code-workspace
   size_mb: 0.0
 - path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/gencode.v49.annotation.gtf.gz
@@ -411,8 +543,6 @@ excluded_from_git:
   size_mb: 1052.04
 - path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/gene_embedding_m3_filtered.npz
   size_mb: 316.24
-- path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/gene_index.cpython-310.pyc
-  size_mb: 0.01
 - path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/gene_index.json
   size_mb: 6.12
 - path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/gene_info_beta.csv
@@ -436,8 +566,6 @@ excluded_from_git:
 - path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/legacy
     semantic registry sample workbook.xlsx
   size_mb: 0.01
-- path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/loader.cpython-310.pyc
-  size_mb: 0.0
 - path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/loggerdemo_01_normal_technical_2026-04-10.log
   size_mb: 0.0
 - path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/loggerdemo_02_quiet_minimal_2026-04-10.log
@@ -448,30 +576,14 @@ excluded_from_git:
   size_mb: 0.0
 - path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/loggerdemo_05_live_llm_2026-04-10.log
   size_mb: 0.0
-- path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/logging_utils.cpython-310.pyc
-  size_mb: 0.0
-- path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/main.cpython-312.pyc
-  size_mb: 0.0
-- path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/main.cpython-312_a_348.pyc
-  size_mb: 0.0
 - path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/manuscript_20260117.docx
   size_mb: 0.01
 - path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/merged.gmt
   size_mb: 0.06
 - path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/merged_a_206.gmt
   size_mb: 0.06
-- path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/plots.cpython-310.pyc
-  size_mb: 0.01
-- path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/prompts.cpython-310.pyc
-  size_mb: 0.01
 - path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/pxfquery_2026-04-10.log
   size_mb: 0.0
-- path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/resolver.cpython-310.pyc
-  size_mb: 0.03
-- path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/reverse.cpython-310.pyc
-  size_mb: 0.01
-- path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/run_forward_question_suite.cpython-310.pyc
-  size_mb: 0.01
 - path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/sh_func_ad.h5ad
   size_mb: 533.24
 - path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/sh_func_ad_a_210.h5ad
@@ -494,8 +606,6 @@ excluded_from_git:
   size_mb: 1.38
 - path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/umap_umap_xpr_gsea_all.pdf
   size_mb: 1.2
-- path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/utils.cpython-310.pyc
-  size_mb: 0.0
 - path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/xpr_func_ad.h5ad
   size_mb: 370.31
 - path: 3_phase_digestion/G-001_legacy_asset_migration/T-001_audit_legacy_assets/1_asset/xpr_func_ad_a_211.h5ad
@@ -1284,14 +1394,82 @@ excluded_from_git:
   size_mb: 0.0
 - path: 3_phase_digestion/G-003_magazine_research/T-012_genes_bioinformatics_deliverable_catalog/5_report/cli_sessions/deliver/20260626_031338_opencode_cli_61d9e1f09cc6/stdout.log
   size_mb: 0.16
+- path: 3_phase_digestion/G-003_magazine_research/T-172_pxfquery_submission_research_dialogue/.DS_Store
+  size_mb: 0.01
+- path: 3_phase_digestion/G-003_magazine_research/T-172_pxfquery_submission_research_dialogue/1_asset/T-004
+    three-year Genes timing workbook.xlsx
+  size_mb: 5.37
+- path: 3_phase_digestion/G-003_magazine_research/T-172_pxfquery_submission_research_dialogue/1_asset/T-006
+    affiliation and timing analysis table.csv
+  size_mb: 30.8
 - path: 3_phase_digestion/G-003_magazine_research/T-172_pxfquery_submission_research_dialogue/1_asset/genes_2023-06-16_to_2026-06-16_metadata_and_timing_v20260616.xlsx
   size_mb: 5.37
 - path: 3_phase_digestion/G-003_magazine_research/T-172_pxfquery_submission_research_dialogue/1_asset/genes_affiliation_timing_analysis_ready_v20260617.csv
   size_mb: 30.8
+- path: 3_phase_digestion/G-003_magazine_research/T-172_pxfquery_submission_research_dialogue/3_execution/.DS_Store
+  size_mb: 0.01
+- path: 3_phase_digestion/G-003_magazine_research/T-172_pxfquery_submission_research_dialogue/3_execution/PxFquery_Figures_TIF.zip
+  size_mb: 68.01
+- path: 3_phase_digestion/G-003_magazine_research/T-172_pxfquery_submission_research_dialogue/3_execution/PxFquery_Figures_for_Genes_20260717.zip
+  size_mb: 6.58
+- path: 3_phase_digestion/G-003_magazine_research/T-172_pxfquery_submission_research_dialogue/3_execution/PxFquery_Figures_for_Genes_20260717/Figure_1.tif
+  size_mb: 0.72
+- path: 3_phase_digestion/G-003_magazine_research/T-172_pxfquery_submission_research_dialogue/3_execution/PxFquery_Figures_for_Genes_20260717/Figure_2.tif
+  size_mb: 1.44
+- path: 3_phase_digestion/G-003_magazine_research/T-172_pxfquery_submission_research_dialogue/3_execution/PxFquery_Figures_for_Genes_20260717/Figure_3.tif
+  size_mb: 1.13
+- path: 3_phase_digestion/G-003_magazine_research/T-172_pxfquery_submission_research_dialogue/3_execution/PxFquery_Figures_for_Genes_20260717/Figure_4.tif
+  size_mb: 1.76
+- path: 3_phase_digestion/G-003_magazine_research/T-172_pxfquery_submission_research_dialogue/3_execution/PxFquery_Figures_for_Genes_20260717/Figure_5.tif
+  size_mb: 1.6
+- path: 3_phase_digestion/G-003_magazine_research/T-172_pxfquery_submission_research_dialogue/3_execution/PxFquery_Figures_for_Genes_20260717/Figure_6.tif
+  size_mb: 1.09
+- path: 3_phase_digestion/G-003_magazine_research/T-172_pxfquery_submission_research_dialogue/3_execution/PxFquery_Figures_for_Genes_20260717/Figure_7.tif
+  size_mb: 1.09
+- path: 3_phase_digestion/G-003_magazine_research/T-172_pxfquery_submission_research_dialogue/3_execution/PxFquery_Figures_for_Genes_20260717/Figure_8.tif
+  size_mb: 1.28
+- path: 3_phase_digestion/G-003_magazine_research/T-172_pxfquery_submission_research_dialogue/3_execution/PxFquery_Figures_for_Genes_20260717/Figure_9.tif
+  size_mb: 1.15
+- path: 3_phase_digestion/G-003_magazine_research/T-172_pxfquery_submission_research_dialogue/3_execution/PxFquery_Figures_for_Genes_original_TIFF_20260717/Figure_1.tif
+  size_mb: 5.9
+- path: 3_phase_digestion/G-003_magazine_research/T-172_pxfquery_submission_research_dialogue/3_execution/PxFquery_Figures_for_Genes_original_TIFF_20260717/Figure_2.tif
+  size_mb: 9.21
+- path: 3_phase_digestion/G-003_magazine_research/T-172_pxfquery_submission_research_dialogue/3_execution/PxFquery_Figures_for_Genes_original_TIFF_20260717/Figure_3.tif
+  size_mb: 7.24
+- path: 3_phase_digestion/G-003_magazine_research/T-172_pxfquery_submission_research_dialogue/3_execution/PxFquery_Figures_for_Genes_original_TIFF_20260717/Figure_4.tif
+  size_mb: 9.26
+- path: 3_phase_digestion/G-003_magazine_research/T-172_pxfquery_submission_research_dialogue/3_execution/PxFquery_Figures_for_Genes_original_TIFF_20260717/Figure_5.tif
+  size_mb: 8.87
+- path: 3_phase_digestion/G-003_magazine_research/T-172_pxfquery_submission_research_dialogue/3_execution/PxFquery_Figures_for_Genes_original_TIFF_20260717/Figure_6.tif
+  size_mb: 6.48
+- path: 3_phase_digestion/G-003_magazine_research/T-172_pxfquery_submission_research_dialogue/3_execution/PxFquery_Figures_for_Genes_original_TIFF_20260717/Figure_7.tif
+  size_mb: 6.04
+- path: 3_phase_digestion/G-003_magazine_research/T-172_pxfquery_submission_research_dialogue/3_execution/PxFquery_Figures_for_Genes_original_TIFF_20260717/Figure_8.tif
+  size_mb: 7.15
+- path: 3_phase_digestion/G-003_magazine_research/T-172_pxfquery_submission_research_dialogue/3_execution/PxFquery_Figures_for_Genes_original_TIFF_20260717/Figure_9.tif
+  size_mb: 7.86
+- path: 3_phase_digestion/G-003_magazine_research/T-172_pxfquery_submission_research_dialogue/4_artifact/5_table/genes_2023_2025_four_month_all_weekly_timing_v20260716.csv
+  size_mb: 0.0
+- path: 3_phase_digestion/G-003_magazine_research/T-172_pxfquery_submission_research_dialogue/4_artifact/5_table/genes_2023_2025_four_month_article_group_second_week_effects_v20260716.csv
+  size_mb: 0.01
+- path: 3_phase_digestion/G-003_magazine_research/T-172_pxfquery_submission_research_dialogue/4_artifact/5_table/genes_2023_2025_four_month_country_all_weekly_timing_v20260716.csv
+  size_mb: 0.01
+- path: 3_phase_digestion/G-003_magazine_research/T-172_pxfquery_submission_research_dialogue/4_artifact/5_table/genes_2023_2025_four_month_country_second_week_effects_v20260716.csv
+  size_mb: 0.0
+- path: 3_phase_digestion/G-003_magazine_research/T-172_pxfquery_submission_research_dialogue/4_artifact/5_table/genes_2023_2025_four_month_second_week_effects_v20260716.csv
+  size_mb: 0.0
+- path: 3_phase_digestion/G-003_magazine_research/T-172_pxfquery_submission_research_dialogue/4_artifact/5_table/genes_2023_2025_jun_sep_country_monthly_timing_v20260716.csv
+  size_mb: 0.04
+- path: 3_phase_digestion/G-003_magazine_research/T-172_pxfquery_submission_research_dialogue/4_artifact/5_table/genes_2023_2025_jun_sep_country_weekly_timing_v20260716.csv
+  size_mb: 0.05
 - path: 3_phase_digestion/G-003_magazine_research/T-172_pxfquery_submission_research_dialogue/4_artifact/5_table/genes_2023_2025_jun_sep_monthly_timing_v20260716.csv
   size_mb: 0.01
 - path: 3_phase_digestion/G-003_magazine_research/T-172_pxfquery_submission_research_dialogue/4_artifact/5_table/genes_2023_2025_jun_sep_weekly_timing_v20260716.csv
   size_mb: 0.01
+- path: 3_phase_digestion/G-003_magazine_research/T-172_pxfquery_submission_research_dialogue/4_artifact/5_table/genes_2023_2025_jun_sep_year_month_timing_v20260716.csv
+  size_mb: 0.02
+- path: 3_phase_digestion/G-003_magazine_research/T-172_pxfquery_submission_research_dialogue/4_artifact/5_table/genes_official_mdpi_received_2025-06_to_09_v20260727.csv
+  size_mb: 0.08
 - path: 3_phase_digestion/G-004_citation_research/T-017_pending_t017/1_asset/WXY manuscript_v8.docx
   size_mb: 42.02
 - path: 3_phase_digestion/G-004_citation_research/T-017_pending_t017/4_artifact/6_archive/multidisciplinary-digital-publishing-institute.csl
@@ -3676,6 +3854,20 @@ excluded_from_git:
 - path: 4_phase_development/G-035_goal_ms8_human_usable_package/T-128_ms8_00_external_context_digest/4_artifact/5_table/ms8_cleanup_candidates_v20260627.csv
   size_mb: 0.0
 - path: 4_phase_development/G-035_goal_ms8_human_usable_package/T-128_ms8_00_external_context_digest/4_artifact/5_table/ms8_durable_asset_index_v20260627.csv
+  size_mb: 0.0
+- path: 4_phase_development/G-035_goal_ms8_human_usable_package/T-128_ms8_00_external_context_digest/4_artifact/6_archive/github_export_local_clone_20260627_stale/.DS_Store
+  size_mb: 0.01
+- path: 4_phase_development/G-035_goal_ms8_human_usable_package/T-128_ms8_00_external_context_digest/4_artifact/6_archive/github_export_local_clone_20260627_stale/.pytest_cache/CACHEDIR.TAG
+  size_mb: 0.0
+- path: 4_phase_development/G-035_goal_ms8_human_usable_package/T-128_ms8_00_external_context_digest/4_artifact/6_archive/github_export_local_clone_20260627_stale/.pytest_cache/v/cache/lastfailed
+  size_mb: 0.0
+- path: 4_phase_development/G-035_goal_ms8_human_usable_package/T-128_ms8_00_external_context_digest/4_artifact/6_archive/github_export_local_clone_20260627_stale/.pytest_cache/v/cache/nodeids
+  size_mb: 0.01
+- path: 4_phase_development/G-035_goal_ms8_human_usable_package/T-128_ms8_00_external_context_digest/4_artifact/6_archive/github_export_local_clone_20260627_stale/LICENSE
+  size_mb: 0.0
+- path: 4_phase_development/G-035_goal_ms8_human_usable_package/T-128_ms8_00_external_context_digest/4_artifact/6_archive/github_export_local_clone_20260627_stale/src/.DS_Store
+  size_mb: 0.01
+- path: 4_phase_development/G-035_goal_ms8_human_usable_package/T-128_ms8_00_external_context_digest/4_artifact/6_archive/github_export_local_clone_20260627_stale/src/pxfquery.egg-info/PKG-INFO
   size_mb: 0.0
 - path: 4_phase_development/G-035_goal_ms8_human_usable_package/T-129_ms8_01_human_acceptable_delivery_anchor/4_artifact/5_table/pxfquery_current_misalignment_table_v20260627.csv
   size_mb: 0.0
@@ -8706,6 +8898,8 @@ excluded_from_git:
   size_mb: 0.02
 - path: 5_phase_translation/G-011_paper_figure_planning/.DS_Store
   size_mb: 0.03
+- path: 5_phase_translation/G-011_paper_figure_planning/0_task_init/.DS_Store
+  size_mb: 0.01
 - path: 5_phase_translation/G-011_paper_figure_planning/T-145_figure2_data_and_notebook_figure_workbench/.DS_Store
   size_mb: 0.01
 - path: 5_phase_translation/G-011_paper_figure_planning/T-145_figure2_data_and_notebook_figure_workbench/3_execution/.DS_Store
@@ -9278,6 +9472,8 @@ excluded_from_git:
   size_mb: 2.27
 - path: 5_phase_translation/G-011_paper_figure_planning/T-147_figure4_forward_genetic_query_notebook_figure_wo/3_execution/illustrator/figure4_v1.png
   size_mb: 0.44
+- path: 5_phase_translation/G-011_paper_figure_planning/T-147_figure4_forward_genetic_query_notebook_figure_wo/3_execution/illustrator/figure4_v1.tif
+  size_mb: 9.26
 - path: 5_phase_translation/G-011_paper_figure_planning/T-147_figure4_forward_genetic_query_notebook_figure_wo/3_execution/illustrator/figure4_v1_复制.pdf
   size_mb: 2.27
 - path: 5_phase_translation/G-011_paper_figure_planning/T-147_figure4_forward_genetic_query_notebook_figure_wo/3_execution/panel_A_forward_genetic_15_outputs/FG01/FG01_claim_rules.csv
@@ -11062,6 +11258,8 @@ excluded_from_git:
   size_mb: 2.27
 - path: 5_phase_translation/G-011_paper_figure_planning/T-149_figure5_forward_drug_query_notebook_figure_workb/3_execution/illustrator/figure5_v1.png
   size_mb: 0.39
+- path: 5_phase_translation/G-011_paper_figure_planning/T-149_figure5_forward_drug_query_notebook_figure_workb/3_execution/illustrator/figure5_v1.tif
+  size_mb: 8.87
 - path: 5_phase_translation/G-011_paper_figure_planning/T-149_figure5_forward_drug_query_notebook_figure_workb/3_execution/panel_b_drug_tanimoto_umap_outputs/drug_morgan_tanimoto_umap_decitabine.h5ad
   size_mb: 13.26
 - path: 5_phase_translation/G-011_paper_figure_planning/T-149_figure5_forward_drug_query_notebook_figure_workb/3_execution/t144_package_source_for_figure5a_round5/.pytest_cache/CACHEDIR.TAG
@@ -12930,6 +13128,8 @@ excluded_from_git:
   size_mb: 2.03
 - path: 5_phase_translation/G-011_paper_figure_planning/T-150_figure7_reverse_drug_query_notebook_figure_workb/3_execution/illustration/figure7_v2.png
   size_mb: 0.25
+- path: 5_phase_translation/G-011_paper_figure_planning/T-150_figure7_reverse_drug_query_notebook_figure_workb/3_execution/illustration/figure7_v2.tif
+  size_mb: 6.04
 - path: 5_phase_translation/G-011_paper_figure_planning/T-150_figure7_reverse_drug_query_notebook_figure_workb/4_artifact/.DS_Store
   size_mb: 0.01
 - path: 5_phase_translation/G-011_paper_figure_planning/T-150_figure7_reverse_drug_query_notebook_figure_workb/4_artifact/1_tmp/executed_notebooks/02_rd15_native_figures_acceptance_style.executed.ipynb
@@ -16884,8 +17084,8 @@ excluded_from_git:
   size_mb: 0.01
 - path: 5_phase_translation/G-011_paper_figure_planning/T-152_figure6_reverse_genetic_query_concept_notebook_workbench/3_execution/.DS_Store
   size_mb: 0.01
-- path: 5_phase_translation/G-011_paper_figure_planning/T-152_figure6_reverse_genetic_query_concept_notebook_workbench/3_execution/illustration/figure5_v1.png
-  size_mb: 0.39
+- path: 5_phase_translation/G-011_paper_figure_planning/T-152_figure6_reverse_genetic_query_concept_notebook_workbench/3_execution/illustration/.DS_Store
+  size_mb: 0.01
 - path: 5_phase_translation/G-011_paper_figure_planning/T-152_figure6_reverse_genetic_query_concept_notebook_workbench/3_execution/illustration/figure6_v1.ai
   size_mb: 2.57
 - path: 5_phase_translation/G-011_paper_figure_planning/T-152_figure6_reverse_genetic_query_concept_notebook_workbench/3_execution/illustration/figure6_v2.ai
@@ -16894,6 +17094,8 @@ excluded_from_git:
   size_mb: 1.92
 - path: 5_phase_translation/G-011_paper_figure_planning/T-152_figure6_reverse_genetic_query_concept_notebook_workbench/3_execution/illustration/figure6_v2.png
   size_mb: 0.24
+- path: 5_phase_translation/G-011_paper_figure_planning/T-152_figure6_reverse_genetic_query_concept_notebook_workbench/3_execution/illustration/figure6_v2.tif
+  size_mb: 6.48
 - path: 5_phase_translation/G-011_paper_figure_planning/T-152_figure6_reverse_genetic_query_concept_notebook_workbench/3_execution/t144_reverse_layered_route_workcopy/.pytest_cache/CACHEDIR.TAG
   size_mb: 0.0
 - path: 5_phase_translation/G-011_paper_figure_planning/T-152_figure6_reverse_genetic_query_concept_notebook_workbench/3_execution/t144_reverse_layered_route_workcopy/.pytest_cache/v/cache/lastfailed
@@ -18244,6 +18446,8 @@ excluded_from_git:
   size_mb: 0.58
 - path: 5_phase_translation/G-011_paper_figure_planning/T-153_figure9_mcp_ai_dialog_notebook_workbench/3_execution/illustration/figure9_v1.png
   size_mb: 0.22
+- path: 5_phase_translation/G-011_paper_figure_planning/T-153_figure9_mcp_ai_dialog_notebook_workbench/3_execution/illustration/figure9_v1.tif
+  size_mb: 7.86
 - path: 5_phase_translation/G-011_paper_figure_planning/T-153_figure9_mcp_ai_dialog_notebook_workbench/4_artifact/.DS_Store
   size_mb: 0.01
 - path: 5_phase_translation/G-011_paper_figure_planning/T-153_figure9_mcp_ai_dialog_notebook_workbench/4_artifact/4_picture/opencode_tui_round1_pxfquery_answer.png
@@ -19730,14 +19934,25 @@ excluded_from_git:
   size_mb: 0.1
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-161_pxfquery_manuscript_discussion_docx_assembly/3_execution/version/.DS_Store
   size_mb: 0.01
-- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-161_pxfquery_manuscript_discussion_docx_assembly/3_execution/version/.~nuscript_20260715_t161_v2.docx
-  size_mb: 0.0
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-161_pxfquery_manuscript_discussion_docx_assembly/3_execution/version/Supplementary
+    Figure.docx
+  size_mb: 0.13
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-161_pxfquery_manuscript_discussion_docx_assembly/3_execution/version/Supplementary
     Figure_20260715_v1.docx
   size_mb: 0.13
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-161_pxfquery_manuscript_discussion_docx_assembly/3_execution/version/Supplementary
     table.xlsx
   size_mb: 0.13
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-161_pxfquery_manuscript_discussion_docx_assembly/3_execution/version/Supplementary_Figure_and_Tables_20260717.zip
+  size_mb: 0.24
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-161_pxfquery_manuscript_discussion_docx_assembly/3_execution/version/cover_letter.docx
+  size_mb: 0.06
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-161_pxfquery_manuscript_discussion_docx_assembly/3_execution/version/cover_letter.pdf
+  size_mb: 0.06
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-161_pxfquery_manuscript_discussion_docx_assembly/3_execution/version/cover_letter_pxfquery_v1.docx
+  size_mb: 0.07
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-161_pxfquery_manuscript_discussion_docx_assembly/3_execution/version/cover_letter_pxfquery_v1.pdf
+  size_mb: 0.06
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-161_pxfquery_manuscript_discussion_docx_assembly/3_execution/version/manuscript_20260715_t161_v2.docx
   size_mb: 2.51
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-161_pxfquery_manuscript_discussion_docx_assembly/3_execution/version/manuscript_20260715_t161_v2.pdf
@@ -19746,6 +19961,8 @@ excluded_from_git:
   size_mb: 2.63
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-161_pxfquery_manuscript_discussion_docx_assembly/3_execution/version/manuscript_20260716_v2.zip
   size_mb: 2.66
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-161_pxfquery_manuscript_discussion_docx_assembly/3_execution/version/manuscript_PxFquery.docx
+  size_mb: 2.5
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-162_pxfquery_manuscript_figure_captions/4_artifact/.DS_Store
   size_mb: 0.01
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-163_pxfquery_manuscript_discussion_draft/.DS_Store
@@ -19904,14 +20121,14 @@ excluded_from_git:
   size_mb: 2.51
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-170_pxfquery_cover_letter_discussion/1_asset/wjy_genes_cover_letter_v1.docx
   size_mb: 0.08
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-170_pxfquery_cover_letter_discussion/3_execution/.DS_Store
+  size_mb: 0.01
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-170_pxfquery_cover_letter_discussion/3_execution/04_wjy_cover_letter_analysis/rendered/cover_letter_GENES_v1.pdf
   size_mb: 0.11
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-170_pxfquery_cover_letter_discussion/3_execution/04_wjy_cover_letter_analysis/rendered/page-1.png
   size_mb: 0.43
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-170_pxfquery_cover_letter_discussion/3_execution/04_wjy_cover_letter_analysis/rendered/page-2.png
   size_mb: 0.18
-- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-170_pxfquery_cover_letter_discussion/3_execution/05_pxfquery_cover_letter_incremental_discussion/.~ver_letter_pxfquery_working_from_wjy_v1.docx
-  size_mb: 0.0
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-170_pxfquery_cover_letter_discussion/3_execution/05_pxfquery_cover_letter_incremental_discussion/cover_letter_pxfquery_working_from_wjy_v1.docx
   size_mb: 0.07
 - path: 5_phase_translation/G-033_ms6_manuscript_foundation/T-091_ms6_package_capability_narrative/1_asset/ms6_evidence_claim_mapping.csv
