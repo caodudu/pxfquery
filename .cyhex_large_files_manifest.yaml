@@ -2185,6 +2185,8 @@ excluded_from_git:
   size_mb: 0.03
 - path: 3_phase_digestion/G-036_hospital_material_registration/T-173_hospital_materials_registration/1_asset/文章介绍信.docx
   size_mb: 0.02
+- path: 3_phase_digestion/G-036_hospital_material_registration/T-173_hospital_materials_registration/1_asset/论文投稿自查表（新）).docx
+  size_mb: 0.02
 - path: 4_phase_development/.DS_Store
   size_mb: 0.01
 - path: 4_phase_development/G-005_algorithm_function_review/.DS_Store
