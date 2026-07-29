@@ -2183,6 +2183,8 @@ excluded_from_git:
   size_mb: 0.0
 - path: 3_phase_digestion/G-031_m6_ms_anchors_and_stress_assets/T-089_ms5_large_nl_corpus_expansion/5_report/cli_sessions/config/20260627_063552_opencode_cli_cdb2f8d5dd39/stdout.log
   size_mb: 0.03
+- path: 3_phase_digestion/G-036_hospital_material_registration/T-173_hospital_materials_registration/1_asset/文章介绍信.docx
+  size_mb: 0.02
 - path: 4_phase_development/.DS_Store
   size_mb: 0.01
 - path: 4_phase_development/G-005_algorithm_function_review/.DS_Store
