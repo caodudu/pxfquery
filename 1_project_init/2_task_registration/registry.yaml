@@ -2298,3 +2298,12 @@ tasks:
     artifact, or project file has been independently read, searched, scanned, linked,
     copied, registered, classified, analyzed, transformed, or modified. The human
     supplies or explicitly authorizes each material and action.
+- id: T-174
+  name: ncrna_application
+  phase: digestion
+  goal: G-037_ncrna_application_task_registration
+  path: 3_phase_digestion/G-037_ncrna_application_task_registration/T-174_ncrna_application
+  status: pending
+  executor: human
+  created: '2026-08-06'
+  completed: null
