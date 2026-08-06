@@ -2303,7 +2303,11 @@ tasks:
   phase: digestion
   goal: G-037_ncrna_application_task_registration
   path: 3_phase_digestion/G-037_ncrna_application_task_registration/T-174_ncrna_application
-  status: pending
+  status: active
   executor: human
   created: '2026-08-06'
   completed: null
+  notes: Initial configuration only. This task incrementally registers and discusses
+    ncRNA application task items and materials supplied by the human. No ncRNA-related
+    material, prior-task record, source, or project file has been independently read,
+    searched, scanned, linked, copied, classified, analyzed, transformed, or modified.
