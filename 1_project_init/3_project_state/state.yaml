@@ -4,7 +4,7 @@ created: '2026-06-13'
 target_delivery: ''
 current_phase: digestion
 status: active
-focus: 3_phase_digestion/G-036_hospital_material_registration/T-173_hospital_materials_registration
-notes: 'Current direct-conversation focus: user-directed, incremental hospital-related
-  material registration for PxFquery. No hospital material is in scope unless the
-  human supplies or explicitly authorizes the specific material and action.'
+focus: 3_phase_digestion/G-037_ncrna_application_task_registration/T-174_ncrna_application
+notes: 'Current direct-conversation focus: user-directed, incremental ncRNA application
+  task registration and discussion for PxFquery. No ncRNA material is in scope unless
+  the human supplies or explicitly authorizes the specific item and action.'
