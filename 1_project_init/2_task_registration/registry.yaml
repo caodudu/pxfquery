@@ -2395,7 +2395,12 @@ tasks:
   phase: translation
   goal: G-038_pxfquery_major_revision_execution
   path: 5_phase_translation/G-038_pxfquery_major_revision_execution/T-182_ex06_table_s5_structuring
-  status: pending
+  status: active
   executor: human
   created: '2026-08-14'
   completed: null
+  notes: Initialized from T-175 EX-06 handoff on 2026-08-14. The four governing T-175
+    documents are registered as read-only inputs. No Table S5, raw evaluation result,
+    script, manuscript, or response letter has been read, copied, analyzed, produced,
+    or modified in this task; awaiting human-provided or explicitly authorized materials
+    and actions.
