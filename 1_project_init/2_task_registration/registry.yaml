@@ -2334,3 +2334,12 @@ tasks:
   executor: human
   created: '2026-08-14'
   completed: null
+- id: T-177
+  name: ex02_query_parser_accuracy
+  phase: translation
+  goal: G-012_cyhex_outline_draft_biopaper
+  path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-177_ex02_query_parser_accuracy
+  status: pending
+  executor: human
+  created: '2026-08-14'
+  completed: null
