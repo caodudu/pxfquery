@@ -20269,12 +20269,42 @@ excluded_from_git:
   size_mb: 0.01
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-176_ex01_figure2d_statistics/1_asset/manuscript_PxFquery.docx
   size_mb: 2.5
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-176_ex01_figure2d_statistics/1_asset/t145_fig2d_candidate_panel.pdf
+  size_mb: 0.01
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-176_ex01_figure2d_statistics/1_asset/t145_fig2d_pair_metrics.csv
   size_mb: 5.89
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-176_ex01_figure2d_statistics/1_asset/t145_fig2d_pair_plan.csv
   size_mb: 13.33
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-176_ex01_figure2d_statistics/1_asset/t145_fig2d_q4_summary.csv
+  size_mb: 0.0
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-176_ex01_figure2d_statistics/1_asset/t161_submission_manuscript.docx
   size_mb: 2.5
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-176_ex01_figure2d_statistics/3_execution/fig2d_reviewer_statistics/01_q4_reviewer_statistics.sbatch
+  size_mb: 0.0
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-176_ex01_figure2d_statistics/3_execution/fig2d_reviewer_statistics/02_top100_reviewer_statistics.sbatch
+  size_mb: 0.0
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-176_ex01_figure2d_statistics/3_execution/fig2d_reviewer_statistics/log/fig2d_rstats_1726330.err
+  size_mb: 0.0
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-176_ex01_figure2d_statistics/3_execution/fig2d_reviewer_statistics/log/fig2d_rstats_1726330.out
+  size_mb: 0.0
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-176_ex01_figure2d_statistics/3_execution/fig2d_reviewer_statistics/log/fig2d_top100stats_1726331.err
+  size_mb: 0.0
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-176_ex01_figure2d_statistics/3_execution/fig2d_reviewer_statistics/log/fig2d_top100stats_1726331.out
+  size_mb: 0.0
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-176_ex01_figure2d_statistics/4_artifact/5_table/fig2d_q4_reviewer_dunn_holm.csv
+  size_mb: 0.0
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-176_ex01_figure2d_statistics/4_artifact/5_table/fig2d_q4_reviewer_group_summary.csv
+  size_mb: 0.0
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-176_ex01_figure2d_statistics/4_artifact/5_table/fig2d_q4_reviewer_kruskal_wallis.csv
+  size_mb: 0.0
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-176_ex01_figure2d_statistics/4_artifact/5_table/fig2d_q4_reviewer_missingness.csv
+  size_mb: 0.0
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-176_ex01_figure2d_statistics/4_artifact/5_table/fig2d_top100_reviewer_dunn_holm.csv
+  size_mb: 0.0
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-176_ex01_figure2d_statistics/4_artifact/5_table/fig2d_top100_reviewer_group_summary.csv
+  size_mb: 0.0
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-176_ex01_figure2d_statistics/4_artifact/5_table/fig2d_top100_reviewer_kruskal_wallis.csv
+  size_mb: 0.0
 - path: 5_phase_translation/G-033_ms6_manuscript_foundation/T-091_ms6_package_capability_narrative/1_asset/ms6_evidence_claim_mapping.csv
   size_mb: 0.0
 - path: 5_phase_translation/G-033_ms6_manuscript_foundation/T-091_ms6_package_capability_narrative/5_report/cli_sessions/check/20260627_070654_opencode_cli_b49e7b862596/stderr.log
