@@ -20265,6 +20265,8 @@ excluded_from_git:
   size_mb: 13.33
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-176_ex01_figure2d_statistics/1_asset/fig2d_all_chemical_lung_lineage_boxplot_q4_summary.csv
   size_mb: 0.0
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-176_ex01_figure2d_statistics/1_asset/figure2_panel_D_all_chemical_lung_lineage_q4_boxplot.pdf
+  size_mb: 0.01
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-176_ex01_figure2d_statistics/1_asset/manuscript_PxFquery.docx
   size_mb: 2.5
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-176_ex01_figure2d_statistics/1_asset/t145_fig2d_pair_metrics.csv
