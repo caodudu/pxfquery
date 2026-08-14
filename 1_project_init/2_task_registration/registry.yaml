@@ -2325,3 +2325,12 @@ tasks:
     combined Word document. A-001 and A-002 remain as duplicate historical attachments
     and are not authoritative for reviewer numbering or content. No new review artifact,
     revision plan, or manuscript edit was created in this repair.'
+- id: T-176
+  name: ex01_figure2d_statistics
+  phase: translation
+  goal: G-012_cyhex_outline_draft_biopaper
+  path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-176_ex01_figure2d_statistics
+  status: pending
+  executor: human
+  created: '2026-08-14'
+  completed: null
