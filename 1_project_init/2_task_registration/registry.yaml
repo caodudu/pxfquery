@@ -2365,3 +2365,12 @@ tasks:
   executor: human
   created: '2026-08-14'
   completed: null
+- id: T-180
+  name: ex04_functional_compression_and_scoring
+  phase: translation
+  goal: G-038_pxfquery_major_revision_execution
+  path: 5_phase_translation/G-038_pxfquery_major_revision_execution/T-180_ex04_functional_compression_and_scoring
+  status: pending
+  executor: human
+  created: '2026-08-14'
+  completed: null
