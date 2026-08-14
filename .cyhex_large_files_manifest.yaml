@@ -20371,6 +20371,9 @@ excluded_from_git:
   size_mb: 0.1
 - path: 5_phase_translation/G-038_pxfquery_major_revision_execution/T-181_ex05_evaluation_selection_audit/1_asset/t161_submission_manuscript.docx
   size_mb: 2.5
+- path: 5_phase_translation/G-038_pxfquery_major_revision_execution/T-182_ex06_table_s5_structuring/1_asset/Supplementary
+    table.xlsx
+  size_mb: 0.13
 - path: 5_phase_translation/G-038_pxfquery_major_revision_execution/T-182_ex06_table_s5_structuring/1_asset/manuscript_PxFquery.docx
   size_mb: 2.5
 - path: 5_phase_translation/G-038_pxfquery_major_revision_execution/T-182_ex06_table_s5_structuring/1_asset/table_s4_v20260715.xlsx
