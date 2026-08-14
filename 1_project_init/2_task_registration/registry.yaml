@@ -2320,4 +2320,7 @@ tasks:
   executor: human
   created: '2026-08-14'
   completed: null
-  notes: 基础配置完成。此为用户主导的逐步大修讨论 task；当前未登记或读取任何材料。仅在用户逐项提供或明确授权后处理对应材料与动作。
+  notes: '2026-08-14 handoff audit: A-001 and A-002 have identical SHA-256 and byte-for-byte
+    content. Current usable input is one unlabeled reviewer report; A-002 must not
+    be treated as an independent Reviewer 3 report until distinct raw text is supplied.
+    Task remains active for human-led incremental major revision.'
