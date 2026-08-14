@@ -2390,3 +2390,12 @@ tasks:
   notes: 'Initialized from T-175 EX-05 handoff on 2026-08-14. Human-led, incremental
     execution only: no evaluation population, selection log, manuscript, benchmark,
     count, or revision text has been read, produced, or modified in this task.'
+- id: T-182
+  name: ex06_table_s5_structuring
+  phase: translation
+  goal: G-038_pxfquery_major_revision_execution
+  path: 5_phase_translation/G-038_pxfquery_major_revision_execution/T-182_ex06_table_s5_structuring
+  status: pending
+  executor: human
+  created: '2026-08-14'
+  completed: null
