@@ -2320,7 +2320,8 @@ tasks:
   executor: human
   created: '2026-08-14'
   completed: null
-  notes: '2026-08-14 handoff audit: A-001 and A-002 have identical SHA-256 and byte-for-byte
-    content. Current usable input is one unlabeled reviewer report; A-002 must not
-    be treated as an independent Reviewer 3 report until distinct raw text is supplied.
-    Task remains active for human-led incremental major revision.'
+  notes: 'Configuration repaired on 2026-08-14: A-003 through A-005 are the user-designated
+    Reviewer 1–3 bilingual documents; A-006 is the user-designated source-preserving
+    combined Word document. A-001 and A-002 remain as duplicate historical attachments
+    and are not authoritative for reviewer numbering or content. No new review artifact,
+    revision plan, or manuscript edit was created in this repair.'
