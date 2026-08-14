@@ -4,8 +4,9 @@ created: '2026-06-13'
 target_delivery: ''
 current_phase: translation
 status: active
-focus: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-175_pxfquery_major_revision_discussion
-notes: 'Current direct-conversation focus: human-led, incremental PxFquery manuscript
-  major-revision discussion. No manuscript, review, figure, reference, or project
-  material is in scope unless the human supplies or explicitly authorizes the specific
-  item and action.'
+focus: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-176_ex01_figure2d_statistics
+notes: 'Current direct-conversation focus: human-led, incremental execution of EX-01
+  Figure 2d statistical reinforcement. Only T-175 handoff/EX definition materials
+  are registered; Figure 2d source data, code, manuscript, figure, and statistical
+  conclusions remain out of scope until the human supplies or explicitly authorizes
+  each item and action.'
