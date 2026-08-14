@@ -2370,10 +2370,14 @@ tasks:
   phase: translation
   goal: G-038_pxfquery_major_revision_execution
   path: 5_phase_translation/G-038_pxfquery_major_revision_execution/T-180_ex04_functional_compression_and_scoring
-  status: pending
+  status: active
   executor: human
   created: '2026-08-14'
   completed: null
+  notes: 'Initialized from T-175 EX-04 handoff on 2026-08-14. Human-led, incremental
+    execution only: no GSEA outputs, pre/post-compression matrices, generation scripts,
+    manuscript text, formula source, computations, conclusions, or manuscript changes
+    have been read, produced, or modified in this task.'
 - id: T-181
   name: ex05_evaluation_selection_audit
   phase: translation
