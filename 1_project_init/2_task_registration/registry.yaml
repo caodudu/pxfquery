@@ -2383,7 +2383,10 @@ tasks:
   phase: translation
   goal: G-038_pxfquery_major_revision_execution
   path: 5_phase_translation/G-038_pxfquery_major_revision_execution/T-181_ex05_evaluation_selection_audit
-  status: pending
+  status: active
   executor: human
   created: '2026-08-14'
   completed: null
+  notes: 'Initialized from T-175 EX-05 handoff on 2026-08-14. Human-led, incremental
+    execution only: no evaluation population, selection log, manuscript, benchmark,
+    count, or revision text has been read, produced, or modified in this task.'
