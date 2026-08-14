@@ -2351,7 +2351,8 @@ tasks:
   phase: translation
   goal: G-012_cyhex_outline_draft_biopaper
   path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-178_ex03_similarity_threshold_sensitivity
-  status: pending
+  status: active
   executor: human
   created: '2026-08-14'
   completed: null
+  notes: EX-03 已按用户指示完成初始配置：仅登记 T-175 的 EX-03 档案、交接说明和执行决策总表以界定范围。尚未读取或登记手稿、索引、脚本、缓存、数据、图表或参考文献；等待用户分步提供或明确授权材料后再开展实际工作。
