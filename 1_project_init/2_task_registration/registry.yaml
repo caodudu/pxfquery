@@ -2343,3 +2343,12 @@ tasks:
   executor: human
   created: '2026-08-14'
   completed: null
+- id: T-178
+  name: ex03_similarity_threshold_sensitivity
+  phase: translation
+  goal: G-012_cyhex_outline_draft_biopaper
+  path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-178_ex03_similarity_threshold_sensitivity
+  status: pending
+  executor: human
+  created: '2026-08-14'
+  completed: null
