@@ -2330,10 +2330,13 @@ tasks:
   phase: translation
   goal: G-012_cyhex_outline_draft_biopaper
   path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-176_ex01_figure2d_statistics
-  status: pending
+  status: active
   executor: human
   created: '2026-08-14'
   completed: null
+  notes: 'Initialized from T-175 EX-01 handoff on 2026-08-14. Human-led, incremental
+    execution only: no Figure 2d source data, code, manuscript, figure, or statistical
+    result has been read, produced, or modified in this task.'
 - id: T-177
   name: ex02_query_parser_accuracy
   phase: translation
