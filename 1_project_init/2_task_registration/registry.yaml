@@ -2316,7 +2316,8 @@ tasks:
   phase: translation
   goal: G-012_cyhex_outline_draft_biopaper
   path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-175_pxfquery_major_revision_discussion
-  status: pending
+  status: active
   executor: human
   created: '2026-08-14'
   completed: null
+  notes: 基础配置完成。此为用户主导的逐步大修讨论 task；当前未登记或读取任何材料。仅在用户逐项提供或明确授权后处理对应材料与动作。
