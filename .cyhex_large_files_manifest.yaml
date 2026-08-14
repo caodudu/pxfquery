@@ -20374,6 +20374,15 @@ excluded_from_git:
 - path: 5_phase_translation/G-038_pxfquery_major_revision_execution/T-182_ex06_table_s5_structuring/1_asset/Supplementary
     table.xlsx
   size_mb: 0.13
+- path: 5_phase_translation/G-038_pxfquery_major_revision_execution/T-182_ex06_table_s5_structuring/1_asset/T-160
+    Table S5 working source.xlsx
+  size_mb: 0.05
+- path: 5_phase_translation/G-038_pxfquery_major_revision_execution/T-182_ex06_table_s5_structuring/1_asset/T-161
+    submitted manuscript.docx
+  size_mb: 2.5
+- path: 5_phase_translation/G-038_pxfquery_major_revision_execution/T-182_ex06_table_s5_structuring/1_asset/T-161
+    submitted supplementary workbook.xlsx
+  size_mb: 0.13
 - path: 5_phase_translation/G-038_pxfquery_major_revision_execution/T-182_ex06_table_s5_structuring/1_asset/manuscript_PxFquery.docx
   size_mb: 2.5
 - path: 5_phase_translation/G-038_pxfquery_major_revision_execution/T-182_ex06_table_s5_structuring/1_asset/table_s4_v20260715.xlsx
