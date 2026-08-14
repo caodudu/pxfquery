@@ -20367,6 +20367,8 @@ excluded_from_git:
   size_mb: 0.0
 - path: 5_phase_translation/G-033_ms6_manuscript_foundation/T-107_ms6_anchor_comparison_writing_handoff/4_artifact/5_table/ms6_figure_readiness_v20260627.csv
   size_mb: 0.0
+- path: 5_phase_translation/G-038_pxfquery_major_revision_execution/T-182_ex06_table_s5_structuring/1_asset/table_s4_v20260715.xlsx
+  size_mb: 0.05
 - path: pet-references/girlfriend-fullbody.png
   size_mb: 0.78
 - path: pet-runs/mimi-final/decoded/base.png
