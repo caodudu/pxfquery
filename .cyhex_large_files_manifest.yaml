@@ -20337,9 +20337,15 @@ excluded_from_git:
   size_mb: 3.6
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-177_ex02_query_parser_accuracy/3_execution/biored_external_screen/1_raw/BioRED/Train.PubTator
   size_mb: 1.53
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-177_ex02_query_parser_accuracy/3_execution/biored_external_screen/2_screened/anchored_intervention_cases.csv
+  size_mb: 0.03
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-177_ex02_query_parser_accuracy/3_execution/biored_external_screen/2_screened/biored_context_perturbation_candidates.csv
   size_mb: 0.91
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-177_ex02_query_parser_accuracy/3_execution/biored_external_screen/2_screened/biored_exact_pxf_overlap.csv
+  size_mb: 0.01
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-177_ex02_query_parser_accuracy/3_execution/biored_external_screen/2_screened/biored_model_or_cellline_anchored_cases.csv
+  size_mb: 0.03
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-177_ex02_query_parser_accuracy/3_execution/biored_external_screen/2_screened/intervention_cue_single_context_single_entity.csv
   size_mb: 0.01
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-177_ex02_query_parser_accuracy/3_execution/biored_external_screen/2_screened/llm_review_records/batch_001_050/run.log
   size_mb: 0.0
@@ -20409,6 +20415,8 @@ excluded_from_git:
   size_mb: 0.02
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-178_ex03_similarity_threshold_sensitivity/3_execution/01_l2_local_sensitivity_demo/outputs/threshold_curve.csv
   size_mb: 0.02
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-178_ex03_similarity_threshold_sensitivity/3_execution/02_batch10_rerouted_llm/outputs/batch100_pm01_extra_rerouted_llm.json
+  size_mb: 22.68
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-178_ex03_similarity_threshold_sensitivity/3_execution/02_batch10_rerouted_llm/outputs/batch100_rerouted_llm.json
   size_mb: 52.97
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-178_ex03_similarity_threshold_sensitivity/3_execution/02_batch10_rerouted_llm/outputs/batch10_drug_by_query.pdf
@@ -20435,6 +20443,10 @@ excluded_from_git:
   size_mb: 0.08
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-178_ex03_similarity_threshold_sensitivity/3_execution/02_batch10_rerouted_llm/outputs/batch10_threshold_sensitivity.svg
   size_mb: 0.02
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-178_ex03_similarity_threshold_sensitivity/3_execution/02_batch10_rerouted_llm/outputs/gene_top3_default_exact.json
+  size_mb: 5.09
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-178_ex03_similarity_threshold_sensitivity/3_execution/02_batch10_rerouted_llm/outputs/gene_top3_pm01_rest_exact.json
+  size_mb: 20.27
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-178_ex03_similarity_threshold_sensitivity/3_execution/02_batch10_rerouted_llm/outputs/heldout_resources/FD100_OFFT144_001/cp_X_dense_thr0.1_round2_float16_compressed.npz
   size_mb: 28.09
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-178_ex03_similarity_threshold_sensitivity/3_execution/02_batch10_rerouted_llm/outputs/heldout_resources/FD100_OFFT144_001/cp_obs_min.parquet
@@ -24027,12 +24039,34 @@ excluded_from_git:
   size_mb: 18.44
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-178_ex03_similarity_threshold_sensitivity/3_execution/02_batch10_rerouted_llm/outputs/heldout_resources/FGXPR100_DLJ_211/xpr_obs_min.parquet
   size_mb: 2.63
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-178_ex03_similarity_threshold_sensitivity/3_execution/02_batch10_rerouted_llm/outputs/render_pm01.png
+  size_mb: 0.05
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-178_ex03_similarity_threshold_sensitivity/3_execution/02_batch10_rerouted_llm/outputs/render_pm01_final.png
+  size_mb: 0.05
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-178_ex03_similarity_threshold_sensitivity/3_execution/02_batch10_rerouted_llm/outputs/render_pm01_final_v2.png
+  size_mb: 0.05
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-178_ex03_similarity_threshold_sensitivity/3_execution/02_batch10_rerouted_llm/outputs/render_pm01_top3fixed_final.png
+  size_mb: 0.05
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-178_ex03_similarity_threshold_sensitivity/3_execution/02_batch10_rerouted_llm/outputs/render_pm02.png
+  size_mb: 0.06
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-178_ex03_similarity_threshold_sensitivity/3_execution/02_batch10_rerouted_llm/outputs/supplement_sensitivity_pm01.pdf
+  size_mb: 0.03
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-178_ex03_similarity_threshold_sensitivity/3_execution/02_batch10_rerouted_llm/outputs/supplement_sensitivity_pm01_final.pdf
+  size_mb: 0.03
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-178_ex03_similarity_threshold_sensitivity/3_execution/02_batch10_rerouted_llm/outputs/supplement_sensitivity_pm01_kw_statistics.csv
+  size_mb: 0.0
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-178_ex03_similarity_threshold_sensitivity/3_execution/02_batch10_rerouted_llm/outputs/supplement_sensitivity_pm01_top3fixed_final.pdf
+  size_mb: 0.03
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-178_ex03_similarity_threshold_sensitivity/3_execution/02_batch10_rerouted_llm/outputs/supplement_sensitivity_pm02.pdf
+  size_mb: 0.03
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-178_ex03_similarity_threshold_sensitivity/3_execution/02_batch10_rerouted_llm/outputs/supplement_sensitivity_preview.pdf
   size_mb: 0.03
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-178_ex03_similarity_threshold_sensitivity/3_execution/02_batch10_rerouted_llm/outputs/supplement_sensitivity_preview.png
   size_mb: 0.21
 - path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-178_ex03_similarity_threshold_sensitivity/3_execution/02_batch10_rerouted_llm/outputs/supplement_sensitivity_preview.svg
   size_mb: 0.06
+- path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-178_ex03_similarity_threshold_sensitivity/3_execution/02_batch10_rerouted_llm/tmp
+  size_mb: 0.05
 - path: 5_phase_translation/G-033_ms6_manuscript_foundation/T-091_ms6_package_capability_narrative/1_asset/ms6_evidence_claim_mapping.csv
   size_mb: 0.0
 - path: 5_phase_translation/G-033_ms6_manuscript_foundation/T-091_ms6_package_capability_narrative/5_report/cli_sessions/check/20260627_070654_opencode_cli_b49e7b862596/stderr.log
@@ -24113,6 +24147,10 @@ excluded_from_git:
   size_mb: 2.5
 - path: 5_phase_translation/G-038_pxfquery_major_revision_execution/T-182_ex06_table_s5_structuring/1_asset/table_s4_v20260715.xlsx
   size_mb: 0.05
+- path: 5_phase_translation/G-038_pxfquery_major_revision_execution/T-182_ex06_table_s5_structuring/3_execution/s5_median_fill_probe_comparison.csv
+  size_mb: 0.0
+- path: 5_phase_translation/G-038_pxfquery_major_revision_execution/T-182_ex06_table_s5_structuring/3_execution/s5_median_filled_probe_rows.csv
+  size_mb: 5.61
 - path: 5_phase_translation/G-038_pxfquery_major_revision_execution/T-182_ex06_table_s5_structuring/3_execution/s5_reference_build/build_s5_reference.mjs
   size_mb: 0.0
 - path: 5_phase_translation/G-038_pxfquery_major_revision_execution/T-182_ex06_table_s5_structuring/3_execution/s5_reference_build/build_s5_structured.mjs
@@ -24121,12 +24159,22 @@ excluded_from_git:
   size_mb: 0.11
 - path: 5_phase_translation/G-038_pxfquery_major_revision_execution/T-182_ex06_table_s5_structuring/3_execution/s5_reference_build/s5_structured_preview.png
   size_mb: 0.15
+- path: 5_phase_translation/G-038_pxfquery_major_revision_execution/T-182_ex06_table_s5_structuring/3_execution/s5_repaired_median_fill_comparison.csv
+  size_mb: 0.0
+- path: 5_phase_translation/G-038_pxfquery_major_revision_execution/T-182_ex06_table_s5_structuring/3_execution/s5_repaired_median_filled_rows.csv
+  size_mb: 5.62
 - path: 5_phase_translation/G-038_pxfquery_major_revision_execution/T-182_ex06_table_s5_structuring/3_execution/s5_structured_rows.csv
   size_mb: 5.57
-- path: 5_phase_translation/G-038_pxfquery_major_revision_execution/T-182_ex06_table_s5_structuring/4_artifact/5_table/.~s5_ref.xlsx
+- path: 5_phase_translation/G-038_pxfquery_major_revision_execution/T-182_ex06_table_s5_structuring/3_execution/s5_whitespace_repair_audit.csv
+  size_mb: 0.04
+- path: 5_phase_translation/G-038_pxfquery_major_revision_execution/T-182_ex06_table_s5_structuring/3_execution/s5_whitespace_repaired_probe_rows.csv
+  size_mb: 5.59
+- path: 5_phase_translation/G-038_pxfquery_major_revision_execution/T-182_ex06_table_s5_structuring/4_artifact/5_table/.~s5_structured_pxf_repaired.xlsx
   size_mb: 0.0
-- path: 5_phase_translation/G-038_pxfquery_major_revision_execution/T-182_ex06_table_s5_structuring/4_artifact/5_table/.~s5_structured.xlsx
-  size_mb: 0.0
+- path: 5_phase_translation/G-038_pxfquery_major_revision_execution/T-182_ex06_table_s5_structuring/4_artifact/5_table/s5_median_filled_probe.xlsx
+  size_mb: 0.96
+- path: 5_phase_translation/G-038_pxfquery_major_revision_execution/T-182_ex06_table_s5_structuring/4_artifact/5_table/s5_median_filled_probe.xlsx.inspect.ndjson
+  size_mb: 59.1
 - path: 5_phase_translation/G-038_pxfquery_major_revision_execution/T-182_ex06_table_s5_structuring/4_artifact/5_table/s5_ref.xlsx
   size_mb: 0.05
 - path: 5_phase_translation/G-038_pxfquery_major_revision_execution/T-182_ex06_table_s5_structuring/4_artifact/5_table/s5_ref.xlsx.inspect.ndjson
@@ -24135,6 +24183,14 @@ excluded_from_git:
   size_mb: 0.96
 - path: 5_phase_translation/G-038_pxfquery_major_revision_execution/T-182_ex06_table_s5_structuring/4_artifact/5_table/s5_structured.xlsx.inspect.ndjson
   size_mb: 57.77
+- path: 5_phase_translation/G-038_pxfquery_major_revision_execution/T-182_ex06_table_s5_structuring/4_artifact/5_table/s5_structured_pxf_repaired.xlsx
+  size_mb: 0.96
+- path: 5_phase_translation/G-038_pxfquery_major_revision_execution/T-182_ex06_table_s5_structuring/4_artifact/5_table/s5_structured_pxf_repaired.xlsx.inspect.ndjson
+  size_mb: 57.97
+- path: 5_phase_translation/G-038_pxfquery_major_revision_execution/T-182_ex06_table_s5_structuring/4_artifact/5_table/s5_structured_repaired.xlsx
+  size_mb: 0.96
+- path: 5_phase_translation/G-038_pxfquery_major_revision_execution/T-182_ex06_table_s5_structuring/4_artifact/5_table/s5_structured_repaired.xlsx.inspect.ndjson
+  size_mb: 59.1
 - path: pet-references/girlfriend-fullbody.png
   size_mb: 0.78
 - path: pet-runs/mimi-final/decoded/base.png
