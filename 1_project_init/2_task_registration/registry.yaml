@@ -2423,3 +2423,12 @@ tasks:
   executor: human
   created: '2026-08-15'
   completed: null
+- id: T-185
+  name: ex08_evidence_insufficiency_abstention_evaluation
+  phase: translation
+  goal: G-041_major_revision_ex08_evidence_insufficiency
+  path: 5_phase_translation/G-041_major_revision_ex08_evidence_insufficiency/T-185_ex08_evidence_insufficiency_abstention_evaluatio
+  status: pending
+  executor: human
+  created: '2026-08-15'
+  completed: null
