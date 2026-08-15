@@ -2428,7 +2428,13 @@ tasks:
   phase: translation
   goal: G-041_major_revision_ex08_evidence_insufficiency
   path: 5_phase_translation/G-041_major_revision_ex08_evidence_insufficiency/T-185_ex08_evidence_insufficiency_abstention_evaluatio
-  status: pending
+  status: active
   executor: human
   created: '2026-08-15'
   completed: null
+  notes: Initial CyHex configuration complete on 2026-08-15. T-175 handoff, common
+    EX discipline, EX-08 profile, and decision matrix are registered read-only scope
+    inputs. No manuscript, Figure 9c, system output, case source, truth evidence,
+    annotation, code, benchmark, analysis, manuscript edit, or response letter has
+    been read, produced, or modified. Awaiting human-provided or expressly authorized
+    material and action.
