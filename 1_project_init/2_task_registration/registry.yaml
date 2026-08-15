@@ -2413,3 +2413,12 @@ tasks:
   executor: human
   created: '2026-08-15'
   completed: null
+- id: T-184
+  name: ex09_benchmark_and_claim_boundary
+  phase: translation
+  goal: G-039_major_revision_execution
+  path: 5_phase_translation/G-039_major_revision_execution/T-184_ex09_benchmark_and_claim_boundary
+  status: pending
+  executor: human
+  created: '2026-08-15'
+  completed: null
