@@ -24195,6 +24195,8 @@ excluded_from_git:
   size_mb: 0.1
 - path: 5_phase_translation/G-039_major_revision_execution/T-184_ex09_benchmark_and_claim_boundary/1_asset/t161_submission_manuscript.docx
   size_mb: 2.5
+- path: 5_phase_translation/G-040_pxfquery_major_revision_figure2b/T-183_ex07_figure2b_information/1_asset/figure2_table_observed_unobserved_summary.csv
+  size_mb: 0.0
 - path: 5_phase_translation/G-041_major_revision_ex08_evidence_insufficiency/T-185_ex08_evidence_insufficiency_abstention_evaluatio/1_asset/manuscript_PxFquery.docx
   size_mb: 2.5
 - path: pet-references/girlfriend-fullbody.png
