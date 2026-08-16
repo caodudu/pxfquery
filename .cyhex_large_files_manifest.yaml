@@ -24191,6 +24191,12 @@ excluded_from_git:
   size_mb: 0.96
 - path: 5_phase_translation/G-038_pxfquery_major_revision_execution/T-182_ex06_table_s5_structuring/4_artifact/5_table/s5_structured_repaired.xlsx.inspect.ndjson
   size_mb: 59.1
+- path: 5_phase_translation/G-039_major_revision_execution/T-184_ex09_benchmark_and_claim_boundary/1_asset/t160_submission_table_s5.xlsx
+  size_mb: 0.1
+- path: 5_phase_translation/G-039_major_revision_execution/T-184_ex09_benchmark_and_claim_boundary/1_asset/t161_submission_manuscript.docx
+  size_mb: 2.5
+- path: 5_phase_translation/G-041_major_revision_ex08_evidence_insufficiency/T-185_ex08_evidence_insufficiency_abstention_evaluatio/1_asset/manuscript_PxFquery.docx
+  size_mb: 2.5
 - path: pet-references/girlfriend-fullbody.png
   size_mb: 0.78
 - path: pet-runs/mimi-final/decoded/base.png
