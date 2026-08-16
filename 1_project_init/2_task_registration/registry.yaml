@@ -2361,10 +2361,10 @@ tasks:
   phase: translation
   goal: G-012_cyhex_outline_draft_biopaper
   path: 5_phase_translation/G-012_cyhex_outline_draft_biopaper/T-179_ex04_functional_compression_and_scoring
-  status: pending
+  status: blocked
   executor: human
   created: '2026-08-14'
-  completed: null
+  completed: '2026-08-16'
 - id: T-180
   name: ex04_functional_compression_and_scoring
   phase: translation
