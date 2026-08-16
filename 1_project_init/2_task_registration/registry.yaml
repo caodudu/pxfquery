@@ -2443,7 +2443,11 @@ tasks:
   phase: translation
   goal: G-043_pxfquery_major_revision_figure_management
   path: 5_phase_translation/G-043_pxfquery_major_revision_figure_management/T-186_pxfquery_manuscript_figure_management
-  status: pending
+  status: active
   executor: human
   created: '2026-08-16'
   completed: null
+  notes: 'Configured as the human-led, incremental PxFquery major-revision figure-management
+    hub. T-175 was reviewed for scope: its reviewer materials remain outside this
+    task unless explicitly authorized. No figure has been opened, copied, changed,
+    reordered, split, merged, or drawn during configuration.'
