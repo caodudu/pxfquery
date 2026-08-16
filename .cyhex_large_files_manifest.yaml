@@ -24199,6 +24199,10 @@ excluded_from_git:
   size_mb: 0.0
 - path: 5_phase_translation/G-040_pxfquery_major_revision_figure2b/T-183_ex07_figure2b_information/1_asset/figure2_v1.ai
   size_mb: 1.05
+- path: 5_phase_translation/G-040_pxfquery_major_revision_figure2b/T-183_ex07_figure2b_information/1_asset/t145_figure2_ai_source.ai
+  size_mb: 1.05
+- path: 5_phase_translation/G-040_pxfquery_major_revision_figure2b/T-183_ex07_figure2b_information/1_asset/t145_observed_unobserved_summary.csv
+  size_mb: 0.0
 - path: 5_phase_translation/G-041_major_revision_ex08_evidence_insufficiency/T-185_ex08_evidence_insufficiency_abstention_evaluatio/1_asset/manuscript_PxFquery.docx
   size_mb: 2.5
 - path: 5_phase_translation/G-041_major_revision_ex08_evidence_insufficiency/T-185_ex08_evidence_insufficiency_abstention_evaluatio/1_asset/submission_manuscript_figure9_source.docx
