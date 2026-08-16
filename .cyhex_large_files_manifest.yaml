@@ -24201,6 +24201,10 @@ excluded_from_git:
   size_mb: 1.05
 - path: 5_phase_translation/G-041_major_revision_ex08_evidence_insufficiency/T-185_ex08_evidence_insufficiency_abstention_evaluatio/1_asset/manuscript_PxFquery.docx
   size_mb: 2.5
+- path: 5_phase_translation/G-041_major_revision_ex08_evidence_insufficiency/T-185_ex08_evidence_insufficiency_abstention_evaluatio/1_asset/submission_manuscript_figure9_source.docx
+  size_mb: 2.5
+- path: 5_phase_translation/G-041_major_revision_ex08_evidence_insufficiency/T-185_ex08_evidence_insufficiency_abstention_evaluatio/3_execution/repro_iressa_qdata.pkl
+  size_mb: 0.34
 - path: pet-references/girlfriend-fullbody.png
   size_mb: 0.78
 - path: pet-runs/mimi-final/decoded/base.png
