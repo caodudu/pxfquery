@@ -2460,3 +2460,12 @@ tasks:
   executor: human
   created: '2026-08-18'
   completed: null
+- id: T-188
+  name: ex12_biological_claim_boundary
+  phase: translation
+  goal: G-038_pxfquery_major_revision_execution
+  path: 5_phase_translation/G-038_pxfquery_major_revision_execution/T-188_ex12_biological_claim_boundary
+  status: pending
+  executor: human
+  created: '2026-08-18'
+  completed: null
