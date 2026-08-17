@@ -2451,3 +2451,12 @@ tasks:
     hub. T-175 was reviewed for scope: its reviewer materials remain outside this
     task unless explicitly authorized. No figure has been opened, copied, changed,
     reordered, split, merged, or drawn during configuration.'
+- id: T-187
+  name: ex10_figure_design_and_readability
+  phase: translation
+  goal: G-038_pxfquery_major_revision_execution
+  path: 5_phase_translation/G-038_pxfquery_major_revision_execution/T-187_ex10_figure_design_and_readability
+  status: pending
+  executor: human
+  created: '2026-08-18'
+  completed: null
