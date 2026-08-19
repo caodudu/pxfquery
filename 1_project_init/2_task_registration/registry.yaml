@@ -2469,3 +2469,12 @@ tasks:
   executor: human
   created: '2026-08-18'
   completed: null
+- id: T-189
+  name: ex11_langpert_positioning
+  phase: translation
+  goal: G-038_pxfquery_major_revision_execution
+  path: 5_phase_translation/G-038_pxfquery_major_revision_execution/T-189_ex11_langpert_positioning
+  status: pending
+  executor: human
+  created: '2026-08-18'
+  completed: null
