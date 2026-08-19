@@ -2483,7 +2483,11 @@ tasks:
   phase: translation
   goal: G-045_pxfquery_submission_file_maintenance
   path: 5_phase_translation/G-045_pxfquery_submission_file_maintenance/T-190_submission_file_maintenance
-  status: pending
+  status: active
   executor: human
   created: '2026-08-19'
   completed: null
+  notes: 'Human-led submission-file maintenance workspace. Current completed setup:
+    byte-identical baseline copies of the originally submitted manuscript, supplementary
+    figure, and supplementary table are in 3_execution/original_submission/. No content
+    modification or revision work has been performed.'
