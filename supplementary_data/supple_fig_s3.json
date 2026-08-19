@@ -1,5 +1,405 @@
 [
   {
+    "candidate_id": "0ba19f3948bf5348",
+    "category": "chemical",
+    "pmid": "24532189",
+    "sentence": "Involvement of RECK in gambogic acid induced anti-invasive effect in A549 human lung carcinoma cells.",
+    "pubtator3_annotation": {
+      "cell_line": {
+        "mention": "A549",
+        "cmap_mapping": "A549"
+      },
+      "perturbation": {
+        "type": "Chemical",
+        "mention": "Gambogic acid",
+        "cmap_mapping": "gambogic-acid"
+      }
+    },
+    "test_question": "Using CMap evidence, what functional response is associated with Gambogic acid perturbation in A549?",
+    "keyword_query_result": false,
+    "pxfquery_query_result": true
+  },
+  {
+    "candidate_id": "0f786fc86bd6dee6",
+    "category": "chemical",
+    "pmid": "31871539",
+    "sentence": "Differential Effects of Silibinin A on Mitochondrial Function in Neuronal PC12 and HepG2 Liver Cells.",
+    "pubtator3_annotation": {
+      "cell_line": {
+        "mention": "HepG2",
+        "cmap_mapping": "HEPG2"
+      },
+      "perturbation": {
+        "type": "Chemical",
+        "mention": "silibinin",
+        "cmap_mapping": "silibinin"
+      }
+    },
+    "test_question": "Using CMap evidence, what functional response is associated with silibinin perturbation in HepG2?",
+    "keyword_query_result": true,
+    "pxfquery_query_result": true
+  },
+  {
+    "candidate_id": "15c4f0751e55708b",
+    "category": "chemical",
+    "pmid": "12962562",
+    "sentence": "[Inhibiting effect of arsenic trioxide on telomerase activity of NB4 and Jurkat cell lines].",
+    "pubtator3_annotation": {
+      "cell_line": {
+        "mention": "Jurkat",
+        "cmap_mapping": "JURKAT"
+      },
+      "perturbation": {
+        "type": "Chemical",
+        "mention": "arsenic trioxide",
+        "cmap_mapping": "arsenic-trioxide"
+      }
+    },
+    "test_question": "Using CMap evidence, what functional response is associated with arsenic trioxide perturbation in Jurkat?",
+    "keyword_query_result": false,
+    "pxfquery_query_result": true
+  },
+  {
+    "candidate_id": "1b63bd77c34d1a08",
+    "category": "chemical",
+    "pmid": "32665121",
+    "sentence": "Combination of NDRG2 overexpression, X-ray radiation and docetaxel enhances apoptosis and inhibits invasiveness properties of LNCaP cells.",
+    "pubtator3_annotation": {
+      "cell_line": {
+        "mention": "LNCaP",
+        "cmap_mapping": "LNCAP"
+      },
+      "perturbation": {
+        "type": "Chemical",
+        "mention": "docetaxel",
+        "cmap_mapping": "docetaxel"
+      }
+    },
+    "test_question": "Using CMap evidence, what functional response is associated with docetaxel perturbation in LNCaP?",
+    "keyword_query_result": false,
+    "pxfquery_query_result": true
+  },
+  {
+    "candidate_id": "1f1968a2dbbdb7a0",
+    "category": "chemical",
+    "pmid": "32525818",
+    "sentence": "Myricetin inhibits angiotensin converting enzyme and induces nitric oxide production in HUVEC cell line.",
+    "pubtator3_annotation": {
+      "cell_line": {
+        "mention": "HUVEC",
+        "cmap_mapping": "HUVEC"
+      },
+      "perturbation": {
+        "type": "Chemical",
+        "mention": "myricetin",
+        "cmap_mapping": "myricetin"
+      }
+    },
+    "test_question": "Using CMap evidence, what functional response is associated with myricetin perturbation in HUVEC?",
+    "keyword_query_result": false,
+    "pxfquery_query_result": true
+  },
+  {
+    "candidate_id": "3f1d40607189a474",
+    "category": "chemical",
+    "pmid": "2819694",
+    "sentence": "Changes in the three-dimensional organization of LoVo cells associated with resistance to doxorubicin.",
+    "pubtator3_annotation": {
+      "cell_line": {
+        "mention": "LoVo",
+        "cmap_mapping": "LOVO"
+      },
+      "perturbation": {
+        "type": "Chemical",
+        "mention": "doxorubicin",
+        "cmap_mapping": "doxorubicin"
+      }
+    },
+    "test_question": "Using CMap evidence, what functional response is associated with doxorubicin perturbation in LoVo?",
+    "keyword_query_result": false,
+    "pxfquery_query_result": true
+  },
+  {
+    "candidate_id": "4d6164af4dc74a66",
+    "category": "chemical",
+    "pmid": "37171011",
+    "sentence": "Investigating the Anti-tumor and Apoptosis-inducing Effects of Coumarin Derivatives as Potent 15-Lipoxygenase Inhibitors on PC-3 Prostate Cancer Cells.",
+    "pubtator3_annotation": {
+      "cell_line": {
+        "mention": "PC-3",
+        "cmap_mapping": "PC3"
+      },
+      "perturbation": {
+        "type": "Chemical",
+        "mention": "coumarin",
+        "cmap_mapping": "coumarin"
+      }
+    },
+    "test_question": "Using CMap evidence, what functional response is associated with coumarin perturbation in PC-3?",
+    "keyword_query_result": true,
+    "pxfquery_query_result": true
+  },
+  {
+    "candidate_id": "56202e25d1a98563",
+    "category": "chemical",
+    "pmid": "10632574",
+    "sentence": "Geldanamycin induces heat shock protein expression through activation of HSF1 in K562 erythroleukemic cells.",
+    "pubtator3_annotation": {
+      "cell_line": {
+        "mention": "K562",
+        "cmap_mapping": "K562"
+      },
+      "perturbation": {
+        "type": "Chemical",
+        "mention": "Geldanamycin",
+        "cmap_mapping": "geldanamycin"
+      }
+    },
+    "test_question": "Using CMap evidence, what functional response is associated with Geldanamycin perturbation in K562?",
+    "keyword_query_result": false,
+    "pxfquery_query_result": true
+  },
+  {
+    "candidate_id": "638d6f78d8aed18c",
+    "category": "chemical",
+    "pmid": "38550149",
+    "sentence": "Retracted: Minocycline Induces Autophagy and Inhibits Cell Proliferation in LPS-Stimulated THP-1 Cells.",
+    "pubtator3_annotation": {
+      "cell_line": {
+        "mention": "THP-1",
+        "cmap_mapping": "THP1"
+      },
+      "perturbation": {
+        "type": "Chemical",
+        "mention": "Minocycline",
+        "cmap_mapping": "minocycline"
+      }
+    },
+    "test_question": "Using CMap evidence, what functional response is associated with Minocycline perturbation in THP-1?",
+    "keyword_query_result": false,
+    "pxfquery_query_result": true
+  },
+  {
+    "candidate_id": "6e3a14ebefcedb7b",
+    "category": "chemical",
+    "pmid": "23160680",
+    "sentence": "Chlorogenic acid induces apoptotic cell death in U937 leukemia cells through caspase- and mitochondria-dependent pathways.",
+    "pubtator3_annotation": {
+      "cell_line": {
+        "mention": "U937",
+        "cmap_mapping": "U937"
+      },
+      "perturbation": {
+        "type": "Chemical",
+        "mention": "chlorogenic acid",
+        "cmap_mapping": "chlorogenic-acid"
+      }
+    },
+    "test_question": "Using CMap evidence, what functional response is associated with chlorogenic acid perturbation in U937?",
+    "keyword_query_result": false,
+    "pxfquery_query_result": true
+  },
+  {
+    "candidate_id": "0d8af378c81767ec",
+    "category": "genetic",
+    "pmid": "2697687",
+    "sentence": "Modulation of the expression of CD4 on HL-60 cells by exposure to 1,25-dihydroxyvitamin D3.",
+    "pubtator3_annotation": {
+      "cell_line": {
+        "mention": "HL-60",
+        "cmap_mapping": "HL60"
+      },
+      "perturbation": {
+        "type": "Gene",
+        "mention": "CD4",
+        "cmap_mapping": "CD4"
+      }
+    },
+    "test_question": "Using CMap evidence, what functional response is associated with CD4 perturbation in HL-60?",
+    "keyword_query_result": false,
+    "pxfquery_query_result": true
+  },
+  {
+    "candidate_id": "2d9362531554595f",
+    "category": "genetic",
+    "pmid": "29786910",
+    "sentence": "Agathisflavone isolated from Anacardium occidentale suppresses SIRT1-mediated neuroinflammation in BV2 microglia and neurotoxicity in APPSwe-transfected SH-SY5Y cells.",
+    "pubtator3_annotation": {
+      "cell_line": {
+        "mention": "SH-SY5Y",
+        "cmap_mapping": "SHSY5Y"
+      },
+      "perturbation": {
+        "type": "Gene",
+        "mention": "SIRT1",
+        "cmap_mapping": "SIRT1"
+      }
+    },
+    "test_question": "Using CMap evidence, what functional response is associated with SIRT1 perturbation in SH-SY5Y?",
+    "keyword_query_result": true,
+    "pxfquery_query_result": false
+  },
+  {
+    "candidate_id": "4d7e9213b1487366",
+    "category": "genetic",
+    "pmid": "22694166",
+    "sentence": "Activation of ATM-Chk2 by 16-dehydropregnenolone induces G1 phase arrest and apoptosis in HeLa cells.",
+    "pubtator3_annotation": {
+      "cell_line": {
+        "mention": "HeLa",
+        "cmap_mapping": "HELA"
+      },
+      "perturbation": {
+        "type": "Gene",
+        "mention": "ATM",
+        "cmap_mapping": "ATM"
+      }
+    },
+    "test_question": "Using CMap evidence, what functional response is associated with ATM perturbation in HeLa?",
+    "keyword_query_result": false,
+    "pxfquery_query_result": true
+  },
+  {
+    "candidate_id": "50377b4ea5ab7907",
+    "category": "genetic",
+    "pmid": "32665121",
+    "sentence": "Combination of NDRG2 overexpression, X-ray radiation and docetaxel enhances apoptosis and inhibits invasiveness properties of LNCaP cells.",
+    "pubtator3_annotation": {
+      "cell_line": {
+        "mention": "LNCaP",
+        "cmap_mapping": "LNCAP"
+      },
+      "perturbation": {
+        "type": "Gene",
+        "mention": "NDRG2",
+        "cmap_mapping": "NDRG2"
+      }
+    },
+    "test_question": "Using CMap evidence, what functional response is associated with NDRG2 perturbation in LNCaP?",
+    "keyword_query_result": false,
+    "pxfquery_query_result": true
+  },
+  {
+    "candidate_id": "98cfb0518cbcb8cc",
+    "category": "genetic",
+    "pmid": "33007920",
+    "sentence": "Fumonisin B1 Epigenetically Regulates PTEN Expression and Modulates DNA Damage Checkpoint Regulation in HepG2 Liver Cells.",
+    "pubtator3_annotation": {
+      "cell_line": {
+        "mention": "HepG2",
+        "cmap_mapping": "HEPG2"
+      },
+      "perturbation": {
+        "type": "Gene",
+        "mention": "PTEN",
+        "cmap_mapping": "PTEN"
+      }
+    },
+    "test_question": "Using CMap evidence, what functional response is associated with PTEN perturbation in HepG2?",
+    "keyword_query_result": true,
+    "pxfquery_query_result": true
+  },
+  {
+    "candidate_id": "b877d6133141b2ff",
+    "category": "genetic",
+    "pmid": "24532189",
+    "sentence": "Involvement of RECK in gambogic acid induced anti-invasive effect in A549 human lung carcinoma cells.",
+    "pubtator3_annotation": {
+      "cell_line": {
+        "mention": "A549",
+        "cmap_mapping": "A549"
+      },
+      "perturbation": {
+        "type": "Gene",
+        "mention": "RECK",
+        "cmap_mapping": "RECK"
+      }
+    },
+    "test_question": "Using CMap evidence, what functional response is associated with RECK perturbation in A549?",
+    "keyword_query_result": true,
+    "pxfquery_query_result": true
+  },
+  {
+    "candidate_id": "c6e39625efb4cbe3",
+    "category": "genetic",
+    "pmid": "38633583",
+    "sentence": "Novel BRD4-p53 Inhibitor SDU-071 Suppresses Proliferation and Migration of MDA-MB-231 Triple-Negative Breast Cancer Cells.",
+    "pubtator3_annotation": {
+      "cell_line": {
+        "mention": "MDA-MB-231",
+        "cmap_mapping": "MDAMB231"
+      },
+      "perturbation": {
+        "type": "Gene",
+        "mention": "BRD4",
+        "cmap_mapping": "BRD4"
+      }
+    },
+    "test_question": "Using CMap evidence, what functional response is associated with BRD4 perturbation in MDA-MB-231?",
+    "keyword_query_result": false,
+    "pxfquery_query_result": true
+  },
+  {
+    "candidate_id": "c95c1e1e7a26afd0",
+    "category": "genetic",
+    "pmid": "10632574",
+    "sentence": "Geldanamycin induces heat shock protein expression through activation of HSF1 in K562 erythroleukemic cells.",
+    "pubtator3_annotation": {
+      "cell_line": {
+        "mention": "K562",
+        "cmap_mapping": "K562"
+      },
+      "perturbation": {
+        "type": "Gene",
+        "mention": "HSF1",
+        "cmap_mapping": "HSF1"
+      }
+    },
+    "test_question": "Using CMap evidence, what functional response is associated with HSF1 perturbation in K562?",
+    "keyword_query_result": false,
+    "pxfquery_query_result": true
+  },
+  {
+    "candidate_id": "dfcd9dc012e69b46",
+    "category": "genetic",
+    "pmid": "31026254",
+    "sentence": "Rho-Associated Protein Kinase (ROCK) Promotes Proliferation and Migration of PC-3 and DU145 Prostate Cancer Cells by Targeting LIM Kinase 1 (LIMK1) and Matrix Metalloproteinase-2 (MMP-2).",
+    "pubtator3_annotation": {
+      "cell_line": {
+        "mention": "DU145",
+        "cmap_mapping": "DU145"
+      },
+      "perturbation": {
+        "type": "Gene",
+        "mention": "LIMK1",
+        "cmap_mapping": "LIMK1"
+      }
+    },
+    "test_question": "Using CMap evidence, what functional response is associated with LIMK1 perturbation in DU145?",
+    "keyword_query_result": false,
+    "pxfquery_query_result": true
+  },
+  {
+    "candidate_id": "f542f164aa321e8e",
+    "category": "genetic",
+    "pmid": "35863663",
+    "sentence": "A cold-water polysaccharide-protein complex from Grifola frondosa exhibited antiproliferative activity via mitochondrial apoptotic and Fas/FasL pathways in HepG2 cells.",
+    "pubtator3_annotation": {
+      "cell_line": {
+        "mention": "HepG2",
+        "cmap_mapping": "HEPG2"
+      },
+      "perturbation": {
+        "type": "Gene",
+        "mention": "Fas",
+        "cmap_mapping": "FAS"
+      }
+    },
+    "test_question": "Using CMap evidence, what functional response is associated with Fas perturbation in HepG2?",
+    "keyword_query_result": true,
+    "pxfquery_query_result": true
+  },
+  {
     "candidate_id": "0165a0499b307fb5",
     "category": "chemical",
     "pmid": "20632471",
@@ -160,26 +560,6 @@
     "pxfquery_query_result": true
   },
   {
-    "candidate_id": "0ba19f3948bf5348",
-    "category": "chemical",
-    "pmid": "24532189",
-    "sentence": "Involvement of RECK in gambogic acid induced anti-invasive effect in A549 human lung carcinoma cells.",
-    "pubtator3_annotation": {
-      "cell_line": {
-        "mention": "A549",
-        "cmap_mapping": "A549"
-      },
-      "perturbation": {
-        "type": "Chemical",
-        "mention": "Gambogic acid",
-        "cmap_mapping": "gambogic-acid"
-      }
-    },
-    "test_question": "Using CMap evidence, what functional response is associated with Gambogic acid perturbation in A549?",
-    "keyword_query_result": false,
-    "pxfquery_query_result": true
-  },
-  {
     "candidate_id": "0de7e3350c8aa95a",
     "category": "chemical",
     "pmid": "14686483",
@@ -217,26 +597,6 @@
     },
     "test_question": "Using CMap evidence, what functional response is associated with naloxone perturbation in SH-SY5Y?",
     "keyword_query_result": false,
-    "pxfquery_query_result": true
-  },
-  {
-    "candidate_id": "0f786fc86bd6dee6",
-    "category": "chemical",
-    "pmid": "31871539",
-    "sentence": "Differential Effects of Silibinin A on Mitochondrial Function in Neuronal PC12 and HepG2 Liver Cells.",
-    "pubtator3_annotation": {
-      "cell_line": {
-        "mention": "HepG2",
-        "cmap_mapping": "HEPG2"
-      },
-      "perturbation": {
-        "type": "Chemical",
-        "mention": "silibinin",
-        "cmap_mapping": "silibinin"
-      }
-    },
-    "test_question": "Using CMap evidence, what functional response is associated with silibinin perturbation in HepG2?",
-    "keyword_query_result": true,
     "pxfquery_query_result": true
   },
   {
@@ -320,26 +680,6 @@
     "pxfquery_query_result": true
   },
   {
-    "candidate_id": "15c4f0751e55708b",
-    "category": "chemical",
-    "pmid": "12962562",
-    "sentence": "[Inhibiting effect of arsenic trioxide on telomerase activity of NB4 and Jurkat cell lines].",
-    "pubtator3_annotation": {
-      "cell_line": {
-        "mention": "Jurkat",
-        "cmap_mapping": "JURKAT"
-      },
-      "perturbation": {
-        "type": "Chemical",
-        "mention": "arsenic trioxide",
-        "cmap_mapping": "arsenic-trioxide"
-      }
-    },
-    "test_question": "Using CMap evidence, what functional response is associated with arsenic trioxide perturbation in Jurkat?",
-    "keyword_query_result": false,
-    "pxfquery_query_result": true
-  },
-  {
     "candidate_id": "1679a1b2e47da05d",
     "category": "chemical",
     "pmid": "17545612",
@@ -416,26 +756,6 @@
       }
     },
     "test_question": "Using CMap evidence, what functional response is associated with biotin perturbation in MDA-MB-231?",
-    "keyword_query_result": false,
-    "pxfquery_query_result": true
-  },
-  {
-    "candidate_id": "1b63bd77c34d1a08",
-    "category": "chemical",
-    "pmid": "32665121",
-    "sentence": "Combination of NDRG2 overexpression, X-ray radiation and docetaxel enhances apoptosis and inhibits invasiveness properties of LNCaP cells.",
-    "pubtator3_annotation": {
-      "cell_line": {
-        "mention": "LNCaP",
-        "cmap_mapping": "LNCAP"
-      },
-      "perturbation": {
-        "type": "Chemical",
-        "mention": "docetaxel",
-        "cmap_mapping": "docetaxel"
-      }
-    },
-    "test_question": "Using CMap evidence, what functional response is associated with docetaxel perturbation in LNCaP?",
     "keyword_query_result": false,
     "pxfquery_query_result": true
   },
@@ -557,26 +877,6 @@
     },
     "test_question": "Using CMap evidence, what functional response is associated with ursolic acid perturbation in A549?",
     "keyword_query_result": true,
-    "pxfquery_query_result": true
-  },
-  {
-    "candidate_id": "1f1968a2dbbdb7a0",
-    "category": "chemical",
-    "pmid": "32525818",
-    "sentence": "Myricetin inhibits angiotensin converting enzyme and induces nitric oxide production in HUVEC cell line.",
-    "pubtator3_annotation": {
-      "cell_line": {
-        "mention": "HUVEC",
-        "cmap_mapping": "HUVEC"
-      },
-      "perturbation": {
-        "type": "Chemical",
-        "mention": "myricetin",
-        "cmap_mapping": "myricetin"
-      }
-    },
-    "test_question": "Using CMap evidence, what functional response is associated with myricetin perturbation in HUVEC?",
-    "keyword_query_result": false,
     "pxfquery_query_result": true
   },
   {
@@ -1060,26 +1360,6 @@
     "pxfquery_query_result": true
   },
   {
-    "candidate_id": "3f1d40607189a474",
-    "category": "chemical",
-    "pmid": "2819694",
-    "sentence": "Changes in the three-dimensional organization of LoVo cells associated with resistance to doxorubicin.",
-    "pubtator3_annotation": {
-      "cell_line": {
-        "mention": "LoVo",
-        "cmap_mapping": "LOVO"
-      },
-      "perturbation": {
-        "type": "Chemical",
-        "mention": "doxorubicin",
-        "cmap_mapping": "doxorubicin"
-      }
-    },
-    "test_question": "Using CMap evidence, what functional response is associated with doxorubicin perturbation in LoVo?",
-    "keyword_query_result": false,
-    "pxfquery_query_result": true
-  },
-  {
     "candidate_id": "40b3797e5d2768e5",
     "category": "chemical",
     "pmid": "25922718",
@@ -1240,26 +1520,6 @@
     "pxfquery_query_result": true
   },
   {
-    "candidate_id": "4d6164af4dc74a66",
-    "category": "chemical",
-    "pmid": "37171011",
-    "sentence": "Investigating the Anti-tumor and Apoptosis-inducing Effects of Coumarin Derivatives as Potent 15-Lipoxygenase Inhibitors on PC-3 Prostate Cancer Cells.",
-    "pubtator3_annotation": {
-      "cell_line": {
-        "mention": "PC-3",
-        "cmap_mapping": "PC3"
-      },
-      "perturbation": {
-        "type": "Chemical",
-        "mention": "coumarin",
-        "cmap_mapping": "coumarin"
-      }
-    },
-    "test_question": "Using CMap evidence, what functional response is associated with coumarin perturbation in PC-3?",
-    "keyword_query_result": true,
-    "pxfquery_query_result": true
-  },
-  {
     "candidate_id": "4d666a543c2c3aeb",
     "category": "chemical",
     "pmid": "37201518",
@@ -1400,26 +1660,6 @@
     "pxfquery_query_result": true
   },
   {
-    "candidate_id": "56202e25d1a98563",
-    "category": "chemical",
-    "pmid": "10632574",
-    "sentence": "Geldanamycin induces heat shock protein expression through activation of HSF1 in K562 erythroleukemic cells.",
-    "pubtator3_annotation": {
-      "cell_line": {
-        "mention": "K562",
-        "cmap_mapping": "K562"
-      },
-      "perturbation": {
-        "type": "Chemical",
-        "mention": "Geldanamycin",
-        "cmap_mapping": "geldanamycin"
-      }
-    },
-    "test_question": "Using CMap evidence, what functional response is associated with Geldanamycin perturbation in K562?",
-    "keyword_query_result": false,
-    "pxfquery_query_result": true
-  },
-  {
     "candidate_id": "57bb50560da850a5",
     "category": "chemical",
     "pmid": "8105865",
@@ -1516,26 +1756,6 @@
       }
     },
     "test_question": "Using CMap evidence, what functional response is associated with chloroquine perturbation in HEK293T?",
-    "keyword_query_result": false,
-    "pxfquery_query_result": true
-  },
-  {
-    "candidate_id": "638d6f78d8aed18c",
-    "category": "chemical",
-    "pmid": "38550149",
-    "sentence": "Retracted: Minocycline Induces Autophagy and Inhibits Cell Proliferation in LPS-Stimulated THP-1 Cells.",
-    "pubtator3_annotation": {
-      "cell_line": {
-        "mention": "THP-1",
-        "cmap_mapping": "THP1"
-      },
-      "perturbation": {
-        "type": "Chemical",
-        "mention": "Minocycline",
-        "cmap_mapping": "minocycline"
-      }
-    },
-    "test_question": "Using CMap evidence, what functional response is associated with Minocycline perturbation in THP-1?",
     "keyword_query_result": false,
     "pxfquery_query_result": true
   },
@@ -1737,26 +1957,6 @@
     },
     "test_question": "Using CMap evidence, what functional response is associated with progesterone perturbation in MCF-7?",
     "keyword_query_result": true,
-    "pxfquery_query_result": true
-  },
-  {
-    "candidate_id": "6e3a14ebefcedb7b",
-    "category": "chemical",
-    "pmid": "23160680",
-    "sentence": "Chlorogenic acid induces apoptotic cell death in U937 leukemia cells through caspase- and mitochondria-dependent pathways.",
-    "pubtator3_annotation": {
-      "cell_line": {
-        "mention": "U937",
-        "cmap_mapping": "U937"
-      },
-      "perturbation": {
-        "type": "Chemical",
-        "mention": "chlorogenic acid",
-        "cmap_mapping": "chlorogenic-acid"
-      }
-    },
-    "test_question": "Using CMap evidence, what functional response is associated with chlorogenic acid perturbation in U937?",
-    "keyword_query_result": false,
     "pxfquery_query_result": true
   },
   {
@@ -4320,26 +4520,6 @@
     "pxfquery_query_result": true
   },
   {
-    "candidate_id": "0d8af378c81767ec",
-    "category": "genetic",
-    "pmid": "2697687",
-    "sentence": "Modulation of the expression of CD4 on HL-60 cells by exposure to 1,25-dihydroxyvitamin D3.",
-    "pubtator3_annotation": {
-      "cell_line": {
-        "mention": "HL-60",
-        "cmap_mapping": "HL60"
-      },
-      "perturbation": {
-        "type": "Gene",
-        "mention": "CD4",
-        "cmap_mapping": "CD4"
-      }
-    },
-    "test_question": "Using CMap evidence, what functional response is associated with CD4 perturbation in HL-60?",
-    "keyword_query_result": false,
-    "pxfquery_query_result": true
-  },
-  {
     "candidate_id": "18c9934ab861f0d4",
     "category": "genetic",
     "pmid": "10639571",
@@ -4638,26 +4818,6 @@
     "test_question": "Using CMap evidence, what functional response is associated with EGFR perturbation in A549?",
     "keyword_query_result": true,
     "pxfquery_query_result": true
-  },
-  {
-    "candidate_id": "2d9362531554595f",
-    "category": "genetic",
-    "pmid": "29786910",
-    "sentence": "Agathisflavone isolated from Anacardium occidentale suppresses SIRT1-mediated neuroinflammation in BV2 microglia and neurotoxicity in APPSwe-transfected SH-SY5Y cells.",
-    "pubtator3_annotation": {
-      "cell_line": {
-        "mention": "SH-SY5Y",
-        "cmap_mapping": "SHSY5Y"
-      },
-      "perturbation": {
-        "type": "Gene",
-        "mention": "SIRT1",
-        "cmap_mapping": "SIRT1"
-      }
-    },
-    "test_question": "Using CMap evidence, what functional response is associated with SIRT1 perturbation in SH-SY5Y?",
-    "keyword_query_result": true,
-    "pxfquery_query_result": false
   },
   {
     "candidate_id": "31fd272305c9ce98",
@@ -5137,46 +5297,6 @@
     },
     "test_question": "Using CMap evidence, what functional response is associated with Bcl-2 perturbation in MCF-7?",
     "keyword_query_result": true,
-    "pxfquery_query_result": true
-  },
-  {
-    "candidate_id": "4d7e9213b1487366",
-    "category": "genetic",
-    "pmid": "22694166",
-    "sentence": "Activation of ATM-Chk2 by 16-dehydropregnenolone induces G1 phase arrest and apoptosis in HeLa cells.",
-    "pubtator3_annotation": {
-      "cell_line": {
-        "mention": "HeLa",
-        "cmap_mapping": "HELA"
-      },
-      "perturbation": {
-        "type": "Gene",
-        "mention": "ATM",
-        "cmap_mapping": "ATM"
-      }
-    },
-    "test_question": "Using CMap evidence, what functional response is associated with ATM perturbation in HeLa?",
-    "keyword_query_result": false,
-    "pxfquery_query_result": true
-  },
-  {
-    "candidate_id": "50377b4ea5ab7907",
-    "category": "genetic",
-    "pmid": "32665121",
-    "sentence": "Combination of NDRG2 overexpression, X-ray radiation and docetaxel enhances apoptosis and inhibits invasiveness properties of LNCaP cells.",
-    "pubtator3_annotation": {
-      "cell_line": {
-        "mention": "LNCaP",
-        "cmap_mapping": "LNCAP"
-      },
-      "perturbation": {
-        "type": "Gene",
-        "mention": "NDRG2",
-        "cmap_mapping": "NDRG2"
-      }
-    },
-    "test_question": "Using CMap evidence, what functional response is associated with NDRG2 perturbation in LNCaP?",
-    "keyword_query_result": false,
     "pxfquery_query_result": true
   },
   {
@@ -6220,26 +6340,6 @@
     "pxfquery_query_result": true
   },
   {
-    "candidate_id": "98cfb0518cbcb8cc",
-    "category": "genetic",
-    "pmid": "33007920",
-    "sentence": "Fumonisin B1 Epigenetically Regulates PTEN Expression and Modulates DNA Damage Checkpoint Regulation in HepG2 Liver Cells.",
-    "pubtator3_annotation": {
-      "cell_line": {
-        "mention": "HepG2",
-        "cmap_mapping": "HEPG2"
-      },
-      "perturbation": {
-        "type": "Gene",
-        "mention": "PTEN",
-        "cmap_mapping": "PTEN"
-      }
-    },
-    "test_question": "Using CMap evidence, what functional response is associated with PTEN perturbation in HepG2?",
-    "keyword_query_result": true,
-    "pxfquery_query_result": true
-  },
-  {
     "candidate_id": "99bb51b12b7974bf",
     "category": "genetic",
     "pmid": "29142311",
@@ -6740,26 +6840,6 @@
     "pxfquery_query_result": true
   },
   {
-    "candidate_id": "b877d6133141b2ff",
-    "category": "genetic",
-    "pmid": "24532189",
-    "sentence": "Involvement of RECK in gambogic acid induced anti-invasive effect in A549 human lung carcinoma cells.",
-    "pubtator3_annotation": {
-      "cell_line": {
-        "mention": "A549",
-        "cmap_mapping": "A549"
-      },
-      "perturbation": {
-        "type": "Gene",
-        "mention": "RECK",
-        "cmap_mapping": "RECK"
-      }
-    },
-    "test_question": "Using CMap evidence, what functional response is associated with RECK perturbation in A549?",
-    "keyword_query_result": true,
-    "pxfquery_query_result": true
-  },
-  {
     "candidate_id": "b8f038f8dea81e3e",
     "category": "genetic",
     "pmid": "29963105",
@@ -7020,26 +7100,6 @@
     "pxfquery_query_result": true
   },
   {
-    "candidate_id": "c6e39625efb4cbe3",
-    "category": "genetic",
-    "pmid": "38633583",
-    "sentence": "Novel BRD4-p53 Inhibitor SDU-071 Suppresses Proliferation and Migration of MDA-MB-231 Triple-Negative Breast Cancer Cells.",
-    "pubtator3_annotation": {
-      "cell_line": {
-        "mention": "MDA-MB-231",
-        "cmap_mapping": "MDAMB231"
-      },
-      "perturbation": {
-        "type": "Gene",
-        "mention": "BRD4",
-        "cmap_mapping": "BRD4"
-      }
-    },
-    "test_question": "Using CMap evidence, what functional response is associated with BRD4 perturbation in MDA-MB-231?",
-    "keyword_query_result": false,
-    "pxfquery_query_result": true
-  },
-  {
     "candidate_id": "c7dd4bdae82f8082",
     "category": "genetic",
     "pmid": "36504050",
@@ -7056,26 +7116,6 @@
       }
     },
     "test_question": "Using CMap evidence, what functional response is associated with MMP2 perturbation in Huh-7?",
-    "keyword_query_result": false,
-    "pxfquery_query_result": true
-  },
-  {
-    "candidate_id": "c95c1e1e7a26afd0",
-    "category": "genetic",
-    "pmid": "10632574",
-    "sentence": "Geldanamycin induces heat shock protein expression through activation of HSF1 in K562 erythroleukemic cells.",
-    "pubtator3_annotation": {
-      "cell_line": {
-        "mention": "K562",
-        "cmap_mapping": "K562"
-      },
-      "perturbation": {
-        "type": "Gene",
-        "mention": "HSF1",
-        "cmap_mapping": "HSF1"
-      }
-    },
-    "test_question": "Using CMap evidence, what functional response is associated with HSF1 perturbation in K562?",
     "keyword_query_result": false,
     "pxfquery_query_result": true
   },
@@ -7520,26 +7560,6 @@
     "pxfquery_query_result": true
   },
   {
-    "candidate_id": "dfcd9dc012e69b46",
-    "category": "genetic",
-    "pmid": "31026254",
-    "sentence": "Rho-Associated Protein Kinase (ROCK) Promotes Proliferation and Migration of PC-3 and DU145 Prostate Cancer Cells by Targeting LIM Kinase 1 (LIMK1) and Matrix Metalloproteinase-2 (MMP-2).",
-    "pubtator3_annotation": {
-      "cell_line": {
-        "mention": "DU145",
-        "cmap_mapping": "DU145"
-      },
-      "perturbation": {
-        "type": "Gene",
-        "mention": "LIMK1",
-        "cmap_mapping": "LIMK1"
-      }
-    },
-    "test_question": "Using CMap evidence, what functional response is associated with LIMK1 perturbation in DU145?",
-    "keyword_query_result": false,
-    "pxfquery_query_result": true
-  },
-  {
     "candidate_id": "e2411884cac8597e",
     "category": "genetic",
     "pmid": "23995305",
@@ -7877,26 +7897,6 @@
     },
     "test_question": "Using CMap evidence, what functional response is associated with IL6 perturbation in HeLa?",
     "keyword_query_result": false,
-    "pxfquery_query_result": true
-  },
-  {
-    "candidate_id": "f542f164aa321e8e",
-    "category": "genetic",
-    "pmid": "35863663",
-    "sentence": "A cold-water polysaccharide-protein complex from Grifola frondosa exhibited antiproliferative activity via mitochondrial apoptotic and Fas/FasL pathways in HepG2 cells.",
-    "pubtator3_annotation": {
-      "cell_line": {
-        "mention": "HepG2",
-        "cmap_mapping": "HEPG2"
-      },
-      "perturbation": {
-        "type": "Gene",
-        "mention": "Fas",
-        "cmap_mapping": "FAS"
-      }
-    },
-    "test_question": "Using CMap evidence, what functional response is associated with Fas perturbation in HepG2?",
-    "keyword_query_result": true,
     "pxfquery_query_result": true
   },
   {
