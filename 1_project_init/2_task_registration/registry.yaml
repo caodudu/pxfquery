@@ -2478,3 +2478,12 @@ tasks:
   executor: human
   created: '2026-08-18'
   completed: null
+- id: T-190
+  name: submission_file_maintenance
+  phase: translation
+  goal: G-045_pxfquery_submission_file_maintenance
+  path: 5_phase_translation/G-045_pxfquery_submission_file_maintenance/T-190_submission_file_maintenance
+  status: pending
+  executor: human
+  created: '2026-08-19'
+  completed: null
