@@ -32303,6 +32303,14 @@ excluded_from_git:
   size_mb: 0.01
 - path: 5_phase_translation/G-043_pxfquery_major_revision_figure_management/T-186_pxfquery_manuscript_figure_management/3_execution/legacy_figure/11_figure_S2/s1_v1.ai
   size_mb: 0.5
+- path: 5_phase_translation/G-045_pxfquery_submission_file_maintenance/T-190_submission_file_maintenance/3_execution/original_submission/Supplementary
+    Figure.docx
+  size_mb: 0.79
+- path: 5_phase_translation/G-045_pxfquery_submission_file_maintenance/T-190_submission_file_maintenance/3_execution/original_submission/Supplementary
+    table 0611.xlsx
+  size_mb: 0.03
+- path: 5_phase_translation/G-045_pxfquery_submission_file_maintenance/T-190_submission_file_maintenance/3_execution/original_submission/manuscript_v8.docx
+  size_mb: 42.02
 - path: pet-references/girlfriend-fullbody.png
   size_mb: 0.78
 - path: pet-runs/mimi-final/decoded/base.png
