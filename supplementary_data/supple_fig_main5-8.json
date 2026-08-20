@@ -1,5 +1,4 @@
 {
-  "description": "Locked benchmark test configurations underlying main Figures 5–8. This file contains configurations only; method outputs and experimental-rank results are reported separately in Supplementary Table S5.",
   "test_configurations": [
     {
       "test_index": 1,
