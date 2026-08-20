@@ -1,0 +1,382 @@
+{
+  "bone": {
+    "bone cancer": {
+      "ewing's sarcoma": [
+        "TC32",
+        "A673",
+        "SKES1"
+      ],
+      "osteosarcoma": [
+        "U2OS"
+      ]
+    }
+  },
+  "breast": {
+    "breast cancer": {
+      "carcinoma": [
+        "BT20",
+        "BT474",
+        "HS578T",
+        "MCF10A",
+        "T47D",
+        "ZR751"
+      ],
+      "adenocarcinoma": [
+        "MCF7",
+        "MDAMB231",
+        "MDAMB468",
+        "SKBR3"
+      ]
+    },
+    "normal breast sample": {
+      "normal epithelium sample": [
+        "HME1"
+      ]
+    },
+    "unknown": {
+      "normal stem cell sample": [
+        "NAMEC8"
+      ]
+    }
+  },
+  "central_nervous_system": {
+    "brain cancer": {
+      "astrocytoma": [
+        "LN229",
+        "U251MG",
+        "YH13"
+      ],
+      "glioblastoma": [
+        "GI1"
+      ]
+    },
+    "neuroblastoma": {
+      "neuroblastoma": [
+        "SHSY5Y",
+        "SKNSH"
+      ]
+    },
+    "normal stem cell sample": {
+      "normal stem cell sample": [
+        "NEU",
+        "NPC"
+      ]
+    },
+    "unknown": {
+      "unknown": [
+        "SKB"
+      ]
+    }
+  },
+  "cervix": {
+    "cervical cancer": {
+      "adenocarcinoma": [
+        "HELA"
+      ]
+    }
+  },
+  "endometrium": {
+    "endometrial cancer": {
+      "adenocarcinoma": [
+        "HEC1A",
+        "AN3CA",
+        "MFE319",
+        "HEC108",
+        "HEC151",
+        "HEC251",
+        "HEC265",
+        "SNGM"
+      ],
+      "carcinoma": [
+        "JHUEM2"
+      ]
+    }
+  },
+  "haematopoietic_and_lymphoid_tissue": {
+    "leukemia": {
+      "chronic myeloid leukemia (cml)": [
+        "HAP1"
+      ],
+      "acute myelogenous leukemia (aml)": [
+        "HL60",
+        "TF1",
+        "THP1",
+        "PL21",
+        "NOMO1",
+        "SKM1"
+      ],
+      "chronic myelogenous leukemia (cml)": [
+        "K562"
+      ],
+      "acute lymphoblastic leukemia (all)": [
+        "JURKAT",
+        "NALM6"
+      ]
+    },
+    "lymphoma": {
+      "b-cell lymphoma": [
+        "BJAB",
+        "HBL1",
+        "OCILY10",
+        "TMD8",
+        "MINO",
+        "U937",
+        "OCILY19",
+        "SUDHL4",
+        "WSUDLCL2",
+        "OCILY3"
+      ]
+    },
+    "myeloma": {
+      "plasmacytoma": [
+        "U266B1"
+      ],
+      "myeloma": [
+        "KMS34"
+      ]
+    },
+    "normal blood sample": {
+      "normal blood sample": [
+        "PHH"
+      ]
+    },
+    "unknown": {
+      "normal stem cell sample": [
+        "CD34"
+      ]
+    }
+  },
+  "kidney": {
+    "kidney cancer": {
+      "carcinoma": [
+        "RCC10RGB"
+      ]
+    },
+    "normal kidney sample": {
+      "normal kidney sample": [
+        "HA1E",
+        "HEKTE"
+      ],
+      "normal embryonal kidney sample": [
+        "HEK293"
+      ]
+    },
+    "unknown": {
+      "unknown": [
+        "HEK293T"
+      ]
+    }
+  },
+  "large_intestine": {
+    "colon cancer": {
+      "adenocarcinoma": [
+        "DLD1",
+        "HT29",
+        "LOVO",
+        "NCIH508",
+        "NCIH716",
+        "RKO",
+        "SW480",
+        "SW620",
+        "SW948",
+        "CL34",
+        "SNUC4",
+        "SNUC5",
+        "GP2D"
+      ],
+      "carcinoma": [
+        "HCT116",
+        "SNU1040",
+        "SNU407",
+        "HT115",
+        "MDST8",
+        "CW2"
+      ]
+    }
+  },
+  "liver": {
+    "liver cancer": {
+      "carcinoma": [
+        "HEPG2",
+        "HUH7",
+        "JHH5",
+        "JHH7"
+      ]
+    }
+  },
+  "lung": {
+    "lung cancer": {
+      "non-small cell lung carcinoma": [
+        "H1299",
+        "A549",
+        "HCC827",
+        "NCIH1437",
+        "NCIH1563",
+        "NCIH1573",
+        "NCIH1781",
+        "NCIH1975",
+        "NCIH2073",
+        "NCIH2110",
+        "NCIH2172",
+        "NCIH596",
+        "NCIH838",
+        "BEN",
+        "HCC15",
+        "HCC44",
+        "HCC1588",
+        "HCC95",
+        "CORL23",
+        "T3M10"
+      ],
+      "carcinoma": [
+        "H1975",
+        "HCC515",
+        "SALE"
+      ],
+      "small cell lung carcinoma": [
+        "NCIH1694",
+        "NCIH1836",
+        "NCIH841"
+      ],
+      "adenocarcinoma": [
+        "SKLU1",
+        "DV90"
+      ]
+    },
+    "normal lung sample": {
+      "normal lung sample": [
+        "NL20",
+        "WI38",
+        "HFL1",
+        "IMR90"
+      ]
+    }
+  },
+  "normal_other": {
+    "unknown": {
+      "normal umbilical vein sample": [
+        "HUVEC"
+      ],
+      "unknown": [
+        "IPS-3"
+      ],
+      "normal stem cell sample": [
+        "WA09"
+      ]
+    }
+  },
+  "ovary": {
+    "endometrial cancer": {
+      "adenocarcinoma": [
+        "TOV112D"
+      ]
+    },
+    "ovarian cancer": {
+      "carcinoma": [
+        "ES2",
+        "EFO27",
+        "OC314",
+        "COV644",
+        "OV7",
+        "RMGI",
+        "RMUGS",
+        "TYKNU",
+        "OVK18",
+        "OVCAR8"
+      ],
+      "adenocarcinoma": [
+        "OC316",
+        "OVTOKO"
+      ],
+      "granulosa": [
+        "COV434"
+      ],
+      "cystadenocarcinoma": [
+        "OAW28"
+      ]
+    }
+  },
+  "pancreas": {
+    "pancreatic cancer": {
+      "carcinoma": [
+        "YAPC"
+      ]
+    }
+  },
+  "prostate": {
+    "prostate cancer": {
+      "carcinoma": [
+        "22RV1",
+        "DU145",
+        "RWPE1",
+        "LNCAP"
+      ],
+      "adenocarcinoma": [
+        "PC3",
+        "VCAP"
+      ]
+    }
+  },
+  "skin": {
+    "skin cancer": {
+      "melanoma": [
+        "A375",
+        "SH4",
+        "SKMEL1",
+        "SKMEL28",
+        "SKMEL3",
+        "SKMEL5",
+        "IGR37",
+        "MELHO",
+        "CJM"
+      ]
+    }
+  },
+  "soft_tissue": {
+    "embryonal cancer": {
+      "rhabdomyosarcoma": [
+        "A204"
+      ]
+    },
+    "kidney cancer": {
+      "carcinoma": [
+        "G401"
+      ]
+    },
+    "normal soft tissue sample": {
+      "normal soft tissue sample": [
+        "ASC",
+        "SKL"
+      ]
+    }
+  },
+  "stomach": {
+    "gastric cancer": {
+      "adenocarcinoma": [
+        "AGS",
+        "IM95",
+        "MKN45"
+      ]
+    }
+  },
+  "upper_aerodigestive_tract": {
+    "head and neck cancer": {
+      "carcinoma": [
+        "BICR6"
+      ]
+    }
+  },
+  "urinary_tract": {
+    "bladder cancer": {
+      "carcinoma": [
+        "5637",
+        "J82"
+      ],
+      "transitional cell carcinoma": [
+        "BC3C",
+        "CAL29",
+        "VMCUB1"
+      ]
+    }
+  }
+}
