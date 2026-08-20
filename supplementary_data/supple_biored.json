@@ -1,0 +1,2454 @@
+[
+  {
+    "pmid": "25946186",
+    "sentence": "Overexpression of TIPE2 significantly inhibited the growth of lung cancer cell H446 in vitro and even suppressed tumor formation in vivo.",
+    "reference_fields": {
+      "bio_context": [
+        "H446",
+        "lung cancer",
+        "tumor"
+      ],
+      "pert_desc": [
+        "TIPE2"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "lung cancer cell H446",
+      "pert_desc": "TIPE2"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "26847345",
+    "sentence": "Stable overexpression of transgelin in RKO cells, which have low endogenous levels, led to increased invasiveness, growth at low density, and growth in soft agar.",
+    "reference_fields": {
+      "bio_context": [
+        "RKO"
+      ],
+      "pert_desc": [
+        "transgelin"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "RKO cells",
+      "pert_desc": "transgelin"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "27184800",
+    "sentence": "We observed that genes of the metallothionein-1 (MT1) family are induced in the HCC cell line Huh7 exposed to sorafenib.",
+    "reference_fields": {
+      "bio_context": [
+        "HCC",
+        "Huh7"
+      ],
+      "pert_desc": [
+        "sorafenib"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "HCC cell line Huh7",
+      "pert_desc": "sorafenib"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "27491646",
+    "sentence": "In addition, the secretion and activity of matrix metalloproteinases 2/9 (MMP-2/-9) were significantly suppressed in T98G cells treated with gartanin, and it might result from modulating mitogen-activated protein kinases (MAPK) signalling pathway in T98G glioma cells.",
+    "reference_fields": {
+      "bio_context": [
+        "glioma",
+        "T98G"
+      ],
+      "pert_desc": [
+        "gartanin"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "T98G glioma cells",
+      "pert_desc": "gartanin"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "26102294",
+    "sentence": "PA-1 cells treated with ETO display highly heterogeneous increases in OCT4A and p21Cip1 indicative of dis-adaptation catastrophe.",
+    "reference_fields": {
+      "bio_context": [
+        "PA-1"
+      ],
+      "pert_desc": [
+        "ETO"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "PA-1 cells",
+      "pert_desc": "ETO"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "28393239",
+    "sentence": "Knockdown and overexpression of Psoriasin in pancreatic cancer cells was performed using specifically constructed plasmids, which either had anti-Psoriasin ribozyme transgene or the full length human Psoriasin coding sequence.",
+    "reference_fields": {
+      "bio_context": [
+        "human",
+        "pancreatic cancer"
+      ],
+      "pert_desc": [
+        "Psoriasin"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "pancreatic cancer cells",
+      "pert_desc": "Psoriasin"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "28101574",
+    "sentence": "Overexpression of NEK2 was associated with clinicopathological characteristics and poor patient outcomes, suggesting that NEK2 serves as a prognostic biomarker for HCC.",
+    "reference_fields": {
+      "bio_context": [
+        "HCC",
+        "patient"
+      ],
+      "pert_desc": [
+        "NEK2"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "HCC",
+      "pert_desc": "NEK2"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "28481876",
+    "sentence": "As a result, our study showed that copy number increase and overexpression of MCM8 may play critical roles in human cancer development.",
+    "reference_fields": {
+      "bio_context": [
+        "cancer",
+        "human"
+      ],
+      "pert_desc": [
+        "MCM8"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "human cancer",
+      "pert_desc": "MCM8"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "27866394",
+    "sentence": "On this basis, we investigated whether repeated OB treatment prevented the functional and neurochemical changes observed in the colon of rats underwent to wrap restrain stress (WRS) a psychosocial stressor considered suitable to reproduce the main IBS signs and symptoms.",
+    "reference_fields": {
+      "bio_context": [
+        "IBS",
+        "rats"
+      ],
+      "pert_desc": [
+        "OB"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "rat colon, wrap restrain stress (WRS), irritable bowel syndrome (IBS)",
+      "pert_desc": "repeated OB"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "26684240",
+    "sentence": "Three GEP-NET patients with TP53 mutations demonstrated a durable response and one small intestinal grade (G) 1 NET patient with BRAF V600E mutation showed progression after pazopanib treatment.",
+    "reference_fields": {
+      "bio_context": [
+        "GEP-NET",
+        "intestinal grade (G) 1 NET",
+        "patient",
+        "patients"
+      ],
+      "pert_desc": [
+        "pazopanib"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "GEP-NET patients",
+      "pert_desc": "pazopanib"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "16867246",
+    "sentence": "We identified seven SNP(single nucleotide polymorphism) (-141Cins>del, TaqIB, TaqID, Ser311Cys, rs6275, rs6277 and TaqIA) in the DRD2 gene in 146 schizophrenic inpatients (59 with EPS and 87 without EPS according to the Simpson-Angus Scale) treated with chlorpromazine after 8 weeks.",
+    "reference_fields": {
+      "bio_context": [
+        "EPS",
+        "inpatients",
+        "schizophrenic"
+      ],
+      "pert_desc": [
+        "chlorpromazine"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "schizophrenic inpatients",
+      "pert_desc": "chlorpromazine"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "15987266",
+    "sentence": "Growth-associated protein 43 expression in hippocampal molecular layer of chronic epileptic rats treated with cycloheximide.",
+    "reference_fields": {
+      "bio_context": [
+        "epileptic",
+        "rats"
+      ],
+      "pert_desc": [
+        "cycloheximide"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "hippocampal molecular layer of chronic epileptic rats",
+      "pert_desc": "cycloheximide"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "16309808",
+    "sentence": "Our patient started to have symptoms of RLS only after he had been treated with mirtazapine, and his RLS symptoms resolved completely upon discontinuation of his mirtazapine.",
+    "reference_fields": {
+      "bio_context": [
+        "patient",
+        "RLS"
+      ],
+      "pert_desc": [
+        "mirtazapine"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "patient with RLS symptoms induced by mirtazapine",
+      "pert_desc": "mirtazapine"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "21130517",
+    "sentence": "For patients treated with erlotinib, overall survival was correlated with the presence of EGFR mutation in plasma and/or tumor tissue (p=0.002), with the two patients positive only in plasma DNA showing responses and favorable outcomes.",
+    "reference_fields": {
+      "bio_context": [
+        "patients",
+        "tumor"
+      ],
+      "pert_desc": [
+        "erlotinib"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "patients treated with erlotinib",
+      "pert_desc": "erlotinib"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "25006961",
+    "sentence": "PKC-alpha null mice (PKCa KO) and strain-matched wild type (WT) controls were treated with lithium for 0, 3 or 5 days.",
+    "reference_fields": {
+      "bio_context": [
+        "mice"
+      ],
+      "pert_desc": [
+        "lithium"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "PKC-alpha null mice (PKCa KO) and strain-matched wild type (WT) controls",
+      "pert_desc": "lithium"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "18483878",
+    "sentence": "CYP treatment significantly (p < or = 0.001) increased expression of CXCL1 and IL-1beta in the urinary bladder of WT and VIP(-/-) mice, but expression in VIP(-/-) mice with CYP treatment was significantly (p < or = 0.001) greater (4.2- to 13-fold increase) than that observed in WT urinary bladder (3.6- to 5-fold increase).",
+    "reference_fields": {
+      "bio_context": [
+        "mice"
+      ],
+      "pert_desc": [
+        "CYP"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "urinary bladder of WT and VIP(-/-) mice",
+      "pert_desc": "CYP"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "18457324",
+    "sentence": "A nested case-control study was conducted within a cohort of 1979 patients enrolled in the Childhood Cancer Survivor Study who received treatment with anthracyclines and had available DNA.",
+    "reference_fields": {
+      "bio_context": [
+        "patients"
+      ],
+      "pert_desc": [
+        "anthracyclines"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "Childhood Cancer Survivor Study cohort, patients treated with anthracyclines",
+      "pert_desc": "anthracyclines"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "18945509",
+    "sentence": "Risk of coronary artery disease associated with initial sulphonylurea treatment of patients with type 2 diabetes: a matched case-control study.",
+    "reference_fields": {
+      "bio_context": [
+        "coronary artery disease",
+        "patients",
+        "type 2 diabetes"
+      ],
+      "pert_desc": [
+        "sulphonylurea"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "type 2 diabetes",
+      "pert_desc": "sulphonylurea"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "18541230",
+    "sentence": "Treatment with antithrombin may be clinically effective in patients with nephrotic syndrome.",
+    "reference_fields": {
+      "bio_context": [
+        "nephrotic syndrome",
+        "patients"
+      ],
+      "pert_desc": [
+        "antithrombin"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "nephrotic syndrome",
+      "pert_desc": "antithrombin"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "17344330",
+    "sentence": "Syncope and QT prolongation among patients treated with methadone for heroin dependence in the city of Copenhagen.",
+    "reference_fields": {
+      "bio_context": [
+        "heroin dependence",
+        "patients",
+        "QT prolongation",
+        "Syncope"
+      ],
+      "pert_desc": [
+        "methadone"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "heroin dependence in the city of Copenhagen",
+      "pert_desc": "methadone"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "24709919",
+    "sentence": "During withdrawal (days 8 and 9), these mice were administered Re, Rg1, or Rb1 intragastrically two times per day.",
+    "reference_fields": {
+      "bio_context": [
+        "mice"
+      ],
+      "pert_desc": [
+        "Rb1",
+        "Re",
+        "Rg1"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "mice during withdrawal (days 8 and 9)",
+      "pert_desc": "Re, Rg1, or Rb1"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "15811908",
+    "sentence": "Both drugs were immediately discontinued, and the patient recovered after subsequent nicardipine and verapamil treatment.",
+    "reference_fields": {
+      "bio_context": [
+        "patient"
+      ],
+      "pert_desc": [
+        "nicardipine",
+        "verapamil"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": null,
+      "pert_desc": "drugs"
+    },
+    "field_matches": {
+      "bio_context": false,
+      "pert_desc": false
+    }
+  },
+  {
+    "pmid": "16565833",
+    "sentence": "The number of damaged cardiomyocytes was 9.6-fold (95% CI 4.4-21.0) higher in mice treated with DOX alone than that in animals of the control group.",
+    "reference_fields": {
+      "bio_context": [
+        "mice"
+      ],
+      "pert_desc": [
+        "DOX"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "mice",
+      "pert_desc": "DOX"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "18340638",
+    "sentence": "According to annexin V binding, erythrocytes from patients indeed showed a significant increase of PS exposure within 1 week of treatment with azathioprine.",
+    "reference_fields": {
+      "bio_context": [
+        "patients"
+      ],
+      "pert_desc": [
+        "azathioprine",
+        "PS"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "erythrocytes from patients",
+      "pert_desc": "azathioprine"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "19082493",
+    "sentence": "In our study the combination of high TS expression genotypes G_6+/6+ identifies a group of high risk within CRC patients treated with 5FU.",
+    "reference_fields": {
+      "bio_context": [
+        "CRC",
+        "patients"
+      ],
+      "pert_desc": [
+        "5FU"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "CRC patients treated with 5FU",
+      "pert_desc": "high TS expression genotypes G_6+/6+"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": false
+    }
+  },
+  {
+    "pmid": "28346429",
+    "sentence": "Furthermore, LKB1 deletion enhanced mouse retinal and cell angiogenesis, and knockdown of VEGF by small-interfering RNA decreased endothelial cell proliferation and migration.",
+    "reference_fields": {
+      "bio_context": [
+        "mouse"
+      ],
+      "pert_desc": [
+        "VEGF"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "mouse retinal and cell",
+      "pert_desc": "LKB1 deletion"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": false
+    }
+  },
+  {
+    "pmid": "17042910",
+    "sentence": "Treatment with Ato improved endothelial function, reduced superoxide production and reduced SBP in Dex-treated SD rats.",
+    "reference_fields": {
+      "bio_context": [
+        "rats"
+      ],
+      "pert_desc": [
+        "Ato",
+        "Dex",
+        "superoxide"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "Dex-treated SD rats",
+      "pert_desc": "Ato"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "27866394",
+    "sentence": "Repeated otilonium bromide administration prevents neurotransmitter changes in colon of rats underwent to wrap restraint stress.",
+    "reference_fields": {
+      "bio_context": [
+        "rats"
+      ],
+      "pert_desc": [
+        "neurotransmitter",
+        "otilonium bromide"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "rat colon",
+      "pert_desc": "otilonium bromide"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "27959382",
+    "sentence": "On the whole, our findings demonstrate that Bach1 siRNA exerts protective effects against BLM-induced PF in mice.",
+    "reference_fields": {
+      "bio_context": [
+        "mice",
+        "PF"
+      ],
+      "pert_desc": [
+        "Bach1",
+        "BLM"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "mice",
+      "pert_desc": "Bach1 siRNA"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "28260056",
+    "sentence": "Mouse embryonic fibroblasts exhibiting disruption or overexpression of IGF-1R (R- cells and R+ cells) were used to examine the level of apoptosis, autophagy, and production of reactive oxygen species (ROS).",
+    "reference_fields": {
+      "bio_context": [
+        "Mouse"
+      ],
+      "pert_desc": [
+        "IGF-1R",
+        "reactive oxygen species",
+        "ROS"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "Mouse embryonic fibroblasts",
+      "pert_desc": "IGF-1R disruption or overexpression"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "20648600",
+    "sentence": "Eighteen patients were treated with LAM and six patients were treated with LAM plus TDF.",
+    "reference_fields": {
+      "bio_context": [
+        "patients"
+      ],
+      "pert_desc": [
+        "LAM",
+        "TDF"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": null,
+      "pert_desc": "LAM and LAM plus TDF"
+    },
+    "field_matches": {
+      "bio_context": false,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "17384765",
+    "sentence": "Succimer treatment of the Pb-exposed rats significantly improved learning, attention, and arousal regulation, although the efficacy of the treatment varied as a function of the Pb exposure level and the specific functional deficit.",
+    "reference_fields": {
+      "bio_context": [
+        "rats"
+      ],
+      "pert_desc": [
+        "Pb",
+        "Succimer"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "Pb-exposed rats",
+      "pert_desc": "Succimer"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "17042910",
+    "sentence": "In rats treated with Dex alone, SBP was increased from 109 +/- 2 to 133 +/- 2 mmHg on Days 4 and Day 14, respectively (P < 0.001).",
+    "reference_fields": {
+      "bio_context": [
+        "rats"
+      ],
+      "pert_desc": [
+        "Dex"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "rats",
+      "pert_desc": "Dex"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "17562951",
+    "sentence": "The rate of contrast-induced nephropathy, defined by multiple end points, is not statistically different after the intraarterial administration of iopamidol or iodixanol to high-risk patients, with or without diabetes mellitus.",
+    "reference_fields": {
+      "bio_context": [
+        "diabetes mellitus",
+        "nephropathy",
+        "patients"
+      ],
+      "pert_desc": [
+        "contrast",
+        "iodixanol",
+        "iopamidol"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": null,
+      "pert_desc": "iopamidol or iodixanol"
+    },
+    "field_matches": {
+      "bio_context": false,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "24911645",
+    "sentence": "In aspartate, glutamine and glutamate levels detected a decrease of 5.21%, 13.55% and 21.80%, respectively in mice hippocampus treated with GFC75 plus P400 when compared with seized mice.",
+    "reference_fields": {
+      "bio_context": [
+        "mice"
+      ],
+      "pert_desc": [
+        "aspartate",
+        "GFC75",
+        "glutamate",
+        "glutamine",
+        "P400"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "mice hippocampus",
+      "pert_desc": "GFC75 plus P400"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "19914299",
+    "sentence": "In this investigation the behavioural effects of chronic (two week) treatment with 5-FU and (three weeks) with Fluoxetine either separately or in combination with 5-FU were tested on adult Lister hooded rats.",
+    "reference_fields": {
+      "bio_context": [
+        "rats"
+      ],
+      "pert_desc": [
+        "5-FU",
+        "Fluoxetine"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "adult Lister hooded rats",
+      "pert_desc": "5-FU and Fluoxetine"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "16584858",
+    "sentence": "Activities of heart tissue enzymic antioxidants and serum non-enzymic antioxidants levels rose significantly upon mangiferin administration as compared to ISPH-induced MI rats.",
+    "reference_fields": {
+      "bio_context": [
+        "MI",
+        "rats"
+      ],
+      "pert_desc": [
+        "ISPH",
+        "mangiferin"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "ISPH-induced MI rats",
+      "pert_desc": "mangiferin administration"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "16565833",
+    "sentence": "The ratio of aberrant cardiomyocytes in mice treated with DOX preceded by monoHER and those in mice treated with saline ranged from 1.6 to 2.8 (mean 2.2, 95% CI 1.2-4.1, P=0.019).",
+    "reference_fields": {
+      "bio_context": [
+        "mice"
+      ],
+      "pert_desc": [
+        "DOX",
+        "monoHER"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "mice",
+      "pert_desc": "DOX preceded by monoHER"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "24911645",
+    "sentence": "In addition, GABA content of mice hippocampus treated with GFC75 plus P400 showed an increase of 46.90% when compared with seized mice.",
+    "reference_fields": {
+      "bio_context": [
+        "mice"
+      ],
+      "pert_desc": [
+        "GABA",
+        "GFC75",
+        "P400"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "mice hippocampus",
+      "pert_desc": "GFC75 plus P400"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "19058010",
+    "sentence": "Adult male albino rats, treated with ISO (200 mg/kg, s.c.) for 2 days at an interval of 24 h caused a significant (P<0.05) elevation of heart weight, serum marker enzymes, lipid peroxidation and Ca+2 ATPase level whereas there was a significant (P<0.05) decrease in body weight, endogenous antioxidants, Na+/ K+ ATPase and Mg+2 ATPase levels.",
+    "reference_fields": {
+      "bio_context": [
+        "rats"
+      ],
+      "pert_desc": [
+        "antioxidants",
+        "Ca+2 ATPase",
+        "ISO",
+        "lipid",
+        "Mg+2 ATPase",
+        "Na+/ K+ ATPase"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "Adult male albino rats",
+      "pert_desc": "ISO (200 mg/kg, s.c.) for 2 days at an interval of 24 h"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "16428827",
+    "sentence": "By way of contrast, mice treated with daidzein prior to the scopolamine injections were noticeably protected from this performance impairment (an approximately 12%-21% decrease in alternation behavior).",
+    "reference_fields": {
+      "bio_context": [
+        "mice"
+      ],
+      "pert_desc": [
+        "daidzein",
+        "scopolamine"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "mice",
+      "pert_desc": "daidzein"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "16369751",
+    "sentence": "The patient achieved a partial response 6 months after the initiation of the S-1 treatment.",
+    "reference_fields": {
+      "bio_context": [
+        "patient"
+      ],
+      "pert_desc": [
+        "S-1"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": null,
+      "pert_desc": "S-1"
+    },
+    "field_matches": {
+      "bio_context": false,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "24911645",
+    "sentence": "Hippocampus mice treated with GFC75 plus P400 showed an increase in AChE activity (63.30%) when compared with seized mice.",
+    "reference_fields": {
+      "bio_context": [
+        "mice"
+      ],
+      "pert_desc": [
+        "GFC75",
+        "P400"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "Hippocampus mice",
+      "pert_desc": "GFC75 plus P400"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "20510337",
+    "sentence": "Coenzyme Q10 treatment ameliorates acute cisplatin nephrotoxicity in mice.",
+    "reference_fields": {
+      "bio_context": [
+        "mice",
+        "nephrotoxicity"
+      ],
+      "pert_desc": [
+        "cisplatin",
+        "Coenzyme Q10"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "mice",
+      "pert_desc": "Coenzyme Q10"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "18768591",
+    "sentence": "Doxorubicin treatment resulted in heavy proteinuria (>100 mg protein/mg crea) in 15/44 of sgk1(+/+) and 15/44 of sgk1(-/-) mice leading to severe nephrotic syndrome with ascites, lipidemia, and hypoalbuminemia in both genotypes.",
+    "reference_fields": {
+      "bio_context": [
+        "ascites",
+        "hypoalbuminemia",
+        "lipidemia",
+        "mice",
+        "nephrotic syndrome",
+        "proteinuria"
+      ],
+      "pert_desc": [
+        "crea",
+        "Doxorubicin"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "mice",
+      "pert_desc": "Doxorubicin"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "18674790",
+    "sentence": "Mechanistic studies revealed that OB rats are sensitized due to: (1) higher oxyradical stress leading to upregulation of uncoupling proteins 2 and 3, (2) downregulation of cardiac peroxisome proliferators activated receptor-alpha, (3) decreased plasma adiponectin levels, (4) decreased cardiac fatty-acid oxidation (666.9+/-14.0 nmol/min/g heart in ND versus 400.2+/-11.8 nmol/min/g heart in OB), (5) decreased mitochondrial AMP-alpha2 protein kinase, and (6) 86% drop in cardiac ATP levels accompanied by decreased ATP/ADP ratio after doxorubicin administration.",
+    "reference_fields": {
+      "bio_context": [
+        "OB",
+        "rats"
+      ],
+      "pert_desc": [
+        "ADP",
+        "ATP",
+        "doxorubicin",
+        "fatty-acid"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "OB rats",
+      "pert_desc": "doxorubicin"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "16720068",
+    "sentence": "This patient presented with symptoms of neuroleptic malignant syndrome (NMS), thus demonstrating that NMS-like symptoms can occur after combined paroxetine and alprazolam treatment.",
+    "reference_fields": {
+      "bio_context": [
+        "neuroleptic malignant syndrome",
+        "NMS",
+        "patient"
+      ],
+      "pert_desc": [
+        "alprazolam",
+        "paroxetine"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "neuroleptic malignant syndrome (NMS)",
+      "pert_desc": "combined paroxetine and alprazolam"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "18308784",
+    "sentence": "The electrophysiological recording in vitro showed that Rg1 restored the LTP in slices from the rats treated with morphine, but not changed LTP in the slices from normal saline- or morphine/Rg1-treated rats; this restoration could be inhibited by N-methyl-D-aspartate (NMDA) receptor antagonist MK801.",
+    "reference_fields": {
+      "bio_context": [
+        "rats"
+      ],
+      "pert_desc": [
+        "MK801",
+        "morphine",
+        "Rg1"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": null,
+      "pert_desc": "Rg1"
+    },
+    "field_matches": {
+      "bio_context": false,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "17351238",
+    "sentence": "The patient's observations were within normal limits, he was administered oxygen via a face mask and glyceryl trinitrate (GTN).",
+    "reference_fields": {
+      "bio_context": [
+        "patient"
+      ],
+      "pert_desc": [
+        "glyceryl trinitrate",
+        "GTN",
+        "oxygen"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": null,
+      "pert_desc": "glyceryl trinitrate (GTN)"
+    },
+    "field_matches": {
+      "bio_context": false,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "15075188",
+    "sentence": "An experimental group of rats was treated with puromycin aminonucleoside (PAN; 180 mg/kg iv), whereas the control group received only vehicle.",
+    "reference_fields": {
+      "bio_context": [
+        "rats"
+      ],
+      "pert_desc": [
+        "PAN",
+        "puromycin aminonucleoside"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "rats",
+      "pert_desc": "puromycin aminonucleoside (PAN; 180 mg/kg iv)"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "15897593",
+    "sentence": "Likewise, in vivo, B6D2F1 mice were treated with etoposide, daunorubicin, and doxorubicin, with or without dexrazoxane over a wide range of doses: posttreatment, a full hematologic evaluation was done.",
+    "reference_fields": {
+      "bio_context": [
+        "mice"
+      ],
+      "pert_desc": [
+        "daunorubicin",
+        "dexrazoxane",
+        "doxorubicin",
+        "etoposide"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "B6D2F1 mice",
+      "pert_desc": "etoposide, daunorubicin, doxorubicin, with or without dexrazoxane"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "27663860",
+    "sentence": "Hydralazine treatment significantly attenuated renal damage that was found in L-FABP(+/-) AT1a(-/-)-DOCA mice along with a reduction in blood pressure.",
+    "reference_fields": {
+      "bio_context": [
+        "mice",
+        "renal damage"
+      ],
+      "pert_desc": [
+        "DOCA",
+        "Hydralazine"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "L-FABP(+/-) AT1a(-/-)-DOCA mice",
+      "pert_desc": "Hydralazine"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "24709919",
+    "sentence": "OIH was achieved in mice after subcutaneous administration of morphine for 7 consecutive days three times per day.",
+    "reference_fields": {
+      "bio_context": [
+        "mice",
+        "OIH"
+      ],
+      "pert_desc": [
+        "morphine"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "mice",
+      "pert_desc": "morphine"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "24902786",
+    "sentence": "Testosterone administration ameliorates STZ- and castration-induced memory impairment in male Wistar rats.",
+    "reference_fields": {
+      "bio_context": [
+        "memory impairment",
+        "rats"
+      ],
+      "pert_desc": [
+        "STZ",
+        "Testosterone"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "male Wistar rats",
+      "pert_desc": "Testosterone administration"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "16112787",
+    "sentence": "VCM administration to control rats significantly increased renal malondialdehyde (MDA) and urinary N-acetyl-beta-d-glucosaminidase (NAG, a marker of renal tubular injury) excretion but decreased superoxide dismutase (SOD) and catalase (CAT) activities.",
+    "reference_fields": {
+      "bio_context": [
+        "rats",
+        "renal tubular injury"
+      ],
+      "pert_desc": [
+        "malondialdehyde",
+        "MDA",
+        "SOD",
+        "superoxide dismutase",
+        "VCM"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "rat kidney",
+      "pert_desc": "VCM administration"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "16428827",
+    "sentence": "Administration of daidzein (4.5 mg/kg body weight) to mice was shown significantly to reverse scopolamine-induced amnesia, according to the results of a Y-maze test.",
+    "reference_fields": {
+      "bio_context": [
+        "amnesia",
+        "mice"
+      ],
+      "pert_desc": [
+        "daidzein",
+        "scopolamine"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "mice",
+      "pert_desc": "daidzein (4.5 mg/kg body weight)"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "24055495",
+    "sentence": "Long-term oral galactose treatment prevents cognitive deficits in male Wistar rats treated intracerebroventricularly with streptozotocin.",
+    "reference_fields": {
+      "bio_context": [
+        "cognitive deficits",
+        "rats"
+      ],
+      "pert_desc": [
+        "galactose",
+        "streptozotocin"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "male Wistar rats",
+      "pert_desc": "Long-term oral galactose"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "24914936",
+    "sentence": "In an attempt to improve developmental delay and alleviate symptoms of hypothyroidism, patients are receiving varying doses and durations of T4 treatment, but responses have been inconsistent so far.",
+    "reference_fields": {
+      "bio_context": [
+        "developmental delay",
+        "hypothyroidism",
+        "patients"
+      ],
+      "pert_desc": [
+        "T4"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": null,
+      "pert_desc": "T4"
+    },
+    "field_matches": {
+      "bio_context": false,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "19692487",
+    "sentence": "Similarly, the total protein abundance of the Na-K-2Cl cotransporter (NKCC2) in the medulla but not in the cortex of the +/+ mice was significantly reduced by lithium treatment.",
+    "reference_fields": {
+      "bio_context": [
+        "mice"
+      ],
+      "pert_desc": [
+        "lithium"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "mouse kidney medulla",
+      "pert_desc": "lithium"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "16844102",
+    "sentence": "The rat received either alpha-TC (20 mg/kg) intraperitoneally for 3 days and 30 min prior to MA administration or DFO (50 mg/kg) subcutaneously 30 min before MA administration.",
+    "reference_fields": {
+      "bio_context": [
+        "rat"
+      ],
+      "pert_desc": [
+        "alpha-TC",
+        "DFO",
+        "MA"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "rat",
+      "pert_desc": "alpha-TC (20 mg/kg) intraperitoneally for 3 days and 30 min prior to MA administration; DFO (50 mg/kg) subcutaneously 30 min before MA administration"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "17042910",
+    "sentence": "Male SD rats (n = 30) were treated with Ato (50 mg/kg per day in drinking water) or tap water for 15 days.",
+    "reference_fields": {
+      "bio_context": [
+        "rats"
+      ],
+      "pert_desc": [
+        "Ato"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "Male SD rats",
+      "pert_desc": "Ato (50 mg/kg per day in drinking water)"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "28777492",
+    "sentence": "Gankyrin expression in the tumor microenvironment is negatively correlated with progression-free survival in patients undergoing sorafenib treatment for HCC.",
+    "reference_fields": {
+      "bio_context": [
+        "HCC",
+        "patients",
+        "tumor"
+      ],
+      "pert_desc": [
+        "sorafenib"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "HCC",
+      "pert_desc": "Gankyrin expression in the tumor microenvironment"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": false
+    }
+  },
+  {
+    "pmid": "18083142",
+    "sentence": "Cocaine-induced anxiety was also attenuated in Dbh +/- mice following administration of disulfiram, a dopamine beta-hydroxylase (DBH) inhibitor.",
+    "reference_fields": {
+      "bio_context": [
+        "anxiety",
+        "mice"
+      ],
+      "pert_desc": [
+        "Cocaine",
+        "disulfiram"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": null,
+      "pert_desc": "disulfiram"
+    },
+    "field_matches": {
+      "bio_context": false,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "17572393",
+    "sentence": "Rats were exposed to BCNU on embryonic day 15 and melatonin was given until delivery.",
+    "reference_fields": {
+      "bio_context": [
+        "Rats"
+      ],
+      "pert_desc": [
+        "BCNU",
+        "melatonin"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "rat embryonic day 15",
+      "pert_desc": "BCNU and melatonin"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "27959382",
+    "sentence": "In this study, we knocked down Bach1 using adenovirus-mediated small interfering RNA (siRNA) to determine whether the use of Bach1 siRNA is an effective therapeutic strategy in mice with bleomycin (BLM)-induced PF.",
+    "reference_fields": {
+      "bio_context": [
+        "mice",
+        "PF"
+      ],
+      "pert_desc": [
+        "Bach1",
+        "bleomycin",
+        "BLM"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "mice with bleomycin (BLM)-induced PF",
+      "pert_desc": "Bach1 siRNA"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "20667451",
+    "sentence": "Therefore, the present study was carried out to investigate the effect of chronic curcumin administration on phenobarbitone- and carbamazepine-induced cognitive impairment and oxidative stress in rats.",
+    "reference_fields": {
+      "bio_context": [
+        "cognitive impairment",
+        "rats"
+      ],
+      "pert_desc": [
+        "carbamazepine",
+        "curcumin",
+        "phenobarbitone"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "rats",
+      "pert_desc": "chronic curcumin administration"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "19825989",
+    "sentence": "Silencing of PKCalpha prevented RAMH inhibition of Mz-ChA-1 cell growth and ablated RAMH effects on ERK1/2 phosphorylation.",
+    "reference_fields": {
+      "bio_context": [
+        "Mz-ChA-1"
+      ],
+      "pert_desc": [
+        "PKCalpha",
+        "RAMH"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "Mz-ChA-1 cell",
+      "pert_desc": "PKCalpha silencing"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "16565833",
+    "sentence": "The influence of the time interval between monoHER and doxorubicin administration on the protection against doxorubicin-induced cardiotoxicity in mice.",
+    "reference_fields": {
+      "bio_context": [
+        "cardiotoxicity",
+        "mice"
+      ],
+      "pert_desc": [
+        "doxorubicin",
+        "monoHER"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "mice",
+      "pert_desc": "monoHER and doxorubicin administration time interval"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "24333387",
+    "sentence": "Oral treatment with Memantine (10mg/kg) and Ibuprofen (50 mg/kg) daily for 13 days attenuated STZ induced glial activation, apoptotic cell death and post synaptic neurotoxicity in rat brain.",
+    "reference_fields": {
+      "bio_context": [
+        "neurotoxicity",
+        "rat"
+      ],
+      "pert_desc": [
+        "Ibuprofen",
+        "Memantine",
+        "STZ"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "rat brain",
+      "pert_desc": "Oral with Memantine (10mg/kg) and Ibuprofen (50 mg/kg) daily for 13 days"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "27959382",
+    "sentence": "A mouse model of BLM-induced PF was established, and Bach1 siRNA (1x109 pfu) was administered to the mice via the tail vein.",
+    "reference_fields": {
+      "bio_context": [
+        "mice",
+        "mouse",
+        "PF"
+      ],
+      "pert_desc": [
+        "Bach1",
+        "BLM"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "mouse model of BLM-induced PF",
+      "pert_desc": "Bach1 siRNA"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "18808529",
+    "sentence": "In conclusion, administration of isoproterenol to rats results in primary loss of dystrophin, the most sensitive among the structural proteins that form the DGC that connects the extracellular matrix and the cytoskeleton in cardiomyocyte.",
+    "reference_fields": {
+      "bio_context": [
+        "rats"
+      ],
+      "pert_desc": [
+        "isoproterenol"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "rats",
+      "pert_desc": "isoproterenol"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "15811908",
+    "sentence": "To describe the unmasking of pheochromocytoma in a patient treated with amisulpride and tiapride.",
+    "reference_fields": {
+      "bio_context": [
+        "patient",
+        "pheochromocytoma"
+      ],
+      "pert_desc": [
+        "amisulpride",
+        "tiapride"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "patient",
+      "pert_desc": "amisulpride and tiapride"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "18308784",
+    "sentence": "The results showed that rats treated with Morphine/Rg1 decreased escape latency and increased the time spent in platform quadrant and entering frequency.",
+    "reference_fields": {
+      "bio_context": [
+        "rats"
+      ],
+      "pert_desc": [
+        "Morphine",
+        "Rg1"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "rats",
+      "pert_desc": "Morphine/Rg1"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "16575011",
+    "sentence": "One hundred twenty-nine colorectal cancer patients homogeneously treated with FU plus levamisole or leucovorin in the adjuvant setting were included.",
+    "reference_fields": {
+      "bio_context": [
+        "colorectal cancer",
+        "PATIENTS",
+        "patients"
+      ],
+      "pert_desc": [
+        "FU",
+        "leucovorin",
+        "levamisole"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "colorectal cancer patients",
+      "pert_desc": "FU plus levamisole or leucovorin"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "24927617",
+    "sentence": "Rhabdomyolysis in a hepatitis C virus infected patient treated with telaprevir and simvastatin.",
+    "reference_fields": {
+      "bio_context": [
+        "hepatitis C virus infected",
+        "patient",
+        "Rhabdomyolysis"
+      ],
+      "pert_desc": [
+        "simvastatin",
+        "telaprevir"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "hepatitis C virus infected patient",
+      "pert_desc": "telaprevir and simvastatin"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "19825989",
+    "sentence": "Following knockdown of PKCalpha, Mz-ChA-1 cells were stimulated with RAMH before evaluating cell growth and extracellular signal-regulated kinase (ERK)-1/2 phosphorylation.",
+    "reference_fields": {
+      "bio_context": [
+        "Mz-ChA-1"
+      ],
+      "pert_desc": [
+        "PKCalpha",
+        "RAMH"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "Mz-ChA-1 cells",
+      "pert_desc": "PKCalpha"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "25589620",
+    "sentence": "Pharmacogenetic Analysis of INT 0144 Trial: Association of Polymorphisms with Survival and Toxicity in Rectal Cancer Patients Treated with 5-FU and Radiation.",
+    "reference_fields": {
+      "bio_context": [
+        "Patients",
+        "Rectal Cancer",
+        "Toxicity"
+      ],
+      "pert_desc": [
+        "5-FU"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "rectal cancer patients treated with 5-FU and radiation",
+      "pert_desc": "5-FU and radiation"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "7468724",
+    "sentence": "Severe cardiovascular complications occurred in eight of 160 patients treated with terbutaline for preterm labor.",
+    "reference_fields": {
+      "bio_context": [
+        "cardiovascular complications",
+        "patients",
+        "preterm labor"
+      ],
+      "pert_desc": [
+        "terbutaline"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": null,
+      "pert_desc": "terbutaline"
+    },
+    "field_matches": {
+      "bio_context": false,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "24671324",
+    "sentence": "We report a case of a 76-year-old man with Waldenstrom macroglobulinaemia who suffered necrotising fasciitis without neutropenia after the combination treatment with bortezomib, high-dose dexamethasone and rituximab.",
+    "reference_fields": {
+      "bio_context": [
+        "man",
+        "necrotising fasciitis",
+        "neutropenia",
+        "Waldenstrom macroglobulinaemia"
+      ],
+      "pert_desc": [
+        "bortezomib",
+        "dexamethasone",
+        "rituximab"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "Waldenstrom macroglobulinaemia",
+      "pert_desc": "combination with bortezomib, high-dose dexamethasone and rituximab"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "17511042",
+    "sentence": "An extremely rare case of delusional parasitosis in a chronic hepatitis C patient during pegylated interferon alpha-2b and ribavirin treatment.",
+    "reference_fields": {
+      "bio_context": [
+        "chronic hepatitis C",
+        "delusional parasitosis",
+        "patient"
+      ],
+      "pert_desc": [
+        "ribavirin"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "chronic hepatitis C patient",
+      "pert_desc": "pegylated interferon alpha-2b and ribavirin"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "20520283",
+    "sentence": "In a double-blind 6-week trial, 458 patients with acute schizophrenia were randomly assigned to fixed-dose treatment with asenapine at 5 mg twice daily (BID), asenapine at 10 mg BID, placebo, or haloperidol at 4 mg BID (to verify assay sensitivity).",
+    "reference_fields": {
+      "bio_context": [
+        "patients",
+        "schizophrenia"
+      ],
+      "pert_desc": [
+        "asenapine",
+        "haloperidol"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "acute schizophrenia",
+      "pert_desc": "asenapine"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "18308784",
+    "sentence": "Ginsenoside Rg1 restores the impairment of learning induced by chronic morphine administration in rats.",
+    "reference_fields": {
+      "bio_context": [
+        "impairment of learning",
+        "rats"
+      ],
+      "pert_desc": [
+        "Ginsenoside Rg1",
+        "morphine"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "rats",
+      "pert_desc": "Ginsenoside Rg1"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "17194457",
+    "sentence": "At puberty (P40), half the PCPA-treated rats and half the saline-treated rats began treatment with testosterone (T, 5 mg/kg, 5 days/week).",
+    "reference_fields": {
+      "bio_context": [
+        "rats"
+      ],
+      "pert_desc": [
+        "PCPA",
+        "T",
+        "testosterone"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "rat",
+      "pert_desc": "testosterone"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "19346865",
+    "sentence": "Follow-up MRIs were performed on 5 patients from third to 14th days after discontinuation of metronidazole administration.",
+    "reference_fields": {
+      "bio_context": [
+        "patients"
+      ],
+      "pert_desc": [
+        "metronidazole"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": null,
+      "pert_desc": "metronidazole"
+    },
+    "field_matches": {
+      "bio_context": false,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "27959382",
+    "sentence": "Bach1 siRNA attenuates bleomycin-induced pulmonary fibrosis by modulating oxidative stress in mice.",
+    "reference_fields": {
+      "bio_context": [
+        "mice",
+        "pulmonary fibrosis"
+      ],
+      "pert_desc": [
+        "Bach1",
+        "bleomycin"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "mice",
+      "pert_desc": "Bach1 siRNA"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "24902786",
+    "sentence": "Administration of flutamide, letrozole or tamoxifen significantly impaired the memory in intact rats, and significantly attenuated the testosterone replacement in improving STZ- and castration-induced memory impairment.",
+    "reference_fields": {
+      "bio_context": [
+        "memory impairment",
+        "rats"
+      ],
+      "pert_desc": [
+        "flutamide",
+        "letrozole",
+        "STZ",
+        "tamoxifen",
+        "testosterone"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "intact rats",
+      "pert_desc": "flutamide, letrozole, tamoxifen"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "15036754",
+    "sentence": "The rats treated with DFP-atropine showed severe typical OP-induced toxicity signs.",
+    "reference_fields": {
+      "bio_context": [
+        "rats",
+        "toxicity"
+      ],
+      "pert_desc": [
+        "atropine",
+        "DFP",
+        "OP"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "rats",
+      "pert_desc": "DFP-atropine"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "17344330",
+    "sentence": "Among the subjects treated with methadone, 28% men and 32% women had prolonged QTc interval.",
+    "reference_fields": {
+      "bio_context": [
+        "men",
+        "prolonged QTc interval",
+        "women"
+      ],
+      "pert_desc": [
+        "methadone"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": null,
+      "pert_desc": "methadone"
+    },
+    "field_matches": {
+      "bio_context": false,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "25874935",
+    "sentence": "Astrocytes from neonatal rats were treated with oxygen-glucose deprivation (OGD) followed by reoxygenation (OGD/R).",
+    "reference_fields": {
+      "bio_context": [
+        "rats"
+      ],
+      "pert_desc": [
+        "glucose",
+        "oxygen"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "neonatal rat astrocytes",
+      "pert_desc": "oxygen-glucose deprivation (OGD) followed by reoxygenation (OGD/R)"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "16369751",
+    "sentence": "As the precordial pain in this patient was considered to have been due to 5-FU-induced cardiotoxicity, the administration of 5-FU was abandoned.",
+    "reference_fields": {
+      "bio_context": [
+        "cardiotoxicity",
+        "patient",
+        "precordial pain"
+      ],
+      "pert_desc": [
+        "5-FU"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": null,
+      "pert_desc": "5-FU"
+    },
+    "field_matches": {
+      "bio_context": false,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "16680561",
+    "sentence": "Fewer subjects reported adverse events following treatment with desipramine alone than when receiving desipramine with cinacalcet (33 versus 86%), the most frequent of which (nausea and headache) have been reported for patients treated with either desipramine or cinacalcet.",
+    "reference_fields": {
+      "bio_context": [
+        "headache",
+        "nausea",
+        "patients"
+      ],
+      "pert_desc": [
+        "cinacalcet",
+        "desipramine"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": null,
+      "pert_desc": "desipramine"
+    },
+    "field_matches": {
+      "bio_context": false,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "16844102",
+    "sentence": "Male rats were treated with MA (10 mg/kg, every 2 h for four injections).",
+    "reference_fields": {
+      "bio_context": [
+        "rats"
+      ],
+      "pert_desc": [
+        "MA"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "Male rats",
+      "pert_desc": "MA (10 mg/kg, every 2 h for four injections)"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "19923525",
+    "sentence": "Mean arterial blood pressure in mice treated with NIMO alone decreased from 88.1 +/- 3.8 mm Hg to 80.0 +/- 2.9 mm Hg.",
+    "reference_fields": {
+      "bio_context": [
+        "mice"
+      ],
+      "pert_desc": [
+        "NIMO"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "mice",
+      "pert_desc": "NIMO"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "20667451",
+    "sentence": "These results show that curcumin has beneficial effect in mitigating the deterioration of cognitive functions and oxidative damage in rats treated with phenobarbitone and carbamazepine without significantly altering their serum concentrations.",
+    "reference_fields": {
+      "bio_context": [
+        "deterioration of cognitive functions",
+        "rats"
+      ],
+      "pert_desc": [
+        "carbamazepine",
+        "curcumin",
+        "phenobarbitone"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "rats",
+      "pert_desc": "curcumin"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "28650467",
+    "sentence": "Consistent with this premise, patient leukemic cells with relatively high levels of OPRM1 are more sensitive to L-asparaginase treatment compared to OPRM1-depleted leukemic cells, further indicating that OPRM1 loss has a crucial role in L-asparaginase resistance in leukemic patients.",
+    "reference_fields": {
+      "bio_context": [
+        "leukemic",
+        "patient",
+        "patients"
+      ],
+      "pert_desc": [
+        "L-asparaginase"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "leukemic patients",
+      "pert_desc": "OPRM1"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": false
+    }
+  },
+  {
+    "pmid": "19707748",
+    "sentence": "We present a case of a patient who developed seizures shortly after initiating treatment with levofloxacin and to discuss the potential drug-drug interactions related to the inhibition of cytochrome P450 (CYP) 1A2 in this case, as well as in other cases, of levofloxacin-induced seizures.",
+    "reference_fields": {
+      "bio_context": [
+        "patient",
+        "seizures"
+      ],
+      "pert_desc": [
+        "levofloxacin"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": null,
+      "pert_desc": "levofloxacin"
+    },
+    "field_matches": {
+      "bio_context": false,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "16720068",
+    "sentence": "On the 10th day of paroxetine and alprazolam treatment, the patient exhibited marked psychomotor retardation, disorientation, and severe muscle rigidity with tremors.",
+    "reference_fields": {
+      "bio_context": [
+        "muscle rigidity",
+        "patient",
+        "psychomotor retardation",
+        "tremors"
+      ],
+      "pert_desc": [
+        "alprazolam",
+        "paroxetine"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "patient",
+      "pert_desc": "paroxetine and alprazolam"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "16820346",
+    "sentence": "To assess the antioxidant effects of atorvastatin (atorva) on dexamethasone (dex)-induced hypertension, 60 male Sprague-Dawley rats were treated with atorva 30 mg/kg/day or tap water for 15 days.",
+    "reference_fields": {
+      "bio_context": [
+        "hypertension",
+        "rats"
+      ],
+      "pert_desc": [
+        "antioxidant",
+        "atorva",
+        "atorvastatin",
+        "dex",
+        "dexamethasone"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "male Sprague-Dawley rats",
+      "pert_desc": "atorvastatin (atorva) 30 mg/kg/day"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "19319147",
+    "sentence": "Male CD-1 mice were treated with warfarin (2 mg/kg over 24 h), resulting in a mean (+/-s.d.) International Normalized Ratio of 3.5+/-0.9.",
+    "reference_fields": {
+      "bio_context": [
+        "mice"
+      ],
+      "pert_desc": [
+        "warfarin"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "Male CD-1 mice",
+      "pert_desc": "warfarin (2 mg/kg over 24 h)"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "20046642",
+    "sentence": "The histological features were improved in hippocampus of rats treated with ZnSO(4) + BCNU compared to only BCNU-treated animals.",
+    "reference_fields": {
+      "bio_context": [
+        "rats"
+      ],
+      "pert_desc": [
+        "BCNU",
+        "ZnSO(4)"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "rat hippocampus",
+      "pert_desc": "ZnSO(4) + BCNU"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "27866394",
+    "sentence": "Furthermore, in healthy rats, repeated OB administration modified neurotransmitter expression and function suggesting other mechanisms of action.",
+    "reference_fields": {
+      "bio_context": [
+        "rats"
+      ],
+      "pert_desc": [
+        "neurotransmitter",
+        "OB"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "healthy rats",
+      "pert_desc": "OB administration"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "24914936",
+    "sentence": "Our studies establish that TRa1 has an essential role in the developing and adult skeleton and predict that patients with different THRA mutations will display variable responses to T4 treatment, which depend on the severity of the causative mutation.",
+    "reference_fields": {
+      "bio_context": [
+        "patients"
+      ],
+      "pert_desc": [
+        "T4"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": null,
+      "pert_desc": "TRa1"
+    },
+    "field_matches": {
+      "bio_context": false,
+      "pert_desc": false
+    }
+  },
+  {
+    "pmid": "28260077",
+    "sentence": "In vitro, the HK2 cells were treated with iopamidol in the presence or absence of atorvastatin, heat shock protein (Hsp)27 small interfering (si)RNA or pcDNA3.1-Hsp27.",
+    "reference_fields": {
+      "bio_context": [
+        "HK2"
+      ],
+      "pert_desc": [
+        "atorvastatin",
+        "iopamidol"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "HK2 cells",
+      "pert_desc": "iopamidol"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "20477932",
+    "sentence": "Therefore NFkappaB activity, oxidative stress, neuronal nitric oxide synthase (nNOS) activity, spatial learning and memory as well as the effect of topiramate, a previously proposed therapy for cocaine addiction, were evaluated in an experimental model of cocaine administration in rats.",
+    "reference_fields": {
+      "bio_context": [
+        "cocaine addiction",
+        "rats"
+      ],
+      "pert_desc": [
+        "cocaine",
+        "topiramate"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "rat model of cocaine administration",
+      "pert_desc": "topiramate"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "28260077",
+    "sentence": "Notably, following treatment with Hsp27 siRNA or pcDNA3.1-Hsp27, it was found that iopamidol enhanced or weakened the upregulation of Bax/caspase-3 and downregulation of Bcl-2 in the HK2 cells, respectively.",
+    "reference_fields": {
+      "bio_context": [
+        "HK2"
+      ],
+      "pert_desc": [
+        "Hsp27",
+        "iopamidol"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "HK2 cells",
+      "pert_desc": "Hsp27 siRNA or pcDNA3.1-Hsp27"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "18410508",
+    "sentence": "Mice in which the CX3CR1 gene has been deleted and replaced with a cDNA encoding enhanced green fluorescent protein (eGFP) were treated with METH and examined for striatal neurotoxicity.",
+    "reference_fields": {
+      "bio_context": [
+        "Mice",
+        "neurotoxicity"
+      ],
+      "pert_desc": [
+        "eGFP",
+        "enhanced green fluorescent protein",
+        "METH"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "mice",
+      "pert_desc": "CX3CR1 gene deletion with eGFP replacement"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "25080425",
+    "sentence": "Male Sprague Dawley rats were treated with betaine (100, 200, and 400 mg/kg) orally for 40 days.",
+    "reference_fields": {
+      "bio_context": [
+        "rats"
+      ],
+      "pert_desc": [
+        "betaine"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "Male Sprague Dawley rats",
+      "pert_desc": "betaine"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "16731636",
+    "sentence": "LV hypertrophy induced by Iso treatment was significantly higher in TGR than in SD rats (in g LV wt/100 g body wt, 0.28 +/- 0.004 vs.",
+    "reference_fields": {
+      "bio_context": [
+        "LV hypertrophy",
+        "rats"
+      ],
+      "pert_desc": [
+        "Iso"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "rat model",
+      "pert_desc": "Iso"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "17879945",
+    "sentence": "We have previously demonstrated that ritonavir treatment increases atherosclerotic lesion formation in male mice to a greater extent than in female mice.",
+    "reference_fields": {
+      "bio_context": [
+        "atherosclerotic lesion",
+        "mice"
+      ],
+      "pert_desc": [
+        "ritonavir"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "male mice, female mice",
+      "pert_desc": "ritonavir"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "16167916",
+    "sentence": "Markers of fibrinolysis, thrombin-activatable fibrinolysis inhibitor (TAFI), tissue-type plasminogen activator (tPA), and plasminogen activator inhibitor-1 (PAI-1) levels were studied for the evaluation of short-term effects of raloxifene administration in postmenopausal women.",
+    "reference_fields": {
+      "bio_context": [
+        "women"
+      ],
+      "pert_desc": [
+        "raloxifene"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "postmenopausal women",
+      "pert_desc": "raloxifene administration"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "16801510",
+    "sentence": "In the inpatient setting, the frequency of QT interval prolongation with methadone treatment, its dose dependence, and the importance of cofactors such as drug-drug interactions remain unknown.",
+    "reference_fields": {
+      "bio_context": [
+        "inpatient",
+        "QT interval prolongation"
+      ],
+      "pert_desc": [
+        "methadone"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "inpatient setting",
+      "pert_desc": "methadone"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "19692487",
+    "sentence": "A 2-wk administration of LiCl (4 mmol.kg(-1).day(-1) ip) in mPGES-1 +/+ mice led to a marked polyuria with hyposmotic urine.",
+    "reference_fields": {
+      "bio_context": [
+        "mice",
+        "polyuria"
+      ],
+      "pert_desc": [
+        "LiCl"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "mPGES-1 +/+ mice",
+      "pert_desc": "LiCl (4 mmol.kg(-1).day(-1) ip) for 2 weeks"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  },
+  {
+    "pmid": "28098423",
+    "sentence": "H9c2 cells were treated with Dox (1 uM) and/or BDNF (400 ng/ml) for 24 hrs.",
+    "reference_fields": {
+      "bio_context": [
+        "H9c2"
+      ],
+      "pert_desc": [
+        "Dox"
+      ]
+    },
+    "parsed_fields": {
+      "bio_context": "H9c2 cells",
+      "pert_desc": "Dox (1 uM) and/or BDNF (400 ng/ml) for 24 hrs"
+    },
+    "field_matches": {
+      "bio_context": true,
+      "pert_desc": true
+    }
+  }
+]
